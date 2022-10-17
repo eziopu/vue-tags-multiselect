@@ -11,6 +11,7 @@ packages_by_vue2
 node_modules
 .DS_Store
 dist
+demo_dist
 dist-ssr
 coverage
 *.local

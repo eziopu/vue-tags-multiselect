@@ -1,11 +1,23 @@
 {
   "name": "vue-tags-multiselect",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/v-tags-multiselect.umd.cjs",
+  "module": "./dist/v-tags-multiselect.js",
+  "exports": {
+    ".": {
+      "import": "./dist/v-tags-multiselect.js",
+      "require": "./dist/v-tags-multiselect.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
+    "build": "vite build",
+    "build:doc": "vite build --config demo/vite.config.ts",
+    "build:check": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
-    "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
