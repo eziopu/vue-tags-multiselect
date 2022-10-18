@@ -4,12 +4,17 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/v-tags-multiselect.umd.cjs",
-  "module": "./dist/v-tags-multiselect.js",
+  "type": "module",
+  "main": "./dist/vue-tags-multiselect.umd.cjs",
+  "module": "./dist/vue-tags-multiselect.js",
   "exports": {
     ".": {
-      "import": "./dist/v-tags-multiselect.js",
-      "require": "./dist/v-tags-multiselect.umd.cjs"
+      "import": "./dist/vue-tags-multiselect.js",
+      "require": "./dist/vue-tags-multiselect.umd.cjs"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "scripts": {

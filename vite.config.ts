@@ -17,8 +17,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      name: "vTagsMultiselect",
-      fileName: "v-tags-multiselect",
+      name: "vue-tags-multiselect",
+      fileName: "vue-tags-multiselect",
     },
     rollupOptions: {
       external: ["vue"],
