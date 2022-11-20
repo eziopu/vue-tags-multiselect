@@ -18,7 +18,7 @@
     }
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config demo/vite.config.js",
     "build": "vite build",
     "build:doc": "vite build --config demo/vite.config.ts",
     "build:check": "run-p type-check build-only",
@@ -26,8 +26,19 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
+  "peerDependencies": {
+    "@vue/composition-api": ">=1",
+    "vanilla-jsoneditor": ">=0",
+    "vue": "2 || 3"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "vue": "^3.2.38"
+    "vue-demi": "latest",
+    "vue-global-config": "latest"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
@@ -41,8 +52,10 @@
     "eslint-plugin-vue": "^9.3.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
+    "sass": "^1.56.0",
     "typescript": "~4.7.4",
     "vite": "^3.0.9",
+    "vue": "^3.2.38",
     "vue-tsc": "^0.40.7"
   }
 }

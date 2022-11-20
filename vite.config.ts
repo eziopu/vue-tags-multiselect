@@ -14,6 +14,9 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  optimizeDeps: {
+    exclude: ["vue-demi"],
+  },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
@@ -21,10 +24,11 @@ export default defineConfig({
       fileName: "vue-tags-multiselect",
     },
     rollupOptions: {
-      external: ["vue"],
+      external: ["vue", "vue-demi"],
       output: {
         globals: {
           vue: "Vue",
+          "vue-demi": "VueDemi",
         },
       },
     },

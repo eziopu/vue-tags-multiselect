@@ -15,6 +15,7 @@ demo_dist
 dist-ssr
 coverage
 *.local
+src-vue2
 
 /cypress/videos/
 /cypress/screenshots/

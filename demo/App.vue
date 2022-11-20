@@ -20,6 +20,13 @@ import TheWelcome from "./components/TheWelcome.vue";
 
   <main>
     <TheWelcome />
+    <v-tags-multiselect>
+      <v-tag-dropdown value="country">
+        <v-tag-option title> title111 </v-tag-option>
+        <v-tag-option value="Māre111"> Māre1111 </v-tag-option>
+        <v-tag-option value="Eldia2222"> Eldia2222 </v-tag-option>
+      </v-tag-dropdown>
+    </v-tags-multiselect>
   </main>
 </template>
 
