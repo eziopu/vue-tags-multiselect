@@ -19,7 +19,6 @@ import TheWelcome from "./components/TheWelcome.vue";
   </header>
 
   <main>
-    <TheWelcome />
     <v-tags-multiselect>
       <v-tag-dropdown value="country">
         <v-tag-option title> title111 </v-tag-option>

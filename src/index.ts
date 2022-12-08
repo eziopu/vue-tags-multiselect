@@ -1,12 +1,12 @@
 import type { App, Plugin } from "vue";
 import vTagsMultiselect from "./main.vue";
-// import vTagDropdown from "./tag-dropdown/main.vue";
-// import vTagOption from "./tag-dropdown/option.vue";
+import vTagDropdown from "./components/tag-dropdown/main.vue";
+import vTagOption from "./components/tag-dropdown/option.vue";
 
 const install = (app: App) => {
   app.component("v-tags-multiselect", vTagsMultiselect);
-  // app.component("v-tag-dropdown", vTagDropdown);
-  // app.component("v-tag-option", vTagOption);
+  app.component("v-tag-dropdown", vTagDropdown);
+  app.component("v-tag-option", vTagOption);
 };
 
 vTagsMultiselect.install = install;

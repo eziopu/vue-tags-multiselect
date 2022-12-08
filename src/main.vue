@@ -76,14 +76,12 @@
       </div>
     </div>
 
-    <!-- <Transition :name="transition ? 'slide' : ''">
-      <div
-        class="dropdowns"
-        :class="{ loading: loading || dropdownLoading, transition: transition }"
+    <Transition :name="transition ? 'slide' : ''">
+      <div class="dropdowns">
+        <!-- :class="{ loading: loading || dropdownLoading, transition: transition }"
         :style="dropdown.style"
-        v-show="displayDropdown"
-      >
-        <div
+        v-show="displayDropdown" -->
+        <!--  <div
           v-show="loading == true || dropdownLoading == true"
           class="dropdowns__loading"
           :tabindex="-1"
@@ -118,19 +116,19 @@
               <slot name="option-OR-conjunction">OR</slot>
             </div>
           </VTagOption>
-        </VTagDropdown>
+        </VTagDropdown> -->
 
         <slot v-if="$slots.default"></slot>
       </div>
-    </Transition> -->
+    </Transition>
   </div>
 </template>
 
 <script lang="ts">
 // import Tag from "./tag/main.vue";
 import Loading from "./components/partial/loading.vue";
-// import VTagDropdown from "./tag-dropdown/main.vue";
-// import VTagOption from "./tag-dropdown/option.vue";
+// import VTagDropdown from "./components/tag-dropdown/main.vue";
+// import VTagOption from "./components/tag-dropdown/option.vue";
 
 // import EmitOutput from "./mixins/emits/output";
 // import EmitGetStatus from "./mixins/emits/get-status";
@@ -253,6 +251,7 @@ export default defineComponent({
     },
   },
   setup(props, context) {
+    console.log("app setup");
     return resolve(props, context, [
       useData,
       // useData,
@@ -260,16 +259,16 @@ export default defineComponent({
       // useData,
     ]);
   },
-  model: {
-    prop: "value",
-    event: "update",
-  },
+  // model: {
+  //   prop: "value",
+  //   event: "update",
+  //   this.$emit('update:modelValue', value)
+  // },
   provide() {
     return {
       getApp: () => this,
     };
   },
-
   data() {
     return {
       isFirstFocus: false,

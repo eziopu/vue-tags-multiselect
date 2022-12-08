@@ -1,5 +1,4 @@
 import { toRefs, getCurrentInstance } from "vue";
-import isNullish from "./../utils/isNullish";
 
 export default function useData(props, context, dep) {
   const { object, valueProp, mode } = toRefs(props);
@@ -33,11 +32,6 @@ export default function useData(props, context, dep) {
       return val;
     }
 
-    // No need to transform if empty value
-    if (isNullish(val)) {
-      return val;
-    }
-
     // If external should be plain transform
     // value object to plain values
     return !Array.isArray(val)
@@ -47,7 +41,7 @@ export default function useData(props, context, dep) {
 
   // no export
   const makeInternal = (val) => {
-    if (isNullish(val)) {
+    if (val == null) {
       return mode.value === "single" ? {} : [];
     }
 
