@@ -4,6 +4,7 @@
     tabindex="0"
     hidefocus="true"
     ref="app"
+    @keydown="handleKeydown"
     @click="
       () => {
         isFirstFocus = true;
@@ -139,6 +140,7 @@ import Loading from "./components/partial/loading.vue";
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
 import useData from "./composables/useData";
+import useKeyboard from "./composables/useKeyboard";
 
 import {
   computed,
@@ -254,6 +256,7 @@ export default defineComponent({
     console.log("app setup");
     return resolve(props, context, [
       useData,
+      useKeyboard,
       // useData,
       // useData,
       // useData,

@@ -72,6 +72,7 @@ export default function useKeyboard(props, context, dep) {
   };
 
   const handleKeydown = (e) => {
+    console.log("handleKeydown e =", e);
     context.emit("keydown", e, $this);
 
     let tagList;
