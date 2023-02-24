@@ -2,7 +2,7 @@
   <div
     class="option"
     :class="{
-      title: props.title,
+      title: props.title == true,
       disabled: isDisabled,
       divided: props.divided,
       hover: isHover,
@@ -20,88 +20,76 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineProps, ref, computed } from "vue";
-
+<script>
 export default {
   name: "v-tag-option",
-  setup() {
-    // props
-    const props = defineProps({
-      title: {
-        type: Boolean,
-        default: false,
-      },
-      displayValue: {
-        type: Boolean,
-        default: false,
-      },
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      divided: {
-        type: Boolean,
-        default: false,
-      },
-      selected: {
-        type: Boolean,
-        default: false,
-      },
-      value: {
-        type: String,
-        default: "",
-      },
-    });
+};
+</script>
 
-    const indexBySlot = ref(-1);
+<script setup>
+import {
+  ref,
+  toRefs,
+  computed,
+  inject,
+  VueElement,
+  useSlots,
+  useAttrs,
+} from "vue";
 
-    const isDisabled = computed(() => {
-      return props.disabled == true || props.value == "";
-    });
-    const isHover = computed(() => {
-      return false;
-    });
+const slots = useSlots();
 
-    const isHide = computed(() => {
-      if (indexBySlot.value == -1) return;
-      return false;
-      // dropdown.optionHide(
-      //   this.indexBySlot,
-      //   this.title ? "title" : "option",
-      //   this.value
-      // );
-    });
+console.log("v-option setup", slots);
+const dropdown = inject("getDropdown");
+console.log(dropdown.testfunction("ya"));
+console.log("v-option setup end");
 
-    const handleClick = () => {
-      if (isDisabled.value) return;
+// props
+const props = defineProps({
+  title: { type: Boolean, default: false },
+  displayValue: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
+  divided: { type: Boolean, default: false },
+  selected: { type: Boolean, default: false },
+  value: { type: String, default: "" },
+});
 
-      if (props.title == true) {
-        // this.dropdown.setTitle();
-      } else {
-        if (!props.value) return;
-        // this.dropdown.setValue({
-        //   elm: {
-        //     value: this.$slots.default,
-        //   },
-        //   value: props.value,
-        //   displayValue: props.displayValue,
-        // });
-      }
-    };
+const indexBySlot = ref(-1);
 
-    return {
-      props,
-      isDisabled,
-      isHover,
-      isHide,
-      handleClick,
-    };
-  },
-  mounted() {
-    if (this.selected == true) {
-      this.handleClick();
-    }
-  },
+const isDisabled = computed(() => {
+  return props.disabled == true || props.value == "";
+});
+
+const isHover = computed(() => {
+  return false;
+});
+
+const isHide = computed(() => {
+  if (indexBySlot.value == -1) return;
+  return false;
+  // return dropdown.optionHide(
+  //   indexBySlot,
+  //   props.title ? "title" : "option",
+  //   props.value
+  // );
+});
+
+const handleClick = () => {
+  console.log("v-option handleClick", props.value);
+
+  if (isDisabled.value) return;
+
+  if (props.title == true) {
+    // this.dropdown.setTitle();
+  } else {
+    if (!props.value) return;
+    // this.dropdown.setValue({
+    //   elm: {
+    //     value: this.$slots.default,
+    //   },
+    //   value: props.value,
+    //   displayValue: props.displayValue,
+    // });
+  }
 };
 </script>
