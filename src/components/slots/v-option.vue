@@ -41,10 +41,9 @@ const slots = useSlots();
 
 console.log("v-option setup", slots);
 const dropdown = inject("getDropdown");
-console.log(dropdown.testfunction("ya"));
+// console.log(dropdown.testfunction("ya"));
 console.log("v-option setup end");
 
-// props
 const props = defineProps({
   title: { type: Boolean, default: false },
   displayValue: { type: Boolean, default: false },

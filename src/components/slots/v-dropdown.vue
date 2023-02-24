@@ -1,162 +1,157 @@
-<script lang="ts">
-import { defineProps, ref, reactive, computed, h, inject, toRefs } from "vue";
+<template>
+  <render />
+</template>
+
+<script>
 export default {
-  name: "v-tag-option",
-  props: [
-    "disabled",
-    "divided",
-    "displayAll",
-    "hidden",
-    "system",
-    "custom",
-    "value",
-  ],
-  provide() {
-    return {
-      getDropdown: this,
-    };
-  },
-  setup(props, { slots }) {
-    console.log("v-dropdown setup");
+  name: "v-dropdown",
+};
+</script>
 
-    // props
-    const { disabled, divided, displayAll, hidden, system, custom, value } =
-      toRefs(props);
-    const propsData = {
-      disabled: disabled.value || false,
-      divided: divided.value || false,
-      displayAll: displayAll.value || false,
-      hidden: hidden.value || false,
-      system: system.value || false,
-      custom: custom.value || false,
-      value: value.value || "",
-    };
+<script setup>
+import {
+  ref,
+  reactive,
+  computed,
+  h,
+  inject,
+  toRefs,
+  useSlots,
+} from "vue";
 
-    // data
-    const hover = ref(false);
-    const selecting = ref(false);
-    const editMyself = ref(false);
-    const titleVNode = reactive({
-      exist: false,
-      elm: undefined,
-    });
-    const classList = reactive([]);
-    const children = reactive({
-      optionCounts: 0,
-      values: [],
-      displaies: [],
-      isSearchs: [],
-    });
+// provide() {
+//   return {
+//     getDropdown: this,
+//   };
+// }
 
-    // const app = inject("getApp");
+const props = defineProps({
+  disabled: { type: Boolean, default: false },
+  divided: { type: Boolean, default: false },
+  displayAll: { type: Boolean, default: false },
+  hidden: { type: Boolean, default: false },
+  system: { type: Boolean, default: false },
+  custom: { type: Boolean, default: false },
+  value: { type: String, default: "" },
+});
 
-    const testfunction = (text = "") => {
-      console.log("testfunction////");
-      console.log(text);
-      console.log("////testfunction");
-    };
-    // const currentTagKey = computed(() => {
-    //   return (app.current.tag || {}).key || undefined;
-    // });
+console.log("v-dropdown setup");
 
-    return {
-      propsData,
-      testfunction,
-    };
-  },
-  mounted() {
-    if (this.selected == true) {
-      this.handleClick();
-    }
-  },
-  beforeUnmount() {
-    // this.appCancelled();
-  },
-  methods: {
-    optionRegistered(target = "title", value, indexBySlot) {
-      console.log("dropdown methods optionRegistered", target, value);
-      // if (target == "title" && this.titleVNode.exist == false) {
-      //   this.titleVNode.exist = true;
-      //   this.titleVNode.elm = value;
-      // } else if (target == "option") {
-      //   this.children.optionCounts++; // maybe option value is undefined (need use push update option value)
-      //   this.children.values.splice(indexBySlot, 0, value);
-      // }
-      // this.children.isSearchs.splice(indexBySlot, 0, false);
+// data
+const hover = ref(false);
+const selecting = ref(false);
+const editMyself = ref(false);
+const titleVNode = reactive({
+  exist: false,
+  elm: undefined,
+});
+const classList = reactive([]);
+const children = reactive({
+  optionCounts: 0,
+  values: [],
+  displaies: [],
+  isSearchs: [],
+});
+
+// const app = inject("getApp");
+
+const testfunction = (text = "") => {
+  console.log("testfunction////");
+  console.log(text);
+  console.log("////testfunction");
+};
+// const currentTagKey = computed(() => {
+//   return (app.current.tag || {}).key || undefined;
+// });
+
+// mounted() {
+//   if (this.selected == true) {
+//     this.handleClick();
+//   }
+// }
+
+// beforeUnmount() {
+//   // this.appCancelled();
+// }
+
+const optionRegistered = (target = "title", value, indexBySlot) => {
+  console.log("dropdown methods optionRegistered", target, value);
+  // if (target == "title" && this.titleVNode.exist == false) {
+  //   this.titleVNode.exist = true;
+  //   this.titleVNode.elm = value;
+  // } else if (target == "option") {
+  //   this.children.optionCounts++; // maybe option value is undefined (need use push update option value)
+  //   this.children.values.splice(indexBySlot, 0, value);
+  // }
+  // this.children.isSearchs.splice(indexBySlot, 0, false);
+};
+const appCancelled = (value = this.value) => {
+  console.log("dropdown methods", value);
+
+  // if (this.validatorString(value) == false) return;
+  // let { app } = this;
+  // this.$delete(app.dropdown.customs, value);
+  // this.$delete(app.dropdown.isFinishs, value);
+  // this.$delete(app.dropdown.optionCounts, value);
+  // this.$delete(app.dropdown.optionDisplaies, value);
+};
+const optionHide = (indexBySlot = 0, target = "title", optionValue = "") => {
+  // if (this.system == true) return false;
+  // if (this.hidden == true || this.isFinish == true) return true;
+
+  // if (target == "option") {
+  //   if (this.app.isRepeatTags(this.value, optionValue) == true) return true;
+  // }
+
+  // if (this.appIsEditMode == true) {
+  //   if (this.editMyself == false) return true;
+  //   if (this.editMyself == true) {
+  //     return target == "title";
+  //   }
+  // }
+
+  // // selecting no key
+  // if (this.currentConjunction == "AND" || this.currentConjunction == "") {
+  //   if (this.app.isRepeatTagsByKey(this.value) == true) return true;
+  // }
+
+  // // 竟可能過濾 虛隱藏的情況 最後return false
+  // if (this.currentTagKey) {
+  //   if (this.currentTagKey != this.value) return true;
+  //   if (target == "title") return true;
+  // }
+
+  // if (this.appIsSearchMode == true) {
+  //   return this.optionHideBySearchMode(indexBySlot, target);
+  // }
+
+  // if (target == "option" && this.currentTagKey == undefined) {
+  //   return !this.realDisplayAll;
+  // }
+  return false;
+};
+
+const slots = useSlots();
+const render = () => {
+  const shell = {
+    class: {
+      dropdown: true,
+      // "no-title": true,
+      // "display-all":
+      //   (currentTagKey == undefined && isSearchMode) || this.realDisplayAll,
+      // disabled: this.disabled,
+      // divided: this.divided,
+      // selecting: currentTagKey == this.value,
+      // editing: this.editMyself,
+      // hidden:
+      //   this.hidden ||
+      //   this.allChildrenIsHidden() ||
+      //   (this.system == false && this.validatorString(this.value) == false),
+      // hover: this.hover,
+      // transition: this.app.transition,
     },
-    appCancelled(value = this.value) {
-      console.log("dropdown methods", value);
-      
-      // if (this.validatorString(value) == false) return;
-      // let { app } = this;
-      // this.$delete(app.dropdown.customs, value);
-      // this.$delete(app.dropdown.isFinishs, value);
-      // this.$delete(app.dropdown.optionCounts, value);
-      // this.$delete(app.dropdown.optionDisplaies, value);
-    },
-    optionHide(indexBySlot = 0, target = "title", optionValue = "") {
-      // if (this.system == true) return false;
-      // if (this.hidden == true || this.isFinish == true) return true;
-  
-      // if (target == "option") {
-      //   if (this.app.isRepeatTags(this.value, optionValue) == true) return true;
-      // }
-  
-      // if (this.appIsEditMode == true) {
-      //   if (this.editMyself == false) return true;
-      //   if (this.editMyself == true) {
-      //     return target == "title";
-      //   }
-      // }
-  
-      // // selecting no key
-      // if (this.currentConjunction == "AND" || this.currentConjunction == "") {
-      //   if (this.app.isRepeatTagsByKey(this.value) == true) return true;
-      // }
-  
-      // // 竟可能過濾 虛隱藏的情況 最後return false
-      // if (this.currentTagKey) {
-      //   if (this.currentTagKey != this.value) return true;
-      //   if (target == "title") return true;
-      // }
-  
-      // if (this.appIsSearchMode == true) {
-      //   return this.optionHideBySearchMode(indexBySlot, target);
-      // }
-  
-      // if (target == "option" && this.currentTagKey == undefined) {
-      //   return !this.realDisplayAll;
-      // }
-      return false;
-    },
-  },
-  render() {
-    // const {
-    //   // search
-    //   currentTagKey,
-    //   isSearchMode,
-    // } = this;
-    const shell = {
-      class: {
-        dropdown: true,
-        // "no-title": true,
-        // "display-all":
-        //   (currentTagKey == undefined && isSearchMode) || this.realDisplayAll,
-        // disabled: this.disabled,
-        // divided: this.divided,
-        // selecting: currentTagKey == this.value,
-        // editing: this.editMyself,
-        // hidden:
-        //   this.hidden ||
-        //   this.allChildrenIsHidden() ||
-        //   (this.system == false && this.validatorString(this.value) == false),
-        // hover: this.hover,
-        // transition: this.app.transition,
-      },
-    };
-
-    return h("div", shell, this.$slots.default());
-  },
+  };
+  return h("div", shell, slots);
 };
 </script>
 
