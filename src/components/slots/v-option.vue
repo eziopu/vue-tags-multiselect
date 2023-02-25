@@ -21,28 +21,85 @@
 </template>
 
 <script>
+import { ref, computed, inject } from "vue";
+
 export default {
   name: "v-tag-option",
+  props: {
+    title: { type: Boolean, default: false },
+    displayValue: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+    divided: { type: Boolean, default: false },
+    selected: { type: Boolean, default: false },
+    value: { type: String, default: "" },
+  },
+  setup(props, { slots }) {
+    console.log(props, "export default setup", slots);
+    const indexBySlot = ref(-1);
+
+    const isDisabled = computed(() => {
+      return props.disabled == true || props.value == "";
+    });
+
+    const isHover = computed(() => {
+      return false;
+    });
+
+    const isHide = computed(() => {
+      if (indexBySlot.value == -1) return;
+      return false;
+      // return dropdown.optionHide(
+      //   indexBySlot,
+      //   props.title ? "title" : "option",
+      //   props.value
+      // );
+    });
+
+    const setValue = inject("setValue");
+    const handleClick = () => {
+      console.log("v-option handleClick", props.value);
+
+      if (isDisabled.value) return;
+      if (!props.title && !props.value) return;
+
+      setValue({
+        is_title: props.title,
+        slots: slots,
+        value: props.value,
+        displayValue: props.displayValue,
+      });
+    };
+
+    if (props.selected == true) {
+      handleClick();
+    }
+
+    return {
+      props,
+      isDisabled,
+      isHover,
+      isHide,
+      handleClick,
+    };
+  },
 };
 </script>
 
-<script setup>
+<!-- <script setup>
 import {
   ref,
+  reactive,
   toRefs,
   computed,
+  provide,
   inject,
   VueElement,
   useSlots,
+  getCurrentInstance,
   useAttrs,
 } from "vue";
 
-const slots = useSlots();
-
-console.log("v-option setup", slots);
-const dropdown = inject("getDropdown");
 // console.log(dropdown.testfunction("ya"));
-console.log("v-option setup end");
 
 const props = defineProps({
   title: { type: Boolean, default: false },
@@ -52,6 +109,7 @@ const props = defineProps({
   selected: { type: Boolean, default: false },
   value: { type: String, default: "" },
 });
+console.log(props.value, "script setup");
 
 const indexBySlot = ref(-1);
 
@@ -73,22 +131,29 @@ const isHide = computed(() => {
   // );
 });
 
+const setValue = inject("setValue");
 const handleClick = () => {
   console.log("v-option handleClick", props.value);
 
   if (isDisabled.value) return;
+  if (!props.title && !props.value) return;
 
-  if (props.title == true) {
-    // this.dropdown.setTitle();
-  } else {
-    if (!props.value) return;
-    // this.dropdown.setValue({
-    //   elm: {
-    //     value: this.$slots.default,
-    //   },
-    //   value: props.value,
-    //   displayValue: props.displayValue,
-    // });
-  }
+  const slots = useSlots();
+  const instance = getCurrentInstance();
+  const obj = {
+    is_title: props.title,
+    slots: instance,
+    value: props.value,
+    displayValue: props.displayValue,
+  };
+
+  console.log("v-option handleClick setValue", slots.default());
+
+  setValue({
+    is_title: props.title,
+    slots: slots,
+    value: props.value,
+    displayValue: props.displayValue,
+  });
 };
-</script>
+</script> -->
