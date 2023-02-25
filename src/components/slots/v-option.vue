@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import slotToText from "../../utils/slotToText";
+
 import { ref, computed, inject } from "vue";
 
 export default {
@@ -38,6 +40,9 @@ export default {
     const indexBySlot = ref(-1);
 
     const isDisabled = computed(() => {
+      if (props.title == true) {
+        return props.disabled;
+      }
       return props.disabled == true || props.value == "";
     });
 
@@ -55,16 +60,15 @@ export default {
       // );
     });
 
-    const setValue = inject("setValue");
+    const dropdownSetValue = inject("dropdownSetValue");
     const handleClick = () => {
       console.log("v-option handleClick", props.value);
 
       if (isDisabled.value) return;
-      if (!props.title && !props.value) return;
 
-      setValue({
+      dropdownSetValue({
         is_title: props.title,
-        slots: slots,
+        vnode: slots.default(),
         value: props.value,
         displayValue: props.displayValue,
       });
@@ -98,8 +102,6 @@ import {
   getCurrentInstance,
   useAttrs,
 } from "vue";
-
-// console.log(dropdown.testfunction("ya"));
 
 const props = defineProps({
   title: { type: Boolean, default: false },
