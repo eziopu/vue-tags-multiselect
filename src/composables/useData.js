@@ -1,54 +1,68 @@
-import { toRefs, getCurrentInstance } from "vue";
+import { toRefs, ref, reactive } from "vue";
 
-export default function useData(props, context, dep) {
-  const { object, valueProp, mode } = toRefs(props);
+export default function useData(props) {
+  console.log("useData.js", props);
 
-  const $this = getCurrentInstance().proxy;
+  const { modelValue } = toRefs(props);
 
-  // ============ DEPENDENCIES ============
+  // ================ DATA ================
 
-  const iv = dep.iv;
+  // internalValue
+  const iv = "single";
 
-  // =============== METHODS ==============
+  const isFirstFocus = ref(false);
+  const isFocus = ref(false);
+  const isFocusResetCurrentFilter = ref(true);
+  const optionHoverByMouse = ref(false);
+  const inputValue = ref("");
+  const apply = reactive({
+    clickByKeyName: "",
+    clickPushValue: "",
+  });
+  const edit = reactive({
+    index: -1,
+    key: "",
+    value: "",
+  });
+  const current = reactive({
+    tag: {},
+    conjunction: "",
+    selectUDIndex: -1,
+    selectLRIndex: -1,
+    lockKeydownLR: false,
+  });
+  const dropdown = reactive({
+    style: { left: "0px" },
+    count: 0,
+    optionCount: 0,
+    customs: {},
+    isFinishs: {},
+    optionCounts: {},
+    optionDisplaies: {},
+  });
+  const tags = ref([]);
+  const tagsGroupByTitleKey = ref([]);
+  const firstPlaceholder = props.placeholder;
 
-  const update = (val) => {
-    // Setting object(s) as internal value
-    iv.value = makeInternal(val);
+  // ============== COMPUTED ==============
 
-    // Setting object(s) or plain value as external
-    // value based on `option` setting
-    const externalVal = makeExternal(val);
-
-    context.emit("change", externalVal, $this);
-    context.emit("input", externalVal);
-    context.emit("update:modelValue", externalVal);
-  };
-
-  // no export
-  const makeExternal = (val) => {
-    // If external value should be object
-    // no transformation is required
-    if (object.value) {
-      return val;
-    }
-
-    // If external should be plain transform
-    // value object to plain values
-    return !Array.isArray(val)
-      ? val[valueProp.value]
-      : val.map((v) => v[valueProp.value]);
-  };
-
-  // no export
-  const makeInternal = (val) => {
-    if (val == null) {
-      return mode.value === "single" ? {} : [];
-    }
-
-    return val;
-  };
+  /* istanbul ignore next */
+  // externalValue
+  console.log(modelValue);
 
   return {
-    update,
+    iv,
+    isFirstFocus,
+    isFocus,
+    isFocusResetCurrentFilter,
+    optionHoverByMouse,
+    inputValue,
+    apply,
+    edit,
+    current,
+    dropdown,
+    tags,
+    tagsGroupByTitleKey,
+    firstPlaceholder,
   };
 }

@@ -53,26 +53,6 @@ export default {
       isSearchs: [],
     });
 
-    // const app = inject("getApp");
-
-    // const currentTagKey = computed(() => {
-    //   return (app.current.tag || {}).key || undefined;
-    // });
-
-    // mounted() {
-    //   if (this.selected == true) {
-    //     this.handleClick();
-    //   }
-    // }
-
-    // beforeUnmount() {
-    //   // this.appCancelled();
-    // }
-
-    /*
-
-*/
-
     provide("dropdownSetValue", (item = {}) => {
       const tag = {
         elm: {
@@ -92,8 +72,7 @@ export default {
         tag.elm.title = getTitleVNode();
         tag.elm.value = item.vnode;
       }
-      console.log("tag = ");
-      console.log(tag.elm.title);
+      inject("current.tag", tag);
     });
 
     // this.dropdown.setTitle();
