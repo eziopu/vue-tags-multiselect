@@ -65,8 +65,8 @@ export default function useData(props) {
       // return this.allDropdownKeyIsInTagsKeys();
 
     } else if (
-      this.optionDisplayCountAddSystem == 0 &&
-      this.allDropdownIsFinish() == true
+      optionDisplayCountAddSystem.value == 0
+      // && this.allDropdownIsFinish() == true
     ) {
       return true;
     }
@@ -77,7 +77,7 @@ export default function useData(props) {
     return isSelectDown.value == true && props.create == false;
   });
   const tagsNoUndefinedKeys = computed(() => {
-    return this.tags.filter((tag) => {
+    return tags.value.filter((tag) => {
       return tag.key != undefined;
     });
   });
@@ -98,14 +98,14 @@ export default function useData(props) {
       firstPlaceholder, // data
       loadingPlaceholder,
       finishPlaceholder,
-    } = this;
+    } = props;
     const change = firstPlaceholder != placeholder && placeholder != "";
     if (change == true) return placeholder;
 
-    if (this.loading == true) return loadingPlaceholder;
-    if (this.isFinish == true) return finishPlaceholder;
+    if (props.loading == true) return loadingPlaceholder;
+    if (isFinish.value == true) return finishPlaceholder;
 
-    if (this.tags.length == 0 && !this.current.tag.key) {
+    if (tags.value.length == 0 && !current.tag.key) {
       return placeholder;
     }
     return "";
@@ -127,27 +127,26 @@ export default function useData(props) {
     );
   });
   const displayUndo = computed(() => {
-    return this.current.tag.key != undefined;
+    return current.tag.key != undefined;
   });
   const displayORConjunction = computed(() => {
     if (
-      this.isEditMode == true ||
-      this.validatorConjunction == true ||
-      this.dropdown.count == 0
+      isEditMode.value == true ||
+      validatorConjunction.value == true ||
+      dropdown.count == 0
     ) {
       return false;
     }
 
-    const { tagsKeys, current } = this;
     return (
-      tagsKeys.length >= 1 &&
+      tagsKeys.value.length >= 1 &&
       current.conjunction != "OR" &&
-      current.tag.key == undefined &&
-      this.allDropdownIsFinish() == false
+      current.tag.key == undefined
+      // && this.allDropdownIsFinish() == false
     );
   });
   const optionDisplayCount = computed(() => {
-    const booleans = Object.values(this.dropdown.optionDisplaies).flat();
+    const booleans = Object.values(dropdown.optionDisplaies).flat();
     return booleans.filter(Boolean).length;
   });
   const optionDisplayCountAddSystem = computed(() => {
