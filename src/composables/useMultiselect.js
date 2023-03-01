@@ -1,121 +1,150 @@
-import { ref, toRefs, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 
-export default function useMultiselect(props, context, dep) {
-  const { searchable, disabled } = toRefs(props);
+export default function useMultiselect(props, context) {
+  console.log("function useMultiselect");
+  console.log("props =", props);
+  console.log("context =", context);
 
-  // ============ DEPENDENCIES ============
+  // ================ REFS ================
 
-  const input = dep.input;
-  const open = dep.open;
-  const close = dep.close;
-  const clearSearch = dep.clearSearch;
-  const isOpen = dep.isOpen;
+  const elApp = ref(null);
+
+  const elMain = ref(null);
+
+  const elTag = ref(null);
+
+  const elFill = ref(null);
+
+  const elInput = ref(null);
 
   // ================ DATA ================
 
-  const multiselect = ref(null);
-
-  const tags = ref(null);
+  const isAppActived = ref(false);
 
   const isActive = ref(false);
 
+  const inputValue = ref("");
+
   const mouseClicked = ref(false);
+
+  const tags = reactive([]);
+
+  const stashTag = reactive({});
+
+  const keydown = reactive({
+    UDIndex: -1,
+    LRIndex: -1,
+    lockKeydownLR: false,
+  });
+
+  const conjunction = ref("");
+
+  const editTagIndex = ref(-1);
 
   // ============== COMPUTED ==============
 
   const tabindex = computed(() => {
-    return searchable.value || disabled.value ? -1 : 0;
+    return props.disabled ? -1 : 0;
+  });
+
+  const isLock = computed(() => {
+    return props.loading == true || props.disabled == true;
+  });
+
+  const isEditMode = computed(() => {
+    return editTagIndex.value != -1;
+  });
+
+  const elDropdownLeft = computed(() => {
+    let offset = elFill.value.offsetLeft || 0;
+    let scrollLeft = elMain.value.scrollLeft || 0;
+
+    if (isEditMode.value == true) {
+      const editDiv = this.$el.querySelector(
+        ".tag.editing .tag__value.editing"
+      );
+      if (editDiv != undefined) {
+        const appLeft = elApp.value.getBoundingClientRect().left || 0;
+        const editLeft = editDiv.getBoundingClientRect().left || 0;
+        offset = editLeft - appLeft || 0;
+        offset += 12;
+      }
+    }
+    return offset - scrollLeft;
   });
 
   // =============== METHODS ==============
 
-  const blur = () => {
-    if (searchable.value) {
-      input.value.blur();
+  const init = () => {
+    (inputValue.value = ""), (stashTag.value = {});
+
+    initKeydown();
+    initConjunction();
+  };
+
+  const initKeydown = () => {
+    keydown.UDIndex = -1;
+    keydown.LRIndex = -1;
+    keydown.lockKeydownLR = false;
+  };
+
+  const initConjunction = () => {
+    conjunction.value =
+      props.conjunction == "OR" || props.conjunction == "AND"
+        ? props.conjunction
+        : "";
+  };
+
+  const elInputblur = () => {
+    const actElm = document.activeElement;
+    if (actElm != elInput.value && this.$el.contains(actElm) == false) {
+      init();
     }
-
-    multiselect.value.blur();
   };
 
-  const focus = () => {
-    if (searchable.value && !disabled.value) {
-      input.value.focus();
+  const elAppClicked = () => {
+    if (!props.disabled) {
+      elInput.value.focus();
+
+      isActive.value = true;
+      isAppActived.value = true;
     }
-  };
-
-  const activate = (shouldOpen = true) => {
-    if (disabled.value) {
-      return;
-    }
-
-    isActive.value = true;
-
-    if (shouldOpen) {
-      open();
-    }
-  };
-
-  const deactivate = () => {
-    isActive.value = false;
-
-    setTimeout(() => {
-      if (!isActive.value) {
-        close();
-        clearSearch();
-      }
-    }, 1);
-  };
-
-  const handleFocusIn = () => {
-    activate(mouseClicked.value);
-  };
-
-  const handleFocusOut = () => {
-    deactivate();
-  };
-
-  const handleCaretClick = () => {
-    deactivate();
-    blur();
   };
 
   /* istanbul ignore next */
-  const handleMousedown = (e) => {
+  const elAppMousedown = (e) => {
     mouseClicked.value = true;
-
-    if (
-      isOpen.value &&
-      (e.target.isEqualNode(multiselect.value) ||
-        e.target.isEqualNode(tags.value))
-    ) {
-      setTimeout(() => {
-        deactivate();
-      }, 0);
-    } else if (
-      document.activeElement.isEqualNode(multiselect.value) &&
-      !isOpen.value
-    ) {
-      activate();
-    }
-
-    setTimeout(() => {
-      mouseClicked.value = false;
-    }, 0);
+    console.log("elAppMousedown", e);
   };
 
   return {
-    multiselect,
-    tags,
-    tabindex,
+    elApp,
+    elMain,
+    elTag,
+    elFill,
+    elInput,
+
+    isLock,
     isActive,
+    isAppActived,
+    isEditMode,
+
+    conjunction,
+    inputValue,
+    keydown,
+    tabindex,
     mouseClicked,
-    blur,
-    focus,
-    activate,
-    deactivate,
-    handleFocusIn,
-    handleFocusOut,
-    handleCaretClick,
-    handleMousedown,
+    elDropdownLeft,
+
+    tags,
+    stashTag,
+    editTagIndex,
+
+    init,
+    initKeydown,
+    initConjunction,
+    elInputblur,
+    elAppClicked,
+    elAppMousedown,
   };
 }

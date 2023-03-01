@@ -53,8 +53,10 @@ export default {
       isSearchs: [],
     });
 
+    const setStashTag = inject("setStashTag");
+    const setStashTagToTags = inject("setStashTagToTags");
     provide("dropdownSetValue", (item = {}) => {
-      const tag = {
+      const stashTag = {
         elm: {
           title: undefined,
           value: undefined,
@@ -67,12 +69,17 @@ export default {
       };
 
       if (item.is_title == true) {
-        tag.elm.title = item.vnode;
+        stashTag.elm.title = item.vnode;
       } else {
-        tag.elm.title = getTitleVNode();
-        tag.elm.value = item.vnode;
+        stashTag.elm.title = getTitleVNode();
+        stashTag.elm.value = item.vnode;
       }
-      inject("current.tag", tag);
+
+      setStashTag(stashTag);
+
+      if (stashTag.elm.title != undefined) {
+        setStashTagToTags();
+      }
     });
 
     // this.dropdown.setTitle();
@@ -95,7 +102,6 @@ export default {
 
       return vnode != undefined ? vnode[0].children.default() : undefined;
     };
-    console.log("v-dropdown setup", getTitleVNode());
 
     const optionRegistered = (target = "title", value, indexBySlot) => {
       console.log("dropdown methods optionRegistered", target, value);

@@ -23,7 +23,7 @@
 <script>
 import slotToText from "../../utils/slotToText";
 
-import { ref, computed, inject } from "vue";
+import { ref, computed, inject, onMounted, watch } from "vue";
 
 export default {
   name: "v-tag-option",
@@ -36,7 +36,6 @@ export default {
     value: { type: String, default: "" },
   },
   setup(props, { slots }) {
-    console.log(props, "export default setup", slots);
     const indexBySlot = ref(-1);
 
     const isDisabled = computed(() => {
@@ -62,13 +61,14 @@ export default {
 
     const dropdownSetValue = inject("dropdownSetValue");
     const handleClick = () => {
-      console.log("v-option handleClick", props.value);
-
       if (isDisabled.value) return;
 
       dropdownSetValue({
         is_title: props.title,
-        vnode: slots.default(),
+        vnode: slots
+          .default()
+          .map((el) => el.children)
+          .join(""),
         value: props.value,
         displayValue: props.displayValue,
       });

@@ -44,18 +44,20 @@ export default function useData(props) {
   const tagsGroupByTitleKey = ref([]);
   const firstPlaceholder = props.placeholder;
 
-
   // ============== COMPUTED ==============
 
   const isLock = computed(() => {
     return props.loading == true || props.disabled == true;
   });
+
   const isSearchMode = computed(() => {
     return props.search == true && inputValue.value != "";
   });
+
   const isEditMode = computed(() => {
     return edit.key != "" || edit.index != -1;
   });
+
   const isSelectDown = computed(() => {
     if (haveCustomDrodown.value == true || dropdown.count == 0) {
       return false;
@@ -63,7 +65,6 @@ export default function useData(props) {
 
     if (props.conjunction == "AND") {
       // return this.allDropdownKeyIsInTagsKeys();
-
     } else if (
       optionDisplayCountAddSystem.value == 0
       // && this.allDropdownIsFinish() == true
@@ -73,25 +74,31 @@ export default function useData(props) {
 
     return false;
   });
+
   const isFinish = computed(() => {
     return isSelectDown.value == true && props.create == false;
   });
+
   const tagsNoUndefinedKeys = computed(() => {
     return tags.value.filter((tag) => {
       return tag.key != undefined;
     });
   });
+
   const tagsKeys = computed(() => {
     return [...new Set(tagsNoUndefinedKeys.value.map((tag) => tag.key))];
   });
+
   const haveCustomDrodown = computed(() => {
     const booleans = Object.values(dropdown.customs).flat();
     const count = booleans.filter(Boolean).length;
     return count == 0 ? false : true;
   });
+
   const haveOptionCanSelect = computed(() => {
     return optionDisplayCount.value != 0;
   });
+
   const inputPlaceholder = computed(() => {
     const {
       placeholder,
@@ -110,15 +117,19 @@ export default function useData(props) {
     }
     return "";
   });
+
   const inputDisabled = computed(() => {
     return props.search == false && props.create == false;
   });
+
   const inputMaxlength = computed(() => {
     return isLock.value == true || inputDisabled.value == true ? 0 : 99;
   });
+
   const validatorConjunction = computed(() => {
     return props.conjunction == "OR" || props.conjunction == "AND";
   });
+
   const displayDropdown = computed(() => {
     return (
       props.disabled == false &&
@@ -126,9 +137,11 @@ export default function useData(props) {
       optionDisplayCountAddSystem.value != 0
     );
   });
+
   const displayUndo = computed(() => {
     return current.tag.key != undefined;
   });
+
   const displayORConjunction = computed(() => {
     if (
       isEditMode.value == true ||
@@ -145,10 +158,12 @@ export default function useData(props) {
       // && this.allDropdownIsFinish() == false
     );
   });
+
   const optionDisplayCount = computed(() => {
     const booleans = Object.values(dropdown.optionDisplaies).flat();
     return booleans.filter(Boolean).length;
   });
+
   const optionDisplayCountAddSystem = computed(() => {
     let addSystem = optionDisplayCount.value;
     if (displayUndo.value == true) addSystem++; // undo
@@ -195,5 +210,5 @@ export default function useData(props) {
     displayORConjunction,
     optionDisplayCount,
     optionDisplayCountAddSystem,
-  }
+  };
 }

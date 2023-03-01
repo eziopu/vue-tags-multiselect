@@ -3,7 +3,7 @@
     class="vue-tags-multiselect"
     tabindex="0"
     hidefocus="true"
-    ref="app"
+    ref="elApp"
     @keydown="handleKeydown"
     @click="
       () => {
@@ -13,12 +13,21 @@
     "
     :class="{ focus: isFocus, disabled: disabled, loading: loading }"
   >
+    <!-- tags = 
+  <pre>
+    {{ tags }}
+  </pre>
+  stashTag = 
+  <pre>
+    {{ stashTag }}
+  </pre> -->
+
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
-    <div class="main" ref="main">
+    <div class="main" ref="elMain">
       <!--       
       <Tag
         v-for="(tag, index) in merge == true ? tagsGroupByTitleKey : tags"
-        ref="tag"
+        ref="elTag"
         :key="`tag-${index}`"
         :tag="tag"
         :edit="edit"
@@ -31,7 +40,7 @@
       </Tag>
       -->
 
-      <div class="fill" ref="fill__div">
+      <div class="fill" ref="elFill__div">
         <div v-show="loading == true" class="fill__loading" ref="loading">
           <slot name="loading">
             <Loading></Loading>
@@ -64,7 +73,7 @@
 
         <input
           v-model="inputValue"
-          ref="input"
+          ref="elInput"
           autocomplete="off"
           tabindex="0"
           type="search"
@@ -139,18 +148,11 @@ import Loading from "./components/partial/loading.vue";
 
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
-import useData from "./composables/useData";
 import useKeyboard from "./composables/useKeyboard";
+import useMultiselect from "./composables/useMultiselect";
+import useHandelTag from "./composables/useHandelTag";
 
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  provide,
-  ref,
-  toRef,
-  unref,
-} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "v-tags-multiselect",
@@ -170,95 +172,28 @@ export default defineComponent({
     // VTagOption,
   },
   props: {
-    disabled: {
-      type: Boolean,
-      default: () => {
-        return false;
-      },
-    },
-    loading: {
-      type: Boolean,
-      default: () => {
-        return false;
-      },
-    },
-    dropdownLoading: {
-      type: Boolean,
-      default: () => {
-        return false;
-      },
-    },
-    search: {
-      type: Boolean,
-      default: () => {
-        return true;
-      },
-    },
-    transition: {
-      type: Boolean,
-      default: () => {
-        return true;
-      },
-    },
-    create: {
-      type: Boolean,
-      default: () => {
-        return true;
-      },
-    },
-    merge: {
-      type: Boolean,
-      default: () => {
-        return true;
-      },
-    },
-    conjunction: {
-      type: String,
-      default: () => {
-        return "";
-      }, // 'OR', 'AND'
-    },
-    deleteIcon: {
-      type: String,
-      default: () => {
-        return "always";
-      }, // 'always', 'edit', 'none'
-    },
+    disabled: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false },
+    search: { type: Boolean, default: true },
+    transition: { type: Boolean, default: true },
+    create: { type: Boolean, default: true },
+    merge: { type: Boolean, default: true },
+    conjunction: { type: String, default: "" }, // 'OR', 'AND'
+    deleteIcon: { type: String, default: "always" }, // 'always', 'edit', 'none'
     /**
      * placeholder
      **/
-    placeholder: {
-      type: String,
-      default: () => {
-        return "";
-      },
-    },
-    loadingPlaceholder: {
-      type: String,
-      default: () => {
-        return "Wait a moment, please.";
-      },
-    },
-    selectDownPlaceholder: {
-      type: String,
-      default: () => {
-        return "Selected End.";
-      },
-    },
-    finishPlaceholder: {
-      type: String,
-      default: () => {
-        return "Finish.";
-      },
-    },
+    placeholder: { type: String, default: "" },
+    loadingPlaceholder: { type: String, default: "Wait a moment, please." },
+    selectDownPlaceholder: { type: String, default: "Selected End." },
+    finishPlaceholder: { type: String, default: "Finish." },
   },
   setup(props, context) {
     console.log("app setup");
     return resolve(props, context, [
-      useData,
+      useMultiselect,
+      useHandelTag,
       useKeyboard,
-      // useData,
-      // useData,
       // useData,
     ]);
   },
@@ -267,64 +202,64 @@ export default defineComponent({
   //   event: "update",
   //   this.$emit('update:modelValue', value)
   // },
-  provide() {
-    return {
-      getApp: () => this,
-    };
-  },
+  // provide() {
+  //   return {
+  //     getApp: () => this,
+  //   };
+  // },
   data() {
     return {
-      isFirstFocus: false,
-      isFocus: false,
-      isFocusResetCurrentFilter: true,
-      keydown: {
-        isProcessing: false,
-        keyCode: undefined,
-      },
-      optionHoverByMouse: false,
-      inputValue: "",
-      apply: {
-        clickByKeyName: "",
-        clickPushValue: "",
-      },
-      edit: {
-        index: -1,
-        key: "",
-        value: "",
-      },
-      current: {
-        tag: {},
-        conjunction: "",
-        selectUDIndex: -1,
-        selectLRIndex: -1,
-        lockKeydownLR: false,
-      },
-      dropdown: {
-        style: { left: "0px" },
-        count: 0,
-        optionCount: 0,
-        customs: {},
-        isFinishs: {},
-        optionCounts: {},
-        optionDisplaies: {},
-      },
-      tags: [],
-      tagsGroupByTitleKey: [],
-      firstPlaceholder: this.placeholder,
-      register: [
-        {
-          key: "",
-          slotText: "",
-          isFinish: false,
-          childs: [
-            {
-              value: "",
-              slotText: "",
-              display: false,
-            },
-          ],
-        },
-      ],
+      // isFirstFocus: false,
+      // isFocus: false,
+      // isFocusResetCurrentFilter: true,
+      // keydown: {
+      //   isProcessing: false,
+      //   keyCode: undefined,
+      // },
+      // optionHoverByMouse: false,
+      // inputValue: "",
+      // apply: {
+      //   clickByKeyName: "",
+      //   clickPushValue: "",
+      // },
+      // edit: {
+      //   index: -1,
+      //   key: "",
+      //   value: "",
+      // },
+      // current: {
+      //   tag: {},
+      //   conjunction: "",
+      //   selectUDIndex: -1,
+      //   selectLRIndex: -1,
+      //   lockKeydownLR: false,
+      // },
+      // dropdown: {
+      //   style: { left: "0px" },
+      //   count: 0,
+      //   optionCount: 0,
+      //   customs: {},
+      //   isFinishs: {},
+      //   optionCounts: {},
+      //   optionDisplaies: {},
+      // },
+      // tags: [],
+      // tagsGroupByTitleKey: [],
+      // firstPlaceholder: this.placeholder,
+      // register: [
+      //   {
+      //     key: "",
+      //     slotText: "",
+      //     isFinish: false,
+      //     childs: [
+      //       {
+      //         value: "",
+      //         slotText: "",
+      //         display: false,
+      //       },
+      //     ],
+      //   },
+      // ],
     };
   },
   /*

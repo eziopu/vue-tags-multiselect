@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
 </script>
 
 <template>
@@ -21,9 +20,15 @@ import TheWelcome from "./components/TheWelcome.vue";
   <main>
     <v-tags-multiselect>
       <v-tag-dropdown value="country">
-        <v-tag-option title> title111 </v-tag-option>
+        <v-tag-option title>
+          title111
+          <p>11</p>
+        </v-tag-option>
         <v-tag-option value="Māre111"> Māre1111 </v-tag-option>
-        <v-tag-option value="Eldia2222"> Eldia2222 </v-tag-option>
+        <v-tag-option value="Eldia2222">
+          22
+          <p>Eldia2222</p>
+        </v-tag-option>
       </v-tag-dropdown>
     </v-tags-multiselect>
   </main>
