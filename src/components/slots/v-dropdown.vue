@@ -7,7 +7,7 @@
       disabled: props.disabled,
       divided: props.divided,
       // selecting: current.tag.key == props.value,
-      editing: editMyself,
+      editing: false, // editMyself
       noValue: props.value == undefined,
       // hidden:
       //   this.hidden ||
@@ -58,8 +58,8 @@ export default {
     provide("dropdownSetValue", (item = {}) => {
       const stashTag = {
         elm: {
-          title: undefined,
           value: undefined,
+          title: undefined,
         },
         key: props.value,
         value: item.value,

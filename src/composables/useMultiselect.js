@@ -76,7 +76,8 @@ export default function useMultiselect(props, context) {
   // =============== METHODS ==============
 
   const init = () => {
-    (inputValue.value = ""), (stashTag.value = {});
+    inputValue.value = "";
+    Object.assign(stashTag, {});
 
     initKeydown();
     initConjunction();

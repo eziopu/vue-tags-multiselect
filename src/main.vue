@@ -5,19 +5,11 @@
     hidefocus="true"
     ref="elApp"
     @keydown="handleKeydown"
-    @click="
-      () => {
-        isFirstFocus = true;
-        // focusApp();
-      }
-    "
-    :class="{ focus: isFocus, disabled: disabled, loading: loading }"
+    @click="elAppClicked"
+    :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-    <!-- tags = 
-  <pre>
-    {{ tags }}
-  </pre>
-  stashTag = 
+  tags.length = {{ tags.length }}
+   <!-- stashTag = 
   <pre>
     {{ stashTag }}
   </pre> -->
@@ -54,7 +46,7 @@
             class="fill__fake-input--line"
             v-if="
               // inputDisabled &&
-              isFocus
+              isActive
             "
           >
             &nbsp;
@@ -62,7 +54,7 @@
           <div
             class="fill__fake-input--placeholder"
             v-if="
-              isFocus && inputValue == ''
+              isActive && inputValue == ''
               // && isSelectDown == true &&
               // isFinish == false
             "

@@ -16,6 +16,7 @@
     :tabindex="isDisabled ? 0 : -1"
     collapse="false"
   >
+  {{ isHover }}
     <slot></slot>
   </div>
 </template>
@@ -37,16 +38,13 @@ export default {
   },
   setup(props, { slots }) {
     const indexBySlot = ref(-1);
+    const isHover = ref(false);
 
     const isDisabled = computed(() => {
       if (props.title == true) {
         return props.disabled;
       }
       return props.disabled == true || props.value == "";
-    });
-
-    const isHover = computed(() => {
-      return false;
     });
 
     const isHide = computed(() => {
@@ -65,10 +63,7 @@ export default {
 
       dropdownSetValue({
         is_title: props.title,
-        vnode: slots
-          .default()
-          .map((el) => el.children)
-          .join(""),
+        vnode: slots.default(),
         value: props.value,
         displayValue: props.displayValue,
       });
