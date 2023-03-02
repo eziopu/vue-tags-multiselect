@@ -95,7 +95,7 @@ export default function useHandelTag(props, context, dep) {
     }
   });
 
-  provide("deleteTags", (indexs = []) => {
+  provide("appDeleteTags", (indexs = []) => {
     if (isLock.value == true) return;
     if (indexs.length == 0) return;
 

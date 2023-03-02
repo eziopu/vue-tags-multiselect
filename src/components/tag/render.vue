@@ -1,18 +1,14 @@
 <script>
-import { defineComponent, h, isVue2 } from "vue-demi";
-export default defineComponent({
+import { h } from "vue";
+
+export default {
   name: "tag-render",
   props: ["elm", "elmClass"],
-  render(createElement) {
+  render() {
     const shell = {
       class: this.elmClass,
     };
-
-    if (isVue2) {
-      return createElement("div", shell, this.elm);
-    }
-    // vue3
     return h("div", shell, this.elm);
   },
-});
+};
 </script>

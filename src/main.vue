@@ -28,9 +28,10 @@
           <slot name="tag-conjunction"></slot>
         </template>
       </Tag>
-      <Tag v-if="Object.keys(current.tag).length != 0" :tag="current.tag">
-      </Tag>
       -->
+
+      <Tag v-if="Object.keys(stashTag).length != 0" :tag="stashTag">
+      </Tag>
 
       <div class="fill" ref="elFill__div">
         <div v-show="loading == true" class="fill__loading" ref="loading">
@@ -127,7 +128,7 @@
 </template>
 
 <script lang="ts">
-// import Tag from "./tag/main.vue";
+import Tag from "./components/tag/main.vue";
 import Loading from "./components/partial/loading.vue";
 // import VTagDropdown from "./components/tag-dropdown/main.vue";
 // import VTagOption from "./components/tag-dropdown/option.vue";
@@ -158,7 +159,7 @@ export default defineComponent({
   //   RefOperatePushValue,
   // ],
   components: {
-    // Tag,
+    Tag,
     Loading,
     // VTagDropdown,
     // VTagOption,

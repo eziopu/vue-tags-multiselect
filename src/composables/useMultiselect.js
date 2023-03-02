@@ -1,4 +1,4 @@
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, provide } from "vue";
 
 export default function useMultiselect(props, context) {
   console.log("function useMultiselect");
@@ -32,6 +32,7 @@ export default function useMultiselect(props, context) {
   const stashTag = reactive({});
 
   const keydown = reactive({
+    keyCode: -1,
     UDIndex: -1,
     LRIndex: -1,
     lockKeydownLR: false,
@@ -84,9 +85,12 @@ export default function useMultiselect(props, context) {
   };
 
   const initKeydown = () => {
-    keydown.UDIndex = -1;
-    keydown.LRIndex = -1;
-    keydown.lockKeydownLR = false;
+    Object.assign(keydown, {
+      keyCode: -1,
+      UDIndex: -1,
+      LRIndex: -1,
+      lockKeydownLR: false,
+    });
   };
 
   const initConjunction = () => {
@@ -117,6 +121,13 @@ export default function useMultiselect(props, context) {
     mouseClicked.value = true;
     console.log("elAppMousedown", e);
   };
+
+  // =============== PROVIDE ==============
+  provide("appProps", props);
+  provide("appIsLock", isLock);
+  provide("appEeditTagIndex", editTagIndex);
+  provide("appKeydown", keydown);
+  provide("appInputValue", inputValue);
 
   return {
     elApp,

@@ -53,88 +53,76 @@
 <script>
 import Render from "./render.vue";
 import ValueRender from "./value-render.vue";
-import InjectApp from "../mixins/inject-app";
 
-import { defineComponent } from "vue-demi";
-export default defineComponent({
-  name: "tag-main",
-  mixins: [InjectApp],
+import { ref, computed, inject, onMounted, watch } from "vue";
+
+export default {
+  name: "v-tag",
   components: {
     Render,
     ValueRender,
   },
   props: {
-    index: {
-      type: Number,
-      default: () => {
-        return 0;
-      },
-    },
     tag: {
       type: Object,
       default: () => {
         return {};
       },
     },
-    edit: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
   },
-  data() {
-    return {};
-  },
-  computed: {
-    deleteWhere() {
-      const where = this.app.deleteIcon;
-      if (where == "edit" || where == "none") return where;
-      return "always";
-    },
-    appIsLock() {
-      return this.app.isLock;
-    },
-    childrenEditing() {
-      const { app } = this;
-      if (app.edit.index == -1) return false;
+  setup(props) {
+    const appProps = inject("appProps");
+    const appIsLock = inject("appIsLock");
+    const appEeditTagIndex = inject("appEeditTagIndex");
+    const appDeleteTags = inject("appDeleteTags");
+
+    const childrenEditing = computed(() => {
+      if (appEeditTagIndex.value == -1) return false;
 
       let result = false;
-      let indexs = this.tag.values
-        ? this.tag.values.map((tag) => tag.index)
-        : [this.tag.index];
+      let indexs = props.tag.values
+        ? props.tag.values.map((tag) => tag.index)
+        : [props.tag.index];
 
       if (
         indexs.findIndex((index) => {
-          return index == app.edit.index;
+          return index == appEeditTagIndex.value;
         }) != -1
       ) {
         result = true;
       }
 
       return result;
-    },
-    displayDelete() {
+    });
+
+    const deleteWhere = computed(() => {
+      const where = appProps.deleteIcon;
+      if (where == "edit" || where == "none") return where;
+      return "always";
+    });
+
+    const displayDelete = computed(() => {
       try {
-        const { tag, childrenEditing, deleteWhere } = this;
+        const { tag, childrenEditing } = this;
         const basic = tag.value || tag.values;
-        if (deleteWhere == "none" || !basic) throw false;
-        if (deleteWhere == "edit") {
+        if (deleteWhere.value == "none" || !basic) throw false;
+        if (deleteWhere.value == "edit") {
           throw childrenEditing == true ? true : false;
         }
-        if (deleteWhere == "always") throw true;
+        if (deleteWhere.value == "always") throw true;
         throw false;
       } catch (e) {
         return e;
       }
-    },
-  },
-  methods: {
-    deletes(childIndex = -1) {
-      if (this.appIsLock == true) return false;
+    });
+
+    // =============== METHODS ==============
+
+    const deletes = (childIndex = -1) => {
+      if (appIsLock.value == true) return false;
 
       if (childIndex != -1) {
-        this.app.deleteTags([childIndex]);
+        appDeleteTags([childIndex]);
         return;
       }
 
@@ -145,10 +133,18 @@ export default defineComponent({
           indexs.push(value.index);
         });
       }
-      this.app.deleteTags(indexs);
-    },
+      appDeleteTags(indexs);
+    };
+
+    return {
+      appIsLock,
+      displayDelete,
+      childrenEditing,
+
+      deletes,
+    };
   },
-});
+};
 </script>
 
 <style scoped lang="scss">

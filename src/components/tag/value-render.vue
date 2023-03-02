@@ -13,7 +13,7 @@
       :elm="diplayElm()"
       :elmClass="{
         'tag__value--value': true,
-        transition: app.transition,
+        transition: appProps.transition,
         outline: noCustomeHoverAndEditMyself,
       }"
     />
@@ -22,21 +22,20 @@
       class="tag__value--input"
       v-show="editByinput"
       v-model="inputValue"
-      ref="input"
+      ref="elTagValueInput"
       :style="{ width: inputWidth }"
-      @keyup.delete="inputDelete()"
-      @blur="inputBlur()"
+      @keyup.delete="elTagValueInputDelete()"
+      @blur="elTagValueInputBlur()"
     />
   </div>
 </template>
 <script>
 import Render from "./render.vue";
-import InjectApp from "../mixins/inject-app";
 
-import { defineComponent } from "vue-demi";
-export default defineComponent({
-  name: "tag-value",
-  mixins: [InjectApp],
+import { ref, computed, inject, watch } from "vue";
+
+export default {
+  name: "v-tag-value",
   components: {
     Render,
   },
@@ -48,154 +47,172 @@ export default defineComponent({
       },
     },
   },
-  model: {
-    prop: "value",
-    event: "update",
-  },
-  data() {
-    return {
-      isDelete: false,
-      inputValue: "",
-      nextWillDelete: false,
-      nextKeydownWillChagneEditTag: false,
-      keydownLeft: 0,
-    };
-  },
-  computed: {
-    editMyself() {
-      const { app, tag } = this;
-      return app.edit.index == tag.index;
-    },
-    inputWidth() {
-      return (this.inputValue.length || 2) + 1 + "em";
-    },
-    appIsLock() {
-      return this.app.isLock;
-    },
-    noCustomeHoverAndEditMyself() {
-      if (this.appIsLock) return false;
-      return this.editMyself && this.tag.custom == false;
-    },
-    editByinput() {
-      return this.tag.custom == true && this.editMyself == true;
-    },
-  },
-  watch: {
-    inputValue(value) {
-      this.app.edit.value = value;
+  setup(props) {
+    const inputValue = ref("");
+    const nextWillDelete = ref(false);
+    const nextKeydownWillChagneEditTag = ref(false);
+
+    const elTagValueInput = ref(null);
+
+    const appProps = inject("appProps");
+    const appIsLock = inject("appIsLock");
+    const appInputValue = inject("appInputValue");
+    const appKeydown = inject("appKeydown");
+    const appEeditTagIndex = inject("appEeditTagIndex");
+    const appDeleteTags = inject("appDeleteTags");
+    const setStashTagToTags = inject("setStashTagToTags");
+
+    // ============== COMPUTED ==============
+
+    const inputWidth = computed(() => {
+      return (inputValue.value.length || 2) + 1 + "em";
+    });
+    const editMyself = computed(() => {
+      return appEeditTagIndex.value == props.tag.index;
+    });
+    const noCustomeHoverAndEditMyself = computed(() => {
+      if (appIsLock.value) return false;
+      return editMyself.value && props.tag.custom == false;
+    });
+    const editByinput = computed(() => {
+      return props.tag.custom == true && editMyself.value == true;
+    });
+
+    // ============== WATCH ==============
+
+    watch(inputValue, (value) => {
       if (value != "") {
-        this.nextWillDelete = false;
+        nextWillDelete.value = false;
       }
-    },
-    editMyself(value) {
-      if (value == true && this.tag.custom == true) {
-        this.inputValue = this.tag.value;
+    });
+
+    watch(editMyself, (value) => {
+      if (value == true && props.tag.custom == true) {
+        inputValue.value = props.tag.value;
         setTimeout(() => {
-          this.$refs.input.focus();
+          elTagValueInput.value.focus();
         }, 100);
       }
-    },
-    "app.keydown": {
-      handler(value) {
-        if (this.editByinput == true) {
-          this.handleKeydownLR(value.keyCode);
+    });
+
+    watch(
+      appKeydown,
+      (value) => {
+        if (editByinput.value == true) {
+          handleKeydownLR(value.keyCode);
         }
         if (
-          this.noCustomeHoverAndEditMyself == true &&
+          noCustomeHoverAndEditMyself.value == true &&
           [8, 46].indexOf(value.keyCode) > -1
         ) {
           // back space, del
-          this.delete();
+          deleteTag();
         }
-        if (this.editMyself == false) return;
-        if (value.isProcessing != false || value.keyCode != 13) return;
-        this.inputEnter();
+        if (editMyself.value == false) return;
+        if (value.keyCode != 13) return;
+        elTagValueInputEnter();
       },
-      deep: true,
-    },
-    editByinput(value) {
+      {
+        deep: true,
+      }
+    );
+
+    watch(editByinput, (value) => {
       if (value == true) {
-        this.app.current.lockKeydownLR = true;
+        appKeydown.lockLR = true;
         setTimeout(() => {
-          this.nextKeydownWillChagneEditTag = this.isInputSelectionLimit();
+          nextKeydownWillChagneEditTag.value = this.isInputSelectionLimit();
         }, 100);
       } else {
-        this.nextKeydownWillChagneEditTag = false;
+        nextKeydownWillChagneEditTag.value = false;
       }
-    },
-  },
-  methods: {
-    diplayElm() {
-      let { tag } = this;
+    });
 
-      if (tag.displayValue == true || tag.elm == undefined) return tag.value;
-      if (tag.elm.value != undefined) return tag.elm.value;
-      if (tag.elm != undefined) return tag.elm;
-
-      return tag.value;
-    },
-    handleKeydownLR(keyCode = 0) {
+    // ============== METHODS ==============
+    const handleKeydownLR = (keyCode = 0) => {
       setTimeout(() => {
-        const selectionStart = this.$refs.input.selectionStart;
+        const selectionStart = elTagValueInput.value.selectionStart;
         if (
-          this.nextKeydownWillChagneEditTag == true &&
+          nextKeydownWillChagneEditTag.value == true &&
           ((keyCode == 37 && selectionStart == 0) ||
-            (keyCode == 39 && selectionStart == this.inputValue.length))
+            (keyCode == 39 && selectionStart == inputValue.value.length))
         ) {
-          this.app.current.lockKeydownLR = false;
-          this.nextKeydownWillChagneEditTag = false;
-          this.app.handleKeydown(keyCode);
+          appKeydown.lockLR = false;
+          nextKeydownWillChagneEditTag.value = false;
+          // this.app.handleKeydown(keyCode);
         }
-        this.nextKeydownWillChagneEditTag = this.isInputSelectionLimit();
+        nextKeydownWillChagneEditTag.value = isInputSelectionLimit();
       }, 100);
-    },
-    isInputSelectionLimit() {
-      const selectionStart = this.$refs.input.selectionStart;
-      return selectionStart == 0 || selectionStart == this.inputValue.length
+    };
+
+    const isInputSelectionLimit = () => {
+      const selectionStart = elTagValueInput.value.selectionStart;
+      return selectionStart == 0 || selectionStart == inputValue.value.length
         ? true
         : false;
-    },
-    handleClick() {
-      if (this.appIsLock == true) return;
-      let { tag } = this;
+    };
 
-      if (this.editMyself == false) {
-        this.app.edit.index = tag.index;
-        this.app.edit.key = tag.key;
-        this.app.edit.value = tag.value;
-        this.app.inputValue = "";
-        this.app.setCurrentSelectLRIndex();
+    const diplayElm = () => {
+      if (props.tag.displayValue == true || props.tag.elm == undefined)
+        return props.tag.value;
+      if (props.tag.elm.value != undefined) return props.tag.elm.value;
+      if (props.tag.elm != undefined) return props.tag.elm;
+
+      return props.tag.value;
+    };
+
+    const deleteTag = () => {
+      appDeleteTags([props.tag.index]);
+    };
+
+    const elTagValueInputDelete = () => {
+      if (nextWillDelete.value == true) {
+        deleteTag();
+      } else if (inputValue.value == "") {
+        nextWillDelete.value = true;
       }
-    },
-    inputEnter() {
-      if (this.inputValue == "") {
-        this.delete();
+    };
+    const elTagValueInputBlur = () => {
+      if (inputValue.value == "") {
+        deleteTag();
+      }
+    };
+
+    const setStashTag = inject("setStashTag");
+    const handleClick = () => {
+      if (appIsLock.value == true) return;
+
+      if (editMyself.value == false) {
+        appEeditTagIndex.value = props.tag.index;
+        appInputValue.value = "";
+        setStashTag(props.tag);
+        // this.app.setCurrentSelectLRIndex();
+      }
+    };
+    const elTagValueInputEnter = () => {
+      if (inputValue.value == "") {
+        deleteTag();
       } else {
-        if (this.app.current.selectUDIndex == -1) {
-          this.app.finish(this.inputValue);
+        if (appKeydown.UDIndex == -1) {
+          setStashTagToTags(inputValue.value);
         }
       }
-    },
-    inputDelete() {
-      if (this.nextWillDelete == true) {
-        this.delete();
-      } else if (this.inputValue == "") {
-        this.nextWillDelete = true;
-      }
-    },
-    inputBlur() {
-      if (this.inputValue == "") {
-        this.delete();
-      }
-    },
-    delete() {
-      if (this.isDelete != true) {
-        this.isDelete = true;
-        this.app.deleteTags([this.tag.index]);
-      }
-    },
+    };
+
+    return {
+      appProps,
+      appIsLock,
+      inputWidth,
+
+      diplayElm,
+      deleteTag,
+      handleClick,
+      elTagValueInputDelete,
+      elTagValueInputBlur,
+      elTagValueInputEnter,
+    };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
