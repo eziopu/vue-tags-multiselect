@@ -33,6 +33,7 @@ export default function useMultiselect(props, context) {
 
   const keydown = reactive({
     keyCode: -1,
+    lockLR: -1,
     UDIndex: -1,
     LRIndex: -1,
     lockKeydownLR: false,
