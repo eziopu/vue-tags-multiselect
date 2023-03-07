@@ -8,14 +8,14 @@
     }"
     @click="handleClick"
   >
-    <Render
+    <div
       v-show="tag.custom == false || !editMyself"
-      :elm="diplayElm()"
-      :elmClass="{
+      :class="{
         'tag__value--value': true,
         transition: appProps.transition,
         outline: noCustomeHoverAndEditMyself,
       }"
+      v-html="diplayElm()"
     />
     <input
       type="text"
@@ -30,15 +30,15 @@
   </div>
 </template>
 <script>
-import Render from "./render.vue";
+// import Render from "./render.vue";
 
 import { ref, computed, inject, watch } from "vue";
 
 export default {
   name: "v-tag-value",
-  components: {
-    Render,
-  },
+  // components: {
+  //   Render,
+  // },
   props: {
     tag: {
       type: Object,

@@ -28,6 +28,7 @@ export default function useHandelTag(props, context, dep) {
   // ============== COMPUTED ==============
 
   const tagsGroupByTitle = computed(() => {
+    console.log("const tagsGroupByTitle = computed(() => {");
     let result = [];
 
     tags.forEach((tag) => {
@@ -55,16 +56,19 @@ export default function useHandelTag(props, context, dep) {
 
   // =============== METHODS ==============
 
-  const getTagValueByTagsGroupByTitleKey = (tag = {}) => {
+  const getTagValueByTagsGroupByTitleKey = (item = {}) => {
     return {
-      elm: tag.elm.value,
-      value: tag.value,
-      displayValue: tag.displayValue,
+      index: item.index,
+      elm: item.elm.value,
+      value: item.value,
+      displayValue: item.displayValue,
     };
   };
 
   provide("setStashTag", (item = {}) => {
-    Object.assign(stashTag, item);
+    console.log("////////setStashTag///////////", stashTag, item);
+    Object.assign(dep.stashTag, item);
+    console.log("////////setStashTag///////////", stashTag);
   });
 
   provide("setStashTagToTags", () => {
@@ -89,13 +93,14 @@ export default function useHandelTag(props, context, dep) {
       tags.push(stashTag);
     }
 
-    init();
+    init("provide setStashTagToTags");
     if (isAppActived.value == true) {
       elInput.value.focus();
     }
   });
 
   provide("appDeleteTags", (indexs = []) => {
+    console.log('provide("appDeleteTags", (indexs = []) => {', indexs);
     if (isLock.value == true) return;
     if (indexs.length == 0) return;
 
@@ -106,13 +111,18 @@ export default function useHandelTag(props, context, dep) {
       }
     });
 
+    console.log(arrayIndexByTags);
     arrayIndexByTags = arrayIndexByTags.sort((a, b) => {
       return b - a;
     });
 
+    console.log("tags.length");
+    console.log(tags.length);
     arrayIndexByTags.forEach((index) => {
+      console.log(tags[index]);
       delete tags[index];
     });
+    console.log(tags.length);
 
     elInput.value.focus();
   });

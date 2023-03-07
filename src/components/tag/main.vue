@@ -119,20 +119,24 @@ export default {
     // =============== METHODS ==============
 
     const deletes = (childIndex = -1) => {
+      console.log("deletesdeletesdeletesdeletes");
       if (appIsLock.value == true) return false;
 
       if (childIndex != -1) {
         appDeleteTags([childIndex]);
         return;
       }
+      console.log("deletesdeletesdeletesdeletes");
+      console.log(props.tag.index);
 
-      let indexs = [this.index];
-      if (this.tag.values) {
+      let indexs = [props.tag.index];
+      if (props.tag.values) {
         indexs = [];
-        this.tag.values.forEach((value) => {
+        props.tag.values.forEach((value) => {
           indexs.push(value.index);
         });
       }
+      console.log(indexs);
       appDeleteTags(indexs);
     };
 

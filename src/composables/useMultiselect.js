@@ -29,15 +29,27 @@ export default function useMultiselect(props, context) {
 
   const tags = reactive([]);
 
-  const stashTag = reactive({});
+  const getInitialStashTag = () => ({
+    classList: undefined,
+    custom: false,
+    displayValue: false,
+    elm: { value: undefined, title: undefined },
+    index: -1,
+    key: undefined,
+    value: undefined,
+  });
 
-  const keydown = reactive({
+  const stashTag = reactive(getInitialStashTag());
+
+  const getInitialKeydown = () => ({
     keyCode: -1,
     lockLR: -1,
     UDIndex: -1,
     LRIndex: -1,
     lockKeydownLR: false,
   });
+
+  const keydown = reactive(getInitialKeydown());
 
   const conjunction = ref("");
 
@@ -77,9 +89,12 @@ export default function useMultiselect(props, context) {
 
   // =============== METHODS ==============
 
-  const init = () => {
+  const init = (where = "") => {
+    console.log("const init = ()", where);
+    console.log("stashTag=", stashTag);
     inputValue.value = "";
-    Object.assign(stashTag, {});
+    Object.assign(stashTag, getInitialStashTag());
+    console.log("stashTag=", stashTag);
 
     initKeydown();
     initConjunction();
@@ -104,7 +119,7 @@ export default function useMultiselect(props, context) {
   const elInputblur = () => {
     const actElm = document.activeElement;
     if (actElm != elInput.value && this.$el.contains(actElm) == false) {
-      init();
+      init("elInputblur");
     }
   };
 

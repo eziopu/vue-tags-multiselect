@@ -11,7 +11,7 @@
     }"
     @mouseover="isHover = true"
     @mouseleave="isHover = false"
-    @click="handleClick()"
+    @click="handleClick"
     :aria-disabled="isDisabled"
     :tabindex="isDisabled ? 0 : -1"
     collapse="false"
@@ -58,12 +58,13 @@ export default {
     });
 
     const dropdownSetValue = inject("dropdownSetValue");
-    const handleClick = () => {
+    const handleClick = (event) => {
       if (isDisabled.value) return;
 
       dropdownSetValue({
         is_title: props.title,
-        vnode: slots.default(),
+        vnode: event.target.innerHTML || "",
+        // vnode: slots.default(),
         value: props.value,
         displayValue: props.displayValue,
       });
