@@ -202,7 +202,11 @@ export default {
     return {
       appProps,
       appIsLock,
+      inputValue,
       inputWidth,
+      editByinput,
+      editMyself,
+      noCustomeHoverAndEditMyself,
 
       diplayElm,
       deleteTag,
