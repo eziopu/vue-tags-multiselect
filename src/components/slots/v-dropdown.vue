@@ -77,7 +77,7 @@ export default {
 
       setStashTag(stashTag);
 
-      if (stashTag.elm.title != undefined) {
+      if (stashTag.elm.value != undefined) {
         setStashTagToTags();
       }
     });
