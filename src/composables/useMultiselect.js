@@ -90,6 +90,7 @@ export default function useMultiselect(props, context) {
   // =============== METHODS ==============
 
   const init = (where = "") => {
+    console.log("////////init/////////");
     console.log("const init = ()", where);
     console.log("stashTag=", stashTag);
     inputValue.value = "";
@@ -141,6 +142,7 @@ export default function useMultiselect(props, context) {
   // =============== PROVIDE ==============
   provide("appProps", props);
   provide("appIsLock", isLock);
+  provide("appStashTag", stashTag);
   provide("appEeditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
   provide("appInputValue", inputValue);

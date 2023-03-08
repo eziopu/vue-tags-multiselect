@@ -8,7 +8,8 @@
     @click="elAppClicked"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-  tags.length = {{ tags.length }}
+  <!-- merge = {{ merge }} <br> -->
+  <!-- tagsGroupByTitle = {{ tagsGroupByTitle }} <br> -->
    <!-- stashTag = 
   <pre>
     {{ stashTag }}
@@ -16,19 +17,16 @@
 
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="main" ref="elMain">
-      <!--       
       <Tag
-        v-for="(tag, index) in merge == true ? tagsGroupByTitleKey : tags"
+        v-for="(tag, index) in merge == true ? tagsGroupByTitle : tags"
         ref="elTag"
         :key="`tag-${index}`"
         :tag="tag"
-        :edit="edit"
       >
         <template v-slot:tag-conjunction>
           <slot name="tag-conjunction"></slot>
         </template>
       </Tag>
-      -->
 
       <Tag v-if="Object.keys(stashTag).length != 0" :tag="stashTag">
       </Tag>

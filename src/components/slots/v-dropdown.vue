@@ -1,6 +1,7 @@
 <template>
   <div
     class="dropdown"
+    ref="elDropdown"
     :class="{
       'no-title': true,
       'display-all': true,
@@ -21,8 +22,9 @@
 
 <script>
 import slotToText from "../../utils/slotToText";
+import clearHTML from "../../utils/clearHTML";
 
-import { ref, reactive, provide, computed, h, inject } from "vue";
+import { ref, reactive, provide, computed, onMounted, inject } from "vue";
 export default {
   name: "v-dropdown",
 
@@ -37,6 +39,14 @@ export default {
   },
 
   setup(props, { slots }) {
+    // handle option status list
+    const elDropdown = ref(null);
+    const options = ref([]);
+    onMounted(() => {
+      console.log("elDropdown", props.value);
+      console.log(elDropdown.value);
+    });
+
     // data
     const hover = ref(false);
     const selecting = ref(false);
@@ -45,7 +55,23 @@ export default {
       exist: false,
       elm: undefined,
     });
-    const classList = reactive([]);
+
+    const classList = computed(() => {
+      console.log("classList = computed(()", elDropdown.value);
+      if (elDropdown.value == null) return [];
+      const list = [...elDropdown.value.classList];
+      const blacklist = new Set([
+        "dropdown",
+        "display-all",
+        "no-title",
+        "disabled",
+        "divided",
+        "hidden",
+        "hover",
+      ]);
+      return list.filter((x) => !blacklist.has(x));
+    });
+
     const children = reactive({
       optionCounts: 0,
       values: [],
@@ -53,31 +79,52 @@ export default {
       isSearchs: [],
     });
 
+    // const initPrototypeStashTag = () => ({
+    //   elm: {
+    //     value: undefined,
+    //     title: undefined,
+    //   },
+    //   key: props.value,
+    //   custom: props.custom,
+    //   value: undefined, // is option value
+    //   displayValue: undefined, // is option value
+    //   classList: classList.value,
+    // });
+    const prototypeStashTag = {
+      elm: {
+        value: undefined,
+        title: undefined,
+      },
+      key: props.value,
+      custom: props.custom,
+      value: undefined, // is option value
+      displayValue: undefined, // is option value
+      classList: classList.value,
+    };
+
     const setStashTag = inject("setStashTag");
     const setStashTagToTags = inject("setStashTagToTags");
-    provide("dropdownSetValue", (item = {}) => {
-      const stashTag = {
-        elm: {
-          value: undefined,
-          title: undefined,
-        },
-        key: props.value,
-        value: item.value,
-        custom: props.custom,
-        classList: props.classList,
-        displayValue: item.displayValue,
-      };
+    provide("dropdownSetTagToTagFun", (item = {}) => {
+      const stashTag = JSON.parse(JSON.stringify(prototypeStashTag));
+
+      stashTag.value = item.value;
+      stashTag.displayValue = item.displayValue;
 
       if (item.is_title == true) {
         stashTag.elm.title = item.vnode;
       } else {
-        stashTag.elm.title = getTitleVNode();
         stashTag.elm.value = item.vnode;
-      }
 
+        if (stashTag.elm.title == undefined) {
+          stashTag.elm.title = getTitleInnerHTML();
+        }
+      }
       setStashTag(stashTag);
 
+      console.log("dropdown run setStashTagToTags()", stashTag.elm.value);
       if (stashTag.elm.value != undefined) {
+        console.log("dropdown run setStashTagToTags()");
+        console.log("stashTag=", stashTag);
         setStashTagToTags();
       }
     });
@@ -91,16 +138,12 @@ export default {
     //   displayValue: props.displayValue,
     // });
 
-    const getTitleVNode = () => {
-      const vnode =
-        slots.default().filter((vnode) => {
-          return (
-            vnode.props.title == "" &&
-            slotToText(vnode.children.default()) != ""
-          );
-        }) || undefined;
-
-      return vnode != undefined ? vnode[0].children.default() : undefined;
+    const getTitleInnerHTML = () => {
+      const result =
+        [...elDropdown.value.children].find((vnode) => {
+          return [...vnode.classList].includes("title");
+        }).innerHTML || "";
+      return clearHTML(result);
     };
 
     const optionRegistered = (target = "title", value, indexBySlot) => {
@@ -165,6 +208,7 @@ export default {
     };
 
     return {
+      elDropdown,
       props,
     };
   },

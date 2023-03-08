@@ -8,19 +8,15 @@
       },
     ]"
   >
-    <Render
+    <div
       v-if="tag.elm.title"
-      :elm="tag.elm.title"
-      :elmClass="{
+      v-html="tag.elm.title"
+      :class="{
         tag__title: true,
         'no-value': !tag.values && !tag.value,
       }"
     />
-    <ValueRender
-      v-if="tag.elm.value || tag.value"
-      :tag="tag"
-      :key="`tag__value--0`"
-    />
+    <ValueRender v-if="tag.elm.value || tag.value" :tag="tag" />
 
     <div class="tag__values" v-if="tag.values">
       <template
@@ -102,18 +98,15 @@ export default {
     });
 
     const displayDelete = computed(() => {
-      try {
-        const { tag, childrenEditing } = this;
-        const basic = tag.value || tag.values;
-        if (deleteWhere.value == "none" || !basic) throw false;
-        if (deleteWhere.value == "edit") {
-          throw childrenEditing == true ? true : false;
-        }
-        if (deleteWhere.value == "always") throw true;
-        throw false;
-      } catch (e) {
-        return e;
+      const { tag } = props;
+      const hasData = tag.value || tag.values;
+      if (!hasData) return false;
+      if (deleteWhere.value == "none") throw false;
+      if (deleteWhere.value == "edit") {
+        throw childrenEditing.value == true ? true : false;
       }
+      if (deleteWhere.value == "always") throw true;
+      return false;
     });
 
     // =============== METHODS ==============

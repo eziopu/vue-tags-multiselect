@@ -1,6 +1,7 @@
 <template>
   <div
     class="option"
+    ref="elOption"
     :class="{
       title: props.title == true,
       disabled: isDisabled,
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+import clearHTML from "../../utils/clearHTML";
 import slotToText from "../../utils/slotToText";
 
 import { ref, computed, inject, onMounted, watch } from "vue";
@@ -36,7 +38,8 @@ export default {
     selected: { type: Boolean, default: false },
     value: { type: String, default: "" },
   },
-  setup(props, { slots }) {
+  setup(props) {
+    const elOption = ref(null);
     const indexBySlot = ref(-1);
     const isHover = ref(false);
 
@@ -57,13 +60,13 @@ export default {
       // );
     });
 
-    const dropdownSetValue = inject("dropdownSetValue");
-    const handleClick = (event) => {
+    const dropdownSetTagToTagFun = inject("dropdownSetTagToTagFun");
+    const handleClick = () => {
       if (isDisabled.value) return;
 
-      dropdownSetValue({
+      dropdownSetTagToTagFun({
         is_title: props.title,
-        vnode: event.target.innerHTML || "",
+        vnode: clearHTML(elOption.value.innerHTML) || "",
         // vnode: slots.default(),
         value: props.value,
         displayValue: props.displayValue,
@@ -75,10 +78,13 @@ export default {
     }
 
     return {
+      elOption,
+
       props,
       isDisabled,
       isHover,
       isHide,
+      
       handleClick,
     };
   },

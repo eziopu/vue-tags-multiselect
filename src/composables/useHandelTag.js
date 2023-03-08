@@ -28,7 +28,7 @@ export default function useHandelTag(props, context, dep) {
   // ============== COMPUTED ==============
 
   const tagsGroupByTitle = computed(() => {
-    console.log("const tagsGroupByTitle = computed(() => {");
+    console.log("const tagsGroupByTitle = computed(() tags = ", tags);
     let result = [];
 
     tags.forEach((tag) => {
@@ -51,6 +51,8 @@ export default function useHandelTag(props, context, dep) {
         item.values.push(getTagValueByTagsGroupByTitleKey(tag));
       }
     });
+    console.log("const tagsGroupByTitle = computed(() result = ", result);
+
     return result;
   });
 
@@ -66,9 +68,7 @@ export default function useHandelTag(props, context, dep) {
   };
 
   provide("setStashTag", (item = {}) => {
-    console.log("////////setStashTag///////////", stashTag, item);
     Object.assign(dep.stashTag, item);
-    console.log("////////setStashTag///////////", stashTag);
   });
 
   provide("setStashTagToTags", () => {
@@ -90,7 +90,7 @@ export default function useHandelTag(props, context, dep) {
         stashTag.displayValue = true;
       }
       stashTag.index = tags.length;
-      tags.push(stashTag);
+      tags.push({ ...stashTag });
     }
 
     init("provide setStashTagToTags");
