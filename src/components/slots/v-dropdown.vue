@@ -42,10 +42,10 @@ export default {
     // handle option status list
     const elDropdown = ref(null);
     const options = ref([]);
-    onMounted(() => {
-      console.log("elDropdown", props.value);
-      console.log(elDropdown.value);
-    });
+    // onMounted(() => {
+    //   console.log("elDropdown", props.value);
+    //   console.log(elDropdown.value);
+    // });
 
     // data
     const hover = ref(false);
@@ -69,7 +69,7 @@ export default {
         "hidden",
         "hover",
       ]);
-      return list.filter((x) => !blacklist.has(x));
+      return list.filter((x) => !blacklist.has(x)) || [];
     });
 
     const children = reactive({
@@ -92,13 +92,13 @@ export default {
     // });
     const prototypeStashTag = {
       elm: {
-        value: undefined,
-        title: undefined,
+        value: null,
+        title: null,
       },
       key: props.value,
       custom: props.custom,
-      value: undefined, // is option value
-      displayValue: undefined, // is option value
+      value: null, // is option value
+      displayValue: null, // is option value
       classList: classList.value,
     };
 
@@ -106,7 +106,6 @@ export default {
     const setStashTagToTags = inject("setStashTagToTags");
     provide("dropdownSetTagToTagFun", (item = {}) => {
       const stashTag = JSON.parse(JSON.stringify(prototypeStashTag));
-
       stashTag.value = item.value;
       stashTag.displayValue = item.displayValue;
 
@@ -121,7 +120,6 @@ export default {
       }
       setStashTag(stashTag);
 
-      console.log("dropdown run setStashTagToTags()", stashTag.elm.value);
       if (stashTag.elm.value != undefined) {
         console.log("dropdown run setStashTagToTags()");
         console.log("stashTag=", stashTag);

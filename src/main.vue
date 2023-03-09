@@ -8,16 +8,18 @@
     @click="elAppClicked"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-  <!-- merge = {{ merge }} <br> -->
-  <!-- tagsGroupByTitle = {{ tagsGroupByTitle }} <br> -->
-   <!-- stashTag = 
+  <!-- merge = {{ merge }} <br> 
+  stashTag = <pre>{{ stashTag }} </pre><br> 
+  tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
+
+  <!-- stashTag = 
   <pre>
     {{ stashTag }}
   </pre> -->
 
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="main" ref="elMain">
-      <Tag
+      <VTag
         v-for="(tag, index) in merge == true ? tagsGroupByTitle : tags"
         ref="elTag"
         :key="`tag-${index}`"
@@ -26,10 +28,10 @@
         <template v-slot:tag-conjunction>
           <slot name="tag-conjunction"></slot>
         </template>
-      </Tag>
+      </VTag>
 
-      <Tag v-if="Object.keys(stashTag).length != 0" :tag="stashTag">
-      </Tag>
+      <VTag v-if="stashTag.key != null" :tag="stashTag">
+      </VTag>
 
       <div class="fill" ref="elFill__div">
         <div v-show="loading == true" class="fill__loading" ref="loading">
@@ -126,7 +128,7 @@
 </template>
 
 <script lang="ts">
-import Tag from "./components/tag/main.vue";
+import VTag from "./components/tag/main.vue";
 import Loading from "./components/partial/loading.vue";
 // import VTagDropdown from "./components/tag-dropdown/main.vue";
 // import VTagOption from "./components/tag-dropdown/option.vue";
@@ -157,7 +159,7 @@ export default defineComponent({
   //   RefOperatePushValue,
   // ],
   components: {
-    Tag,
+    VTag,
     Loading,
     // VTagDropdown,
     // VTagOption,

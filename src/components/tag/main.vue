@@ -36,7 +36,7 @@
 
     <div
       v-if="displayDelete"
-      @click="deletes()"
+      @click="deletes"
       :class="{ pointer: appIsLock == false }"
       class="tag__close-icon"
     >
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import Render from "./render.vue";
 import ValueRender from "./value-render.vue";
 
 import { ref, computed, inject, onMounted, watch } from "vue";
@@ -55,7 +54,6 @@ import { ref, computed, inject, onMounted, watch } from "vue";
 export default {
   name: "v-tag",
   components: {
-    Render,
     ValueRender,
   },
   props: {
@@ -101,11 +99,11 @@ export default {
       const { tag } = props;
       const hasData = tag.value || tag.values;
       if (!hasData) return false;
-      if (deleteWhere.value == "none") throw false;
+      if (deleteWhere.value == "none") return false;
       if (deleteWhere.value == "edit") {
-        throw childrenEditing.value == true ? true : false;
+        return childrenEditing.value == true ? true : false;
       }
-      if (deleteWhere.value == "always") throw true;
+      if (deleteWhere.value == "always") return true;
       return false;
     });
 
