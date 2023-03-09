@@ -20,14 +20,23 @@ import HelloWorld from "./components/HelloWorld.vue";
   <main>
     <v-tags-multiselect>
       <v-tag-dropdown value="country">
-        <v-tag-option title>
-          title111
-          <p>11</p>
-        </v-tag-option>
-        <v-tag-option value="Māre111"> Māre1111 </v-tag-option>
+        <v-tag-option title> title111 </v-tag-option>
+        <v-tag-option value="Māre111"> 11Māre1111 </v-tag-option>
         <v-tag-option value="Eldia2222">
-          22
-          <p>Eldia2222</p>
+          <p>11Eldia2222</p>
+        </v-tag-option>
+      </v-tag-dropdown>
+      <v-tag-dropdown value="country2" displayAll>
+        <v-tag-option title> title2222 </v-tag-option>
+        <v-tag-option value="Māre111"> 222Māre1111 </v-tag-option>
+        <v-tag-option value="Eldia2222">
+          <p>222Eldia2222</p>
+        </v-tag-option>
+      </v-tag-dropdown>
+      <v-tag-dropdown value="country333">
+        <v-tag-option value="Māre111"> 333Māre1111 </v-tag-option>
+        <v-tag-option value="Eldia2222">
+          <p>33332Eldia2222</p>
         </v-tag-option>
       </v-tag-dropdown>
     </v-tags-multiselect>

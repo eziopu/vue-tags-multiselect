@@ -1,4 +1,4 @@
-import { ref, reactive, computed, provide } from "vue";
+import { ref, reactive, computed, provide, readonly } from "vue";
 
 export default function useMultiselect(props, context) {
   console.log("function useMultiselect");
@@ -140,8 +140,8 @@ export default function useMultiselect(props, context) {
   };
 
   // =============== PROVIDE ==============
-  provide("appProps", props);
-  provide("appIsLock", isLock);
+  provide("appProps", readonly(props));
+  provide("appIsLock", readonly(isLock));
   provide("appStashTag", stashTag);
   provide("appEeditTagIndex", editTagIndex);
   provide("appKeydown", keydown);

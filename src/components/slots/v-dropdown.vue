@@ -4,7 +4,7 @@
     ref="elDropdown"
     :class="{
       'no-title': true,
-      'display-all': true,
+      'display-all': displayAll,
       disabled: props.disabled,
       divided: props.divided,
       // selecting: current.tag.key == props.value,
@@ -24,7 +24,15 @@
 import slotToText from "../../utils/slotToText";
 import clearHTML from "../../utils/clearHTML";
 
-import { ref, reactive, provide, computed, onMounted, inject } from "vue";
+import {
+  ref,
+  reactive,
+  provide,
+  computed,
+  onMounted,
+  inject,
+  readonly,
+} from "vue";
 export default {
   name: "v-dropdown",
 
@@ -127,6 +135,8 @@ export default {
       }
     });
 
+    provide("dropdownProps", readonly(props));
+
     // this.dropdown.setTitle();
     // this.dropdown.setValue({
     //   elm: {
@@ -137,11 +147,10 @@ export default {
     // });
 
     const getTitleInnerHTML = () => {
-      const result =
-        [...elDropdown.value.children].find((vnode) => {
-          return [...vnode.classList].includes("title");
-        }).innerHTML || "";
-      return clearHTML(result);
+      const result = [...elDropdown.value.children].find((vnode) => {
+        return [...vnode.classList].includes("title");
+      });
+      return result != undefined ? clearHTML(result.innerHTML) : "";
     };
 
     const optionRegistered = (target = "title", value, indexBySlot) => {
@@ -213,8 +222,6 @@ export default {
 };
 </script>
 
-<script setup></script>
-
 <style scoped lang="scss">
 .dropdown {
   &,
@@ -228,27 +235,6 @@ export default {
     transform: scaleY(1);
     transform-origin: top;
     transition: transform 0.26s ease;
-  }
-
-  .option {
-    padding: 8px 18px;
-    height: auto;
-    text-align: left;
-    cursor: pointer;
-
-    &.disabled {
-      cursor: default;
-      pointer-events: none;
-      opacity: 0.45;
-    }
-
-    &.divided {
-      border-bottom: 1px solid #2224261a;
-    }
-
-    &.hover {
-      background: #f2f2f2;
-    }
   }
 
   &.divided {

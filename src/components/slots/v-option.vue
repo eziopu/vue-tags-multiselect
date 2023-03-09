@@ -17,7 +17,6 @@
     :tabindex="isDisabled ? 0 : -1"
     collapse="false"
   >
-  {{ isHover }}
     <slot></slot>
   </div>
 </template>
@@ -42,6 +41,9 @@ export default {
     const elOption = ref(null);
     const indexBySlot = ref(-1);
     const isHover = ref(false);
+
+    const appProps = inject("appProps");
+    const dropdownProps = inject("dropdownProps");
 
     const isDisabled = computed(() => {
       if (props.title == true) {
@@ -84,7 +86,7 @@ export default {
       isDisabled,
       isHover,
       isHide,
-      
+
       handleClick,
     };
   },
@@ -161,3 +163,30 @@ const handleClick = () => {
   });
 };
 </script> -->
+
+<style scoped lang="scss">
+.option {
+  padding: 8px 18px;
+  height: auto;
+  text-align: left;
+  cursor: pointer;
+
+  &.title {
+    padding-left: 9px;
+  }
+
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.45;
+  }
+
+  &.divided {
+    border-bottom: 1px solid #2224261a;
+  }
+
+  &.hover {
+    background: #f2f2f2;
+  }
+}
+</style>
