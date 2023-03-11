@@ -25,11 +25,18 @@ export default function useKeyboard(props, context, dep) {
   const backwardPointer = dep.backwardPointer;
   const forwardPointer = dep.forwardPointer;
   const multiselect = dep.multiselect;
-  const tags = dep.tags;
   const isOpen = dep.isOpen;
   const open = dep.open;
   const blur = dep.blur;
   const fo = dep.fo;
+
+  const keydown = dep.keydown;
+
+  const tags = dep.tags;
+  const elInputValue = dep.elInputValue;
+  const stashTag = dep.stashTag;
+  const setStashTagValue = dep.setStashTagValue;
+  const setStashTagToTags = dep.setStashTagToTags;
 
   // ============== COMPUTED ==============
 
@@ -71,160 +78,171 @@ export default function useKeyboard(props, context, dep) {
     }
   };
 
-  const handleKeydown = (e) => {
+  const handleKeydown = (event) => {
     console.log("handleKeydown e =", e);
-    context.emit("keydown", e, $this);
+    context.emit("keydown", event, $this);
 
-    let tagList;
-    let activeIndex;
+    const keyCode = event.keyCode ? event.keyCode : event;
+    keydown.keyCode = keyCode;
+    // let tagList;
+    // let activeIndex;
 
-    if (
-      ["ArrowLeft", "ArrowRight", "Enter"].indexOf(e.key) !== -1 &&
-      mode.value === "tags"
-    ) {
-      tagList = [
-        ...multiselect.value.querySelectorAll(`[data-tags] > *`),
-      ].filter((e) => e !== tags.value);
-      activeIndex = tagList.findIndex((e) => e === document.activeElement);
-    }
+    // if (
+    //   ["ArrowLeft", "ArrowRight", "Enter"].indexOf(e.key) !== -1 &&
+    //   mode.value === "tags"
+    // ) {
+    //   tagList = [
+    //     ...multiselect.value.querySelectorAll(`[data-tags] > *`),
+    //   ].filter((e) => e !== tags.value);
+    //   activeIndex = tagList.findIndex((e) => e === document.activeElement);
+    // }
 
-    switch (e.key) {
-      case "Backspace":
-        if (mode.value === "single") {
-          return;
-        }
+    switch (event.key) {
+      // case "Backspace":
+      //   if (mode.value === "single") {
+      //     return;
+      //   }
 
-        if (searchable.value && [null, ""].indexOf(search.value) === -1) {
-          return;
-        }
+      //   if (searchable.value && [null, ""].indexOf(search.value) === -1) {
+      //     return;
+      //   }
 
-        if (iv.value.length === 0) {
-          return;
-        }
+      //   if (iv.value.length === 0) {
+      //     return;
+      //   }
 
-        update([...iv.value].slice(0, -1));
-        break;
+      //   update([...iv.value].slice(0, -1));
+      //   break;
 
       case "Enter":
-        e.preventDefault();
+        event.preventDefault();
 
-        if (activeIndex !== -1 && activeIndex !== undefined) {
-          update([...iv.value].filter((v, k) => k !== activeIndex));
-
-          if (activeIndex === tagList.length - 1) {
-            if (tagList.length - 1) {
-              tagList[tagList.length - 2].focus();
-            } else if (searchable.value) {
-              tags.value.querySelector("input").focus();
-            } else {
-              multiselect.value.focus();
-            }
-          }
-          return;
-        }
-
-        if (addOptionOn.value.indexOf("enter") === -1 && createOption.value) {
-          return;
-        }
-
-        preparePointer();
-        selectPointer();
-        break;
-
-      case " ":
-        if (!createOption.value && !searchable.value) {
-          e.preventDefault();
-
-          preparePointer();
-          selectPointer();
-          return;
-        }
-
-        if (!createOption.value) {
-          return false;
-        }
-
-        if (addOptionOn.value.indexOf("space") === -1 && createOption.value) {
-          return;
-        }
-
-        e.preventDefault();
-
-        preparePointer();
-        selectPointer();
-        break;
-
-      case "Tab":
-      case ";":
-      case ",":
         if (
-          addOptionOn.value.indexOf(e.key.toLowerCase()) === -1 ||
-          !createOption.value
+          stashTag.index == -1 &&
+          stashTag.custom == true &&
+          elInputValue.value != ""
         ) {
-          return;
+          setStashTagValue(elInputValue.value);
+          setStashTagToTags();
         }
 
-        preparePointer();
-        selectPointer();
-        e.preventDefault();
+        // if (activeIndex !== -1 && activeIndex !== undefined) {
+        //   update([...iv.value].filter((v, k) => k !== activeIndex));
+
+        //   if (activeIndex === tagList.length - 1) {
+        //     if (tagList.length - 1) {
+        //       tagList[tagList.length - 2].focus();
+        //     } else if (searchable.value) {
+        //       tags.value.querySelector("input").focus();
+        //     } else {
+        //       multiselect.value.focus();
+        //     }
+        //   }
+        //   return;
+        // }
+
+        // if (addOptionOn.value.indexOf("enter") === -1 && createOption.value) {
+        //   return;
+        // }
+
+        // preparePointer();
+        // selectPointer();
         break;
 
-      case "Escape":
-        blur();
-        break;
+        // case " ":
+        //   if (!createOption.value && !searchable.value) {
+        //     e.preventDefault();
 
-      case "ArrowUp":
-        e.preventDefault();
+        //     preparePointer();
+        //     selectPointer();
+        //     return;
+        //   }
 
-        if (!showOptions.value) {
-          return;
-        }
+        //   if (!createOption.value) {
+        //     return false;
+        //   }
 
-        /* istanbul ignore else */
-        if (!isOpen.value) {
-          open();
-        }
+        //   if (addOptionOn.value.indexOf("space") === -1 && createOption.value) {
+        //     return;
+        //   }
 
-        backwardPointer();
-        break;
+        //   e.preventDefault();
 
-      case "ArrowDown":
-        e.preventDefault();
+        //   preparePointer();
+        //   selectPointer();
+        //   break;
 
-        if (!showOptions.value) {
-          return;
-        }
+        // case "Tab":
+        // case ";":
+        // case ",":
+        //   if (
+        //     addOptionOn.value.indexOf(e.key.toLowerCase()) === -1 ||
+        //     !createOption.value
+        //   ) {
+        //     return;
+        //   }
 
-        /* istanbul ignore else */
-        if (!isOpen.value) {
-          open();
-        }
+        //   preparePointer();
+        //   selectPointer();
+        //   e.preventDefault();
+        //   break;
 
-        forwardPointer();
-        break;
+        // case "Escape":
+        //   blur();
+        //   break;
 
-      case "ArrowLeft":
-        if (
-          (searchable.value &&
-            tags.value.querySelector("input").selectionStart) ||
-          e.shiftKey ||
-          mode.value !== "tags" ||
-          !iv.value ||
-          !iv.value.length
-        ) {
-          return;
-        }
+        // case "ArrowUp":
+        //   e.preventDefault();
 
-        e.preventDefault();
+        //   if (!showOptions.value) {
+        //     return;
+        //   }
 
-        if (activeIndex === -1) {
-          tagList[tagList.length - 1].focus();
-        } else if (activeIndex > 0) {
-          tagList[activeIndex - 1].focus();
-        }
-        break;
+        //   /* istanbul ignore else */
+        //   if (!isOpen.value) {
+        //     open();
+        //   }
 
-      case "ArrowRight":
+        //   backwardPointer();
+        //   break;
+
+        // case "ArrowDown":
+        //   e.preventDefault();
+
+        //   if (!showOptions.value) {
+        //     return;
+        //   }
+
+        //   /* istanbul ignore else */
+        //   if (!isOpen.value) {
+        //     open();
+        //   }
+
+        //   forwardPointer();
+        //   break;
+
+        // case "ArrowLeft":
+        //   if (
+        //     (searchable.value &&
+        //       tags.value.querySelector("input").selectionStart) ||
+        //     e.shiftKey ||
+        //     mode.value !== "tags" ||
+        //     !iv.value ||
+        //     !iv.value.length
+        //   ) {
+        //     return;
+        //   }
+
+        //   e.preventDefault();
+
+        //   if (activeIndex === -1) {
+        //     tagList[tagList.length - 1].focus();
+        //   } else if (activeIndex > 0) {
+        //     tagList[activeIndex - 1].focus();
+        //   }
+        //   break;
+
+        // case "ArrowRight":
         if (
           activeIndex === -1 ||
           e.shiftKey ||

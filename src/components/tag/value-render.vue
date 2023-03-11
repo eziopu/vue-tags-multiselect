@@ -56,7 +56,7 @@ export default {
 
     const appProps = inject("appProps");
     const appIsLock = inject("appIsLock");
-    const appInputValue = inject("appInputValue");
+    const appElInputValue = inject("appElInputValue");
     const appKeydown = inject("appKeydown");
     const appEeditTagIndex = inject("appEeditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
@@ -184,7 +184,7 @@ export default {
 
       if (editMyself.value == false) {
         appEeditTagIndex.value = props.tag.index;
-        appInputValue.value = "";
+        appElInputValue.value = "";
         setStashTag(props.tag);
         // this.app.setCurrentSelectLRIndex();
       }

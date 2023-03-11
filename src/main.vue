@@ -55,7 +55,7 @@
           <div
             class="fill__fake-input--placeholder"
             v-if="
-              isActive && inputValue == ''
+              isActive && elInputValue == ''
               // && isSelectDown == true &&
               // isFinish == false
             "
@@ -65,7 +65,7 @@
         </div>
 
         <input
-          v-model="inputValue"
+          v-model="elInputValue"
           ref="elInput"
           autocomplete="off"
           tabindex="0"

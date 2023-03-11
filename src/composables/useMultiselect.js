@@ -19,11 +19,12 @@ export default function useMultiselect(props, context) {
 
   // ================ DATA ================
 
+
   const isAppActived = ref(false);
 
   const isActive = ref(false);
 
-  const inputValue = ref("");
+  const elInputValue = ref("");
 
   const mouseClicked = ref(false);
 
@@ -93,7 +94,7 @@ export default function useMultiselect(props, context) {
     console.log("////////init/////////");
     console.log("const init = ()", where);
     console.log("stashTag=", stashTag);
-    inputValue.value = "";
+    elInputValue.value = "";
     Object.assign(stashTag, getInitialStashTag());
     console.log("stashTag=", stashTag);
 
@@ -145,7 +146,7 @@ export default function useMultiselect(props, context) {
   provide("appStashTag", stashTag);
   provide("appEeditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
-  provide("appInputValue", inputValue);
+  provide("appElInputValue", elInputValue);
 
   return {
     elApp,
@@ -153,6 +154,7 @@ export default function useMultiselect(props, context) {
     elTag,
     elFill,
     elInput,
+    elInputValue,
 
     isLock,
     isActive,
@@ -160,7 +162,6 @@ export default function useMultiselect(props, context) {
     isEditMode,
 
     conjunction,
-    inputValue,
     keydown,
     tabindex,
     mouseClicked,

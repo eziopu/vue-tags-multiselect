@@ -21,8 +21,6 @@ export default function useHandelTag(props, context, dep) {
 
   const elInput = dep.elInput;
 
-  const inputValue = dep.inputValue;
-
   const editTagIndex = dep.editTagIndex;
 
   // ============== COMPUTED ==============
@@ -67,16 +65,18 @@ export default function useHandelTag(props, context, dep) {
     };
   };
 
-  provide("setStashTag", (item = {}) => {
+  const setStashTag = (item = {}) => {
     Object.assign(dep.stashTag, item);
-  });
+  };
+  provide("setStashTag", setStashTag);
 
-  provide("setStashTagToTags", () => {
+  const setStashTagValue = (value) => {
     if (isEditMode.value == true) {
+      console.log("  11111111");
       const tags = tags[editTagIndex.value];
 
-      if (inputValue.value != "") {
-        tags.value = inputValue.value;
+      if (value != "") {
+        tags.value = value;
         tags.elm.value = undefined;
         tags.displayValue = true;
       } else {
@@ -85,19 +85,27 @@ export default function useHandelTag(props, context, dep) {
         tags.displayValue = stashTag.displayValue;
       }
     } else {
-      if (inputValue.value != "") {
-        stashTag.value = inputValue.value;
+      console.log("  222222");
+      if (value != "") {
+        console.log("  33333");
+        stashTag.value = value;
         stashTag.displayValue = true;
       }
-      stashTag.index = tags.length;
-      tags.push({ ...stashTag });
     }
+  };
+  provide("setStashTagValue", setStashTagValue);
+
+  const setStashTagToTags = () => {
+    console.log("  setStashTagToTags");
+    stashTag.index = tags.length;
+    tags.push({ ...stashTag });
 
     init("provide setStashTagToTags");
     if (isAppActived.value == true) {
       elInput.value.focus();
     }
-  });
+  };
+  provide("setStashTagToTags", setStashTagToTags);
 
   provide("appDeleteTags", (indexs = []) => {
     console.log('provide("appDeleteTags", (indexs = []) => {', indexs);
@@ -129,5 +137,9 @@ export default function useHandelTag(props, context, dep) {
 
   return {
     tagsGroupByTitle,
+    
+    setStashTag,
+    setStashTagValue,
+    setStashTagToTags,
   };
 }
