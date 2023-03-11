@@ -135,9 +135,30 @@ export default function useHandelTag(props, context, dep) {
     elInput.value.focus();
   });
 
+  const isDuplicateTag = (keyName, value) => {
+    return tags
+      .filter((tag) => {
+        return tag.key != undefined;
+      })
+      .find((tag) => {
+        return tag.key == keyName && tag.value == value;
+      })
+      ? true
+      : false;
+  };
+  const isDuplicateTagByKey = (keyName) => {
+    return tags.find((tagKeyName) => tagKeyName == keyName)
+      ? true
+      : false;
+  };
+
+  provide("appTags", tags);
+  provide("appIsDuplicateTag", isDuplicateTag);
+  provide("appIsDuplicateTagByKey", isDuplicateTagByKey);
+
   return {
     tagsGroupByTitle,
-    
+
     setStashTag,
     setStashTagValue,
     setStashTagToTags,

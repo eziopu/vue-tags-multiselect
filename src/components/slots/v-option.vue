@@ -43,7 +43,10 @@ export default {
     const isHover = ref(false);
 
     const appProps = inject("appProps");
+    const appStashTag = inject("appStashTag");
     const dropdownProps = inject("dropdownProps");
+    const dropdownIsDown = inject("dropdownIsDown");
+    const appIsDuplicateTag = inject("appIsDuplicateTag");
 
     const isDisabled = computed(() => {
       if (props.title == true) {
@@ -53,6 +56,26 @@ export default {
     });
 
     const isHide = computed(() => {
+      console.log("---------option isHide() dropdownIsDown=", dropdownIsDown.value);
+      const isTitle = props.title;
+      if (appIsDuplicateTag(dropdownProps.value, props.value) == true) {
+        return true;
+      }
+
+      if (dropdownIsDown == true) {
+        return true;
+      }
+
+      if (appStashTag.key != undefined) {
+        if (appStashTag.key != dropdownProps.value) {
+          return true;
+        } else {
+          return isTitle ? true : false;
+        }
+      }
+
+
+
       if (indexBySlot.value == -1) return;
       return false;
       // return dropdown.optionHide(
@@ -62,11 +85,11 @@ export default {
       // );
     });
 
-    const dropdownSetTagToTagFun = inject("dropdownSetTagToTagFun");
+    const dropdownSetTagToTag = inject("dropdownSetTagToTag");
     const handleClick = () => {
       if (isDisabled.value) return;
 
-      dropdownSetTagToTagFun({
+      dropdownSetTagToTag({
         is_title: props.title,
         vnode: clearHTML(elOption.value.innerHTML) || "",
         // vnode: slots.default(),
@@ -170,6 +193,8 @@ const handleClick = () => {
   height: auto;
   text-align: left;
   cursor: pointer;
+  visibility: visible;
+  opacity: 1;
 
   &.title {
     padding-left: 9px;
@@ -187,6 +212,14 @@ const handleClick = () => {
 
   &.hover {
     background: #f2f2f2;
+  }
+
+  &.hidden {
+    height: 0;
+    padding: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: scaleY(0);
   }
 }
 </style>

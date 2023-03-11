@@ -4,7 +4,7 @@
     ref="elDropdown"
     :class="{
       'no-title': true,
-      'display-all': displayAll,
+      'display-all': myDisplayAll,
       disabled: props.disabled,
       divided: props.divided,
       // selecting: current.tag.key == props.value,
@@ -64,8 +64,39 @@ export default {
       elm: undefined,
     });
 
+    const getTitleInnerHTML = () => {
+      if (elDropdown.value == null) {
+        return "";
+      }
+      const result = [...elDropdown.value.children].find((vnode) => {
+        return [...vnode.classList].includes("title");
+      });
+      return result != undefined ? clearHTML(result.innerHTML) : "";
+    };
+    const hasVNodeTitle = getTitleInnerHTML() != "";
+
+    const appTags = inject("appTags");
+    const mySelectIsDown = computed(() => {
+      const myTags = appTags.filter((tag) => tag.key == props.value) || [];
+      let childrenLength = slots.default().length;
+      if (hasVNodeTitle == true) {
+        childrenLength -= 1;
+      }
+      return childrenLength == myTags.length;
+    });
+    console.log("****mySelectIsDown=", mySelectIsDown.value);
+    provide("dropdownIsDown", mySelectIsDown);
+
+    const myDisplayAll = computed(() => {
+      if (hasVNodeTitle == false) {
+        return true;
+      } else {
+        return props.displayAll;
+      }
+    });
+    provide("dropdownDisplayAll", myDisplayAll);
+
     const classList = computed(() => {
-      console.log("classList = computed(()", elDropdown.value);
       if (elDropdown.value == null) return [];
       const list = [...elDropdown.value.classList];
       const blacklist = new Set([
@@ -112,7 +143,7 @@ export default {
 
     const setStashTag = inject("setStashTag");
     const setStashTagToTags = inject("setStashTagToTags");
-    provide("dropdownSetTagToTagFun", (item = {}) => {
+    provide("dropdownSetTagToTag", (item = {}) => {
       const stashTag = JSON.parse(JSON.stringify(prototypeStashTag));
       stashTag.value = item.value;
       stashTag.displayValue = item.displayValue;
@@ -145,13 +176,6 @@ export default {
     //   value: props.value,
     //   displayValue: props.displayValue,
     // });
-
-    const getTitleInnerHTML = () => {
-      const result = [...elDropdown.value.children].find((vnode) => {
-        return [...vnode.classList].includes("title");
-      });
-      return result != undefined ? clearHTML(result.innerHTML) : "";
-    };
 
     const optionRegistered = (target = "title", value, indexBySlot) => {
       console.log("dropdown methods optionRegistered", target, value);
@@ -216,7 +240,9 @@ export default {
 
     return {
       elDropdown,
+
       props,
+      myDisplayAll,
     };
   },
 };
@@ -239,15 +265,6 @@ export default {
 
   &.divided {
     border-bottom: 1px solid #2224261a;
-  }
-
-  &.hidden,
-  .option.hidden {
-    height: 0;
-    padding: 0;
-    visibility: hidden;
-    opacity: 0;
-    transform: scaleY(0);
   }
 
   &.display-all:not(.no-title):not(.editing):not(.selecting) {
