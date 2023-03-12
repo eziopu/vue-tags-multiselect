@@ -49,7 +49,7 @@ export default {
   setup(props, { slots }) {
     // handle option status list
     const elDropdown = ref(null);
-    const options = ref([]);
+    
     // onMounted(() => {
     //   console.log("elDropdown", props.value);
     //   console.log(elDropdown.value);
@@ -59,12 +59,8 @@ export default {
     const hover = ref(false);
     const selecting = ref(false);
     const editMyself = ref(false);
-    const titleVNode = reactive({
-      exist: false,
-      elm: undefined,
-    });
 
-    const getTitleInnerHTML = () => {
+    const getTitleInnerHTML = computed(() => {
       if (elDropdown.value == null) {
         return "";
       }
@@ -72,23 +68,28 @@ export default {
         return [...vnode.classList].includes("title");
       });
       return result != undefined ? clearHTML(result.innerHTML) : "";
-    };
-    const hasVNodeTitle = getTitleInnerHTML() != "";
+    });
+
+    const hasVNodeTitle = computed(() => {
+      return getTitleInnerHTML.value != "";
+    });
 
     const appTags = inject("appTags");
     const mySelectIsDown = computed(() => {
+      if (props.custom == true) {
+        return false;
+      }
       const myTags = appTags.filter((tag) => tag.key == props.value) || [];
       let childrenLength = slots.default().length;
-      if (hasVNodeTitle == true) {
+      if (hasVNodeTitle.value == true) {
         childrenLength -= 1;
       }
       return childrenLength == myTags.length;
     });
-    console.log("****mySelectIsDown=", mySelectIsDown.value);
     provide("dropdownIsDown", mySelectIsDown);
 
     const myDisplayAll = computed(() => {
-      if (hasVNodeTitle == false) {
+      if (hasVNodeTitle.value == false) {
         return true;
       } else {
         return props.displayAll;
@@ -154,7 +155,7 @@ export default {
         stashTag.elm.value = item.vnode;
 
         if (stashTag.elm.title == undefined) {
-          stashTag.elm.title = getTitleInnerHTML();
+          stashTag.elm.title = getTitleInnerHTML.value;
         }
       }
       setStashTag(stashTag);
@@ -177,7 +178,7 @@ export default {
     //   displayValue: props.displayValue,
     // });
 
-    const optionRegistered = (target = "title", value, indexBySlot) => {
+    const optionRegistered = (target = "title", value) => {
       console.log("dropdown methods optionRegistered", target, value);
       // if (target == "title" && this.titleVNode.exist == false) {
       //   this.titleVNode.exist = true;
@@ -188,6 +189,8 @@ export default {
       // }
       // this.children.isSearchs.splice(indexBySlot, 0, false);
     };
+    provide("dropdownOptionRegistered", optionRegistered);
+
     const appCancelled = (value = this.value) => {
       console.log("dropdown methods", value);
 

@@ -39,14 +39,13 @@ export default {
   },
   setup(props) {
     const elOption = ref(null);
-    const indexBySlot = ref(-1);
     const isHover = ref(false);
 
+    const appTags = inject("appTags");
     const appProps = inject("appProps");
     const appStashTag = inject("appStashTag");
     const dropdownProps = inject("dropdownProps");
     const dropdownIsDown = inject("dropdownIsDown");
-    const appIsDuplicateTag = inject("appIsDuplicateTag");
 
     const isDisabled = computed(() => {
       if (props.title == true) {
@@ -55,14 +54,21 @@ export default {
       return props.disabled == true || props.value == "";
     });
 
+    const isDuplicate = computed(() => {
+      return appTags.find((tag) => {
+        return tag.key == dropdownProps.value && tag.value == props.value;
+      })
+        ? true
+        : false;
+    });
+
     const isHide = computed(() => {
-      console.log("---------option isHide() dropdownIsDown=", dropdownIsDown.value);
       const isTitle = props.title;
-      if (appIsDuplicateTag(dropdownProps.value, props.value) == true) {
+      if (isDuplicate.value == true) {
         return true;
       }
 
-      if (dropdownIsDown == true) {
+      if (dropdownIsDown.value == true) {
         return true;
       }
 
@@ -74,15 +80,7 @@ export default {
         }
       }
 
-
-
-      if (indexBySlot.value == -1) return;
       return false;
-      // return dropdown.optionHide(
-      //   indexBySlot,
-      //   props.title ? "title" : "option",
-      //   props.value
-      // );
     });
 
     const dropdownSetTagToTag = inject("dropdownSetTagToTag");
