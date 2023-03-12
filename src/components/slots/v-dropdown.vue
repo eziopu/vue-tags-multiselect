@@ -49,7 +49,7 @@ export default {
   setup(props, { slots }) {
     // handle option status list
     const elDropdown = ref(null);
-    
+    const options = ref([]);
     // onMounted(() => {
     //   console.log("elDropdown", props.value);
     //   console.log(elDropdown.value);
@@ -161,8 +161,6 @@ export default {
       setStashTag(stashTag);
 
       if (stashTag.elm.value != undefined) {
-        console.log("dropdown run setStashTagToTags()");
-        console.log("stashTag=", stashTag);
         setStashTagToTags();
       }
     });

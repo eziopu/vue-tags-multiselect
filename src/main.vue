@@ -8,6 +8,8 @@
     @click="elAppClicked"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
+  
+  editTagIndex = {{ editTagIndex }} <br> 
   <!-- merge = {{ merge }} <br> 
   stashTag = <pre>{{ stashTag }} </pre><br> 
   tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
@@ -30,7 +32,7 @@
         </template>
       </VTag>
 
-      <VTag v-if="stashTag.key != null" :tag="stashTag">
+      <VTag v-if="stashTag.key != null && isEditMode == false" :tag="stashTag">
       </VTag>
 
       <div class="fill" ref="elFill__div">

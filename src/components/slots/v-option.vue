@@ -44,6 +44,8 @@ export default {
     const appTags = inject("appTags");
     const appProps = inject("appProps");
     const appStashTag = inject("appStashTag");
+    const appEeditTagIndex = inject("appEeditTagIndex");
+
     const dropdownProps = inject("dropdownProps");
     const dropdownIsDown = inject("dropdownIsDown");
 
@@ -56,7 +58,11 @@ export default {
 
     const isDuplicate = computed(() => {
       return appTags.find((tag) => {
-        return tag.key == dropdownProps.value && tag.value == props.value;
+        return (
+          tag != undefined &&
+          tag.key == dropdownProps.value &&
+          tag.value == props.value
+        );
       })
         ? true
         : false;
@@ -64,14 +70,25 @@ export default {
 
     const isHide = computed(() => {
       const isTitle = props.title;
+      // 已被選取
       if (isDuplicate.value == true) {
         return true;
       }
 
+      // 編輯模式
+      if (appEeditTagIndex.value != -1) {
+        if (isTitle) {
+          return true;
+        }
+        return appStashTag.key != dropdownProps.value ? true : false;
+      }
+
+      // dropdown 已全部選擇過 且未啟用custom
       if (dropdownIsDown.value == true) {
         return true;
       }
 
+      // 一般選擇情境
       if (appStashTag.key != undefined) {
         if (appStashTag.key != dropdownProps.value) {
           return true;

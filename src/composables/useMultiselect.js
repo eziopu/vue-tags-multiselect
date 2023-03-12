@@ -95,6 +95,7 @@ export default function useMultiselect(props, context) {
     console.log("const init = ()", where);
     console.log("stashTag=", stashTag);
     elInputValue.value = "";
+    editTagIndex.value = -1;
     Object.assign(stashTag, getInitialStashTag());
     console.log("stashTag=", stashTag);
 

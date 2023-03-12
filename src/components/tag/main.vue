@@ -109,16 +109,8 @@ export default {
 
     // =============== METHODS ==============
 
-    const deletes = (childIndex = -1) => {
-      console.log("deletesdeletesdeletesdeletes");
-      if (appIsLock.value == true) return false;
-
-      if (childIndex != -1) {
-        appDeleteTags([childIndex]);
-        return;
-      }
-      console.log("deletesdeletesdeletesdeletes");
-      console.log(props.tag.index);
+    const deletes = (event) => {
+      event.preventDefault();
 
       let indexs = [props.tag.index];
       if (props.tag.values) {
@@ -127,8 +119,9 @@ export default {
           indexs.push(value.index);
         });
       }
-      console.log(indexs);
+
       appDeleteTags(indexs);
+      return;
     };
 
     return {

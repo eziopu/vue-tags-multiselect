@@ -59,6 +59,7 @@ export default function useHandelTag(props, context, dep) {
   const getTagValueByTagsGroupByTitleKey = (item = {}) => {
     return {
       index: item.index,
+      key: item.key, // for value-render
       elm: item.elm.value,
       value: item.value,
       displayValue: item.displayValue,
@@ -108,7 +109,7 @@ export default function useHandelTag(props, context, dep) {
   provide("setStashTagToTags", setStashTagToTags);
 
   provide("appDeleteTags", (indexs = []) => {
-    console.log('provide("appDeleteTags", (indexs = []) => {', indexs);
+    console.log('provide("appDeleteTags", (indexs = []) => ', indexs);
     if (isLock.value == true) return;
     if (indexs.length == 0) return;
 

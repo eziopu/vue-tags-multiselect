@@ -8,10 +8,11 @@
     }"
     @click="handleClick"
   >
+    <!-- editMyself= {{ editMyself }} -->
     <div
-      v-show="tag.custom == false || !editMyself"
+      v-show="tag.custom == false || !editByinput"
+      class="tag__value--value"
       :class="{
-        'tag__value--value': true,
         transition: appProps.transition,
         outline: noCustomeHoverAndEditMyself,
       }"
@@ -40,6 +41,12 @@ export default {
   //   Render,
   // },
   props: {
+    keyName: {
+      type: String,
+      default: () => {
+        return "";
+      },
+    },
     tag: {
       type: Object,
       default: () => {
@@ -179,7 +186,8 @@ export default {
     };
 
     const setStashTag = inject("setStashTag");
-    const handleClick = () => {
+    const handleClick = (event) => {
+      event.preventDefault();
       if (appIsLock.value == true) return;
 
       if (editMyself.value == false) {
