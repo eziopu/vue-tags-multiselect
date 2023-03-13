@@ -8,16 +8,15 @@
     @click="elAppClicked"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-  
-  editTagIndex = {{ editTagIndex }} <br> 
-  <!-- merge = {{ merge }} <br> 
+    <!-- editTagIndex = {{ editTagIndex }} <br>  -->
+    <!-- merge = {{ merge }} <br> 
   stashTag = <pre>{{ stashTag }} </pre><br> 
   tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
 
-  tags = 
+    <!-- tags = 
   <pre>
     {{ tags }}
-  </pre>
+  </pre> -->
 
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="main" ref="elMain">

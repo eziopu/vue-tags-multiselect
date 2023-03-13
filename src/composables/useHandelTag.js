@@ -11,11 +11,11 @@ export default function useHandelTag(props, context, dep) {
 
   const stashTag = dep.stashTag;
 
+  const getInitialTag = dep.getInitialTag;
+
   const init = dep.init;
 
   const isLock = dep.isLock;
-
-  const isEditMode = dep.isEditMode;
 
   const isAppActived = dep.isAppActived;
 
@@ -31,11 +31,7 @@ export default function useHandelTag(props, context, dep) {
 
     tags.forEach((tag) => {
       let item = result.find((item) => {
-        return (
-          tag.titleElm != null &&
-          tag.value != null &&
-          item.key == tag.key
-        );
+        return tag.titleElm != null && tag.value != null && item.key == tag.key;
       });
       if (!item) {
         result.push({
@@ -68,34 +64,9 @@ export default function useHandelTag(props, context, dep) {
   };
 
   const setStashTag = (item = {}) => {
-    Object.assign(dep.stashTag, item);
+    Object.assign(dep.stashTag, { ...getInitialTag(), ...item });
   };
   provide("setStashTag", setStashTag);
-
-  const setStashTagValue = (value) => {
-    if (isEditMode.value == true) {
-      console.log("  11111111");
-      const tags = tags[editTagIndex.value];
-
-      if (value != "") {
-        tags.value = value;
-        tags.valueElm = undefined;
-        tags.displayValue = true;
-      } else {
-        tags.value = stashTag.value;
-        tags.valueElm = stashTag.valueElm;
-        tags.displayValue = stashTag.displayValue;
-      }
-    } else {
-      console.log("  222222");
-      if (value != "") {
-        console.log("  33333");
-        stashTag.value = value;
-        stashTag.displayValue = true;
-      }
-    }
-  };
-  provide("setStashTagValue", setStashTagValue);
 
   const setStashTagToTags = () => {
     console.log("  setStashTagToTags");
@@ -108,6 +79,20 @@ export default function useHandelTag(props, context, dep) {
     }
   };
   provide("setStashTagToTags", setStashTagToTags);
+
+  const updateTag = (item = {}) => {
+    if (editTagIndex.value == -1) return;
+
+    const tag = tags[editTagIndex.value];
+
+    if (tag == undefined) return;
+
+    tag.value = item.value;
+    tag.valueElm = item.valueElm || null;
+    tag.displayValue = item.displayValue || true;
+    init();
+  };
+  provide("appUpdateTag", updateTag);
 
   provide("appDeleteTags", (indexs = []) => {
     console.log('provide("appDeleteTags", (indexs = []) => ', indexs);
@@ -147,9 +132,7 @@ export default function useHandelTag(props, context, dep) {
       : false;
   };
   const isDuplicateTagByKey = (keyName) => {
-    return tags.find((tagKeyName) => tagKeyName == keyName)
-      ? true
-      : false;
+    return tags.find((tagKeyName) => tagKeyName == keyName) ? true : false;
   };
 
   provide("appTags", tags);
@@ -160,7 +143,6 @@ export default function useHandelTag(props, context, dep) {
     tagsGroupByTitle,
 
     setStashTag,
-    setStashTagValue,
     setStashTagToTags,
   };
 }

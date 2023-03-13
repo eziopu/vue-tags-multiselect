@@ -19,7 +19,6 @@ export default function useMultiselect(props, context) {
 
   // ================ DATA ================
 
-
   const isAppActived = ref(false);
 
   const isActive = ref(false);
@@ -30,7 +29,7 @@ export default function useMultiselect(props, context) {
 
   const tags = reactive([]);
 
-  const getInitialStashTag = () => ({
+  const getInitialTag = () => ({
     classList: [],
     custom: false,
     displayValue: false,
@@ -41,7 +40,7 @@ export default function useMultiselect(props, context) {
     titleElm: undefined,
   });
 
-  const stashTag = reactive(getInitialStashTag());
+  const stashTag = reactive(getInitialTag());
 
   const getInitialKeydown = () => ({
     keyCode: -1,
@@ -97,7 +96,7 @@ export default function useMultiselect(props, context) {
     console.log("stashTag=", stashTag);
     elInputValue.value = "";
     editTagIndex.value = -1;
-    Object.assign(stashTag, getInitialStashTag());
+    Object.assign(stashTag, getInitialTag());
     console.log("stashTag=", stashTag);
 
     initKeydown();
@@ -172,6 +171,8 @@ export default function useMultiselect(props, context) {
     tags,
     stashTag,
     editTagIndex,
+
+    getInitialTag,
 
     init,
     initKeydown,

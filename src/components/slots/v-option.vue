@@ -100,22 +100,36 @@ export default {
       return false;
     });
 
+    const appUpdateTag = inject("appUpdateTag");
     const dropdownSetTagToTag = inject("dropdownSetTagToTag");
     const handleClick = () => {
       if (isDisabled.value) return;
 
+      const innerHTML = clearHTML(elOption.value.innerHTML) || "";
+
+      // 編輯模式
+      if (appEeditTagIndex.value != -1) {
+        appUpdateTag({
+          valueElm: innerHTML,
+          value: props.value,
+        });
+        return;
+      }
+
       dropdownSetTagToTag({
         is_title: props.title,
-        vnode: clearHTML(elOption.value.innerHTML) || "",
+        vnode: innerHTML,
         // vnode: slots.default(),
         value: props.value,
         displayValue: props.displayValue,
       });
     };
 
-    if (props.selected == true) {
-      handleClick();
-    }
+    onMounted(() => {
+      if (props.selected == true) {
+        handleClick();
+      }
+    });
 
     return {
       elOption,

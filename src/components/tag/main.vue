@@ -8,7 +8,6 @@
       },
     ]"
   >
-
     <div
       v-if="tag.titleElm"
       v-html="tag.titleElm"
