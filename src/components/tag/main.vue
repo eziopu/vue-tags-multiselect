@@ -8,15 +8,16 @@
       },
     ]"
   >
+
     <div
-      v-if="tag.elm.title"
-      v-html="tag.elm.title"
+      v-if="tag.titleElm"
+      v-html="tag.titleElm"
       :class="{
         tag__title: true,
         'no-value': !tag.values && !tag.value,
       }"
     />
-    <ValueRender v-if="tag.elm.value || tag.value" :tag="tag" />
+    <ValueRender v-if="tag.valueElm || tag.value" :tag="tag" />
 
     <div class="tag__values" v-if="tag.values">
       <template

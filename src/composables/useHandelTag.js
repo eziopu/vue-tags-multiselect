@@ -27,13 +27,13 @@ export default function useHandelTag(props, context, dep) {
 
   const tagsGroupByTitle = computed(() => {
     console.log("const tagsGroupByTitle = computed(() tags = ", tags);
-    let result = [];
+    const result = [];
 
     tags.forEach((tag) => {
       let item = result.find((item) => {
         return (
-          tag.elm.title != undefined &&
-          tag.value != undefined &&
+          tag.titleElm != null &&
+          tag.value != null &&
           item.key == tag.key
         );
       });
@@ -43,7 +43,8 @@ export default function useHandelTag(props, context, dep) {
           custom: tag.custom,
           classList: tag.classList,
           values: [getTagValueByTagsGroupByTitleKey(tag)],
-          elm: { title: tag.elm.title },
+          titleElm: tag.titleElm,
+          valueElm: null,
         });
       } else {
         item.values.push(getTagValueByTagsGroupByTitleKey(tag));
@@ -60,7 +61,7 @@ export default function useHandelTag(props, context, dep) {
     return {
       index: item.index,
       key: item.key, // for value-render
-      elm: item.elm.value,
+      elm: item.valueElm,
       value: item.value,
       displayValue: item.displayValue,
     };
@@ -78,11 +79,11 @@ export default function useHandelTag(props, context, dep) {
 
       if (value != "") {
         tags.value = value;
-        tags.elm.value = undefined;
+        tags.valueElm = undefined;
         tags.displayValue = true;
       } else {
         tags.value = stashTag.value;
-        tags.elm.value = stashTag.elm.value;
+        tags.valueElm = stashTag.valueElm;
         tags.displayValue = stashTag.displayValue;
       }
     } else {
@@ -125,13 +126,11 @@ export default function useHandelTag(props, context, dep) {
       return b - a;
     });
 
-    console.log("tags.length");
-    console.log(tags.length);
     arrayIndexByTags.forEach((index) => {
-      console.log(tags[index]);
       delete tags[index];
     });
-    console.log(tags.length);
+
+    init("appDeleteTags");
 
     elInput.value.focus();
   });

@@ -14,10 +14,10 @@
   stashTag = <pre>{{ stashTag }} </pre><br> 
   tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
 
-  <!-- stashTag = 
+  tags = 
   <pre>
-    {{ stashTag }}
-  </pre> -->
+    {{ tags }}
+  </pre>
 
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="main" ref="elMain">

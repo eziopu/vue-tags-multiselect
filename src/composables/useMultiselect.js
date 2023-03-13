@@ -34,10 +34,11 @@ export default function useMultiselect(props, context) {
     classList: [],
     custom: false,
     displayValue: false,
-    elm: { value: null, title: null },
     index: -1,
     key: null,
     value: null,
+    valueElm: undefined,
+    titleElm: undefined,
   });
 
   const stashTag = reactive(getInitialStashTag());

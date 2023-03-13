@@ -8,7 +8,7 @@
     }"
     @click="handleClick"
   >
-    <!-- editMyself= {{ editMyself }} -->
+    {{ tag.index }} |
     <div
       v-show="tag.custom == false || !editByinput"
       class="tag__value--value"
@@ -160,10 +160,9 @@ export default {
     };
 
     const diplayElm = () => {
-      if (props.tag.displayValue == true || props.tag.elm == undefined)
+      if (props.tag.displayValue == true || props.tag.valueElm == undefined)
         return props.tag.value;
-      if (props.tag.elm.value != undefined) return props.tag.elm.value;
-      if (props.tag.elm != undefined) return props.tag.elm;
+      if (props.tag.valueElm != undefined) return props.tag.valueElm;
 
       return props.tag.value;
     };

@@ -62,16 +62,16 @@ export default {
 
     const getTitleInnerHTML = computed(() => {
       if (elDropdown.value == null) {
-        return "";
+        return null;
       }
       const result = [...elDropdown.value.children].find((vnode) => {
         return [...vnode.classList].includes("title");
       });
-      return result != undefined ? clearHTML(result.innerHTML) : "";
+      return result != undefined ? clearHTML(result.innerHTML) : null;
     });
 
     const hasVNodeTitle = computed(() => {
-      return getTitleInnerHTML.value != "";
+      return getTitleInnerHTML.value != null;
     });
 
     const appTags = inject("appTags");
@@ -131,13 +131,11 @@ export default {
     //   classList: classList.value,
     // });
     const prototypeStashTag = {
-      elm: {
-        value: null,
-        title: null,
-      },
+      titleElm: null,
+      valueElm: null,
+      value: null, // is option value
       key: props.value,
       custom: props.custom,
-      value: null, // is option value
       displayValue: null, // is option value
       classList: classList.value,
     };
@@ -150,17 +148,17 @@ export default {
       stashTag.displayValue = item.displayValue;
 
       if (item.is_title == true) {
-        stashTag.elm.title = item.vnode;
+        stashTag.titleElm = item.vnode;
       } else {
-        stashTag.elm.value = item.vnode;
+        stashTag.valueElm = item.vnode;
 
-        if (stashTag.elm.title == undefined) {
-          stashTag.elm.title = getTitleInnerHTML.value;
+        if (stashTag.titleElm == null) {
+          stashTag.titleElm = getTitleInnerHTML.value;
         }
       }
       setStashTag(stashTag);
 
-      if (stashTag.elm.value != undefined) {
+      if (stashTag.valueElm != null) {
         setStashTagToTags();
       }
     });
