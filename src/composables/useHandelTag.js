@@ -1,9 +1,9 @@
 import { provide, computed } from "vue";
 
 export default function useHandelTag(props, context, dep) {
-  console.log("function useHandelTag");
-  console.log("props =", props);
-  console.log("context =", context);
+  // console.log("function useHandelTag");
+  // console.log("props =", props);
+  // console.log("context =", context);
 
   // ============ DEPENDENCIES ============
 
@@ -26,7 +26,7 @@ export default function useHandelTag(props, context, dep) {
   // ============== COMPUTED ==============
 
   const tagsGroupByTitle = computed(() => {
-    console.log("const tagsGroupByTitle = computed(() tags = ", tags);
+    // console.log("const tagsGroupByTitle = computed(() tags = ", tags);
     const result = [];
 
     tags.forEach((tag) => {
@@ -46,7 +46,7 @@ export default function useHandelTag(props, context, dep) {
         item.values.push(getTagValueByTagsGroupByTitleKey(tag));
       }
     });
-    console.log("const tagsGroupByTitle = computed(() result = ", result);
+    // console.log("const tagsGroupByTitle = computed(() result = ", result);
 
     return result;
   });
@@ -69,7 +69,7 @@ export default function useHandelTag(props, context, dep) {
   provide("setStashTag", setStashTag);
 
   const setStashTagToTags = () => {
-    console.log("  setStashTagToTags");
+    // console.log("  setStashTagToTags");
     stashTag.index = tags.length;
     tags.push({ ...stashTag });
 
@@ -95,7 +95,7 @@ export default function useHandelTag(props, context, dep) {
   provide("appUpdateTag", updateTag);
 
   provide("appDeleteTags", (indexs = []) => {
-    console.log('provide("appDeleteTags", (indexs = []) => ', indexs);
+    // console.log('provide("appDeleteTags", (indexs = []) => ', indexs);
     if (isLock.value == true) return;
     if (indexs.length == 0) return;
 
@@ -106,7 +106,7 @@ export default function useHandelTag(props, context, dep) {
       }
     });
 
-    console.log(arrayIndexByTags);
+    // console.log(arrayIndexByTags);
     arrayIndexByTags = arrayIndexByTags.sort((a, b) => {
       return b - a;
     });

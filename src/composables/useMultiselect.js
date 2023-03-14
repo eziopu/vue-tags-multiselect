@@ -1,9 +1,9 @@
 import { ref, reactive, computed, provide, readonly, onMounted, nextTick, watch } from "vue";
 
 export default function useMultiselect(props, context) {
-  console.log("function useMultiselect");
-  console.log("props =", props);
-  console.log("context =", context);
+  // console.log("function useMultiselect");
+  // console.log("props =", props);
+  // console.log("context =", context);
 
   // ================ REFS ================
 
@@ -19,19 +19,22 @@ export default function useMultiselect(props, context) {
 
   const elDropdown = ref(null);
 
+  // ================ REFS DATA ================
+
+  const elInputValue = ref("");
+
+  const elDropdownLeft = ref(0);
+
   // ================ DATA ================
 
   const isAppActived = ref(false);
 
   const isActive = ref(false);
 
-  const elInputValue = ref("");
-
   const mouseClicked = ref(false);
 
   const tags = reactive([]);
 
-  const elDropdownLeft = ref(0);
 
   const getInitialTag = () => ({
     classList: [],
@@ -88,7 +91,7 @@ export default function useMultiselect(props, context) {
         const editLeft = editDiv.getBoundingClientRect().left || 0;
         offset = editLeft - elDropdownLeft || 0;
       }
-      console.log(offset);
+      // console.log(offset);
       elDropdownLeft.value = offset;
     } else {
       elDropdownLeft.value = 0;
@@ -98,13 +101,13 @@ export default function useMultiselect(props, context) {
   // =============== METHODS ==============
 
   const init = (where = "") => {
-    console.log("////////init/////////");
-    console.log("const init = ()", where);
-    console.log("stashTag=", stashTag);
+    // console.log("////////init/////////");
+    // console.log("const init = ()", where);
+    // console.log("stashTag=", stashTag);
     elInputValue.value = "";
     editTagIndex.value = -1;
     Object.assign(stashTag, getInitialTag());
-    console.log("stashTag=", stashTag);
+    // console.log("stashTag=", stashTag);
 
     initKeydown();
     initConjunction();
@@ -145,7 +148,7 @@ export default function useMultiselect(props, context) {
   /* istanbul ignore next */
   const elAppMousedown = (e) => {
     mouseClicked.value = true;
-    console.log("elAppMousedown", e);
+    // console.log("elAppMousedown", e);
   };
 
   // =============== PROVIDE ==============

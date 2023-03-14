@@ -1,7 +1,7 @@
 import { toRefs, ref, reactive, computed } from "vue";
 
 export default function useData(props) {
-  console.log("useData.js", props);
+  // console.log("useData.js", props);
 
   const { modelValue } = toRefs(props);
 
@@ -173,7 +173,7 @@ export default function useData(props) {
 
   /* istanbul ignore next */
   // externalValue
-  console.log(modelValue);
+  // console.log(modelValue);
 
   return {
     iv,

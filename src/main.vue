@@ -193,7 +193,6 @@ export default defineComponent({
     finishPlaceholder: { type: String, default: "Finish." },
   },
   setup(props, context) {
-    console.log("app setup");
     return resolve(props, context, [
       useMultiselect,
       useHandelTag,

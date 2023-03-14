@@ -8,13 +8,13 @@
     }"
     @click="handleClick"
   >
-    {{ editMyself }} |
+    <!-- {{ editMyself }} | -->
     <div
       v-show="tag.custom == false || !editByinput"
       class="tag__value--content"
       :class="{
         transition: appProps.transition,
-        outline: noCustomeHoverAndEditMyself,
+        outline: editMyself,
       }"
       v-html="diplayElm()"
     />
