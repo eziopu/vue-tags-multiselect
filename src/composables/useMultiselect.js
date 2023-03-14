@@ -1,4 +1,4 @@
-import { ref, reactive, computed, provide, readonly } from "vue";
+import { ref, reactive, computed, provide, readonly, onMounted, nextTick, watch } from "vue";
 
 export default function useMultiselect(props, context) {
   console.log("function useMultiselect");
@@ -17,6 +17,8 @@ export default function useMultiselect(props, context) {
 
   const elInput = ref(null);
 
+  const elDropdown = ref(null);
+
   // ================ DATA ================
 
   const isAppActived = ref(false);
@@ -28,6 +30,8 @@ export default function useMultiselect(props, context) {
   const mouseClicked = ref(false);
 
   const tags = reactive([]);
+
+  const elDropdownLeft = ref(0);
 
   const getInitialTag = () => ({
     classList: [],
@@ -70,22 +74,25 @@ export default function useMultiselect(props, context) {
     return editTagIndex.value != -1;
   });
 
-  const elDropdownLeft = computed(() => {
-    let offset = elFill.value.offsetLeft || 0;
-    let scrollLeft = elMain.value.scrollLeft || 0;
+  // ============== WATCH ==============
+  watch(isEditMode, async (value) => {
+    if (value == true) {
+      await nextTick();
 
-    if (isEditMode.value == true) {
-      const editDiv = this.$el.querySelector(
-        ".tag.editing .tag__value.editing"
+      let offset = 0;
+      const editDiv = document.querySelector(
+        ".vue-tags-multiselect .tags .tag.editing .tag__value.editing"
       );
       if (editDiv != undefined) {
-        const appLeft = elApp.value.getBoundingClientRect().left || 0;
+        const elDropdownLeft = elDropdown.value.getBoundingClientRect().left || 0;
         const editLeft = editDiv.getBoundingClientRect().left || 0;
-        offset = editLeft - appLeft || 0;
-        offset += 12;
+        offset = editLeft - elDropdownLeft || 0;
       }
+      console.log(offset);
+      elDropdownLeft.value = offset;
+    } else {
+      elDropdownLeft.value = 0;
     }
-    return offset - scrollLeft;
   });
 
   // =============== METHODS ==============
@@ -154,6 +161,7 @@ export default function useMultiselect(props, context) {
     elMain,
     elTag,
     elFill,
+    elDropdown,
     elInput,
     elInputValue,
 

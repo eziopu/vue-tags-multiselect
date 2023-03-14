@@ -8,10 +8,10 @@
     }"
     @click="handleClick"
   >
-    {{ tag.index }} |
+    {{ editMyself }} |
     <div
       v-show="tag.custom == false || !editByinput"
-      class="tag__value--value"
+      class="tag__value--content"
       :class="{
         transition: appProps.transition,
         outline: noCustomeHoverAndEditMyself,
@@ -41,12 +41,6 @@ export default {
   //   Render,
   // },
   props: {
-    keyName: {
-      type: String,
-      default: () => {
-        return "";
-      },
-    },
     tag: {
       type: Object,
       default: () => {
@@ -79,7 +73,7 @@ export default {
     });
     const noCustomeHoverAndEditMyself = computed(() => {
       if (appIsLock.value) return false;
-      return editMyself.value && props.tag.custom == false;
+      return editMyself.value == true && props.tag.custom == false;
     });
     const editByinput = computed(() => {
       return props.tag.custom == true && editMyself.value == true;
@@ -236,7 +230,7 @@ export default {
     line-height: 0em;
   }
 
-  .tag__value--value {
+  .tag__value--content {
     &.transition:after {
       transform-origin: 0% 50%;
       transition: transform 250ms ease-in-out;
