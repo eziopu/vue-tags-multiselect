@@ -78,18 +78,18 @@ export default function useMultiselect(props, context) {
   });
 
   // ============== WATCH ==============
-  watch(isEditMode, async (value) => {
-    if (value == true) {
+  watch(editTagIndex, async (value) => {
+    if (value != -1) {
       await nextTick();
 
       let offset = 0;
-      const editDiv = document.querySelector(
-        ".vue-tags-multiselect .tags .tag.editing .tag__value.editing"
+      const editDiv = elApp.value.querySelector(
+        ".tags .tag.editing .tag__value.editing"
       );
       if (editDiv != undefined) {
-        const elDropdownLeft = elDropdown.value.getBoundingClientRect().left || 0;
+        const elMainLeft = elMain.value.getBoundingClientRect().left || 0;
         const editLeft = editDiv.getBoundingClientRect().left || 0;
-        offset = editLeft - elDropdownLeft || 0;
+        offset = editLeft - elMainLeft || 0;
       }
       // console.log(offset);
       elDropdownLeft.value = offset;
