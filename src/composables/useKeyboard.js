@@ -1,4 +1,4 @@
-import { toRefs, computed, getCurrentInstance } from "vue";
+import { toRefs, computed, nextTick, getCurrentInstance } from "vue";
 
 export default function useKeyboard(props, context, dep) {
   const {
@@ -31,6 +31,8 @@ export default function useKeyboard(props, context, dep) {
   const fo = dep.fo;
 
   const keydown = dep.keydown;
+
+  const elDropdown = dep.elDropdown;
 
   const elInputValue = dep.elInputValue;
   const isEditMode = dep.isEditMode;
@@ -78,7 +80,7 @@ export default function useKeyboard(props, context, dep) {
     // }
   };
 
-  const handleKeydown = (event) => {
+  const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event);
     context.emit("keydown", event, $this);
 
@@ -193,6 +195,18 @@ export default function useKeyboard(props, context, dep) {
       // case "Escape":
       //   blur();
       //   break;
+
+      case "ArrowUp":
+      case "ArrowDown": {
+        event.preventDefault();
+        await nextTick();
+
+        const displayOptions = elDropdown.value.querySelectorAll(".option:not(.hidden)");
+        const numElements = displayOptions.length || 0;
+        console.log(numElements, displayOptions);
+
+        break;
+      }
 
       // case "ArrowUp":
       //   e.preventDefault();
