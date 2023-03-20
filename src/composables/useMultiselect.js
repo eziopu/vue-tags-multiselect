@@ -77,6 +77,13 @@ export default function useMultiselect(props, context) {
     return editTagIndex.value != -1;
   });
 
+  const elDropdownDisplay = computed(() => {
+    return (
+      props.disabled == false &&
+      isActive.value == true
+    );
+  });
+
   // ============== WATCH ==============
   watch(editTagIndex, async (value) => {
     if (value != -1) {
@@ -101,7 +108,7 @@ export default function useMultiselect(props, context) {
   // =============== METHODS ==============
 
   const init = (where = "") => {
-    // console.log("////////init/////////");
+    console.log("////////init(" + where + ")/////////");
     // console.log("const init = ()", where);
     // console.log("stashTag=", stashTag);
     elInputValue.value = "";
@@ -130,19 +137,18 @@ export default function useMultiselect(props, context) {
   };
 
   const elInputblur = () => {
-    const actElm = document.activeElement;
-    if (actElm != elInput.value && this.$el.contains(actElm) == false) {
-      init("elInputblur");
-    }
+    console.log("00000 elInputblur 00000");
+
+
   };
 
   const elAppClicked = () => {
-    if (!props.disabled) {
-      elInput.value.focus();
+    // if (!props.disabled) {
+    //   elInput.value.focus();
 
-      isActive.value = true;
-      isAppActived.value = true;
-    }
+    //   isActive.value = true;
+    //   isAppActived.value = true;
+    // }
   };
 
   /* istanbul ignore next */
@@ -151,6 +157,42 @@ export default function useMultiselect(props, context) {
     // console.log("elAppMousedown", e);
   };
 
+  const focusApp = () => {
+    if (isAppActived.value == true) {
+      elInput.value.focus();
+    }
+  };
+
+  const isActiveElementContainApp = () => {
+    const actElm = document.activeElement;
+    return elApp.value.contains(actElm);
+  };
+
+  const elAppFocus = () => {
+    console.log("000 elAppFocus elAppFocus elAppFocus");
+    
+    if (!props.disabled) {
+      elInput.value.focus();
+
+      isActive.value = true;
+      isAppActived.value = true;
+    }
+  };
+
+  const elInputBlur = () => {
+    setTimeout(() => {
+      const actElm = document.activeElement;
+      console.log("1 elInputBlur elInputBlur");
+      console.log("1 elInputBlur elInputBlur");
+      console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
+      if (isActiveElementContainApp() == false) {
+        init("elInputBlur");
+        isActive.value = false;
+      }
+    }, 100);
+
+    // deactivate();
+  };
   // =============== PROVIDE ==============
   provide("appProps", readonly(props));
   provide("appIsLock", readonly(isLock));
@@ -158,6 +200,7 @@ export default function useMultiselect(props, context) {
   provide("appEeditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
+  provide("appReFocus", focusApp);
 
   return {
     elApp,
@@ -165,9 +208,11 @@ export default function useMultiselect(props, context) {
     elTag,
     elFill,
     elDropdown,
+    elDropdownDisplay,
     elInput,
     elInputValue,
 
+    
     isLock,
     isActive,
     isAppActived,
@@ -183,7 +228,6 @@ export default function useMultiselect(props, context) {
     stashTag,
     editTagIndex,
 
-    getInitialTag,
 
     init,
     initKeydown,
@@ -191,5 +235,11 @@ export default function useMultiselect(props, context) {
     elInputblur,
     elAppClicked,
     elAppMousedown,
+
+    focusApp,
+    elAppFocus,
+    elInputBlur,
+
+    getInitialTag,
   };
 }

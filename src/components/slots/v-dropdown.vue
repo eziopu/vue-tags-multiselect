@@ -140,8 +140,9 @@ export default {
       classList: classList.value,
     };
 
-    const setStashTag = inject("setStashTag");
-    const setStashTagToTags = inject("setStashTagToTags");
+    const appReFocus = inject("appReFocus");
+    const appSetStashTag = inject("appSetStashTag");
+    const appSetStashTagToTags = inject("appSetStashTagToTags");
     provide("dropdownSetTagToTag", (item = {}) => {
       const stashTag = JSON.parse(JSON.stringify(prototypeStashTag));
       stashTag.value = item.value;
@@ -156,10 +157,11 @@ export default {
           stashTag.titleElm = getTitleInnerHTML.value;
         }
       }
-      setStashTag(stashTag);
+      appSetStashTag(stashTag);
 
       if (stashTag.valueElm != null) {
-        setStashTagToTags();
+        appSetStashTagToTags();
+        appReFocus();
       }
     });
 

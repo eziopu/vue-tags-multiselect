@@ -1,11 +1,13 @@
 <template>
   <div
     class="vue-tags-multiselect"
-    tabindex="0"
     hidefocus="true"
+    tabindex="0"
     ref="elApp"
+    @focus="elAppFocus"
     @keydown="handleKeydown"
-    @click="elAppClicked"
+    @keyup="handleKeyup"
+    @click="isAppActived = true"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
   <div class="logs" style="width: 100%;">
@@ -45,7 +47,7 @@
 
     <div class="main" ref="elMain">
       <Transition :name="transition ? 'slide' : ''">
-        <div class="dropdowns" ref="elDropdown" :style="{left: `${elDropdownLeft}px`}">
+        <div class="dropdowns" v-if="elDropdownDisplay" ref="elDropdown" :style="{left: `${elDropdownLeft}px`}">
           <!-- :class="{ loading: loading || dropdownLoading, transition: transition }"
         :style="dropdown.style"
         v-show="displayDropdown" -->
@@ -99,7 +101,7 @@
         <!-- <FakeInput
           :>
         </FakeInput> -->
-        <div class="fill__fake-input">
+        <!-- <div class="fill__fake-input">
           <div
             class="fill__fake-input--line"
             v-if="
@@ -119,14 +121,16 @@
           >
             <div class="select-down">{{ selectDownPlaceholder }}</div>
           </div>
-        </div>
-
+        </div> -->
+        {{  isActive }}
         <input
           v-model="elInputValue"
           ref="elInput"
           autocomplete="off"
           tabindex="0"
           type="search"
+          @click="isAppActived = true; isActive = true"
+          @blur="elInputBlur"
         />
         <!-- :disabled="inputDisabled"
           :placeholder="inputPlaceholder"

@@ -61,7 +61,7 @@ export default {
     const appKeydown = inject("appKeydown");
     const appEeditTagIndex = inject("appEeditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
-    const setStashTagToTags = inject("setStashTagToTags");
+    const appSetStashTagToTags = inject("appSetStashTagToTags");
 
     // ============== COMPUTED ==============
 
@@ -178,7 +178,7 @@ export default {
       }
     };
 
-    const setStashTag = inject("setStashTag");
+    const appSetStashTag = inject("appSetStashTag");
     const handleClick = (event) => {
       event.preventDefault();
       if (appIsLock.value == true) return;
@@ -186,7 +186,7 @@ export default {
       if (editMyself.value == false) {
         appEeditTagIndex.value = props.tag.index;
         appElInputValue.value = "";
-        setStashTag(props.tag);
+        appSetStashTag(props.tag);
         // this.app.setCurrentSelectLRIndex();
       }
     };
@@ -195,7 +195,7 @@ export default {
         deleteTag();
       } else {
         if (appKeydown.UDIndex == -1) {
-          setStashTagToTags(inputValue.value);
+          appSetStashTagToTags(inputValue.value);
         }
       }
     };

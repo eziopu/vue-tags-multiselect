@@ -66,19 +66,19 @@ export default function useHandelTag(props, context, dep) {
   const setStashTag = (item = {}) => {
     Object.assign(dep.stashTag, { ...getInitialTag(), ...item });
   };
-  provide("setStashTag", setStashTag);
+  provide("appSetStashTag", setStashTag);
 
   const setStashTagToTags = () => {
     // console.log("  setStashTagToTags");
     stashTag.index = tags.length;
     tags.push({ ...stashTag });
 
-    init("provide setStashTagToTags");
+    init("provide appSetStashTagToTags", isAppActived.value);
     if (isAppActived.value == true) {
       elInput.value.focus();
     }
   };
-  provide("setStashTagToTags", setStashTagToTags);
+  provide("appSetStashTagToTags", setStashTagToTags);
 
   const updateTag = (item = {}) => {
     if (editTagIndex.value == -1) return;
