@@ -157,11 +157,11 @@ export default {
           stashTag.titleElm = getTitleInnerHTML.value;
         }
       }
+      appReFocus();
       appSetStashTag(stashTag);
 
       if (stashTag.valueElm != null) {
         appSetStashTagToTags();
-        appReFocus();
       }
     });
 

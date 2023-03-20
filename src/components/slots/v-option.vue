@@ -53,7 +53,7 @@ export default {
       if (props.title == true) {
         return props.disabled;
       }
-      return props.disabled == true || props.value == "";
+      return props.disabled || dropdownProps.disabled;
     });
 
     const isDuplicate = computed(() => {
@@ -104,6 +104,7 @@ export default {
     const dropdownSetTagToTag = inject("dropdownSetTagToTag");
     const handleClick = () => {
       if (isDisabled.value) return;
+      if (!props.title && props.value == "") return;
 
       const innerHTML = clearHTML(elOption.value.innerHTML) || "";
 
