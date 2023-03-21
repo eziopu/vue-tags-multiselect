@@ -7,6 +7,11 @@ import { resolve } from "path";
 export default defineConfig({
   root: resolve(process.cwd(), "demo"),
   plugins: [vue()],
+  server: {
+    watch: {
+      usePolling: true,
+    },
+  },
   optimizeDeps: {
     exclude: ["vue-demi"],
   },
