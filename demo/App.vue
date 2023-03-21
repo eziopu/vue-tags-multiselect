@@ -28,14 +28,14 @@ import HelloWorld from "./components/HelloWorld.vue";
       </v-tag-dropdown>
       <v-tag-dropdown value="country2" displayAll>
         <v-tag-option title> title2222 </v-tag-option>
-        <v-tag-option value="Māre111"> 222Māre1111 </v-tag-option>
-        <v-tag-option value="Eldia2222">
+        <v-tag-option value="2Māre111"> 222Māre1111 </v-tag-option>
+        <v-tag-option value="2Eldia2222">
           <p>222Eldia2222</p>
         </v-tag-option>
       </v-tag-dropdown>
       <v-tag-dropdown value="country333">
-        <v-tag-option value="Māre111"> 333Māre1111 </v-tag-option>
-        <v-tag-option value="Eldia2222">
+        <v-tag-option value="3Māre111"> 333Māre1111 </v-tag-option>
+        <v-tag-option value="3Eldia2222">
           <p>33332Eldia2222</p>
         </v-tag-option>
       </v-tag-dropdown>

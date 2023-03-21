@@ -1,4 +1,13 @@
-import { ref, reactive, computed, provide, readonly, onMounted, nextTick, watch } from "vue";
+import {
+  ref,
+  reactive,
+  computed,
+  provide,
+  readonly,
+  onMounted,
+  nextTick,
+  watch,
+} from "vue";
 
 export default function useMultiselect(props, context) {
   // console.log("function useMultiselect");
@@ -34,7 +43,6 @@ export default function useMultiselect(props, context) {
   const mouseClicked = ref(false);
 
   const tags = reactive([]);
-
 
   const getInitialTag = () => ({
     classList: [],
@@ -78,10 +86,7 @@ export default function useMultiselect(props, context) {
   });
 
   const elDropdownDisplay = computed(() => {
-    return (
-      props.disabled == false &&
-      isActive.value == true
-    );
+    return props.disabled == false && isActive.value == true;
   });
 
   // ============== WATCH ==============
@@ -138,14 +143,11 @@ export default function useMultiselect(props, context) {
 
   const elInputblur = () => {
     console.log("00000 elInputblur 00000");
-
-
   };
 
   const elAppClicked = () => {
     // if (!props.disabled) {
     //   elInput.value.focus();
-
     //   isActive.value = true;
     //   isAppActived.value = true;
     // }
@@ -155,6 +157,11 @@ export default function useMultiselect(props, context) {
   const elAppMousedown = (e) => {
     mouseClicked.value = true;
     // console.log("elAppMousedown", e);
+  };
+
+  const appEnable = () => {
+    isActive.value = true;
+    isAppActived.value = true;
   };
 
   const focusApp = () => {
@@ -170,19 +177,22 @@ export default function useMultiselect(props, context) {
 
   const elAppFocus = () => {
     console.log("000 elAppFocus elAppFocus elAppFocus");
-    
+
     if (!props.disabled) {
       elInput.value.focus();
-
-      isActive.value = true;
-      isAppActived.value = true;
+      appEnable();
     }
+  };
+
+  const elInputFocus = () => {
+    if (props.disabled) return;
+    appEnable();
+    init("elInputFocus");
   };
 
   const elInputBlur = () => {
     setTimeout(() => {
       const actElm = document.activeElement;
-      console.log("1 elInputBlur elInputBlur");
       console.log("1 elInputBlur elInputBlur");
       console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
       if (isActiveElementContainApp() == false) {
@@ -200,7 +210,9 @@ export default function useMultiselect(props, context) {
   provide("appEeditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
+  provide("appEnable", appEnable);
   provide("appReFocus", focusApp);
+  provide("appBlur", elInputBlur);
 
   return {
     elApp,
@@ -212,7 +224,6 @@ export default function useMultiselect(props, context) {
     elInput,
     elInputValue,
 
-    
     isLock,
     isActive,
     isAppActived,
@@ -228,10 +239,10 @@ export default function useMultiselect(props, context) {
     stashTag,
     editTagIndex,
 
-
     init,
     initKeydown,
     initConjunction,
+    elInputFocus,
     elInputblur,
     elAppClicked,
     elAppMousedown,

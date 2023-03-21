@@ -1,11 +1,11 @@
 <template>
   <div
     class="tag__value"
-    :tabindex="-1"
     :class="{
       editing: editMyself,
       pointer: appIsLock != true,
     }"
+    tabindex="0"
     @click="handleClick"
   >
     <!-- {{ editMyself }} | -->
@@ -17,16 +17,18 @@
         outline: editMyself,
       }"
       v-html="diplayElm()"
+      tabindex="0"
+      @blur="elDivBlur"
     />
     <input
       type="text"
       class="tag__value--input"
       v-show="editByinput"
       v-model="inputValue"
-      ref="elTagValueInput"
+      ref="elInput"
       :style="{ width: inputWidth }"
-      @keyup.delete="elTagValueInputDelete()"
-      @blur="elTagValueInputBlur()"
+      @keyup.delete="elInputDelete()"
+      @blur="elInputBlur()"
     />
   </div>
 </template>
@@ -53,7 +55,7 @@ export default {
     const nextWillDelete = ref(false);
     const nextKeydownWillChagneEditTag = ref(false);
 
-    const elTagValueInput = ref(null);
+    const elInput = ref(null);
 
     const appProps = inject("appProps");
     const appIsLock = inject("appIsLock");
@@ -91,7 +93,7 @@ export default {
       if (value == true && props.tag.custom == true) {
         inputValue.value = props.tag.value;
         setTimeout(() => {
-          elTagValueInput.value.focus();
+          elInput.value.focus();
         }, 100);
       }
     });
@@ -111,7 +113,7 @@ export default {
         }
         if (editMyself.value == false) return;
         if (value.keyCode != 13) return;
-        elTagValueInputEnter();
+        elInputEnter();
       },
       {
         deep: true,
@@ -132,7 +134,7 @@ export default {
     // ============== METHODS ==============
     const handleKeydownLR = (keyCode = 0) => {
       setTimeout(() => {
-        const selectionStart = elTagValueInput.value.selectionStart;
+        const selectionStart = elInput.value.selectionStart;
         if (
           nextKeydownWillChagneEditTag.value == true &&
           ((keyCode == 37 && selectionStart == 0) ||
@@ -147,7 +149,7 @@ export default {
     };
 
     const isInputSelectionLimit = () => {
-      const selectionStart = elTagValueInput.value.selectionStart;
+      const selectionStart = elInput.value.selectionStart;
       return selectionStart == 0 || selectionStart == inputValue.value.length
         ? true
         : false;
@@ -165,14 +167,14 @@ export default {
       appDeleteTags([props.tag.index]);
     };
 
-    const elTagValueInputDelete = () => {
+    const elInputDelete = () => {
       if (nextWillDelete.value == true) {
         deleteTag();
       } else if (inputValue.value == "") {
         nextWillDelete.value = true;
       }
     };
-    const elTagValueInputBlur = () => {
+    const elInputBlur = () => {
       if (inputValue.value == "") {
         deleteTag();
       }
@@ -188,9 +190,10 @@ export default {
         appElInputValue.value = "";
         appSetStashTag(props.tag);
         // this.app.setCurrentSelectLRIndex();
+        appEnable();
       }
     };
-    const elTagValueInputEnter = () => {
+    const elInputEnter = () => {
       if (inputValue.value == "") {
         deleteTag();
       } else {
@@ -198,6 +201,14 @@ export default {
           appSetStashTagToTags(inputValue.value);
         }
       }
+    };
+
+    const appBlur = inject("appBlur");
+    const appEnable = inject("appEnable");
+
+    const elDivBlur = () => {
+      console.log("elDivBlur", props.tag.value);
+      appBlur();
     };
 
     return {
@@ -212,9 +223,10 @@ export default {
       diplayElm,
       deleteTag,
       handleClick,
-      elTagValueInputDelete,
-      elTagValueInputBlur,
-      elTagValueInputEnter,
+      elDivBlur,
+      elInputDelete,
+      elInputBlur,
+      elInputEnter,
     };
   },
 };

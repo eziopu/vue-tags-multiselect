@@ -69,14 +69,8 @@ export default function useHandelTag(props, context, dep) {
   provide("appSetStashTag", setStashTag);
 
   const setStashTagToTags = () => {
-    // console.log("  setStashTagToTags");
     stashTag.index = tags.length;
     tags.push({ ...stashTag });
-
-    init("provide appSetStashTagToTags", isAppActived.value);
-    if (isAppActived.value == true) {
-      elInput.value.focus();
-    }
   };
   provide("appSetStashTagToTags", setStashTagToTags);
 

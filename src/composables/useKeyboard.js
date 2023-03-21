@@ -201,7 +201,9 @@ export default function useKeyboard(props, context, dep) {
         event.preventDefault();
         await nextTick();
 
-        const displayOptions = elDropdown.value.querySelectorAll(".option:not(.hidden)");
+        const displayOptions = elDropdown.value.querySelectorAll(
+          ".option:not(.hidden)"
+        );
         const numElements = displayOptions.length || 0;
         console.log(numElements, displayOptions);
 

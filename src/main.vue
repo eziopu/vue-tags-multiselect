@@ -10,18 +10,18 @@
     @click="isAppActived = true"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-  <div class="logs" style="width: 100%;">
-    elDropdownLeft = {{ elDropdownLeft }} <br> 
-    editTagIndex = {{ editTagIndex }} <br> 
-    <!-- 
+    <div class="logs" style="width: 100%">
+      elDropdownLeft = {{ elDropdownLeft }} <br />
+      editTagIndex = {{ editTagIndex }} <br />
+      <!-- 
     stashTag = <pre>{{ stashTag }} </pre><br> 
     tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
-  
+
       <!-- tags = 
     <pre>
       {{ tags }}
     </pre> -->
-  </div>
+    </div>
 
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="tags" ref="elTags">
@@ -47,7 +47,12 @@
 
     <div class="main" ref="elMain">
       <Transition :name="transition ? 'slide' : ''">
-        <div class="dropdowns" v-if="elDropdownDisplay" ref="elDropdown" :style="{left: `${elDropdownLeft}px`}">
+        <div
+          class="dropdowns"
+          v-if="elDropdownDisplay"
+          ref="elDropdown"
+          :style="{ left: `${elDropdownLeft}px` }"
+        >
           <!-- :class="{ loading: loading || dropdownLoading, transition: transition }"
         :style="dropdown.style"
         v-show="displayDropdown" -->
@@ -122,14 +127,14 @@
             <div class="select-down">{{ selectDownPlaceholder }}</div>
           </div>
         </div> -->
-        {{  isActive }}
+
         <input
           v-model="elInputValue"
           ref="elInput"
           autocomplete="off"
           tabindex="0"
           type="search"
-          @click="isAppActived = true; isActive = true"
+          @focus="elInputFocus"
           @blur="elInputBlur"
         />
         <!-- :disabled="inputDisabled"
@@ -1044,7 +1049,6 @@ export default defineComponent({
     overflow: hidden;
     z-index: 11;
     top: 90%;
-
 
     &.loading {
       cursor: wait !important;
