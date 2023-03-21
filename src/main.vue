@@ -1053,6 +1053,10 @@ export default defineComponent({
     &.loading {
       cursor: wait !important;
     }
+
+    &:empty {
+      border: none !important;
+    }
   }
 
   .option__undo--arrow-left {

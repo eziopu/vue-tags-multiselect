@@ -8,9 +8,9 @@
       disabled: props.disabled,
       divided: props.divided,
       // selecting: current.tag.key == props.value,
-      editing: false, // editMyself
-      noValue: props.value == undefined,
-      // hidden:
+      editing: isChildEditing, // editMyself
+      noValue: props.value == undefined || props.value == '',
+      hidden: isHidden,
       //   this.hidden ||
       //   this.allChildrenIsHidden() ||
       //   (this.system == false && this.validatorString(this.value) == false),
@@ -58,7 +58,15 @@ export default {
     // data
     const hover = ref(false);
     const selecting = ref(false);
-    const editMyself = ref(false);
+
+    const appStashTag = inject("appStashTag");
+    const appEeditTagIndex = inject("appEeditTagIndex");
+    const isChildEditing = computed(() => {
+      if (appStashTag.key == props.value && appEeditTagIndex.value != -1) {
+        return true;
+      }
+      return false;
+    });
 
     const getTitleInnerHTML = computed(() => {
       if (elDropdown.value == null) {
@@ -167,14 +175,16 @@ export default {
 
     provide("dropdownProps", readonly(props));
 
-    // this.dropdown.setTitle();
-    // this.dropdown.setValue({
-    //   elm: {
-    //     value: this.$slots.default,
-    //   },
-    //   value: props.value,
-    //   displayValue: props.displayValue,
-    // });
+    const isHidden = computed(() => {
+      if (props.hidden == true || mySelectIsDown.value == true) {
+        return true;
+      }
+      if (appEeditTagIndex.value != -1 && isChildEditing.value == false) {
+        return true;
+      }
+
+      return false;
+    });
 
     const optionRegistered = (target = "title", value) => {
       console.log("dropdown methods optionRegistered", target, value);
@@ -244,6 +254,8 @@ export default {
 
       props,
       myDisplayAll,
+      isHidden,
+      isChildEditing,
     };
   },
 };
@@ -251,28 +263,8 @@ export default {
 
 <style scoped lang="scss">
 .dropdown {
-  &,
-  .option {
-    // visibility: visible;
-    // opacity: 1;
-  }
-
-  &.transition,
-  &.transition .option {
-    transform: scaleY(1);
-    transform-origin: top;
-    transition: transform 0.26s ease;
-  }
-
-  &.divided {
-    border-bottom: 1px solid #2224261a;
-  }
-
-  &.display-all:not(.no-title):not(.editing):not(.selecting) {
-    // show all
-    .option:not(.title) {
-      padding-left: 30px;
-    }
+  &.hidden {
+    display: none;
   }
 }
 </style>
