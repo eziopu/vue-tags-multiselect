@@ -4,10 +4,11 @@ import {
   computed,
   provide,
   readonly,
-  onMounted,
   nextTick,
   watch,
 } from "vue";
+
+import { tagModel, keydownModel } from "../models";
 
 export default function useMultiselect(props, context) {
   // console.log("function useMultiselect");
@@ -46,28 +47,9 @@ export default function useMultiselect(props, context) {
 
   const tags = reactive([]);
 
-  const getInitialTag = () => ({
-    classList: [],
-    custom: false,
-    displayValue: false,
-    index: -1,
-    key: null,
-    value: null,
-    valueElm: undefined,
-    titleElm: undefined,
-  });
+  const stashTag = reactive({ ...tagModel });
 
-  const stashTag = reactive(getInitialTag());
-
-  const getInitialKeydown = () => ({
-    keyCode: -1,
-    lockLR: -1,
-    UDIndex: -1,
-    LRIndex: -1,
-    lockKeydownLR: false,
-  });
-
-  const keydown = reactive(getInitialKeydown());
+  const keydown = reactive({ ...keydownModel });
 
   const conjunction = ref("");
 
@@ -120,7 +102,8 @@ export default function useMultiselect(props, context) {
     // console.log("stashTag=", stashTag);
     elInputValue.value = "";
     editTagIndex.value = -1;
-    Object.assign(stashTag, getInitialTag());
+    Object.assign(stashTag, tagModel);
+    console.log("////////init(" + where + ")/////////");
 
     initKeydown();
     initConjunction();
@@ -154,12 +137,6 @@ export default function useMultiselect(props, context) {
     // }
   };
 
-  /* istanbul ignore next */
-  const elAppMousedown = (e) => {
-    mouseClicked.value = true;
-    // console.log("elAppMousedown", e);
-  };
-
   const appEnable = () => {
     isActive.value = true;
     isAppActived.value = true;
@@ -190,8 +167,8 @@ export default function useMultiselect(props, context) {
     appEnable();
 
     if (focusReInit.value == true) {
+      console.log("yyyyyyyyyyy");
       init("elInputFocus");
-      
     } else {
       focusReInit.value = true;
     }
@@ -256,12 +233,9 @@ export default function useMultiselect(props, context) {
     elInputFocus,
     elInputblur,
     elAppClicked,
-    elAppMousedown,
 
     focusApp,
     elAppFocus,
     elInputBlur,
-
-    getInitialTag,
   };
 }

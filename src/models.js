@@ -1,4 +1,4 @@
-export const keydown = {
+export const keydownModel = {
   keyCode: -1,
 
   verticalIndex: -1,
@@ -8,7 +8,7 @@ export const keydown = {
   horizontalLock: false,
 };
 
-export const tag = {
+export const tagModel = {
   index: -1,
   key: null,
   value: null,
@@ -19,19 +19,19 @@ export const tag = {
   displayValue: false,
 };
 
-export const tagsGroupBy = {
+export const tagsGroupByKeyModel = {
   key: null,
   values: [],
-  titleElm: tag.titleElm,
+  titleElm: tagModel.titleElm,
   valueElm: null,
-  classList: tag.classList,
+  classList: tagModel.classList,
 };
 
-export const tagsGroupByValues = {
-  key: tag.key, // for value-render
-  custom: tag.custom, // for value-render
-  index: tag.index,
-  elm: tag.valueElm,
-  value: tag.value,
-  displayValue: tag.displayValue,
+export const tagsGroupByKeyValueModel = {
+  key: tagModel.key, // for value-render
+  custom: tagModel.custom, // for value-render
+  index: tagModel.index,
+  elm: tagModel.valueElm,
+  value: tagModel.value,
+  displayValue: tagModel.displayValue,
 };

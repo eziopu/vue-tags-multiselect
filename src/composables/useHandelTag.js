@@ -1,4 +1,5 @@
 import { provide, computed } from "vue";
+import { tagModel } from "../models";
 
 export default function useHandelTag(props, context, dep) {
   // console.log("function useHandelTag");
@@ -11,13 +12,9 @@ export default function useHandelTag(props, context, dep) {
 
   const stashTag = dep.stashTag;
 
-  const getInitialTag = dep.getInitialTag;
-
   const init = dep.init;
 
   const isLock = dep.isLock;
-
-  const isAppActived = dep.isAppActived;
 
   const elInput = dep.elInput;
 
@@ -64,7 +61,7 @@ export default function useHandelTag(props, context, dep) {
   };
 
   const setStashTag = (item = {}) => {
-    Object.assign(dep.stashTag, { ...getInitialTag(), ...item });
+    Object.assign(stashTag, { ...tagModel, ...item });
   };
   provide("appSetStashTag", setStashTag);
 
