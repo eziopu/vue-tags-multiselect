@@ -38,6 +38,10 @@ export default function useSetTag(props, context, dep) {
 
   // ================ INJECT ================
 
+  const appReFocus = inject("appReFocus");
+
+  const appNextReFocusDontInit = inject("appNextReFocusDontInit");
+  
   const appSetStashTag = inject("appSetStashTag");
 
   const appSetStashTagToTags = inject("appSetStashTagToTags");
@@ -62,7 +66,10 @@ export default function useSetTag(props, context, dep) {
 
     if (stashTag.valueElm != null) {
       appSetStashTagToTags();
+    } else {
+      appNextReFocusDontInit();
     }
+    appReFocus();
   });
 
   provide("dropdownProps", readonly(props));

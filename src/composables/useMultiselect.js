@@ -38,6 +38,8 @@ export default function useMultiselect(props, context) {
 
   const isAppActived = ref(false);
 
+  const focusReInit = ref(true);
+
   const isActive = ref(false);
 
   const mouseClicked = ref(false);
@@ -119,7 +121,6 @@ export default function useMultiselect(props, context) {
     elInputValue.value = "";
     editTagIndex.value = -1;
     Object.assign(stashTag, getInitialTag());
-    // console.log("stashTag=", stashTag);
 
     initKeydown();
     initConjunction();
@@ -187,7 +188,13 @@ export default function useMultiselect(props, context) {
   const elInputFocus = () => {
     if (props.disabled) return;
     appEnable();
-    init("elInputFocus");
+
+    if (focusReInit.value == true) {
+      init("elInputFocus");
+      
+    } else {
+      focusReInit.value = true;
+    }
   };
 
   const elInputBlur = () => {
@@ -210,9 +217,13 @@ export default function useMultiselect(props, context) {
   provide("appEeditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
+
   provide("appEnable", appEnable);
   provide("appReFocus", focusApp);
   provide("appBlur", elInputBlur);
+  provide("appNextReFocusDontInit", () => {
+    focusReInit.value = false;
+  });
 
   return {
     elApp,

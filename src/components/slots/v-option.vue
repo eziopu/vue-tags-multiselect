@@ -100,7 +100,6 @@ export default {
       return false;
     });
 
-    const appEnable = inject("appEnable");
     const appReFocus = inject("appReFocus");
 
     const appUpdateTag = inject("appUpdateTag");
@@ -117,7 +116,7 @@ export default {
           valueElm: innerHTML,
           value: props.value,
         });
-        appEnable();
+        appReFocus();
         return;
       }
 
@@ -128,7 +127,6 @@ export default {
         value: props.value,
         displayValue: props.displayValue,
       });
-      appReFocus();
     };
 
     onMounted(() => {
