@@ -8,7 +8,7 @@ import {
   inject,
 } from "vue";
 
-import clearHTML from "./../../../utils/clearHTML";
+import clearHTML from "../../../utils/clearHTML";
 
 export default function useDropdown(props, context) {
   // ================ DATA ================

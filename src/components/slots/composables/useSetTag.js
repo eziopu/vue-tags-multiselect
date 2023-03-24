@@ -41,7 +41,7 @@ export default function useSetTag(props, context, dep) {
   const appReFocus = inject("appReFocus");
 
   const appNextReFocusDontInit = inject("appNextReFocusDontInit");
-  
+
   const appSetStashTag = inject("appSetStashTag");
 
   const appSetStashTagToTags = inject("appSetStashTagToTags");

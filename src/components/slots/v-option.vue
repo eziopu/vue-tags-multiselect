@@ -53,7 +53,7 @@ export default {
       if (props.title == true) {
         return props.disabled;
       }
-      return props.disabled || dropdownProps.disabled;
+      return props.disabled || dropdownProps.disabled || appProps.disabled;
     });
 
     const isDuplicate = computed(() => {
