@@ -61,7 +61,7 @@ export default {
     const appIsLock = inject("appIsLock");
     const appElInputValue = inject("appElInputValue");
     const appKeydown = inject("appKeydown");
-    const appEeditTagIndex = inject("appEeditTagIndex");
+    const appEditTagIndex = inject("appEditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
     const appSetStashTagToTags = inject("appSetStashTagToTags");
 
@@ -71,7 +71,7 @@ export default {
       return (inputValue.value.length || 2) + 1 + "em";
     });
     const editMyself = computed(() => {
-      return appEeditTagIndex.value == props.tag.index;
+      return appEditTagIndex.value == props.tag.index;
     });
     const noCustomeHoverAndEditMyself = computed(() => {
       if (appIsLock.value) return false;
@@ -186,7 +186,7 @@ export default {
       if (appIsLock.value == true) return;
 
       if (editMyself.value == false) {
-        appEeditTagIndex.value = props.tag.index;
+        appEditTagIndex.value = props.tag.index;
         appElInputValue.value = "";
         appSetStashTag(props.tag);
         // this.app.setCurrentSelectLRIndex();

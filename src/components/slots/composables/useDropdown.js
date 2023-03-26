@@ -25,7 +25,7 @@ export default function useDropdown(props, context) {
 
   const appStashTag = inject("appStashTag");
 
-  const appEeditTagIndex = inject("appEeditTagIndex");
+  const appEditTagIndex = inject("appEditTagIndex");
 
   // ============== COMPUTED ==============
 
@@ -48,7 +48,7 @@ export default function useDropdown(props, context) {
   });
 
   const isChildEditing = computed(() => {
-    if (appStashTag.key == props.value && appEeditTagIndex.value != -1) {
+    if (appStashTag.key == props.value && appEditTagIndex.value != -1) {
       return true;
     }
     return false;
@@ -58,7 +58,7 @@ export default function useDropdown(props, context) {
     if (props.hidden == true || isDown.value == true) {
       return true;
     }
-    if (appEeditTagIndex.value != -1 && isChildEditing.value == false) {
+    if (appEditTagIndex.value != -1 && isChildEditing.value == false) {
       return true;
     }
 

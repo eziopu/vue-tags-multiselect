@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import useInjects from "./composables/useInjects";
+import useSetTag from "./composables/useSetTag";
 import useOption from "./composables/useOption";
 import resolve from "./../../utils/resolve";
 
@@ -36,7 +38,7 @@ export default {
     value: { type: String, default: "" },
   },
   setup(props, context) {
-    return resolve(props, context, [useOption]);
+    return resolve(props, context, [useInjects, useSetTag, useOption]);
   },
 };
 </script>

@@ -67,11 +67,11 @@ export default {
   setup(props) {
     const appProps = inject("appProps");
     const appIsLock = inject("appIsLock");
-    const appEeditTagIndex = inject("appEeditTagIndex");
+    const appEditTagIndex = inject("appEditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
 
     const childrenEditing = computed(() => {
-      if (appEeditTagIndex.value == -1) return false;
+      if (appEditTagIndex.value == -1) return false;
 
       let result = false;
       let indexs = props.tag.values
@@ -80,7 +80,7 @@ export default {
 
       if (
         indexs.findIndex((index) => {
-          return index == appEeditTagIndex.value;
+          return index == appEditTagIndex.value;
         }) != -1
       ) {
         result = true;

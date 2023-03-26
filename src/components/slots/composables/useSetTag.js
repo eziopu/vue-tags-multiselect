@@ -1,80 +1,77 @@
-import { computed, inject, provide, readonly } from "vue";
+import { ref, computed } from "vue";
 
 import { getTagModel } from "../../../models";
 
-export default function useSetTag(props, context, dep) {
-  // ================ REFS ================
+import clearHTML from "../../../utils/clearHTML";
 
-  const elDropdown = dep.elDropdown;
+export default function useDropdown(props, context, dep) {
+  // ============== REFS ==============
+
+  const elOption = ref(null);
+
+  // ================ INJECTs ================
+
+  const app = dep.app;
+
+  const dropdown = dep.dropdown;
+
+  // ============== DATA ==============
+
+  const isDisabled = dep.isDisabled;
 
   // ============== COMPUTED ==============
 
-  const getTitleInnerHTML = dep.getTitleInnerHTML;
-
-  const classList = computed(() => {
-    if (elDropdown.value == null) return [];
-    const list = [...elDropdown.value.classList];
-    const blacklist = new Set([
-      "dropdown",
-      "display-all",
-      "no-title",
-      "disabled",
-      "divided",
-      "hidden",
-      "hover",
-    ]);
-    return list.filter((x) => !blacklist.has(x)) || [];
+  const innerHTML = computed(() => {
+    if (elOption.value == null) {
+      return null;
+    }
+    return clearHTML(elOption.value.innerHTML) || "";
   });
 
-  // ================ PROTOTYPE DATA ================
+  const prototypeStashTag = computed(() => {
+    const result = Object.seal({ ...getTagModel() });
+    result.custom = dropdown.props.custom;
+    result.classList = dropdown.classList.value;
+    result.displayValue = props.displayValue;
 
-  const prototypeStashTag = {
-    ...getTagModel(),
-    ...{
-      key: props.value,
-      custom: props.custom,
-      classList: classList.value,
-    },
+    if (props.title) {
+      result.key = dropdown.props.value;
+      result.titleElm = innerHTML.value;
+    } else {
+      result.key = dropdown.props.value;
+      result.titleElm = dropdown.getTitleInnerHTML.value;
+      result.value = props.value;
+      result.valueElm = innerHTML.value;
+    }
+    return result;
+  });
+
+  const handleClick = () => {
+    if (isDisabled) return;
+    if (!props.title && props.value == "") return;
+
+    // 編輯模式
+    if (app.editTagIndex.value != -1) {
+      app.updateTag({
+        valueElm: innerHTML.value,
+        value: props.value,
+      });
+      app.reFocus();
+      return;
+    }
+
+    app.setStashTag(prototypeStashTag.value);
+
+    if (prototypeStashTag.value.valueElm != null) {
+      app.setStashTagToTags();
+    } else {
+      app.nextReFocusDontInit();
+    }
+    app.reFocus();
   };
-  Object.seal(prototypeStashTag);
 
-  // ================ INJECT ================
-
-  const appReFocus = inject("appReFocus");
-
-  const appNextReFocusDontInit = inject("appNextReFocusDontInit");
-
-  const appSetStashTag = inject("appSetStashTag");
-
-  const appSetStashTagToTags = inject("appSetStashTagToTags");
-
-  // =============== PROVIDE ==============
-
-  provide("dropdownSetTagToTag", (item = {}) => {
-    const stashTag = { ...prototypeStashTag, ...item };
-    stashTag.value = item.value;
-    stashTag.displayValue = item.displayValue;
-
-    if (item.is_title == true) {
-      stashTag.titleElm = item.vnode;
-    } else {
-      stashTag.valueElm = item.vnode;
-
-      if (stashTag.titleElm == null) {
-        stashTag.titleElm = getTitleInnerHTML.value;
-      }
-    }
-    appSetStashTag(stashTag);
-
-    if (stashTag.valueElm != null) {
-      appSetStashTagToTags();
-    } else {
-      appNextReFocusDontInit();
-    }
-    appReFocus();
-  });
-
-  provide("dropdownClassList", readonly(classList));
-
-  return {};
+  return {
+    elOption,
+    handleClick,
+  };
 }

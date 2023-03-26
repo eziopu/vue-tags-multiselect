@@ -184,7 +184,7 @@ export default function useMultiselect(props, context) {
   provide("appProps", readonly(props));
   provide("appIsLock", readonly(isLock));
   provide("appStashTag", stashTag);
-  provide("appEeditTagIndex", editTagIndex);
+  provide("appEditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
 
