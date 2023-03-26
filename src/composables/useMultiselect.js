@@ -5,10 +5,11 @@ import {
   provide,
   readonly,
   nextTick,
+  toRaw,
   watch,
 } from "vue";
 
-import { tagModel, keydownModel } from "../models";
+import { getTagModel, getKeydownModel } from "../models";
 
 export default function useMultiselect(props, context) {
   // console.log("function useMultiselect");
@@ -47,9 +48,9 @@ export default function useMultiselect(props, context) {
 
   const tags = reactive([]);
 
-  const stashTag = reactive({ ...tagModel });
+  const stashTag = reactive(getTagModel());
 
-  const keydown = reactive({ ...keydownModel });
+  const keydown = reactive(getKeydownModel());
 
   const conjunction = ref("");
 
@@ -97,13 +98,13 @@ export default function useMultiselect(props, context) {
   // =============== METHODS ==============
 
   const init = (where = "") => {
-    console.log("////////init(" + where + ")/////////");
+    // console.log("////////init(" + where + ")/////////0");
     // console.log("const init = ()", where);
-    // console.log("stashTag=", stashTag);
     elInputValue.value = "";
     editTagIndex.value = -1;
-    Object.assign(stashTag, tagModel);
-    console.log("////////init(" + where + ")/////////");
+    Object.assign(stashTag, getTagModel());
+    // console.log("stashTag=", stashTag, getTagModel());
+    console.log("////////init(" + where + ")/////////0");
 
     initKeydown();
     initConjunction();
@@ -129,14 +130,6 @@ export default function useMultiselect(props, context) {
     console.log("00000 elInputblur 00000");
   };
 
-  const elAppClicked = () => {
-    // if (!props.disabled) {
-    //   elInput.value.focus();
-    //   isActive.value = true;
-    //   isAppActived.value = true;
-    // }
-  };
-
   const appEnable = () => {
     isActive.value = true;
     isAppActived.value = true;
@@ -154,7 +147,7 @@ export default function useMultiselect(props, context) {
   };
 
   const elAppFocus = () => {
-    console.log("000 elAppFocus elAppFocus elAppFocus");
+    // console.log("000 elAppFocus elAppFocus elAppFocus");
 
     if (!props.disabled) {
       elInput.value.focus();
@@ -167,7 +160,7 @@ export default function useMultiselect(props, context) {
     appEnable();
 
     if (focusReInit.value == true) {
-      console.log("yyyyyyyyyyy");
+      // console.log("yyyyyyyyyyy");
       init("elInputFocus");
     } else {
       focusReInit.value = true;
@@ -232,7 +225,6 @@ export default function useMultiselect(props, context) {
     initConjunction,
     elInputFocus,
     elInputblur,
-    elAppClicked,
 
     focusApp,
     elAppFocus,

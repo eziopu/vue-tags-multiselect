@@ -1,5 +1,7 @@
 import { computed, inject, provide, readonly } from "vue";
 
+import { getTagModel } from "../../../models";
+
 export default function useSetTag(props, context, dep) {
   // ================ REFS ================
 
@@ -27,14 +29,14 @@ export default function useSetTag(props, context, dep) {
   // ================ PROTOTYPE DATA ================
 
   const prototypeStashTag = {
-    titleElm: null,
-    valueElm: null,
-    value: null, // is option value
-    key: props.value,
-    custom: props.custom,
-    displayValue: null, // is option value
-    classList: classList.value,
+    ...getTagModel(),
+    ...{
+      key: props.value,
+      custom: props.custom,
+      classList: classList.value,
+    },
   };
+  Object.seal(prototypeStashTag);
 
   // ================ INJECT ================
 
@@ -49,7 +51,7 @@ export default function useSetTag(props, context, dep) {
   // =============== PROVIDE ==============
 
   provide("dropdownSetTagToTag", (item = {}) => {
-    const stashTag = JSON.parse(JSON.stringify(prototypeStashTag));
+    const stashTag = { ...prototypeStashTag, ...item };
     stashTag.value = item.value;
     stashTag.displayValue = item.displayValue;
 
@@ -72,7 +74,7 @@ export default function useSetTag(props, context, dep) {
     appReFocus();
   });
 
-  provide("dropdownProps", readonly(props));
+  provide("dropdownClassList", readonly(classList));
 
   return {};
 }

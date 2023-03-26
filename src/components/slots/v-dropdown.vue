@@ -8,7 +8,7 @@
       disabled: props.disabled,
       divided: props.divided,
       selecting: isSelecting,
-      editing: isChildEditing, // editMyself
+      editing: isChildEditing,
       noValue: props.value == undefined || props.value == '',
       hidden: isHidden,
     }"
@@ -19,7 +19,6 @@
 
 <script>
 import useDropdown from "./composables/useDropdown";
-import useSetTag from "./composables/useSetTag";
 
 import resolve from "./../../utils/resolve";
 
@@ -37,7 +36,7 @@ export default {
   },
 
   setup(props, context) {
-    return resolve(props, context, [useDropdown, useSetTag]);
+    return resolve(props, context, [useDropdown]);
   },
 };
 </script>

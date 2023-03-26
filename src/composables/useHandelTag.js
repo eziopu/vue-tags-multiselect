@@ -1,5 +1,9 @@
 import { provide, computed } from "vue";
-import { tagModel } from "../models";
+import {
+  getTagModel,
+  getTagsGroupByKeyModel,
+  getTagsGroupByKeyValueModel,
+} from "../models";
 
 export default function useHandelTag(props, context, dep) {
   // console.log("function useHandelTag");
@@ -61,7 +65,7 @@ export default function useHandelTag(props, context, dep) {
   };
 
   const setStashTag = (item = {}) => {
-    Object.assign(stashTag, { ...tagModel, ...item });
+    Object.assign(stashTag, { ...getTagModel(), ...item });
   };
   provide("appSetStashTag", setStashTag);
 

@@ -85,13 +85,31 @@ export default function useDropdown(props, context) {
     }
   });
 
+  const classList = computed(() => {
+    if (elDropdown.value == null) return [];
+    const list = [...elDropdown.value.classList];
+    const blacklist = new Set([
+      "dropdown",
+      "display-all",
+      "no-title",
+      "disabled",
+      "divided",
+      "hidden",
+      "hover",
+    ]);
+    return list.filter((x) => !blacklist.has(x)) || [];
+  });
   // =============== PROVIDE ==============
 
   provide("dropdownProps", readonly(props));
 
-  provide("dropdownIsDown", isDown);
+  provide("dropdownIsDown", readonly(isDown));
 
-  provide("dropdownDisplayAll", myDisplayAll);
+  provide("dropdownDisplayAll", isDown(myDisplayAll));
+
+  provide("dropdownGetTitleInnerHTML", readonly(getTitleInnerHTML));
+
+  provide("dropdownClassList", readonly(classList));
 
   return {
     elDropdown,

@@ -23,9 +23,9 @@
 
 <script>
 import clearHTML from "../../utils/clearHTML";
-import slotToText from "../../utils/slotToText";
+import { getTagModel } from "../../models";
 
-import { ref, computed, inject, onMounted, watch } from "vue";
+import { ref, computed, inject, onMounted } from "vue";
 
 export default {
   name: "v-tag-option",
@@ -48,6 +48,8 @@ export default {
 
     const dropdownProps = inject("dropdownProps");
     const dropdownIsDown = inject("dropdownIsDown");
+    const dropdownGetTitleInnerHTML = inject("dropdownGetTitleInnerHTML");
+    const dropdownClassList = inject("dropdownClassList");
 
     const isDisabled = computed(() => {
       if (props.title == true) {
@@ -100,33 +102,60 @@ export default {
       return false;
     });
 
+    const innerHTML = computed(() => {
+      if (elOption.value == null) {
+        return null;
+      }
+      return clearHTML(elOption.value.innerHTML) || "";
+    });
+
+    const prototypeStashTag = computed(() => {
+      const result = Object.seal({ ...getTagModel() });
+      result.custom = dropdownProps.custom;
+      result.classList = dropdownClassList.value;
+      result.displayValue = props.displayValue;
+
+      if (props.title) {
+        result.key = dropdownProps.value;
+        result.titleElm = innerHTML.value;
+      } else {
+        result.key = dropdownProps.value;
+        result.titleElm = dropdownGetTitleInnerHTML.value;
+        result.value = props.value;
+        result.valueElm = innerHTML.value;
+      }
+      return result;
+    });
+
     const appReFocus = inject("appReFocus");
+    const appNextReFocusDontInit = inject("appNextReFocusDontInit");
 
     const appUpdateTag = inject("appUpdateTag");
-    const dropdownSetTagToTag = inject("dropdownSetTagToTag");
+    const appSetStashTag = inject("appSetStashTag");
+    const appSetStashTagToTags = inject("appSetStashTagToTags");
+
     const handleClick = () => {
       if (isDisabled.value) return;
       if (!props.title && props.value == "") return;
 
-      const innerHTML = clearHTML(elOption.value.innerHTML) || "";
-
       // 編輯模式
       if (appEeditTagIndex.value != -1) {
         appUpdateTag({
-          valueElm: innerHTML,
+          valueElm: innerHTML.value,
           value: props.value,
         });
         appReFocus();
         return;
       }
 
-      dropdownSetTagToTag({
-        is_title: props.title,
-        vnode: innerHTML,
-        // vnode: slots.default(),
-        value: props.value,
-        displayValue: props.displayValue,
-      });
+      appSetStashTag(prototypeStashTag.value);
+
+      if (prototypeStashTag.value.valueElm != null) {
+        appSetStashTagToTags();
+      } else {
+        appNextReFocusDontInit();
+      }
+      appReFocus();
     };
 
     onMounted(() => {

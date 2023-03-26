@@ -11,7 +11,7 @@
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
     <div class="logs" style="width: 100%">
-      elDropdownLeft = {{ elDropdownLeft }} <br />
+      stashTag = {{ stashTag }} <br />
       editTagIndex = {{ editTagIndex }} <br />
       <!-- 
     stashTag = <pre>{{ stashTag }} </pre><br> 
