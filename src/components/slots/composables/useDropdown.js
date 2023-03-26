@@ -105,7 +105,7 @@ export default function useDropdown(props, context) {
 
   provide("dropdownIsDown", readonly(isDown));
 
-  provide("dropdownDisplayAll", isDown(myDisplayAll));
+  provide("dropdownDisplayAll", readonly(myDisplayAll));
 
   provide("dropdownGetTitleInnerHTML", readonly(getTitleInnerHTML));
 
