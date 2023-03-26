@@ -49,7 +49,7 @@
       <Transition :name="transition ? 'slide' : ''">
         <div
           class="dropdowns"
-          v-if="elDropdownDisplay"
+          v-show="elDropdownDisplay"
           ref="elDropdown"
           :style="{ left: `${elDropdownLeft}px` }"
         >
@@ -93,7 +93,7 @@
           </VTagOption>
         </VTagDropdown> -->
 
-          <slot v-if="$slots.default"></slot>
+          <slot></slot>
         </div>
       </Transition>
 
