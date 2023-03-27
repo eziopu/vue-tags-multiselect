@@ -68,6 +68,7 @@ export default function useDropdown(props, context, dep) {
 
   onMounted(() => {
     if (props.selected == true) {
+      console.log("run ! selected", props.value);
       handleClick();
     }
   });

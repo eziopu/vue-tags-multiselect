@@ -14,7 +14,7 @@ export default function useInjects() {
     updateTag: inject("appUpdateTag"),
     stashTag: inject("appStashTag"),
     setStashTag: inject("appSetStashTag"),
-    setStashTagToTags: inject("appSetStashTagToTags"),
+    setTagToTags: inject("appsetTagToTags"),
   };
 
   const dropdown = {

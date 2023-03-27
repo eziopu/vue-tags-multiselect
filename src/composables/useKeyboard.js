@@ -38,7 +38,7 @@ export default function useKeyboard(props, context, dep) {
   const isEditMode = dep.isEditMode;
 
   const setStashTag = dep.setStashTag;
-  const setStashTagToTags = dep.setStashTagToTags;
+  const setTagToTags = dep.setTagToTags;
 
   // ============== COMPUTED ==============
 
@@ -124,11 +124,10 @@ export default function useKeyboard(props, context, dep) {
           isEditMode.value == false &&
           elInputValue.value != ""
         ) {
-          setStashTag({
+          setTagToTags({
             displayValue: true,
             value: elInputValue.value,
           });
-          setStashTagToTags();
         }
 
         // if (activeIndex !== -1 && activeIndex !== undefined) {

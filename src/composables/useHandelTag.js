@@ -69,11 +69,11 @@ export default function useHandelTag(props, context, dep) {
   };
   provide("appSetStashTag", setStashTag);
 
-  const setStashTagToTags = () => {
-    stashTag.index = tags.length;
-    tags.push({ ...stashTag });
+  const setTagToTags = (item = {}) => {
+    item.index = tags.length;
+    tags.push({ ...item });
   };
-  provide("appSetStashTagToTags", setStashTagToTags);
+  provide("appsetTagToTags", setTagToTags);
 
   const updateTag = (item = {}) => {
     if (editTagIndex.value == -1) return;
@@ -138,6 +138,6 @@ export default function useHandelTag(props, context, dep) {
     tagsGroupByTitle,
 
     setStashTag,
-    setStashTagToTags,
+    setTagToTags,
   };
 }

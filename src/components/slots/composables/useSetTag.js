@@ -60,11 +60,10 @@ export default function useDropdown(props, context, dep) {
       return;
     }
 
-    app.setStashTag(prototypeStashTag.value);
-
     if (prototypeStashTag.value.valueElm != null) {
-      app.setStashTagToTags();
+      app.setTagToTags(prototypeStashTag.value);
     } else {
+      app.setStashTag(prototypeStashTag.value);
       app.nextReFocusDontInit();
     }
     app.reFocus();

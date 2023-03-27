@@ -63,7 +63,7 @@ export default {
     const appKeydown = inject("appKeydown");
     const appEditTagIndex = inject("appEditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
-    const appSetStashTagToTags = inject("appSetStashTagToTags");
+    const appsetTagToTags = inject("appsetTagToTags");
 
     // ============== COMPUTED ==============
 
@@ -198,7 +198,7 @@ export default {
         deleteTag();
       } else {
         if (appKeydown.UDIndex == -1) {
-          appSetStashTagToTags(inputValue.value);
+          appsetTagToTags(inputValue.value);
         }
       }
     };
