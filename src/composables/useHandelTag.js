@@ -16,11 +16,7 @@ export default function useHandelTag(props, context, dep) {
 
   const stashTag = dep.stashTag;
 
-  const init = dep.init;
-
   const isLock = dep.isLock;
-
-  const elInput = dep.elInput;
 
   const editTagIndex = dep.editTagIndex;
 
@@ -35,16 +31,18 @@ export default function useHandelTag(props, context, dep) {
         return tag.titleElm != null && tag.value != null && item.key == tag.key;
       });
       if (!item) {
-        result.push({
-          key: tag.key,
-          custom: tag.custom,
-          classList: tag.classList,
-          values: [getTagValueByTagsGroupByTitleKey(tag)],
-          titleElm: tag.titleElm,
-          valueElm: null,
-        });
+        result.push(
+          getTagsGroupByKeyModel({
+            key: tag.key,
+            custom: tag.custom,
+            classList: tag.classList,
+            values: [getTagsGroupByKeyValueModel(tag)],
+            titleElm: tag.titleElm,
+            valueElm: null,
+          })
+        );
       } else {
-        item.values.push(getTagValueByTagsGroupByTitleKey(tag));
+        item.values.push(getTagsGroupByKeyValueModel(tag));
       }
     });
     // console.log("const tagsGroupByTitle = computed(() result = ", result);
@@ -54,26 +52,29 @@ export default function useHandelTag(props, context, dep) {
 
   // =============== METHODS ==============
 
-  const getTagValueByTagsGroupByTitleKey = (item = {}) => {
-    return {
-      index: item.index,
-      key: item.key, // for value-render
-      elm: item.valueElm,
-      value: item.value,
-      displayValue: item.displayValue,
-    };
-  };
+  // const getTagValueByTagsGroupByTitleKey = (item = {}) => {
+  //   return {
+  //     index: item.index,
+  //     key: item.key, // for value-render
+  //     elm: item.valueElm,
+  //     value: item.value,
+  //     displayValue: item.displayValue,
+  //   };
+  // };
 
   const setStashTag = (item = {}) => {
-    Object.assign(stashTag, { ...getTagModel(), ...item });
+    Object.assign(stashTag, { ...getTagModel(item) });
   };
   provide("appSetStashTag", setStashTag);
 
   const setTagToTags = (item = {}) => {
+    console.log("setTagToTags");
     item.index = tags.length;
-    tags.push({ ...item });
+    tags.push({ ...getTagModel(item) });
+    console.log("tags[0]", tags[0]);
+    console.log("setTagToTags");
   };
-  provide("appsetTagToTags", setTagToTags);
+  provide("appSetTagToTags", setTagToTags);
 
   const updateTag = (item = {}) => {
     if (editTagIndex.value == -1) return;
@@ -85,7 +86,6 @@ export default function useHandelTag(props, context, dep) {
     tag.value = item.value;
     tag.valueElm = item.valueElm || null;
     tag.displayValue = item.displayValue || true;
-    init();
   };
   provide("appUpdateTag", updateTag);
 
@@ -109,10 +109,6 @@ export default function useHandelTag(props, context, dep) {
     arrayIndexByTags.forEach((index) => {
       delete tags[index];
     });
-
-    init("appDeleteTags");
-
-    elInput.value.focus();
   });
 
   const isDuplicateTag = (keyName, value) => {

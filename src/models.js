@@ -1,45 +1,52 @@
-export function getKeydownModel() {
+export function getKeydownModel(item = {}) {
   return {
-    keyCode: -1,
+    keyCode: defaultNumber(item.keyCode),
 
-    verticalIndex: -1,
-    verticalLock: false,
+    verticalIndex: defaultNumber(item.verticalIndex),
+    verticalLock: item.verticalLock || false,
 
-    horizontalIndex: -1,
-    horizontalLock: false,
+    horizontalIndex: defaultNumber(item.horizontalIndex),
+    horizontalLock: item.horizontalLock || false,
   };
 }
 
-export function getTagModel() {
+export function getTagModel(item = {}) {
   return {
-    index: -1,
-    key: null,
-    value: null,
-    valueElm: undefined,
-    titleElm: undefined,
-    classList: [],
-    custom: false,
-    displayValue: false,
+    index: defaultNumber(item.index),
+    key: item.key || null,
+    value: item.value || null,
+    valueElm: item.valueElm || null,
+    titleElm: item.titleElm || null,
+    classList: item.classList || [],
+    custom: item.custom || false,
+    displayValue: item.displayValue || false,
   };
 }
 
-export function getTagsGroupByKeyModel() {
+export function getTagsGroupByKeyModel(item = {}) {
   return {
-    key: null,
-    values: [],
-    titleElm: getTagModel().titleElm,
-    valueElm: null,
-    classList: getTagModel().classList,
+    key: item.key || null,
+    values: item.values || [],
+    titleElm: item.titleElm || getTagModel().titleElm,
+    valueElm: item.valueElm || getTagModel().valueElm,
+    classList: item.classList || getTagModel().classList,
   };
 }
 
-export function getTagsGroupByKeyValueModel() {
+export function getTagsGroupByKeyValueModel(item = {}) {
   return {
-    key: getTagModel().key, // for value-render
-    custom: getTagModel().custom, // for value-render
-    index: getTagModel().index,
-    elm: getTagModel().valueElm,
-    value: getTagModel().value,
-    displayValue: getTagModel().displayValue,
+    index: defaultNumber(item.index),
+    key: item.key || getTagModel().key, // for value-render
+    custom: item.custom || getTagModel().custom, // for value-render
+    elm: item.elm || getTagModel().valueElm,
+    value: item.value || getTagModel().value,
+    displayValue: item.displayValue || getTagModel().displayValue,
   };
 }
+
+const defaultNumber = (input) => {
+  if (typeof input == "number") {
+    return input;
+  }
+  return -1;
+};

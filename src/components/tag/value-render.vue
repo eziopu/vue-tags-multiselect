@@ -63,7 +63,7 @@ export default {
     const appKeydown = inject("appKeydown");
     const appEditTagIndex = inject("appEditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
-    const appsetTagToTags = inject("appsetTagToTags");
+    const appSetTagToTags = inject("appSetTagToTags");
 
     // ============== COMPUTED ==============
 
@@ -189,17 +189,17 @@ export default {
         appEditTagIndex.value = props.tag.index;
         appElInputValue.value = "";
         appSetStashTag(props.tag);
-        // this.app.setCurrentSelectLRIndex();
         appEnable();
       }
     };
+
     const elInputEnter = () => {
       if (inputValue.value == "") {
         deleteTag();
       } else {
-        if (appKeydown.UDIndex == -1) {
-          appsetTagToTags(inputValue.value);
-        }
+        // if (appKeydown.UDIndex == -1) {
+        //   appSetTagToTags(inputValue.value);
+        // }
       }
     };
 
