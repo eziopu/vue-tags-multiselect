@@ -28,7 +28,6 @@ export function getTagsGroupByKeyModel(item = {}) {
     key: item.key || null,
     values: item.values || [],
     titleElm: item.titleElm || getTagModel().titleElm,
-    valueElm: item.valueElm || getTagModel().valueElm,
     classList: item.classList || getTagModel().classList,
   };
 }
@@ -38,8 +37,8 @@ export function getTagsGroupByKeyValueModel(item = {}) {
     index: defaultNumber(item.index),
     key: item.key || getTagModel().key, // for value-render
     custom: item.custom || getTagModel().custom, // for value-render
-    elm: item.elm || getTagModel().valueElm,
     value: item.value || getTagModel().value,
+    valueElm: item.valueElm || getTagModel().valueElm,
     displayValue: item.displayValue || getTagModel().displayValue,
   };
 }

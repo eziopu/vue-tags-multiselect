@@ -5,13 +5,12 @@ import {
   provide,
   readonly,
   nextTick,
-  toRaw,
   watch,
 } from "vue";
 
-import { getTagModel, getKeydownModel } from "../models";
+import { getKeydownModel } from "../models";
 
-export default function useMultiselect(props, context) {
+export default function useMultiselect(props, _context, dep) {
   // console.log("function useMultiselect");
   // console.log("props =", props);
   // console.log("context =", context);
@@ -44,17 +43,11 @@ export default function useMultiselect(props, context) {
 
   const isActive = ref(false);
 
-  const mouseClicked = ref(false);
-
-  const tags = reactive([]);
-
-  const stashTag = reactive(getTagModel());
-
   const keydown = reactive(getKeydownModel());
 
   const conjunction = ref("");
 
-  const editTagIndex = ref(-1);
+  const editTagIndex = dep.editTagIndex;
 
   // ============== COMPUTED ==============
 
@@ -64,10 +57,6 @@ export default function useMultiselect(props, context) {
 
   const isLock = computed(() => {
     return props.loading == true || props.disabled == true;
-  });
-
-  const isEditMode = computed(() => {
-    return editTagIndex.value != -1;
   });
 
   const elDropdownDisplay = computed(() => {
@@ -97,14 +86,14 @@ export default function useMultiselect(props, context) {
 
   // =============== METHODS ==============
 
+  const setStashTag = dep.setStashTag;
+
   const init = (where = "") => {
-    // console.log("////////init(" + where + ")/////////0");
+    console.log("////////init(" + where + ")/////////0");
     // console.log("const init = ()", where);
     elInputValue.value = "";
     editTagIndex.value = -1;
-    Object.assign(stashTag, getTagModel());
-    // console.log("stashTag=", stashTag, getTagModel());
-    console.log("////////init(" + where + ")/////////0");
+    setStashTag();
 
     initKeydown();
     initConjunction();
@@ -183,8 +172,6 @@ export default function useMultiselect(props, context) {
   // =============== PROVIDE ==============
   provide("appProps", readonly(props));
   provide("appIsLock", readonly(isLock));
-  provide("appStashTag", stashTag);
-  provide("appEditTagIndex", editTagIndex);
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
 
@@ -208,17 +195,11 @@ export default function useMultiselect(props, context) {
     isLock,
     isActive,
     isAppActived,
-    isEditMode,
 
     conjunction,
     keydown,
     tabindex,
-    mouseClicked,
     elDropdownLeft,
-
-    tags,
-    stashTag,
-    editTagIndex,
 
     init,
     initKeydown,

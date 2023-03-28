@@ -1,80 +1,69 @@
-import { provide, computed } from "vue";
+import { ref, reactive, provide, computed } from "vue";
 import {
   getTagModel,
   getTagsGroupByKeyModel,
   getTagsGroupByKeyValueModel,
 } from "../models";
 
-export default function useHandelTag(props, context, dep) {
-  // console.log("function useHandelTag");
-  // console.log("props =", props);
-  // console.log("context =", context);
-
+export default function useTag() {
   // ============ DEPENDENCIES ============
 
-  const tags = dep.tags;
+  const tags = reactive([]);
 
-  const stashTag = dep.stashTag;
+  const stashTag = reactive(getTagModel());
 
-  const isLock = dep.isLock;
-
-  const editTagIndex = dep.editTagIndex;
+  const editTagIndex = ref(-1);
 
   // ============== COMPUTED ==============
 
-  const tagsGroupByTitle = computed(() => {
-    // console.log("const tagsGroupByTitle = computed(() tags = ", tags);
-    const result = [];
+  const isEditMode = computed(() => {
+    return editTagIndex.value != -1;
+  });
 
-    tags.forEach((tag) => {
-      let item = result.find((item) => {
-        return tag.titleElm != null && tag.value != null && item.key == tag.key;
-      });
-      if (!item) {
+  const tagsGroupByTitle = computed(() => {
+    return tags.reduce((result, item) => {
+      const existing = result.find(
+        (i) => i.key === item.key && i.titleElm != null
+      );
+      if (existing) {
+        existing.values.push(getTagsGroupByKeyValueModel(item));
+      } else {
         result.push(
           getTagsGroupByKeyModel({
-            key: tag.key,
-            custom: tag.custom,
-            classList: tag.classList,
-            values: [getTagsGroupByKeyValueModel(tag)],
-            titleElm: tag.titleElm,
+            key: item.key,
+            custom: item.custom,
+            classList: item.classList,
+            values: [getTagsGroupByKeyValueModel(item)],
+            titleElm: item.titleElm,
             valueElm: null,
           })
         );
-      } else {
-        item.values.push(getTagsGroupByKeyValueModel(tag));
       }
-    });
-    // console.log("const tagsGroupByTitle = computed(() result = ", result);
+      return result;
+    }, []);
+  });
 
-    return result;
+  const tagsGroupByKey = computed(() => {
+    return tags.reduce((result, item) => {
+      if (result[item.key]) {
+        result[item.key].push(item.value);
+      } else {
+        result[item.key] = [item.value];
+      }
+      return result;
+    }, {});
   });
 
   // =============== METHODS ==============
 
-  // const getTagValueByTagsGroupByTitleKey = (item = {}) => {
-  //   return {
-  //     index: item.index,
-  //     key: item.key, // for value-render
-  //     elm: item.valueElm,
-  //     value: item.value,
-  //     displayValue: item.displayValue,
-  //   };
-  // };
-
   const setStashTag = (item = {}) => {
     Object.assign(stashTag, { ...getTagModel(item) });
   };
-  provide("appSetStashTag", setStashTag);
 
   const setTagToTags = (item = {}) => {
-    console.log("setTagToTags");
     item.index = tags.length;
     tags.push({ ...getTagModel(item) });
-    console.log("tags[0]", tags[0]);
-    console.log("setTagToTags");
   };
-  provide("appSetTagToTags", setTagToTags);
 
   const updateTag = (item = {}) => {
     if (editTagIndex.value == -1) return;
@@ -87,11 +76,8 @@ export default function useHandelTag(props, context, dep) {
     tag.valueElm = item.valueElm || null;
     tag.displayValue = item.displayValue || true;
   };
-  provide("appUpdateTag", updateTag);
 
-  provide("appDeleteTags", (indexs = []) => {
-    // console.log('provide("appDeleteTags", (indexs = []) => ', indexs);
-    if (isLock.value == true) return;
+  const appDeleteTags = (indexs = []) => {
     if (indexs.length == 0) return;
 
     let arrayIndexByTags = [];
@@ -109,7 +95,7 @@ export default function useHandelTag(props, context, dep) {
     arrayIndexByTags.forEach((index) => {
       delete tags[index];
     });
-  });
+  };
 
   const isDuplicateTag = (keyName, value) => {
     return tags
@@ -122,15 +108,32 @@ export default function useHandelTag(props, context, dep) {
       ? true
       : false;
   };
+
   const isDuplicateTagByKey = (keyName) => {
     return tags.find((tagKeyName) => tagKeyName == keyName) ? true : false;
   };
 
   provide("appTags", tags);
+  provide("appStashTag", stashTag);
+  provide("appSetStashTag", setStashTag);
+  provide("appSetTagToTags", setTagToTags);
+
+  provide("appUpdateTag", updateTag);
+  provide("appDeleteTags", appDeleteTags);
+
   provide("appIsDuplicateTag", isDuplicateTag);
   provide("appIsDuplicateTagByKey", isDuplicateTagByKey);
 
+  provide("appEditTagIndex", editTagIndex);
+
   return {
+    tags,
+    stashTag,
+    isEditMode,
+
+    editTagIndex,
+
+    tagsGroupByKey,
     tagsGroupByTitle,
 
     setStashTag,
