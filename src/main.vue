@@ -11,8 +11,9 @@
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
     <div class="logs" style="width: 100%">
-      stashTag = {{ stashTag }} <br />
+      <!-- tagsGroupByTitle = {{ tagsGroupByTitle }} <br /> -->
       editTagIndex = {{ editTagIndex }} <br />
+      isEditMode = {{ isEditMode }} <br />
       <!-- 
     stashTag = <pre>{{ stashTag }} </pre><br> 
     tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
@@ -161,9 +162,9 @@ import Loading from "./components/partial/loading.vue";
 
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
+import useTag from "./composables/useTag";
 import useKeyboard from "./composables/useKeyboard";
 import useMultiselect from "./composables/useMultiselect";
-import useHandelTag from "./composables/useHandelTag";
 
 import { defineComponent } from "vue";
 
@@ -203,8 +204,8 @@ export default defineComponent({
   },
   setup(props, context) {
     return resolve(props, context, [
+      useTag,
       useMultiselect,
-      useHandelTag,
       useKeyboard,
       // useData,
     ]);
