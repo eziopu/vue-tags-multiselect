@@ -163,8 +163,10 @@ import Loading from "./components/partial/loading.vue";
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
 import useTag from "./composables/useTag";
+import useApp from "./composables/useApp";
+import useDropdown from "./composables/useDropdown";
+import useStatus from "./composables/useStatus";
 import useKeyboard from "./composables/useKeyboard";
-import useMultiselect from "./composables/useMultiselect";
 
 import { defineComponent } from "vue";
 
@@ -205,7 +207,9 @@ export default defineComponent({
   setup(props, context) {
     return resolve(props, context, [
       useTag,
-      useMultiselect,
+      useApp,
+      useDropdown,
+      useStatus,
       useKeyboard,
       // useData,
     ]);
