@@ -1,17 +1,42 @@
-import { provide, computed, readonly } from "vue";
+import { provide, computed, readonly, ref, nextTick, watch } from "vue";
 
 export default function useStatus(props, _context, dep) {
   // console.log("function useStatus");
   // console.log("props =", props);
   // console.log("context =", context);
 
-  // ============ DEPENDENCIES ============
+  // ============== REFS ==============
+
+  const elApp = dep.elApp;
+
+  // ============== DATA ==============
+
+  const tags = dep.tags;
+
+  const isEditMode = dep.isEditMode;
+
+  const elDropdownDisplay = dep.elDropdownDisplay;
+
+  const isSelectDown = ref(false);
+
+  // ============== COMPUTED ==============
 
   const isLock = computed(() => {
     return props.loading == true || props.disabled == true;
   });
 
-  const isEditMode = dep.isEditMode;
+  const isFinish = computed(() => {
+    return isSelectDown.value == true && props.create == false;
+  });
+
+  // ============== WATCH ==============
+
+  watch(tags, async () => {
+    await nextTick();
+
+    const options = elApp.value.querySelectorAll(".dropdown .option");
+    isSelectDown.value = options.length == 0;
+  });
 
   // ============== COMPUTED ==============
 
@@ -20,9 +45,9 @@ export default function useStatus(props, _context, dep) {
     if (props.disabled == true) result.push("disabled");
     if (props.loading == true) result.push("loading");
     if (isEditMode.value == true) result.push("editing");
-    // if (displayDropdown == true) result.push("selecting");
-    // if (isFinish == true) result.push("finish");
-    // if (isFinish == false && isSelectDown == true) result.push("delect-down");
+    if (elDropdownDisplay.value == true) result.push("selecting");
+    if (isFinish.value == true) result.push("finish");
+    if (isFinish.value == false && isSelectDown.value == true) result.push("delect-down");
     return result;
   });
 
