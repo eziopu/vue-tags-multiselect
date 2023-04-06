@@ -8,6 +8,7 @@ export default function useDelete(props, _context, dep) {
   // ================ DATA ================
 
   const inputValue = ref("");
+
   const nextWillDelete = ref(false);
 
   // ============== COMPUTED ==============
@@ -25,6 +26,7 @@ export default function useDelete(props, _context, dep) {
   });
 
   // ============== METHODS ==============
+
   const deleteTag = dep.deleteTag;
 
   const elInputDelete = () => {

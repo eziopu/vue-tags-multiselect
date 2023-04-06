@@ -13,6 +13,10 @@ export default function useDropdown(props, context, dep) {
 
   // ============== COMPUTED ==============
 
+  const isCanSearch = dep.isCanSearch;
+
+  const isSearchable = dep.isSearchable;
+
   const isDisabled = computed(() => {
     if (props.title == true) {
       return props.disabled;
@@ -59,6 +63,10 @@ export default function useDropdown(props, context, dep) {
       } else {
         return isTitle ? true : false;
       }
+    }
+
+    if (isCanSearch.value == true) {
+      return !isSearchable.value;
     }
 
     return false;

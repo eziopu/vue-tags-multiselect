@@ -1,6 +1,6 @@
 import { provide, computed, readonly, ref, nextTick, watch } from "vue";
 
-export default function useStatus(props, _context, dep) {
+export default function useStatus(props, context, dep) {
   // console.log("function useStatus");
   // console.log("props =", props);
   // console.log("context =", context);
@@ -50,6 +50,8 @@ export default function useStatus(props, _context, dep) {
     if (isFinish.value == false && isSelectDown.value == true) result.push("delect-down");
     return result;
   });
+
+  context.emit("status", status);
 
   // =============== METHODS ==============
 

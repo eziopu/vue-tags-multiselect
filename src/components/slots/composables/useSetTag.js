@@ -71,6 +71,7 @@ export default function useDropdown(props, context, dep) {
 
   return {
     elOption,
+    innerHTML,
     handleClick,
   };
 }

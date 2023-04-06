@@ -22,10 +22,11 @@
 </template>
 
 <script>
+import resolve from "./../../utils/resolve";
 import useInjects from "./composables/useInjects";
 import useSetTag from "./composables/useSetTag";
+import useSearch from "./composables/useSearch";
 import useOption from "./composables/useOption";
-import resolve from "./../../utils/resolve";
 
 export default {
   name: "v-tag-option",
@@ -38,7 +39,12 @@ export default {
     value: { type: String, default: "" },
   },
   setup(props, context) {
-    return resolve(props, context, [useInjects, useSetTag, useOption]);
+    return resolve(props, context, [
+      useInjects,
+      useSetTag,
+      useSearch,
+      useOption,
+    ]);
   },
 };
 </script>
