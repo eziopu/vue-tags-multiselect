@@ -47,9 +47,9 @@
 </template>
 
 <script>
-import ValueRender from "./value-render.vue";
+import ValueRender from "./value/index.vue";
 
-import { ref, computed, inject, onMounted, watch } from "vue";
+import { computed, inject } from "vue";
 
 export default {
   name: "v-tag",
@@ -65,10 +65,14 @@ export default {
     },
   },
   setup(props) {
+    // ================ INJECT ================
+
     const appProps = inject("appProps");
     const appIsLock = inject("appIsLock");
     const appEditTagIndex = inject("appEditTagIndex");
     const appDeleteTags = inject("appDeleteTags");
+
+    // ============== COMPUTED ==============
 
     const childrenEditing = computed(() => {
       if (appEditTagIndex.value == -1) return false;
@@ -114,12 +118,8 @@ export default {
 
       let indexs = [props.tag.index];
       if (props.tag.values) {
-        indexs = [];
-        props.tag.values.forEach((value) => {
-          indexs.push(value.index);
-        });
+        indexs = props.tag.values.map((value) => value.index);
       }
-
       appDeleteTags(indexs);
       return;
     };
