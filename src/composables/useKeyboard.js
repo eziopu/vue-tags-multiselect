@@ -1,4 +1,4 @@
-import { toRefs, computed, nextTick, getCurrentInstance } from "vue";
+import { toRefs, computed, nextTick, getCurrentInstance, watchEffect } from "vue";
 
 export default function useKeyboard(props, context, dep) {
   const {
@@ -17,7 +17,7 @@ export default function useKeyboard(props, context, dep) {
 
   // ============ DEPENDENCIES ============
 
-  const iv = dep.iv;
+  const focusApp = dep.focusApp;
   const update = dep.update;
   const search = dep.search;
   const setPointer = dep.setPointer;
@@ -37,7 +37,6 @@ export default function useKeyboard(props, context, dep) {
   const elInputValue = dep.elInputValue;
   const isEditMode = dep.isEditMode;
 
-  const setStashTag = dep.setStashTag;
   const setTagToTags = dep.setTagToTags;
 
   // ============== COMPUTED ==============
@@ -58,27 +57,21 @@ export default function useKeyboard(props, context, dep) {
     return ["enter"];
   });
 
-  // =============== METHODS ==============
 
-  // no export
-  const preparePointer = () => {
-    // When options are hidden and creating tags is allowed
-    // no pointer will be set (because options are hidden).
-    // In such case we need to set the pointer manually to the
-    // first option, which equals to the option created from
-    // the search value.
-    // if (
-    //   mode.value === "tags" &&
-    //   !showOptions.value &&
-    //   createOption.value &&
-    //   searchable.value &&
-    //   !groupped.value
-    // ) {
-    //   setPointer(
-    //     fo.value[fo.value.map((o) => o[valueProp.value]).indexOf(search.value)]
-    //   );
-    // }
-  };
+  // ============== WATCH ==============
+
+  watchEffect(keydown.verticalIndex, async (value) => {
+    await nextTick();
+    const displayOptions = elDropdown.value.querySelectorAll(".option");
+    displayOptions.forEach((option) => {
+      option.classList.remove("hover");
+    });
+    displayOptions[value].classList.add("hover");
+    console.log("displayOptions[value]");
+    console.log(displayOptions[value]);
+  });
+
+  // =============== METHODS ==============
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event);
@@ -128,6 +121,7 @@ export default function useKeyboard(props, context, dep) {
             displayValue: true,
             value: elInputValue.value,
           });
+          elInputValue.value = "";
         }
 
         // if (activeIndex !== -1 && activeIndex !== undefined) {
@@ -204,7 +198,27 @@ export default function useKeyboard(props, context, dep) {
           ".option:not(.hidden)"
         );
         const numElements = displayOptions.length || 0;
+        console.log("//////////////////");
         console.log(numElements, displayOptions);
+
+        console.log(keydown.verticalIndex);
+        if (keydown.verticalLock == false) {
+          keydown.verticalIndex += event.key == "ArrowUp" ? -1 : 1;
+
+          if (keydown.verticalIndex <= -1) {
+            console.log("run !!", numElements - 1);
+            keydown.verticalIndex = numElements - 1;
+          }
+          if (keydown.verticalIndex == numElements) {
+            keydown.verticalIndex = -1;
+          }
+        }
+        
+        // verticalIndex: defaultNumber(item.verticalIndex),
+        // verticalLock: item.verticalLock || false,
+
+        // horizontalIndex: defaultNumber(item.horizontalIndex),
+        // horizontalLock: item.horizontalLock || false,
 
         break;
       }
@@ -293,6 +307,5 @@ export default function useKeyboard(props, context, dep) {
   return {
     handleKeydown,
     handleKeyup,
-    preparePointer,
   };
 }

@@ -59,12 +59,7 @@ export default function useApp(props, _context, dep) {
   };
 
   const initKeydown = () => {
-    Object.assign(keydown, {
-      keyCode: -1,
-      UDIndex: -1,
-      LRIndex: -1,
-      lockKeydownLR: false,
-    });
+    Object.assign(keydown, getKeydownModel());
   };
 
   const initConjunction = () => {
