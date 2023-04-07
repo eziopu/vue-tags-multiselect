@@ -47,7 +47,8 @@ export default function useStatus(props, context, dep) {
     if (isEditMode.value == true) result.push("editing");
     if (elDropdownDisplay.value == true) result.push("selecting");
     if (isFinish.value == true) result.push("finish");
-    if (isFinish.value == false && isSelectDown.value == true) result.push("delect-down");
+    if (isFinish.value == false && isSelectDown.value == true)
+      result.push("delect-down");
     return result;
   });
 

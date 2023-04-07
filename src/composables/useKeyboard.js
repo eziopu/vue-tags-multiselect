@@ -1,4 +1,4 @@
-import { toRefs, computed, nextTick, getCurrentInstance, watchEffect } from "vue";
+import { toRefs, computed, nextTick, getCurrentInstance, watch } from "vue";
 
 export default function useKeyboard(props, context, dep) {
   const {
@@ -57,18 +57,20 @@ export default function useKeyboard(props, context, dep) {
     return ["enter"];
   });
 
-
   // ============== WATCH ==============
 
-  watchEffect(keydown.verticalIndex, async (value) => {
+  watch(keydown, async (value) => {
     await nextTick();
-    const displayOptions = elDropdown.value.querySelectorAll(".option");
+    const index = value.verticalIndex;
+    const displayOptions = elDropdown.value.querySelectorAll(
+      ".option:not(.hidden)"
+    );
     displayOptions.forEach((option) => {
       option.classList.remove("hover");
     });
-    displayOptions[value].classList.add("hover");
-    console.log("displayOptions[value]");
-    console.log(displayOptions[value]);
+    if (index != -1) {
+      displayOptions[index].classList.add("hover");
+    }
   });
 
   // =============== METHODS ==============
@@ -198,24 +200,17 @@ export default function useKeyboard(props, context, dep) {
           ".option:not(.hidden)"
         );
         const numElements = displayOptions.length || 0;
-        console.log("//////////////////");
-        console.log(numElements, displayOptions);
 
-        console.log(keydown.verticalIndex);
         if (keydown.verticalLock == false) {
           keydown.verticalIndex += event.key == "ArrowUp" ? -1 : 1;
 
           if (keydown.verticalIndex <= -1) {
-            console.log("run !!", numElements - 1);
             keydown.verticalIndex = numElements - 1;
           }
-          if (keydown.verticalIndex == numElements) {
-            keydown.verticalIndex = -1;
+          if (keydown.verticalIndex >= numElements) {
+            keydown.verticalIndex = 0;
           }
         }
-        
-        // verticalIndex: defaultNumber(item.verticalIndex),
-        // verticalLock: item.verticalLock || false,
 
         // horizontalIndex: defaultNumber(item.horizontalIndex),
         // horizontalLock: item.horizontalLock || false,
@@ -224,6 +219,8 @@ export default function useKeyboard(props, context, dep) {
       }
 
       // case "ArrowUp":
+      // case "ArrowDown":
+
       //   e.preventDefault();
 
       //   if (!showOptions.value) {
@@ -238,7 +235,6 @@ export default function useKeyboard(props, context, dep) {
       //   backwardPointer();
       //   break;
 
-      // case "ArrowDown":
       //   e.preventDefault();
 
       //   if (!showOptions.value) {
