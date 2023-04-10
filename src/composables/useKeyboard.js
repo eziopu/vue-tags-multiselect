@@ -113,6 +113,20 @@ export default function useKeyboard(props, context, dep) {
 
       case "Enter":
         event.preventDefault();
+        await nextTick();
+
+        if (keydown.verticalIndex != -1) {
+          const displayOptions =
+            elDropdown.value.querySelectorAll(".option:not(.hidden)") || [];
+
+          const option = displayOptions[keydown.verticalIndex];
+
+          if (option != undefined && option.classList.contains("hover")) {
+            keydown.verticalIndex = -1;
+            elInputValue.value = "";
+            option.click();
+          }
+        }
 
         if (
           props.create == true &&
@@ -125,6 +139,54 @@ export default function useKeyboard(props, context, dep) {
           });
           elInputValue.value = "";
         }
+
+        /*
+        if (
+          this.haveOptionCanSelect == false &&
+          this.displayORConjunction == false
+        ) {
+          selectUDIndex = this.current.selectUDIndex = -1;
+        }
+        // enter
+        if (this.isEditMode == true) {
+          this.setCurrentSelectIndexByIsHoverOptionElm();
+          selectUDIndex = current.selectUDIndex;
+        }
+        if (
+          inputValue != "" &&
+          (selectUDIndex == -1 || this.haveOptionCanSelect == false)
+        ) {
+          if (!current.tag.key && this.create == true) {
+            this.current.tag.elm = {};
+            this.current.tag.custom = true;
+            this.finish(inputValue);
+          }
+          if (current.tag.key && current.tag.custom != false) {
+            this.finish(inputValue);
+          }
+        }
+        if (selectUDIndex == -1) {
+          this.isFocus = true;
+        }
+        if (selectUDIndex != -1) {
+          const option = this.getDisplayOptionElms()[selectUDIndex];
+          if (option == undefined) return;
+          const className = option.className;
+          const conjunction = className.indexOf("conjunction") != -1;
+          const noValue = className.indexOf("noValue") != -1;
+          const undo = className.indexOf("undo") != -1;
+          if (undo == true) {
+            this.clickUndo();
+          } else if (conjunction == true) {
+            this.clickConjunction();
+          } else {
+            option.click();
+          }
+          if ((undo == true || conjunction == true) && noValue == false) {
+            className.indexOf("undo") != -1;
+          }
+        }
+        */
 
         // if (activeIndex !== -1 && activeIndex !== undefined) {
         //   update([...iv.value].filter((v, k) => k !== activeIndex));

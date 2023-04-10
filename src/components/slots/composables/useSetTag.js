@@ -62,6 +62,7 @@ export default function useDropdown(props, context, dep) {
 
     if (prototypeStashTag.value.valueElm != null) {
       app.setTagToTags(prototypeStashTag.value);
+      app.setStashTag();
     } else {
       app.setStashTag(prototypeStashTag.value);
       app.nextReFocusDontInit();
