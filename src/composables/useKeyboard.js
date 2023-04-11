@@ -37,6 +37,7 @@ export default function useKeyboard(props, context, dep) {
   const elInputValue = dep.elInputValue;
   const isEditMode = dep.isEditMode;
 
+  const stashTag = dep.stashTag;
   const setTagToTags = dep.setTagToTags;
 
   // ============== COMPUTED ==============
@@ -74,6 +75,8 @@ export default function useKeyboard(props, context, dep) {
   });
 
   // =============== METHODS ==============
+
+  const setStashTag = dep.setStashTag;
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event);
@@ -128,16 +131,33 @@ export default function useKeyboard(props, context, dep) {
           }
         }
 
-        if (
-          props.create == true &&
-          isEditMode.value == false &&
-          elInputValue.value != ""
-        ) {
-          setTagToTags({
+        if (elInputValue.value != "") {
+          const newTag = {
             displayValue: true,
             value: elInputValue.value,
-          });
-          elInputValue.value = "";
+          };
+
+          if (
+            props.create == true &&
+            stashTag.key == null &&
+            isEditMode.value == false
+          ) {
+            setTagToTags(newTag);
+            elInputValue.value = "";
+          }
+
+          if (
+            stashTag.key != null &&
+            stashTag.value == null &&
+            stashTag.custom == true
+          ) {
+            setTagToTags({
+              ...stashTag,
+              ...newTag,
+            });
+            setStashTag();
+            elInputValue.value = "";
+          }
         }
 
         /*
