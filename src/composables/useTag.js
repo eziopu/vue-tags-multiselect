@@ -80,21 +80,14 @@ export default function useTag() {
   const appDeleteTags = (indexs = []) => {
     if (indexs.length == 0) return;
 
-    let arrayIndexByTags = [];
-    tags.forEach((tag, index) => {
-      if (indexs.indexOf(tag.index) != -1) {
-        arrayIndexByTags.push(index);
-      }
-    });
+    // indexs.sort((a, b) => b - a);
 
-    // console.log(arrayIndexByTags);
-    arrayIndexByTags = arrayIndexByTags.sort((a, b) => {
-      return b - a;
-    });
-
-    arrayIndexByTags.forEach((index) => {
+    for (const index of indexs) {
+      // Do not use splice.
+      // deleting or updating tag by index may affect the calculation of the index.
       delete tags[index];
-    });
+      // tags.splice(index, 1);
+    }
   };
 
   const isDuplicateTag = (keyName, value) => {
