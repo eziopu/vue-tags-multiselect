@@ -11,7 +11,7 @@
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
     <div class="logs" style="width: 100%">
-      <!-- tagsGroupByTitle = {{ tagsGroupByTitle }} <br /> -->
+      keydown.horizontalIndex = {{ keydown.horizontalIndex }} <br />
       editTagIndex = {{ editTagIndex }} <br />
       isEditMode = {{ isEditMode }} <br />
       <!-- 

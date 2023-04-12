@@ -17,7 +17,7 @@ export default function useKeyboard(props, context, dep) {
 
   // ============ DEPENDENCIES ============
 
-  const focusApp = dep.focusApp;
+  const init = dep.init;
   const update = dep.update;
   const search = dep.search;
   const setPointer = dep.setPointer;
@@ -32,13 +32,21 @@ export default function useKeyboard(props, context, dep) {
 
   const keydown = dep.keydown;
 
-  const elDropdown = dep.elDropdown;
-
   const elInputValue = dep.elInputValue;
+
   const isEditMode = dep.isEditMode;
 
   const stashTag = dep.stashTag;
+
   const setTagToTags = dep.setTagToTags;
+
+  // ================ REFS ================
+
+  const elInput = dep.elInput;
+
+  const elDropdown = dep.elDropdown;
+
+  const elTags = dep.elTags;
 
   // ============== COMPUTED ==============
 
@@ -62,21 +70,35 @@ export default function useKeyboard(props, context, dep) {
 
   watch(keydown, async (value) => {
     await nextTick();
-    const index = value.verticalIndex;
-    const displayOptions = elDropdown.value.querySelectorAll(
-      ".option:not(.hidden)"
-    );
+    const verticalIndex = value.verticalIndex;
+    const displayOptions = getDisplayOptionElms();
     displayOptions.forEach((option) => {
       option.classList.remove("hover");
     });
-    if (index != -1) {
-      displayOptions[index].classList.add("hover");
+    if (verticalIndex != -1) {
+      displayOptions[verticalIndex].classList.add("hover");
+    }
+
+    const horizontalIndex = value.horizontalIndex;
+    const tagValues = getTagValueElms();
+    if (horizontalIndex != -1) {
+      tagValues[tagValues.length - 1 - horizontalIndex].click();
+    } else {
+      init();
     }
   });
 
   // =============== METHODS ==============
 
   const setStashTag = dep.setStashTag;
+
+  const getDisplayOptionElms = () => {
+    return elDropdown.value.querySelectorAll(".option:not(.hidden)") || [];
+  };
+
+  const getTagValueElms = () => {
+    return elTags.value.querySelectorAll(".tag__value") || [];
+  };
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event);
@@ -119,9 +141,7 @@ export default function useKeyboard(props, context, dep) {
         await nextTick();
 
         if (keydown.verticalIndex != -1) {
-          const displayOptions =
-            elDropdown.value.querySelectorAll(".option:not(.hidden)") || [];
-
+          const displayOptions = getDisplayOptionElms();
           const option = displayOptions[keydown.verticalIndex];
 
           if (option != undefined && option.classList.contains("hover")) {
@@ -160,75 +180,6 @@ export default function useKeyboard(props, context, dep) {
           }
         }
 
-        /*
-        if (
-          this.haveOptionCanSelect == false &&
-          this.displayORConjunction == false
-        ) {
-          selectUDIndex = this.current.selectUDIndex = -1;
-        }
-        // enter
-        if (this.isEditMode == true) {
-          this.setCurrentSelectIndexByIsHoverOptionElm();
-          selectUDIndex = current.selectUDIndex;
-        }
-        if (
-          inputValue != "" &&
-          (selectUDIndex == -1 || this.haveOptionCanSelect == false)
-        ) {
-          if (!current.tag.key && this.create == true) {
-            this.current.tag.elm = {};
-            this.current.tag.custom = true;
-            this.finish(inputValue);
-          }
-          if (current.tag.key && current.tag.custom != false) {
-            this.finish(inputValue);
-          }
-        }
-        if (selectUDIndex == -1) {
-          this.isFocus = true;
-        }
-        if (selectUDIndex != -1) {
-          const option = this.getDisplayOptionElms()[selectUDIndex];
-          if (option == undefined) return;
-          const className = option.className;
-          const conjunction = className.indexOf("conjunction") != -1;
-          const noValue = className.indexOf("noValue") != -1;
-          const undo = className.indexOf("undo") != -1;
-          if (undo == true) {
-            this.clickUndo();
-          } else if (conjunction == true) {
-            this.clickConjunction();
-          } else {
-            option.click();
-          }
-          if ((undo == true || conjunction == true) && noValue == false) {
-            className.indexOf("undo") != -1;
-          }
-        }
-        */
-
-        // if (activeIndex !== -1 && activeIndex !== undefined) {
-        //   update([...iv.value].filter((v, k) => k !== activeIndex));
-
-        //   if (activeIndex === tagList.length - 1) {
-        //     if (tagList.length - 1) {
-        //       tagList[tagList.length - 2].focus();
-        //     } else if (searchable.value) {
-        //       tags.value.querySelector("input").focus();
-        //     } else {
-        //       multiselect.value.focus();
-        //     }
-        //   }
-        //   return;
-        // }
-
-        // if (addOptionOn.value.indexOf("enter") === -1 && createOption.value) {
-        //   return;
-        // }
-
-        // preparePointer();
-        // selectPointer();
         break;
 
       // case " ":
@@ -278,12 +229,11 @@ export default function useKeyboard(props, context, dep) {
         event.preventDefault();
         await nextTick();
 
-        const displayOptions = elDropdown.value.querySelectorAll(
-          ".option:not(.hidden)"
-        );
-        const numElements = displayOptions.length || 0;
+        try {
+          if (keydown.verticalLock == true) throw "locked";
+          const displayOptions = getDisplayOptionElms();
+          const numElements = displayOptions.length || 0;
 
-        if (keydown.verticalLock == false) {
           keydown.verticalIndex += event.key == "ArrowUp" ? -1 : 1;
 
           if (keydown.verticalIndex <= -1) {
@@ -292,17 +242,78 @@ export default function useKeyboard(props, context, dep) {
           if (keydown.verticalIndex >= numElements) {
             keydown.verticalIndex = 0;
           }
+        } catch (error) {
+          if (error != "locked") {
+            keydown.verticalIndex = -1;
+          }
         }
-
-        // horizontalIndex: defaultNumber(item.horizontalIndex),
-        // horizontalLock: item.horizontalLock || false,
 
         break;
       }
 
-      // case "ArrowUp":
-      // case "ArrowDown":
+      case "ArrowLeft":
+      case "ArrowRight": {
+        event.preventDefault();
+        await nextTick();
 
+        try {
+          if (keydown.horizontalLock == true) throw "locked";
+          const tagValues = getTagValueElms();
+          const numElements = tagValues.length || 0;
+          let newIndex =
+            event.key == "ArrowRight"
+              ? keydown.horizontalIndex - 1
+              : keydown.horizontalIndex + 1;
+
+          if (newIndex == -2 && keydown.horizontalIndex == -1) {
+            newIndex = numElements - 1;
+          }
+          if (newIndex >= numElements) {
+            newIndex = -1;
+          }
+          keydown.horizontalIndex = newIndex;
+        } catch (error) {
+          if (error != "locked") {
+            keydown.horizontalIndex = -1;
+          }
+        }
+
+        // try {
+        //   if (current.lockKeydownLR == true) throw "locked";
+        //   this.current.selectLRIndex += keyCode == 37 ? 1 : -1;
+        //   const selectLRIndex = current.selectLRIndex;
+        //   if (selectLRIndex == -1 || selectLRIndex == this.tags.length)
+        //     throw "refocus";
+
+        //   if (
+        //     selectLRIndex <= -1 ||
+        //     selectLRIndex >= this.tags.length ||
+        //     this.tags.length == 0
+        //   )
+        //     throw "init";
+
+        //   const tagIndexs = this.getTagIndexs();
+        //   const tagIndex = tagIndexs[tagIndexs.length - 1 - selectLRIndex];
+        //   const tag = this.tags.find((tag) => tag.index == tagIndex);
+        //   if (tag.custom == false) {
+        //     this.toFocusInput();
+        //   }
+        //   this.current.selectUDIndex = -1;
+        //   this.edit.index = tag.index;
+        //   this.edit.key = tag.key;
+        //   this.edit.value = tag.value;
+        // } catch (error) {
+        //   if (error != "locked") {
+        //     this.initDataEdit();
+        //     this.current.selectLRIndex = -1;
+        //   }
+        //   if (error == "refocus") {
+        //     this.toFocusInput();
+        //   }
+        // }
+
+        break;
+      }
       //   e.preventDefault();
 
       //   if (!showOptions.value) {
@@ -329,7 +340,7 @@ export default function useKeyboard(props, context, dep) {
       //   }
 
       //   forwardPointer();
-      //   break;
+
 
       // case "ArrowLeft":
       //   if (

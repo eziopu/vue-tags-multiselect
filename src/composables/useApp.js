@@ -13,7 +13,7 @@ export default function useApp(props, _context, dep) {
 
   const elMain = ref(null);
 
-  const elTag = ref(null);
+  const elTags = ref(null);
 
   const elFill = ref(null);
 
@@ -138,7 +138,7 @@ export default function useApp(props, _context, dep) {
   return {
     elApp,
     elMain,
-    elTag,
+    elTags,
     elFill,
     elInput,
     elInputValue,

@@ -6,7 +6,7 @@ import {
 } from "../models";
 
 export default function useTag() {
-  // ============ DEPENDENCIES ============
+  // ============ DATA ============
 
   const tags = reactive([]);
 
