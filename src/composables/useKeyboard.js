@@ -67,26 +67,32 @@ export default function useKeyboard(props, context, dep) {
   });
 
   // ============== WATCH ==============
-
-  watch(keydown, async (value) => {
-    await nextTick();
-    const verticalIndex = value.verticalIndex;
-    const displayOptions = getDisplayOptionElms();
-    displayOptions.forEach((option) => {
-      option.classList.remove("hover");
-    });
-    if (verticalIndex != -1) {
-      displayOptions[verticalIndex].classList.add("hover");
+  watch(
+    () => keydown.verticalIndex,
+    async (value) => {
+      await nextTick();
+      const displayOptions = getDisplayOptionElms();
+      displayOptions.forEach((option) => {
+        option.classList.remove("hover");
+      });
+      if (value != -1) {
+        displayOptions[value].classList.add("hover");
+      }
     }
+  );
 
-    const horizontalIndex = value.horizontalIndex;
-    const tagValues = getTagValueElms();
-    if (horizontalIndex != -1) {
-      tagValues[tagValues.length - 1 - horizontalIndex].click();
-    } else {
-      init();
+  watch(
+    () => keydown.horizontalIndex,
+    async (value) => {
+      await nextTick();
+      const tagValues = getTagValueElms();
+      if (value != -1) {
+        tagValues[tagValues.length - 1 - value].click();
+      } else {
+        init();
+      }
     }
-  });
+  );
 
   // =============== METHODS ==============
 
@@ -233,15 +239,19 @@ export default function useKeyboard(props, context, dep) {
           if (keydown.verticalLock == true) throw "locked";
           const displayOptions = getDisplayOptionElms();
           const numElements = displayOptions.length || 0;
+          let newIndex =
+            event.key == "ArrowUp"
+              ? keydown.verticalIndex - 1
+              : keydown.verticalIndex + 1;
 
-          keydown.verticalIndex += event.key == "ArrowUp" ? -1 : 1;
+          if (newIndex <= -1) {
+            newIndex = numElements - 1;
+          }
+          if (newIndex >= numElements) {
+            newIndex = 0;
+          }
 
-          if (keydown.verticalIndex <= -1) {
-            keydown.verticalIndex = numElements - 1;
-          }
-          if (keydown.verticalIndex >= numElements) {
-            keydown.verticalIndex = 0;
-          }
+          keydown.verticalIndex = newIndex;
         } catch (error) {
           if (error != "locked") {
             keydown.verticalIndex = -1;
@@ -258,6 +268,7 @@ export default function useKeyboard(props, context, dep) {
 
         try {
           if (keydown.horizontalLock == true) throw "locked";
+          keydown.verticalIndex = -1;
           const tagValues = getTagValueElms();
           const numElements = tagValues.length || 0;
           let newIndex =
@@ -271,6 +282,7 @@ export default function useKeyboard(props, context, dep) {
           if (newIndex >= numElements) {
             newIndex = -1;
           }
+
           keydown.horizontalIndex = newIndex;
         } catch (error) {
           if (error != "locked") {
@@ -340,7 +352,6 @@ export default function useKeyboard(props, context, dep) {
       //   }
 
       //   forwardPointer();
-
 
       // case "ArrowLeft":
       //   if (
