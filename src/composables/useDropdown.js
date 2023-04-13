@@ -45,8 +45,6 @@ export default function useDropdown(props, _context, dep) {
     }
   });
 
-  // ============== COMPUTED ==============
-
   return {
     elDropdown,
     elDropdownLeft,

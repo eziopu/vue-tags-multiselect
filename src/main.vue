@@ -137,8 +137,10 @@
           type="search"
           @focus="elInputFocus"
           @blur="elInputBlur"
+          :disabled="elInputDisabled"
+          :maxlength="elInputMaxlength"
         />
-        <!-- :disabled="inputDisabled"
+        <!-- 
           :placeholder="inputPlaceholder"
           :maxlength="inputMaxlength"
           @blur="inputBlur()"
@@ -163,6 +165,7 @@ import Loading from "./components/partial/loading.vue";
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
 import useTag from "./composables/useTag";
+import useInput from "./composables/useInput";
 import useApp from "./composables/useApp";
 import useDropdown from "./composables/useDropdown";
 import useStatus from "./composables/useStatus";
@@ -207,6 +210,7 @@ export default defineComponent({
   setup(props, context) {
     return resolve(props, context, [
       useTag,
+      useInput,
       useApp,
       useDropdown,
       useStatus,
