@@ -5,6 +5,8 @@ export default function useValue(props, _context, dep) {
 
   const elInput = dep.elInput;
 
+  const elTagValue = ref(null);
+
   // ================ DATA ================
 
   const inputValue = dep.inputValue;
@@ -45,11 +47,17 @@ export default function useValue(props, _context, dep) {
   });
 
   watch(editMyself, (value) => {
-    if (value == true && props.tag.custom == true) {
+    if (value == false) {
+      return;
+    }
+
+    if (props.tag.custom == true) {
       inputValue.value = props.tag.value;
       setTimeout(() => {
         elInput.value.focus();
       }, 100);
+    } else {
+      elTagValue.value.focus();
     }
   });
 
@@ -133,6 +141,7 @@ export default function useValue(props, _context, dep) {
   return {
     appProps,
     appIsLock,
+    elTagValue,
     inputValue,
     editByinput,
     editMyself,

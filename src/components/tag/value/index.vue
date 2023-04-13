@@ -6,6 +6,7 @@
       pointer: appIsLock != true,
     }"
     tabindex="0"
+    ref="elTagValue"
     @click="handleClick"
   >
     <!-- {{ editMyself }} | -->
@@ -72,6 +73,10 @@ export default {
 
 <style lang="scss" scoped>
 .tag__value {
+  &:focus {
+    outline: none;
+  }
+
   &.pointer {
     cursor: pointer;
   }
