@@ -139,12 +139,8 @@
           @blur="elInputBlur"
           :disabled="elInputDisabled"
           :maxlength="elInputMaxlength"
+          :placeholder="elInputPlaceholder"
         />
-        <!-- 
-          :placeholder="inputPlaceholder"
-          :maxlength="inputMaxlength"
-          @blur="inputBlur()"
-          @focus="inputFocus()" -->
       </div>
     </div>
   </div>

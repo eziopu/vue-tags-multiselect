@@ -11,6 +11,8 @@ export default function useDropdown(props, _context, dep) {
 
   // ================ DATA ================
 
+  const tags = dep.tags;
+
   const stashTag = dep.stashTag;
 
   // ============== COMPUTED ==============
@@ -31,10 +33,30 @@ export default function useDropdown(props, _context, dep) {
       : 99;
   });
 
+  const elInputPlaceholder = computed(() => {
+    const {
+      placeholder,
+      firstPlaceholder, // data
+      loadingPlaceholder,
+      finishPlaceholder,
+    } = props;
+    const change = firstPlaceholder != placeholder && placeholder != "";
+    if (change == true) return placeholder;
+
+    if (props.loading == true) return loadingPlaceholder;
+    if (props.isFinish == true) return finishPlaceholder;
+
+    if (tags.length == 0 && !stashTag.key) {
+      return placeholder;
+    }
+    return "";
+  });
+
   return {
     elInput,
     elInputValue,
     elInputMaxlength,
+    elInputPlaceholder,
     elInputDisabled,
   };
 }
