@@ -17,11 +17,7 @@ export default function useApp(props, _context, dep) {
 
   const elFill = ref(null);
 
-  const elInput = ref(null);
-
-  // ================ REFS DATA ================
-
-  const elInputValue = ref("");
+  const elInput = dep.elInput;
 
   // ================ DATA ================
 
@@ -36,6 +32,8 @@ export default function useApp(props, _context, dep) {
   const conjunction = ref("");
 
   const editTagIndex = dep.editTagIndex;
+
+  const elInputValue = dep.elInputValue;
 
   // ============== COMPUTED ==============
 
@@ -67,10 +65,6 @@ export default function useApp(props, _context, dep) {
       props.conjunction == "OR" || props.conjunction == "AND"
         ? props.conjunction
         : "";
-  };
-
-  const elInputblur = () => {
-    console.log("00000 elInputblur 00000");
   };
 
   const appEnable = () => {
@@ -120,8 +114,6 @@ export default function useApp(props, _context, dep) {
         isActive.value = false;
       }
     }, 100);
-
-    // deactivate();
   };
   // =============== PROVIDE ==============
   provide("appProps", readonly(props));
@@ -140,8 +132,6 @@ export default function useApp(props, _context, dep) {
     elMain,
     elTags,
     elFill,
-    elInput,
-    elInputValue,
 
     isActive,
     isAppActived,
@@ -154,10 +144,9 @@ export default function useApp(props, _context, dep) {
     initKeydown,
     initConjunction,
     elInputFocus,
-    elInputblur,
+    elInputBlur,
 
     focusApp,
     elAppFocus,
-    elInputBlur,
   };
 }
