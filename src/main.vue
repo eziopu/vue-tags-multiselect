@@ -53,46 +53,42 @@
           v-show="elDropdownDisplay"
           ref="elDropdown"
           :style="{ left: `${elDropdownLeft}px` }"
+          :class="{ loading: loading || dropdownLoading }"
         >
-          <!-- :class="{ loading: loading || dropdownLoading, transition: transition }"
-        :style="dropdown.style"
-        v-show="displayDropdown" -->
-          <!--  <div
-          v-show="loading == true || dropdownLoading == true"
-          class="dropdowns__loading"
-          :tabindex="-1"
-        >
-          <slot name="dropdowns-loading">
-            <slot name="loading">
-              <Loading></Loading>
+          <div
+            v-show="loading == true || dropdownLoading == true"
+            class="dropdowns__loading"
+            :tabindex="-1"
+          >
+            <slot name="dropdowns-loading">
+              <slot name="loading">
+                <Loading></Loading>
+              </slot>
             </slot>
-          </slot>
-        </div>
-        <VTagDropdown v-if="displayUndo" system>
-          <VTagOption
-            class="undo"
-            cannotSearch
-            :divided="optionDisplayCount != 0"
-          >
-            <div @click="clickUndo()">
-              <slot name="option-undo"
-                ><i class="option__undo--arrow-left"></i>Undo</slot
-              >
-            </div>
-          </VTagOption>
-        </VTagDropdown>
+          </div>
+          <!-- <VTagDropdown v-if="displayUndo" system> -->
+          <VTagDropdown v-if="true" system>
+            <VTagOption class="undo" cannotSearch>
+              <!-- :divided="optionDisplayCount != 0" -->
+              <div>
+                <!-- <div @click="clickUndo()"> -->
+                <slot name="option-undo"
+                  ><i class="option__undo--arrow-left"></i>Undo</slot
+                >
+              </div>
+            </VTagOption>
+          </VTagDropdown>
 
-        <VTagDropdown v-if="displayORConjunction" system>
-          <VTagOption
-            class="conjunction"
-            cannotSearch
-            :divided="haveOptionCanSelect"
-          >
-            <div @click="clickConjunction()">
-              <slot name="option-OR-conjunction">OR</slot>
-            </div>
-          </VTagOption>
-        </VTagDropdown> -->
+          <!-- <VTagDropdown v-if="displayORConjunction" system> -->
+          <VTagDropdown v-if="true" system>
+            <VTagOption class="conjunction" cannotSearch>
+              <!-- :divided="haveOptionCanSelect" -->
+              <div>
+                <!-- <div @click="clickConjunction()"> -->
+                <slot name="option-OR-conjunction">OR</slot>
+              </div>
+            </VTagOption>
+          </VTagDropdown>
 
           <slot></slot>
         </div>
@@ -149,8 +145,8 @@
 <script lang="ts">
 import VTag from "./components/tag/main.vue";
 import Loading from "./components/partial/loading.vue";
-// import VTagDropdown from "./components/tag-dropdown/main.vue";
-// import VTagOption from "./components/tag-dropdown/option.vue";
+import VTagDropdown from "./components/slots/v-dropdown.vue";
+import VTagOption from "./components/slots/v-option.vue";
 
 // import EmitOutput from "./mixins/emits/output";
 // import EmitGetStatus from "./mixins/emits/get-status";
@@ -183,12 +179,13 @@ export default defineComponent({
   components: {
     VTag,
     Loading,
-    // VTagDropdown,
-    // VTagOption,
+    VTagDropdown,
+    VTagOption,
   },
   props: {
     disabled: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
+    dropdownLoading: { type: Boolean, default: false },
     search: { type: Boolean, default: true },
     transition: { type: Boolean, default: true },
     create: { type: Boolean, default: true },
