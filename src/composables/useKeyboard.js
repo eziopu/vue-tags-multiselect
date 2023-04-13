@@ -17,7 +17,7 @@ export default function useKeyboard(props, context, dep) {
 
   // ============ DEPENDENCIES ============
 
-  const init = dep.init;
+  const focusApp = dep.focusApp;
   const update = dep.update;
   const search = dep.search;
   const setPointer = dep.setPointer;
@@ -89,7 +89,7 @@ export default function useKeyboard(props, context, dep) {
       if (value != -1) {
         tagValues[tagValues.length - 1 - value].click();
       } else {
-        init();
+        focusApp();
       }
     }
   );
