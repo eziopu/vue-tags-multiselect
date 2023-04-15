@@ -66,25 +66,19 @@
               </slot>
             </slot>
           </div>
-          <!-- <VTagDropdown v-if="displayUndo" system> -->
-          <VTagDropdown v-if="true" system>
-            <VTagOption class="undo" cannotSearch>
+
+          <VTagDropdown>
+            <VTagOption v-if="isDisplayElOptionUndo" system class="undo">
               <!-- :divided="optionDisplayCount != 0" -->
-              <div>
-                <!-- <div @click="clickUndo()"> -->
-                <slot name="option-undo"
-                  ><i class="option__undo--arrow-left"></i>Undo</slot
-                >
+              <div @click="elOptionUndo()">
+                <slot name="option-undo">
+                  <i class="option__undo--arrow-left"></i>Undo
+                </slot>
               </div>
             </VTagOption>
-          </VTagDropdown>
-
-          <!-- <VTagDropdown v-if="displayORConjunction" system> -->
-          <VTagDropdown v-if="true" system>
-            <VTagOption class="conjunction" cannotSearch>
+            <VTagOption v-if="isDisplayElOptionORConjunction" system class="conjunction">
               <!-- :divided="haveOptionCanSelect" -->
-              <div>
-                <!-- <div @click="clickConjunction()"> -->
+                <div @click="elOptionORConjunction()">
                 <slot name="option-OR-conjunction">OR</slot>
               </div>
             </VTagOption>
@@ -160,6 +154,7 @@ import useTag from "./composables/useTag";
 import useInput from "./composables/useInput";
 import useApp from "./composables/useApp";
 import useDropdown from "./composables/useDropdown";
+import useSystemOption from "./composables/useSystemOption";
 import useStatus from "./composables/useStatus";
 import useKeyboard from "./composables/useKeyboard";
 
@@ -206,6 +201,7 @@ export default defineComponent({
       useInput,
       useApp,
       useDropdown,
+      useSystemOption,
       useStatus,
       useKeyboard,
       // useData,

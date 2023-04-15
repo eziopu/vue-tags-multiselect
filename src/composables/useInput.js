@@ -1,4 +1,4 @@
-import { ref, computed, watch, nextTick } from "vue";
+import { ref, computed } from "vue";
 
 export default function useDropdown(props, _context, dep) {
   // ================ REFS ================

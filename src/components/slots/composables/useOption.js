@@ -37,6 +37,10 @@ export default function useDropdown(props, context, dep) {
   });
 
   const isHide = computed(() => {
+    if (props.system == true) {
+      return false;
+    }
+
     const isTitle = props.title;
     // 已被選取
     if (isDuplicate.value == true) {

@@ -20,7 +20,11 @@ export default function useSearch(props, _context, dep) {
   });
 
   const isCanSearch = computed(() => {
-    return app.props.search == true || app.elInputValue.value != "";
+    return (
+      app.props.search == true ||
+      app.elInputValue.value != "" ||
+      props.system == false
+    );
   });
 
   const isSearchable = computed(() => {

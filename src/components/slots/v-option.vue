@@ -36,6 +36,7 @@ export default {
     disabled: { type: Boolean, default: false },
     divided: { type: Boolean, default: false },
     selected: { type: Boolean, default: false },
+    system: { type: Boolean, default: false },
     value: { type: String, default: "" },
   },
   setup(props, context) {
