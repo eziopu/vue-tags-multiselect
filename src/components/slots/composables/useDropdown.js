@@ -1,4 +1,12 @@
-import { ref, computed, provide, readonly, inject } from "vue";
+import {
+  ref,
+  watch,
+  computed,
+  provide,
+  readonly,
+  inject,
+  onBeforeUnmount,
+} from "vue";
 
 import clearHTML from "../../../utils/clearHTML";
 
@@ -57,18 +65,6 @@ export default function useDropdown(props, context) {
     return false;
   });
 
-  const isDown = computed(() => {
-    if (props.custom == true) {
-      return false;
-    }
-    const myTags = appTags.filter((tag) => tag.key == props.value) || [];
-    let childrenLength = slots.default().length;
-    if (hasVNodeTitle.value == true) {
-      childrenLength -= 1;
-    }
-    return childrenLength == myTags.length;
-  });
-
   const myDisplayAll = computed(() => {
     if (hasVNodeTitle.value == false) {
       return true;
@@ -91,6 +87,39 @@ export default function useDropdown(props, context) {
     ]);
     return list.filter((x) => !blacklist.has(x)) || [];
   });
+
+  // == IsDown ==============
+
+  const appDropdownStatus = inject("appDropdownStatus");
+
+  const isDown = computed(() => {
+    if (props.custom == true) {
+      return false;
+    }
+    const myTags = appTags.filter((tag) => tag.key == props.value) || [];
+    let childrenLength = slots.default().length;
+    if (hasVNodeTitle.value == true) {
+      childrenLength -= 1;
+    }
+    return childrenLength == myTags.length;
+  });
+
+  if (props.value != null && props.value != "") {
+    appDropdownStatus[props.value] = { isDown: false };
+
+    watch(
+      isDown,
+      (value) => {
+        appDropdownStatus[props.value].isDown = value;
+      },
+      { immediate: true }
+    );
+
+    onBeforeUnmount(() => {
+      delete appDropdownStatus[props.value];
+    });
+  }
+
   // =============== PROVIDE ==============
 
   provide("dropdownProps", readonly(props));
