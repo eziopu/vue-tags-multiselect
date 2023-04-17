@@ -5,6 +5,7 @@ export default function useInjects() {
 
   const app = {
     props: inject("appProps"),
+    conjunction: inject("appConjunction"),
 
     reFocus: inject("appReFocus"),
     nextReFocusDontInit: inject("appNextReFocusDontInit"),

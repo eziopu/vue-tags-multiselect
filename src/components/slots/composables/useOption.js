@@ -36,6 +36,14 @@ export default function useDropdown(props, context, dep) {
       : false;
   });
 
+  const isDuplicateByKey = computed(() => {
+    return app.tags.find((tag) => {
+      return tag != undefined && tag.key == dropdown.props.value;
+    })
+      ? true
+      : false;
+  });
+
   const isHide = computed(() => {
     if (props.system == true) {
       return false;
@@ -53,6 +61,13 @@ export default function useDropdown(props, context, dep) {
         return true;
       }
       return app.stashTag.key != dropdown.props.value ? true : false;
+    }
+
+    // selecting no key
+    if (app.conjunction.value == "AND" || app.conjunction.value == "") {
+      if (isDuplicateByKey.value == true) {
+        return true;
+      }
     }
 
     // dropdown 已全部選擇過 且未啟用custom
