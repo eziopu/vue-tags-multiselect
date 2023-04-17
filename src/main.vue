@@ -76,9 +76,13 @@
                 </slot>
               </div>
             </VTagOption>
-            <VTagOption v-if="isDisplayElOptionORConjunction" system class="conjunction">
+            <VTagOption
+              v-if="isDisplayElOptionORConjunction"
+              system
+              class="conjunction"
+            >
               <!-- :divided="haveOptionCanSelect" -->
-                <div @click="elOptionORConjunction()">
+              <div @click="elOptionORConjunction()">
                 <slot name="option-OR-conjunction">OR</slot>
               </div>
             </VTagOption>
