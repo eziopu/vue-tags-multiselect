@@ -26,9 +26,12 @@ export default function useKeyboard(props, context, dep) {
   const forwardPointer = dep.forwardPointer;
   const multiselect = dep.multiselect;
   const isOpen = dep.isOpen;
-  const open = dep.open;
-  const blur = dep.blur;
-  const fo = dep.fo;
+
+  const tags = dep.tags;
+
+  const tagsGroupByTitle = dep.tagsGroupByTitle;
+
+  const conjunction = dep.conjunction;
 
   const keydown = dep.keydown;
 
@@ -98,6 +101,8 @@ export default function useKeyboard(props, context, dep) {
 
   const setStashTag = dep.setStashTag;
 
+  const deleteTags = dep.deleteTags;
+
   const getDisplayOptionElms = () => {
     return elDropdown.value.querySelectorAll(".option:not(.hidden)") || [];
   };
@@ -126,21 +131,56 @@ export default function useKeyboard(props, context, dep) {
     // }
 
     switch (event.key) {
-      // case "Backspace":
-      //   if (mode.value === "single") {
-      //     return;
-      //   }
+      case "Backspace":
+        if (elInputValue.value != "") {
+          return;
+        }
 
-      //   if (searchable.value && [null, ""].indexOf(search.value) === -1) {
-      //     return;
-      //   }
+        var isWorked = false;
 
-      //   if (iv.value.length === 0) {
-      //     return;
-      //   }
+        if (
+          conjunction.value == "OR" &&
+          (props.conjunction != "OR" || props.conjunction != "AND")
+        ) {
+          isWorked = true;
+          conjunction.value = "";
+        }
 
-      //   update([...iv.value].slice(0, -1));
-      //   break;
+        if (isWorked == false && stashTag.key != null) {
+          isWorked = true;
+          setStashTag();
+        }
+
+        if (isWorked == false && tagsGroupByTitle.length != 0) {
+          const getLastTag = () => {
+            const clearTags = tags.filter(
+              (tag) => tag != null && tag != undefined
+            );
+            return clearTags[clearTags.length];
+          };
+          const indexs =
+            props.merge == true
+              ? tagsGroupByTitle.value[
+                  tagsGroupByTitle.value.length - 1
+                ].values.map((value) => value.index)
+              : [getLastTag().index];
+          deleteTags(indexs);
+        }
+        // if (mode.value === "single") {
+        //   return;
+        // }
+
+        // if (searchable.value && [null, ""].indexOf(search.value) === -1) {
+        //   return;
+        // }
+
+        // if (iv.value.length === 0) {
+        //   return;
+        // }
+
+        // update([...iv.value].slice(0, -1));
+        isWorked = false;
+        break;
 
       case "Enter":
         event.preventDefault();

@@ -77,7 +77,7 @@ export default function useTag() {
     tag.displayValue = item.displayValue || true;
   };
 
-  const appDeleteTags = (indexs = []) => {
+  const deleteTags = (indexs = []) => {
     if (indexs.length == 0) return;
 
     // indexs.sort((a, b) => b - a);
@@ -112,7 +112,7 @@ export default function useTag() {
   provide("appSetTagToTags", setTagToTags);
 
   provide("appUpdateTag", updateTag);
-  provide("appDeleteTags", appDeleteTags);
+  provide("appDeleteTags", deleteTags);
 
   provide("appIsDuplicateTag", isDuplicateTag);
   provide("appIsDuplicateTagByKey", isDuplicateTagByKey);
@@ -129,6 +129,7 @@ export default function useTag() {
     tagsGroupByKey,
     tagsGroupByTitle,
 
+    deleteTags,
     setStashTag,
     setTagToTags,
   };
