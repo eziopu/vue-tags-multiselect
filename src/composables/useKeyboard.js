@@ -151,9 +151,13 @@ export default function useKeyboard(props, context, dep) {
           const option = displayOptions[keydown.verticalIndex];
 
           if (option != undefined && option.classList.contains("hover")) {
+            if (isHoverSystemOption() == true) {
+              handleSystemOption();
+            } else {
+              option.click();
+            }
             keydown.verticalIndex = -1;
             elInputValue.value = "";
-            option.click();
           }
         }
 
@@ -397,6 +401,26 @@ export default function useKeyboard(props, context, dep) {
       // }
 
       // break;
+    }
+  };
+  const isDisplayElOptionUndo = dep.isDisplayElOptionUndo;
+  const isDisplayElOptionORConjunction = dep.isDisplayElOptionORConjunction;
+  const elOptionUndo = dep.elOptionUndo;
+  const elOptionORConjunction = dep.elOptionORConjunction;
+
+  const isHoverSystemOption = () => {
+    return (
+      keydown.verticalIndex == 0 &&
+      (isDisplayElOptionUndo.value || isDisplayElOptionORConjunction.value)
+    );
+  };
+
+  const handleSystemOption = () => {
+    if (isDisplayElOptionUndo.value) {
+      elOptionUndo();
+    }
+    if (isDisplayElOptionORConjunction.value) {
+      elOptionORConjunction();
     }
   };
 

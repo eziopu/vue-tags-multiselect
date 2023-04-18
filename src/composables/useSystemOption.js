@@ -26,7 +26,6 @@ export default function useSystemOption(_props, _context, dep) {
   });
 
   const isDisplayElOptionORConjunction = computed(() => {
-    console.log("isDisplayElOptionORConjunction 000");
     if (
       tagsGroupByTitle.value.length == 0 ||
       isEditMode.value == true ||
@@ -34,8 +33,6 @@ export default function useSystemOption(_props, _context, dep) {
     ) {
       return false;
     }
-    console.log("isStillOptionsCanSelected()");
-    console.log(isStillOptionsCanSelected());
     if (isStillOptionsCanSelected() == false) {
       return false;
     }

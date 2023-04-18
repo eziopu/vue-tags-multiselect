@@ -27,11 +27,6 @@ export default function useDropdown(props, _context, dep) {
 
   // ============== COMPUTED ==============
 
-  const isAllDropdownIsDown = computed(() => {
-    const booleans = Object.values(dropdownStatus).map((item) => item.isDown);
-    return booleans.every((item) => item === true);
-  });
-
   const elDropdownDisplay = computed(() => {
     return props.disabled == false && appIsActive.value == true;
   });
@@ -63,6 +58,5 @@ export default function useDropdown(props, _context, dep) {
     elDropdownDisplay,
 
     dropdownStatus,
-    isAllDropdownIsDown,
   };
 }
