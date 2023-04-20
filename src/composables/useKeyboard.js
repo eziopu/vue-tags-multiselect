@@ -1,4 +1,11 @@
-import { toRefs, computed, nextTick, getCurrentInstance, watch } from "vue";
+import {
+  ref,
+  toRefs,
+  computed,
+  nextTick,
+  getCurrentInstance,
+  watch,
+} from "vue";
 
 export default function useKeyboard(props, context, dep) {
   const {
@@ -84,18 +91,46 @@ export default function useKeyboard(props, context, dep) {
     }
   );
 
+  const horizontalClickEnable = ref(true);
+  const isActiveElementContainApp = dep.isActiveElementContainApp;
   watch(
     () => keydown.horizontalIndex,
     async (value) => {
+      if (horizontalClickEnable.value == false) {
+        horizontalClickEnable.value = true;
+        return;
+      }
       await nextTick();
       const tagValues = getTagValueElms();
       if (value != -1) {
         tagValues[tagValues.length - 1 - value].click();
       } else {
-        focusApp();
+        if (isActiveElementContainApp() == true) {
+          focusApp();
+        }
       }
     }
   );
+
+  const editTagIndex = dep.editTagIndex;
+  watch(editTagIndex, async (value) => {
+    if (value != -1) {
+      await nextTick();
+
+      const tagValues = getTagValueElms();
+      for (let index = 0; index < tagValues.length; index++) {
+        const element = tagValues[index];
+        const targetIndex = tagValues.length - 1 - index;
+        if (
+          Number(element.dataset.index) == value &&
+          keydown.horizontalIndex != targetIndex
+        ) {
+          horizontalClickEnable.value = false;
+          keydown.horizontalIndex = targetIndex;
+        }
+      }
+    }
+  });
 
   // =============== METHODS ==============
 
@@ -112,27 +147,17 @@ export default function useKeyboard(props, context, dep) {
   };
 
   const handleKeydown = async (event) => {
-    console.log("handleKeydown e =", event);
+    // console.log("handleKeydown e =", event);
     context.emit("keydown", event, $this);
 
     const keyCode = event.keyCode ? event.keyCode : event;
     keydown.keyCode = keyCode;
-    // let tagList;
-    // let activeIndex;
-
-    // if (
-    //   ["ArrowLeft", "ArrowRight", "Enter"].indexOf(e.key) !== -1 &&
-    //   mode.value === "tags"
-    // ) {
-    //   tagList = [
-    //     ...multiselect.value.querySelectorAll(`[data-tags] > *`),
-    //   ].filter((e) => e !== tags.value);
-    //   activeIndex = tagList.findIndex((e) => e === document.activeElement);
-    // }
 
     switch (event.key) {
       case "Backspace":
-        if (elInputValue.value != "") {
+        // event.preventDefault();
+
+        if (elInputValue.value != "" || keydown.backspaceLock == true) {
           return;
         }
 
@@ -166,19 +191,7 @@ export default function useKeyboard(props, context, dep) {
               : [getLastTag().index];
           deleteTags(indexs);
         }
-        // if (mode.value === "single") {
-        //   return;
-        // }
 
-        // if (searchable.value && [null, ""].indexOf(search.value) === -1) {
-        //   return;
-        // }
-
-        // if (iv.value.length === 0) {
-        //   return;
-        // }
-
-        // update([...iv.value].slice(0, -1));
         isWorked = false;
         break;
 
@@ -232,48 +245,6 @@ export default function useKeyboard(props, context, dep) {
 
         break;
 
-      // case " ":
-      //   if (!createOption.value && !searchable.value) {
-      //     e.preventDefault();
-
-      //     preparePointer();
-      //     selectPointer();
-      //     return;
-      //   }
-
-      //   if (!createOption.value) {
-      //     return false;
-      //   }
-
-      //   if (addOptionOn.value.indexOf("space") === -1 && createOption.value) {
-      //     return;
-      //   }
-
-      //   e.preventDefault();
-
-      //   preparePointer();
-      //   selectPointer();
-      //   break;
-
-      // case "Tab":
-      // case ";":
-      // case ",":
-      //   if (
-      //     addOptionOn.value.indexOf(e.key.toLowerCase()) === -1 ||
-      //     !createOption.value
-      //   ) {
-      //     return;
-      //   }
-
-      //   preparePointer();
-      //   selectPointer();
-      //   e.preventDefault();
-      //   break;
-
-      // case "Escape":
-      //   blur();
-      //   break;
-
       case "ArrowUp":
       case "ArrowDown": {
         event.preventDefault();
@@ -307,7 +278,7 @@ export default function useKeyboard(props, context, dep) {
 
       case "ArrowLeft":
       case "ArrowRight": {
-        event.preventDefault();
+        // event.preventDefault();
         await nextTick();
 
         try {
@@ -334,113 +305,8 @@ export default function useKeyboard(props, context, dep) {
           }
         }
 
-        // try {
-        //   if (current.lockKeydownLR == true) throw "locked";
-        //   this.current.selectLRIndex += keyCode == 37 ? 1 : -1;
-        //   const selectLRIndex = current.selectLRIndex;
-        //   if (selectLRIndex == -1 || selectLRIndex == this.tags.length)
-        //     throw "refocus";
-
-        //   if (
-        //     selectLRIndex <= -1 ||
-        //     selectLRIndex >= this.tags.length ||
-        //     this.tags.length == 0
-        //   )
-        //     throw "init";
-
-        //   const tagIndexs = this.getTagIndexs();
-        //   const tagIndex = tagIndexs[tagIndexs.length - 1 - selectLRIndex];
-        //   const tag = this.tags.find((tag) => tag.index == tagIndex);
-        //   if (tag.custom == false) {
-        //     this.toFocusInput();
-        //   }
-        //   this.current.selectUDIndex = -1;
-        //   this.edit.index = tag.index;
-        //   this.edit.key = tag.key;
-        //   this.edit.value = tag.value;
-        // } catch (error) {
-        //   if (error != "locked") {
-        //     this.initDataEdit();
-        //     this.current.selectLRIndex = -1;
-        //   }
-        //   if (error == "refocus") {
-        //     this.toFocusInput();
-        //   }
-        // }
-
         break;
       }
-      //   e.preventDefault();
-
-      //   if (!showOptions.value) {
-      //     return;
-      //   }
-
-      //   /* istanbul ignore else */
-      //   if (!isOpen.value) {
-      //     open();
-      //   }
-
-      //   backwardPointer();
-      //   break;
-
-      //   e.preventDefault();
-
-      //   if (!showOptions.value) {
-      //     return;
-      //   }
-
-      //   /* istanbul ignore else */
-      //   if (!isOpen.value) {
-      //     open();
-      //   }
-
-      //   forwardPointer();
-
-      // case "ArrowLeft":
-      //   if (
-      //     (searchable.value &&
-      //       tags.value.querySelector("input").selectionStart) ||
-      //     e.shiftKey ||
-      //     mode.value !== "tags" ||
-      //     !iv.value ||
-      //     !iv.value.length
-      //   ) {
-      //     return;
-      //   }
-
-      //   e.preventDefault();
-
-      //   if (activeIndex === -1) {
-      //     tagList[tagList.length - 1].focus();
-      //   } else if (activeIndex > 0) {
-      //     tagList[activeIndex - 1].focus();
-      //   }
-      //   break;
-
-      // case "ArrowRight":
-      // if (
-      //   activeIndex === -1 ||
-      //   e.shiftKey ||
-      //   mode.value !== "tags" ||
-      //   !iv.value ||
-      //   !iv.value.length
-      // ) {
-      //   return;
-      // }
-
-      // e.preventDefault();
-
-      // /* istanbul ignore else */
-      // if (tagList.length > activeIndex + 1) {
-      //   tagList[activeIndex + 1].focus();
-      // } else if (searchable.value) {
-      //   tags.value.querySelector("input").focus();
-      // } else if (!searchable.value) {
-      //   multiselect.value.focus();
-      // }
-
-      // break;
     }
   };
   const isDisplayElOptionUndo = dep.isDisplayElOptionUndo;

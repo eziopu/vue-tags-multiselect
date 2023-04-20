@@ -7,6 +7,8 @@ export function getKeydownModel(item = {}) {
 
     horizontalIndex: defaultNumber(item.horizontalIndex),
     horizontalLock: item.horizontalLock || false,
+
+    backspaceLock: item.backspaceLock || false,
   };
 }
 

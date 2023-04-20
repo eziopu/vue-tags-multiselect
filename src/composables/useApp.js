@@ -151,5 +151,6 @@ export default function useApp(props, _context, dep) {
 
     focusApp,
     elAppFocus,
+    isActiveElementContainApp,
   };
 }
