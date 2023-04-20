@@ -34,10 +34,10 @@ export default function useDropdown(props, _context, dep) {
   // ============== WATCH ==============
 
   watch(editTagIndex, async (value) => {
+    let offset = 0;
+
     if (value != -1) {
       await nextTick();
-
-      let offset = 0;
       const editDiv = elApp.value.querySelector(
         ".tags .tag.editing .tag__value.editing"
       );
@@ -46,10 +46,9 @@ export default function useDropdown(props, _context, dep) {
         const editLeft = editDiv.getBoundingClientRect().left || 0;
         offset = editLeft - elMainLeft || 0;
       }
-      elDropdownLeft.value = offset;
-    } else {
-      elDropdownLeft.value = 0;
     }
+
+    elDropdownLeft.value = offset;
   });
 
   return {
