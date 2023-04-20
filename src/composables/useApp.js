@@ -1,4 +1,4 @@
-import { ref, reactive, computed, provide, readonly } from "vue";
+import { ref, reactive, computed, provide, readonly, nextTick } from "vue";
 
 import { getKeydownModel } from "../models";
 
@@ -110,10 +110,10 @@ export default function useApp(props, _context, dep) {
       console.log("1 elInputBlur elInputBlur");
       console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
       if (isActiveElementContainApp() == false) {
-        init("elInputBlur");
         isActive.value = false;
+        init("elInputBlur");
       }
-    }, 100);
+    }, 200);
   };
   // =============== PROVIDE ==============
   provide("appProps", readonly(props));
@@ -122,12 +122,17 @@ export default function useApp(props, _context, dep) {
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
 
+  provide("appIsActiveToFalse", () => {
+    isActive.value = false;
+  });
   provide("appEnable", appEnable);
   provide("appReFocus", focusApp);
   provide("appBlur", elInputBlur);
   provide("appNextReFocusDontInit", () => {
     focusReInit.value = false;
   });
+
+  provide("isActiveElementContainApp", isActiveElementContainApp);
 
   return {
     elApp,
