@@ -108,6 +108,7 @@ export default function useKeyboard(props, _context, dep) {
 
       case "ArrowLeft":
       case "ArrowRight": {
+        console.log("       tag value keydown");
         event.preventDefault();
         await nextTick();
         console.log("???");
@@ -173,8 +174,6 @@ export default function useKeyboard(props, _context, dep) {
   watch(editByinput, async (value) => {
     await nextTick();
     if (value == true) {
-      appKeydown.horizontalLock = true;
-      appKeydown.backspaceLock = true;
       nextKeydownWillChagneEditTag.value = isInputSelectionLimit();
     } else {
       nextKeydownWillChagneEditTag.value = false;

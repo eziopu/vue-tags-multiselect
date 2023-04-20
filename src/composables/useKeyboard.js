@@ -114,22 +114,31 @@ export default function useKeyboard(props, context, dep) {
 
   const editTagIndex = dep.editTagIndex;
   watch(editTagIndex, async (value) => {
-    if (value != -1) {
-      await nextTick();
+    if (value == -1) {
+      return;
+    }
 
-      const tagValues = getTagValueElms();
-      for (let index = 0; index < tagValues.length; index++) {
-        const element = tagValues[index];
-        const targetIndex = tagValues.length - 1 - index;
-        if (
-          Number(element.dataset.index) == value &&
-          keydown.horizontalIndex != targetIndex
-        ) {
-          horizontalClickEnable.value = false;
-          keydown.horizontalIndex = targetIndex;
-        }
+    await nextTick();
+    const tagValues = getTagValueElms();
+
+    for (let index = 0; index < tagValues.length; index++) {
+      const targetIndex = tagValues.length - 1 - index;
+      if (
+        Number(tagValues[index].dataset.index) == value &&
+        keydown.horizontalIndex != targetIndex
+      ) {
+        horizontalClickEnable.value = false;
+        keydown.horizontalIndex = targetIndex;
       }
     }
+    setTimeout(() => {
+      if (isActiveElementContainApp() == true) {
+        const actElm = document.activeElement;
+        const isTagValueInput = actElm.classList.contains("tag__value--input");
+        keydown.horizontalLock = isTagValueInput;
+        keydown.backspaceLock = isTagValueInput;
+      }
+    }, 100);
   });
 
   // =============== METHODS ==============
@@ -278,6 +287,7 @@ export default function useKeyboard(props, context, dep) {
 
       case "ArrowLeft":
       case "ArrowRight": {
+        console.log("       app keydown");
         // event.preventDefault();
         await nextTick();
 
