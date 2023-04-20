@@ -12,6 +12,8 @@
   >
     <div class="logs" style="width: 100%">
       keydown.horizontalIndex = {{ keydown.horizontalIndex }} <br />
+      <!-- tagsGroupByKey = {{ tagsGroupByKey }} -->
+      <br />
       editTagIndex = {{ editTagIndex }} <br />
       isEditMode = {{ isEditMode }} <br />
       <!-- 

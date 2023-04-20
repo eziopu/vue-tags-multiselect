@@ -5,8 +5,8 @@
       editing: editMyself,
       pointer: appIsLock != true,
     }"
+    :data-index="tag.index"
     tabindex="0"
-    ref="elTagValue"
     @click="handleClick"
   >
     <!-- {{ editMyself }} | -->
@@ -19,6 +19,7 @@
       }"
       v-html="diplayElm()"
       tabindex="0"
+      ref="elTagValueContent"
       @blur="elDivBlur"
     />
     <input
@@ -28,8 +29,9 @@
       v-model="inputValue"
       ref="elInput"
       :style="{ width: inputWidth }"
-      @keyup.delete="elInputDelete()"
-      @blur="elInputBlur()"
+      @keyup="handleKeydown"
+      @focus="elInputFocus"
+      @blur="elInputBlur"
     />
   </div>
 </template>
@@ -38,6 +40,7 @@ import resolve from "../../../utils/resolve";
 import useDelete from "./composables/useDelete";
 import useInput from "./composables/useInput";
 import useValue from "./composables/useValue";
+import useKeyboard from "./composables/useKeyboard";
 
 export default {
   name: "v-tag-value",
@@ -65,7 +68,7 @@ export default {
 
     return {
       diplayElm,
-      ...resolve(props, context, [useDelete, useInput, useValue]),
+      ...resolve(props, context, [useDelete, useInput, useValue, useKeyboard]),
     };
   },
 };
@@ -73,7 +76,8 @@ export default {
 
 <style lang="scss" scoped>
 .tag__value {
-  &:focus {
+  &:focus,
+  .tag__value--content:focus {
     outline: none;
   }
 

@@ -1,4 +1,4 @@
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, inject } from "vue";
 
 export default function useDelete(props, _context, dep) {
   // ================ REF ================
@@ -27,28 +27,19 @@ export default function useDelete(props, _context, dep) {
 
   // ============== METHODS ==============
 
+  const appBlur = inject("appBlur");
   const deleteTag = dep.deleteTag;
-
-  const elInputDelete = () => {
-    if (nextWillDelete.value == true) {
-      deleteTag();
-    } else if (inputValue.value == "") {
-      nextWillDelete.value = true;
-    }
-  };
   const elInputBlur = () => {
     if (inputValue.value == "") {
       deleteTag();
     }
+    appBlur();
   };
 
-  const elInputEnter = () => {
-    if (inputValue.value == "") {
-      deleteTag();
-    } else {
-      // if (appKeydown.UDIndex == -1) {
-      //   appSetTagToTags(inputValue.value);
-      // }
+  const elInputFocus = (event) => {
+    const selectionStart = event.target.selectionStart;
+    if (selectionStart == 0 || selectionStart == inputValue.value.length) {
+      nextWillDelete.value = false;
     }
   };
 
@@ -58,8 +49,7 @@ export default function useDelete(props, _context, dep) {
     inputWidth,
     nextWillDelete,
 
-    elInputEnter,
-    elInputDelete,
+    elInputFocus,
     elInputBlur,
   };
 }

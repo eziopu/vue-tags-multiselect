@@ -19,7 +19,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 
   <main>
     <v-tags-multiselect>
-      <v-tag-dropdown value="country">
+      <v-tag-dropdown value="country" custom>
         <v-tag-option title> title111 </v-tag-option>
         <v-tag-option value="Māre111" selected> 11Māre1111 </v-tag-option>
         <v-tag-option value="Eldia2222" selected>
