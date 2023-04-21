@@ -1,4 +1,4 @@
-import { ref, nextTick, getCurrentInstance, watch } from "vue";
+import { ref, nextTick, getCurrentInstance, watch, provide } from "vue";
 
 export default function useKeyboard(props, context, dep) {
   const $this = getCurrentInstance().proxy;
@@ -114,10 +114,9 @@ export default function useKeyboard(props, context, dep) {
     // console.log("handleKeydown e =", event);
     context.emit("keydown", event, $this);
 
-    const keyCode = event.keyCode ? event.keyCode : event;
-    keydown.keyCode = keyCode;
+    const eventKey = event.key ? event.key : event;
 
-    switch (event.key) {
+    switch (eventKey) {
       case "Enter":
         event.preventDefault();
         await nextTick();
@@ -299,6 +298,9 @@ export default function useKeyboard(props, context, dep) {
   const handleKeyup = (event) => {
     context.emit("keyup", event, $this);
   };
+
+  // =============== PROVIDE ==============
+  provide("appHandleKeydown", handleKeydown);
 
   return {
     handleKeydown,
