@@ -1,38 +1,11 @@
-import {
-  ref,
-  toRefs,
-  computed,
-  nextTick,
-  getCurrentInstance,
-  watch,
-} from "vue";
+import { ref, nextTick, getCurrentInstance, watch } from "vue";
 
 export default function useKeyboard(props, context, dep) {
-  const {
-    mode,
-    addTagOn,
-    searchable,
-    showOptions,
-    valueProp,
-    groups: groupped,
-    addOptionOn: addOptionOn_,
-    createTag,
-    createOption: createOption_,
-  } = toRefs(props);
-
   const $this = getCurrentInstance().proxy;
 
   // ============ DEPENDENCIES ============
 
   const focusApp = dep.focusApp;
-  const update = dep.update;
-  const search = dep.search;
-  const setPointer = dep.setPointer;
-  const selectPointer = dep.selectPointer;
-  const backwardPointer = dep.backwardPointer;
-  const forwardPointer = dep.forwardPointer;
-  const multiselect = dep.multiselect;
-  const isOpen = dep.isOpen;
 
   const tags = dep.tags;
 
@@ -52,29 +25,11 @@ export default function useKeyboard(props, context, dep) {
 
   // ================ REFS ================
 
-  const elInput = dep.elInput;
-
   const elDropdown = dep.elDropdown;
 
   const elTags = dep.elTags;
 
   // ============== COMPUTED ==============
-
-  // no export
-  const createOption = computed(() => {
-    return createTag.value || createOption_.value || false;
-  });
-
-  // no export
-  const addOptionOn = computed(() => {
-    if (addTagOn.value !== undefined) {
-      return addTagOn.value;
-    } else if (addOptionOn_.value !== undefined) {
-      return addOptionOn_.value;
-    }
-
-    return ["enter"];
-  });
 
   // ============== WATCH ==============
   watch(
@@ -163,47 +118,6 @@ export default function useKeyboard(props, context, dep) {
     keydown.keyCode = keyCode;
 
     switch (event.key) {
-      case "Backspace":
-        // event.preventDefault();
-
-        if (elInputValue.value != "" || keydown.backspaceLock == true) {
-          return;
-        }
-
-        var isWorked = false;
-
-        if (
-          conjunction.value == "OR" &&
-          (props.conjunction != "OR" || props.conjunction != "AND")
-        ) {
-          isWorked = true;
-          conjunction.value = "";
-        }
-
-        if (isWorked == false && stashTag.key != null) {
-          isWorked = true;
-          setStashTag();
-        }
-
-        if (isWorked == false && tagsGroupByTitle.length != 0) {
-          const getLastTag = () => {
-            const clearTags = tags.filter(
-              (tag) => tag != null && tag != undefined
-            );
-            return clearTags[clearTags.length];
-          };
-          const indexs =
-            props.merge == true
-              ? tagsGroupByTitle.value[
-                  tagsGroupByTitle.value.length - 1
-                ].values.map((value) => value.index)
-              : [getLastTag().index];
-          deleteTags(indexs);
-        }
-
-        isWorked = false;
-        break;
-
       case "Enter":
         event.preventDefault();
         await nextTick();
@@ -254,6 +168,47 @@ export default function useKeyboard(props, context, dep) {
 
         break;
 
+      case "Backspace":
+        // event.preventDefault();
+        if (elInputValue.value != "" || keydown.backspaceLock == true) {
+          return;
+        }
+        event.preventDefault();
+
+        var isWorked = false;
+
+        if (
+          conjunction.value == "OR" &&
+          (props.conjunction != "OR" || props.conjunction != "AND")
+        ) {
+          isWorked = true;
+          conjunction.value = "";
+        }
+
+        if (isWorked == false && stashTag.key != null) {
+          isWorked = true;
+          setStashTag();
+        }
+
+        if (isWorked == false && tagsGroupByTitle.length != 0) {
+          const getLastTag = () => {
+            const clearTags = tags.filter(
+              (tag) => tag != null && tag != undefined
+            );
+            return clearTags[clearTags.length];
+          };
+          const indexs =
+            props.merge == true
+              ? tagsGroupByTitle.value[
+                  tagsGroupByTitle.value.length - 1
+                ].values.map((value) => value.index)
+              : [getLastTag().index];
+          deleteTags(indexs);
+        }
+
+        isWorked = false;
+        break;
+
       case "ArrowUp":
       case "ArrowDown": {
         event.preventDefault();
@@ -288,11 +243,12 @@ export default function useKeyboard(props, context, dep) {
       case "ArrowLeft":
       case "ArrowRight": {
         console.log("       app keydown");
-        // event.preventDefault();
         await nextTick();
 
         try {
           if (keydown.horizontalLock == true) throw "locked";
+          event.preventDefault();
+
           keydown.verticalIndex = -1;
           const tagValues = getTagValueElms();
           const numElements = tagValues.length || 0;
