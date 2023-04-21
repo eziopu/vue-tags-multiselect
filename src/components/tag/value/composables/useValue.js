@@ -31,7 +31,11 @@ export default function useValue(props, _context, dep) {
   });
 
   const editByinput = computed(() => {
-    return props.tag.custom == true && editMyself.value == true;
+    return (
+      props.tag.custom == true &&
+      editMyself.value == true &&
+      inputValue.value != ""
+    );
   });
 
   // ============== WATCH ==============
@@ -42,11 +46,12 @@ export default function useValue(props, _context, dep) {
       return;
     }
 
-    await nextTick();
     if (props.tag.custom == true) {
       inputValue.value = props.tag.value;
+      await nextTick();
       elInput.value.focus();
     } else {
+      await nextTick();
       elTagValueContent.value.focus();
     }
   });

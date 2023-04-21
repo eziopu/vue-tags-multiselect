@@ -1,4 +1,4 @@
-import { ref, nextTick, inject, watch } from "vue";
+import { ref, reactive, nextTick, inject, watch } from "vue";
 
 export default function useKeyboard(props, _context, dep) {
   // ================ REF ================
@@ -11,11 +11,12 @@ export default function useKeyboard(props, _context, dep) {
 
   const nextWillDelete = ref(false);
 
-  const nextKeydownWillChagneEditTag = ref(false);
+  const nextKeydownWillUseAppKeydown = ref(false);
 
-  // ================ INJECT ================
-
-  const appKeydown = inject("appKeydown");
+  const inputCursorBoundary = reactive({
+    isLeft: false,
+    isRight: false,
+  });
 
   // ============ DEPENDENCIES ============
 
@@ -107,11 +108,27 @@ export default function useKeyboard(props, _context, dep) {
         break;
 
       case "ArrowLeft":
-      case "ArrowRight": {
-        console.log("       tag value keydown");
         event.preventDefault();
         await nextTick();
-        console.log("???");
+        console.log("       tag value keydown ArrowLeft", inputCursorBoundary.isLeft);
+        if (inputCursorBoundary.isLeft == true && nextKeydownWillUseAppKeydown.value == true) {
+          nextKeydownWillUseAppKeydown.value = false;
+          console.log("WTFFFF");
+          useAppHandleKeydown(event.key);
+          // appKeydown.horizontalLock = false;
+          // appHandleKeydown(event.key);
+        }
+        break;
+
+      case "ArrowRight": {
+        event.preventDefault();
+        await nextTick();
+        console.log("       tag value keydown ArrowRight", inputCursorBoundary.isRight);
+        if (inputCursorBoundary.isRight == true && nextKeydownWillUseAppKeydown.value == true) {
+          nextKeydownWillUseAppKeydown.value = false;
+          console.log("WTFFFF");
+          // useAppHandleKeydown(event.key);
+        }
 
         try {
           // if (keydown.horizontalLock == true) throw "locked";
@@ -171,39 +188,44 @@ export default function useKeyboard(props, _context, dep) {
   // ============== METHODS ==============
   const deleteTag = dep.deleteTag;
 
-  watch(editByinput, async (value) => {
+  watch(editByinput, async () => {
     await nextTick();
-    if (value == true) {
-      nextKeydownWillChagneEditTag.value = isInputSelectionLimit();
-    } else {
-      nextKeydownWillChagneEditTag.value = false;
+    updateInputCursorBoundary();
+    console.log("editByinput()", inputCursorBoundary);
+    const { isLeft, isRight } = inputCursorBoundary;
+    if (isLeft || isRight) {
+      nextKeydownWillUseAppKeydown.value = true;
     }
-    console.log("nextKeydownWillChagneEditTag.value");
-    console.log(nextKeydownWillChagneEditTag.value);
   });
-
+  
   // const handleKeydownLR = async (keyCode = 0) => {
   //   await nextTick();
   //   console.log(keyCode);
   //   const selectionStart = elInput.value.selectionStart;
   //   console.log(elInput.value.selectionStart);
   //   if (
-  //     nextKeydownWillChagneEditTag.value == true &&
+  //     nextKeydownWillUseAppKeydown.value == true &&
   //     ((keyCode == 37 && selectionStart == 0) ||
   //       (keyCode == 39 && selectionStart == inputValue.value.length))
   //   ) {
   //     appKeydown.horizontalLock = false;
-  //     nextKeydownWillChagneEditTag.value = false;
+  //     nextKeydownWillUseAppKeydown.value = false;
   //     // this.app.handleKeydown(keyCode);
   //   }
-  //   nextKeydownWillChagneEditTag.value = isInputSelectionLimit();
+  //   nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
   // };
 
-  const isInputSelectionLimit = () => {
+  const appKeydown = inject("appKeydown");
+  const appHandleKeydown = inject("appHandleKeydown");
+  const useAppHandleKeydown = (eventKey) => {
+    appKeydown.horizontalLock = false;
+    appHandleKeydown(eventKey);
+  };
+
+  const updateInputCursorBoundary = () => {
     const selectionStart = elInput.value.selectionStart;
-    return selectionStart == 0 || selectionStart == inputValue.value.length
-      ? true
-      : false;
+    inputCursorBoundary.isLeft = selectionStart == 0;
+    inputCursorBoundary.isRight = selectionStart == inputValue.value.length;
   };
 
   return {
