@@ -1,4 +1,4 @@
-import { ref, reactive, nextTick, inject, watch } from "vue";
+import { ref, nextTick, inject, watch } from "vue";
 
 export default function useKeyboard(props, _context, dep) {
   // ================ REF ================
@@ -13,56 +13,21 @@ export default function useKeyboard(props, _context, dep) {
 
   const nextKeydownWillUseAppKeydown = ref(false);
 
-  const inputCursorBoundary = reactive({
-    isLeft: false,
-    isRight: false,
-  });
-
-  // ============ DEPENDENCIES ============
-
-  // const focusApp = dep.focusApp;
-  // const update = dep.update;
-  // const search = dep.search;
-  // const setPointer = dep.setPointer;
-  // const selectPointer = dep.selectPointer;
-  // const backwardPointer = dep.backwardPointer;
-  // const forwardPointer = dep.forwardPointer;
-  // const multiselect = dep.multiselect;
-  // const isOpen = dep.isOpen;
-
-  // const tags = dep.tags;
-
-  // const tagsGroupByTitle = dep.tagsGroupByTitle;
-
-  // const conjunction = dep.conjunction;
-
-  // const keydown = dep.keydown;
-
-  // const elInputValue = dep.elInputValue;
-
-  // const isEditMode = dep.isEditMode;
-
-  // const stashTag = dep.stashTag;
-
-  // const setTagToTags = dep.setTagToTags;
-
-  // ================ REFS ================
-
-  // const elInput = dep.elInput;
+  // In order to tag, if the Keydown event is passed during input editing, execute the app's Keydown again.
+  const keydownHorizontalLock = dep.keydownHorizontalLock;
 
   // ============== COMPUTED ==============
 
   const editByinput = dep.editByinput;
-
-  const editMyself = dep.editMyself;
-
-  const noCustomeHoverAndEditMyself = dep.noCustomeHoverAndEditMyself;
 
   // ============== WATCH ==============
 
   watch(editByinput, async () => {
     await nextTick();
     nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
+    setTimeout(() => {
+      keydownHorizontalLock.value = false;
+    }, 100);
   });
 
   watch(inputValue, (value) => {
@@ -106,7 +71,11 @@ export default function useKeyboard(props, _context, dep) {
       case "ArrowLeft":
         event.preventDefault();
         await nextTick();
-        console.log("       tag value keydown ArrowLeft", inputCursorBoundary.isLeft);
+        if (keydownHorizontalLock.value == true) {
+          keydownHorizontalLock.value = false;
+          return;
+        }
+        console.log("       tag value keydown ArrowLeft");
         if (getElInputSelectionStart() == 0) {
           handleKeydownVerticalBoundary(event);
         }
@@ -116,62 +85,20 @@ export default function useKeyboard(props, _context, dep) {
       case "ArrowRight": {
         event.preventDefault();
         await nextTick();
-        console.log("       tag value keydown ArrowRight", inputCursorBoundary.isRight);
+        if (keydownHorizontalLock.value == true) {
+          keydownHorizontalLock.value = false;
+          return;
+        }
+        console.log("       tag value keydown ArrowRight");
         if (getElInputSelectionStart() == inputValue.value.length) {
           handleKeydownVerticalBoundary(event);
         }
         nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
 
-        try {
-          // if (keydown.horizontalLock == true) throw "locked";
-          // keydown.verticalIndex = -1;
-          // const tagValues = getTagValueElms();
-          // const numElements = tagValues.length || 0;
-          // let newIndex =
-          //   event.key == "ArrowRight"
-          //     ? keydown.horizontalIndex - 1
-          //     : keydown.horizontalIndex + 1;
-          // if (newIndex == -2 && keydown.horizontalIndex == -1) {
-          //   newIndex = numElements - 1;
-          // }
-          // if (newIndex >= numElements) {
-          //   newIndex = -1;
-          // }
-          // keydown.horizontalIndex = newIndex;
-        } catch (error) {
-          // if (error != "locked") {
-          //   keydown.horizontalIndex = -1;
-          // }
-        }
-
         break;
       }
     }
   };
-
-
-
-  // watch(
-  //   appKeydown,
-  //   (value) => {
-  //     if (editByinput.value == true) {
-  //       handleKeydownLR(value.keyCode);
-  //     }
-  //     if (
-  //       noCustomeHoverAndEditMyself.value == true &&
-  //       [8, 46].indexOf(value.keyCode) > -1
-  //     ) {
-  //       // back space, del
-  //       deleteTag();
-  //     }
-  //     if (editMyself.value == false) return;
-  //     if (value.keyCode != 13) return;
-  //     dep.elInputEnter();
-  //   },
-  //   {
-  //     deep: true,
-  //   }
-  // );
 
   const getElInputSelectionStart = () => {
     return elInput.value.selectionStart;
@@ -186,7 +113,6 @@ export default function useKeyboard(props, _context, dep) {
   const appHandleKeydown = inject("appHandleKeydown");
   const handleKeydownVerticalBoundary = (event) => {
     if (nextKeydownWillUseAppKeydown.value == true) {
-      console.log("WTFFFF");
       appKeydown.horizontalLock = false;
       appHandleKeydown(event);
     }
@@ -194,5 +120,6 @@ export default function useKeyboard(props, _context, dep) {
 
   return {
     handleKeydown,
+    nextKeydownWillUseAppKeydown,
   };
 }

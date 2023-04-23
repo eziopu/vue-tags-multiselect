@@ -11,6 +11,9 @@ export default function useValue(props, _context, dep) {
 
   const inputValue = dep.inputValue;
 
+  // In order to tag, if the Keydown event is passed during input editing, execute the app's Keydown again.
+  const keydownHorizontalLock = ref(false);
+
   // ================ INJECT ================
 
   const appProps = inject("appProps");
@@ -40,21 +43,27 @@ export default function useValue(props, _context, dep) {
 
   // ============== WATCH ==============
 
-  watch(editMyself, async (value) => {
-    if (value == false) {
-      inputValue.value = "";
-      return;
-    }
-
+  watch(editMyself, async () => {
     if (props.tag.custom == true) {
-      inputValue.value = JSON.stringify(props.tag.value);
+      keydownHorizontalLock.value = true;
+      inputValue.value = JSON.parse(JSON.stringify(props.tag.value));
       await nextTick();
-      elInput.value.focus();
+      setTimeout(() => {
+        elInput.value.focus();
+      }, 20);
     } else {
       await nextTick();
       elTagValueContent.value.focus();
     }
   });
+
+  watch(
+    () => props.tag.value,
+    (value) => {
+      inputValue.value = JSON.parse(JSON.stringify(value));
+    },
+    { immediate: true }
+  );
 
   // ============== METHODS ==============
 
@@ -76,7 +85,6 @@ export default function useValue(props, _context, dep) {
 
   const elDivBlur = () => {
     appIsActiveToFalse();
-    console.log("elDivBlur", props.tag.value);
     appBlur();
   };
 
@@ -88,6 +96,7 @@ export default function useValue(props, _context, dep) {
     editByinput,
     editMyself,
     noCustomeHoverAndEditMyself,
+    keydownHorizontalLock,
 
     handleClick,
     elDivBlur,

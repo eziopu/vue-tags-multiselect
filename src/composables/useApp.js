@@ -97,7 +97,6 @@ export default function useApp(props, _context, dep) {
     appEnable();
 
     if (focusReInit.value == true) {
-      // console.log("yyyyyyyyyyy");
       init("elInputFocus");
     } else {
       focusReInit.value = true;
@@ -107,7 +106,6 @@ export default function useApp(props, _context, dep) {
   const elInputBlur = () => {
     setTimeout(() => {
       const actElm = document.activeElement;
-      console.log("1 elInputBlur elInputBlur");
       console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
       if (isActiveElementContainApp() == false) {
         isActive.value = false;
