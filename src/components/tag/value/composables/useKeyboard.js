@@ -101,7 +101,7 @@ export default function useKeyboard(props, _context, dep) {
   };
 
   const getElInputSelectionStart = () => {
-    return elInput.value.selectionStart;
+    return elInput.value ? elInput.value.selectionStart : 0;
   };
 
   const isInputSelectionLimit = () => {

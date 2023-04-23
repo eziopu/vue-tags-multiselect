@@ -34,16 +34,15 @@ export default function useValue(props, _context, dep) {
   });
 
   const editByinput = computed(() => {
-    return (
-      props.tag.custom == true &&
-      editMyself.value == true &&
-      inputValue.value != ""
-    );
+    return props.tag.custom == true && editMyself.value == true;
   });
 
   // ============== WATCH ==============
 
-  watch(editMyself, async () => {
+  watch(editMyself, async (value) => {
+    if (value == false) {
+      return;
+    }
     if (props.tag.custom == true) {
       keydownHorizontalLock.value = true;
       inputValue.value = JSON.parse(JSON.stringify(props.tag.value));
