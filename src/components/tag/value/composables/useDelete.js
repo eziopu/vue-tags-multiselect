@@ -9,7 +9,8 @@ export default function useDelete(props) {
 
   // ============== METHODS ==============
 
-  const deleteTag = () => {
+  const deleteTag = (where) => {
+    console.log(" value where", where);
     appDeleteTags([props.tag.index]);
     appReFocus();
   };

@@ -47,7 +47,7 @@ export default function useValue(props, _context, dep) {
     }
 
     if (props.tag.custom == true) {
-      inputValue.value = props.tag.value;
+      inputValue.value = JSON.stringify(props.tag.value);
       await nextTick();
       elInput.value.focus();
     } else {

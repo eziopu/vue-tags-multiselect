@@ -111,12 +111,12 @@ export default function useKeyboard(props, context, dep) {
   };
 
   const handleKeydown = async (event) => {
-    // console.log("handleKeydown e =", event);
     context.emit("keydown", event, $this);
+    
+    // const eventKey = event.key ? event.key : event;
+    console.log("0 app handleKeydown e =", event.key);
 
-    const eventKey = event.key ? event.key : event;
-
-    switch (eventKey) {
+    switch (event.key) {
       case "Enter":
         event.preventDefault();
         await nextTick();
@@ -241,20 +241,25 @@ export default function useKeyboard(props, context, dep) {
 
       case "ArrowLeft":
       case "ArrowRight": {
-        console.log("       app keydown");
+        console.log("       app keydown ArrowLeft ArrowRight");
         await nextTick();
 
         try {
+          console.log("000000000");
           if (keydown.horizontalLock == true) throw "locked";
           event.preventDefault();
 
+          console.log("111111");
           keydown.verticalIndex = -1;
           const tagValues = getTagValueElms();
           const numElements = tagValues.length || 0;
           let newIndex =
             event.key == "ArrowRight"
-              ? keydown.horizontalIndex - 1
+            ? keydown.horizontalIndex - 1
               : keydown.horizontalIndex + 1;
+
+          console.log("       newIndex = ", newIndex);
+          console.log("       keydown.horizontalIndex = ", keydown.horizontalIndex);
 
           if (newIndex == -2 && keydown.horizontalIndex == -1) {
             newIndex = numElements - 1;
@@ -262,9 +267,11 @@ export default function useKeyboard(props, context, dep) {
           if (newIndex >= numElements) {
             newIndex = -1;
           }
+          console.log("22222");
 
           keydown.horizontalIndex = newIndex;
         } catch (error) {
+          console.log("???", error);
           if (error != "locked") {
             keydown.horizontalIndex = -1;
           }

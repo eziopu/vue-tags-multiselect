@@ -58,26 +58,22 @@ export default function useKeyboard(props, _context, dep) {
 
   const noCustomeHoverAndEditMyself = dep.noCustomeHoverAndEditMyself;
 
-  // const createOption = computed(() => {
-  //   return createTag.value || createOption_.value || false;
-  // });
-
   // ============== WATCH ==============
 
-  // watch(
-  //   () => keydown.horizontalIndex,
-  //   async (value) => {
-  //     await nextTick();
-  //     const tagValues = getTagValueElms();
-  //     if (value != -1) {
-  //       tagValues[tagValues.length - 1 - value].click();
-  //     } else {
-  //       focusApp();
-  //     }
-  //   }
-  // );
+  watch(editByinput, async () => {
+    await nextTick();
+    nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
+  });
+
+  watch(inputValue, (value) => {
+    if (value != "") {
+      nextWillDelete.value = false;
+    }
+  });
 
   // =============== METHODS ==============
+
+  const deleteTag = dep.deleteTag;
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event.key);
@@ -86,7 +82,7 @@ export default function useKeyboard(props, _context, dep) {
       case "Backspace":
         event.preventDefault();
         if (nextWillDelete.value == true) {
-          deleteTag();
+          deleteTag("  value Backspace");
         } else if (inputValue.value == "") {
           nextWillDelete.value = true;
         }
@@ -98,7 +94,7 @@ export default function useKeyboard(props, _context, dep) {
         await nextTick();
 
         if (inputValue.value == "") {
-          deleteTag();
+          deleteTag("  value Enter");
         } else {
           // if (appKeydown.UDIndex == -1) {
           //   appSetTagToTags(inputValue.value);
@@ -111,24 +107,20 @@ export default function useKeyboard(props, _context, dep) {
         event.preventDefault();
         await nextTick();
         console.log("       tag value keydown ArrowLeft", inputCursorBoundary.isLeft);
-        if (inputCursorBoundary.isLeft == true && nextKeydownWillUseAppKeydown.value == true) {
-          nextKeydownWillUseAppKeydown.value = false;
-          console.log("WTFFFF");
-          useAppHandleKeydown(event.key);
-          // appKeydown.horizontalLock = false;
-          // appHandleKeydown(event.key);
+        if (getElInputSelectionStart() == 0) {
+          handleKeydownVerticalBoundary(event);
         }
+        nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
         break;
 
       case "ArrowRight": {
         event.preventDefault();
         await nextTick();
         console.log("       tag value keydown ArrowRight", inputCursorBoundary.isRight);
-        if (inputCursorBoundary.isRight == true && nextKeydownWillUseAppKeydown.value == true) {
-          nextKeydownWillUseAppKeydown.value = false;
-          console.log("WTFFFF");
-          // useAppHandleKeydown(event.key);
+        if (getElInputSelectionStart() == inputValue.value.length) {
+          handleKeydownVerticalBoundary(event);
         }
+        nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
 
         try {
           // if (keydown.horizontalLock == true) throw "locked";
@@ -157,11 +149,7 @@ export default function useKeyboard(props, _context, dep) {
     }
   };
 
-  watch(inputValue, (value) => {
-    if (value != "") {
-      nextWillDelete.value = false;
-    }
-  });
+
 
   // watch(
   //   appKeydown,
@@ -185,47 +173,23 @@ export default function useKeyboard(props, _context, dep) {
   //   }
   // );
 
-  // ============== METHODS ==============
-  const deleteTag = dep.deleteTag;
+  const getElInputSelectionStart = () => {
+    return elInput.value.selectionStart;
+  };
 
-  watch(editByinput, async () => {
-    await nextTick();
-    updateInputCursorBoundary();
-    console.log("editByinput()", inputCursorBoundary);
-    const { isLeft, isRight } = inputCursorBoundary;
-    if (isLeft || isRight) {
-      nextKeydownWillUseAppKeydown.value = true;
-    }
-  });
-  
-  // const handleKeydownLR = async (keyCode = 0) => {
-  //   await nextTick();
-  //   console.log(keyCode);
-  //   const selectionStart = elInput.value.selectionStart;
-  //   console.log(elInput.value.selectionStart);
-  //   if (
-  //     nextKeydownWillUseAppKeydown.value == true &&
-  //     ((keyCode == 37 && selectionStart == 0) ||
-  //       (keyCode == 39 && selectionStart == inputValue.value.length))
-  //   ) {
-  //     appKeydown.horizontalLock = false;
-  //     nextKeydownWillUseAppKeydown.value = false;
-  //     // this.app.handleKeydown(keyCode);
-  //   }
-  //   nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
-  // };
+  const isInputSelectionLimit = () => {
+    const selectionStart = getElInputSelectionStart();
+    return selectionStart == 0 || selectionStart == inputValue.value.length;
+  };
 
   const appKeydown = inject("appKeydown");
   const appHandleKeydown = inject("appHandleKeydown");
-  const useAppHandleKeydown = (eventKey) => {
-    appKeydown.horizontalLock = false;
-    appHandleKeydown(eventKey);
-  };
-
-  const updateInputCursorBoundary = () => {
-    const selectionStart = elInput.value.selectionStart;
-    inputCursorBoundary.isLeft = selectionStart == 0;
-    inputCursorBoundary.isRight = selectionStart == inputValue.value.length;
+  const handleKeydownVerticalBoundary = (event) => {
+    if (nextKeydownWillUseAppKeydown.value == true) {
+      console.log("WTFFFF");
+      appKeydown.horizontalLock = false;
+      appHandleKeydown(event);
+    }
   };
 
   return {
