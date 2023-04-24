@@ -22,7 +22,7 @@ export default function useSystemOption(_props, _context, dep) {
   const tagsGroupByKey = dep.tagsGroupByKey;
 
   const isDisplayElOptionUndo = computed(() => {
-    return stashTag.key != null;
+    return stashTag.key != null && isEditMode.value == false;
   });
 
   const isDisplayElOptionORConjunction = computed(() => {

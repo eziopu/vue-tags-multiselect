@@ -1,6 +1,6 @@
 export function getKeydownModel(item = {}) {
   return {
-    keyCode: defaultNumber(item.keyCode),
+    enterLock: item.enterLock || false,
 
     verticalIndex: defaultNumber(item.verticalIndex),
     verticalLock: item.verticalLock || false,

@@ -43,6 +43,7 @@ export default function useKeyboard(props, context, dep) {
       });
       if (value != -1) {
         displayOptions[value].classList.add("hover");
+        keydown.enterLock = false;
       }
     }
   );
@@ -93,6 +94,7 @@ export default function useKeyboard(props, context, dep) {
         const isTagValueInput = actElm.classList.contains("tag__value--input");
         keydown.horizontalLock = isTagValueInput;
         keydown.backspaceLock = isTagValueInput;
+        keydown.enterLock = isTagValueInput;
       }
     }, APP_KEYDOWN_LOCK_BY_TAG_INPUT_FOCUS);
   });
@@ -118,6 +120,9 @@ export default function useKeyboard(props, context, dep) {
 
     switch (event.key) {
       case "Enter":
+        if (keydown.enterLock == true) {
+          return;
+        }
         event.preventDefault();
         await nextTick();
 
@@ -168,7 +173,6 @@ export default function useKeyboard(props, context, dep) {
         break;
 
       case "Backspace":
-        // event.preventDefault();
         if (elInputValue.value != "" || keydown.backspaceLock == true) {
           return;
         }
@@ -222,11 +226,12 @@ export default function useKeyboard(props, context, dep) {
               ? keydown.verticalIndex - 1
               : keydown.verticalIndex + 1;
 
-          if (newIndex <= -1) {
+          const navigationMaxNumber = editTagIndex.value == -1 ? -1 : -2;
+
+          if (newIndex <= navigationMaxNumber) {
             newIndex = numElements - 1;
-          }
-          if (newIndex >= numElements) {
-            newIndex = 0;
+          } else if (newIndex >= numElements) {
+            newIndex = editTagIndex.value == -1 ? 0 : -1;
           }
 
           keydown.verticalIndex = newIndex;
