@@ -1,4 +1,5 @@
 import { ref, inject, computed, watch, nextTick } from "vue";
+import { TAG_INPUT_FOCUS } from "../../../../timeouts.js";
 
 export default function useValue(props, _context, dep) {
   // ================ REF ================
@@ -49,7 +50,7 @@ export default function useValue(props, _context, dep) {
       await nextTick();
       setTimeout(() => {
         elInput.value.focus();
-      }, 20);
+      }, TAG_INPUT_FOCUS);
     } else {
       await nextTick();
       elTagValueContent.value.focus();

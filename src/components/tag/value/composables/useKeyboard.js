@@ -1,4 +1,5 @@
 import { ref, nextTick, inject, watch } from "vue";
+import { TAG_INPUT_KEYDOWN_AUTO_UNLOCK } from "../../../../timeouts.js";
 
 export default function useKeyboard(props, _context, dep) {
   // ================ REF ================
@@ -27,7 +28,7 @@ export default function useKeyboard(props, _context, dep) {
     nextKeydownWillUseAppKeydown.value = isInputSelectionLimit();
     setTimeout(() => {
       keydownHorizontalLock.value = false;
-    }, 100);
+    }, TAG_INPUT_KEYDOWN_AUTO_UNLOCK);
   });
 
   watch(inputValue, (value) => {

@@ -1,6 +1,8 @@
-import { ref, reactive, computed, provide, readonly, nextTick } from "vue";
+import { ref, reactive, computed, provide, readonly } from "vue";
 
 import { getKeydownModel } from "../models";
+
+import { APP_INPUT_BLUR } from "../timeouts.js";
 
 export default function useApp(props, _context, dep) {
   // console.log("function useApp");
@@ -111,7 +113,7 @@ export default function useApp(props, _context, dep) {
         isActive.value = false;
         init("elInputBlur");
       }
-    }, 200);
+    }, APP_INPUT_BLUR);
   };
   // =============== PROVIDE ==============
   provide("appProps", readonly(props));

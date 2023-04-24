@@ -1,5 +1,7 @@
 import { ref, nextTick, getCurrentInstance, watch, provide } from "vue";
 
+import { APP_KEYDOWN_LOCK_BY_TAG_INPUT_FOCUS } from "../timeouts.js";
+
 export default function useKeyboard(props, context, dep) {
   const $this = getCurrentInstance().proxy;
 
@@ -29,9 +31,8 @@ export default function useKeyboard(props, context, dep) {
 
   const elTags = dep.elTags;
 
-  // ============== COMPUTED ==============
-
   // ============== WATCH ==============
+
   watch(
     () => keydown.verticalIndex,
     async (value) => {
@@ -93,7 +94,7 @@ export default function useKeyboard(props, context, dep) {
         keydown.horizontalLock = isTagValueInput;
         keydown.backspaceLock = isTagValueInput;
       }
-    }, 100);
+    }, APP_KEYDOWN_LOCK_BY_TAG_INPUT_FOCUS);
   });
 
   // =============== METHODS ==============
