@@ -27,20 +27,32 @@ export default function useDelete(props, _context, dep) {
 
   // ============== METHODS ==============
 
-  const appBlur = inject("appBlur");
-  const deleteTag = dep.deleteTag;
-  const elInputBlur = () => {
-    if (inputValue.value == "") {
-      deleteTag(" value elInputBlur");
-    }
-    appBlur();
-  };
-
   const elInputFocus = (event) => {
     const selectionStart = event.target.selectionStart;
     if (selectionStart == 0 || selectionStart == inputValue.value.length) {
       nextWillDelete.value = false;
     }
+  };
+
+  const appBlur = inject("appBlur");
+  const appIsActiveToFalse = inject("appIsActiveToFalse");
+  const isActiveElementContainApp = inject("isActiveElementContainApp");
+
+  const blur = () => {
+    setTimeout(() => {
+      if (isActiveElementContainApp() == false) {
+        appIsActiveToFalse();
+      }
+      appBlur();
+    }, 50);
+  };
+
+  const deleteTag = dep.deleteTag;
+  const elInputBlur = () => {
+    if (inputValue.value == "") {
+      deleteTag(" value elInputBlur");
+    }
+    blur();
   };
 
   return {
@@ -51,5 +63,6 @@ export default function useDelete(props, _context, dep) {
 
     elInputFocus,
     elInputBlur,
+    blur,
   };
 }

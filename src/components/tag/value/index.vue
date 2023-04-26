@@ -20,7 +20,7 @@
       v-html="diplayElm()"
       tabindex="0"
       ref="elTagValueContent"
-      @blur="elDivBlur"
+      @blur="blur"
     />
     <input
       type="text"

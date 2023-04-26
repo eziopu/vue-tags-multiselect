@@ -67,9 +67,7 @@ export default function useValue(props, _context, dep) {
 
   // ============== METHODS ==============
 
-  const appBlur = inject("appBlur");
   const appSetStashTag = inject("appSetStashTag");
-  const appIsActiveToFalse = inject("appIsActiveToFalse");
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -83,11 +81,6 @@ export default function useValue(props, _context, dep) {
     }
   };
 
-  const elDivBlur = () => {
-    appIsActiveToFalse();
-    appBlur();
-  };
-
   return {
     appProps,
     appIsLock,
@@ -99,6 +92,5 @@ export default function useValue(props, _context, dep) {
     keydownHorizontalLock,
 
     handleClick,
-    elDivBlur,
   };
 }

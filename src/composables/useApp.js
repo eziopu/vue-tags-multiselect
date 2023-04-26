@@ -107,11 +107,13 @@ export default function useApp(props, _context, dep) {
 
   const elInputBlur = () => {
     setTimeout(() => {
-      const actElm = document.activeElement;
-      console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
+      // const actElm = document.activeElement;
+      // console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
       if (isActiveElementContainApp() == false) {
         isActive.value = false;
         init("elInputBlur");
+      } else {
+        isActive.value = true;
       }
     }, APP_INPUT_BLUR);
   };

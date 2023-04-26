@@ -12,7 +12,7 @@
   >
     <div class="logs" style="width: 100%">
       keydown.horizontalIndex = {{ keydown.horizontalIndex }} <br />
-      <!-- tagsGroupByKey = {{ tagsGroupByKey }} -->
+      transition = {{ transition }}
       <br />
       editTagIndex = {{ editTagIndex }} <br />
       isEditMode = {{ isEditMode }} <br />
@@ -49,7 +49,7 @@
     </div>
 
     <div class="main" ref="elMain">
-      <Transition :name="transition ? 'slide' : ''">
+      <Transition :name="transition ? 'dropdown' : ''">
         <div
           class="dropdowns"
           v-show="elDropdownDisplay"
@@ -1093,9 +1093,15 @@ export default defineComponent({
     transition: transform 0.3s ease-in-out;
   }
 
-  .slide-enter,
-  .slide-leave-to {
-    transform: scaleY(0);
+  .dropdown-enter-active,
+  .dropdown-leave-active {
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-enter,
+  .dropdown-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
   }
 }
 </style>

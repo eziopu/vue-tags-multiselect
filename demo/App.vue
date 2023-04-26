@@ -25,13 +25,19 @@ import HelloWorld from "./components/HelloWorld.vue";
         <v-tag-option value="Eldia2222" selected>
           <p>11Eldia2222</p>
         </v-tag-option>
+        <v-tag-option value="1111333"> 1111333 </v-tag-option>
+        <v-tag-option value="1114444"> 1114444 </v-tag-option>
+        <v-tag-option value="111555"> 111555 </v-tag-option>
       </v-tag-dropdown>
       <v-tag-dropdown value="country2" displayAll>
         <v-tag-option title> title2222 </v-tag-option>
         <v-tag-option value="2Māre111" selected> 222Māre1111 </v-tag-option>
-        <v-tag-option value="2Eldia2222">
+        <v-tag-option value="2Eldia2222" selected>
           <p>222Eldia2222</p>
         </v-tag-option>
+        <v-tag-option value="22223333"> 22223333 </v-tag-option>
+        <v-tag-option value="2224444"> 2224444 </v-tag-option>
+        <v-tag-option value="22555"> 22555 </v-tag-option>
       </v-tag-dropdown>
       <v-tag-dropdown value="country333">
         <v-tag-option value="3Māre111"> 333Māre1111 </v-tag-option>

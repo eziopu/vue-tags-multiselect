@@ -56,12 +56,16 @@ export default function useKeyboard(props, _context, dep) {
         break;
 
       case "Enter":
+        if (appKeydown.enterLock == false) {
+          return;
+        }
         event.preventDefault();
         await nextTick();
-
+        console.log("yyyyyyy");
         if (inputValue.value == "") {
           deleteTag("  value Enter");
         } else {
+          // const appUpdateTag = dep.appUpdateTag;
           // if (appKeydown.UDIndex == -1) {
           //   appSetTagToTags(inputValue.value);
           // }

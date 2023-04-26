@@ -123,6 +123,7 @@ export default function useKeyboard(props, context, dep) {
         if (keydown.enterLock == true) {
           return;
         }
+        console.log("NNNNNN");
         event.preventDefault();
         await nextTick();
 
