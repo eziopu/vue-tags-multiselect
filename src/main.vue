@@ -1044,15 +1044,12 @@ export default defineComponent({
 
   .dropdowns {
     position: absolute;
-    width: auto;
     border: 1px solid rgba(34, 36, 38, 0.15);
     background-color: white;
-    overflow-y: auto;
-    transform-origin: top;
-
     overflow: hidden;
     z-index: 11;
     top: 90%;
+    transition: all 0.3s ease;
 
     &.loading {
       cursor: wait !important;
@@ -1060,6 +1057,16 @@ export default defineComponent({
 
     &:empty {
       border: none !important;
+    }
+
+    .dropdowns__loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgb(242 242 242 / 63%);
     }
   }
 
@@ -1077,31 +1084,41 @@ export default defineComponent({
     align-items: center;
   }
 
-  .dropdowns {
-    .dropdowns__loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgb(242 242 242 / 63%);
-    }
-  }
-
-  .transition {
-    transition: transform 0.3s ease-in-out;
-  }
+  // .transition {
+  //   transition: transform 0.3s ease-in-out;
+  // }
 
   .dropdown-enter-active,
   .dropdown-leave-active {
-    transition: all 0.3s ease;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
   }
 
   .dropdown-enter,
   .dropdown-leave-to {
-    opacity: 0;
-    transform: translateY(-10px);
+    animation: growUP 300ms ease-in-out forwards;
+    transform-origin: top center;
+  }
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes growUP {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(0);
+    }
   }
 }
 </style>
