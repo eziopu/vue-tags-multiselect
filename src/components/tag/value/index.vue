@@ -25,6 +25,7 @@
     <input
       type="text"
       class="tag__value--input"
+      :class="{ error: inputValueIsDuplicate }"
       v-show="editByinput"
       v-model="inputValue"
       ref="elInput"
@@ -87,6 +88,10 @@ export default {
 
   .tag__value--input {
     line-height: 0em;
+    &.error,
+    &.error:focus {
+      border: 1px solid red;
+    }
   }
 
   .tag__value--content {

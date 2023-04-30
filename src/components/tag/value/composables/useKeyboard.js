@@ -10,6 +10,8 @@ export default function useKeyboard(props, _context, dep) {
 
   const inputValue = dep.inputValue;
 
+  const inputValueIsDuplicate = ref(false);
+
   const nextWillDelete = ref(false);
 
   const nextKeydownWillUseAppKeydown = ref(false);
@@ -40,6 +42,9 @@ export default function useKeyboard(props, _context, dep) {
   // =============== METHODS ==============
 
   const deleteTag = dep.deleteTag;
+  const appUpdateTag = inject("appUpdateTag");
+  const appIsDuplicateTag = inject("appIsDuplicateTag");
+  const appReFocus = inject("appReFocus");
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event.key);
@@ -56,19 +61,42 @@ export default function useKeyboard(props, _context, dep) {
         break;
 
       case "Enter":
-        if (appKeydown.enterLock == false) {
-          return;
-        }
         event.preventDefault();
         await nextTick();
-        console.log("yyyyyyy");
-        if (inputValue.value == "") {
-          deleteTag("  value Enter");
-        } else {
-          // const appUpdateTag = dep.appUpdateTag;
-          // if (appKeydown.UDIndex == -1) {
-          //   appSetTagToTags(inputValue.value);
-          // }
+        try {
+          if (appKeydown.enterLock == false) {
+            throw "lock";
+          }
+          if (inputValue.value == "") {
+            deleteTag("  value Enter");
+            throw "deleteTag";
+          }
+          if (
+            appKeydown.verticalIndex == -1 &&
+            inputValue.value != props.tag.value
+          ) {
+            if (appIsDuplicateTag(props.tag.key, inputValue.value) == true) {
+              throw "duplicate";
+            }
+
+            appUpdateTag({
+              value: inputValue.value,
+              valueElm: null,
+              displayValue: true,
+            });
+
+            appReFocus();
+            throw "updateTag";
+          }
+          throw "nothing";
+        } catch (msg) {
+          console.log(msg);
+          if (msg == "duplicate") {
+            inputValueIsDuplicate.value = true;
+            setTimeout(() => {
+              inputValueIsDuplicate.value = false;
+            }, 1000);
+          }
         }
 
         break;
@@ -125,6 +153,7 @@ export default function useKeyboard(props, _context, dep) {
 
   return {
     handleKeydown,
+    inputValueIsDuplicate,
     nextKeydownWillUseAppKeydown,
   };
 }
