@@ -9,7 +9,7 @@
     tabindex="0"
     @click="handleClick"
   >
-    <!-- {{ editMyself }} | -->
+    {{ isInputValueRepeat }} |
     <div
       v-show="tag.custom == false || !editByinput"
       class="tag__value--content"
@@ -25,7 +25,7 @@
     <input
       type="text"
       class="tag__value--input"
-      :class="{ error: inputValueIsDuplicate }"
+      :class="{ error: isInputValueRepeat }"
       v-show="editByinput"
       v-model="inputValue"
       ref="elInput"
@@ -34,6 +34,9 @@
       @focus="elInputFocus"
       @blur="elInputBlur"
     />
+    <div v-if="isInputValueRepeat" class="tag__value--warning">
+      {{ appProps.tagValueRepeat }}
+    </div>
   </div>
 </template>
 <script>
@@ -87,6 +90,7 @@ export default {
   }
 
   .tag__value--input {
+    outline: none;
     line-height: 0em;
     &.error,
     &.error:focus {

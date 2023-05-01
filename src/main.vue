@@ -196,10 +196,11 @@ export default defineComponent({
     /**
      * placeholder
      **/
+    placeholders: { type: Object, default: () => {} },
     placeholder: { type: String, default: "" },
-    loadingPlaceholder: { type: String, default: "Wait a moment, please." },
-    selectDownPlaceholder: { type: String, default: "Selected End." },
-    finishPlaceholder: { type: String, default: "Finish." },
+    // loadingPlaceholder: { type: String, default: "Wait a moment, please." },
+    // selectDownPlaceholder: { type: String, default: "Selected End." },
+    // finishPlaceholder: { type: String, default: "Finish." },
   },
   setup(props, context) {
     return resolve(props, context, [

@@ -1,3 +1,14 @@
+export function getPlaceholdersModel(item = {}) {
+  return {
+    initial: item.initial || "",
+    loading: item.loading || "Wait a moment, please.",
+    selectDown: item.selectDown || "Selected End.",
+    finish: item.finish || "Finish.",
+
+    tagValueRepeat: item.tagValueRepeat || "repeat value !",
+  };
+}
+
 export function getKeydownModel(item = {}) {
   return {
     enterLock: item.enterLock || false,

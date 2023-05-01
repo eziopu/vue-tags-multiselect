@@ -21,8 +21,6 @@ export default function useDropdown(props, context) {
 
   // ================ INJECT DATA ================
 
-  const appTags = inject("appTags");
-
   const appStashTag = inject("appStashTag");
 
   const appEditTagIndex = inject("appEditTagIndex");
@@ -90,18 +88,27 @@ export default function useDropdown(props, context) {
 
   // == IsDown ==============
 
+  const appTags = inject("appTags");
+  const appProps = inject("appProps");
   const appDropdownStatus = inject("appDropdownStatus");
 
   const isDown = computed(() => {
     if (props.custom == true) {
       return false;
     }
-    const myTags = appTags.filter((tag) => tag.key == props.value) || [];
+
+    const mySelectedTags =
+      appTags.filter((tag) => tag.key == props.value) || [];
+
+    if (appProps.conjunction == "AND") {
+      return mySelectedTags.length >= 1;
+    }
+
     let childrenLength = slots.default().length;
     if (hasVNodeTitle.value == true) {
       childrenLength -= 1;
     }
-    return childrenLength == myTags.length;
+    return childrenLength == mySelectedTags.length;
   });
 
   if (props.value != null && props.value != "") {

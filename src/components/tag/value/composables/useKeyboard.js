@@ -10,7 +10,7 @@ export default function useKeyboard(props, _context, dep) {
 
   const inputValue = dep.inputValue;
 
-  const inputValueIsDuplicate = ref(false);
+  const isInputValueRepeat = ref(false);
 
   const nextWillDelete = ref(false);
 
@@ -92,9 +92,9 @@ export default function useKeyboard(props, _context, dep) {
         } catch (msg) {
           console.log(msg);
           if (msg == "duplicate") {
-            inputValueIsDuplicate.value = true;
+            isInputValueRepeat.value = true;
             setTimeout(() => {
-              inputValueIsDuplicate.value = false;
+              isInputValueRepeat.value = false;
             }, 1000);
           }
         }
@@ -153,7 +153,7 @@ export default function useKeyboard(props, _context, dep) {
 
   return {
     handleKeydown,
-    inputValueIsDuplicate,
+    isInputValueRepeat,
     nextKeydownWillUseAppKeydown,
   };
 }
