@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import { getPlaceholdersModel } from "../models";
 
-export default function useDropdown(props, _context, dep) {
+export default function useElInput(props, _context, dep) {
   // ================ REFS ================
 
   const elInput = ref(null);
@@ -15,6 +15,10 @@ export default function useDropdown(props, _context, dep) {
   const tags = dep.tags;
 
   const stashTag = dep.stashTag;
+
+  // =============== METHODS ==============
+
+  const isAllDropdownIsDown = dep.isAllDropdownIsDown;
 
   // ============== COMPUTED ==============
 
@@ -58,12 +62,6 @@ export default function useDropdown(props, _context, dep) {
     }
     return "";
   });
-
-  const dropdownStatus = dep.dropdownStatus;
-  const isAllDropdownIsDown = () => {
-    // const dropdownStatus = { "country": { "isDown": true }, "country2": { "isDown": false }, "country333": { "isDown": false } } (reactive)
-    return Object.values(dropdownStatus).every(status => status.isDown);
-  };
 
   return {
     elInput,

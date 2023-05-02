@@ -1,6 +1,6 @@
-import { ref, reactive, computed, watch, nextTick, provide } from "vue";
+import { ref, computed, watch, nextTick } from "vue";
 
-export default function useDropdown(props, _context, dep) {
+export default function useElDropdown(props, _context, dep) {
   // ================ REFS ================
 
   const elDropdown = ref(null);
@@ -18,12 +18,6 @@ export default function useDropdown(props, _context, dep) {
   const editTagIndex = dep.editTagIndex;
 
   const appIsActive = dep.isActive;
-
-  const dropdownStatus = reactive({});
-
-  // =============== PROVIDE ==============
-
-  provide("appDropdownStatus", dropdownStatus);
 
   // ============== COMPUTED ==============
 
@@ -55,7 +49,5 @@ export default function useDropdown(props, _context, dep) {
     elDropdown,
     elDropdownLeft,
     elDropdownDisplay,
-
-    dropdownStatus,
   };
 }

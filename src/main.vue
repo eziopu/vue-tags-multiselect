@@ -156,10 +156,11 @@ import VTagOption from "./components/slots/v-option.vue";
 
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
+import usePreprocessedData from "./composables/usePreprocessedData";
 import useTag from "./composables/useTag";
-import useInput from "./composables/useInput";
+import useElInput from "./composables/useElInput";
 import useApp from "./composables/useApp";
-import useDropdown from "./composables/useDropdown";
+import useElDropdown from "./composables/useElDropdown";
 import useSystemOption from "./composables/useSystemOption";
 import useStatus from "./composables/useStatus";
 import useKeyboard from "./composables/useKeyboard";
@@ -204,10 +205,11 @@ export default defineComponent({
   },
   setup(props, context) {
     return resolve(props, context, [
+      usePreprocessedData,
       useTag,
-      useInput,
+      useElInput,
       useApp,
-      useDropdown,
+      useElDropdown,
       useSystemOption,
       useStatus,
       useKeyboard,
