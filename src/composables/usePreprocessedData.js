@@ -1,24 +1,36 @@
-import { reactive, provide } from "vue";
+import { reactive, computed, provide } from "vue";
 
-export default function usePreprocessedData() {
-  // ==================== Dropdown status ====================
-  // ================ DATA ================
+export default function usePreprocessedData(props) {
+  // ================= Dropdown status ====================
+  // ============== DATA ================
 
   const dropdownStatus = reactive({});
 
-  // =============== PROVIDE ==============
+  // ============== PROVIDE ==============
 
   provide("appDropdownStatus", dropdownStatus);
 
-  // =============== METHODS ==============
-
-  const isAllDropdownIsDown = () => {
+  // ============== COMPUTED ================
+  const isAllDropdownIsDown = computed(() => {
     // const dropdownStatus = { "country": { "isDown": true }, "country2": { "isDown": false }, "country333": { "isDown": false } } (reactive)
     return Object.values(dropdownStatus).every((status) => status.isDown);
-  };
+  });
+
+  // ================= App status ====================
+  // ============== COMPUTED ================
+  const appIsLock = computed(() => {
+    return props.loading == true || props.disabled == true;
+  });
+
+  const appIsFinish = computed(() => {
+    return isAllDropdownIsDown.value == true && props.create == false;
+  });
 
   return {
     dropdownStatus,
     isAllDropdownIsDown,
+
+    appIsLock,
+    appIsFinish,
   };
 }
