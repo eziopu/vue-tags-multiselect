@@ -1,4 +1,4 @@
-import { provide, computed, readonly, ref, nextTick, watch } from "vue";
+import { ref, computed, watch, nextTick } from "vue";
 
 export default function useStatus(props, context, dep) {
   // console.log("function useStatus");
@@ -21,13 +21,7 @@ export default function useStatus(props, context, dep) {
 
   // ============== COMPUTED ==============
 
-  const isLock = computed(() => {
-    return props.loading == true || props.disabled == true;
-  });
-
-  const isFinish = computed(() => {
-    return isSelectDown.value == true && props.create == false;
-  });
+  const appIsFinish = dep.appIsFinish;
 
   // ============== WATCH ==============
 
@@ -46,17 +40,13 @@ export default function useStatus(props, context, dep) {
     if (props.loading == true) result.push("loading");
     if (isEditMode.value == true) result.push("editing");
     if (elDropdownDisplay.value == true) result.push("selecting");
-    if (isFinish.value == true) result.push("finish");
-    if (isFinish.value == false && isSelectDown.value == true)
+    if (appIsFinish.value == true) result.push("finish");
+    if (appIsFinish.value == false && isSelectDown.value == true)
       result.push("delect-down");
     return result;
   });
 
   context.emit("status", status);
-
-  // ============== METHODS ==============
-
-  provide("appIsLock", readonly(isLock));
 
   return {
     status,

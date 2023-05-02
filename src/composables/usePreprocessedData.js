@@ -1,4 +1,4 @@
-import { reactive, computed, provide } from "vue";
+import { reactive, computed, provide, readonly } from "vue";
 
 export default function usePreprocessedData(props) {
   // ================= Dropdown status ====================
@@ -25,6 +25,10 @@ export default function usePreprocessedData(props) {
   const appIsFinish = computed(() => {
     return isAllDropdownIsDown.value == true && props.create == false;
   });
+
+  // ============== PROVIDE ==============
+
+  provide("appIsLock", readonly(appIsLock));
 
   return {
     dropdownStatus,
