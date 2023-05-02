@@ -1,11 +1,11 @@
 import { ref, computed, watch, inject } from "vue";
 
 export default function useDelete(props, _context, dep) {
-  // ================ REF ================
+  // ============== REF ================
 
   const elInput = ref(null);
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const inputValue = ref("");
 

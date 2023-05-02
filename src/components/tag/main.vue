@@ -65,7 +65,7 @@ export default {
     },
   },
   setup(props) {
-    // ================ INJECT ================
+    // ============== INJECT ================
 
     const appProps = inject("appProps");
     const appIsLock = inject("appIsLock");
@@ -111,7 +111,7 @@ export default {
       return false;
     });
 
-    // =============== METHODS ==============
+    // ============== METHODS ==============
 
     const deletes = (event) => {
       event.preventDefault();

@@ -1,7 +1,7 @@
 import { ref, computed, onMounted } from "vue";
 
 export default function useDropdown(props, context, dep) {
-  // ================ INJECTs ================
+  // ============== INJECTs ================
 
   const app = dep.app;
 

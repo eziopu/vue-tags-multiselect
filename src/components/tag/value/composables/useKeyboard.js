@@ -2,11 +2,11 @@ import { ref, nextTick, inject, watch } from "vue";
 import { TAG_INPUT_KEYDOWN_AUTO_UNLOCK } from "../../../../timeouts.js";
 
 export default function useKeyboard(props, _context, dep) {
-  // ================ REF ================
+  // ============== REF ================
 
   const elInput = dep.elInput;
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const inputValue = dep.inputValue;
 
@@ -39,7 +39,7 @@ export default function useKeyboard(props, _context, dep) {
     }
   });
 
-  // =============== METHODS ==============
+  // ============== METHODS ==============
 
   const deleteTag = dep.deleteTag;
   const appUpdateTag = inject("appUpdateTag");

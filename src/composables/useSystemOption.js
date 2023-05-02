@@ -1,7 +1,7 @@
 import { computed } from "vue";
 
 export default function useSystemOption(_props, _context, dep) {
-  // ================ DATA ================
+  // ============== DATA ================
 
   const tagsGroupByTitle = dep.tagsGroupByTitle;
 
@@ -39,7 +39,7 @@ export default function useSystemOption(_props, _context, dep) {
 
     return conjunction.value == "";
   });
-  // =============== METHODS ==============
+  // ============== METHODS ==============
 
   const setStashTag = dep.setStashTag;
   const elAppFocus = dep.elAppFocus;

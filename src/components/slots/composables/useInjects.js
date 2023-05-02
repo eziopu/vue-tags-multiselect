@@ -1,7 +1,7 @@
 import { inject } from "vue";
 
 export default function useInjects() {
-  // ================ INJECT ================
+  // ============== INJECT ================
 
   const app = {
     props: inject("appProps"),

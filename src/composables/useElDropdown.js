@@ -1,7 +1,7 @@
 import { ref, computed, watch, nextTick } from "vue";
 
 export default function useElDropdown(props, _context, dep) {
-  // ================ REFS ================
+  // ============== REFS ================
 
   const elDropdown = ref(null);
 
@@ -9,11 +9,11 @@ export default function useElDropdown(props, _context, dep) {
 
   const elMain = dep.elMain;
 
-  // ================ REFS DATA ================
+  // ============== REFS DATA ================
 
   const elDropdownLeft = ref(0);
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const editTagIndex = dep.editTagIndex;
 

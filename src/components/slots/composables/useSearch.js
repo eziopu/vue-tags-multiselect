@@ -1,13 +1,13 @@
 import { computed } from "vue";
 
 export default function useSearch(props, _context, dep) {
-  // ================ INJECT ================
+  // ============== INJECT ================
 
   const app = dep.app;
 
   const dropdown = dep.dropdown;
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const value = props.title ? dropdown.props.value : props.value;
 

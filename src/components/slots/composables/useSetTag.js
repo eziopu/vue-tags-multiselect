@@ -9,7 +9,7 @@ export default function useDropdown(props, context, dep) {
 
   const elOption = ref(null);
 
-  // ================ INJECTs ================
+  // ============== INJECTs ================
 
   const app = dep.app;
 

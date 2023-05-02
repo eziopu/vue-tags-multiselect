@@ -1,7 +1,7 @@
 import { inject } from "vue";
 
 export default function useDelete(props) {
-  // ================ INJECT ================
+  // ============== INJECT ================
 
   const appDeleteTags = inject("appDeleteTags");
 

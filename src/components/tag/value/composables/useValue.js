@@ -2,20 +2,20 @@ import { ref, inject, computed, watch, nextTick } from "vue";
 import { TAG_INPUT_FOCUS } from "../../../../timeouts.js";
 
 export default function useValue(props, _context, dep) {
-  // ================ REF ================
+  // ============== REF ================
 
   const elInput = dep.elInput;
 
   const elTagValueContent = ref(null);
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const inputValue = dep.inputValue;
 
   // In order to tag, if the Keydown event is passed during input editing, execute the app's Keydown again.
   const keydownHorizontalLock = ref(false);
 
-  // ================ INJECT ================
+  // ============== INJECT ================
 
   const appProps = inject("appProps");
   const appEnable = inject("appEnable");

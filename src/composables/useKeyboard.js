@@ -5,7 +5,7 @@ import { APP_KEYDOWN_LOCK_BY_TAG_INPUT_FOCUS } from "../timeouts.js";
 export default function useKeyboard(props, context, dep) {
   const $this = getCurrentInstance().proxy;
 
-  // ============ DEPENDENCIES ============
+  // ============== DEPENDENCIES ==============
 
   const focusApp = dep.focusApp;
 
@@ -25,7 +25,7 @@ export default function useKeyboard(props, context, dep) {
 
   const setTagToTags = dep.setTagToTags;
 
-  // ================ REFS ================
+  // ============== REFS ================
 
   const elDropdown = dep.elDropdown;
 
@@ -99,7 +99,7 @@ export default function useKeyboard(props, context, dep) {
     }, APP_KEYDOWN_LOCK_BY_TAG_INPUT_FOCUS);
   });
 
-  // =============== METHODS ==============
+  // ============== METHODS ==============
 
   const setStashTag = dep.setStashTag;
 
@@ -304,7 +304,7 @@ export default function useKeyboard(props, context, dep) {
     context.emit("keyup", event, $this);
   };
 
-  // =============== PROVIDE ==============
+  // ============== PROVIDE ==============
   provide("appHandleKeydown", handleKeydown);
 
   return {

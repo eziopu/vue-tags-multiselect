@@ -6,7 +6,7 @@ import {
 } from "../models";
 
 export default function useTag() {
-  // ============ DATA ============
+  // ============== DATA ==============
 
   const tags = reactive([]);
 
@@ -54,7 +54,7 @@ export default function useTag() {
     }, {});
   });
 
-  // =============== METHODS ==============
+  // ============== METHODS ==============
 
   const setStashTag = (item = {}) => {
     Object.assign(stashTag, { ...getTagModel(item) });

@@ -54,7 +54,7 @@ export default function useStatus(props, context, dep) {
 
   context.emit("status", status);
 
-  // =============== METHODS ==============
+  // ============== METHODS ==============
 
   provide("appIsLock", readonly(isLock));
 

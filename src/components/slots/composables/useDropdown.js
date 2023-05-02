@@ -11,21 +11,21 @@ import {
 import clearHTML from "../../../utils/clearHTML";
 
 export default function useDropdown(props, context) {
-  // ================ DATA ================
+  // ============== DATA ================
 
   const { slots } = context;
 
-  // ================ REFS ================
+  // ============== REFS ================
 
   const elDropdown = ref(null);
 
-  // ================ INJECT DATA ================
+  // ============== INJECT DATA ================
 
   const appStashTag = inject("appStashTag");
 
   const appEditTagIndex = inject("appEditTagIndex");
 
-  // ============== COMPUTED ==============
+  // ============== COMPUTED ================
 
   const getTitleInnerHTML = computed(() => {
     if (elDropdown.value == null) {
@@ -104,7 +104,10 @@ export default function useDropdown(props, context) {
       return mySelectedTags.length >= 1;
     }
 
-    let childrenLength = slots.default().length;
+    // 刪除可能為註解or文字的 children
+    let childrenLength = slots
+      .default()
+      .filter((slot) => typeof slot.type === "object").length;
     if (hasVNodeTitle.value == true) {
       childrenLength -= 1;
     }
@@ -127,7 +130,7 @@ export default function useDropdown(props, context) {
     });
   }
 
-  // =============== PROVIDE ==============
+  // ============== PROVIDE ==============
 
   provide("dropdownProps", readonly(props));
 

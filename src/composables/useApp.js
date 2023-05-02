@@ -9,7 +9,7 @@ export default function useApp(props, _context, dep) {
   // console.log("props =", props);
   // console.log("context =", context);
 
-  // ================ REFS ================
+  // ============== REFS ================
 
   const elApp = ref(null);
 
@@ -21,7 +21,7 @@ export default function useApp(props, _context, dep) {
 
   const elInput = dep.elInput;
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const isAppActived = ref(false);
 
@@ -43,7 +43,7 @@ export default function useApp(props, _context, dep) {
     return props.disabled ? -1 : 0;
   });
 
-  // =============== METHODS ==============
+  // ============== METHODS ==============
 
   const setStashTag = dep.setStashTag;
 
@@ -117,7 +117,7 @@ export default function useApp(props, _context, dep) {
       }
     }, APP_INPUT_BLUR);
   };
-  // =============== PROVIDE ==============
+  // ============== PROVIDE ==============
   provide("appProps", readonly(props));
   provide("appConjunction", readonly(conjunction));
 

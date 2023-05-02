@@ -2,25 +2,25 @@ import { ref, computed } from "vue";
 import { getPlaceholdersModel } from "../models";
 
 export default function useElInput(props, _context, dep) {
-  // ================ REFS ================
+  // ============== REFS ================
 
   const elInput = ref(null);
 
-  // ================ REFS DATA ================
+  // ============== REFS DATA ================
 
   const elInputValue = ref("");
 
-  // ================ DATA ================
+  // ============== DATA ================
 
   const tags = dep.tags;
 
   const stashTag = dep.stashTag;
 
-  // =============== METHODS ==============
-
-  const isAllDropdownIsDown = dep.isAllDropdownIsDown;
-
   // ============== COMPUTED ==============
+
+  const isFinish = computed(() => {
+    return dep.isSelectDown == true && props.create == false;
+  });
 
   const placeholders = computed(() => {
     return getPlaceholdersModel(props.placeholders);
@@ -42,6 +42,8 @@ export default function useElInput(props, _context, dep) {
       : 99;
   });
 
+  const isAllDropdownIsDown = dep.isAllDropdownIsDown;
+
   const elInputPlaceholder = computed(() => {
     const doing = tags.length == 0 && !stashTag.key;
     if (props.placeholder != "" && doing == false) {
@@ -51,13 +53,13 @@ export default function useElInput(props, _context, dep) {
     const { initial, loading, selectDown, finish } = placeholders.value;
 
     if (props.loading == true) return loading;
-    if (props.isFinish == true) return finish;
+    if (isFinish.value == true) return finish;
 
     if (tags.length == 0 && !stashTag.key) {
       return initial;
     }
 
-    if (isAllDropdownIsDown() == true) {
+    if (isAllDropdownIsDown.value == true) {
       return selectDown;
     }
     return "";
