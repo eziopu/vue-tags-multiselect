@@ -18,16 +18,13 @@ export default function useSystemOption(_props, _context, dep) {
   // ============== COMPUTED ==============
 
   const isEditMode = dep.isEditMode;
-
   const tagsGroupByKey = dep.tagsGroupByKey;
-
-  const isDisplayElOptionUndo = computed(() => {
-    return stashTag.key != null && isEditMode.value == false;
-  });
+  const isAllDropdownIsDown = dep.isAllDropdownIsDown;
 
   const isDisplayElOptionORConjunction = computed(() => {
     if (
       tagsGroupByTitle.value.length == 0 ||
+      isAllDropdownIsDown.value == true ||
       isEditMode.value == true ||
       stashTag.key != null
     ) {
@@ -39,6 +36,11 @@ export default function useSystemOption(_props, _context, dep) {
 
     return conjunction.value == "";
   });
+
+  const isDisplayElOptionUndo = computed(() => {
+    return stashTag.key != null && isEditMode.value == false;
+  });
+
   // ============== METHODS ==============
 
   const setStashTag = dep.setStashTag;
