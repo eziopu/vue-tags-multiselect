@@ -1,4 +1,4 @@
-import { ref, computed, watch, nextTick } from "vue";
+import { computed } from "vue";
 
 export default function useStatus(props, context, dep) {
   // console.log("function useStatus");
@@ -7,32 +7,31 @@ export default function useStatus(props, context, dep) {
 
   // ============== REFS ==============
 
-  const elApp = dep.elApp;
+  // const elApp = dep.elApp;
 
   // ============== DATA ==============
 
-  const tags = dep.tags;
+  // const tags = dep.tags;
 
   const isEditMode = dep.isEditMode;
 
   const elDropdownDisplay = dep.elDropdownDisplay;
 
-  const isSelectDown = ref(false);
+  // const isSelectDown = ref(false);
+
+  // // ============== WATCH ==============
+
+  // watch(tags, async () => {
+  //   await nextTick();
+
+  //   const options = elApp.value.querySelectorAll(".dropdown .option");
+  //   isSelectDown.value = options.length == 0;
+  // });
 
   // ============== COMPUTED ==============
-
   const appIsFinish = dep.appIsFinish;
 
-  // ============== WATCH ==============
-
-  watch(tags, async () => {
-    await nextTick();
-
-    const options = elApp.value.querySelectorAll(".dropdown .option");
-    isSelectDown.value = options.length == 0;
-  });
-
-  // ============== COMPUTED ==============
+  const isAllDropdownIsDown = dep.isAllDropdownIsDown;
 
   const status = computed(() => {
     const result = [];
@@ -41,7 +40,7 @@ export default function useStatus(props, context, dep) {
     if (isEditMode.value == true) result.push("editing");
     if (elDropdownDisplay.value == true) result.push("selecting");
     if (appIsFinish.value == true) result.push("finish");
-    if (appIsFinish.value == false && isSelectDown.value == true)
+    if (appIsFinish.value == false && isAllDropdownIsDown.value == true)
       result.push("delect-down");
     return result;
   });

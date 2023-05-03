@@ -18,16 +18,11 @@ export default function useElInput(props, _context, dep) {
 
   // ============== COMPUTED ==============
 
-  const isFinish = computed(() => {
-    return dep.isSelectDown == true && props.create == false;
-  });
+  const appIsLock = dep.appIsLock;
+  const appIsFinish = dep.appIsFinish;
 
   const placeholders = computed(() => {
     return getPlaceholdersModel(props.placeholders);
-  });
-
-  const appIsLock = computed(() => {
-    return props.loading == true || props.disabled == true;
   });
 
   const elInputDisabled = computed(() => {
@@ -53,7 +48,7 @@ export default function useElInput(props, _context, dep) {
     const { initial, loading, selectDown, finish } = placeholders.value;
 
     if (props.loading == true) return loading;
-    if (isFinish.value == true) return finish;
+    if (appIsFinish.value == true) return finish;
 
     if (tags.length == 0 && !stashTag.key) {
       return initial;
