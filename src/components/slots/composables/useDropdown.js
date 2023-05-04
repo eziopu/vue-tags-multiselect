@@ -59,23 +59,18 @@ export default function useDropdown(props) {
       return isHiddenBySystem();
     }
     if (props.hidden == true || isDown.value == true) {
-      console.log("11111111");
       return true;
     }
 
     if (appEditTagIndex.value != -1 && isChildEditing.value == false) {
-      console.log("222222");
       return true;
     }
 
     if (isAllOptionSelected.value == true) {
-      console.log("3333", isChildEditing.value);
       if (hasVNodeTitle.value == false || isChildEditing.value == true) {
-        console.log("4444");
         return true;
       }
       if (appConjunction.value != "OR" && props.custom != true) {
-        console.log("555");
         return true;
       }
     }

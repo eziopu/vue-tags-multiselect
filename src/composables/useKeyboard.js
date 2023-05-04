@@ -113,6 +113,7 @@ export default function useKeyboard(props, context, dep) {
     return elTags.value.querySelectorAll(".tag__value") || [];
   };
 
+  const init = dep.init;
   const handleKeydown = async (event) => {
     context.emit("keydown", event, $this);
 
@@ -123,7 +124,6 @@ export default function useKeyboard(props, context, dep) {
         if (keydown.enterLock == true) {
           return;
         }
-        console.log("NNNNNN");
         event.preventDefault();
         await nextTick();
 
@@ -154,9 +154,8 @@ export default function useKeyboard(props, context, dep) {
             stashTag.key == null &&
             isEditMode.value == false
           ) {
-            console.log("  11111");
             setTagToTags(newTag);
-            elInputValue.value = "";
+            init("keydown enter create new");
           }
 
           if (
@@ -164,13 +163,12 @@ export default function useKeyboard(props, context, dep) {
             stashTag.value == null &&
             stashTag.custom == true
           ) {
-            console.log("  2222");
             setTagToTags({
               ...stashTag,
               ...newTag,
             });
             setStashTag();
-            elInputValue.value = "";
+            init("keydown enter create new with stashTag");
           }
         }
 
