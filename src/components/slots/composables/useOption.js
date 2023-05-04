@@ -1,4 +1,4 @@
-import { ref, computed, onMounted } from "vue";
+import { ref, watch, computed, onMounted, onBeforeUnmount } from "vue";
 
 export default function useDropdown(props, context, dep) {
   // ============== INJECTs ================
@@ -24,7 +24,7 @@ export default function useDropdown(props, context, dep) {
     return props.disabled || dropdown.props.disabled || app.props.disabled;
   });
 
-  const isDuplicate = computed(() => {
+  const isSelected = computed(() => {
     return app.tags.find((tag) => {
       return (
         tag != undefined &&
@@ -36,7 +36,7 @@ export default function useDropdown(props, context, dep) {
       : false;
   });
 
-  const isDuplicateByKey = computed(() => {
+  const isSelectedByKey = computed(() => {
     return app.tags.find((tag) => {
       return tag != undefined && tag.key == dropdown.props.value;
     })
@@ -45,13 +45,13 @@ export default function useDropdown(props, context, dep) {
   });
 
   const isHide = computed(() => {
-    if (props.system == true) {
+    if (dropdown.props.system == true) {
       return false;
     }
 
     const isTitle = props.title;
     // 已被選取
-    if (isDuplicate.value == true) {
+    if (isSelected.value == true) {
       return true;
     }
 
@@ -65,7 +65,7 @@ export default function useDropdown(props, context, dep) {
 
     // selecting no key
     if (app.conjunction.value == "AND" || app.conjunction.value == "") {
-      if (isDuplicateByKey.value == true) {
+      if (isSelectedByKey.value == true) {
         return true;
       }
     }
@@ -90,6 +90,31 @@ export default function useDropdown(props, context, dep) {
 
     return false;
   });
+
+  // ================= Option status ====================
+
+  if (
+    props.value != null &&
+    props.value != "" &&
+    props.title == false &&
+    dropdown.props.system == false
+  ) {
+    dropdown.optionStatus[props.value] = { isSelected: false };
+
+    watch(
+      isSelected,
+      (value) => {
+        dropdown.optionStatus[props.value].isSelected = value;
+      },
+      { immediate: true }
+    );
+
+    onBeforeUnmount(() => {
+      delete dropdown.optionStatus[props.value];
+    });
+  }
+
+  // ================= Init to selected ====================
 
   const handleClick = dep.handleClick;
 

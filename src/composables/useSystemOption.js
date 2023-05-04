@@ -1,4 +1,4 @@
-import { computed } from "vue";
+import { computed, provide, readonly } from "vue";
 
 export default function useSystemOption(_props, _context, dep) {
   // ============== DATA ================
@@ -21,7 +21,7 @@ export default function useSystemOption(_props, _context, dep) {
   const tagsGroupByKey = dep.tagsGroupByKey;
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
 
-  const isDisplayElOptionORConjunction = computed(() => {
+  const isShowORConjunctionOption = computed(() => {
     if (
       tagsGroupByTitle.value.length == 0 ||
       isAllDropdownIsDown.value == true ||
@@ -37,7 +37,7 @@ export default function useSystemOption(_props, _context, dep) {
     return conjunction.value == "";
   });
 
-  const isDisplayElOptionUndo = computed(() => {
+  const isShowUndoOption = computed(() => {
     return stashTag.key != null && isEditMode.value == false;
   });
 
@@ -73,10 +73,14 @@ export default function useSystemOption(_props, _context, dep) {
     });
     return Object.keys(tempTagsGroupByKey).length > 0;
   };
+  // ============== PROVIDE ==============
+
+  provide("appisShowUndoOption", readonly(isShowUndoOption));
+  provide("appisShowORConjunctionOption", readonly(isShowORConjunctionOption));
 
   return {
-    isDisplayElOptionUndo,
-    isDisplayElOptionORConjunction,
+    isShowUndoOption,
+    isShowORConjunctionOption,
 
     elOptionUndo,
     elOptionORConjunction,

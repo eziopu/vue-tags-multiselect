@@ -32,7 +32,7 @@ export default function useElInput(props, _context, dep) {
   const elInputMaxlength = computed(() => {
     return appIsLock.value == true ||
       elInputDisabled.value ||
-      stashTag.key != null
+      (stashTag.key != null && stashTag.custom == false)
       ? 0
       : 99;
   });

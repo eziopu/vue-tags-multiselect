@@ -11,11 +11,11 @@
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
     <div class="logs" style="width: 100%">
-      keydown.horizontalIndex = {{ keydown.horizontalIndex }} <br />
-      transition = {{ transition }}
+      dropdownStatus = {{ dropdownStatus }} <br />
+      <!-- transition = {{ transition }} -->
       <br />
-      editTagIndex = {{ editTagIndex }} <br />
-      isEditMode = {{ isEditMode }} <br />
+      <!-- editTagIndex = {{ editTagIndex }} <br />
+      isEditMode = {{ isEditMode }} <br /> -->
       <!-- 
     stashTag = <pre>{{ stashTag }} </pre><br> 
     tagsGroupByTitle = <pre>{{ tagsGroupByTitle }} </pre><br>  -->
@@ -69,8 +69,8 @@
             </slot>
           </div>
 
-          <VTagDropdown>
-            <VTagOption v-if="isDisplayElOptionUndo" system class="undo">
+          <VTagDropdown system>
+            <VTagOption v-if="isShowUndoOption" class="undo">
               <!-- :divided="optionDisplayCount != 0" -->
               <div @click="elOptionUndo()">
                 <slot name="option-undo">
@@ -78,11 +78,7 @@
                 </slot>
               </div>
             </VTagOption>
-            <VTagOption
-              v-if="isDisplayElOptionORConjunction"
-              system
-              class="conjunction"
-            >
+            <VTagOption v-if="isShowORConjunctionOption" class="conjunction">
               <!-- :divided="haveOptionCanSelect" -->
               <div @click="elOptionORConjunction()">
                 <slot name="option-OR-conjunction">OR</slot>

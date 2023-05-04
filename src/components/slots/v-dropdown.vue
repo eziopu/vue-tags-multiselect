@@ -31,6 +31,7 @@ export default {
     displayAll: { type: Boolean, default: false },
     hidden: { type: Boolean, default: false },
     custom: { type: Boolean, default: false },
+    system: { type: Boolean, default: false },
     value: { type: String, default: "" },
   },
 

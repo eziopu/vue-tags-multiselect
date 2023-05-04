@@ -24,6 +24,7 @@ export default function useInjects() {
     isDown: inject("dropdownIsDown") || false,
     getTitleInnerHTML: inject("dropdownGetTitleInnerHTML") || "",
     classList: inject("dropdownClassList") || [],
+    optionStatus: inject("dropdownOptionStatus") || {},
   };
 
   return { app, dropdown };

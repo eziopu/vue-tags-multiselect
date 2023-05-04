@@ -143,6 +143,7 @@ export default function useKeyboard(props, context, dep) {
         }
 
         if (elInputValue.value != "") {
+          console.log("elInputValue.value");
           const newTag = {
             displayValue: true,
             value: elInputValue.value,
@@ -153,6 +154,7 @@ export default function useKeyboard(props, context, dep) {
             stashTag.key == null &&
             isEditMode.value == false
           ) {
+            console.log("  11111");
             setTagToTags(newTag);
             elInputValue.value = "";
           }
@@ -162,6 +164,7 @@ export default function useKeyboard(props, context, dep) {
             stashTag.value == null &&
             stashTag.custom == true
           ) {
+            console.log("  2222");
             setTagToTags({
               ...stashTag,
               ...newTag,
@@ -279,23 +282,23 @@ export default function useKeyboard(props, context, dep) {
       }
     }
   };
-  const isDisplayElOptionUndo = dep.isDisplayElOptionUndo;
-  const isDisplayElOptionORConjunction = dep.isDisplayElOptionORConjunction;
+  const isShowUndoOption = dep.isShowUndoOption;
+  const isShowORConjunctionOption = dep.isShowORConjunctionOption;
   const elOptionUndo = dep.elOptionUndo;
   const elOptionORConjunction = dep.elOptionORConjunction;
 
   const isHoverSystemOption = () => {
     return (
       keydown.verticalIndex == 0 &&
-      (isDisplayElOptionUndo.value || isDisplayElOptionORConjunction.value)
+      (isShowUndoOption.value || isShowORConjunctionOption.value)
     );
   };
 
   const handleSystemOption = () => {
-    if (isDisplayElOptionUndo.value) {
+    if (isShowUndoOption.value) {
       elOptionUndo();
     }
-    if (isDisplayElOptionORConjunction.value) {
+    if (isShowORConjunctionOption.value) {
       elOptionORConjunction();
     }
   };
