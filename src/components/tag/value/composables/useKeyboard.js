@@ -42,9 +42,9 @@ export default function useKeyboard(props, _context, dep) {
   // ============== METHODS ==============
 
   const deleteTag = dep.deleteTag;
+  const appReFocus = inject("appReFocus");
   const appUpdateTag = inject("appUpdateTag");
   const appIsDuplicateTag = inject("appIsDuplicateTag");
-  const appReFocus = inject("appReFocus");
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event.key);
@@ -88,9 +88,10 @@ export default function useKeyboard(props, _context, dep) {
             appReFocus();
             throw "updateTag";
           }
+
+          appReFocus();
           throw "nothing";
         } catch (msg) {
-          console.log(msg);
           if (msg == "duplicate") {
             isInputValueRepeat.value = true;
             setTimeout(() => {
