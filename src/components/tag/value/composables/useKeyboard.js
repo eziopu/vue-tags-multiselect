@@ -10,8 +10,6 @@ export default function useKeyboard(props, _context, dep) {
 
   const inputValue = dep.inputValue;
 
-  const isInputValueRepeat = ref(false);
-
   const nextWillDelete = ref(false);
 
   const nextKeydownWillUseAppKeydown = ref(false);
@@ -75,6 +73,7 @@ export default function useKeyboard(props, _context, dep) {
             appKeydown.verticalIndex == -1 &&
             inputValue.value != props.tag.value
           ) {
+            // dep.checkInputValueIsRepeat();
             if (appIsDuplicateTag(props.tag.key, inputValue.value) == true) {
               throw "duplicate";
             }
@@ -93,10 +92,8 @@ export default function useKeyboard(props, _context, dep) {
           throw "nothing";
         } catch (msg) {
           if (msg == "duplicate") {
-            isInputValueRepeat.value = true;
-            setTimeout(() => {
-              isInputValueRepeat.value = false;
-            }, 1000);
+            const valueRepeatFlashing = dep.valueRepeatFlashing;
+            valueRepeatFlashing();
           }
         }
 
@@ -154,7 +151,6 @@ export default function useKeyboard(props, _context, dep) {
 
   return {
     handleKeydown,
-    isInputValueRepeat,
     nextKeydownWillUseAppKeydown,
   };
 }

@@ -9,6 +9,8 @@ export default function useDelete(props, _context, dep) {
 
   const inputValue = ref("");
 
+  const isInputValueRepeat = ref(false);
+
   const nextWillDelete = ref(false);
 
   // ============== COMPUTED ==============
@@ -19,13 +21,31 @@ export default function useDelete(props, _context, dep) {
 
   // ============== WATCH ==============
 
-  watch(inputValue, (value) => {
-    if (value != "") {
+  let timer = null;
+  const appIsDuplicateTag = inject("appIsDuplicateTag");
+  watch(inputValue, (newValue) => {
+    if (newValue != "") {
       nextWillDelete.value = false;
+    }
+    if (newValue !== props.tag.value) {
+      if (appIsDuplicateTag(props.tag.key, newValue)) {
+        timer = setTimeout(() => {
+          valueRepeatFlashing();
+        }, 500);
+      } else {
+        clearTimeout(timer);
+      }
     }
   });
 
   // ============== METHODS ==============
+
+  const valueRepeatFlashing = () => {
+    isInputValueRepeat.value = true;
+    setTimeout(() => {
+      isInputValueRepeat.value = false;
+    }, 1000);
+  };
 
   const elInputFocus = (event) => {
     const selectionStart = event.target.selectionStart;
@@ -59,8 +79,10 @@ export default function useDelete(props, _context, dep) {
     elInput,
     inputValue,
     inputWidth,
+    isInputValueRepeat,
     nextWillDelete,
 
+    valueRepeatFlashing,
     elInputFocus,
     elInputBlur,
     blur,
