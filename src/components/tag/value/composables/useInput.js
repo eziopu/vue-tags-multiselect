@@ -9,7 +9,7 @@ export default function useDelete(props, _context, dep) {
 
   const inputValue = ref("");
 
-  const isInputValueRepeat = ref(false);
+  const isInputValueRepeat = ref(true);
 
   const nextWillDelete = ref(false);
 

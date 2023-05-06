@@ -22,6 +22,7 @@ export default function useValue(props, _context, dep) {
   const appIsLock = inject("appIsLock");
   const appElInputValue = inject("appElInputValue");
   const appEditTagIndex = inject("appEditTagIndex");
+  const appPlaceholders = inject("appPlaceholders");
 
   // ============== COMPUTED ==============
 
@@ -84,6 +85,7 @@ export default function useValue(props, _context, dep) {
   return {
     appProps,
     appIsLock,
+    appPlaceholders,
     elTagValueContent,
     inputValue,
     editByinput,

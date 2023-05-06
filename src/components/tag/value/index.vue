@@ -9,7 +9,11 @@
     tabindex="0"
     @click="handleClick"
   >
-    {{ isInputValueRepeat }} |
+    <!-- {{ isInputValueRepeat }} | -->
+    <div v-if="editByinput && isInputValueRepeat" class="tag__value--warning">
+      {{ appPlaceholders.tagValueRepeat }}
+    </div>
+
     <div
       v-show="tag.custom == false || !editByinput"
       class="tag__value--content"
@@ -34,9 +38,6 @@
       @focus="elInputFocus"
       @blur="elInputBlur"
     />
-    <div v-if="isInputValueRepeat" class="tag__value--warning">
-      {{ appProps.tagValueRepeat }}
-    </div>
   </div>
 </template>
 <script>
@@ -92,9 +93,13 @@ export default {
   .tag__value--input {
     outline: none;
     line-height: 0em;
+    transition: color 0.2s ease-in-out;
+
     &.error,
     &.error:focus {
       border: 1px solid red;
+      animation: shake 0.2s;
+      color: transparent;
     }
   }
 
@@ -111,6 +116,31 @@ export default {
     }
     &.outline:after {
       transform: scaleX(1);
+    }
+  }
+
+  .tag__value--warning {
+    position: absolute;
+    left: 10px;
+    z-index: 1;
+    text-shadow: 0px 0px 4px red;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-2px);
+    }
+    50% {
+      transform: translateX(2px);
+    }
+    75% {
+      transform: translateX(-2px);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 }

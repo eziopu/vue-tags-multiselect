@@ -5,7 +5,7 @@ export function getPlaceholdersModel(item = {}) {
     selectDown: item.selectDown || "Selected End.",
     finish: item.finish || "Finish.",
 
-    tagValueRepeat: item.tagValueRepeat || "repeat value !",
+    tagValueRepeat: item.tagValueRepeat || "repeat !",
   };
 }
 

@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { ref, computed, provide, readonly } from "vue";
 import { getPlaceholdersModel } from "../models";
 
 export default function useElInput(props, _context, dep) {
@@ -18,9 +18,6 @@ export default function useElInput(props, _context, dep) {
 
   // ============== COMPUTED ==============
 
-  const appIsLock = dep.appIsLock;
-  const appIsFinish = dep.appIsFinish;
-
   const placeholders = computed(() => {
     return getPlaceholdersModel(props.placeholders);
   });
@@ -29,6 +26,7 @@ export default function useElInput(props, _context, dep) {
     return props.search == false && props.create == false;
   });
 
+  const appIsLock = dep.appIsLock;
   const elInputMaxlength = computed(() => {
     return appIsLock.value == true ||
       elInputDisabled.value ||
@@ -37,8 +35,8 @@ export default function useElInput(props, _context, dep) {
       : 99;
   });
 
+  const appIsFinish = dep.appIsFinish;
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
-
   const elInputPlaceholder = computed(() => {
     const doing = tags.length == 0 && !stashTag.key;
     if (props.placeholder != "" && doing == false) {
@@ -59,6 +57,10 @@ export default function useElInput(props, _context, dep) {
     }
     return "";
   });
+
+  // ============== PROVIDE ==============
+
+  provide("appPlaceholders", readonly(placeholders));
 
   return {
     elInput,
