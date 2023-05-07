@@ -148,12 +148,21 @@ export default function useDropdown(props) {
 
   if (props.value != null && props.value != "") {
     const appDropdownStatus = inject("appDropdownStatus");
-    appDropdownStatus[props.value] = { isDown: false };
+    appDropdownStatus[props.value] = { isDown: false, values: [] };
 
     watch(
       isDown,
       (value) => {
         appDropdownStatus[props.value].isDown = value;
+      },
+      { immediate: true }
+    );
+
+    watch(
+      optionStatus,
+      (value) => {
+        // const optionStatus = { "country": { "isSelected": true }, "country2": { "isSelected": false }, "country333": { "isSelected": false } } (reactive)
+        appDropdownStatus[props.value].values = Object.keys(value);
       },
       { immediate: true }
     );

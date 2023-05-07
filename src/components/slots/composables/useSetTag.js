@@ -52,10 +52,7 @@ export default function useDropdown(props, context, dep) {
 
     // 編輯模式
     if (app.editTagIndex.value != -1) {
-      app.updateTag({
-        valueElm: innerHTML.value,
-        value: props.value,
-      });
+      app.updateTag(prototypeStashTag.value);
       app.reFocus();
       return;
     }

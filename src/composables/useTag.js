@@ -74,7 +74,7 @@ export default function useTag() {
 
     tag.value = item.value;
     tag.valueElm = item.valueElm || null;
-    tag.displayValue = item.displayValue || true;
+    tag.displayValue = !!item.displayValue;
   };
 
   const deleteTags = (indexs = []) => {

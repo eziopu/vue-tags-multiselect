@@ -43,6 +43,7 @@ export default function useKeyboard(props, _context, dep) {
   const appReFocus = inject("appReFocus");
   const appUpdateTag = inject("appUpdateTag");
   const appIsDuplicateTag = inject("appIsDuplicateTag");
+  const appRequestOptionClick = inject("appRequestOptionClick");
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event.key);
@@ -78,6 +79,10 @@ export default function useKeyboard(props, _context, dep) {
               throw "duplicate";
             }
 
+            if (isHaveSameOptionValue(inputValue.value) == true) {
+              throw "haveSameOptionValue";
+            }
+
             appUpdateTag({
               value: inputValue.value,
               valueElm: null,
@@ -91,6 +96,11 @@ export default function useKeyboard(props, _context, dep) {
           appReFocus();
           throw "nothing";
         } catch (msg) {
+          if (msg == "haveSameOptionValue") {
+            appRequestOptionClick.key = props.tag.key;
+            appRequestOptionClick.value = inputValue.value;
+            console.log("nnnnnn", appRequestOptionClick);
+          }
           if (msg == "duplicate") {
             const valueRepeatFlashing = dep.valueRepeatFlashing;
             valueRepeatFlashing();
@@ -147,6 +157,12 @@ export default function useKeyboard(props, _context, dep) {
       appKeydown.horizontalLock = false;
       appHandleKeydown(event);
     }
+  };
+
+  const appDropdownStatus = inject("appDropdownStatus");
+  const isHaveSameOptionValue = (value) => {
+    const values = appDropdownStatus[props.tag.key].values;
+    return values.includes(value);
   };
 
   return {

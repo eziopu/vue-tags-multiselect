@@ -6,8 +6,17 @@ export default function usePreprocessedData(props) {
 
   const dropdownStatus = reactive({});
 
+  const getRequestOptionClickModel = () => {
+    return { key: "", value: "" };
+  };
+  const requestOptionClick = reactive(getRequestOptionClickModel());
+
   // ============== PROVIDE ==============
 
+  provide("appRequestOptionClick", requestOptionClick);
+  provide("appRequestOptionClickInit", () => {
+    Object.assign(requestOptionClick, getRequestOptionClickModel());
+  });
   provide("appDropdownStatus", dropdownStatus);
 
   // ============== COMPUTED ================

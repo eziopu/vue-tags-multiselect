@@ -1,4 +1,4 @@
-import { ref, watch, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, watch, computed, inject, onMounted, onBeforeUnmount } from "vue";
 
 export default function useDropdown(props, context, dep) {
   // ============== INJECTs ================
@@ -124,6 +124,23 @@ export default function useDropdown(props, context, dep) {
       handleClick();
     }
   });
+
+  // ================= App request option to click ====================
+
+  if (props.value != "") {
+    const appRequestOptionClick = inject("appRequestOptionClick");
+    const appRequestOptionClickInit = inject("appRequestOptionClickInit");
+    watch(
+      appRequestOptionClick,
+      (value) => {
+        if (value.key == dropdown.props.value && value.value == props.value) {
+          handleClick();
+          appRequestOptionClickInit();
+        }
+      },
+      { immediate: true }
+    );
+  }
 
   return {
     props,
