@@ -1,0 +1,159 @@
+{
+  "_comment": "zh-TW Chinese (T)",
+  "attributes": {
+    "description": {
+      "app": {
+        "v-model": "綁定值",
+        "disabled": "是否禁用",
+        "loading": "是否在讀取中",
+        "dropdownLoading": "下拉式選單是否在讀取中",
+        "search": "是否可使用輸入框搜尋 option 的 value值",
+        "create": "是否可使用輸入框建立 tag",
+        "create__notice": "當 create 與 search 皆為 false 時, 輸入框將禁用",
+        "merge": "合併相同key值的option",
+        "transition": "是否啟用css動畫效果",
+        "conjunction": "選擇的模式",
+        "conjunction__detail": {
+          "1": "- : 無, 當有完成的tag, 'OR'模式的按鈕會至頂顯示",
+          "2": "OR: 總是顯示還可以選擇的option",
+          "3": "AND: 只顯示未選擇過的dropdown(篩選條件為key值)"
+        },
+        "deleteIcon": "刪除tag的按鈕顯示模式",
+        "deleteIcon__notice": "編輯模式時鍵盤的delete按鈕依舊能刪除",
+        "deleteIcon__detail": {
+          "1": "always: 總是顯示",
+          "2": "edit: 只在編輯模式顯示",
+          "3": "none: 總是不顯示"
+        },
+        "placeholder": "預設文字, 僅在無tag時顯示",
+        "placeholder__detail": {
+          "1": "可以僅用該參數控制 loading, selectDown, finish狀況時的文字",
+          "2": "只要該參數有變動, 會強制取代其餘狀態的文字"
+        },
+        "loadingPlaceholder": "讀取時的文字, 僅在參數<code>loading</code>為 true 時運作",
+        "selectDownPlaceholder": "無選項可選擇時的文字, 僅在參數<code>create</code>為 true且無選項可選擇時運作",
+        "selectDownPlaceholder__detail": {
+          "1": "聚焦元件後僅會閃爍兩次後消失"
+        },
+        "finishPlaceholder": "完成後的文字, 僅在參數<code>create</code>為 false 且無選項可選擇時運作"
+      },
+      "slots": {
+        "v-tag-dropdown": "下拉選單的容器, 請使用 <code>&lt;v-tag-dropdown&gt;</code> 元件",
+        "v-tag-option": "下拉選單的內容, 請使用 <code>&lt;v-tag-option&gt;</code> 元件",
+        "loading": "讀取中的模板",
+        "loading__notice": "僅在參數<code>loading</code>為 true 時運作",
+        "dropdowns-loading": "下拉式選單讀取中的模板",
+        "dropdowns-loading__notice": "會強制覆蓋<code class='tag'>loading</code>的模板",
+        "tag-conjunction": "tag合併後value之間的連接符號",
+        "tag-conjunction__notice": "僅在參數<code class='tag'>merge</code>為 true 時運作",
+        "option-undo": "下拉選單中返回的模板",
+        "option-undo__notice": "僅在選擇了<code class='tag'>title</code> <code class='tag'>v-tag-option</code> 後顯示",
+        "option-OR-conjunction": "下拉選單中更改成OR模式的模板",
+        "option-OR-conjunction__notice": "僅在參數<code class='tag'>conjunction</code>為 'null' 時顯示"
+      },
+      "events": {
+        "getStatus": "取得當前操作的模式名稱",
+        "getSelectingKey": "取得當前選擇的 dropwon 的 key 值",
+        "getInputValue": "取得當前選擇的 input 的 value 值, 編輯模式則對應該 input",
+        "getEdintng": "取得當前誰正在編輯"
+      },
+      "refOperates": {
+        "pushValue": "給予當前選擇的dropwon給予value值並自動完成",
+        "pushValue2": "如果有寫入第二個參數(key name)會自動匹配並自動完成",
+        "pushValueExample": "範例: <code>pushValue(&quot;Māre&quot;)</code> or <code>pushValue(&quot;Māre&quot;, &quot;Country&quot;)</code>"
+      },
+      "dropdown": {
+        "value": "標籤的key值",
+        "class": "HTML元件的class, 會直接套用至最後完成的標籤上",
+        "display-all": "是否顯示裡面所有的option(title option與option全部顯示)",
+        "hidden": "是否隱藏",
+        "custom": "是否允許任意修改標籤的value值",
+        "disabled": "是否禁用該dropdown內的所有的option",
+        "divided": "是否底部有分隔線"
+      },
+      "option": {
+        "value": "標籤的value值",
+        "value__notice": "必填, 如果是title option則不用",
+        "title": "標籤的標題, 同個dropdown的進入點, 其餘的option不會顯示",
+        "title__notice": "除非dropdown的display-all參數為true 或是該dropdown沒有title option的存在, 其餘的option才會顯示",
+        "display-value": "標籤的value值是否要顯示value而不是html渲染的樣式",
+        "disabled": "是否禁用",
+        "divided": "是否底部有分隔線",
+        "selected": "是否為預設"
+      }
+    }
+  },
+  "ui": {
+    "languages": {
+      "en-US": "English",
+      "zh-TW": "繁體中文"
+    },
+    "general": {
+      "language": "語言",
+      "required": "必填",
+      "default": "預設",
+      "defaultIs__key": "預設值為{key}",
+      "Attribute": "屬性",
+      "Description": "描述",
+      "Type": "類型",
+      "AcceptedValues": "可接受值",
+      "Default": "預設值",
+      "FunctionName": "函數名稱",
+      "Name": "姓名",
+      "Output": "輸出",
+      "Required": "必填",
+      "Parameters": "參數",
+      "ParameterType": "參數類型",
+      "Country": "國家",
+      "Height(m)": "身高(m)",
+      "Remark": "備註",
+      "NotFind": "無符合資料"
+    },
+    "page": {
+      "description": {
+        "demo": "vue-tags-multiselect 此demo頁面使用了",
+        "keyboard": "按鍵配置",
+        "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
+        "addOption": "讓他像個下拉式選單, 加入 <code class='tag'>&lt;v-tag-dropdown&gt;</code>(slots) 與 <code class='tag'>&lt;v-tag-option&gt;</code>(slots)",
+        "addOptionSub": {
+          "1": "v-tag-dropdown: 標籤的key值",
+          "2": "v-tag-option: 標籤的value值, 必須在 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
+          "3": "如果 <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
+        },
+        "customStyle": "slots <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
+        "customStyleSub": {
+          "1": "如果想要將<code class='tag'>v-tag-option</code>的className也套用在tag，在裡面寫element即可"
+        }
+      },
+      "sentence": {
+        "Go_to_detail_option_attributes_description": "前往 option 參數說明區",
+        "click_the_tag_to_edit_mode": "點擊 tag value 的區域, 讓他變成編輯模式",
+        "attribute_only_change_first_dropdown": "此demo的參數變動只會改變第一個 dropdown",
+        "attribute_only_change_first_dropdown_option_title": "此demo的參數變動只會改變第一個 option(title)"
+      }
+    },
+    "data": {
+      "country": {
+        "Māre": "瑪雷",
+        "Eldia": "艾爾迪亞"
+      },
+      "name": {
+        "Grisha Yeager": "古利夏·葉卡",
+        "Eren Yeager": "艾連·葉卡",
+        "Armin Arlert": "阿爾敏·亞魯雷特",
+        "Zeke Yeager": "吉克·葉卡",
+        "Lara Tybur": "菈菈·戴巴",
+        "Annie Leonhart": "亞妮·雷恩哈特",
+        "Reiner Braun": "萊納·布朗",
+        "Pieck Finger": "皮克·芬格爾",
+        "Porco Galliard": "波爾柯·賈利亞德",
+        "Levi Ackerman": "里維·阿卡曼"
+      },
+      "remark": {
+        "Free!": "自由!",
+        "Good at acting": "影帝",
+        "Sit down": "你坐啊！"
+      }
+    }
+  }
+}

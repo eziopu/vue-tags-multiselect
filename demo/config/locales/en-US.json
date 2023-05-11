@@ -1,0 +1,159 @@
+{
+  "_comment": "en-US English (United States) 英文",
+  "attributes": {
+    "description": {
+      "app": {
+        "v-model": "binding value",
+        "disabled": "whether input is disabled",
+        "loading": "whether input is loading",
+        "dropdownLoading": "whether dropdown is loading",
+        "search": "option value search by app input value",
+        "create": "create tag with no title, value is by input",
+        "create__notice": "then create and search is false, input will unavailable",
+        "merge": "when tags same title share display one",
+        "transition": "css animation",
+        "conjunction": "select mode",
+        "conjunction__detail": {
+          "1": "- : after the second selected, 'OR' mode button will appear at the top",
+          "2": "OR: always show options that can be selected",
+          "3": "AND: selected tag don't show (filter by tag key)"
+        },
+        "deleteIcon": "tag delete display logic and where",
+        "deleteIcon__notice": "when editing mode, keyboard delete always work",
+        "deleteIcon__detail": {
+          "1": "always: whether show",
+          "2": "edit: only edit this tag show",
+          "3": "none: whether do not show"
+        },
+        "placeholder": "input placeholder, text is displayed when not in use",
+        "placeholder__detail": {
+          "1": "can be used to control other placeholder(loading, selectDown, finish) only with this attributes",
+          "2": "as long as this attributes change, it will force to overwrite other placeholder"
+        },
+        "loadingPlaceholder": "only attribute <code>loading</code> is true will work",
+        "selectDownPlaceholder": "only attribute <code>create</code> is true and no option can selected will will work",
+        "selectDownPlaceholder__detail": {
+          "1": "text disappears after flicker twice when focusing the element."
+        },
+        "finishPlaceholder": "only attribute <code>create</code> is false and no option can selected will work"
+      },
+      "slots": {
+        "v-tag-dropdown": "content of the multiselect, usually a <code>&lt;v-tag-dropdown&gt;</code> element",
+        "v-tag-option": "content of the v-tag-dropdown menu, usually a <code>&lt;v-tag-option&gt;</code> element",
+        "loading": "loading template",
+        "loading__notice": "only attribute <code>loading</code> is true will work",
+        "dropdowns-loading": "dropdown loading template",
+        "dropdowns-loading__notice": "will force coverage <code class='tag'>loading</code> template",
+        "tag-conjunction": "tags value connection symbol",
+        "tag-conjunction__notice": "only attribute <code class='tag'>merge</code> is true will work",
+        "option-undo": "option undo template in dropdown",
+        "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>v-tag-option</code> display",
+        "option-OR-conjunction": "option OR conjunction template in dropdown",
+        "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
+      },
+      "events": {
+        "getStatus": "current operating mode",
+        "getSelectingKey": "current selected tag key name",
+        "getInputValue": "current input value, tag value when editing mode",
+        "getEdintng": "current editing target"
+      },
+      "refOperates": {
+        "pushValue": "push value to current selected tag title and finish",
+        "pushValue2": "if you push second parameter(key name) will automatch tag and finish",
+        "pushValueExample": "Example: <code>pushValue(&quot;Māre&quot;)</code> or <code>pushValue(&quot;Māre&quot;, &quot;Country&quot;)</code>"
+      },
+      "dropdown": {
+        "value": "tag key",
+        "class": "HTML element class, will be applied to the tag",
+        "display-all": "show all options in this dropdown",
+        "hidden": "don't show this dropdown",
+        "custom": "this tag value can use intput value",
+        "disabled": "whether options are disabled in this dropdown",
+        "divided": "whether a divider is displayed"
+      },
+      "option": {
+        "value": "tag value",
+        "value__notice": "required when not title option",
+        "title": "tag label, options entry point, not title option will hidden, if dropdown display-all is true",
+        "title__notice": "if dropdown display-all is true, all option don't hidden",
+        "display-value": "tag select finished value don't show html template",
+        "disabled": "whether to disable",
+        "divided": "whether a divider is displayed",
+        "selected": "default selected tag"
+      }
+    }
+  },
+  "ui":{
+    "languages": {
+      "en-US": "English",
+      "zh-TW": "繁體中文"
+    },
+    "general": {
+      "language": "language",
+      "required": "required",
+      "default": "default",
+      "defaultIs__key": "default is {key}",
+      "Attribute": "Attribute",
+      "Description": "Description",
+      "Type": "Type",
+      "AcceptedValues": "Accepted Values",
+      "Default": "Default",
+      "FunctionName": "Function name",
+      "Name": "Name",
+      "Output": "Output",
+      "Required": "Required",
+      "Parameters": "Parameters",
+      "ParameterType": "Parameter type",
+      "Country": "Country",
+      "Height(m)": "Height(m)",
+      "Remark": "Remark",
+      "NotFind": "Not find any"
+    },
+    "page": {
+      "description": {
+        "demo": "vue-tags-multiselect demo, This page use",
+        "keyboard": "Keyboard",
+        "basic": "no slot components, no parameter, just a tag bar",
+        "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
+        "addOptionSub": {
+          "1": "v-tag-dropdown: is tag key name",
+          "2": "v-tag-option: is tag key value, it's inside the v-tag-dropdown",
+          "3": "if one <code class='tag'>&lt;v-tag-option&gt;</code> is title, will hide other option to next step show"
+        },
+        "customStyle": "slot <code class='tag'>v-tag-dropdown</code> element className not only use in dropdown, but also use by selected tag.",
+        "customStyleSub": {
+          "1": "if you want to slot <code class='tag'>v-tag-option</code> className use by selected tag's value, can create your own elements in it"
+        }
+      },
+      "sentence": {
+        "Go_to_detail_option_attributes_description": "Go to detail option attributes description",
+        "click_the_tag_to_edit_mode": "click the tag to edit mode",
+        "attribute_only_change_first_dropdown": "attribute only change first dropdown",
+        "attribute_only_change_first_dropdown_option_title": "attribute only change first dropdown option(title)"
+      }
+    },
+    "data": {
+      "country": {
+        "Māre": "Māre",
+        "Eldia": "Eldia"
+      },
+      "name": {
+        "Grisha Yeager": "Grisha Yeager",
+        "Eren Yeager": "Eren Yeager",
+        "Armin Arlert": "Armin Arlert",
+        "Zeke Yeager": "Zeke Yeager",
+        "Lara Tybur": "Lara Tybur",
+        "Annie Leonhart": "Annie Leonhart",
+        "Reiner Braun": "Reiner Braun",
+        "Pieck Finger": "Pieck Finger",
+        "Porco Galliard": "Porco Galliard",
+        "Levi Ackerman": "Levi Ackerman"
+      },
+      "remark": {
+        "Free!": "Free!",
+        "Good at acting": "Good at acting",
+        "Sit down": "Sit down"
+      }
+    }
+  }
+}

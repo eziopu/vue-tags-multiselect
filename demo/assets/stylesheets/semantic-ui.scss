@@ -1,0 +1,68 @@
+.semantic-ui {
+  .vue-tags-multiselect {
+    & {
+      margin: 0;
+      max-width: 100%;
+      -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+      outline: 0;
+      outline-color: initial;
+      outline-style: initial;
+      outline-width: 0px;
+      background: #fff;
+      -webkit-tap-highlight-color: rgba(255,255,255,0);
+      text-align: left;
+      line-height: 1.21428571em;
+      font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+      padding: 0.2em 0.2em !important;
+      border: 1px solid rgba(34,36,38,.15);
+      color: rgba(0,0,0,.87);
+      border-radius: .28571429rem;
+      -webkit-transition: border-color .1s ease,-webkit-box-shadow .1s ease;
+      transition: border-color .1s ease,-webkit-box-shadow .1s ease;
+      transition: box-shadow .1s ease,border-color .1s ease;
+      transition: box-shadow .1s ease,border-color .1s ease,-webkit-box-shadow .1s ease;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    &.focus {
+      border-color: #85b7d9;
+      color: rgba(0,0,0,.8);
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    &.disabled {
+      opacity: .45;
+    }
+
+    .dropdowns {
+      border: 1px solid rgba(34,36,38,.15);
+      border-radius: .28571429rem !important;
+      box-shadow: 0 2px 3px 0 rgb(34 36 38 / 15%);
+    }
+    .dropdown .option {
+      padding: .58571429rem 1.14285714rem;
+      white-space: normal;
+      word-wrap: normal;
+    }
+    .dropdown .option.hover {
+      background: rgba(0,0,0,.05);
+      color: rgba(0,0,0,.95);
+    }
+  
+    .tag {
+      user-select: none;
+      white-space: normal;
+      font-size: 1em;
+      box-shadow: 0 0 0 1px rgb(34 36 38 / 15%) !important;
+      font-weight: 700;
+      border: 0 solid transparent;
+      border-radius: .28571429rem;
+      margin: 0.1em 0.2em;
+    }
+    input {
+      color: #212529;
+    }
+  }
+}
