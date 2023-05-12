@@ -1,11 +1,11 @@
-import { ref, reactive, provide, computed } from "vue";
+import { ref, reactive, provide, computed, watch } from "vue";
 import {
   getTagModel,
   getTagsGroupByKeyModel,
   getTagsGroupByKeyValueModel,
 } from "../models";
 
-export default function useTag() {
+export default function useTag(props, context) {
   // ============== DATA ==============
 
   const tags = reactive([]);
@@ -52,6 +52,10 @@ export default function useTag() {
       }
       return result;
     }, {});
+  });
+
+  watch(tagsGroupByKey, (value) => {
+    context.emit("update:modelValue", value);
   });
 
   // ============== METHODS ==============
