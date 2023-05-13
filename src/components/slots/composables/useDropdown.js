@@ -53,11 +53,12 @@ export default function useDropdown(props) {
     return false;
   });
 
-  const appConjunction = inject("appConjunction");
+  const appIsDuplicateTagByKey = inject("appIsDuplicateTagByKey");
   const isHidden = computed(() => {
     if (props.system == true) {
       return isHiddenBySystem();
     }
+
     if (props.hidden == true || isDown.value == true) {
       return true;
     }
@@ -113,6 +114,7 @@ export default function useDropdown(props) {
 
   const appTags = inject("appTags");
   const appProps = inject("appProps");
+  const appConjunction = inject("appConjunction");
 
   const isAllOptionSelected = computed(() => {
     if (appProps.conjunction == "AND") {
@@ -123,24 +125,18 @@ export default function useDropdown(props) {
     }
     // const optionStatus = { "country": { "isSelected": true }, "country2": { "isSelected": false }, "country333": { "isSelected": false } } (reactive)
     return Object.values(optionStatus).every((status) => status.isSelected);
-
-    // console.log(" ");
-    // console.log(".... props.value ....");
-    // console.log(props.value, result, optionStatus);
-
-    // // 刪除可能為註解or文字的 children
-    // let childrenLength = slots
-    //   .default()
-    //   .filter((slot) => typeof slot.type === "object").length;
-    // if (hasVNodeTitle.value == true) {
-    //   childrenLength -= 1;
-    // }
-    // return mySelectedTags.length >= childrenLength;
   });
 
   const isDown = computed(() => {
     if (props.custom == true) {
       return false;
+    }
+
+    if (
+      (appConjunction.value == "" || appConjunction.value == "AND") &&
+      appIsDuplicateTagByKey(props.value) == true
+    ) {
+      return true;
     }
 
     return isAllOptionSelected.value;
