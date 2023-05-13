@@ -107,7 +107,7 @@ export default function useTag(props, context) {
   };
 
   const isDuplicateTagByKey = (keyName) => {
-    return tags.find((tagKeyName) => tagKeyName == keyName) ? true : false;
+    return tags.some((tag) => tag.key === keyName);
   };
 
   provide("appTags", tags);
