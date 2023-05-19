@@ -21,7 +21,7 @@ export default function useElDropdown(props, _context, dep) {
 
   // ============== COMPUTED ==============
 
-  const elDropdownDisplay = computed(() => {
+  const isElDropdownVisible = computed(() => {
     return props.disabled == false && appIsActive.value == true;
   });
 
@@ -48,6 +48,6 @@ export default function useElDropdown(props, _context, dep) {
   return {
     elDropdown,
     elDropdownLeft,
-    elDropdownDisplay,
+    isElDropdownVisible,
   };
 }

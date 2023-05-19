@@ -15,7 +15,7 @@ export default function useStatus(props, context, dep) {
 
   const isEditMode = dep.isEditMode;
 
-  const elDropdownDisplay = dep.elDropdownDisplay;
+  const isElDropdownVisible = dep.isElDropdownVisible;
 
   // const isSelectDown = ref(false);
 
@@ -38,7 +38,7 @@ export default function useStatus(props, context, dep) {
     if (props.disabled == true) result.push("disabled");
     if (props.loading == true) result.push("loading");
     if (isEditMode.value == true) result.push("editing");
-    if (elDropdownDisplay.value == true) result.push("selecting");
+    if (isElDropdownVisible.value == true) result.push("selecting");
     if (appIsFinish.value == true) result.push("finish");
     if (appIsFinish.value == false && isAllDropdownIsDown.value == true)
       result.push("delect-down");

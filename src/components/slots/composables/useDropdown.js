@@ -105,9 +105,9 @@ export default function useDropdown(props) {
   // == System hidden ==============
 
   const isHiddenBySystem = () => {
-    const appisShowUndoOption = inject("appisShowUndoOption");
-    const appisShowORConjunctionOption = inject("appisShowORConjunctionOption");
-    return !(appisShowUndoOption.value || appisShowORConjunctionOption.value);
+    const appIsUndoOptionVisible = inject("appIsUndoOptionVisible");
+    const appIsORConjunctionOptionVisible = inject("appIsORConjunctionOptionVisible");
+    return !(appIsUndoOptionVisible.value || appIsORConjunctionOptionVisible.value);
   };
 
   // == IsDown ==============

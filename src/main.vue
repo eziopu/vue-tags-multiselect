@@ -47,7 +47,7 @@
       <Transition :name="transition ? 'dropdown' : ''">
         <div
           class="dropdowns"
-          v-show="elDropdownDisplay"
+          v-show="isElDropdownVisible"
           ref="elDropdown"
           :style="{ left: `${elDropdownLeft}px` }"
           :class="{ loading: loading || dropdownLoading }"
@@ -65,7 +65,7 @@
           </div>
 
           <VTagDropdown system>
-            <VTagOption v-if="isShowUndoOption" class="undo">
+            <VTagOption v-if="isUndoOptionVisible" class="undo">
               <!-- :divided="optionDisplayCount != 0" -->
               <div @click="elOptionUndo()">
                 <slot name="option-undo">
@@ -73,7 +73,7 @@
                 </slot>
               </div>
             </VTagOption>
-            <VTagOption v-if="isShowORConjunctionOption" class="conjunction">
+            <VTagOption v-if="isORConjunctionOptionVisible" class="conjunction">
               <!-- :divided="haveOptionCanSelect" -->
               <div @click="elOptionORConjunction()">
                 <slot name="option-OR-conjunction">OR</slot>

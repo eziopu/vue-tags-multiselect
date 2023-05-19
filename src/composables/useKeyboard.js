@@ -280,23 +280,23 @@ export default function useKeyboard(props, context, dep) {
       }
     }
   };
-  const isShowUndoOption = dep.isShowUndoOption;
-  const isShowORConjunctionOption = dep.isShowORConjunctionOption;
+  const isUndoOptionVisible = dep.isUndoOptionVisible;
+  const isORConjunctionOptionVisible = dep.isORConjunctionOptionVisible;
   const elOptionUndo = dep.elOptionUndo;
   const elOptionORConjunction = dep.elOptionORConjunction;
 
   const isHoverSystemOption = () => {
     return (
       keydown.verticalIndex == 0 &&
-      (isShowUndoOption.value || isShowORConjunctionOption.value)
+      (isUndoOptionVisible.value || isORConjunctionOptionVisible.value)
     );
   };
 
   const handleSystemOption = () => {
-    if (isShowUndoOption.value) {
+    if (isUndoOptionVisible.value) {
       elOptionUndo();
     }
-    if (isShowORConjunctionOption.value) {
+    if (isORConjunctionOptionVisible.value) {
       elOptionORConjunction();
     }
   };

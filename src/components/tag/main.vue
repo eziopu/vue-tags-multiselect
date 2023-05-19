@@ -35,7 +35,7 @@
     </div>
 
     <div
-      v-if="displayDelete"
+      v-if="isDeleteVisible"
       @click="deletes"
       :class="{ pointer: appIsLock == false }"
       class="tag__close-icon"
@@ -99,7 +99,7 @@ export default {
       return "always";
     });
 
-    const displayDelete = computed(() => {
+    const isDeleteVisible = computed(() => {
       const { tag } = props;
       const hasData = tag.value || tag.values;
       if (!hasData) return false;
@@ -126,7 +126,7 @@ export default {
 
     return {
       appIsLock,
-      displayDelete,
+      isDeleteVisible,
       childrenEditing,
 
       deletes,

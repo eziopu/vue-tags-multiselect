@@ -21,7 +21,7 @@ export default function useSystemOption(_props, _context, dep) {
   const tagsGroupByKey = dep.tagsGroupByKey;
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
 
-  const isShowORConjunctionOption = computed(() => {
+  const isORConjunctionOptionVisible = computed(() => {
     if (
       tagsGroupByTitle.value.length == 0 ||
       isAllDropdownIsDown.value == true ||
@@ -37,7 +37,7 @@ export default function useSystemOption(_props, _context, dep) {
     return conjunction.value == "";
   });
 
-  const isShowUndoOption = computed(() => {
+  const isUndoOptionVisible = computed(() => {
     return stashTag.key != null && isEditMode.value == false;
   });
 
@@ -75,12 +75,12 @@ export default function useSystemOption(_props, _context, dep) {
   };
   // ============== PROVIDE ==============
 
-  provide("appisShowUndoOption", readonly(isShowUndoOption));
-  provide("appisShowORConjunctionOption", readonly(isShowORConjunctionOption));
+  provide("appIsUndoOptionVisible", readonly(isUndoOptionVisible));
+  provide("appIsORConjunctionOptionVisible", readonly(isORConjunctionOptionVisible));
 
   return {
-    isShowUndoOption,
-    isShowORConjunctionOption,
+    isUndoOptionVisible,
+    isORConjunctionOptionVisible,
 
     elOptionUndo,
     elOptionORConjunction,

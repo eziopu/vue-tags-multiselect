@@ -133,7 +133,7 @@ if (
       <CustomStyle></CustomStyle>
 
       <h3>Operate all Attributes</h3> -->
-    <Play :theme="theme" :originTableDatas="originTableDatas"></Play>
+    <Play :theme="theme"></Play>
   </div>
 
   <!-- <header>
