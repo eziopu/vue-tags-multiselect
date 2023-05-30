@@ -1,6 +1,6 @@
-import { ref, watch, computed, inject, onMounted, onBeforeUnmount } from "vue";
+import { ref, watch, computed, inject, onMounted } from "vue";
 
-export default function useDropdown(props, context, dep) {
+export default function useDropdown(props, _context, dep) {
   // ============== INJECTs ================
 
   const app = dep.app;
@@ -91,29 +91,6 @@ export default function useDropdown(props, context, dep) {
     return false;
   });
 
-  // ================= Option status ====================
-
-  if (
-    props.value != null &&
-    props.value != "" &&
-    props.title == false &&
-    dropdown.props.system == false
-  ) {
-    dropdown.optionStatus[props.value] = { isSelected: false };
-
-    watch(
-      isSelected,
-      (value) => {
-        dropdown.optionStatus[props.value].isSelected = value;
-      },
-      { immediate: true }
-    );
-
-    onBeforeUnmount(() => {
-      delete dropdown.optionStatus[props.value];
-    });
-  }
-
   // ================= Init to selected ====================
 
   const handleClick = dep.handleClick;
@@ -145,6 +122,7 @@ export default function useDropdown(props, context, dep) {
   return {
     props,
     isDisabled,
+    isSelected,
     isHover,
     isHide,
   };
