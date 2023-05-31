@@ -15,13 +15,27 @@ export default function useElDropdown(props, _context, dep) {
 
   // ============== DATA ================
 
+  const appIsActive = dep.isActive;
+
   const editTagIndex = dep.editTagIndex;
 
-  const appIsActive = dep.isActive;
+  const stashTag = dep.stashTag;
+
+  const dropdownStatus = dep.dropdownStatus;
 
   // ============== COMPUTED ==============
 
+  const isAllDropdownIsDown = dep.isAllDropdownIsDown;
+
   const isElDropdownVisible = computed(() => {
+    if (isAllDropdownIsDown.value == true) {
+      return false;
+    }
+    if (editTagIndex != -1 && stashTag.key != null) {
+      if (dropdownStatus[stashTag.key].isAllOptionSelected == true) {
+        return false;
+      }
+    }
     return props.disabled == false && appIsActive.value == true;
   });
 

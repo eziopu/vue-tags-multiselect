@@ -133,7 +133,7 @@ export default function useDropdown(props) {
     }
 
     if (
-      (appConjunction.value == "" || appConjunction.value == "AND") &&
+      appConjunction.value == "AND" &&
       appIsDuplicateTagByKey(props.value) == true
     ) {
       return true;
@@ -144,7 +144,19 @@ export default function useDropdown(props) {
 
   if (props.value != null && props.value != "") {
     const appDropdownStatus = inject("appDropdownStatus");
-    appDropdownStatus[props.value] = { isDown: false, values: [] };
+    appDropdownStatus[props.value] = {
+      isAllOptionSelected: false,
+      isDown: false,
+      values: [],
+    };
+
+    watch(
+      isAllOptionSelected,
+      (value) => {
+        appDropdownStatus[props.value].isAllOptionSelected = value;
+      },
+      { immediate: true }
+    );
 
     watch(
       isDown,
