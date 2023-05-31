@@ -123,6 +123,12 @@ export default function useTag(props, context) {
 
   provide("appEditTagIndex", editTagIndex);
 
+  // ============== EMIT ==============
+
+  watch(stashTag, (value) => {
+    context.emit("selectingKey", value.key || "");
+  });
+
   return {
     tags,
     stashTag,

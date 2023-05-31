@@ -45,6 +45,8 @@ export default function useStatus(props, context, dep) {
     return result;
   });
 
+  // ============== EMIT ==============
+
   context.emit("status", status);
 
   return {

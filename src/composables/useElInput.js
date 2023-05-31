@@ -1,7 +1,7 @@
 import { ref, computed, provide, readonly } from "vue";
 import { getPlaceholdersModel } from "../models";
 
-export default function useElInput(props, _context, dep) {
+export default function useElInput(props, context, dep) {
   // ============== REFS ================
 
   const elInput = ref(null);
@@ -61,6 +61,10 @@ export default function useElInput(props, _context, dep) {
   // ============== PROVIDE ==============
 
   provide("appPlaceholders", readonly(placeholders));
+
+  // ============== EMIT ==============
+
+  context.emit("inputValue", elInputValue);
 
   return {
     elInput,
