@@ -30,7 +30,6 @@ export default function useRegistration(props, context, dep) {
     }
 
     if (registrationName != "") {
-      console.log(registrationName);
       const dropdown = dep.dropdown;
       if (dropdown.props.system == false) {
         dropdown.optionStatus[registrationName] = { isSelected: false };
