@@ -32,15 +32,16 @@
       <hr />
     </div>
 
+    tool: {{ tool }}
     <div class="demo-component relative">
       <v-tags-multiselect
         v-if="reloadByI18n"
         v-model="result"
         ref="vueTagsMultiselect"
-        @getStatus="(e) => (tool.status = e)"
-        @getSelectingKey="(e) => (tool.selectingKey = e)"
-        @getInputValue="(e) => (tool.inputValue = e)"
-        @getEditing="(e) => (tool.editing = e)"
+        @status="(e) => (tool.status = e)"
+        @selectingKey="(e) => (tool.selectingKey = e)"
+        @inputValue="(e) => (tool.inputValue = e)"
+        @editing="(e) => (tool.editing = e)"
         :disabled="disabled == 'true' ? true : false"
         :loading="loading == 'true' ? true : false"
         :search="search == 'true' ? true : false"
@@ -50,9 +51,7 @@
         :deleteIcon="deleteIcon"
         :conjunction="conjunction"
         :placeholder="placeholderText(placeholder)"
-        :loadingPlaceholder="placeholderText(loadingPlaceholder)"
-        :selectDownPlaceholder="placeholderText(selectDownPlaceholder)"
-        :finishPlaceholder="placeholderText(finishPlaceholder)"
+        :placeholders="placeholders"
       >
         <template v-slot:tag-conjunction v-if="tagConjunction != ''">
           <span v-html="tagConjunction"></span>
@@ -69,7 +68,7 @@
         >
           <span v-html="optionORConjunctionContent"></span>
         </template>
-        <v-tag-dropdown value="country" display-all custom>
+        <!-- <v-tag-dropdown value="country" display-all custom>
           <v-tag-option title>
             <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
           </v-tag-option>
@@ -118,7 +117,7 @@
               @keydown.enter="inputHeight()"
               ref="inputHeight1"
             />
-            <span> ~ </span>
+            ~
             <input
               type="number"
               name="height2"
@@ -131,7 +130,7 @@
               ref="inputHeight2"
             />
           </v-tag-option>
-        </v-tag-dropdown>
+        </v-tag-dropdown> -->
         <v-tag-dropdown value="remark" display-all>
           <v-tag-option title>
             <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
@@ -232,12 +231,19 @@ export default defineComponent({
       create: "true",
       merge: "true",
       conjunction: "null",
-      placeholder: "Click me !",
       deleteIcon: "always",
       loadingContent: "",
       loadingPlaceholder: "",
       selectDownPlaceholder: "",
       finishPlaceholder: "",
+      placeholder: "",
+      placeholders: {
+        initial: "Click me !",
+        loading: "",
+        selectDown: "",
+        finish: "",
+        tagValueRepeat: "",
+      },
       tagConjunction: "",
       optionUndoContent: "",
       optionORConjunctionContent: "",

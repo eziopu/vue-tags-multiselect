@@ -3,7 +3,7 @@
     v-if="reloadByI18n"
     class="focus-demo-app"
     ref="vueTagsMultiselect"
-    @getStatus="(e) => (status = e)"
+    @status="(e) => (status = e)"
   >
     <template slot="option-undo" v-if="verifyText(slots.optionUndo)">
       <span v-html="slots.optionUndo"></span>

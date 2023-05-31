@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="row">
-      <div><div>getStatus</div></div>
+      <div><div>status</div></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
         <span>{{ app.tool.status || "[]" }}</span>
@@ -27,7 +27,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.getStatus") }}</span>
+        <span>{{ $t("attributes.description.events.satus") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>

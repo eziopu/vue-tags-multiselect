@@ -4,7 +4,7 @@
     class="focus-demo-app"
     ref="vueTagsMultiselect"
     conjunction="AND"
-    @getStatus="(e) => (status = e)"
+    @status="(e) => (status = e)"
   >
     <v-tag-dropdown
       value="country"

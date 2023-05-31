@@ -52,10 +52,10 @@
         "option-OR-conjunction__notice": "僅在參數<code class='tag'>conjunction</code>為 'null' 時顯示"
       },
       "events": {
-        "getStatus": "取得當前操作的模式名稱",
-        "getSelectingKey": "取得當前選擇的 dropwon 的 key 值",
-        "getInputValue": "取得當前選擇的 input 的 value 值, 編輯模式則對應該 input",
-        "getEdintng": "取得當前誰正在編輯"
+        "status": "取得當前操作的模式名稱",
+        "selectingKey": "取得當前選擇的 dropwon 的 key 值",
+        "inputValue": "取得當前選擇的 input 的 value 值, 編輯模式則對應該 input",
+        "edintng": "取得當前誰正在編輯"
       },
       "refOperates": {
         "pushValue": "給予當前選擇的dropwon給予value值並自動完成",

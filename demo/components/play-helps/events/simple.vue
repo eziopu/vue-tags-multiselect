@@ -19,19 +19,19 @@
         }"
       >
         <div class="flex-between">
-          <span>getStatus</span>
+          <span>status</span>
           <span>{{ app.tool.status || "[]" }}</span>
         </div>
         <div class="flex-between">
-          <span>getSelectingKey</span>
+          <span>selectingKey</span>
           <span>{{ app.tool.selectingKey || "-" }}</span>
         </div>
         <div class="flex-between">
-          <span>getInputValue</span>
+          <span>inputValue</span>
           <span>{{ app.tool.inputValue || "-" }}</span>
         </div>
         <div class="flex-between text">
-          <span>getEdintng</span>
+          <span>edintng</span>
           <p>{{ app.tool.editing || {} }}</p>
         </div>
         <div class="clear"></div>

@@ -52,10 +52,10 @@
         "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
       },
       "events": {
-        "getStatus": "current operating mode",
-        "getSelectingKey": "current selected tag key name",
-        "getInputValue": "current input value, tag value when editing mode",
-        "getEdintng": "current editing target"
+        "status": "current operating mode",
+        "selectingKey": "current selected tag key name",
+        "inputValue": "current input value, tag value when editing mode",
+        "edintng": "current editing target"
       },
       "refOperates": {
         "pushValue": "push value to current selected tag title and finish",
