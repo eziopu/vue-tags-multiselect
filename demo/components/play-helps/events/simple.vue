@@ -23,8 +23,8 @@
           <span>{{ app.tool.status || "[]" }}</span>
         </div>
         <div class="flex-between">
-          <span>selectingKey</span>
-          <span>{{ app.tool.selectingKey || "-" }}</span>
+          <span>selectingTag</span>
+          <span>{{ app.tool.selectingTag || "{}" }}</span>
         </div>
         <div class="flex-between">
           <span>inputValue</span>

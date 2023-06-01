@@ -53,7 +53,7 @@
       },
       "events": {
         "status": "current operating mode",
-        "selectingKey": "current selected tag key name",
+        "selectingTag": "current selected tag",
         "inputValue": "current input value, tag value when editing mode",
         "edintng": "current editing target"
       },

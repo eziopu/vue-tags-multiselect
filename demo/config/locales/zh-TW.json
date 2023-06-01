@@ -53,7 +53,7 @@
       },
       "events": {
         "status": "取得當前操作的模式名稱",
-        "selectingKey": "取得當前選擇的 dropwon 的 key 值",
+        "selectingTag": "取得當前選擇的tag",
         "inputValue": "取得當前選擇的 input 的 value 值, 編輯模式則對應該 input",
         "edintng": "取得當前誰正在編輯"
       },

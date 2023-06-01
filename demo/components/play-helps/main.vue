@@ -39,7 +39,7 @@
         v-model="result"
         ref="vueTagsMultiselect"
         @status="(e) => (tool.status = e)"
-        @selectingKey="(e) => (tool.selectingKey = e)"
+        @selectingTag="(e) => (tool.selectingTag = e)"
         @inputValue="(e) => (tool.inputValue = e)"
         @editing="(e) => (tool.editing = e)"
         :disabled="disabled == 'true' ? true : false"
@@ -68,7 +68,7 @@
         >
           <span v-html="optionORConjunctionContent"></span>
         </template>
-        <!-- <v-tag-dropdown value="country" display-all custom>
+        <v-tag-dropdown value="country" display-all>
           <v-tag-option title>
             <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
           </v-tag-option>
@@ -130,7 +130,7 @@
               ref="inputHeight2"
             />
           </v-tag-option>
-        </v-tag-dropdown> -->
+        </v-tag-dropdown>
         <v-tag-dropdown value="remark" display-all>
           <v-tag-option title>
             <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
@@ -249,7 +249,7 @@ export default defineComponent({
       optionORConjunctionContent: "",
       tool: {
         status: [],
-        selectingKey: "",
+        selectingTag: {},
         inputValue: "",
         editing: {},
       },
@@ -279,17 +279,17 @@ export default defineComponent({
   watch: {
     tool: {
       handler(value) {
-        let { status, selectingKey, editing } = value;
+        let { status, selectingTag, editing } = value;
         if (
           this.loading == "false" &&
           this.isFetchDatas == false &&
           status.includes("loading") == false &&
           (status.includes("editing") || status.includes("selecting")) &&
-          (selectingKey == "name" || editing.key == "name")
+          (selectingTag.key == "name" || editing.key == "name")
         ) {
           this.fetchNames();
         }
-        if (selectingKey != "name" && editing.key != "name") {
+        if (selectingTag.key != "name" && editing.key != "name") {
           this.otherNames = [];
           this.isFetchDatas = false;
         }

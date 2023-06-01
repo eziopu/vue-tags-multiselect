@@ -47,7 +47,7 @@
       <div><div>getSelectingKey</div></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
-        <span>{{ app.tool.selectingKey || "-" }}</span>
+        <span>{{ app.tool.selectingTag || "{}" }}</span>
       </div>
       <div>
         <span class="i-block d-md-none"

@@ -9,7 +9,7 @@
         v-model="appEvent.result"
         ref="vueTagsMultiselect"
         @status="(e) => (appEvent.status = e)"
-        @selectingKey="(e) => (appEvent.selectingKey = e)"
+        @selectingTag="(e) => (appEvent.selectingTag = e)"
         @inputValue="(e) => (appEvent.inputValue = e)"
         @editing="(e) => (appEvent.editing = e)"
         :disabled="appProps.disabled"
@@ -193,7 +193,7 @@ export default {
       appEvent: {
         result: [],
         status: [],
-        selectingKey: "",
+        selectingTag: {},
         inputValue: "",
         editing: {},
       },
