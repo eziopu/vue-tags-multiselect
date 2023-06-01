@@ -126,7 +126,7 @@ export default function useTag(props, context) {
   // ============== EMIT ==============
 
   watch(stashTag, (value) => {
-    context.emit("selectingTag", value.key ? value : {});
+    context.emit("selectingTag", value.key ? (delete value.index, value) : {});
   });
 
   return {
