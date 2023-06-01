@@ -60,7 +60,7 @@ export default function useSystemOption(_props, _context, dep) {
   };
 
   const isStillOptionsCanSelected = () => {
-    // const dropdownStatus = { "country": { "isDown": true }, "country2": { "isDown": false }, "country333": { "isDown": false } } (reactive)
+    // const dropdownStatus = { country: { isDown: true, isAllOptionSelected: true }, country2: { isDown: false, isAllOptionSelected: false }, ... } (reactive)
     // const tagsGroupByKey = { "country": ["val1", "val2"], "country2": ["val1"] } (computed)
     const tempTagsGroupByKey = { ...tagsGroupByKey.value };
     Object.keys(dropdownStatus).forEach((key) => {

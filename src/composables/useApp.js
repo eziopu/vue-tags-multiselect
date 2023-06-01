@@ -117,7 +117,9 @@ export default function useApp(props, _context, dep) {
       }
     }, APP_INPUT_BLUR);
   };
+
   // ============== PROVIDE ==============
+  
   provide("appProps", readonly(props));
   provide("appConjunction", readonly(conjunction));
 

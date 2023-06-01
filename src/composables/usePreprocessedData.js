@@ -21,7 +21,7 @@ export default function usePreprocessedData(props) {
 
   // ============== COMPUTED ================
   const isAllDropdownIsDown = computed(() => {
-    // const dropdownStatus = { "country": { "isDown": true }, "country2": { "isDown": false }, "country333": { "isDown": false } } (reactive)
+    // const dropdownStatus = { country: { isDown: true, isAllOptionSelected: true }, country2: { isDown: false, isAllOptionSelected: false }, ... } (reactive)
     return Object.values(dropdownStatus).every((status) => status.isDown);
   });
 
