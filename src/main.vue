@@ -125,13 +125,13 @@ import VTagOption from "./components/slots/v-option.vue";
 import resolve from "./utils/resolve";
 import usePreprocessedData from "./composables/usePreprocessedData";
 import useTag from "./composables/useTag";
-import useTagEvent from "./composables/useTagEvent";
 import useElInput from "./composables/useElInput";
 import useApp from "./composables/useApp";
 import useElDropdown from "./composables/useElDropdown";
 import useSystemOption from "./composables/useSystemOption";
 import useStatus from "./composables/useStatus";
 import useKeyboard from "./composables/useKeyboard";
+import useEventSetTag from "./composables/useEventSetTag";
 
 import { defineComponent } from "vue";
 
@@ -175,13 +175,13 @@ export default defineComponent({
     return resolve(props, context, [
       usePreprocessedData,
       useTag,
-      useTagEvent,
       useElInput,
       useApp,
       useElDropdown,
       useSystemOption,
       useStatus,
       useKeyboard,
+      useEventSetTag,
     ]);
   },
 });

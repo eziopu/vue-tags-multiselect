@@ -1,6 +1,6 @@
 import { reactive, provide } from "vue";
 
-export default function useTagEvent(props, _context, dep) {
+export default function useEventSetTag(props, _context, dep) {
   // ============== DATA ==============
 
   const appIsLock = dep.appIsLock;
@@ -16,6 +16,8 @@ export default function useTagEvent(props, _context, dep) {
   provide("appCallDrodownSetTag", appCallDrodownSetTag);
 
   // ============== METHODS ==============
+
+  const focusApp = dep.focusApp;
 
   const updateTag = dep.updateTag;
 
@@ -83,9 +85,14 @@ export default function useTagEvent(props, _context, dep) {
               throw "";
             } else {
               console.log("7777");
-              setStashTag({ value: inputValue, displayValue: true });
-              setTagToTags();
-              console.log("  pushValue: app setStashTag");
+              setTagToTags({
+                ...stashTag,
+                ...{ value: inputValue, displayValue: true },
+              });
+              setStashTag();
+              focusApp("7777");
+
+              console.log("  pushValue: app setTagToTags");
               throw "";
             }
           }
@@ -110,8 +117,12 @@ export default function useTagEvent(props, _context, dep) {
           throw "key not found and props create is false";
         } else {
           console.log("111111111111111111");
-          setStashTag({ key: inputKey, value: inputValue, displayValue: true });
-          setTagToTags();
+          setTagToTags({
+            key: inputKey,
+            value: inputValue,
+            displayValue: true,
+          });
+          setStashTag();
         }
       }
     } catch (error) {

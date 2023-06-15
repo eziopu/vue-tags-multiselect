@@ -141,8 +141,10 @@ export default function useTag(_props, context) {
     tagsGroupByKey,
     tagsGroupByTitle,
 
+    updateTag,
     deleteTags,
     setStashTag,
     setTagToTags,
+    isDuplicateTag,
   };
 }
