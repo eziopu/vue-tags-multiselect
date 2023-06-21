@@ -137,7 +137,15 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "v-tags-multiselect",
-  emits: ["update:modelValue", "status", "edit", "inputValue", "keydown", "keyup", "selectingTag"],
+  emits: [
+    "update:modelValue",
+    "status",
+    "edit",
+    "inputValue",
+    "keydown",
+    "keyup",
+    "selectingTag",
+  ],
   // mixins: [
   //   EmitOutput,
   //   EmitGetStatus,

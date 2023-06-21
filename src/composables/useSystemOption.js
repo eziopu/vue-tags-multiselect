@@ -76,7 +76,10 @@ export default function useSystemOption(_props, _context, dep) {
   // ============== PROVIDE ==============
 
   provide("appIsUndoOptionVisible", readonly(isUndoOptionVisible));
-  provide("appIsORConjunctionOptionVisible", readonly(isORConjunctionOptionVisible));
+  provide(
+    "appIsORConjunctionOptionVisible",
+    readonly(isORConjunctionOptionVisible)
+  );
 
   return {
     isUndoOptionVisible,

@@ -88,7 +88,6 @@ export default function useEventSetTag(props, _context, dep) {
             // 請求 該option 觸發自動點擊
             callDrodownSetTag(inputValue, stashTag.key);
             throw "";
-
           } else {
             console.log("7777");
             setTagToTags({

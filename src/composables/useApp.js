@@ -119,7 +119,7 @@ export default function useApp(props, _context, dep) {
   };
 
   // ============== PROVIDE ==============
-  
+
   provide("appProps", readonly(props));
   provide("appConjunction", readonly(conjunction));
 
