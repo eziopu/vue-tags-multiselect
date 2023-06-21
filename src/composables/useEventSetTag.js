@@ -38,10 +38,12 @@ export default function useEventSetTag(props, _context, dep) {
     if (inputKey != "") {
       // const dropdownStatus = { country: { isDown: true, isAllOptionSelected: true }, country2: { isDown: false, isAllOptionSelected: false }, ... } (reactive)
       const targetDropdown = dropdownStatus[inputKey];
-      isMachKey =
-        typeof targetDropdown == "object" &&
-        Object.keys(targetDropdown).length != 0;
-      isMachValue = targetDropdown.values.includes(inputValue);
+      if (targetDropdown != undefined) {
+        isMachKey =
+          typeof targetDropdown == "object" &&
+          Object.keys(targetDropdown).length != 0;
+        isMachValue = targetDropdown.values.includes(inputValue);
+      }
     }
     return { key: isMachKey, value: isMachValue };
   };
@@ -52,12 +54,22 @@ export default function useEventSetTag(props, _context, dep) {
       if (inputValue == "") throw "value is empty";
       if (appIsLock.value == true) throw "app is lock";
       console.log("00000");
+
       // 只有value 沒有inputKey
       if (inputKey == "") {
         console.log("11111");
-        if (stashTag.key != "") {
-          console.log("2222222");
-          // 編輯模式
+
+        // 選擇中
+        if (stashTag.key != null && stashTag.value == null) {
+          console.log("2222222", stashTag.key);
+
+          // 是否已存在
+          if (isDuplicateTag(stashTag.key, inputValue)) {
+            console.log("55555");
+            throw "value is repeat";
+          }
+
+          // 編輯模式ing
           if (isEditMode.value == true) {
             console.log("33333");
             updateTag({
@@ -67,34 +79,27 @@ export default function useEventSetTag(props, _context, dep) {
             throw "";
           }
 
-          // 選擇中
           console.log("444444");
-          if (stashTag.key != null && stashTag.value == null) {
-            // 是否已存在
-            if (isDuplicateTag(stashTag.key, inputValue)) {
-              console.log("55555");
-              throw "value is repeat";
-            }
 
-            // 是否有對應的value
-            const isMach = getIsMach(inputValue, stashTag.key);
-            if (isMach.value == true) {
-              console.log("6666");
-              // 請求 該option 觸發自動點擊
-              callDrodownSetTag(inputValue, stashTag.key);
-              throw "";
-            } else {
-              console.log("7777");
-              setTagToTags({
-                ...stashTag,
-                ...{ value: inputValue, displayValue: true },
-              });
-              setStashTag();
-              focusApp("7777");
+          // 是否有對應的value
+          const isMach = getIsMach(inputValue, stashTag.key);
+          if (isMach.value == true) {
+            console.log("6666");
+            // 請求 該option 觸發自動點擊
+            callDrodownSetTag(inputValue, stashTag.key);
+            throw "";
 
-              console.log("  pushValue: app setTagToTags");
-              throw "";
-            }
+          } else {
+            console.log("7777");
+            setTagToTags({
+              ...stashTag,
+              ...{ value: inputValue, displayValue: true },
+            });
+            setStashTag();
+            focusApp("7777");
+
+            console.log("  pushValue: app setTagToTags");
+            throw "";
           }
         }
       }
@@ -111,19 +116,23 @@ export default function useEventSetTag(props, _context, dep) {
           callDrodownSetTag(inputValue, inputKey);
           throw "";
         }
+      }
 
-        if (isMach.key == false && props.create == false) {
-          console.log("10001000");
-          throw "key not found and props create is false";
-        } else {
-          console.log("111111111111111111");
-          setTagToTags({
-            key: inputKey,
-            value: inputValue,
-            displayValue: true,
-          });
-          setStashTag();
+      if (props.create == false) {
+        console.log("10001000");
+        throw "key not found and props create is false";
+      } else {
+        console.log("111111111111111111");
+        const newTag = {
+          value: inputValue,
+          displayValue: true,
+        };
+        if (inputKey != "") {
+          newTag.key = inputKey;
         }
+        setTagToTags(newTag);
+        setStashTag();
+        throw "";
       }
     } catch (error) {
       if (error) {
