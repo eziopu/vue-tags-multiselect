@@ -101,6 +101,23 @@
             {{ $t(`ui.data.name.${otherName.displayValue}`) }}
           </v-tag-option>
         </v-tag-dropdown>
+        <v-tag-dropdown value="push_value_test">
+          <v-tag-option title> push value test </v-tag-option>
+          <v-tag-option>
+            <div
+              @click="$refs.vueTagsMultiselect.pushValue('TEST', 'fuc')"
+            >
+              TEST
+            </div>
+          </v-tag-option>
+          <v-tag-option>
+            <div
+              @click="$refs.vueTagsMultiselect.pushValue('TEST2')"
+            >
+              TEST2
+            </div>
+          </v-tag-option>
+        </v-tag-dropdown>
         <v-tag-dropdown value="height" display-all>
           <v-tag-option title>
             <i class="fa fa-user"></i> {{ $t("ui.general.Height(m)") }}

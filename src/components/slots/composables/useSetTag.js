@@ -49,14 +49,14 @@ export default function useDropdown(props, context, dep) {
   const handleClick = () => {
     if (isDisabled) return;
     if (!props.title && props.value == "") {
-      const slotContent = context.slots.default();
-      if (
-        slotContent &&
-        slotContent.length > 0 &&
-        typeof slotContent[0].props.onClick == "function"
-      ) {
-        slotContent[0].props.onClick();
-      }
+      // const slotContent = context.slots.default();
+      // if (
+      //   slotContent &&
+      //   slotContent.length > 0 &&
+      //   typeof slotContent[0].props.onClick == "function"
+      // ) {
+      //   slotContent[0].props.onClick();
+      // }
       return;
     }
 

@@ -5,11 +5,11 @@
     ref="vueTagsMultiselect"
     @status="(e) => (status = e)"
   >
-    <template slot="option-undo" v-if="verifyText(slots.optionUndo)">
+    <template v-slot:option-undo v-if="verifyText(slots.optionUndo)">
       <span v-html="slots.optionUndo"></span>
     </template>
     <template
-      slot="option-OR-conjunction"
+      v-slot:option-OR-conjunction
       v-if="verifyText(slots.optionORConjunction)"
     >
       <span v-html="slots.optionORConjunction"></span>

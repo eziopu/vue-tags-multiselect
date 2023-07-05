@@ -7,7 +7,7 @@
       disabled: isDisabled,
       divided: props.divided,
       hover: isHover,
-      noValue: props.value == undefined,
+      noValue: props.value == undefined || props.value == '',
       hidden: isHide,
     }"
     @mouseover="isHover = true"

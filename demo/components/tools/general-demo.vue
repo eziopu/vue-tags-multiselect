@@ -26,23 +26,23 @@
         :selectDownPlaceholder="appProps.selectDownPlaceholder"
         :finishPlaceholder="appProps.finishPlaceholder"
       >
-        <template slot="tag-conjunction" v-if="appProps.tagConjunction != ''">
+        <template v-slot:tag-conjunction v-if="appProps.tagConjunction != ''">
           <span v-html="appProps.tagConjunction"></span>
         </template>
-        <template slot="loading" v-if="appProps.loadingContent != ''">
+        <template v-slot:loading v-if="appProps.loadingContent != ''">
           <span v-html="appProps.loadingContent"></span>
         </template>
-        <template slot="option-undo" v-if="appProps.optionUndoContent != ''">
+        <template v-slot:option-undo v-if="appProps.optionUndoContent != ''">
           <span v-html="appProps.optionUndoContent"></span>
         </template>
         <template
-          slot="optionU-OR-conjunction"
+          v-slot:optionU-OR-conjunction
           v-if="appProps.optionORConjunctionContent != ''"
         >
           <span v-html="appProps.optionORConjunctionContent"></span>
         </template>
         <template
-          slot="dropdowns-loading"
+          v-slot:dropdowns-loading
           v-if="appProps.dropdownLoadingContent != ''"
         >
           <span v-html="appProps.dropdownLoadingContent"></span>
