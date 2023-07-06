@@ -31,14 +31,20 @@ export default function useElDropdown(props, _context, dep) {
     if (isAllDropdownIsDown.value == true) {
       return false;
     }
-    if (editTagIndex != -1 && stashTag.key != null) {
-      if (
-        dropdownStatus[stashTag.key] != undefined &&
-        dropdownStatus[stashTag.key].isAllOptionSelected == true
-      ) {
+
+    if (editTagIndex.value != -1) {
+      if (stashTag.key == null) {
+        return false;
+      }
+      const status = dropdownStatus[stashTag.key];
+      if (status == undefined) {
+        return false;
+      }
+      if (status != undefined && status.isAllOptionSelected == true) {
         return false;
       }
     }
+
     return props.disabled == false && appIsActive.value == true;
   });
 
