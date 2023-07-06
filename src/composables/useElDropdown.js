@@ -32,7 +32,10 @@ export default function useElDropdown(props, _context, dep) {
       return false;
     }
     if (editTagIndex != -1 && stashTag.key != null) {
-      if (dropdownStatus[stashTag.key].isAllOptionSelected == true) {
+      if (
+        dropdownStatus[stashTag.key] != undefined &&
+        dropdownStatus[stashTag.key].isAllOptionSelected == true
+      ) {
         return false;
       }
     }
