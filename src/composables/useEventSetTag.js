@@ -1,4 +1,5 @@
 import { reactive, provide } from "vue";
+import { getTagModel } from "../models";
 
 export default function useEventSetTag(props, _context, dep) {
   // ============== DATA ==============
@@ -48,15 +49,16 @@ export default function useEventSetTag(props, _context, dep) {
     return { key: isMachKey, value: isMachValue };
   };
 
-  const pushValue = (inputValue = "", inputKey = "") => {
-    console.log("pushValue(", inputValue, inputKey, ")");
+  const pushTag = (item = {}) => {
+    const input = getTagModel(item);
+    console.log("pushTag(", input, ")");
     try {
-      if (inputValue == "") throw "value is empty";
+      if (input.value == "") throw "value is empty";
       if (appIsLock.value == true) throw "app is lock";
       console.log("00000");
 
-      // 只有value 沒有inputKey
-      if (inputKey == "") {
+      // 只有value 沒有key
+      if (input.key == "") {
         console.log("11111");
 
         // 選擇中
@@ -64,7 +66,7 @@ export default function useEventSetTag(props, _context, dep) {
           console.log("2222222", stashTag.key);
 
           // 是否已存在
-          if (isDuplicateTag(stashTag.key, inputValue)) {
+          if (isDuplicateTag(stashTag.key, input.value)) {
             console.log("55555");
             throw "value is repeat";
           }
@@ -73,7 +75,7 @@ export default function useEventSetTag(props, _context, dep) {
           if (isEditMode.value == true) {
             console.log("33333");
             updateTag({
-              value: inputValue,
+              value: input.value,
               displayValue: true,
             });
             throw "";
@@ -82,37 +84,41 @@ export default function useEventSetTag(props, _context, dep) {
           console.log("444444");
 
           // 是否有對應的value
-          const isMach = getIsMach(inputValue, stashTag.key);
+          const isMach = getIsMach(input.value, stashTag.key);
           if (isMach.value == true) {
             console.log("6666");
             // 請求 該option 觸發自動點擊
-            callDrodownSetTag(inputValue, stashTag.key);
+            callDrodownSetTag(input.value, stashTag.key);
             throw "";
           } else {
             console.log("7777");
             setTagToTags({
               ...stashTag,
-              ...{ value: inputValue, displayValue: true },
+              ...{
+                value: input.value,
+                displayValue: true,
+                titleElm: input.titleElm,
+              },
             });
             setStashTag();
             focusApp("7777");
 
-            console.log("  pushValue: app setTagToTags");
+            console.log("  pushTag: app setTagToTags");
             throw "";
           }
         }
       }
 
-      // 只有value 沒有inputKey
-      if (inputKey != "") {
+      // 只有value 沒有input.key
+      if (input.key != "") {
         console.log("8888");
         // 是否有對應的value
-        const isMach = getIsMach(inputValue, inputKey);
+        const isMach = getIsMach(input.value, input.key);
 
         if (isMach.key == true) {
           // 請求 該option 觸發自動點擊
           console.log("9999");
-          callDrodownSetTag(inputValue, inputKey);
+          callDrodownSetTag(input.value, input.key);
           throw "";
         }
       }
@@ -122,26 +128,21 @@ export default function useEventSetTag(props, _context, dep) {
         throw "key not found and props create is false";
       } else {
         console.log("111111111111111111");
-        const newTag = {
-          value: inputValue,
-          displayValue: true,
-        };
-        if (inputKey != "") {
-          newTag.key = inputKey;
-        }
-        setTagToTags(newTag);
+        input.displayValue = true;
+        console.log("???", input);
+        setTagToTags(input);
         setStashTag();
         throw "";
       }
     } catch (error) {
       if (error) {
-        console.log("[v-tags-multiselect]: event pushValue error");
+        console.log("[v-tags-multiselect]: event pushTag error");
         console.log(error);
       }
     }
   };
 
   return {
-    pushValue,
+    pushTag,
   };
 }

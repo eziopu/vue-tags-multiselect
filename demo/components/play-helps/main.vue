@@ -105,14 +105,14 @@
           <v-tag-option title> push value test </v-tag-option>
           <v-tag-option>
             <div
-              @click="$refs.vueTagsMultiselect.pushValue('TEST', 'fuc')"
+              @click="$refs.vueTagsMultiselect.pushTag({value: 'TEST', key: 'fuc'})"
             >
               TEST
             </div>
           </v-tag-option>
           <v-tag-option>
             <div
-              @click="$refs.vueTagsMultiselect.pushValue('TEST2')"
+              @click="$refs.vueTagsMultiselect.pushTag({value: 'TEST2'})"
             >
               TEST2
             </div>
@@ -380,10 +380,10 @@ export default defineComponent({
       return;
     },
     pushHeightValue() {
-      this.$refs.vueTagsMultiselect.pushValue(
-        `${this.height1} ~ ${this.height2}`,
-        "height"
-      );
+      this.$refs.vueTagsMultiselect.pushTag({
+        key: "height",
+        value: `${this.height1} ~ ${this.height2}`,
+      });
       this.$refs.inputHeight1.blur();
       this.$refs.inputHeight2.blur();
     },
