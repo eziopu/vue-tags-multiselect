@@ -32,7 +32,6 @@ export function getTagModel(item = {}) {
     titleElm: item.titleElm || null,
     classList: item.classList || [],
     custom: item.custom || false,
-    displayKeyValue: item.displayKeyValue || false,
     displayValue: item.displayValue || false,
   };
 }
