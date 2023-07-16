@@ -17,6 +17,8 @@ export default function useInjects() {
     setStashTag: inject("appSetStashTag"),
     setTagToTags: inject("appSetTagToTags"),
     elInputValue: inject("appElInputValue"),
+    callOptionSetTag: inject("appCallOptionSetTag"),
+    callOptionSetTagFinish: inject("appCallOptionSetTagFinish"),
   };
 
   const dropdown = {

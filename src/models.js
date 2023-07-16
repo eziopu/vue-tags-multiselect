@@ -36,6 +36,14 @@ export function getTagModel(item = {}) {
   };
 }
 
+export function getAppCallOptionSetTag(item = {}) {
+  return {
+    key: item.key || null,
+    value: item.value || null,
+    valueIsCustome: item.valueIsCustome || false,
+  };
+}
+
 export function getTagsGroupByKeyModel(item = {}) {
   return {
     key: item.key || null,

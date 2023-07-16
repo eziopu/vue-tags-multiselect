@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 
 import { getTagModel } from "../../../models";
 
@@ -76,6 +76,25 @@ export default function useDropdown(props, context, dep) {
     }
     app.reFocus();
   };
+
+  watch(app.callOptionSetTag, (value) => {
+    if (
+      props.title == false &&
+      value.key == dropdown.props.value &&
+      value.value == props.value
+    ) {
+      handleClick();
+      app.callOptionSetTagFinish();
+
+    } else if (
+      props.title == true &&
+      value.key == dropdown.props.value &&
+      value.valueIsCustome == true
+    ) {
+      handleClick();
+      app.callOptionSetTagFinish();
+    }
+  });
 
   return {
     elOption,
