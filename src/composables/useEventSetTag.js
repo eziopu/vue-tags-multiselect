@@ -40,7 +40,7 @@ export default function useEventSetTag(props, _context, dep) {
   });
 
   const getIsMach = (inputKey = "", inputValue = "") => {
-    console.log("///////getIsMach/////////", inputKey, inputValue);
+    // console.log("///////getIsMach/////////", inputKey, inputValue);
     let isMachKey = false;
     let isMachValue = false;
     if (inputKey != "") {
@@ -81,23 +81,23 @@ export default function useEventSetTag(props, _context, dep) {
    * retunt string
    **/
   const handleNoKey = (input = {}) => {
-    console.log("handleNoKey");
+    // console.log("handleNoKey");
     let result = "";
 
     try {
       // 選擇中
       if (stashTag.key != null && stashTag.value == null) {
-        console.log("2222222", stashTag.key);
+        // console.log("2222222", stashTag.key);
 
         // 是否已存在
         if (isDuplicateTag(stashTag.key, input.value)) {
-          console.log("55555");
+          // console.log("55555");
           throw "value is repeat";
         }
 
         // 編輯模式ing
         if (isEditMode.value == true) {
-          console.log("33333");
+          // console.log("33333");
           updateTag({
             value: input.value,
             displayValue: true,
@@ -105,20 +105,20 @@ export default function useEventSetTag(props, _context, dep) {
           throw "";
         }
 
-        console.log("444444");
+        // console.log("444444");
 
         // 是否有對應的value
         const isMach = getIsMach(stashTag.key, input.value);
         if (isMach.value == true) {
-          console.log("6666");
+          // console.log("6666");
           // 有對應的value 請求 該option 觸發自動點擊
           callOptionSetTag({ key: stashTag.key, value: input.value });
           throw "";
         } else {
-          console.log("7777");
+          // console.log("7777");
           mergeStashTagToFinish(input);
 
-          console.log("  pushTag: app setTagToTags");
+          // console.log("  pushTag: app setTagToTags");
           throw "";
         }
       }
@@ -134,43 +134,55 @@ export default function useEventSetTag(props, _context, dep) {
    * retunt string
    **/
   const handleHasKey = (input = {}) => {
-    console.log("handleHasKey");
+    // console.log("handleHasKey");
     let result = "";
-    // 是否有對應的value
-    const isMach = getIsMach(input.key, input.value);
-    console.log(isMach.key);
-    if (isMach.key == true) {
-      callOptionSetTag({
-        key: input.key,
+
+    // 編輯模式ing
+    if (isEditMode.value == true && input.key == stashTag.key) {
+      updateTag({
         value: input.value,
-        valueIsCustome: isMach.value == false,
+        displayValue: true,
       });
       result = "finish";
+      focusApp("handleHasKey()");
+
+    } else {
+      // 是否有對應的value
+      const isMach = getIsMach(input.key, input.value);
+      if (isMach.key == true) {
+        callOptionSetTag({
+          key: input.key,
+          value: input.value,
+          valueIsCustome: isMach.value == false,
+        });
+        result = "finish";
+      }
     }
+
     return result;
   };
 
   const pushTag = (item = {}) => {
     const input = getTagModel(item);
-    console.log("pushTag(", input, ")");
+    // console.log("pushTag(", input, ")");
     try {
       if (input.value == "") throw "value is empty";
       if (appIsLock.value == true) throw "app is lock";
-      console.log("00000");
+      // console.log("00000");
 
       // 有value 沒有key
       if (input.key == "") {
-        const result = handleNoKey();
+        const result = handleNoKey(input);
         if (result != "") {
           throw result;
         }
       }
 
       // 有value 有key
-      console.log("yyyyyyyyy");
+      // console.log("yyyyyyyyy");
       if (input.key != "") {
-        const result = handleHasKey();
-        console.log("yyyyyyyyy2222 result=", result);
+        const result = handleHasKey(input);
+        // console.log("yyyyyyyyy2222 result=", result);
         if (result != "") {
           throw result;
         }
@@ -179,7 +191,7 @@ export default function useEventSetTag(props, _context, dep) {
       if (props.create == false) {
         throw "key not found and props create is false";
       } else {
-        console.log("111111111111111111");
+        // console.log("111111111111111111");
         input.displayValue = true;
         setTagToTags(input);
         setStashTag();
