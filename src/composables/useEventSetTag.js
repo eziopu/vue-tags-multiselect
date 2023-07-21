@@ -28,6 +28,8 @@ export default function useEventSetTag(props, _context, dep) {
 
   const setTagToTags = dep.setTagToTags;
 
+  const tagsGroupByKey = dep.tagsGroupByKey;
+
   const callOptionSetTag = (item = {}) => {
     Object.assign(appCallOptionSetTag, { ...getAppCallOptionSetTag(item) });
   };
@@ -76,131 +78,91 @@ export default function useEventSetTag(props, _context, dep) {
     focusApp("mergeStashTagToFinish()");
   };
 
-  /**
-   * parameter object <tagModel>
-   * retunt string
-   **/
-  const handleNoKey = (input = {}) => {
-    // console.log("handleNoKey");
-    let result = "";
-
+  const pushTag = (item = {}) => {
+    const input = getTagModel(item);
+    console.log("pushTag(", input, ")");
     try {
-      // 選擇中
-      if (stashTag.key != null && stashTag.value == null) {
-        // console.log("2222222", stashTag.key);
+      if (input.value == "") throw ["error", "value is empty"];
+      if (appIsLock.value == true) throw ["error", "app is lock"];
 
-        // 是否已存在
-        if (isDuplicateTag(stashTag.key, input.value)) {
-          // console.log("55555");
-          throw "value is repeat";
+      const targetKey =
+        input.key == null && stashTag.key != null ? stashTag.key : input.key;
+
+      console.log("0000", targetKey);
+
+      // 是否已存在
+      if (isDuplicateTag(targetKey, input.value)) {
+
+        // 例外狀況, 編輯中 且該tagkey 只有一個時 不回傳錯誤
+        // const tagsGroupByKey = { "country": ["val1", "val2"], "country2": ["val1"] } (computed)
+        const isPass =
+          isEditMode.value == true &&
+          tagsGroupByKey.value[targetKey].length == 1;
+        if (isPass == false) {
+          throw ["error", "value is repeat"];
         }
+      }
 
-        // 編輯模式ing
+      // 是否有對應的value
+      const isMach = getIsMach(targetKey, input.value);
+      if (isMach.value == true) {
+        console.log("2222222");
+        // 有對應的value 請求 該option 觸發自動點擊
+        callOptionSetTag({ key: targetKey, value: input.value });
+        throw ["success", "callOptionSetTag()"];
+      }
+
+      if (
+        stashTag.key != null &&
+        (input.key == stashTag.key || input.key == null)
+      ) {
+        console.log(
+          "333333 stashTag.key != null && (input.key == stashTag.key || input.key == null)"
+        );
+
+        // 編輯模式
         if (isEditMode.value == true) {
-          // console.log("33333");
+          console.log("444444");
           updateTag({
             value: input.value,
             displayValue: true,
           });
-          throw "";
-        }
+          focusApp("updateTag()");
+          throw ["success", "updateTag()"];
 
-        // console.log("444444");
-
-        // 是否有對應的value
-        const isMach = getIsMach(stashTag.key, input.value);
-        if (isMach.value == true) {
-          // console.log("6666");
-          // 有對應的value 請求 該option 觸發自動點擊
-          callOptionSetTag({ key: stashTag.key, value: input.value });
-          throw "";
         } else {
-          // console.log("7777");
+          // 選擇中
+          console.log("555");
           mergeStashTagToFinish(input);
-
-          // console.log("  pushTag: app setTagToTags");
-          throw "";
+          throw ["success", "mergeStashTag()"];
         }
       }
-    } catch (response) {
-      result = response;
-    }
 
-    return result;
-  };
-
-  /**
-   * parameter object <tagModel>
-   * retunt string
-   **/
-  const handleHasKey = (input = {}) => {
-    // console.log("handleHasKey");
-    let result = "";
-
-    // 編輯模式ing
-    if (isEditMode.value == true && input.key == stashTag.key) {
-      updateTag({
-        value: input.value,
-        displayValue: true,
-      });
-      result = "finish";
-      focusApp("handleHasKey()");
-
-    } else {
-      // 是否有對應的value
-      const isMach = getIsMach(input.key, input.value);
-      if (isMach.key == true) {
+      // input 自己有key 且 有對應的key
+      const isInputKeyMach = getIsMach(input.key, input.value);
+      if (isInputKeyMach.key == true) {
         callOptionSetTag({
           key: input.key,
           value: input.value,
-          valueIsCustome: isMach.value == false,
+          valueIsCustome: isInputKeyMach.value == false,
         });
-        result = "finish";
-      }
-    }
-
-    return result;
-  };
-
-  const pushTag = (item = {}) => {
-    const input = getTagModel(item);
-    // console.log("pushTag(", input, ")");
-    try {
-      if (input.value == "") throw "value is empty";
-      if (appIsLock.value == true) throw "app is lock";
-      // console.log("00000");
-
-      // 有value 沒有key
-      if (input.key == "") {
-        const result = handleNoKey(input);
-        if (result != "") {
-          throw result;
-        }
-      }
-
-      // 有value 有key
-      // console.log("yyyyyyyyy");
-      if (input.key != "") {
-        const result = handleHasKey(input);
-        // console.log("yyyyyyyyy2222 result=", result);
-        if (result != "") {
-          throw result;
-        }
+        throw ["success", "callOptionSetTag()"];
       }
 
       if (props.create == false) {
-        throw "key not found and props create is false";
+        throw ["error", "key not found and props create is false"];
       } else {
         // console.log("111111111111111111");
         input.displayValue = true;
         setTagToTags(input);
         setStashTag();
-        throw "";
+        throw ["success", "setStashTag()"];
       }
-    } catch (error) {
-      if (error != "finish" && error != "") {
-        console.log("[v-tags-multiselect]: event pushTag error");
-        console.log(error);
+    } catch (result) {
+      console.log("resultresultresult", result);
+      if (result[0] == "error") {
+        console.log("[v-tags-multiselect]: methods pushTag() error");
+        console.log(result[1]);
       }
     }
   };
