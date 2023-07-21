@@ -85,7 +85,6 @@ export default function useDropdown(props, context, dep) {
     ) {
       handleClick();
       app.callOptionSetTagFinish();
-
     } else if (
       props.title == true &&
       value.key == dropdown.props.value &&

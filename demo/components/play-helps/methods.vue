@@ -6,7 +6,7 @@
       :class="{ active: app.displays.refOperates }"
     >
       <h5 class="ui title" :class="{ ui: app.theme == 'semantic-ui' }">
-        Ref Operates
+        Methods
       </h5>
       <span class="arrow"></span>
     </div>
@@ -57,7 +57,7 @@
 import InjectApp from "./mixins/inject-app.js";
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "ref-operates",
+  name: "app-methods",
   mixins: [InjectApp],
 });
 </script>

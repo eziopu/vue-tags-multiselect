@@ -24,7 +24,7 @@
       <hr />
       <Events></Events>
       <hr />
-      <RefOperates></RefOperates>
+      <Methods></Methods>
       <hr />
       <SlotsAttributesDropdown></SlotsAttributesDropdown>
       <hr />
@@ -105,15 +105,15 @@
           <v-tag-option title> push value test </v-tag-option>
           <v-tag-option>
             <div
-              @click="$refs.vueTagsMultiselect.pushTag({value: 'TEST', key: 'fuc'})"
+              @click="
+                $refs.vueTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })
+              "
             >
               TEST
             </div>
           </v-tag-option>
           <v-tag-option>
-            <div
-              @click="$refs.vueTagsMultiselect.pushTag({value: 'TEST2'})"
-            >
+            <div @click="$refs.vueTagsMultiselect.pushTag({ value: 'TEST2' })">
               TEST2
             </div>
           </v-tag-option>
@@ -199,7 +199,7 @@ import Events from "./events/main.vue";
 import Slots from "./slots/main.vue";
 import SlotsAttributesDropdown from "./slots-attributes/dropdown.vue";
 import SlotsAttributesOption from "./slots-attributes/option.vue";
-import RefOperates from "./ref-operates.vue";
+import Methods from "./methods.vue";
 import ShowHtmlCode from "./show-html-code.vue";
 
 import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
@@ -218,7 +218,7 @@ export default defineComponent({
     DataTable,
     SlotsAttributesDropdown,
     SlotsAttributesOption,
-    RefOperates,
+    Methods,
     ShowHtmlCode,
   },
   props: {
@@ -281,7 +281,7 @@ export default defineComponent({
         attributes: true,
         events: true,
         slots: true,
-        refOperates: false,
+        Methods: false,
         details: {
           conjunction: false,
           deleteIcon: false,

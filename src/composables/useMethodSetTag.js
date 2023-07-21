@@ -92,7 +92,6 @@ export default function useEventSetTag(props, _context, dep) {
 
       // 是否已存在
       if (isDuplicateTag(targetKey, input.value)) {
-
         // 例外狀況, 編輯中 且該tagkey 只有一個時 不回傳錯誤
         // const tagsGroupByKey = { "country": ["val1", "val2"], "country2": ["val1"] } (computed)
         const isPass =
@@ -129,7 +128,6 @@ export default function useEventSetTag(props, _context, dep) {
           });
           focusApp("updateTag()");
           throw ["success", "updateTag()"];
-
         } else {
           // 選擇中
           console.log("555");

@@ -131,7 +131,7 @@ import useElDropdown from "./composables/useElDropdown";
 import useSystemOption from "./composables/useSystemOption";
 import useStatus from "./composables/useStatus";
 import useKeyboard from "./composables/useKeyboard";
-import useEventSetTag from "./composables/useEventSetTag";
+import useMethodSetTag from "./composables/useMethodSetTag";
 
 import { defineComponent } from "vue";
 
@@ -189,7 +189,7 @@ export default defineComponent({
       useSystemOption,
       useStatus,
       useKeyboard,
-      useEventSetTag,
+      useMethodSetTag,
     ]);
   },
 });
