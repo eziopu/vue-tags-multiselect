@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import i18n from "./config/i18n";
 
+import "./vendors/google-code-prettify/prettify";
+
 // import "./assets/main.css";
 import VueTagsMultiselect from "../src/index";
 

@@ -131,8 +131,8 @@
               style="width: 5em"
               :placeholder="`0 ~ ${height2 || 60}`"
               v-model="height1"
-              @keydown.enter="inputHeight()"
               ref="inputHeight1"
+              @keydown.enter="inputHeight()"
             />
             ~
             <input
@@ -143,8 +143,8 @@
               style="width: 5em"
               :placeholder="`${Number(height1) + 1 || 0} ~ 60`"
               v-model="height2"
-              @keydown.enter="inputHeight()"
               ref="inputHeight2"
+              @keydown.enter="inputHeight()"
             />
           </v-tag-option>
         </v-tag-dropdown>
@@ -178,15 +178,14 @@
         output: {{ result }}
       </div>
     </Transition>
-    <!-- 
+
     <Transition name="slide">
       <ShowHtmlCode
         v-show="show_code"
         class="prettyprint lang-html customize transition-top"
-        :app="this"
       ></ShowHtmlCode>
     </Transition>
-    -->
+
     <div id="datas">
       <DataTable :theme="theme" :datas="tableDatas"></DataTable>
     </div>

@@ -526,6 +526,10 @@ body {
     .purple span {
       color: #c678dd;
     }
+    .red,
+    .red span {
+      color: #e06c62;
+    }
     .bolder {
       font-weight: bolder;
     }
