@@ -84,7 +84,9 @@
         :placeholder="`${height1 || 0} ~ 60`"
         v-model="height2"
         ref="inputHeight2"
-        @keydown.enter="<span class="lit">()</span> => <span class="lit">{</span> <span class="cyan-blue">$refs</span>.<span class="cyan-blue">vueTagsMultiselect</span>.pushTag<span class="purple">(</span>{<span class="red">key</span>: "height", <span class="red">value</span>:`${height1} ~ ${height2}`}<span class="purple">)</span>; <span class="lit">}</span>"
+        @keydown.enter="<span class="lit">()</span> => <span class="lit">{</span> <span class="cyan-blue">$refs</span>.<span class="cyan-blue">vueTagsMultiselect</span>.pushTag<span class="purple">(</span>
+          {<span class="red">key</span>: <span class="green">"height"</span>, <span class="red">value</span>: <span class="green">`${height1} ~ ${height2}`</span>}
+        <span class="purple">)</span>; <span class="lit">}</span>"
       /&gt;
     &lt;/v-tag-option&gt;
   &lt;/v-tag-dropdown&gt;

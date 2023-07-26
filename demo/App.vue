@@ -522,6 +522,10 @@ body {
     .cyan-blue span {
       color: #53abb7;
     }
+    .green,
+    .green span {
+      color: #8ac379;
+    }
     .purple,
     .purple span {
       color: #c678dd;
@@ -530,6 +534,7 @@ body {
     .red span {
       color: #e06c62;
     }
+
     .bolder {
       font-weight: bolder;
     }
