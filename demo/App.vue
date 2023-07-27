@@ -50,8 +50,11 @@ if (
   />
 
   <div class="ui container" :class="theme">
+    <div class="ui-title">
+      <h1>vue-tags-multiselect</h1>
+      <h2>{{ $t("ui.page.description.title") }}</h2>
+    </div>
     <div class="ui-frameworks">
-      <h2>{{ $t("ui.page.description.demo") }}</h2>
       <ul>
         <li>
           <div class="framework">
@@ -202,10 +205,20 @@ h6 {
   margin: 0;
 }
 .container {
-  .ui-frameworks {
-    h2 {
-      margin: 12px 0;
+  .ui-title {
+    margin: 12px 0;
+    display: flex;
+    align-items: flex-end;
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
     }
+    @media (min-width: 768px) {
+      h2 {
+        margin-left: 6px;
+      }
+    }
+  }
+  .ui-frameworks {
     li {
       margin: 6px 0;
     }
@@ -498,8 +511,8 @@ body {
     transition: transform 0.3s ease-in-out;
   }
   .transition-top {
-    transform-origin: top;
-    transition: transform 0.3s ease-in-out;
+    // transform-origin: top;
+    // transition: transform 0.3s ease-in-out;
   }
   .prettyprint.lang-html.customize {
     .tag {

@@ -111,7 +111,7 @@
     },
     "page": {
       "description": {
-        "demo": "vue-tags-multiselect demo, This page use",
+        "title": "demo, This page use",
         "keyboard": "Keyboard",
         "basic": "no slot components, no parameter, just a tag bar",
         "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",

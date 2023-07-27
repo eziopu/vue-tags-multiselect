@@ -111,7 +111,7 @@
     },
     "page": {
       "description": {
-        "demo": "vue-tags-multiselect 此demo頁面使用了",
+        "title": "此demo頁面使用了",
         "keyboard": "按鍵配置",
         "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
         "addOption": "讓他像個下拉式選單, 加入 <code class='tag'>&lt;v-tag-dropdown&gt;</code>(slots) 與 <code class='tag'>&lt;v-tag-option&gt;</code>(slots)",
