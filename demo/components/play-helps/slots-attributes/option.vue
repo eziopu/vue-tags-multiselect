@@ -15,7 +15,7 @@
 
     <transition name="slide">
       <div
-        class="detail attributes container transition-top"
+        class="detail attributes container"
         v-if="app.displays.slotAttributes.option"
       >
         <div class="row titles">

@@ -12,7 +12,7 @@
         <span class="arrow"></span>
       </div>
       <transition name="slide">
-        <Detail v-if="app.displays.attributes" class="transition-top"></Detail>
+        <Detail v-if="app.displays.attributes"></Detail>
       </transition>
     </template>
     <Simple v-else></Simple>

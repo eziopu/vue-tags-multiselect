@@ -108,7 +108,7 @@
       <transition name="slide">
         <ShowHtmlCode
           v-show="show_code"
-          class="prettyprint lang-html customize transition-top"
+          class="prettyprint lang-html customize"
           :app="app"
           :selecteds="appSelecteds"
         ></ShowHtmlCode>

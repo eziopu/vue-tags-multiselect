@@ -174,15 +174,13 @@
     </div>
 
     <Transition name="slide">
-      <div v-if="Object.keys(result).length != 0" class="Transition-top">
-        output: {{ result }}
-      </div>
+      <div v-if="Object.keys(result).length != 0">output: {{ result }}</div>
     </Transition>
 
     <Transition name="slide">
       <ShowHtmlCode
         v-show="show_code"
-        class="prettyprint lang-html customize transition-top"
+        class="prettyprint lang-html customize"
       ></ShowHtmlCode>
     </Transition>
 

@@ -24,10 +24,7 @@
     </div>
 
     <transition name="slide">
-      <pre
-        v-show="show_code"
-        class="prettyprint lang-html customize transition-top"
-      ><code><!--
+      <pre v-show="show_code" class="prettyprint lang-html customize"><code><!--
         -->&lt;vue-tags-multiselect <br><!--
         -->  v-model="result"<br><!--
         -->  placeholder="Click and input enter me !"<br><!--

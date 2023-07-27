@@ -510,10 +510,7 @@ body {
     transform-origin: top;
     transition: transform 0.3s ease-in-out;
   }
-  .transition-top {
-    // transform-origin: top;
-    // transition: transform 0.3s ease-in-out;
-  }
+
   .prettyprint.lang-html.customize {
     .tag {
       color: #61afef;

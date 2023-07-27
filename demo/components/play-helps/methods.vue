@@ -12,10 +12,7 @@
     </div>
 
     <transition name="slide">
-      <div
-        class="detail attributes container transition-top"
-        v-if="app.displays.refOperates"
-      >
+      <div class="detail attributes container" v-if="app.displays.refOperates">
         <div class="row titles">
           <div><h6>Function name</h6></div>
           <div>

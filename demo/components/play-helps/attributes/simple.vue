@@ -12,7 +12,7 @@
     <transition name="slide">
       <div
         v-if="app.displays.attributes"
-        class="simple attributes transition-top"
+        class="simple attributes"
         :class="{
           ui: app.theme == 'semantic-ui',
           default: app.theme == 'default',

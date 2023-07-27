@@ -16,7 +16,7 @@
 
     <transition name="slide">
       <div
-        class="detail attributes container transition-top"
+        class="detail attributes container"
         v-if="app.displays.slotAttributes.dropdown"
       >
         <div class="row titles">
