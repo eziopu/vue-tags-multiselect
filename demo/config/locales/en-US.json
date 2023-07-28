@@ -30,12 +30,17 @@
           "1": "can be used to control other placeholder(loading, selectDown, finish) only with this attributes",
           "2": "as long as this attributes change, it will force to overwrite other placeholder"
         },
-        "loadingPlaceholder": "only attribute <code>loading</code> is true will work",
-        "selectDownPlaceholder": "only attribute <code>create</code> is true and no option can selected will will work",
-        "selectDownPlaceholder__detail": {
-          "1": "text disappears after flicker twice when focusing the element."
-        },
-        "finishPlaceholder": "only attribute <code>create</code> is false and no option can selected will work"
+        "placeholders": "individual scenario input placeholder",
+        "placeholders__detail": {
+          "initial": "initial default text, only displayed when there is no tag.",
+          "loading": "displayed when the parameters <code>loading</code> and <code>dropdownLoading</code> are true.",
+          "selectDown": "text displayed after all options are completed, only displayed when the parameter <code>create</code> is true.",
+          "finish": "text displayed after all options are completed, only displayed when the parameter <code>create</code> is false.",
+          "tagValueRepeat": "displayed when updating a tag detects a duplicate value.",
+          "tagValueRepeat__detail": {
+            "1": "Only flashes twice and disappears after focusing on the tag element."
+          }
+        }
       },
       "slots": {
         "v-tag-dropdown": "content of the multiselect, usually a <code>&lt;v-tag-dropdown&gt;</code> element",
