@@ -35,35 +35,61 @@
             <input type="text" class="form-control" v-model="app.placeholder" />
           </div>
         </div>
+
         <div class="flex-between text">
-          <div>loadingPlaceholder</div>
+          <h6>Placeholders</h6>
+        </div>
+
+        <div class="flex-between text">
+          <div>initial</div>
           <div class="ui input">
             <input
               type="text"
               class="form-control"
-              v-model="app.loadingPlaceholder"
+              v-model="app.placeholders.initial"
+            />
+          </div>
+        </div>
+        <div class="flex-between text">
+          <div>loading</div>
+          <div class="ui input">
+            <input
+              type="text"
+              class="form-control"
+              v-model="app.placeholders.loading"
               :placeholder="`Wait a moment, please.`"
             />
           </div>
         </div>
         <div class="flex-between text">
-          <div>selectDownPlaceholder</div>
+          <div>tagValueRepeat</div>
           <div class="ui input">
             <input
               type="text"
               class="form-control"
-              v-model="app.selectDownPlaceholder"
+              v-model="app.placeholders.tagValueRepeat"
+              :placeholder="`repeat !`"
+            />
+          </div>
+        </div>
+        <div class="flex-between text">
+          <div>selectDown</div>
+          <div class="ui input">
+            <input
+              type="text"
+              class="form-control"
+              v-model="app.placeholders.selectDown"
               :placeholder="`Selected End.`"
             />
           </div>
         </div>
         <div class="flex-between text">
-          <div>finishPlaceholder</div>
+          <div>finish</div>
           <div class="ui input">
             <input
               type="text"
               class="form-control"
-              v-model="app.finishPlaceholder"
+              v-model="app.placeholders.finish"
               :disabled="app.create == 'true'"
               :placeholder="`Finish.`"
             />

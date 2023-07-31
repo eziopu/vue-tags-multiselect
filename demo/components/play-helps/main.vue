@@ -252,7 +252,7 @@ export default defineComponent({
       finishPlaceholder: "",
       placeholder: "",
       placeholders: {
-        initial: "Click me !",
+        initial: "",
         loading: "",
         selectDown: "",
         finish: "",

@@ -30,8 +30,8 @@
           "1": "can be used to control other placeholder(loading, selectDown, finish) only with this attributes",
           "2": "as long as this attributes change, it will force to overwrite other placeholder"
         },
-        "placeholders": "individual scenario input placeholder",
-        "placeholders__detail": {
+        "placeholders__detail": "individual scenario input placeholder",
+        "placeholders": {
           "initial": "initial default text, only displayed when there is no tag.",
           "loading": "displayed when the parameters <code>loading</code> and <code>dropdownLoading</code> are true.",
           "selectDown": "text displayed after all options are completed, only displayed when the parameter <code>create</code> is true.",
