@@ -78,3 +78,7 @@ export default defineComponent({
   mixins: [InjectApp],
 });
 </script>
+
+<style lang="scss" scoped>
+@import "./assets/stylesheets.scss";
+</style>
