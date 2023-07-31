@@ -393,12 +393,17 @@ body {
       }
     }
     .simple.attributes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      row-gap: 12px;
+
       .flex-between {
-        float: left;
-        padding: 6px 12px;
+        padding: 0 6px;
       }
-      .clear {
-        clear: both;
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
       }
     }
 

@@ -78,35 +78,3 @@ export default defineComponent({
   mixins: [InjectApp],
 });
 </script>
-
-<style lang="scss" scoped>
-@import "./assets/stylesheets.scss";
-
-.default {
-  .flex-between {
-    width: calc(50% - 24px);
-  }
-  @media all and (max-width: 576px) {
-    .flex-between {
-      width: 100%;
-    }
-  }
-}
-
-.flex-between {
-  width: 50%;
-}
-@media all and (max-width: 768px) {
-  .flex-between.text {
-    display: block !important;
-  }
-  .ui.input {
-    width: 100%;
-  }
-}
-@media all and (max-width: 576px) {
-  .flex-between {
-    width: 100%;
-  }
-}
-</style>

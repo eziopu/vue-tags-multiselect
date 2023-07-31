@@ -116,49 +116,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.default {
-  .flex-between {
-    width: calc(33.33% - 24px);
+.attributes {
+  grid-template-columns: repeat(3, 1fr) !important;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-  @media all and (max-width: 991px) {
-    .flex-between {
-      width: calc(50% - 24px);
-    }
-  }
-  @media all and (max-width: 576px) {
-    .flex-between {
-      width: 100%;
-    }
-  }
-}
-.flex-between {
-  width: 33.33%;
-}
-@media all and (max-width: 991px) {
-  .flex-between {
-    width: 50%;
-  }
-  .flex-between.text {
-    width: 100%;
-  }
-  .ui.input {
-    min-width: 60% !important;
-  }
-}
-@media all and (max-width: 576px) {
-  .flex-between {
-    width: 100%;
-  }
-  .ui.input {
-    min-width: auto;
-  }
-}
-@media all and (max-width: 409px) {
-  .flex-between.text {
-    display: block !important;
-  }
-  .ui.input {
-    width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 </style>
