@@ -327,6 +327,7 @@ export default defineComponent({
       width: 100%;
       height: 100%;
       background: rgb(242 242 242 / 63%);
+      z-index: 1;
     }
   }
 
