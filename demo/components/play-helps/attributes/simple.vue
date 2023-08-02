@@ -19,8 +19,9 @@
           }"
         >
           <LabelAndSelect value="disabled" />
-          <LabelAndSelect value="loading" />
           <LabelAndSelect value="search" />
+          <LabelAndSelect value="loading" />
+          <LabelAndSelect value="dropdownLoading" />
           <LabelAndSelect value="create" />
           <LabelAndSelect
             value="deleteIcon"

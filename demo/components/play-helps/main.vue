@@ -44,6 +44,7 @@
         @editing="(e) => (tool.editing = e)"
         :disabled="disabled == 'true' ? true : false"
         :loading="loading == 'true' ? true : false"
+        :dropdownLoading="dropdownLoading == 'true' ? true : false"
         :search="search == 'true' ? true : false"
         :transition="transition == 'true' ? true : false"
         :create="create == 'true' ? true : false"
@@ -240,6 +241,7 @@ export default defineComponent({
       // app
       disabled: "false",
       loading: "false",
+      dropdownLoading: "false",
       search: "true",
       transition: "true",
       create: "true",

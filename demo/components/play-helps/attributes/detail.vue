@@ -17,6 +17,7 @@
         <h6>{{ $t("ui.general.Default") }}</h6>
       </div>
     </div>
+
     <div class="row">
       <div><div>model-value / v-model</div></div>
       <div>{{ $t("attributes.description.app.v-model") }}</div>
@@ -35,6 +36,7 @@
         <span>-</span>
       </div>
     </div>
+
     <div class="row">
       <LabelAndSelect value="disabled" />
       <div>{{ $t("attributes.description.app.disabled") }}</div>
@@ -53,24 +55,7 @@
         <span>false</span>
       </div>
     </div>
-    <div class="row">
-      <LabelAndSelect value="loading" />
-      <div>{{ $t("attributes.description.app.loading") }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
-        <span>false</span>
-      </div>
-    </div>
+
     <div class="row">
       <LabelAndSelect value="search" />
       <div>{{ $t("attributes.description.app.search") }}</div>
@@ -89,6 +74,45 @@
         <span>true</span>
       </div>
     </div>
+
+    <div class="row">
+      <LabelAndSelect value="loading" />
+      <div>{{ $t("attributes.description.app.loading") }}</div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span>boolean</span>
+      </div>
+      <div class="d-none d-md-block">
+        <span class="i-block d-md-none"
+          >{{ $t("ui.general.AcceptedValues") }}:
+        </span>
+        <span>-</span>
+      </div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span>false</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <LabelAndSelect value="dropdownLoading" />
+      <div>{{ $t("attributes.description.app.dropdownLoading") }}</div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span>boolean</span>
+      </div>
+      <div class="d-none d-md-block">
+        <span class="i-block d-md-none"
+          >{{ $t("ui.general.AcceptedValues") }}:
+        </span>
+        <span>-</span>
+      </div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span>false</span>
+      </div>
+    </div>
+
     <div class="row">
       <LabelAndSelect value="create" />
       <div>{{ $t("attributes.description.app.create") }}</div>
@@ -107,6 +131,7 @@
         <span>true</span>
       </div>
     </div>
+
     <div class="row">
       <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
       <div>{{ $t("attributes.description.app.merge") }}</div>
@@ -125,6 +150,7 @@
         <span>true</span>
       </div>
     </div>
+
     <div class="row">
       <LabelAndSelect value="transition" />
       <div>{{ $t("attributes.description.app.transition") }}</div>
@@ -143,6 +169,7 @@
         <span>true</span>
       </div>
     </div>
+
     <div class="row">
       <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
       <div>
@@ -181,6 +208,7 @@
         <span>-</span>
       </div>
     </div>
+
     <div class="row">
       <LabelAndSelect value="deleteIcon" :values="['always', 'edit', 'none']" />
       <div>
@@ -221,6 +249,7 @@
         <span>always</span>
       </div>
     </div>
+
     <div class="row">
       <div class="flex-between text">
         <div>placeholder</div>
@@ -244,11 +273,13 @@
         <span>-</span>
       </div>
     </div>
+
     <div class="row">
       <div class="flex-between text">
         <h6>Placeholders</h6>
       </div>
     </div>
+
     <div class="row">
       <div class="flex-between text">
         <div>initial</div>
@@ -276,6 +307,7 @@
         <span>-</span>
       </div>
     </div>
+
     <div class="row">
       <div class="flex-between text">
         <div>loading</div>
@@ -341,6 +373,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="flex-between text">
         <div>selectDown</div>
@@ -375,6 +408,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="flex-between text">
         <div>finish</div>
