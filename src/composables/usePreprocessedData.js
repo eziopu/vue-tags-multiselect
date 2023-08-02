@@ -28,7 +28,11 @@ export default function usePreprocessedData(props) {
   // ================= App status ====================
   // ============== COMPUTED ================
   const appIsLock = computed(() => {
-    return props.loading == true || props.disabled == true;
+    return (
+      props.disabled == true ||
+      props.loading == true ||
+      props.dropdownLoading == true
+    );
   });
 
   const appIsFinish = computed(() => {

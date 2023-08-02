@@ -3,7 +3,7 @@
     class="tag__value"
     :class="{
       editing: editMyself,
-      pointer: appIsLock != true,
+      pointer: isEditVisible,
     }"
     :data-index="tag.index"
     tabindex="0"

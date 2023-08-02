@@ -40,6 +40,7 @@ export default function useKeyboard(props, _context, dep) {
   // ============== METHODS ==============
 
   const deleteTag = dep.deleteTag;
+  const appIsLock = inject("appIsLock");
   const appReFocus = inject("appReFocus");
   const appUpdateTag = inject("appUpdateTag");
   const appIsDuplicateTag = inject("appIsDuplicateTag");
@@ -47,6 +48,13 @@ export default function useKeyboard(props, _context, dep) {
 
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event.key);
+
+    if (appIsLock.value == true) {
+      console.log(
+        "[v-tags-multiselect]: keydown method is not available while the app is locked"
+      );
+      return;
+    }
 
     switch (event.key) {
       case "Backspace":

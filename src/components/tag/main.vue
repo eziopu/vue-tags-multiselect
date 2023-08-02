@@ -115,6 +115,12 @@ export default {
 
     const deletes = (event) => {
       event.preventDefault();
+      if (appIsLock.value == true) {
+        console.log(
+          "[v-tags-multiselect]: tag delete method is not available while the app is locked"
+        );
+        return;
+      }
 
       let indexs = [props.tag.index];
       if (props.tag.values) {

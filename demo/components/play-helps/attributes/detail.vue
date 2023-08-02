@@ -353,7 +353,9 @@
           />
         </div>
       </div>
-      <div v-html="$t('attributes.description.app.placeholders.tagValueRepeat')"></div>
+      <div
+        v-html="$t('attributes.description.app.placeholders.tagValueRepeat')"
+      ></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>string</span>

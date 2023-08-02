@@ -26,6 +26,18 @@ export default function useValue(props, _context, dep) {
 
   // ============== COMPUTED ==============
 
+  const isEditVisible = computed(() => {
+    // 例外狀況
+    if (
+      appProps.disabled == false &&
+      appProps.loading == false &&
+      appProps.dropdownLoading == true
+    ) {
+      return true;
+    }
+    return !appIsLock.value;
+  });
+
   const editMyself = computed(() => {
     return appEditTagIndex.value == props.tag.index;
   });
@@ -72,7 +84,7 @@ export default function useValue(props, _context, dep) {
 
   const handleClick = (event) => {
     event.preventDefault();
-    if (appIsLock.value == true) return;
+    if (isEditVisible.value == false) return;
 
     if (editMyself.value == false) {
       appEditTagIndex.value = props.tag.index;
@@ -86,8 +98,9 @@ export default function useValue(props, _context, dep) {
     appProps,
     appIsLock,
     appPlaceholders,
-    elTagValueContent,
+    isEditVisible,
     inputValue,
+    elTagValueContent,
     editByinput,
     editMyself,
     noCustomeHoverAndEditMyself,

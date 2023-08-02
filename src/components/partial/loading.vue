@@ -3,11 +3,13 @@
     <i class="loading__icon"></i>
   </div>
 </template>
+
 <script>
 export default {
   name: "partial-loading",
 };
 </script>
+
 <style scoped lang="scss">
 .loading {
   & {
