@@ -122,13 +122,13 @@ export default function useKeyboard(props, context, dep) {
     context.emit("keydown", event, $this);
 
     if (appIsLock.value == true) {
-      console.log(
+      dep.log(
         "[v-tags-multiselect]: keydown method is not available while the app is locked"
       );
       return;
     }
 
-    // console.log("0 app handleKeydown e =", event.key);
+    // dep.log("0 app handleKeydown e =", event.key);
 
     switch (event.key) {
       case "Enter":
@@ -154,7 +154,7 @@ export default function useKeyboard(props, context, dep) {
         }
 
         if (elInputValue.value != "") {
-          console.log("elInputValue.value");
+          dep.log("elInputValue.value");
           const newTag = {
             displayValue: true,
             value: elInputValue.value,

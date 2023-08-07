@@ -5,9 +5,9 @@ import { getKeydownModel } from "../models";
 import { APP_INPUT_BLUR } from "../timeouts.js";
 
 export default function useApp(props, _context, dep) {
-  // console.log("function useApp");
-  // console.log("props =", props);
-  // console.log("context =", context);
+  // dep.log("function useApp");
+  // dep.log("props =", props);
+  // dep.log("context =", context);
 
   // ============== REFS ================
 
@@ -48,8 +48,8 @@ export default function useApp(props, _context, dep) {
   const setStashTag = dep.setStashTag;
 
   const init = (where = "") => {
-    console.log("////////init(" + where + ")/////////0");
-    // console.log("const init = ()", where);
+    dep.log("////////init(" + where + ")/////////0");
+    // dep.log("const init = ()", where);
     elInputValue.value = "";
     editTagIndex.value = -1;
     setStashTag();
@@ -86,7 +86,7 @@ export default function useApp(props, _context, dep) {
   };
 
   const elAppFocus = () => {
-    // console.log("000 elAppFocus elAppFocus elAppFocus");
+    // dep.log("000 elAppFocus elAppFocus elAppFocus");
 
     if (!props.disabled) {
       elInput.value.focus();
@@ -108,7 +108,7 @@ export default function useApp(props, _context, dep) {
   const elInputBlur = () => {
     setTimeout(() => {
       // const actElm = document.activeElement;
-      // console.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
+      // dep.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
       if (isActiveElementContainApp() == false) {
         isActive.value = false;
         init("elInputBlur");

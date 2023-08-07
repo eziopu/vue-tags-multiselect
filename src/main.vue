@@ -123,6 +123,7 @@ import VTagOption from "./components/slots/v-option.vue";
 
 // import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
+import useLog from "./composables/useLog";
 import usePreprocessedData from "./composables/usePreprocessedData";
 import useTag from "./composables/useTag";
 import useElInput from "./composables/useElInput";
@@ -175,12 +176,14 @@ export default defineComponent({
      **/
     placeholders: { type: Object, default: () => {} },
     placeholder: { type: String, default: "" },
+    debugLog: { type: Boolean, default: true },
     // loadingPlaceholder: { type: String, default: "Wait a moment, please." },
     // selectDownPlaceholder: { type: String, default: "Selected End." },
     // finishPlaceholder: { type: String, default: "Finish." },
   },
   setup(props, context) {
     return resolve(props, context, [
+      useLog,
       usePreprocessedData,
       useTag,
       useElInput,

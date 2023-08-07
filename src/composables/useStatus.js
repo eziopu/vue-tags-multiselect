@@ -1,32 +1,11 @@
 import { computed } from "vue";
 
 export default function useStatus(props, context, dep) {
-  // console.log("function useStatus");
-  // console.log("props =", props);
-  // console.log("context =", context);
-
-  // ============== REFS ==============
-
-  // const elApp = dep.elApp;
-
   // ============== DATA ==============
-
-  // const tags = dep.tags;
 
   const isEditMode = dep.isEditMode;
 
   const isElDropdownVisible = dep.isElDropdownVisible;
-
-  // const isSelectDown = ref(false);
-
-  // // ============== WATCH ==============
-
-  // watch(tags, async () => {
-  //   await nextTick();
-
-  //   const options = elApp.value.querySelectorAll(".dropdown .option");
-  //   isSelectDown.value = options.length == 0;
-  // });
 
   // ============== COMPUTED ==============
   const appIsFinish = dep.appIsFinish;

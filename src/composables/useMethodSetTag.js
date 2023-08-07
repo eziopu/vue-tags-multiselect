@@ -42,7 +42,7 @@ export default function useEventSetTag(props, _context, dep) {
   });
 
   const getIsMach = (inputKey = "", inputValue = "") => {
-    // console.log("///////getIsMach/////////", inputKey, inputValue);
+    // dep.log("///////getIsMach/////////", inputKey, inputValue);
     let isMachKey = false;
     let isMachValue = false;
     if (inputKey != "") {
@@ -80,7 +80,7 @@ export default function useEventSetTag(props, _context, dep) {
 
   const pushTag = (item = {}) => {
     const input = getTagModel(item);
-    console.log("pushTag(", input, ")");
+    dep.log("pushTag(", input, ")");
     try {
       if (input.value == "") throw ["error", "value is empty"];
       if (appIsLock.value == true) throw ["error", "app is lock"];
@@ -88,7 +88,7 @@ export default function useEventSetTag(props, _context, dep) {
       const targetKey =
         input.key == null && stashTag.key != null ? stashTag.key : input.key;
 
-      console.log("0000", targetKey);
+      dep.log("0000", targetKey);
 
       // 是否已存在
       if (isDuplicateTag(targetKey, input.value)) {
@@ -105,7 +105,7 @@ export default function useEventSetTag(props, _context, dep) {
       // 是否有對應的value
       const isMach = getIsMach(targetKey, input.value);
       if (isMach.value == true) {
-        console.log("2222222");
+        dep.log("2222222");
         // 有對應的value 請求 該option 觸發自動點擊
         callOptionSetTag({ key: targetKey, value: input.value });
         throw ["success", "callOptionSetTag()"];
@@ -115,13 +115,13 @@ export default function useEventSetTag(props, _context, dep) {
         stashTag.key != null &&
         (input.key == stashTag.key || input.key == null)
       ) {
-        console.log(
+        dep.log(
           "333333 stashTag.key != null && (input.key == stashTag.key || input.key == null)"
         );
 
         // 編輯模式
         if (isEditMode.value == true) {
-          console.log("444444");
+          dep.log("444444");
           updateTag({
             value: input.value,
             displayValue: true,
@@ -130,7 +130,7 @@ export default function useEventSetTag(props, _context, dep) {
           throw ["success", "updateTag()"];
         } else {
           // 選擇中
-          console.log("555");
+          dep.log("555");
           mergeStashTagToFinish(input);
           throw ["success", "mergeStashTag()"];
         }
@@ -150,17 +150,17 @@ export default function useEventSetTag(props, _context, dep) {
       if (props.create == false) {
         throw ["error", "key not found and props create is false"];
       } else {
-        // console.log("111111111111111111");
+        // dep.log("111111111111111111");
         input.displayValue = true;
         setTagToTags(input);
         setStashTag();
         throw ["success", "setStashTag()"];
       }
     } catch (result) {
-      console.log("resultresultresult", result);
+      dep.log("resultresultresult", result);
       if (result[0] == "error") {
-        console.log("[v-tags-multiselect]: methods pushTag() error");
-        console.log(result[1]);
+        dep.log("[v-tags-multiselect]: methods pushTag() error");
+        dep.log(result[1]);
       }
     }
   };
