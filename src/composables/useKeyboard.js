@@ -123,7 +123,8 @@ export default function useKeyboard(props, context, dep) {
 
     if (appIsLock.value == true) {
       dep.log(
-        "[v-tags-multiselect]: keydown method is not available while the app is locked"
+        "keydown method is not available while the app is locked",
+        "warning"
       );
       return;
     }
@@ -154,7 +155,6 @@ export default function useKeyboard(props, context, dep) {
         }
 
         if (elInputValue.value != "") {
-          dep.log("elInputValue.value");
           const newTag = {
             displayValue: true,
             value: elInputValue.value,

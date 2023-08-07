@@ -80,7 +80,13 @@ export default function useEventSetTag(props, _context, dep) {
 
   const pushTag = (item = {}) => {
     const input = getTagModel(item);
-    dep.log("pushTag(", input, ")");
+    dep.log(
+      {
+        context: "pushTag method starts working after receiving the parameter",
+        parameter: item,
+      },
+      "info"
+    );
     try {
       if (input.value == "") throw ["error", "value is empty"];
       if (appIsLock.value == true) throw ["error", "app is lock"];

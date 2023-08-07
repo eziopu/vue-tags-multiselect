@@ -10,13 +10,25 @@ export default function useLog(props) {
 
   // ============== METHODS ==============
 
-  const log = (context = "", type = "info") => {
+  const log = (content, type = "info") => {
     if (props.debugLog == true) {
+      let context = content,
+        parameter;
+
+      if (typeof content === "object") {
+        context = content.context;
+        parameter = content.parameter;
+      }
+
       console.log(
         `[v-tags-multiselect]: ` + `%c ${type} ` + `%c ${context}`,
         types[type],
         ""
       );
+
+      if (parameter) {
+        console.log(parameter);
+      }
     }
   };
 
