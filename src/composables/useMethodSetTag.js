@@ -80,21 +80,15 @@ export default function useEventSetTag(props, _context, dep) {
 
   const pushTag = (item = {}) => {
     const input = getTagModel(item);
-    dep.log(
-      {
-        context: "pushTag method starts working after receiving the parameter",
-        parameter: item,
-      },
-      "info"
-    );
+    dep.log("pushTag method starts working after receiving the parameter");
+    dep.log2("parameter", item);
+
     try {
       if (input.value == "") throw ["error", "value is empty"];
       if (appIsLock.value == true) throw ["error", "app is lock"];
 
       const targetKey =
         input.key == null && stashTag.key != null ? stashTag.key : input.key;
-
-      dep.log("0000", targetKey);
 
       // 是否已存在
       if (isDuplicateTag(targetKey, input.value)) {
@@ -111,7 +105,6 @@ export default function useEventSetTag(props, _context, dep) {
       // 是否有對應的value
       const isMach = getIsMach(targetKey, input.value);
       if (isMach.value == true) {
-        dep.log("2222222");
         // 有對應的value 請求 該option 觸發自動點擊
         callOptionSetTag({ key: targetKey, value: input.value });
         throw ["success", "callOptionSetTag()"];
@@ -163,12 +156,13 @@ export default function useEventSetTag(props, _context, dep) {
         throw ["success", "setStashTag()"];
       }
     } catch (result) {
-      dep.log("resultresultresult", result);
+      dep.log(`do ${result[1]}`, result[0]);
       if (result[0] == "error") {
-        dep.log("[v-tags-multiselect]: methods pushTag() error");
-        dep.log(result[1]);
+        dep.log("error", "error");
+        dep.log2("error", result[1]);
       }
     }
+    dep.log("pushTag method end");
   };
 
   return {
