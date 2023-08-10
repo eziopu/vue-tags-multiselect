@@ -6,20 +6,40 @@ export default function useLog(props) {
     warning: "background: #ffc107; color: #212529",
     success: "background: #28a745; color: #fff",
     error: "background: #dc3545; color: #fff",
-    light: "background: #f8f9fa; color: #212529",
+    method: "background: #333; color: #007bff",
   };
 
   // ============== METHODS ==============
 
   const title = "[v-tags-multiselect]";
 
-  const log = (context = "", type = "info", method = "") => {
+  // context, type
+  // method, context
+  // method, context, type
+  const log = (...strings) => {
     if (props.debugLog == false) {
       return;
     }
 
+    const [method, context, type] = getParameter(strings);
+
+    if (method == "") {
+      console.log(
+        `${title}: ` + `%c ${type} ` + `%c ${context}`,
+        types[type],
+        ""
+      );
+      return;
+    }
+
     console.log(
-      `${reassembleTitle(method)}: ` + `%c ${type} ` + `%c ${context}`,
+      `${title}: ` +
+        `%c ${method}() ` +
+        `%c ` +
+        `%c ${type} ` +
+        `%c ${context}`,
+      types["method"],
+      "",
       types[type],
       ""
     );
@@ -38,11 +58,22 @@ export default function useLog(props) {
     console.log(`${spaces}${content}:`, parameter);
   };
 
-  const reassembleTitle = (method = "") => {
-    if (method != "") {
-      return `${title} ${method}`;
+  const getParameter = (strings = []) => {
+    const defaultType = "info";
+    if (strings.length == 1) {
+      return ["", strings[0], defaultType];
     }
-    return title;
+
+    if (strings.length == 2) {
+      return strings[1] in types
+        ? ["", strings[0], strings[1]]
+        : [strings[0], strings[1], defaultType];
+    }
+
+    if (strings.length >= 3) {
+      return [strings[0], strings[1], strings[2]];
+    }
+    return [];
   };
 
   // ============== PROVIDE ==============

@@ -80,8 +80,8 @@ export default function useEventSetTag(props, _context, dep) {
 
   const pushTag = (item = {}) => {
     const input = getTagModel(item);
-    dep.log("pushTag method starts working after receiving the parameter");
-    dep.log2("parameter", item);
+    dep.log("pushTag", "starts executing");
+    dep.log2("get parameter", item);
 
     try {
       if (input.value == "") throw ["error", "value is empty"];
@@ -98,7 +98,7 @@ export default function useEventSetTag(props, _context, dep) {
           isEditMode.value == true &&
           tagsGroupByKey.value[targetKey].length == 1;
         if (isPass == false) {
-          throw ["error", "value is repeat"];
+          throw ["error", "tag value is repeat"];
         }
       }
 
@@ -107,31 +107,25 @@ export default function useEventSetTag(props, _context, dep) {
       if (isMach.value == true) {
         // 有對應的value 請求 該option 觸發自動點擊
         callOptionSetTag({ key: targetKey, value: input.value });
-        throw ["success", "callOptionSetTag()"];
+        throw ["success", "call option set tag"];
       }
 
       if (
         stashTag.key != null &&
         (input.key == stashTag.key || input.key == null)
       ) {
-        dep.log(
-          "333333 stashTag.key != null && (input.key == stashTag.key || input.key == null)"
-        );
-
         // 編輯模式
         if (isEditMode.value == true) {
-          dep.log("444444");
           updateTag({
             value: input.value,
             displayValue: true,
           });
           focusApp("updateTag()");
-          throw ["success", "updateTag()"];
+          throw ["success", "update tag"];
         } else {
           // 選擇中
-          dep.log("555");
           mergeStashTagToFinish(input);
-          throw ["success", "mergeStashTag()"];
+          throw ["success", "merge stash tag"];
         }
       }
 
@@ -143,26 +137,25 @@ export default function useEventSetTag(props, _context, dep) {
           value: input.value,
           valueIsCustome: isInputKeyMach.value == false,
         });
-        throw ["success", "callOptionSetTag()"];
+        throw ["success", "call option set tag"];
       }
 
       if (props.create == false) {
         throw ["error", "key not found and props create is false"];
       } else {
-        // dep.log("111111111111111111");
         input.displayValue = true;
         setTagToTags(input);
         setStashTag();
-        throw ["success", "setStashTag()"];
+        throw ["success", "generate a tag"];
       }
     } catch (result) {
-      dep.log(`do ${result[1]}`, result[0]);
       if (result[0] == "error") {
-        dep.log("error", "error");
-        dep.log2("error", result[1]);
+        dep.log("pushTag", result[1], "error");
+      } else {
+        dep.log("pushTag", `to do ${result[1]}`, result[0]);
       }
     }
-    dep.log("pushTag method end");
+    dep.log("pushTag", "function finished executing");
   };
 
   return {
