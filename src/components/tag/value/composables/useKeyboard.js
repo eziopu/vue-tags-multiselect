@@ -50,8 +50,10 @@ export default function useKeyboard(props, _context, dep) {
     console.log("handleKeydown e =", event.key);
 
     if (appIsLock.value == true) {
-      console.log(
-        "[v-tags-multiselect]: keydown method is not available while the app is locked"
+      dep.log(
+        "handleKeydown",
+        "method is not available while the app is locked",
+        "warning"
       );
       return;
     }

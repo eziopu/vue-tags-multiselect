@@ -70,7 +70,7 @@ export default function useLog(props) {
         : [strings[0], strings[1], defaultType];
     }
 
-    if (strings.length >= 3) {
+    if (strings.length == 3) {
       return [strings[0], strings[1], strings[2]];
     }
     return [];

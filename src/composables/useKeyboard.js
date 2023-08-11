@@ -117,19 +117,32 @@ export default function useKeyboard(props, context, dep) {
     return elTags.value.querySelectorAll(".tag__value") || [];
   };
 
+  const publicLog = dep.log;
+  const log = (context, type = "info") => {
+    publicLog("handleKeydown", context, type);
+  };
+
   const init = dep.init;
   const handleKeydown = async (event) => {
     context.emit("keydown", event, $this);
 
     if (appIsLock.value == true) {
-      dep.log(
-        "keydown method is not available while the app is locked",
-        "warning"
-      );
+      log("method is not available while the app is locked", "warning");
       return;
     }
 
-    // dep.log("0 app handleKeydown e =", event.key);
+    if (
+      [
+        "Enter",
+        "Backspace",
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+      ].includes(String(event.key))
+    ) {
+      log(`get ${event.key}`);
+    }
 
     switch (event.key) {
       case "Enter":
@@ -148,9 +161,12 @@ export default function useKeyboard(props, context, dep) {
               handleSystemOption();
             } else {
               option.click();
+              log(`click option`);
             }
             keydown.verticalIndex = -1;
             elInputValue.value = "";
+            log(`vertical index reset`);
+            log(`input value reset`);
           }
         }
 
@@ -167,6 +183,7 @@ export default function useKeyboard(props, context, dep) {
           ) {
             setTagToTags(newTag);
             init("keydown enter create new");
+            log(`generate a tag`);
           }
 
           if (
@@ -180,6 +197,7 @@ export default function useKeyboard(props, context, dep) {
             });
             setStashTag();
             init("keydown enter create new with stashTag");
+            log(`generate a tag`);
           }
         }
 
@@ -191,38 +209,43 @@ export default function useKeyboard(props, context, dep) {
         }
         event.preventDefault();
 
-        var isWorked = false;
+        try {
+          if (
+            conjunction.value == "OR" &&
+            (props.conjunction != "OR" || props.conjunction != "AND")
+          ) {
+            conjunction.value = "";
+            throw "clear conjunction";
+          }
 
-        if (
-          conjunction.value == "OR" &&
-          (props.conjunction != "OR" || props.conjunction != "AND")
-        ) {
-          isWorked = true;
-          conjunction.value = "";
+          if (stashTag.key != null) {
+            setStashTag();
+            throw "clear stashTag";
+          }
+
+          if (tagsGroupByTitle.length != 0) {
+            if (props.merge == true) {
+              const indexs = tagsGroupByTitle.value[
+                tagsGroupByTitle.value.length - 1
+              ].values.map((value) => value.index);
+
+              deleteTags(indexs);
+              throw "delete tags";
+            } else {
+              const getLastTag = () => {
+                const clearTags = tags.filter(
+                  (tag) => tag != null && tag != undefined
+                );
+                return clearTags[clearTags.length - 1];
+              };
+              const indexs = [getLastTag().index];
+              deleteTags(indexs);
+              throw "delete the last tag";
+            }
+          }
+        } catch (msg) {
+          log(msg);
         }
-
-        if (isWorked == false && stashTag.key != null) {
-          isWorked = true;
-          setStashTag();
-        }
-
-        if (isWorked == false && tagsGroupByTitle.length != 0) {
-          const getLastTag = () => {
-            const clearTags = tags.filter(
-              (tag) => tag != null && tag != undefined
-            );
-            return clearTags[clearTags.length];
-          };
-          const indexs =
-            props.merge == true
-              ? tagsGroupByTitle.value[
-                  tagsGroupByTitle.value.length - 1
-                ].values.map((value) => value.index)
-              : [getLastTag().index];
-          deleteTags(indexs);
-        }
-
-        isWorked = false;
         break;
 
       case "ArrowUp":
@@ -306,9 +329,11 @@ export default function useKeyboard(props, context, dep) {
   const handleSystemOption = () => {
     if (isUndoOptionVisible.value) {
       elOptionUndo();
+      log(`click undo option`);
     }
     if (isORConjunctionOptionVisible.value) {
       elOptionORConjunction();
+      log(`click OR conjunction option`);
     }
   };
 
