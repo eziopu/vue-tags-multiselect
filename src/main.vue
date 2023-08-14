@@ -24,7 +24,9 @@
     <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="tags" ref="elTags">
       <VTag
-        v-for="(tag, index) in merge == true ? tagsGroupByTitle : tags"
+        v-for="(tag, index) in merge == true
+          ? tagsGroupByTitle
+          : tags.filter((tag) => tag !== undefined)"
         ref="elTag"
         :key="`tag-${index}`"
         :tag="tag"
