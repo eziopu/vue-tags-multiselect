@@ -232,7 +232,7 @@ export default function useKeyboard(props, context, dep) {
               const indexs = tagsGroupByTitle.value[
                 tagsGroupByTitle.value.length - 1
               ].values.map((value) => value.index);
-              
+
               log(`delete tags`);
               deleteTags(indexs);
               throw "";

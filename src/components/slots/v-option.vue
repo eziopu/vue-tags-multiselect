@@ -79,8 +79,8 @@ export default {
   }
 
   &.hidden {
-    height: 0;
-    padding: 0;
+    height: 0 !important;
+    padding: 0 !important;
     visibility: hidden;
     opacity: 0;
     transform: scaleY(0);
