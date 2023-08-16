@@ -160,12 +160,12 @@ export default function useKeyboard(props, context, dep) {
             if (isHoverSystemOption() == true) {
               handleSystemOption();
             } else {
-              option.click();
               log(`click option`);
+              option.click();
             }
             keydown.verticalIndex = -1;
             elInputValue.value = "";
-            log(`vertical index reset`);
+            log(`vertical index to initialize`);
             log(`input value reset`);
           }
         }
@@ -181,9 +181,10 @@ export default function useKeyboard(props, context, dep) {
             stashTag.key == null &&
             isEditMode.value == false
           ) {
-            setTagToTags(newTag);
-            init("keydown enter create new");
             log(`generate a tag`);
+            setTagToTags(newTag);
+            log(`initialize`);
+            init();
           }
 
           if (
@@ -191,13 +192,14 @@ export default function useKeyboard(props, context, dep) {
             stashTag.value == null &&
             stashTag.custom == true
           ) {
+            log(`generate a tag`);
             setTagToTags({
               ...stashTag,
               ...newTag,
             });
             setStashTag();
-            init("keydown enter create new with stashTag");
-            log(`generate a tag`);
+            log(`initialize`);
+            init();
           }
         }
 
@@ -214,13 +216,15 @@ export default function useKeyboard(props, context, dep) {
             conjunction.value == "OR" &&
             (props.conjunction != "OR" || props.conjunction != "AND")
           ) {
+            log(`clear conjunction`);
             conjunction.value = "";
-            throw "clear conjunction";
+            throw "";
           }
 
           if (stashTag.key != null) {
+            log(`generate a tag`);
             setStashTag();
-            throw "clear stashTag";
+            throw "";
           }
 
           if (tagsGroupByTitle.length != 0) {
@@ -228,9 +232,10 @@ export default function useKeyboard(props, context, dep) {
               const indexs = tagsGroupByTitle.value[
                 tagsGroupByTitle.value.length - 1
               ].values.map((value) => value.index);
-
+              
+              log(`delete tags`);
               deleteTags(indexs);
-              throw "delete tags";
+              throw "";
             } else {
               const getLastTag = () => {
                 const clearTags = tags.filter(
@@ -239,12 +244,15 @@ export default function useKeyboard(props, context, dep) {
                 return clearTags[clearTags.length - 1];
               };
               const indexs = [getLastTag().index];
+              log(`delete the last tag`);
               deleteTags(indexs);
-              throw "delete the last tag";
+              throw "";
             }
           }
         } catch (msg) {
-          log(msg);
+          if (msg != "") {
+            log(msg, "error");
+          }
         }
         break;
 

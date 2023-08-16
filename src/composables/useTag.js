@@ -61,21 +61,20 @@ export default function useTag(_props, context, dep) {
   // ============== METHODS ==============
 
   const log = dep.log;
-  const log2 = dep.log2;
   const setStashTag = (item = {}) => {
     Object.assign(stashTag, { ...getTagModel(item) });
     if (Object.keys(item).length === 0) {
       log(`setStashTag`, `object clear`);
     } else {
-      log(`setStashTag`, `to set`);
-      log2(`>`, item);
+      log(`setStashTag`, `to set`, `success`);
+      console.log(`  >`, item);
     }
   };
 
   const setTagToTags = (item = {}) => {
     item.index = tags.length;
     tags.push({ ...getTagModel(item) });
-    log(`stashTag to tags`);
+    log(`stashTag to tags`, `success`);
   };
 
   const updateTag = (item = {}) => {
@@ -101,7 +100,7 @@ export default function useTag(_props, context, dep) {
       // deleting or updating tag by index may affect the calculation of the index.
       delete tags[index];
       // tags.splice(index, 1);
-      log(`delete tag`, `index is ${index}`, `success`);
+      log(`delete tag by index is ${index}`, `success`);
     }
   };
 
