@@ -48,8 +48,10 @@ export default function useApp(props, _context, dep) {
   const setStashTag = dep.setStashTag;
 
   const init = (where = "") => {
-    dep.log(`init`, `app initialize ${where}`);
-    console.log(`  > reset input value`);
+    dep.log(
+      `init`,
+      `app initialize${where != "" ? ", called by " + where : ""}`
+    );
     console.log(`  > reset stashTag`);
     console.log(`  > reset edit tag index`);
     console.log(`  > reset keydown index`);
@@ -111,7 +113,7 @@ export default function useApp(props, _context, dep) {
     appEnable();
 
     if (focusReInit.value == true) {
-      init("elInputFocus");
+      init("elInputFocus()");
     } else {
       focusReInit.value = true;
     }
@@ -121,12 +123,13 @@ export default function useApp(props, _context, dep) {
     setTimeout(() => {
       // const actElm = document.activeElement;
       // dep.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
-      dep.log(`InputBlur`, `available`);
-      console.log(`  > actElm :`, document.activeElement);
 
       if (isActiveElementContainApp() == false) {
+        dep.log(`InputBlur`, `available`);
+        console.log(`  > actElm :`, document.activeElement);
+
         isActive.value = false;
-        init("elInputBlur");
+        init("elInputBlur()");
       } else {
         isActive.value = true;
       }
