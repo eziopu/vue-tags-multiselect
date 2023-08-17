@@ -336,12 +336,12 @@ export default function useKeyboard(props, context, dep) {
 
   const handleSystemOption = () => {
     if (isUndoOptionVisible.value) {
-      elOptionUndo();
       log(`click undo option`);
+      elOptionUndo();
     }
     if (isORConjunctionOptionVisible.value) {
-      elOptionORConjunction();
       log(`click OR conjunction option`);
+      elOptionORConjunction();
     }
   };
 

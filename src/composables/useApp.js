@@ -48,8 +48,12 @@ export default function useApp(props, _context, dep) {
   const setStashTag = dep.setStashTag;
 
   const init = (where = "") => {
-    dep.log("////////init(" + where + ")/////////0");
-    // dep.log("const init = ()", where);
+    dep.log(`init`, `app initialize ${where}`);
+    console.log(`  > reset input value`);
+    console.log(`  > reset stashTag`);
+    console.log(`  > reset edit tag index`);
+    console.log(`  > reset keydown index`);
+    console.log(`  > reset conjunction`);
     elInputValue.value = "";
     editTagIndex.value = -1;
     setStashTag();
@@ -95,7 +99,15 @@ export default function useApp(props, _context, dep) {
   };
 
   const elInputFocus = () => {
-    if (props.disabled) return;
+    if (props.disabled) {
+      dep.log(
+        `InputFocus`,
+        `method is not available while the app is locked`,
+        `warning`
+      );
+      return;
+    }
+    dep.log(`InputFocus`, `available`);
     appEnable();
 
     if (focusReInit.value == true) {
@@ -109,6 +121,9 @@ export default function useApp(props, _context, dep) {
     setTimeout(() => {
       // const actElm = document.activeElement;
       // dep.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
+      dep.log(`InputBlur`, `available`);
+      console.log(`  > actElm :`, document.activeElement);
+
       if (isActiveElementContainApp() == false) {
         isActive.value = false;
         init("elInputBlur");

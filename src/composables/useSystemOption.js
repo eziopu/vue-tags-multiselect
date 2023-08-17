@@ -47,11 +47,13 @@ export default function useSystemOption(_props, _context, dep) {
   const elAppFocus = dep.elAppFocus;
 
   const elOptionUndo = () => {
+    dep.log("undo, reset stashTag, refocus app");
     setStashTag();
     elAppFocus();
   };
 
   const elOptionORConjunction = () => {
+    dep.log("OR conjunction, reset input value refocus app");
     elInputValue.value = "";
     conjunction.value = "OR";
 
