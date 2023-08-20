@@ -78,20 +78,33 @@ export default function useTag(_props, context, dep) {
   };
 
   const updateTag = (item = {}) => {
-    if (editTagIndex.value == -1) return;
+    if (editTagIndex.value == -1) {
+      log(`cannot update the tag, not in edit mode`, `error`);
+      return;
+    }
 
     const tag = tags[editTagIndex.value];
 
-    if (tag == undefined) return;
+    if (tag == undefined) {
+      log(`cannot update the tag, tag is undefined`, `error`);
+      return;
+    }
 
+    const oldValue = tag.value;
     tag.value = item.value;
     tag.valueElm = item.valueElm || null;
     tag.displayValue = !!item.displayValue;
     log(`update tag`, `success`);
+    console.log(`   > tag key is`, tag.key);
+    console.log(`     > old value is`, oldValue);
+    console.log(`     > new value is`, item.value);
   };
 
   const deleteTags = (indexs = []) => {
-    if (indexs.length == 0) return;
+    if (indexs.length == 0) {
+      log(`delete tag indexs length is 0`, `error`);
+      return;
+    }
 
     // indexs.sort((a, b) => b - a);
 

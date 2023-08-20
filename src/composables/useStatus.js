@@ -1,4 +1,4 @@
-import { computed, watch } from "vue";
+import { computed } from "vue";
 
 export default function useStatus(props, context, dep) {
   // ============== DATA ==============
@@ -35,14 +35,6 @@ export default function useStatus(props, context, dep) {
   // ============== EMIT ==============
 
   context.emit("status", status);
-
-  // ============== Watch all props to log ==============
-
-  if (dep.isAppActived == true) {
-    watch(props, (oldProps, newProps) => {
-      console.log(oldProps, newProps);
-    });
-  }
 
   return {
     status,
