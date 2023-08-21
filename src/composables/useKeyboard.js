@@ -201,6 +201,14 @@ export default function useKeyboard(props, context, dep) {
         event.preventDefault();
 
         try {
+          let isExecuted = false;
+
+          if (stashTag.key != null && stashTag.value == null) {
+            log(`clear stashTag`);
+            setStashTag();
+            isExecuted = true;
+          }
+
           if (
             conjunction.value == "OR" &&
             (props.conjunction != "OR" || props.conjunction != "AND")
@@ -210,13 +218,7 @@ export default function useKeyboard(props, context, dep) {
             throw "";
           }
 
-          if (stashTag.key != null) {
-            log(`generate a tag`);
-            setStashTag();
-            throw "";
-          }
-
-          if (tagsGroupByTitle.length != 0) {
+          if (isExecuted == false && tagsGroupByTitle.length != 0) {
             if (props.merge == true) {
               const indexs = tagsGroupByTitle.value[
                 tagsGroupByTitle.value.length - 1
