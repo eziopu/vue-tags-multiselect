@@ -46,16 +46,25 @@ export default function useKeyboard(props, _context, dep) {
   const appIsDuplicateTag = inject("appIsDuplicateTag");
   const appRequestOptionClick = inject("appRequestOptionClick");
 
+  const publicLog = inject("log");
+  const log = (context, type = "info") => {
+    publicLog("tag keydown", context, type);
+  };
+
   const handleKeydown = async (event) => {
     console.log("handleKeydown e =", event.key);
 
     if (appIsLock.value == true) {
-      dep.log(
-        "handleKeydown",
-        "method is not available while the app is locked",
-        "warning"
-      );
+      log("method is not available while the app is locked", "warning");
       return;
+    }
+
+    if (
+      ["Enter", "Backspace", "ArrowLeft", "ArrowRight"].includes(
+        String(event.key)
+      )
+    ) {
+      log(`get ${event.key}`);
     }
 
     switch (event.key) {
