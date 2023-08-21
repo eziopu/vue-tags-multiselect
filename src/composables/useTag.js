@@ -94,10 +94,9 @@ export default function useTag(_props, context, dep) {
     tag.value = item.value;
     tag.valueElm = item.valueElm || null;
     tag.displayValue = !!item.displayValue;
-    log(`update tag`, `success`);
-    console.log(`   > tag key is`, tag.key);
-    console.log(`     > old value is`, oldValue);
-    console.log(`     > new value is`, item.value);
+    log(`${tag.key} tag update`, `success`);
+    console.log(`  > old value is`, oldValue);
+    console.log(`  > new value is`, item.value);
   };
 
   const deleteTags = (indexs = []) => {
