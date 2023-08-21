@@ -34,7 +34,7 @@
       v-model="inputValue"
       ref="elInput"
       :style="{ width: inputWidth }"
-      @keyup="handleKeydown"
+      @keyup="handleKeyup"
       @focus="elInputFocus"
       @blur="elInputBlur"
     />

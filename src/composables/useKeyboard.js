@@ -131,21 +131,9 @@ export default function useKeyboard(props, context, dep) {
       return;
     }
 
-    if (
-      [
-        "Enter",
-        "Backspace",
-        "ArrowUp",
-        "ArrowDown",
-        "ArrowLeft",
-        "ArrowRight",
-      ].includes(String(event.key))
-    ) {
-      log(`get ${event.key}`);
-    }
-
     switch (event.key) {
       case "Enter":
+        log(`get ${event.key}`);
         if (keydown.enterLock == true) {
           return;
         }
@@ -206,6 +194,7 @@ export default function useKeyboard(props, context, dep) {
         break;
 
       case "Backspace":
+        log(`get ${event.key}`);
         if (elInputValue.value != "" || keydown.backspaceLock == true) {
           return;
         }
@@ -258,6 +247,7 @@ export default function useKeyboard(props, context, dep) {
 
       case "ArrowUp":
       case "ArrowDown": {
+        log(`get ${event.key}`);
         event.preventDefault();
         await nextTick();
 
@@ -290,6 +280,7 @@ export default function useKeyboard(props, context, dep) {
 
       case "ArrowLeft":
       case "ArrowRight": {
+        log(`get ${event.key}`);
         await nextTick();
 
         try {
@@ -313,6 +304,7 @@ export default function useKeyboard(props, context, dep) {
 
           keydown.horizontalIndex = newIndex;
         } catch (error) {
+          log(error, `error`);
           if (error != "locked") {
             keydown.horizontalIndex = -1;
           }

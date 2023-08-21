@@ -51,24 +51,16 @@ export default function useKeyboard(props, _context, dep) {
     publicLog("tag keydown", context, type);
   };
 
-  const handleKeydown = async (event) => {
-    console.log("handleKeydown e =", event.key);
-
+  // using Keyup is to ensure that the input copy and other functions are executed first.
+  const handleKeyup = async (event) => {
     if (appIsLock.value == true) {
       log("method is not available while the app is locked", "warning");
       return;
     }
 
-    if (
-      ["Enter", "Backspace", "ArrowLeft", "ArrowRight"].includes(
-        String(event.key)
-      )
-    ) {
-      log(`get ${event.key}`);
-    }
-
     switch (event.key) {
       case "Backspace":
+        log(`get ${event.key}`);
         event.preventDefault();
         if (nextWillDelete.value == true) {
           deleteTag("  value Backspace");
@@ -79,6 +71,7 @@ export default function useKeyboard(props, _context, dep) {
         break;
 
       case "Enter":
+        log(`get ${event.key}`);
         event.preventDefault();
         await nextTick();
         try {
@@ -118,7 +111,6 @@ export default function useKeyboard(props, _context, dep) {
           if (msg == "haveSameOptionValue") {
             appRequestOptionClick.key = props.tag.key;
             appRequestOptionClick.value = inputValue.value;
-            console.log("nnnnnn", appRequestOptionClick);
           }
           if (msg == "duplicate") {
             const valueRepeatFlashing = dep.valueRepeatFlashing;
@@ -129,13 +121,13 @@ export default function useKeyboard(props, _context, dep) {
         break;
 
       case "ArrowLeft":
+        log(`get ${event.key}`);
         event.preventDefault();
         await nextTick();
         if (keydownHorizontalLock.value == true) {
           keydownHorizontalLock.value = false;
           return;
         }
-        console.log("       tag value keydown ArrowLeft");
         if (getElInputSelectionStart() == 0) {
           handleKeydownVerticalBoundary(event);
         }
@@ -143,13 +135,13 @@ export default function useKeyboard(props, _context, dep) {
         break;
 
       case "ArrowRight": {
+        log(`get ${event.key}`);
         event.preventDefault();
         await nextTick();
         if (keydownHorizontalLock.value == true) {
           keydownHorizontalLock.value = false;
           return;
         }
-        console.log("       tag value keydown ArrowRight");
         if (getElInputSelectionStart() == inputValue.value.length) {
           handleKeydownVerticalBoundary(event);
         }
@@ -172,6 +164,7 @@ export default function useKeyboard(props, _context, dep) {
   const appKeydown = inject("appKeydown");
   const appHandleKeydown = inject("appHandleKeydown");
   const handleKeydownVerticalBoundary = (event) => {
+    console.log("handleKeydownVerticalBoundary");
     if (nextKeydownWillUseAppKeydown.value == true) {
       appKeydown.horizontalLock = false;
       appHandleKeydown(event);
@@ -185,7 +178,7 @@ export default function useKeyboard(props, _context, dep) {
   };
 
   return {
-    handleKeydown,
+    handleKeyup,
     nextKeydownWillUseAppKeydown,
   };
 }
