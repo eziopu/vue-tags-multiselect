@@ -52,7 +52,10 @@
           v-show="isElDropdownVisible"
           ref="elDropdown"
           :style="{ left: `${elDropdownLeft}px` }"
-          :class="{ loading: loading || dropdownLoading }"
+          :class="{
+            loading: loading || dropdownLoading,
+            transition: transition,
+          }"
         >
           <div
             v-show="loading == true || dropdownLoading == true"
@@ -314,7 +317,6 @@ export default defineComponent({
     overflow: hidden;
     z-index: 11;
     top: 90%;
-    transition: all 0.3s ease;
 
     &.loading {
       cursor: wait !important;
@@ -350,9 +352,9 @@ export default defineComponent({
     align-items: center;
   }
 
-  // .transition {
-  //   transition: transform 0.3s ease-in-out;
-  // }
+  .transition {
+    transition: all 0.3s ease;
+  }
 
   .dropdown-enter-active,
   .dropdown-leave-active {
