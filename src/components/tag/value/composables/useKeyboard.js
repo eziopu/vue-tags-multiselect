@@ -63,8 +63,10 @@ export default function useKeyboard(props, _context, dep) {
         log(`get ${event.key}`);
         event.preventDefault();
         if (nextWillDelete.value == true) {
-          deleteTag("  value Backspace");
+          log(`delete tag`);
+          deleteTag("keyup Backspace");
         } else if (inputValue.value == "") {
+          log(`pressing once will delete`);
           nextWillDelete.value = true;
         }
 
@@ -79,7 +81,8 @@ export default function useKeyboard(props, _context, dep) {
             throw "lock";
           }
           if (inputValue.value == "") {
-            deleteTag("  value Enter");
+            log(`value is empty, delete tag`);
+            deleteTag("keyup Enter");
             throw "deleteTag";
           }
           if (
@@ -88,10 +91,14 @@ export default function useKeyboard(props, _context, dep) {
           ) {
             // dep.checkInputValueIsRepeat();
             if (appIsDuplicateTag(props.tag.key, inputValue.value) == true) {
+              log(`tag value is duplicated`);
               throw "duplicate";
             }
 
             if (isHaveSameOptionValue(inputValue.value) == true) {
+              log(
+                `find the option with the same value and call the app's auto-click function`
+              );
               throw "haveSameOptionValue";
             }
 
@@ -100,6 +107,7 @@ export default function useKeyboard(props, _context, dep) {
               valueElm: null,
               displayValue: true,
             });
+            log(`update tag`);
 
             appReFocus();
             throw "updateTag";

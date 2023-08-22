@@ -7,10 +7,15 @@ export default function useDelete(props) {
 
   const appReFocus = inject("appReFocus");
 
+  const log = inject("log");
+
   // ============== METHODS ==============
 
-  const deleteTag = (where) => {
-    console.log(" value where", where);
+  const deleteTag = (where = "") => {
+    log(
+      `tag value deleteTag`,
+      `method available${where != "" ? ", called by " + where : ""}`
+    );
     appDeleteTags([props.tag.index]);
     appReFocus();
   };

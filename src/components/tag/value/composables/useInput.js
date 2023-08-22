@@ -70,7 +70,7 @@ export default function useDelete(props, _context, dep) {
   const deleteTag = dep.deleteTag;
   const elInputBlur = () => {
     if (inputValue.value == "") {
-      deleteTag(" value elInputBlur");
+      deleteTag("elInputBlur");
     }
     blur();
   };

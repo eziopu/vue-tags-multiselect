@@ -95,9 +95,12 @@ export default function useDropdown(props, _context, dep) {
 
   const handleClick = dep.handleClick;
 
+  const log = inject("log");
   onMounted(() => {
     if (props.selected == true) {
-      console.log("run ! selected", props.value);
+      log(`option(key:${dropdown.props.value}, value:${props.value})`);
+      console.log(`  > props.selected is true`);
+      console.log(`  > the tag will be automatically generated`);
       handleClick();
     }
   });
