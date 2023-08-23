@@ -193,7 +193,8 @@ export default function useKeyboard(props, context, dep) {
 
         break;
 
-      case "Backspace":
+      case "Delete":
+      case "Backspace": {
         log(`get ${event.key}`);
         if (elInputValue.value != "" || keydown.backspaceLock == true) {
           return;
@@ -206,6 +207,13 @@ export default function useKeyboard(props, context, dep) {
           if (stashTag.key != null && stashTag.value == null) {
             log(`clear stashTag`);
             setStashTag();
+            isExecuted = true;
+          }
+
+          if (isEditMode.value == true && stashTag.custom == false) {
+            log(`delete the tag`);
+            deleteTags([editTagIndex.value]);
+            focusApp();
             isExecuted = true;
           }
 
@@ -246,6 +254,7 @@ export default function useKeyboard(props, context, dep) {
           }
         }
         break;
+      }
 
       case "ArrowUp":
       case "ArrowDown": {
