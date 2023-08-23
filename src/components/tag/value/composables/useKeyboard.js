@@ -48,7 +48,7 @@ export default function useKeyboard(props, _context, dep) {
 
   const publicLog = inject("log");
   const log = (context, type = "info") => {
-    publicLog("tag keydown", context, type);
+    publicLog("tag keyup", context, type);
   };
 
   // using Keyup is to ensure that the input copy and other functions are executed first.
@@ -97,17 +97,17 @@ export default function useKeyboard(props, _context, dep) {
 
             if (isHaveSameOptionValue(inputValue.value) == true) {
               log(
-                `find the option with the same value and call the app's auto-click function`
+                `find the option with the same value and call the app to auto-match`
               );
               throw "haveSameOptionValue";
             }
 
+            log(`update the tag`);
             appUpdateTag({
               value: inputValue.value,
               valueElm: null,
               displayValue: true,
             });
-            log(`update tag`);
 
             appReFocus();
             throw "updateTag";
@@ -172,7 +172,7 @@ export default function useKeyboard(props, _context, dep) {
   const appKeydown = inject("appKeydown");
   const appHandleKeydown = inject("appHandleKeydown");
   const handleKeydownVerticalBoundary = (event) => {
-    console.log("handleKeydownVerticalBoundary");
+    log(`pressing the "${event.key}" once will exit the current tag`);
     if (nextKeydownWillUseAppKeydown.value == true) {
       appKeydown.horizontalLock = false;
       appHandleKeydown(event);
