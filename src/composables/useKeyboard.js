@@ -119,7 +119,7 @@ export default function useKeyboard(props, context, dep) {
 
   const publicLog = dep.log;
   const log = (context, type = "info") => {
-    publicLog("handleKeydown", context, type);
+    publicLog("keydown", context, type);
   };
 
   const init = dep.init;
