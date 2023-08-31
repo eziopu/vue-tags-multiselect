@@ -131,6 +131,11 @@ export default function useDropdown(props) {
     return Object.values(optionStatus).every((status) => status.isSelected);
   });
 
+  const isAnyOptionBeSearched = computed(() => {
+    // const optionStatus = { "country": { "isBeSearched": true }, "country2": { "isBeSearched": false }, "country333": { "isBeSearched": false } } (reactive)
+    return Object.values(optionStatus).some((status) => status.isBeSearched);
+  });
+
   const isDown = computed(() => {
     if (props.custom == true) {
       return false;
@@ -195,6 +200,8 @@ export default function useDropdown(props) {
   provide("dropdownGetTitleInnerHTML", readonly(getTitleInnerHTML));
 
   provide("dropdownClassList", readonly(classList));
+
+  provide("dropdownIsAnyOptionBeSearched", readonly(isAnyOptionBeSearched));
 
   provide("dropdownOptionStatus", optionStatus);
 

@@ -32,13 +32,25 @@ export default function useRegistration(props, context, dep) {
     if (registrationName != "") {
       const dropdown = dep.dropdown;
       if (dropdown.props.system == false) {
-        dropdown.optionStatus[registrationName] = { isSelected: false };
+        dropdown.optionStatus[registrationName] = {
+          isSelected: false,
+          isBeSearched: false,
+        };
 
         const isSelected = dep.isSelected;
+        const isSearchable = dep.isSearchable;
         watch(
           isSelected,
           (value) => {
             dropdown.optionStatus[registrationName].isSelected = value;
+          },
+          { immediate: true }
+        );
+
+        watch(
+          isSearchable,
+          (value) => {
+            dropdown.optionStatus[registrationName].isBeSearched = value;
           },
           { immediate: true }
         );

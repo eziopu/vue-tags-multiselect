@@ -27,6 +27,7 @@ export default function useInjects() {
     getTitleInnerHTML: inject("dropdownGetTitleInnerHTML") || "",
     classList: inject("dropdownClassList") || [],
     optionStatus: inject("dropdownOptionStatus") || {},
+    isAnyOptionBeSearched: inject("dropdownIsAnyOptionBeSearched") || false,
   };
 
   return { app, dropdown };
