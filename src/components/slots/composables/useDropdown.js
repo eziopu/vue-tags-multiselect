@@ -76,6 +76,10 @@ export default function useDropdown(props) {
       }
     }
 
+    if (isAnyOptionBeSearched.value == false) {
+      return true;
+    }
+
     return false;
   });
 
@@ -163,6 +167,14 @@ export default function useDropdown(props) {
       isAllOptionSelected,
       (value) => {
         appDropdownStatus[props.value].isAllOptionSelected = value;
+      },
+      { immediate: true }
+    );
+
+    watch(
+      isHidden,
+      (value) => {
+        appDropdownStatus[props.value].isHidden = value;
       },
       { immediate: true }
     );

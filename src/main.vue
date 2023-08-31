@@ -323,6 +323,7 @@ export default defineComponent({
     }
 
     &:empty {
+      display: none;
       border: none !important;
     }
 

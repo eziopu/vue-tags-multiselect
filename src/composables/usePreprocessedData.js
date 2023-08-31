@@ -25,6 +25,11 @@ export default function usePreprocessedData(props) {
     return Object.values(dropdownStatus).every((status) => status.isDown);
   });
 
+  const isAllDropdownIsHidden = computed(() => {
+    // const dropdownStatus = { country: { isDown: true, isAllOptionSelected: true }, country2: { isDown: false, isAllOptionSelected: false }, ... } (reactive)
+    return Object.values(dropdownStatus).every((status) => status.isHidden);
+  });
+
   // ================= App status ====================
   // ============== COMPUTED ================
   const appIsLock = computed(() => {
@@ -46,6 +51,7 @@ export default function usePreprocessedData(props) {
   return {
     dropdownStatus,
     isAllDropdownIsDown,
+    isAllDropdownIsHidden,
 
     appIsLock,
     appIsFinish,

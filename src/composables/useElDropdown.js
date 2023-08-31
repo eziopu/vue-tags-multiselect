@@ -26,9 +26,14 @@ export default function useElDropdown(props, _context, dep) {
   // ============== COMPUTED ==============
 
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
+  const isAllDropdownIsHidden = dep.isAllDropdownIsHidden;
 
   const isElDropdownVisible = computed(() => {
     if (isAllDropdownIsDown.value == true) {
+      return false;
+    }
+
+    if (isAllDropdownIsHidden.value == true) {
       return false;
     }
 
