@@ -83,12 +83,12 @@ export default function useDropdown(props, _context, dep) {
         return isTitle ? true : false;
       }
     }
+
     if (isCanSearch.value == true) {
       if (isTitle == true) {
-        const isAnyOptionBeSearched = dropdown.isAnyOptionBeSearched.value;
-        return !isAnyOptionBeSearched == true
-          ? !isSearchable.value
-          : !isAnyOptionBeSearched;
+        return dropdown.isAnyOptionBeSearched.value == true
+          ? false
+          : !isSearchable.value;
       } else {
         return !isSearchable.value;
       }

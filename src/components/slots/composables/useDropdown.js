@@ -76,10 +76,6 @@ export default function useDropdown(props) {
       }
     }
 
-    if (isAnyOptionBeSearched.value == false) {
-      return true;
-    }
-
     return false;
   });
 
