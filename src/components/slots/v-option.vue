@@ -8,7 +8,7 @@
       divided: props.divided,
       hover: isHover,
       noValue: props.value == undefined || props.value == '',
-      hidden: isHide,
+      hidden: isDuplicateOption || isHidden,
     }"
     @mouseover="isHover = true"
     @mouseleave="isHover = false"

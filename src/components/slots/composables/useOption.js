@@ -44,7 +44,7 @@ export default function useDropdown(props, _context, dep) {
       : false;
   });
 
-  const isHide = computed(() => {
+  const isHidden = computed(() => {
     if (dropdown.props.system == true) {
       return false;
     }
@@ -97,7 +97,7 @@ export default function useDropdown(props, _context, dep) {
     return false;
   });
 
-  // ================= Init to selected ====================
+  // ============== Init to selected ====================
 
   const handleClick = dep.handleClick;
 
@@ -111,7 +111,7 @@ export default function useDropdown(props, _context, dep) {
     }
   });
 
-  // ================= App request option to click ====================
+  // ============== App request option to click ====================
 
   if (props.value != "") {
     const appRequestOptionClick = inject("appRequestOptionClick");
@@ -133,6 +133,6 @@ export default function useDropdown(props, _context, dep) {
     isDisabled,
     isSelected,
     isHover,
-    isHide,
+    isHidden,
   };
 }

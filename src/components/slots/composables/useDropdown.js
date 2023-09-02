@@ -67,6 +67,10 @@ export default function useDropdown(props) {
       return true;
     }
 
+    if (isAllOptionIsHidden.value == true) {
+      return true;
+    }
+
     if (isAllOptionSelected.value == true) {
       if (hasVNodeTitle.value == false || isChildEditing.value == true) {
         return true;
@@ -129,6 +133,11 @@ export default function useDropdown(props) {
     }
     // const optionStatus = { "country": { "isSelected": true }, "country2": { "isSelected": false }, "country333": { "isSelected": false } } (reactive)
     return Object.values(optionStatus).every((status) => status.isSelected);
+  });
+
+  const isAllOptionIsHidden = computed(() => {
+    // const optionStatus = { "country": { "isHidden": true }, "country2": { "isHidden": false }, "country333": { "isHidden": false } } (reactive)
+    return Object.values(optionStatus).every((status) => status.isHidden);
   });
 
   const isAnyOptionBeSearched = computed(() => {

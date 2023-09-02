@@ -1,19 +1,12 @@
-import { watch, onMounted, onBeforeUnmount } from "vue";
+import { ref, watch, inject, onMounted, onBeforeUnmount } from "vue";
 import clearHTML from "../../../utils/clearHTML";
 
 export default function useRegistration(props, context, dep) {
-  // ================= Option status ====================
+  // ============== DATA ================
 
-  const isNoValue = props.value == null || props.value == "";
+  const isDuplicateOption = ref(false);
 
-  const isCustom = () => {
-    if (isNoValue == true && props.title == false) {
-      if (context.slots.default().length >= 1) {
-        return true;
-      }
-    }
-    return false;
-  };
+  // ============== METHODS ================
 
   const getInnerHTML = () => {
     const elOption = dep.elOption;
@@ -24,43 +17,66 @@ export default function useRegistration(props, context, dep) {
   };
 
   onMounted(() => {
-    let registrationName = props.value;
-    if (isNoValue == true && isCustom() == true) {
-      registrationName = getInnerHTML();
+    const dropdown = dep.dropdown;
+    if (dropdown.props.system == true) {
+      return;
+    }
+    const value = props.title == true ? dropdown.props.value : props.value;
+    const registrationName = value + "_" + getInnerHTML();
+
+    if (dropdown.optionStatus[registrationName] != undefined) {
+      isDuplicateOption.value = true;
+      const log = inject("log");
+      log(
+        `option onMounted`,
+        `Duplicate ${
+          props.title ? "title" : ""
+        } options! last option will be forced to be hidden.`,
+        `error`
+      );
+      console.log(`  > dropdown key:${dropdown.props.value}`);
+      console.log(`  > value:${value}`);
+      return;
     }
 
-    if (registrationName != "") {
-      const dropdown = dep.dropdown;
-      if (dropdown.props.system == false) {
-        dropdown.optionStatus[registrationName] = {
-          isSelected: false,
-          isBeSearched: false,
-        };
+    dropdown.optionStatus[registrationName] = {
+      isHidden: false,
+      isSelected: false,
+      isBeSearched: false,
+    };
 
-        const isSelected = dep.isSelected;
-        const isSearchable = dep.isSearchable;
-        watch(
-          isSelected,
-          (value) => {
-            dropdown.optionStatus[registrationName].isSelected = value;
-          },
-          { immediate: true }
-        );
+    const isHidden = dep.isHidden;
+    const isSelected = dep.isSelected;
+    const isSearchable = dep.isSearchable;
 
-        watch(
-          isSearchable,
-          (value) => {
-            dropdown.optionStatus[registrationName].isBeSearched = value;
-          },
-          { immediate: true }
-        );
+    watch(
+      isHidden,
+      (value) => {
+        dropdown.optionStatus[registrationName].isHidden = value;
+      },
+      { immediate: true }
+    );
 
-        onBeforeUnmount(() => {
-          delete dropdown.optionStatus[registrationName];
-        });
-      }
-    }
+    watch(
+      isSelected,
+      (value) => {
+        dropdown.optionStatus[registrationName].isSelected = value;
+      },
+      { immediate: true }
+    );
+
+    watch(
+      isSearchable,
+      (value) => {
+        dropdown.optionStatus[registrationName].isBeSearched = value;
+      },
+      { immediate: true }
+    );
+
+    onBeforeUnmount(() => {
+      delete dropdown.optionStatus[registrationName];
+    });
   });
 
-  return {};
+  return { isDuplicateOption };
 }
