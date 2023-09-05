@@ -21,9 +21,8 @@ export default function useSearch(props, _context, dep) {
 
   const isCanSearch = computed(() => {
     return (
-      app.props.search == true ||
-      app.elInputValue.value != "" ||
-      props.system == false
+      app.props.search == true &&
+      (app.elInputValue.value != "" || props.system == false)
     );
   });
 
