@@ -174,6 +174,7 @@ export default defineComponent({
     transition: { type: Boolean, default: true },
     create: { type: Boolean, default: true },
     merge: { type: Boolean, default: true },
+    keyboard: { type: Boolean, default: true },
     conjunction: { type: String, default: "" }, // 'OR', 'AND'
     deleteIcon: { type: String, default: "always" }, // 'always', 'edit', 'none'
     /**

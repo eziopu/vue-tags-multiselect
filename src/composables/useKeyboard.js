@@ -126,8 +126,16 @@ export default function useKeyboard(props, context, dep) {
   const handleKeydown = async (event) => {
     context.emit("keydown", event, $this);
 
+    if (props.keyboard == false) {
+      log(
+        "method is not yet enabled because the props keyboard value is false.",
+        "warning"
+      );
+      return;
+    }
+
     if (appIsLock.value == true) {
-      log("method is not available while the app is locked", "warning");
+      log("method is not yet enabled while the app is locked", "warning");
       return;
     }
 

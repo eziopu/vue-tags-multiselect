@@ -47,6 +47,7 @@
         :dropdownLoading="dropdownLoading == 'true' ? true : false"
         :search="search == 'true' ? true : false"
         :transition="transition == 'true' ? true : false"
+        :keyboard="keyboard == 'true' ? true : false"
         :create="create == 'true' ? true : false"
         :merge="merge == 'true' ? true : false"
         :deleteIcon="deleteIcon"
@@ -69,7 +70,7 @@
         >
           <span v-html="optionORConjunctionContent"></span>
         </template>
-        <v-tag-dropdown value="country" display-all>
+        <v-tag-dropdown value="country" display-all custom>
           <v-tag-option title>
             <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
           </v-tag-option>
@@ -243,6 +244,7 @@ export default defineComponent({
       loading: "false",
       dropdownLoading: "false",
       search: "true",
+      keyboard: "true",
       transition: "true",
       create: "true",
       merge: "true",

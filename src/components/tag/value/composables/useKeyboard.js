@@ -40,6 +40,7 @@ export default function useKeyboard(props, _context, dep) {
   // ============== METHODS ==============
 
   const deleteTag = dep.deleteTag;
+  const appProps = inject("appProps");
   const appIsLock = inject("appIsLock");
   const appReFocus = inject("appReFocus");
   const appUpdateTag = inject("appUpdateTag");
@@ -53,6 +54,16 @@ export default function useKeyboard(props, _context, dep) {
 
   // using Keyup is to ensure that the input copy and other functions are executed first.
   const handleKeyup = async (event) => {
+    if (appProps.keyboard == false) {
+      if (event.key == "Backspace" || event.key == "Enter") {
+        log(
+          "method is not yet enabled because the props keyboard value is false.",
+          "warning"
+        );
+      }
+      return;
+    }
+
     if (appIsLock.value == true) {
       log("method is not available while the app is locked", "warning");
       return;

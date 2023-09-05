@@ -28,7 +28,10 @@
             :values="['always', 'edit', 'none']"
           />
           <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
+
           <LabelAndSelect value="transition" />
+          <LabelAndSelect value="keyboard" />
+
           <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
           <div class="flex-between text">
             <div>placeholder</div>
