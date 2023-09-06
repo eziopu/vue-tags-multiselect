@@ -11,6 +11,7 @@
         "create": "是否可使用輸入框建立 tag",
         "create__notice": "當 create 與 search 皆為 false 時, 輸入框將禁用",
         "merge": "合併相同key值的option",
+        "keyboard": "是否啟用keyboard操作",
         "transition": "是否啟用css動畫效果",
         "conjunction": "選擇的模式",
         "conjunction__detail": {

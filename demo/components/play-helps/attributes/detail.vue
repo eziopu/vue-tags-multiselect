@@ -94,6 +94,7 @@
       </div>
     </div>
 
+    <!-- dropdownLoading -->
     <div class="row">
       <LabelAndSelect value="dropdownLoading" />
       <div>{{ $t("attributes.description.app.dropdownLoading") }}</div>
@@ -113,6 +114,7 @@
       </div>
     </div>
 
+    <!-- create -->
     <div class="row">
       <LabelAndSelect value="create" />
       <div>{{ $t("attributes.description.app.create") }}</div>
@@ -132,6 +134,49 @@
       </div>
     </div>
 
+    <!-- deleteIcon -->
+    <div class="row">
+      <LabelAndSelect value="deleteIcon" :values="['always', 'edit', 'none']" />
+      <div>
+        <span
+          @click="
+            app.displays.details.deleteIcon = !app.displays.details.deleteIcon
+          "
+          class="pointer"
+          :class="{ active: app.displays.details.deleteIcon }"
+        >
+          {{ $t("attributes.description.app.deleteIcon") }}
+          <span class="arrow"></span>
+          <br />
+          *{{ $t("attributes.description.app.deleteIcon__notice") }}
+        </span>
+        <span v-show="app.displays.details.deleteIcon" class="detail">
+          <br />
+          <hr style="margin: 2px" />
+          {{ $t("attributes.description.app.deleteIcon__detail.1") }}
+          <br />
+          {{ $t("attributes.description.app.deleteIcon__detail.2") }}
+          <br />
+          {{ $t("attributes.description.app.deleteIcon__detail.3") }}
+        </span>
+      </div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span>string</span>
+      </div>
+      <div>
+        <span class="i-block d-md-none"
+          >{{ $t("ui.general.AcceptedValues") }}:
+        </span>
+        <span>always / edit / none</span>
+      </div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span>always</span>
+      </div>
+    </div>
+
+    <!-- merge -->
     <div class="row">
       <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
       <div>{{ $t("attributes.description.app.merge") }}</div>
@@ -151,25 +196,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <LabelAndSelect value="transition" />
-      <div>{{ $t("attributes.description.app.transition") }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
-        <span>true</span>
-      </div>
-    </div>
-
+    <!-- conjunction -->
     <div class="row">
       <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
       <div>
@@ -209,44 +236,43 @@
       </div>
     </div>
 
+    <!-- transition -->
     <div class="row">
-      <LabelAndSelect value="deleteIcon" :values="['always', 'edit', 'none']" />
-      <div>
-        <span
-          @click="
-            app.displays.details.deleteIcon = !app.displays.details.deleteIcon
-          "
-          class="pointer"
-          :class="{ active: app.displays.details.deleteIcon }"
-        >
-          {{ $t("attributes.description.app.deleteIcon") }}
-          <span class="arrow"></span>
-          <br />
-          *{{ $t("attributes.description.app.deleteIcon__notice") }}
-        </span>
-        <span v-show="app.displays.details.deleteIcon" class="detail">
-          <br />
-          <hr style="margin: 2px" />
-          {{ $t("attributes.description.app.deleteIcon__detail.1") }}
-          <br />
-          {{ $t("attributes.description.app.deleteIcon__detail.2") }}
-          <br />
-          {{ $t("attributes.description.app.deleteIcon__detail.3") }}
-        </span>
-      </div>
+      <LabelAndSelect value="transition" />
+      <div>{{ $t("attributes.description.app.transition") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-        <span>string</span>
+        <span>boolean</span>
       </div>
-      <div>
+      <div class="d-none d-md-block">
         <span class="i-block d-md-none"
           >{{ $t("ui.general.AcceptedValues") }}:
         </span>
-        <span>always / edit / none</span>
+        <span>-</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
-        <span>always</span>
+        <span>true</span>
+      </div>
+    </div>
+
+    <!-- keyboard -->
+    <div class="row">
+      <LabelAndSelect value="keyboard" />
+      <div>{{ $t("attributes.description.app.keyboard") }}</div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span>boolean</span>
+      </div>
+      <div class="d-none d-md-block">
+        <span class="i-block d-md-none"
+          >{{ $t("ui.general.AcceptedValues") }}:
+        </span>
+        <span>-</span>
+      </div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span>true</span>
       </div>
     </div>
 

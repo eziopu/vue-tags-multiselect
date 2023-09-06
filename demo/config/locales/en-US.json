@@ -11,7 +11,8 @@
         "create": "create tag with no title, value is by input",
         "create__notice": "then create and search is false, input will unavailable",
         "merge": "when tags same title share display one",
-        "transition": "css animation",
+        "keyboard": "enable keyboard operation",
+        "transition": "enable css animation",
         "conjunction": "select mode",
         "conjunction__detail": {
           "1": "- : after the second selected, 'OR' mode button will appear at the top",
