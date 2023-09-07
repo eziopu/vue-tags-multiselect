@@ -3,19 +3,19 @@
 -->&lt;vue-tags-multiselect
   ref="vueTagsMultiselect"
   v-model="result"<br><!--
-  --><span v-show="app.disabled == 'true'">    <span class="pln">:</span><span class="atn">disabled</span><span class="pun">=</span><span class="atv">"{{ app.disabled }}"</span><br></span><!--
-  --><span v-show="app.search == 'false'">    <span class="pln">:</span><span class="atn">search</span><span class="pun">=</span><span class="atv">"{{ app.search }}"</span><br></span><!--
-  --><span v-show="app.loading == 'true'">    <span class="pln">:</span><span class="atn">loading</span><span class="pun">=</span><span class="atv">"{{ app.loading }}"</span><br></span><!--
-  --><span v-show="app.dropdownLoading == 'true'">    <span class="pln">:</span><span class="atn">dropdownLoading</span><span class="pun">=</span><span class="atv">"{{ app.dropdownLoading }}"</span><br></span><!--
-  --><span v-show="app.transition == 'false'">    <span class="pln">:</span><span class="atn">transition</span><span class="pun">=</span><span class="atv">"{{ app.transition }}"</span><br></span><!--
-  --><span v-show="app.keyboard == 'false'">    <span class="pln">:</span><span class="atn">keyboard</span><span class="pun">=</span><span class="atv">"{{ app.keyboard }}"</span><br></span><!--
-  --><span v-show="app.create == 'false'">    <span class="pln">:</span><span class="atn">create</span><span class="pun">=</span><span class="atv">"{{ app.create }}"</span><br></span><!--
-  --><span v-show="app.merge == 'false'">    <span class="pln">:</span><span class="atn">merge</span><span class="pun">=</span><span class="atv">"{{ app.merge }}"</span><br></span><!--
-  --><span v-show="app.deleteIcon != 'always'">    <span class="pln">:</span><span class="atn">deleteIcon</span><span class="pun">=</span><span class="atv">"{{ app.deleteIcon }}"</span><br></span><!--
-  --><span v-show="app.conjunction != 'null'">    <span class="pln">:</span><span class="atn">conjunction</span><span class="pun">=</span><span class="atv">"{{ app.conjunction }}"</span><br></span><!--
-  --><span v-show="app.loadingPlaceholder != ''">    <span class="pln">:</span><span class="atn">loadingPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.loadingPlaceholder }}"</span><br></span><!--
-  --><span v-show="app.selectDownPlaceholder != ''">    <span class="pln">:</span><span class="atn">selectDownPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.selectDownPlaceholder }}"</span><br></span><!--
-  --><span v-show="app.finishPlaceholder != ''">    <span class="pln">:</span><span class="atn">finishPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.finishPlaceholder }}"</span><br></span><!--
+  --><span v-show="app.disabled == 'true'">  <span class="pln">:</span><span class="atn">disabled</span><span class="pun">=</span><span class="atv">"{{ app.disabled }}"</span><br></span><!--
+  --><span v-show="app.search == 'false'">  <span class="pln">:</span><span class="atn">search</span><span class="pun">=</span><span class="atv">"{{ app.search }}"</span><br></span><!--
+  --><span v-show="app.loading == 'true'">  <span class="pln">:</span><span class="atn">loading</span><span class="pun">=</span><span class="atv">"{{ app.loading }}"</span><br></span><!--
+  --><span v-show="app.dropdownLoading == 'true'">  <span class="pln">:</span><span class="atn">dropdownLoading</span><span class="pun">=</span><span class="atv">"{{ app.dropdownLoading }}"</span><br></span><!--
+  --><span v-show="app.transition == 'false'">  <span class="pln">:</span><span class="atn">transition</span><span class="pun">=</span><span class="atv">"{{ app.transition }}"</span><br></span><!--
+  --><span v-show="app.keyboard == 'false'">  <span class="pln">:</span><span class="atn">keyboard</span><span class="pun">=</span><span class="atv">"{{ app.keyboard }}"</span><br></span><!--
+  --><span v-show="app.create == 'false'">  <span class="pln">:</span><span class="atn">create</span><span class="pun">=</span><span class="atv">"{{ app.create }}"</span><br></span><!--
+  --><span v-show="app.merge == 'false'">  <span class="pln">:</span><span class="atn">merge</span><span class="pun">=</span><span class="atv">"{{ app.merge }}"</span><br></span><!--
+  --><span v-show="app.deleteIcon != 'always'">  <span class="pln">:</span><span class="atn">deleteIcon</span><span class="pun">=</span><span class="atv">"{{ app.deleteIcon }}"</span><br></span><!--
+  --><span v-show="app.conjunction != 'null'">  <span class="pln">:</span><span class="atn">conjunction</span><span class="pun">=</span><span class="atv">"{{ app.conjunction }}"</span><br></span><!--
+  --><span v-show="app.loadingPlaceholder != ''">  <span class="pln">:</span><span class="atn">loadingPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.loadingPlaceholder }}"</span><br></span><!--
+  --><span v-show="app.selectDownPlaceholder != ''">  <span class="pln">:</span><span class="atn">selectDownPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.selectDownPlaceholder }}"</span><br></span><!--
+  --><span v-show="app.finishPlaceholder != ''">  <span class="pln">:</span><span class="atn">finishPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.finishPlaceholder }}"</span><br></span><!--
 -->&gt;<!--
   --><span v-show="app.tagConjunction != ''">
   <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"tag-conjunction"</span><span class="tag">&gt;</span><span class="pln">
