@@ -290,6 +290,7 @@ export default function useKeyboard(props, context, dep) {
           keydown.verticalIndex = newIndex;
         } catch (error) {
           if (error != "locked") {
+            log(error, `error`);
             keydown.verticalIndex = -1;
           }
         }
@@ -323,8 +324,8 @@ export default function useKeyboard(props, context, dep) {
 
           keydown.horizontalIndex = newIndex;
         } catch (error) {
-          log(error, `error`);
           if (error != "locked") {
+            log(error, `error`);
             keydown.horizontalIndex = -1;
           }
         }
