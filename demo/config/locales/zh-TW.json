@@ -64,6 +64,18 @@
         "edintng": "取得當前誰正在編輯"
       },
       "refOperates": {
+        "pushTag": "強制賦予一個tag給app",
+        "pushTag2": "當參數(tag object)內容的key與value有對應dropdown或是option時會自動匹配(包含app正在選擇中的情況)",
+        "pushTagParameter": {
+          "key": "標籤的key值 | string | null | ",
+          "value": "標籤的value值 | string | null | 必填 ",
+          "valueElm": "value的顯示元件 | string | null | ",
+          "titleElm": "title的顯示元件 | string | null | ",
+          "classList": "自定義的class name | array | [] | ", 
+          "custom": "完成tag後, 是否允許任意修改標籤的value值 | boolean | false | ",
+          "displayValue": "完成tag後, 是否改顯示標籤的value值 | boolean | false | "
+        },
+        "pushTagExample": "範例: <code>pushTag(&quot;Māre&quot;)</code> or <code>pushTag(&quot;Māre&quot;, &quot;Country&quot;)</code>",
         "pushValue": "給予當前選擇的dropwon給予value值並自動完成",
         "pushValue2": "如果有寫入第二個參數(key name)會自動匹配並自動完成",
         "pushValueExample": "範例: <code>pushValue(&quot;Māre&quot;)</code> or <code>pushValue(&quot;Māre&quot;, &quot;Country&quot;)</code>"

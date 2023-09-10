@@ -64,6 +64,17 @@
         "edintng": "current editing target"
       },
       "refOperates": {
+        "pushTag": "force push a tag to an app",
+        "pushTag2": "when the key and value within the parameter (tag object) correspond to a dropdown or option, it will automatically match, including the case where the app is currently being selected.",
+        "pushTagParameter": {
+          "key": "tag key | string | null | ",
+          "value": "tag value | string | null | required ",
+          "valueElm": "html element for the value | string | null | ",
+          "titleElm": "html element for the title | string | null | ",
+          "classList": "custom class name | array | [] | ", 
+          "custom": "after completing the tag, is it possible to freely modify the value of the tag | boolean | false | ",
+          "displayValue": "after completing the tag, is it possible to change the displayed value of the tag | boolean | false | "
+        },
         "pushValue": "push value to current selected tag title and finish",
         "pushValue2": "if you push second parameter(key name) will automatch tag and finish",
         "pushValueExample": "Example: <code>pushValue(&quot;Māre&quot;)</code> or <code>pushValue(&quot;Māre&quot;, &quot;Country&quot;)</code>"
