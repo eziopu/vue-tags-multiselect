@@ -10,18 +10,6 @@
     @click="isAppActived = true"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-    <!-- <div class="logs" style="width: 100%">
-      elDropdownLeft = {{ elDropdownLeft }} <br />
-      transition = {{ transition }}
-
-      tags = 
-    <pre>
-      {{ tags }}
-    </pre>
-    </div>
-  -->
-
-    <!-- @blur="inputDisabled ? inputBlur() : false" -->
     <div class="tags" ref="elTags">
       <VTag
         v-for="(tag, index) in merge == true
@@ -120,13 +108,6 @@ import Loading from "./components/partial/loading.vue";
 import VTagDropdown from "./components/slots/v-dropdown.vue";
 import VTagOption from "./components/slots/v-option.vue";
 
-// import EmitOutput from "./mixins/emits/output";
-// import EmitGetStatus from "./mixins/emits/get-status";
-// import EmitGetEditing from "./mixins/emits/get-editing";
-// import EmitGetInputValue from "./mixins/emits/get-input-value";
-// import EmitGetSelectingKey from "./mixins/emits/get-selecting-key";
-
-// import RefOperatePushValue from "./mixins/ref-operates/push-value";
 import resolve from "./utils/resolve";
 import useLog from "./composables/useLog";
 import usePreprocessedData from "./composables/usePreprocessedData";
@@ -152,14 +133,7 @@ export default defineComponent({
     "keyup",
     "selectingTag",
   ],
-  // mixins: [
-  //   EmitOutput,
-  //   EmitGetStatus,
-  //   EmitGetEditing,
-  //   EmitGetInputValue,
-  //   EmitGetSelectingKey,
-  //   RefOperatePushValue,
-  // ],
+
   components: {
     VTag,
     Loading,
@@ -237,60 +211,9 @@ export default defineComponent({
     }
 
     .fill {
-      & {
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-      }
-
-      .fill__fake-input {
-        & {
-          margin-left: 4px;
-          position: relative;
-        }
-
-        .fill__fake-input--line {
-          border-right: 1px solid black;
-          margin-left: -1px;
-          height: 20px;
-          animation: focus 1.2s infinite;
-        }
-        .fill__fake-input--placeholder .select-down {
-          position: absolute;
-          opacity: 0;
-          color: #757575;
-          bottom: -10px;
-          white-space: nowrap;
-          animation: flickerAnimation 1.2s infinite;
-          animation-iteration-count: 2;
-        }
-      }
-      @keyframes flickerAnimation {
-        0% {
-          opacity: 0;
-        }
-        50% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
-
-      @keyframes focus {
-        0% {
-          opacity: 1;
-        }
-        49% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
     }
   }
 
