@@ -23,27 +23,21 @@
           </div>
         </div>
         <div class="row">
-          <div><div>pushValue</div></div>
+          <div><div>pushTag</div></div>
           <div>
             <span class="i-block d-md-none"
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>
-              {{ $t("attributes.description.refOperates.pushValue") }},
+              {{ $t("attributes.description.refOperates.pushTag") }},
               <br class="d-none d-sm-block" />
-              {{ $t("attributes.description.refOperates.pushValue2") }}
+              {{ $t("attributes.description.refOperates.pushTag2") }}
             </span>
           </div>
           <div>
             <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-            <span
-              >string(value)*{{ $t("ui.general.required") }},
-              <br class="d-none d-sm-block" />string(key)</span
-            >
+            <span>tag object*{{ $t("ui.general.required") }}</span>
           </div>
-          <div
-            v-html="$t('attributes.description.refOperates.pushValueExample')"
-          ></div>
         </div>
       </div>
     </transition>

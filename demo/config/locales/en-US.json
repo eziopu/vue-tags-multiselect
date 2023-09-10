@@ -64,8 +64,8 @@
         "edintng": "current editing target"
       },
       "refOperates": {
-        "pushTag": "force push a tag to an app",
-        "pushTag2": "when the key and value within the parameter (tag object) correspond to a dropdown or option, it will automatically match, including the case where the app is currently being selected.",
+        "pushTag": "Force push a tag to an app",
+        "pushTag2": "When the key and value within the parameter (tag object) correspond to a dropdown or option, it will automatically match, including the case where the app is currently being selected.",
         "pushTagParameter": {
           "key": "tag key | string | null | ",
           "value": "tag value | string | null | required ",
