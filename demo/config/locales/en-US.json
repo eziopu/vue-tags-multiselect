@@ -63,21 +63,19 @@
         "inputValue": "current input value, tag value when editing mode",
         "edintng": "current editing target"
       },
-      "refOperates": {
+      "methods": {
         "pushTag": "Force push a tag to an app",
         "pushTag2": "When the key and value within the parameter (tag object) correspond to a dropdown or option, it will automatically match, including the case where the app is currently being selected.",
         "pushTagParameter": {
-          "key": "tag key | string | null | ",
-          "value": "tag value | string | null | required ",
-          "valueElm": "html element for the value | string | null | ",
-          "titleElm": "html element for the title | string | null | ",
-          "classList": "custom class name | array | [] | ", 
-          "custom": "after completing the tag, is it possible to freely modify the value of the tag | boolean | false | ",
-          "displayValue": "after completing the tag, is it possible to change the displayed value of the tag | boolean | false | "
+          "key": "tag key",
+          "value": "tag value",
+          "valueElm": "html element for the value",
+          "titleElm": "html element for the title",
+          "classList": "custom class name", 
+          "custom": "after completing the tag, is it possible to freely modify the value of the tag",
+          "displayValue": "after completing the tag, is it possible to change the displayed value of the tag"
         },
-        "pushValue": "push value to current selected tag title and finish",
-        "pushValue2": "if you push second parameter(key name) will automatch tag and finish",
-        "pushValueExample": "Example: <code>pushValue(&quot;Māre&quot;)</code> or <code>pushValue(&quot;Māre&quot;, &quot;Country&quot;)</code>"
+        "pushTagExample": "Example: <code>pushTag({value: Eldia})</code> or <code>pushTag({key: country, value: Eldia, titleElm: &lt;p&gt;Country&lt;/p&gt;, custom: true})</code>"
       },
       "dropdown": {
         "value": "tag key",

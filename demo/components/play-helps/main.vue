@@ -282,7 +282,7 @@ export default defineComponent({
         attributes: true,
         events: true,
         slots: true,
-        Methods: false,
+        methods: false,
         details: {
           conjunction: false,
           deleteIcon: false,
