@@ -27,7 +27,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.satus") }}</span>
+        <span>{{ $t("attributes.description.events.status") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="row">
-      <div><div>getSelectingKey</div></div>
+      <div><div>selectingTag</div></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
         <span>{{ app.tool.selectingTag || "{}" }}</span>
@@ -53,7 +53,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.getSelectingKey") }}</span>
+        <span>{{ $t("attributes.description.events.selectingTag") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -73,7 +73,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.getInputValue") }}</span>
+        <span>{{ $t("attributes.description.events.inputValue") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -81,26 +81,6 @@
       </div>
       <div class="d-none d-md-block">
         <span> - </span>
-      </div>
-    </div>
-    <div class="row">
-      <div><div>getEdintng</div></div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
-        <span>{{ app.tool.editing || {} }}</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none"
-          >{{ $t("ui.general.Description") }}:
-        </span>
-        <span>{{ $t("attributes.description.events.getEdintng") }}</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-        <span>obect</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span> {} </span>
       </div>
     </div>
   </div>

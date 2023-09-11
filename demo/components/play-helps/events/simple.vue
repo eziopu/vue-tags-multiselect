@@ -30,10 +30,6 @@
           <span>inputValue</span>
           <span>{{ app.tool.inputValue || "-" }}</span>
         </div>
-        <div class="flex-between text">
-          <span>edintng</span>
-          <p>{{ app.tool.editing || {} }}</p>
-        </div>
         <div class="clear"></div>
       </div>
     </transition>

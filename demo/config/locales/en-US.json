@@ -60,8 +60,7 @@
       "events": {
         "status": "current operating mode",
         "selectingTag": "current selected tag",
-        "inputValue": "current input value, tag value when editing mode",
-        "edintng": "current editing target"
+        "inputValue": "current input's value, and if in editing mode, correspond to the value of that input."
       },
       "methods": {
         "pushTag": "Force push a tag to an app",

@@ -59,9 +59,8 @@
       },
       "events": {
         "status": "取得當前操作的模式名稱",
-        "selectingTag": "取得當前選擇的tag",
-        "inputValue": "取得當前選擇的 input 的 value 值, 編輯模式則對應該 input",
-        "edintng": "取得當前誰正在編輯"
+        "selectingTag": "取得當前選擇的tag(包括選擇中, 編輯中)",
+        "inputValue": "取得當前 input 的 value 值, 編輯中則對應該 input 的 value 值"
       },
       "methods": {
         "pushTag": "強制賦予一個tag給app",
