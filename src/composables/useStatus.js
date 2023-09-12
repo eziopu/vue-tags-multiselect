@@ -3,6 +3,8 @@ import { computed } from "vue";
 export default function useStatus(props, context, dep) {
   // ============== DATA ==============
 
+  const elInputValue = dep.elInputValue;
+
   const isEditMode = dep.isEditMode;
 
   const isElDropdownVisible = dep.isElDropdownVisible;
@@ -16,6 +18,10 @@ export default function useStatus(props, context, dep) {
     const result = [];
     if (props.disabled == true) result.push("disabled");
     if (props.loading == true) result.push("loading");
+    if (elInputValue.value != "" && props.search == true) {
+      dep.log(`searching`);
+      result.push("searching");
+    }
     if (isEditMode.value == true) {
       dep.log(`edit the tag`);
       result.push("editing");
