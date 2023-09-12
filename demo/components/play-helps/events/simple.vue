@@ -12,25 +12,26 @@
     <transition name="slide">
       <div
         v-if="app.displays.events"
-        class="simple attributes"
+        class="simple container"
         :class="{
           ui: app.theme == 'semantic-ui',
           default: app.theme == 'default',
         }"
       >
-        <div class="flex-between">
-          <span>status</span>
-          <span>{{ app.tool.status || "[]" }}</span>
+        <div class="row">
+          <div class="flex-between">
+            <span>status</span>
+            <span>{{ app.tool.status || "[]" }}</span>
+          </div>
+          <div class="flex-between">
+            <span>inputValue</span>
+            <span>{{ app.tool.inputValue || "-" }}</span>
+          </div>
         </div>
-        <div class="flex-between">
-          <span>selectingTag</span>
-          <span>{{ app.tool.selectingTag || "{}" }}</span>
+        <div class="row">
+          <div>selectingTag</div>
+          <pre class="data">{{ app.tool.selectingTag || "{}" }}</pre>
         </div>
-        <div class="flex-between">
-          <span>inputValue</span>
-          <span>{{ app.tool.inputValue || "-" }}</span>
-        </div>
-        <div class="clear"></div>
       </div>
     </transition>
   </div>
@@ -45,28 +46,20 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.default {
-  .flex-between {
-    width: calc(50% - 24px);
-  }
-  @media all and (max-width: 576px) {
-    .flex-between {
-      width: 100%;
-    }
-  }
+.simple.container {
+  display: flex;
+  justify-content: space-between;
 }
-
-.flex-between {
+.row {
   width: 50%;
+  align-content: flex-start;
 }
-@media all and (max-width: 768px) {
-  .flex-between.text {
-    display: block !important;
-  }
+.flex-between {
+  width: 100%;
+  margin-top: 6px;
 }
-@media all and (max-width: 576px) {
-  .flex-between {
-    width: 100%;
-  }
+pre.data {
+  padding: 6px;
+  margin-left: 12px;
 }
 </style>
