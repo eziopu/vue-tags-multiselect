@@ -99,7 +99,7 @@ export default {
     &.error:focus {
       border: 1px solid red;
       animation: shake 0.2s;
-      color: transparent;
+      color: #00000080;
     }
   }
 
@@ -121,7 +121,7 @@ export default {
 
   .tag__value--warning {
     position: absolute;
-    left: 10px;
+    // left: 10px;
     z-index: 1;
     text-shadow: 0px 0px 4px red;
   }
