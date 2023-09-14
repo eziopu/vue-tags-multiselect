@@ -23,7 +23,7 @@ export default function useApp(props, _context, dep) {
 
   // ============== DATA ================
 
-  const isAppActived = ref(false);
+  const isEnable = ref(false);
 
   const focusReInit = ref(true);
 
@@ -77,11 +77,11 @@ export default function useApp(props, _context, dep) {
 
   const appEnable = () => {
     isActive.value = true;
-    isAppActived.value = true;
+    isEnable.value = true;
   };
 
   const focusApp = () => {
-    if (isAppActived.value == true) {
+    if (isEnable.value == true) {
       elInput.value.focus();
     }
   };
@@ -144,6 +144,7 @@ export default function useApp(props, _context, dep) {
   provide("appKeydown", keydown);
   provide("appElInputValue", elInputValue);
 
+  provide("appIsEnable", readonly(isEnable));
   provide("appIsActiveToFalse", () => {
     isActive.value = false;
   });
@@ -163,7 +164,7 @@ export default function useApp(props, _context, dep) {
     elFill,
 
     isActive,
-    isAppActived,
+    isEnable,
     focusReInit,
 
     conjunction,

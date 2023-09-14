@@ -7,7 +7,7 @@
     @focus="elAppFocus"
     @keydown="handleKeydown"
     @keyup="handleKeyup"
-    @click="isAppActived = true"
+    @click="isEnable = true"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
     <div class="tags" ref="elTags">
