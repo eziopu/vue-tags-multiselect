@@ -116,6 +116,13 @@ export default function useTag(_props, context, dep) {
     }
   };
 
+  const isOnlyOneTheTag = (keyName, value) => {
+    const filterTags = tags.filter((tag) => {
+      return tag.key == keyName && tag.value == value;
+    });
+    return filterTags.length == 1;
+  };
+
   const isDuplicateTag = (keyName, value) => {
     return tags
       .filter((tag) => {
@@ -142,6 +149,7 @@ export default function useTag(_props, context, dep) {
   provide("appUpdateTag", updateTag);
   provide("appDeleteTags", deleteTags);
 
+  provide("appIsOnlyOneTheTag", isOnlyOneTheTag);
   provide("appIsDuplicateTag", isDuplicateTag);
   provide("appIsDuplicateTagByKey", isDuplicateTagByKey);
 

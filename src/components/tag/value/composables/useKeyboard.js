@@ -10,7 +10,7 @@ export default function useKeyboard(props, _context, dep) {
 
   const inputValue = dep.inputValue;
 
-  const nextWillDelete = ref(false);
+  const nextWillDelete = dep.nextWillDelete;
 
   const nextKeydownWillUseAppKeydown = ref(false);
 
@@ -31,8 +31,8 @@ export default function useKeyboard(props, _context, dep) {
     }, TAG_INPUT_KEYDOWN_AUTO_UNLOCK);
   });
 
-  watch(inputValue, (value) => {
-    if (value != "") {
+  watch(inputValue, (newValue) => {
+    if (newValue != "" || newValue != null) {
       nextWillDelete.value = false;
     }
   });
@@ -43,8 +43,7 @@ export default function useKeyboard(props, _context, dep) {
   const appProps = inject("appProps");
   const appIsLock = inject("appIsLock");
   const appReFocus = inject("appReFocus");
-  const appUpdateTag = inject("appUpdateTag");
-  const appIsDuplicateTag = inject("appIsDuplicateTag");
+  const appIsOnlyOneTheTag = inject("appIsOnlyOneTheTag");
   const appRequestOptionClick = inject("appRequestOptionClick");
 
   const publicLog = inject("log");
@@ -76,7 +75,7 @@ export default function useKeyboard(props, _context, dep) {
         if (nextWillDelete.value == true) {
           log(`delete tag`);
           deleteTag("keyup Backspace");
-        } else if (inputValue.value == "") {
+        } else if (inputValue.value == "" || inputValue.value == null) {
           log(`pressing once will delete`);
           nextWillDelete.value = true;
         }
@@ -96,12 +95,9 @@ export default function useKeyboard(props, _context, dep) {
             deleteTag("keyup Enter");
             throw "deleteTag";
           }
-          if (
-            appKeydown.verticalIndex == -1 &&
-            inputValue.value != props.tag.value
-          ) {
+          if (appKeydown.verticalIndex == -1) {
             // dep.checkInputValueIsRepeat();
-            if (appIsDuplicateTag(props.tag.key, inputValue.value) == true) {
+            if (appIsOnlyOneTheTag(props.tag.key, inputValue.value) == false) {
               log(`tag value is duplicated`);
               throw "duplicate";
             }
@@ -112,16 +108,6 @@ export default function useKeyboard(props, _context, dep) {
               );
               throw "haveSameOptionValue";
             }
-
-            log(`update the tag`);
-            appUpdateTag({
-              value: inputValue.value,
-              valueElm: null,
-              displayValue: true,
-            });
-
-            appReFocus();
-            throw "updateTag";
           }
 
           appReFocus();

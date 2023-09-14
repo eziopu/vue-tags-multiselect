@@ -11,10 +11,11 @@ export default function useDelete(props) {
 
   // ============== METHODS ==============
 
-  const deleteTag = (where = "") => {
+  const deleteTag = (where = "", reason = "") => {
     log(
       `tag value deleteTag`,
-      `method available${where != "" ? ", called by " + where : ""}`
+      `method available${where != "" ? ", called by " + where : ""}
+      ${reason != "" ? ", " + reason : ""}`
     );
     appDeleteTags([props.tag.index]);
     appReFocus();

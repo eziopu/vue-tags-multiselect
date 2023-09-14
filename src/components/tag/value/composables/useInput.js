@@ -16,18 +16,34 @@ export default function useDelete(props, _context, dep) {
   // ============== COMPUTED ==============
 
   const inputWidth = computed(() => {
-    return (inputValue.value.length || 2) + 1 + "em";
+    const value = inputValue.value || "";
+    return (value.length || 2) + 1 + "em";
   });
 
   // ============== WATCH ==============
 
   let timer = null;
+  // const appIsDuplicateTag = inject("appIsDuplicateTag");
+  const orriginalTag = Object.assign({}, props.tag);
+  const appIsEnable = inject("appIsEnable");
   const appIsDuplicateTag = inject("appIsDuplicateTag");
+  const appIsOnlyOneTheTag = inject("appIsOnlyOneTheTag");
+
   watch(inputValue, (newValue) => {
-    if (newValue != "") {
-      nextWillDelete.value = false;
+    if (appIsEnable.value == false) {
+      return;
     }
-    if (newValue !== props.tag.value) {
+
+    const newTag = {
+      value: newValue,
+      valueElm: null,
+      displayValue: true,
+    };
+
+    if (newValue == orriginalTag.value) {
+      newTag.valueElm = orriginalTag.valueElm;
+      newTag.displayValue = orriginalTag.displayValue;
+    } else {
       if (appIsDuplicateTag(props.tag.key, newValue)) {
         timer = setTimeout(() => {
           valueRepeatFlashing();
@@ -36,9 +52,19 @@ export default function useDelete(props, _context, dep) {
         clearTimeout(timer);
       }
     }
+    updateTag(newTag);
   });
 
   // ============== METHODS ==============
+
+  const appUpdateTag = inject("appUpdateTag");
+  const appStashTag = inject("appStashTag");
+  const updateTag = (newTag) => {
+    appUpdateTag(newTag);
+    appStashTag.value = newTag.value;
+    appStashTag.valueElm = newTag.valueElm;
+    appStashTag.displayValue = newTag.displayValue;
+  };
 
   const valueRepeatFlashing = () => {
     isInputValueRepeat.value = true;
@@ -49,7 +75,8 @@ export default function useDelete(props, _context, dep) {
 
   const elInputFocus = (event) => {
     const selectionStart = event.target.selectionStart;
-    if (selectionStart == 0 || selectionStart == inputValue.value.length) {
+    const value = inputValue.value || "";
+    if (selectionStart == 0 || selectionStart == value.length) {
       nextWillDelete.value = false;
     }
   };
@@ -69,8 +96,10 @@ export default function useDelete(props, _context, dep) {
 
   const deleteTag = dep.deleteTag;
   const elInputBlur = () => {
-    if (inputValue.value == "") {
-      deleteTag("elInputBlur");
+    if (inputValue.value == "" || inputValue.value == null) {
+      deleteTag("elInputBlur", "value is empty");
+    } else if (appIsOnlyOneTheTag(props.tag.key, inputValue.value) == false) {
+      deleteTag("elInputBlur", "value duplication");
     }
     blur();
   };
