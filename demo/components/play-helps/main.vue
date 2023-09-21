@@ -32,7 +32,10 @@
       <hr />
     </div>
 
-    tool: {{ tool }}
+    <Transition name="slide">
+      <div v-if="Object.keys(result).length != 0">output: {{ result }}</div>
+    </Transition>
+
     <div class="demo-component relative">
       <v-tags-multiselect
         v-if="reloadByI18n"
@@ -174,10 +177,6 @@
         </span>
       </div>
     </div>
-
-    <Transition name="slide">
-      <div v-if="Object.keys(result).length != 0">output: {{ result }}</div>
-    </Transition>
 
     <Transition name="slide">
       <ShowHtmlCode
