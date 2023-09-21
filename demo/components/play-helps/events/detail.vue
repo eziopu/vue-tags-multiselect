@@ -43,28 +43,9 @@
         >
       </div>
     </div>
+
     <div class="row">
-      <div><div>selectingTag</div></div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
-        <span>{{ app.tool.selectingTag || "{}" }}</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none"
-          >{{ $t("ui.general.Description") }}:
-        </span>
-        <span>{{ $t("attributes.description.events.selectingTag") }}</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-        <span>string</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span> - </span>
-      </div>
-    </div>
-    <div class="row">
-      <div><div>getInputValue</div></div>
+      <div><div>inputValue</div></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
         <span>{{ app.tool.inputValue || "-" }}</span>
@@ -83,6 +64,30 @@
         <span> - </span>
       </div>
     </div>
+
+    <div class="row">
+      <div><div>selectingTag</div></div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
+        <pre class="data" :class="app.theme">{{
+          app.tool.selectingTag || "{}"
+        }}</pre>
+      </div>
+      <div>
+        <span class="i-block d-md-none"
+          >{{ $t("ui.general.Description") }}:
+        </span>
+        <span>{{ $t("attributes.description.events.selectingTag") }}</span>
+      </div>
+      <div>
+        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span>string</span>
+      </div>
+      <div class="d-none d-md-block">
+        <span> - </span>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -95,6 +100,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@import "./assets/stylesheets.scss";
 @media all and (min-width: 576px) {
   .row {
     & > div:nth-child(1) {
@@ -102,11 +108,11 @@ export default defineComponent({
       order: 1;
     }
     & > div:nth-child(2) {
-      width: 14%;
+      width: 25%;
       order: 2;
     }
     & > div:nth-child(3) {
-      width: 35%;
+      width: 30%;
       order: 3;
     }
     & > div:nth-child(4) {
@@ -114,7 +120,7 @@ export default defineComponent({
       order: 4;
     }
     & > div:nth-child(5) {
-      width: 30%;
+      width: 24%;
       order: 5;
     }
   }

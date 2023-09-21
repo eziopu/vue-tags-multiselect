@@ -30,7 +30,9 @@
         </div>
         <div class="row">
           <div>selectingTag</div>
-          <pre class="data">{{ app.tool.selectingTag || "{}" }}</pre>
+          <pre class="data" :class="app.theme">{{
+            app.tool.selectingTag || "{}"
+          }}</pre>
         </div>
       </div>
     </transition>
@@ -46,6 +48,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@import "./assets/stylesheets.scss";
 .simple.container {
   display: flex;
   justify-content: space-between;
@@ -53,13 +56,22 @@ export default defineComponent({
 .row {
   width: 50%;
   align-content: flex-start;
+  padding: 0 6px;
 }
 .flex-between {
   width: 100%;
   margin-top: 6px;
 }
-pre.data {
-  padding: 6px;
-  margin-left: 12px;
+
+@media (max-width: 768px) {
+  .simple.container {
+    flex-direction: column;
+  }
+  .row {
+    width: 100%;
+  }
+  .row:last-child {
+    margin-top: 6px;
+  }
 }
 </style>
