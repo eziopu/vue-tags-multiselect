@@ -70,6 +70,10 @@ export default defineComponent({
   .row {
     width: 100%;
   }
+  .default .row {
+    width: auto;
+  }
+
   .row:last-child {
     margin-top: 6px;
   }

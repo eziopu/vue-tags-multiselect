@@ -3,21 +3,16 @@ pre.data {
   margin: 12px;
 
   &.default {
-    min-width: 200px;
     min-height: 130px;
   }
 
   &.semantic-ui {
-    min-width: 200px;
     min-height: 200px;
+    width: 100%;
   }
 
   &.bootstrap {
-    min-width: 200px;
     min-height: 200px;
-  }
-
-  @media (max-width: 768px) {
-    width: 100% !important;
+    width: 100%;
   }
 }
