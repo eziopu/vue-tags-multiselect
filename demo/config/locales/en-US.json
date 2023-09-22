@@ -58,9 +58,9 @@
         "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
       },
       "events": {
-        "status": "current operating mode",
-        "selectingTag": "current selected tag",
-        "inputValue": "current input's value, and if in editing mode, correspond to the value of that input."
+        "status": "get current operating mode",
+        "selectingTag": "get current selected tag",
+        "inputValue": "get the current input's value."
       },
       "methods": {
         "pushTag": "Force push a tag to an app",
