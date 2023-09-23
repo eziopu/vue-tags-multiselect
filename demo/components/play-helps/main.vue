@@ -197,7 +197,7 @@ import Events from "./events/main.vue";
 import Slots from "./slots/main.vue";
 import SlotsAttributesDropdown from "./slots-attributes/dropdown.vue";
 import SlotsAttributesOption from "./slots-attributes/option.vue";
-import Methods from "./methods.vue";
+import Methods from "./methods/main.vue";
 import ShowHtmlCode from "./show-html-code.vue";
 
 import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
@@ -278,10 +278,10 @@ export default defineComponent({
       otherNames: [],
       isFetchProcessing: false,
       displays: {
-        attributes: true,
-        events: true,
-        slots: true,
-        methods: false,
+        attributes: false,
+        slots: false,
+        events: false,
+        methods: true,
         details: {
           conjunction: false,
           deleteIcon: false,
