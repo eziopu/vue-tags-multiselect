@@ -63,18 +63,19 @@
         "inputValue": "取得當前 input 的 value 值"
       },
       "methods": {
-        "pushTag": "強制賦予一個tag給app",
-        "pushTag2": "當參數(tag object)內容的key與value有對應dropdown或是option時會自動匹配(包含app正在選擇中的情況)",
-        "pushTagParameter": {
-          "key": "標籤的key值",
-          "value": "標籤的value值",
-          "valueElm": "value的顯示元件",
-          "titleElm": "title的顯示元件",
-          "classList": "自定義的class name", 
-          "custom": "完成tag後, 是否允許任意修改標籤的value值",
-          "displayValue": "完成tag後, 是否改顯示標籤的value值"
-        },
-        "pushTagExample": "範例: <code>pushTag({value: Eldia})</code> or <code>pushTag({key: country, value: Eldia, titleElm: &lt;p&gt;Country&lt;/p&gt;, custom: true})</code>"
+        "pushTag": {
+          "1": "強制賦予一個tag給app",
+          "2": "當參數(tag object)內容的key與value有對應dropdown或是option時會自動匹配(包含app正在選擇中的情況)",
+          "parameter": {
+            "key": "標籤的key值",
+            "value": "標籤的value值",
+            "valueElm": "value的顯示元件",
+            "titleElm": "title的顯示元件",
+            "classList": "自定義的class name", 
+            "custom": "完成tag後, 是否允許任意修改標籤的value值",
+            "displayValue": "完成tag後, 是否改顯示標籤的value值"
+          }
+        }
       },
       "dropdown": {
         "value": "標籤的key值",
@@ -105,6 +106,7 @@
     "general": {
       "language": "語言",
       "required": "必填",
+      "example": "範例",
       "default": "預設",
       "defaultIs__key": "預設值為{key}",
       "Attribute": "屬性",

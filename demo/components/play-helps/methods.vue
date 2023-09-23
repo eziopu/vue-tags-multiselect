@@ -31,9 +31,9 @@
                   >{{ $t("ui.general.Description") }}:
                 </span>
                 <span>
-                  {{ $t("attributes.description.methods.pushTag") }},
+                  {{ $t("attributes.description.methods.pushTag.1") }},
                   <br class="d-none d-sm-block" />
-                  {{ $t("attributes.description.methods.pushTag2") }}
+                  {{ $t("attributes.description.methods.pushTag.2") }}
                 </span>
               </div>
               <div>
@@ -42,9 +42,16 @@
                 </span>
                 <span>tag object*{{ $t("ui.general.required") }}</span>
               </div>
-              <div
-                v-html="$t('attributes.description.methods.pushTagExample')"
-              ></div>
+              <div>
+                {{ $t("ui.general.example") }}
+                :
+                <code>pushTag({value: Eldia})</code>
+                or
+                <code
+                  >pushTag({key: country, value: Eldia, titleElm:
+                  &lt;p&gt;Country&lt;/p&gt;, custom: true})</code
+                >
+              </div>
             </div>
           </div>
           <h6 class="ui title" :class="{ ui: app.theme == 'semantic-ui' }">
@@ -79,7 +86,7 @@
                   >{{ $t("ui.general.Description") }}:
                 </span>
                 <span>{{
-                  $t(`attributes.description.methods.pushTagParameter.${key}`)
+                  $t(`attributes.description.methods.pushTag.parameter.${key}`)
                 }}</span>
               </div>
 
