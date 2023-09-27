@@ -207,6 +207,8 @@ export default defineComponent({
       flex-wrap: wrap;
       align-items: center;
       position: relative;
+      width: 100%;
+      flex: 1;
       // overflow: hidden;
     }
 
