@@ -38,8 +38,7 @@ export default function useElInput(props, context, dep) {
   const appIsFinish = dep.appIsFinish;
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
   const elInputPlaceholder = computed(() => {
-    const doing = tags.length == 0 && !stashTag.key;
-    if (props.placeholder != "" && doing == false) {
+    if (props.placeholder != "" && !stashTag.key) {
       return props.placeholder;
     }
 
