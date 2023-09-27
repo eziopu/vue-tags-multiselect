@@ -1,4 +1,4 @@
-import { computed } from "vue";
+import { computed, watch } from "vue";
 
 export default function useStatus(props, context, dep) {
   // ============== DATA ==============
@@ -19,20 +19,16 @@ export default function useStatus(props, context, dep) {
     if (props.disabled == true) result.push("disabled");
     if (props.loading == true) result.push("loading");
     if (elInputValue.value != "" && props.search == true) {
-      dep.log(`searching`);
       result.push("searching");
     }
     if (isEditMode.value == true) {
-      dep.log(`edit the tag`);
       result.push("editing");
     }
     if (isElDropdownVisible.value == true) result.push("selecting");
     if (appIsFinish.value == true) {
-      dep.log(`app is done`);
       result.push("finish");
     }
     if (appIsFinish.value == false && isAllDropdownIsDown.value == true) {
-      dep.log(`the options have been selected`);
       result.push("delect-down");
     }
     return result;
@@ -41,6 +37,23 @@ export default function useStatus(props, context, dep) {
   // ============== EMIT ==============
 
   context.emit("status", status);
+
+  // ============== LOG ==============
+
+  const returnLogs = {
+    searching: "searching",
+    editing: "edit the tag",
+    finish: "app is done",
+    "delect-down": "the options have been selected",
+  };
+
+  watch(status, (newValue, oldValue) => {
+    Object.keys(returnLogs).forEach((key) => {
+      if (newValue.indexOf(key) != -1 && oldValue.indexOf(key) == -1) {
+        dep.log(returnLogs[key]);
+      }
+    });
+  });
 
   return {
     status,
