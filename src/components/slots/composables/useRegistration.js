@@ -40,6 +40,7 @@ export default function useRegistration(props, context, dep) {
     }
 
     dropdown.optionStatus[registrationName] = {
+      isTitle: props.title,
       isHidden: false,
       isSelected: false,
       isBeSearched: false,

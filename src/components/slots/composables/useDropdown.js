@@ -124,6 +124,13 @@ export default function useDropdown(props) {
   const appProps = inject("appProps");
   const appConjunction = inject("appConjunction");
 
+  // 移除 isTitle 為 true 的
+  const noTitleOptionStatus = computed(() => {
+    return Object.values(optionStatus).filter(
+      (status) => status.isTitle !== true
+    );
+  });
+
   const isAllOptionSelected = computed(() => {
     if (appProps.conjunction == "AND") {
       const mySelectedTags =
@@ -131,8 +138,25 @@ export default function useDropdown(props) {
 
       return mySelectedTags.length >= 1;
     }
-    // const optionStatus = { "country": { "isSelected": true }, "country2": { "isSelected": false }, "country333": { "isSelected": false } } (reactive)
-    return Object.values(optionStatus).every((status) => status.isSelected);
+    /*
+    (reactive)
+    const optionStatus =
+    {
+      "country": { isTitle: true, isSelected: false },
+      "country2": { isTitle: false, isSelected: true },
+      "country3": { isTitle: false, isSelected: false }
+    }
+    {
+      "country": { isTitle: true, isSelected: false },
+      "country2": { isTitle: false, isSelected: true },
+      "country3": { isTitle: false, isSelected: true }
+    }
+    */
+
+    // 全部 isSelected 為 true 才輸出 true
+    return Object.values(noTitleOptionStatus.value).every(
+      (status) => status.isSelected
+    );
   });
 
   const isAllOptionIsHidden = computed(() => {
