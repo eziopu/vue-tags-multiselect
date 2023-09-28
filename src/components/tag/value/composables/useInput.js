@@ -28,9 +28,18 @@ export default function useDelete(props, _context, dep) {
   const appIsEnable = inject("appIsEnable");
   const appIsDuplicateTag = inject("appIsDuplicateTag");
   const appIsOnlyOneTheTag = inject("appIsOnlyOneTheTag");
+  const appEditTagIndex = inject("appEditTagIndex");
+
+  const editMyself = computed(() => {
+    return appEditTagIndex.value == props.tag.index;
+  });
 
   watch(inputValue, (newValue) => {
-    if (appIsEnable.value == false) {
+    if (
+      editMyself.value == false ||
+      appIsEnable.value == false ||
+      props.tag.custom == false
+    ) {
       return;
     }
 
