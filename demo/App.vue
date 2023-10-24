@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { useI18n } from "vue-i18n";
 
 // import HelloWorld from "./components/HelloWorld.vue";
@@ -27,6 +27,12 @@ if (
 ) {
   theme.value = urlQueryTheme;
 }
+
+onMounted(async () => {
+  await nextTick();
+  // eslint-disable-next-line no-undef
+  PR.prettyPrint();
+});
 </script>
 
 <template>
@@ -138,52 +144,6 @@ if (
       <h3>Operate all Attributes</h3> -->
     <Play :theme="theme"></Play>
   </div>
-
-  <!-- <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <v-tags-multiselect>
-      <v-tag-dropdown value="country" custom>
-        <v-tag-option title> title111 </v-tag-option>
-        <v-tag-option value="Māre111" selected> 11Māre1111 </v-tag-option>
-        <v-tag-option value="Eldia2222" selected>
-          <p>11Eldia2222</p>
-        </v-tag-option>
-        <v-tag-option value="1111333"> 1111333 </v-tag-option>
-        <v-tag-option value="1114444"> 1114444 </v-tag-option>
-        <v-tag-option value="111555"> 111555 </v-tag-option>
-      </v-tag-dropdown>
-      <v-tag-dropdown value="country333">
-        <v-tag-option value="3Māre111"> 333Māre1111 </v-tag-option>
-        <v-tag-option value="3Eldia2222">
-          <p>33332Eldia2222</p>
-        </v-tag-option>
-      </v-tag-dropdown>
-    </v-tags-multiselect>
-    <v-tag-dropdown value="country2" displayAll>
-      <v-tag-option title> title2222 </v-tag-option>
-      <v-tag-option value="2Māre111" selected> 222Māre1111 </v-tag-option>
-      <v-tag-option value="2Eldia2222" selected>
-        <p>222Eldia2222</p>
-      </v-tag-option>
-      <v-tag-option value="22223333"> 22223333 </v-tag-option>
-      <v-tag-option value="2224444"> 2224444 </v-tag-option>
-      <v-tag-option value="22555"> 22555 </v-tag-option>
-    </v-tag-dropdown>
-  </main>
-  -->
 </template>
 
 <style lang="scss" v-if="theme == 'bootstrap'">

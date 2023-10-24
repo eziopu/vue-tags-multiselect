@@ -330,12 +330,7 @@ export default defineComponent({
       }
     },
   },
-  mounted() {
-    this.$nextTick(() => {
-      // eslint-disable-next-line no-undef
-      PR.prettyPrint();
-    });
-  },
+  mounted() {},
   methods: {
     placeholderText(value) {
       if (value == "" || value == undefined) return undefined;
