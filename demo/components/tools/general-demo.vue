@@ -22,9 +22,7 @@
         :deleteIcon="appProps.deleteIcon"
         :conjunction="appProps.conjunction"
         :placeholder="appProps.placeholder"
-        :loadingPlaceholder="appProps.loadingPlaceholder"
-        :selectDownPlaceholder="appProps.selectDownPlaceholder"
-        :finishPlaceholder="appProps.finishPlaceholder"
+        :placeholders="appProps.placeholders"
       >
         <template v-slot:tag-conjunction v-if="appProps.tagConjunction != ''">
           <span v-html="appProps.tagConjunction"></span>
@@ -180,10 +178,14 @@ export default {
         conjunction: "",
         deleteIcon: "always",
         placeholder: "",
+        placeholders: {
+          initial: "",
+          loading: "Wait a moment, please.",
+          selectDown: "Selected End.",
+          finish: "Finish.",
+          tagValueRepeat: "",
+        },
         dropdownLoading: false,
-        loadingPlaceholder: "Wait a moment, please.",
-        selectDownPlaceholder: "Selected End.",
-        finishPlaceholder: "Finish.",
         tagConjunction: "",
         loadingContent: "",
         dropdownLoadingContent: "",
