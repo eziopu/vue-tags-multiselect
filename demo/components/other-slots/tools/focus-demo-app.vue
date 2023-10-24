@@ -56,7 +56,7 @@ export default {
   },
   model: {
     prop: "value",
-    event: "update",
+    event: "update:modelValue",
   },
   data() {
     return {
@@ -66,7 +66,7 @@ export default {
   watch: {
     status: {
       handler(value) {
-        this.$emit("update", value);
+        this.$emit("update:modelValue", value);
       },
       immediate: true,
     },

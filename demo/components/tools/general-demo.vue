@@ -97,8 +97,8 @@
         </span>
         <span
           class="show-code-btn pointer"
-          :class="{ active: show_code }"
-          @click="show_code = !show_code"
+          :class="{ active: showCode }"
+          @click="showCode = !showCode"
         >
           &lt; / &gt;
           <!-- < / > -->
@@ -107,7 +107,7 @@
 
       <transition name="slide">
         <ShowHtmlCode
-          v-show="show_code"
+          v-show="showCode"
           class="prettyprint lang-html customize"
           :app="app"
           :selecteds="appSelecteds"
@@ -168,7 +168,7 @@ export default {
   data() {
     return {
       search: "true",
-      show_code: false,
+      showCode: false,
       // default values
       appProps: {
         disabled: false,
@@ -206,12 +206,12 @@ export default {
   },
   model: {
     prop: "value",
-    event: "update",
+    event: "update:modelValue",
   },
   watch: {
     "appEvent.status": {
       handler(value) {
-        this.$emit("update", value);
+        this.$emit("update:modelValue", value);
       },
       immediate: true,
     },
