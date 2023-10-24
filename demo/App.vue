@@ -3,6 +3,8 @@ import { ref, onMounted, nextTick } from "vue";
 import { useI18n } from "vue-i18n";
 
 // import HelloWorld from "./components/HelloWorld.vue";
+import Keyboard from "./components/keyboard.vue";
+import AppAttributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
 
 const i18nLocale = useI18n();
@@ -126,9 +128,9 @@ onMounted(async () => {
     </div>
     <hr />
 
-    <!-- <Keyboard></Keyboard>
-      <AppAttributes></AppAttributes>
-
+    <Keyboard></Keyboard>
+    <AppAttributes></AppAttributes>
+    <!-- 
       <h3>Dropdown Slots Attributes</h3>
       <DropdownAttributes></DropdownAttributes>
 
