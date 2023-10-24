@@ -31,7 +31,7 @@ export default {
         return ["true", "false"];
       },
     },
-    value: {
+    modelValue: {
       type: String,
       default: () => {
         return "false";
@@ -39,17 +39,20 @@ export default {
     },
   },
   data() {
-    return {
-      newValue: this.value,
-    };
+    return {};
   },
   model: {
     prop: "value",
-    event: "update",
+    event: "update:modelValue",
   },
-  watch: {
-    newValue(newValue) {
-      this.$emit("update", newValue);
+  computed: {
+    newValue: {
+      get() {
+        return this.modelValue;
+      },
+      set(value) {
+        this.$emit("update:modelValue", value);
+      },
     },
   },
 };
