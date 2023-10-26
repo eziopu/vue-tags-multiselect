@@ -13,9 +13,17 @@
   --><span v-show="app.merge == 'false'">  <span class="pln">:</span><span class="atn">merge</span><span class="pun">=</span><span class="atv">"{{ app.merge }}"</span><br></span><!--
   --><span v-show="app.deleteIcon != 'always'">  <span class="pln">:</span><span class="atn">deleteIcon</span><span class="pun">=</span><span class="atv">"{{ app.deleteIcon }}"</span><br></span><!--
   --><span v-show="app.conjunction != 'null'">  <span class="pln">:</span><span class="atn">conjunction</span><span class="pun">=</span><span class="atv">"{{ app.conjunction }}"</span><br></span><!--
-  --><span v-show="app.loadingPlaceholder != ''">  <span class="pln">:</span><span class="atn">loadingPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.loadingPlaceholder }}"</span><br></span><!--
-  --><span v-show="app.selectDownPlaceholder != ''">  <span class="pln">:</span><span class="atn">selectDownPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.selectDownPlaceholder }}"</span><br></span><!--
-  --><span v-show="app.finishPlaceholder != ''">  <span class="pln">:</span><span class="atn">finishPlaceholder</span><span class="pun">=</span><span class="atv">"{{ app.finishPlaceholder }}"</span><br></span><!--
+  --><span v-show="app.placeholder != ''">  <span class="pln">:</span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"{{ app.placeholder }}"</span><br></span><!--
+  --><span v-show="Object.values(cleanedObject(app.placeholders)).length != 0"><!--
+    -->  <!--
+    --><span class="pln">:</span><span class="atn">placeholders</span><span class="pun">=</span>"{<br><!--
+    --><span v-for="(value, key) in cleanedObject(app.placeholders)" :key="key"><!--
+      -->    <!--
+      --><span class="white">{{ key }}: </span><!--
+      --><span class="atv">'{{ value }}'</span><span class="white">,</span><br><!--
+    --></span><!--
+  -->  }"<br><!-- 
+  --></span><!--
 -->&gt;<!--
   --><span v-show="app.tagConjunction != ''">
   <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"tag-conjunction"</span><span class="tag">&gt;</span><span class="pln">
@@ -120,6 +128,14 @@ export default defineComponent({
   methods: {
     renderData(value) {
       return this.$t("ui." + value);
+    },
+    cleanedObject(obj = {}) {
+      return Object.fromEntries(
+        Object.entries(obj).filter(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          ([_, v]) => v != undefined && v != null && v != "" && v != []
+        )
+      );
     },
   },
 });

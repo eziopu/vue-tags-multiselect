@@ -495,6 +495,10 @@ body {
     .com {
       color: #66747b;
     }
+    .white,
+    .white > * {
+      color: #ffffff !important;
+    }
     .cyan-blue,
     .cyan-blue span {
       color: #53abb7;
