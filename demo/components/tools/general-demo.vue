@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import ShowHtmlCode from "./show-html-code.vue";
+import ShowHtmlCode from "./show-html-code/main.vue";
 import ReloadByI18n from "./mixins/reload-by-i18n.js";
 import ReloadByBtn from "./mixins/reload-by-btn.js";
 
@@ -166,7 +166,7 @@ export default {
   data() {
     return {
       search: "true",
-      showCode: false,
+      showCode: true,
       // default values
       appProps: {
         disabled: false,
