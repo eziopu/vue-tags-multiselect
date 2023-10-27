@@ -166,7 +166,7 @@ export default {
   data() {
     return {
       search: "true",
-      showCode: true,
+      showCode: false,
       // default values
       appProps: {
         disabled: false,

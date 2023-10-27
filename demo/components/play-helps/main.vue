@@ -278,10 +278,10 @@ export default defineComponent({
       otherNames: [],
       isFetchProcessing: false,
       displays: {
-        attributes: false,
+        attributes: true,
         slots: false,
         events: false,
-        methods: true,
+        methods: false,
         details: {
           conjunction: false,
           deleteIcon: false,
