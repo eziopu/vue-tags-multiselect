@@ -8,6 +8,7 @@
   --><span v-show="equality(app.create, false)"><Space /><span class="pln">:</span><span class="atn">create</span><span class="pun">=</span><span class="atv">"{{ app.create }}"</span><br></span><!--
   --><span v-show="equality(app.merge, false)"><Space /><span class="pln">:</span><span class="atn">merge</span><span class="pun">=</span><span class="atv">"{{ app.merge }}"</span><br></span><!--
   --><span v-show="equality(app.keyboard, false)"><Space /><span class="pln">:</span><span class="atn">keyboard</span><span class="pun">=</span><span class="atv">"{{ app.keyboard }}"</span><br></span><!--
+  --><span v-show="equality(app.debugLog, true)"><Space /><span class="pln">:</span><span class="atn">debugLog</span><span class="pun">=</span><span class="atv">"{{ app.debugLog }}"</span><br></span><!--
   --><span v-show="verify(app.deleteIcon) && app.deleteIcon != 'always'"><Space /><span class="pln">:</span><span class="atn">deleteIcon</span><span class="pun">=</span><span class="atv">"{{ app.deleteIcon }}"</span><br></span><!--
   --><span v-show="verify(app.conjunction)"><Space /><span class="pln">:</span><span class="atn">conjunction</span><span class="pun">=</span><span class="atv">"{{ app.conjunction }}"</span><br></span><!--
   --><span v-show="verifyText(app.placeholder)"><Space /><span class="pln">:</span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"{{ app.placeholder }}"</span><br></span><!--
