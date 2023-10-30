@@ -19,7 +19,7 @@
       --><span class="white">{{ key }}: </span><!--
       --><span class="atv">'{{ value }}'</span><span class="white">,</span><br><!--
     --></span><!--
-  -->  }"<br><!-- 
+  --><Space />}"<br><!-- 
   --></span><!--
 -->&gt;<!--
   --><span v-show="verifyText(app.tagConjunction)">
