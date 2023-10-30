@@ -51,6 +51,7 @@
         :search="search == 'true' ? true : false"
         :transition="transition == 'true' ? true : false"
         :keyboard="keyboard == 'true' ? true : false"
+        :debugLog="debugLog == 'true' ? true : false"
         :create="create == 'true' ? true : false"
         :merge="merge == 'true' ? true : false"
         :deleteIcon="deleteIcon"
@@ -244,6 +245,7 @@ export default defineComponent({
       dropdownLoading: "false",
       search: "true",
       keyboard: "true",
+      debugLog: "true",
       transition: "true",
       create: "true",
       merge: "true",

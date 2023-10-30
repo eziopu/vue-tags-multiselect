@@ -33,6 +33,7 @@
 
           <LabelAndSelect value="transition" />
           <LabelAndSelect value="keyboard" />
+          <LabelAndSelect value="debugLog" />
 
           <div class="flex-between text">
             <div>placeholder</div>

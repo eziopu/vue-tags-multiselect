@@ -96,14 +96,6 @@ export default defineComponent({
     renderData(value) {
       return this.$t("ui." + value);
     },
-    cleanedObject(obj = {}) {
-      return Object.fromEntries(
-        Object.entries(obj).filter(
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          ([_, v]) => v != undefined && v != null && v != "" && v != []
-        )
-      );
-    },
   },
 });
 </script>

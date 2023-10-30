@@ -156,7 +156,7 @@ export default defineComponent({
      **/
     placeholders: { type: Object, default: () => {} },
     placeholder: { type: String, default: "" },
-    debugLog: { type: Boolean, default: true },
+    debugLog: { type: Boolean, default: false },
     // loadingPlaceholder: { type: String, default: "Wait a moment, please." },
     // selectDownPlaceholder: { type: String, default: "Selected End." },
     // finishPlaceholder: { type: String, default: "Finish." },
