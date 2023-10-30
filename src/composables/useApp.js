@@ -52,10 +52,10 @@ export default function useApp(props, _context, dep) {
       `init`,
       `app initialize${where != "" ? ", called by " + where : ""}`
     );
-    console.log(`  > reset stashTag`);
-    console.log(`  > reset edit tag index`);
-    console.log(`  > reset keydown index`);
-    console.log(`  > reset conjunction`);
+    dep.log2(`reset stashTag`);
+    dep.log2(`reset edit tag index`);
+    dep.log2(`reset keydown index`);
+    dep.log2(`reset conjunction`);
     elInputValue.value = "";
     editTagIndex.value = -1;
     setStashTag();
@@ -126,7 +126,7 @@ export default function useApp(props, _context, dep) {
 
       if (isActiveElementContainApp() == false) {
         dep.log(`InputBlur`, `available`);
-        console.log(`  > actElm :`, document.activeElement);
+        dep.log2(`actElm :`, document.activeElement);
 
         isActive.value = false;
         init("elInputBlur()");

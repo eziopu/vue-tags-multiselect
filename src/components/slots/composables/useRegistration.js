@@ -27,6 +27,7 @@ export default function useRegistration(props, context, dep) {
     if (dropdown.optionStatus[registrationName] != undefined) {
       isDuplicateOption.value = true;
       const log = inject("log");
+      const log2 = inject("log2");
       log(
         `option onMounted`,
         `Duplicate ${
@@ -34,8 +35,8 @@ export default function useRegistration(props, context, dep) {
         } options! last option will be forced to be hidden.`,
         `error`
       );
-      console.log(`  > dropdown key:${dropdown.props.value}`);
-      console.log(`  > value:${value}`);
+      log2(`dropdown key:${dropdown.props.value}`);
+      log2(`value:${value}`);
       return;
     }
 

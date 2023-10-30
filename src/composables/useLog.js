@@ -45,7 +45,17 @@ export default function useLog(props) {
     );
   };
 
-  const log2 = (content, parameter) => {
+  const log2 = (content) => {
+    if (props.debugLog == true) {
+      console.log(`  > ${content}`);
+    }
+  };
+
+  const log3 = (content, parameter) => {
+    if (props.debugLog == false) {
+      return;
+    }
+
     const getBlankString = (number) => {
       if (0 >= number) {
         return "  ";
@@ -80,9 +90,11 @@ export default function useLog(props) {
 
   provide("log", log);
   provide("log2", log2);
+  provide("log3", log3);
 
   return {
     log,
     log2,
+    log3,
   };
 }

@@ -61,13 +61,14 @@ export default function useTag(_props, context, dep) {
   // ============== METHODS ==============
 
   const log = dep.log;
+  const log2 = dep.log2;
   const setStashTag = (item = {}) => {
     Object.assign(stashTag, { ...getTagModel(item) });
     if (Object.keys(item).length === 0) {
       log(`setStashTag`, `object clear`);
     } else {
       log(`setStashTag`, `to set`, `success`);
-      console.log(`  >`, item);
+      log2(item);
     }
   };
 
@@ -95,8 +96,8 @@ export default function useTag(_props, context, dep) {
     tag.valueElm = item.valueElm || null;
     tag.displayValue = !!item.displayValue;
     log(`${tag.key} tag update`, `success`);
-    console.log(`  > old value is`, oldValue);
-    console.log(`  > new value is`, item.value);
+    log2(`old value is`, oldValue);
+    log2(`new value is`, item.value);
   };
 
   const deleteTags = (indexs = []) => {

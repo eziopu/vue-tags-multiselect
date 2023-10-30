@@ -81,7 +81,7 @@ export default function useEventSetTag(props, _context, dep) {
   const pushTag = (item = {}) => {
     const input = getTagModel(item);
     dep.log("pushTag", "starts executing");
-    dep.log2("get parameter", item);
+    dep.log3("get parameter", item);
 
     try {
       if (input.value == "") throw ["error", "value is empty"];
