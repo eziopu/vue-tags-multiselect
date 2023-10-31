@@ -2,11 +2,17 @@
   <div id="placeholders" class="demo">
     <h4>Placeholders</h4>
     <div class="depiction">
-      {{ $t("attributes.description.app.placeholder") }}
+      {{ $t(`${i18nAppPath}.placeholder`) }}
 
       <div class="sub-depiction">
-        <p v-html="$t('attributes.description.app.placeholder__detail.1')"></p>
-        <p v-html="$t('attributes.description.app.placeholder__detail.2')"></p>
+        <p>
+          placeholder:
+          {{ $t(`${i18nAppPath}.placeholder__detail.placeholder`) }}
+        </p>
+        <p>
+          placeholders:
+          {{ $t(`${i18nAppPath}.placeholder__detail.placeholders`) }}
+        </p>
       </div>
     </div>
 
@@ -92,6 +98,27 @@
         />
         <LabelAndSelect label="loading" v-model="loading" />
         <LabelAndSelect label="create" v-model="create" />
+        <hr />
+        <div class="depiction">
+          <div class="attribute">
+            loading:
+            <span
+              v-html="$t(`${i18nAppPath}.placeholders.loading__detail.1`)"
+            ></span>
+          </div>
+          <div class="attribute">
+            selectDown:
+            <span
+              v-html="$t(`${i18nAppPath}.placeholders.selectDown__detail.1`)"
+            ></span>
+          </div>
+          <div class="attribute">
+            finish:
+            <span
+              v-html="$t(`${i18nAppPath}.placeholders.finish__detail.1`)"
+            ></span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -121,6 +148,7 @@ export default {
   },
   data() {
     return {
+      i18nAppPath: "attributes.description.app",
       loading: "false",
       create: "false",
       conjunction: "AND",
@@ -152,9 +180,11 @@ export default {
 .placeholders.attribute {
   margin-left: 12px;
 }
-.selectDownPlaceholder__detail {
-  padding-left: 12px;
+
+.depiction .attribute {
+  margin-bottom: 12px;
 }
+
 @media all and (max-width: 768px) {
   .attributes {
     &:first-child {
@@ -184,9 +214,22 @@ export default {
   }
 }
 @media all and (max-width: 490px) {
-  .app.attributes .attribute {
+  .demo > .flex-between {
     flex-direction: column;
-    align-items: flex-end;
+  }
+  .attributes {
+    &:first-child {
+      width: 100%;
+    }
+    &:last-child {
+      width: 100%;
+    }
+  }
+  .ui.input {
+    width: 100%;
+  }
+  .app.attributes .attribute {
+    max-width: 100%;
   }
 }
 </style>

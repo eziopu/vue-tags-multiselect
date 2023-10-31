@@ -26,17 +26,26 @@
           "2": "edit: only edit this tag show",
           "3": "none: whether do not show"
         },
-        "placeholder": "input placeholder, text is displayed when not in use",
+        "placeholder": "input placeholder, please choose one of the following to use",
         "placeholder__detail": {
-          "1": "can be used to control other placeholder(loading, selectDown, finish) only with this attributes",
-          "2": "as long as this attributes change, it will force to overwrite other placeholder"
+          "placeholder": "A string type that is like the placeholder of an input box",
+          "placeholders": "An object type that stores various placeholder for different contexts"
         },
         "placeholders__detail": "individual scenario input placeholder",
         "placeholders": {
           "initial": "initial default text, only displayed when there is no tag.",
-          "loading": "displayed when the parameters <code>loading</code> and <code>dropdownLoading</code> are true.",
-          "selectDown": "text displayed after all options are completed, only displayed when the parameter <code>create</code> is true.",
-          "finish": "text displayed after all options are completed, only displayed when the parameter <code>create</code> is false.",
+          "loading": "The text being loaded.",
+          "loading__detail": {
+            "1": "only displayed when the parameter <code class='tag'>loading</code> or <code class='tag'>dropdownLoading</code> are true."
+          },
+          "selectDown": "text displayed after all options are completed.",
+          "selectDown__detail": {
+            "1": "only displayed when the parameter <code class='tag'>create</code> is true."
+          },
+          "finish": "text displayed after all options are completed.",
+          "finish__detail": {
+            "1": "only displayed when the parameter <code class='tag'>create</code> is false."
+          },
           "tagValueRepeat": "displayed when updating a tag detects a duplicate value.",
           "tagValueRepeat__detail": {
             "1": "Only flashes twice and disappears after focusing on the tag element."

@@ -26,17 +26,26 @@
           "2": "edit: 只在編輯模式顯示",
           "3": "none: 總是不顯示"
         },
-        "placeholder": "預設文字, 僅在無tag時顯示",
+        "placeholder": "預設文字, 請選以下一種來使用",
         "placeholder__detail": {
-          "1": "可以僅用該參數控制 loading, selectDown, finish狀況時的文字",
-          "2": "只要該參數有變動, 會強制取代其餘狀態的文字"
+          "placeholder": "類型為string，如同'輸入框'的placeholder",
+          "placeholders": "類型為object，放置各種不同情境的placeholder"
         },
         "placeholders__detail": "個別情境的文字",
         "placeholders": {
           "initial": "初始預設文字, 僅在無tag時顯示",
-          "loading": "參數<code>loading</code>, <code>dropdownLoading</code>為 true 時顯示",
-          "selectDown": "選項皆完成後的文字, 僅在參數<code>create</code>為 true 時顯示",
-          "finish": "選項皆完成後的文字, 僅在參數<code>create</code>為 false 時顯示",
+          "loading": "讀取中文字",
+          "loading__detail": {
+            "1": "僅在參數<code class='tag'>loading</code>或<code class='tag'>dropdownLoading</code>為 true 時顯示"
+          },
+          "selectDown": "選項皆完成後的文字",
+          "selectDown__detail": {
+            "1": "僅在參數<code class='tag'>create</code>為 true 時顯示"
+          },
+          "finish": "選項皆完成後的文字",
+          "finish__detail": {
+            "1": "僅在參數<code class='tag'>create</code>為 false 時顯示"
+          },
           "tagValueRepeat": "更新tag 檢測到value重複時顯示",
           "tagValueRepeat__detail": {
             "1": "聚焦tag元件後僅會閃爍兩次後消失"
