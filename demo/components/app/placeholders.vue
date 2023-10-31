@@ -58,6 +58,7 @@
               type="text"
               class="form-control"
               v-model="placeholders.selectDown"
+              :disabled="create == 'false'"
               :placeholder="`Selected End.`"
             />
           </div>
