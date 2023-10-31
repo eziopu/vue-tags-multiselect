@@ -21,6 +21,7 @@
         :merge="appProps.merge"
         :deleteIcon="appProps.deleteIcon"
         :conjunction="appProps.conjunction"
+        :debugLog="appProps.debugLog"
         :placeholder="appProps.placeholder"
         :placeholders="appProps.placeholders"
       >
@@ -175,6 +176,7 @@ export default {
         transition: true,
         create: true,
         merge: true,
+        debugLog: false,
         conjunction: "",
         deleteIcon: "always",
         placeholder: "",
