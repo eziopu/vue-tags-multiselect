@@ -54,17 +54,26 @@ export default function useDropdown(props) {
   });
 
   const appIsDuplicateTagByKey = inject("appIsDuplicateTagByKey");
+
   const isHidden = computed(() => {
     if (props.system == true) {
       return isHiddenBySystem();
     }
 
-    if (props.hidden == true || isDown.value == true) {
+    if (
+      props.hidden == true ||
+      (appEditTagIndex.value == -1 && isDown.value == true)
+    ) {
       return true;
     }
 
-    if (appEditTagIndex.value != -1 && isChildEditing.value == false) {
-      return true;
+    if (appEditTagIndex.value != -1) {
+      if (isChildEditing.value == false) {
+        return true;
+      }
+      if (isAllOptionSelected.value == false && isChildEditing.value == true) {
+        return false;
+      }
     }
 
     if (isAllOptionIsHidden.value == true) {
@@ -120,8 +129,8 @@ export default function useDropdown(props) {
 
   // == IsDown ==============
 
-  const appTags = inject("appTags");
-  const appProps = inject("appProps");
+  // const appTags = inject("appTags");
+  // const appProps = inject("appProps");
   const appConjunction = inject("appConjunction");
 
   // 移除 isTitle 為 true 的
@@ -132,12 +141,6 @@ export default function useDropdown(props) {
   });
 
   const isAllOptionSelected = computed(() => {
-    if (appProps.conjunction == "AND") {
-      const mySelectedTags =
-        appTags.filter((tag) => tag.key == props.value) || [];
-
-      return mySelectedTags.length >= 1;
-    }
     /*
     (reactive)
     const optionStatus =

@@ -28,15 +28,20 @@ export default function useElDropdown(props, _context, dep) {
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
   const isAllDropdownIsHidden = dep.isAllDropdownIsHidden;
 
+  const isUndoOptionVisible = dep.isUndoOptionVisible;
+  const isORConjunctionOptionVisible = dep.isORConjunctionOptionVisible;
+
+  const isAllOptionIsHidden = computed(() => {
+    if (
+      isORConjunctionOptionVisible.value == true ||
+      isUndoOptionVisible.value == true
+    ) {
+      return false;
+    }
+    return isAllDropdownIsHidden.value;
+  });
+
   const isElDropdownVisible = computed(() => {
-    if (isAllDropdownIsDown.value == true) {
-      return false;
-    }
-
-    if (isAllDropdownIsHidden.value == true) {
-      return false;
-    }
-
     if (editTagIndex.value != -1) {
       if (stashTag.key == null) {
         return false;
@@ -44,10 +49,17 @@ export default function useElDropdown(props, _context, dep) {
       const status = dropdownStatus[stashTag.key];
       if (status == undefined) {
         return false;
+      } else {
+        return status.isAllOptionSelected == true ? false : true;
       }
-      if (status != undefined && status.isAllOptionSelected == true) {
-        return false;
-      }
+    }
+
+    if (isAllOptionIsHidden.value == true) {
+      return false;
+    }
+
+    if (isAllDropdownIsDown.value == true) {
+      return false;
     }
 
     return props.disabled == false && appIsActive.value == true;
