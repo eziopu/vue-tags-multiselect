@@ -13,6 +13,10 @@
           placeholders:
           {{ $t(`${i18nAppPath}.placeholder__detail.placeholders`) }}
         </p>
+        <p>
+          *
+          {{ $t(`${i18nAppPath}.placeholder__detail.remark`) }}
+        </p>
       </div>
     </div>
 

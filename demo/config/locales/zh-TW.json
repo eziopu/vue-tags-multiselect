@@ -9,7 +9,7 @@
         "dropdownLoading": "下拉式選單是否在讀取中",
         "search": "是否可使用輸入框搜尋 option 的 value值",
         "create": "是否可使用輸入框建立 tag",
-        "create__notice": "當 create 與 search 皆為 false 時, 輸入框將禁用",
+        "create__notice": "當 create 與 search 皆為 false 時, 輸入框將無法輸入文字",
         "merge": "合併相同key值的option",
         "keyboard": "是否啟用keyboard操作",
         "transition": "是否啟用css動畫效果",
@@ -29,7 +29,8 @@
         "placeholder": "預設文字, 請選以下一種來使用",
         "placeholder__detail": {
           "placeholder": "類型為string，如同'輸入框'的placeholder",
-          "placeholders": "類型為object，放置各種不同情境的placeholder"
+          "placeholders": "類型為object，放置各種不同情境的placeholder",
+          "remark": "placeholder的權重會大於placeholders"
         },
         "placeholders__detail": "個別情境的文字",
         "placeholders": {
