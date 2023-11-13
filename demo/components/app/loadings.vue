@@ -34,11 +34,6 @@ export default {
     DropdownsLoading,
     GeneralDemo,
   },
-  provide() {
-    return {
-      getApp: () => this,
-    };
-  },
   data() {
     return {
       app: {

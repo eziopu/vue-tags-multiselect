@@ -33,10 +33,12 @@ import LabelAndSelect from "../tools/label-and-select.vue";
 
 export default {
   name: "app-dropdowns-loading",
-  inject: ["getApp"],
-  computed: {
-    app() {
-      return this.getApp();
+  props: {
+    app: {
+      type: Object,
+      default: () => {
+        return {};
+      },
     },
   },
   components: {
