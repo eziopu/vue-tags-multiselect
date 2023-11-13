@@ -23,40 +23,22 @@
   --><Space />}"<br><!-- 
   --></span><!--
 -->&gt;<!--
-  --><span v-show="verifyText(app.tagConjunction)">
-  <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"tag-conjunction"</span><span class="tag">&gt;</span><span class="pln">
-    </span><span class="tag">&lt;span&gt;</span>{{ app.tagConjunction }}<span class="tag">&lt;/span&gt;</span><span class="pln">
-  </span><span class="tag">&lt;/template&gt;</span><span class="pln"><!--
-  --></span></span><!--
-  --><span v-show="verifyText(app.loadingContent)">
-  <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"loading"</span><span class="tag">&gt;</span><span class="pln">
-    </span><span class="tag">&lt;span&gt;</span>{{ app.loadingContent }}<span class="tag">&lt;/span&gt;</span><span class="pln">
-  </span><span class="tag">&lt;/template&gt;</span><span class="pln"><!--
-  --></span></span><!--
-  --><span v-show="verifyText(app.optionUndoContent)">
-  <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"option-undo"</span><span class="tag">&gt;</span><span class="pln">
-    </span><span class="tag">&lt;span&gt;</span>{{ app.optionUndoContent }}<span class="tag">&lt;/span&gt;</span><span class="pln">
-  </span><span class="tag">&lt;/template&gt;</span><span class="pln"><!--
-  --></span></span><!--
-  --><span v-show="verifyText(app.optionORConjunctionContent)">
-  <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"option-OR-conjunction"</span><span class="tag">&gt;</span><span class="pln">
-    </span><span class="tag">&lt;span&gt;</span>{{ app.optionORConjunctionContent }}<span class="tag">&lt;/span&gt;</span><span class="pln">
-  </span><span class="tag">&lt;/template&gt;</span><span class="pln"><!--
-  --></span></span><!--
-  --><span v-show="verifyText(app.dropdownLoadingContent)">
-  <span class="pln"></span><span class="tag">&lt;template</span><span class="pln"> </span><span class="atn">slot</span><span class="pun">=</span><span class="atv">"loading"</span><span class="tag">&gt;</span><span class="pln">
-    </span><span class="tag">&lt;span&gt;</span>{{ app.dropdownLoadingContent }}<span class="tag">&lt;/span&gt;</span><span class="pln">
-  </span><span class="tag">&lt;/template&gt;</span><span class="pln"><!--
-  --></span></span><!--
+  --><br><SlotsTemplate v-for="slotKey in slotKeise"
+    :value="app[slotKey]"
+    :key="slotKey"
+    :keyName="slotKey"
+  /><!--
 --></template>
 
 <script>
 import Space from "./space.vue";
+import SlotsTemplate from "./slots-template.vue";
 
 export default {
   name: "show-html-code__attributes-and-slots",
   components: {
     Space,
+    SlotsTemplate,
   },
   props: {
     app: {
@@ -65,6 +47,17 @@ export default {
         return {};
       },
     },
+  },
+  data() {
+    return {
+      slotKeise: [
+        "tagConjunction",
+        "loadingContent",
+        "optionUndoContent",
+        "optionORConjunctionContent",
+        "dropdownLoadingContent",
+      ]
+    };
   },
   methods: {
     verify(value) {
