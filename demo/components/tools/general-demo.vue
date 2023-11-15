@@ -228,7 +228,7 @@ export default {
     autoFocus: {
       handler(value) {
         if (value == true) {
-          this.autoFocusinApp();
+          this.focusinApp();
         }
       },
       immediate: true,
@@ -238,11 +238,11 @@ export default {
     this.appSelecteds = { ...this.appSelecteds, ...this.selecteds };
   },
   methods: {
-    autoFocusinApp() {
+    focusinApp() {
       this.$nextTick(() => {
         let app = this.$refs.vueTagsMultiselect;
-        app.isFocus = true;
-        document.removeEventListener("focusin", app.focusChanged);
+        app.isActive = true;
+        // document.removeEventListener("focusin", app.focusChanged);
       });
     },
   },

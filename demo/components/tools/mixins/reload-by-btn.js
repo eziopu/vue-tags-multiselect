@@ -15,7 +15,7 @@ export default {
         setTimeout(() => {
           this.reloadByBtn = true;
           if (this.autoFocus == true) {
-            this.autoFocusinApp();
+            this.focusinApp();
           }
         }, 50);
       });

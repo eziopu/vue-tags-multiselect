@@ -15,7 +15,7 @@ export default {
           setTimeout(() => {
             this.reloadByI18n = true;
             if (this.autoFocus == true) {
-              this.autoFocusinApp();
+              this.focusinApp();
             }
           }, 10);
         });
