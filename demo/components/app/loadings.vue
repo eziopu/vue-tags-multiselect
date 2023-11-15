@@ -13,9 +13,11 @@
         :app="{
           loading: app.loading == 'true' ? true : false,
           loadingContent: app.loadingContent,
-          loadingPlaceholder: app.loadingPlaceholder || undefined,
           dropdownLoading: app.dropdownLoading == 'true' ? true : false,
           dropdownLoadingContent: app.dropdownLoadingContent,
+          placeholders: {
+            loading: app.loadingPlaceholder || undefined,
+          },
         }"
       ></GeneralDemo>
     </div>

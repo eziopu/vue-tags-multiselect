@@ -12,7 +12,11 @@
 
     <hr />
     <div class="attributes">
-      <LabelAndSelect label="dropdownLoading" v-model="app.dropdownLoading" />
+      <LabelAndSelect
+        label="dropdownLoading"
+        v-model="app.dropdownLoading"
+        :disabled="app.loading == 'true'"
+      />
 
       <div class="attribute">
         <span> dropdown loading icon slot: </span>
