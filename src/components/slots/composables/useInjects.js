@@ -24,6 +24,7 @@ export default function useInjects() {
   const dropdown = {
     props: inject("dropdownProps") || {},
     isDown: inject("dropdownIsDown") || false,
+    displayAll: inject("dropdownDisplayAll") || false,
     getTitleInnerHTML: inject("dropdownGetTitleInnerHTML") || "",
     classList: inject("dropdownClassList") || [],
     optionStatus: inject("dropdownOptionStatus") || {},

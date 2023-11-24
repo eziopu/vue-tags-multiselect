@@ -56,7 +56,7 @@ export default {
         "optionUndoContent",
         "optionORConjunctionContent",
         "dropdownLoadingContent",
-      ]
+      ],
     };
   },
   methods: {

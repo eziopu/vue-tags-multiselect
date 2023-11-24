@@ -35,10 +35,10 @@ export default {
       const inputString = inputValue.replace(/Content/g, "");
       if (inputString == "optionORConjunction") {
         return "option-OR-conjunction";
-      };
+      }
       const result = inputString.replace(/([A-Z])/g, "-$1").toLowerCase();
       return result.replace(/^-/, "");
-    }
+    },
   },
 };
 </script>

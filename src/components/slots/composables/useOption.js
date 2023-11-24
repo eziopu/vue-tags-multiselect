@@ -94,6 +94,10 @@ export default function useDropdown(props, _context, dep) {
       }
     }
 
+    if (isTitle == false) {
+      return !dropdown.displayAll.value;
+    }
+
     return false;
   });
 
