@@ -1,17 +1,32 @@
-import type { App, Plugin } from "vue";
 import vTagsMultiselect from "./main.vue";
 import vTagDropdown from "./components/slots/v-dropdown.vue";
 import vTagOption from "./components/slots/v-option.vue";
 
-const install = (app: App) => {
+export { vTagsMultiselect, vTagDropdown, vTagOption }
+
+export default function install(app) {
   app.component("v-tags-multiselect", vTagsMultiselect);
   app.component("v-tag-dropdown", vTagDropdown);
   app.component("v-tag-option", vTagOption);
-};
+}
 
-vTagsMultiselect.install = install;
+// import type { App, Plugin } from "vue";
+// import vTagsMultiselect from "./main.vue";
+// import vTagDropdown from "./components/slots/v-dropdown.vue";
+// import vTagOption from "./components/slots/v-option.vue";
 
-export default vTagsMultiselect as unknown as Plugin;
+// const install = (app: App) => {
+//   app.component("v-tags-multiselect", vTagsMultiselect);
+//   app.component("v-tag-dropdown", vTagDropdown);
+//   app.component("v-tag-option", vTagOption);
+// };
+
+// vTagsMultiselect.install = install;
+
+// export default vTagsMultiselect as unknown as Plugin;
+
+
+
 
 // const Vue3Install = {
 //   /**
