@@ -4,11 +4,15 @@ import vTagOption from "./components/slots/v-option.vue";
 
 export { vTagsMultiselect, vTagDropdown, vTagOption }
 
-export default function install(app) {
+const install = (app) => {
   app.component("v-tags-multiselect", vTagsMultiselect);
   app.component("v-tag-dropdown", vTagDropdown);
   app.component("v-tag-option", vTagOption);
-}
+};
+
+vTagsMultiselect.install = install;
+
+export default vTagsMultiselect;
 
 // import type { App, Plugin } from "vue";
 // import vTagsMultiselect from "./main.vue";

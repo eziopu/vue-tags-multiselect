@@ -44,3 +44,45 @@ npm run build
 ```sh
 npm run lint
 ```
+
+```js
+// vue install
+import 'vue-tags-multiselect/dist/style.css';
+import VueTagsMultiselect from 'vue-tags-multiselect';
+createApp(App).use(VueTagsMultiselect).mount("#app")
+```
+```html
+<v-tags-multiselect>
+    <v-tag-dropdown value="country">
+        <v-tag-option title>
+            country
+        </v-tag-option>
+        <v-tag-option value="Māre" selected>
+            Māre
+        </v-tag-option>
+        <v-tag-option value="Eldia">
+            Eldia
+        </v-tag-option>
+    </v-tag-dropdown>
+</v-tags-multiselect>
+```
+
+```js
+import 'vue-tags-multiselect/dist/style.css';
+import { vTagsMultiselect, vTagDropdown, vTagOption } from 'vue-tags-multiselect'
+```
+```html
+<vTagsMultiselect>
+    <vTagDropdown value="country">
+        <vTagOption title>
+            country
+        </vTagOption>
+        <vTagOption value="Māre">
+            Māre
+        </vTagOption>
+        <vTagOption value="Eldia">
+            Eldia
+        </vTagOption>
+    </vTagDropdown>
+</vTagsMultiselect>
+```
