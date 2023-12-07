@@ -79,7 +79,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .tag__value {
   &:focus,
   .tag__value--content:focus {

@@ -158,7 +158,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @media all and (min-width: 576px) {
   .row {
     & > div:nth-child(1) {

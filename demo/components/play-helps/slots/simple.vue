@@ -79,6 +79,6 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "./assets/stylesheets.scss";
 </style>
