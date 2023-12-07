@@ -98,7 +98,7 @@ export default defineComponent({
   mixins: [InjectApp],
 });
 </script>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "./assets/stylesheets.scss";
 @media all and (min-width: 576px) {
   .row {

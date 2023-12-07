@@ -486,7 +486,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .row {
   .ui.input {
     min-width: 209px;

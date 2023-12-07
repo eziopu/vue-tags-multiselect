@@ -124,7 +124,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .method__pushTag_parameter--main {
   padding-left: 12px;
 }

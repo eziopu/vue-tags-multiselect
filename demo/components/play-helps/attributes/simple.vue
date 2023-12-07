@@ -131,7 +131,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .attributes:first-child {
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr) !important;

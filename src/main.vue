@@ -102,7 +102,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import VTag from "./components/tag/main.vue";
 import Loading from "./components/partial/loading.vue";
 import VTagDropdown from "./components/slots/v-dropdown.vue";
