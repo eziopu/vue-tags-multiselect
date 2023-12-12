@@ -14,8 +14,8 @@
     <div class="attributes">
       <LabelAndSelect
         label="dropdownLoading"
-        v-model="app.dropdownLoading"
-        :disabled="app.loading == 'true'"
+        v-model="attributes.dropdownLoading"
+        :disabled="attributes.loading == 'true'"
       />
 
       <div class="attribute">
@@ -24,7 +24,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="app.dropdownLoadingContent"
+            v-model="attributes.dropdownLoadingContent"
           />
         </div>
       </div>
@@ -37,12 +37,10 @@ import LabelAndSelect from "../tools/label-and-select.vue";
 
 export default {
   name: "app-dropdowns-loading",
-  props: {
-    app: {
-      type: Object,
-      default: () => {
-        return {};
-      },
+  inject: ["getLoadingAttributes"],
+  computed: {
+    attributes() {
+      return this.getLoadingAttributes();
     },
   },
   components: {

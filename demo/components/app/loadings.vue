@@ -1,8 +1,8 @@
 <template>
   <div id="loadings" class="demo flex-between">
     <div class="demo-components">
-      <Loading :app="app"></Loading>
-      <DropdownsLoading :app="app"></DropdownsLoading>
+      <Loading></Loading>
+      <DropdownsLoading></DropdownsLoading>
     </div>
 
     <div class="demo-app" :class="appStatus">
@@ -11,12 +11,12 @@
         :displayRefreshBtn="true"
         :autoFocus="true"
         :app="{
-          loading: app.loading == 'true' ? true : false,
-          loadingContent: app.loadingContent,
-          dropdownLoading: app.dropdownLoading == 'true' ? true : false,
-          dropdownLoadingContent: app.dropdownLoadingContent,
+          loading: attributes.loading == 'true' ? true : false,
+          loadingContent: attributes.loadingContent,
+          dropdownLoading: attributes.dropdownLoading == 'true' ? true : false,
+          dropdownLoadingContent: attributes.dropdownLoadingContent,
           placeholders: {
-            loading: app.loadingPlaceholder || undefined,
+            loading: attributes.loadingPlaceholder || undefined,
           },
         }"
       ></GeneralDemo>
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      app: {
+      attributes: {
         loading: "true",
         loadingContent: "",
         loadingPlaceholder: "",
@@ -46,6 +46,11 @@ export default {
         dropdownLoadingContent: "",
       },
       appStatus: [],
+    };
+  },
+  provide() {
+    return {
+      getLoadingAttributes: () => this.attributes,
     };
   },
 };

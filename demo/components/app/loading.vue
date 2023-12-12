@@ -7,7 +7,7 @@
 
     <hr />
     <div class="attributes">
-      <LabelAndSelect label="loading" v-model="app.loading" />
+      <LabelAndSelect label="loading" v-model="attributes.loading" />
 
       <div class="attribute">
         <span> loading placeholder: </span>
@@ -15,7 +15,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="app.loadingPlaceholder"
+            v-model="attributes.loadingPlaceholder"
             placeholder="default: Wait a moment, please."
           />
         </div>
@@ -27,7 +27,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="app.loadingContent"
+            v-model="attributes.loadingContent"
           />
         </div>
       </div>
@@ -40,12 +40,10 @@ import LabelAndSelect from "../tools/label-and-select.vue";
 
 export default {
   name: "app-loading",
-  props: {
-    app: {
-      type: Object,
-      default: () => {
-        return {};
-      },
+  inject: ["getLoadingAttributes"],
+  computed: {
+    attributes() {
+      return this.getLoadingAttributes();
     },
   },
   components: {

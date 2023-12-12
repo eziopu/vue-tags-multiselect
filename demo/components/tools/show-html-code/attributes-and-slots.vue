@@ -69,7 +69,7 @@ export default {
     cleanedObject(obj = {}) {
       return Object.fromEntries(
         Object.entries(obj).filter(
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          // eslint-disable-next-line no-unused-vars
           ([_, v]) => v != undefined && v != null && v != "" && v != []
         )
       );
