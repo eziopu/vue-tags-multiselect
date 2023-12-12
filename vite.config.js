@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from "node:url";
-
 import { defineConfig } from "vite";
 
 import vue from "@vitejs/plugin-vue";
@@ -12,9 +11,6 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  optimizeDeps: {
-    exclude: ["vue-demi"],
-  },
   build: {
     lib: {
       entry: "src/index.js",
@@ -22,11 +18,10 @@ export default defineConfig({
       fileName: "vue-tags-multiselect",
     },
     rollupOptions: {
-      external: ["vue", "vue-demi"],
+      external: ["vue"],
       output: {
         globals: {
-          vue: "Vue",
-          "vue-demi": "VueDemi",
+          vue: "Vue"
         },
       },
     },
