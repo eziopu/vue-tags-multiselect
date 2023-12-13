@@ -21,7 +21,7 @@ export default function useTag(_props, context, dep) {
   });
 
   const tagsGroupByTitle = computed(() => {
-    return tags.reduce((result, item) => {
+    const group = tags.reduce((result, item) => {
       const existing = result.find(
         (i) => i.key === item.key && i.titleElm != null
       );
@@ -41,6 +41,23 @@ export default function useTag(_props, context, dep) {
       }
       return result;
     }, []);
+
+    if (tags.length <= 1) {
+      return group;
+    }
+
+    const lastTag = tags[tags.length - 1];
+    if (lastTag.key != group[group.length-1].key) {
+      // 找到包含指定鍵的物件
+      const index = group.findIndex(obj => obj.key = lastTag.key);
+
+      if (index !== -1) {
+        // 將該物件從原始位置移除並放到陣列的最後
+        const [removed] = group.splice(index, 1);
+        group.push(removed);
+      }
+    }
+    return group;
   });
 
   const tagsGroupByKey = computed(() => {
