@@ -188,6 +188,7 @@ export default defineComponent({
     text-align: left;
     cursor: text;
     min-width: 0;
+    min-height: 30px;
     padding: 0 0.2em;
     padding-right: 0.8em;
 
