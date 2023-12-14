@@ -42,11 +42,11 @@ export default function useTag(_props, context, dep) {
       return result;
     }, []);
 
-    if (tags.length <= 1) {
+    const lastTag = tags[tags.length - 1];
+    if (tags.length <= 1 || lastTag == undefined) {
       return group;
     }
 
-    const lastTag = tags[tags.length - 1];
     if (lastTag.key != group[group.length-1].key) {
       // 找到包含指定鍵的物件
       const index = group.findIndex(obj => obj.key = lastTag.key);
