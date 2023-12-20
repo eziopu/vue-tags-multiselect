@@ -151,15 +151,13 @@ export default defineComponent({
     keyboard: { type: Boolean, default: true },
     conjunction: { type: String, default: "" }, // 'OR', 'AND'
     deleteIcon: { type: String, default: "always" }, // 'always', 'edit', 'none'
+    tagPosition: { type: String, default: "" },
+    debugLog: { type: Boolean, default: false },
     /**
      * placeholder
      **/
     placeholders: { type: Object, default: () => {} },
     placeholder: { type: String, default: "" },
-    debugLog: { type: Boolean, default: false },
-    // loadingPlaceholder: { type: String, default: "Wait a moment, please." },
-    // selectDownPlaceholder: { type: String, default: "Selected End." },
-    // finishPlaceholder: { type: String, default: "Finish." },
   },
   setup(props, context) {
     return resolve(props, context, [
