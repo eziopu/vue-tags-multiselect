@@ -56,6 +56,7 @@
         :merge="merge == 'true' ? true : false"
         :deleteIcon="deleteIcon"
         :conjunction="conjunction"
+        :tagPosition="tagPosition"
         :placeholder="placeholderText(placeholder)"
         :placeholders="placeholders"
       >
@@ -249,6 +250,7 @@ export default defineComponent({
       transition: "true",
       create: "true",
       merge: "true",
+      tagPosition: "null",
       conjunction: "null",
       deleteIcon: "always",
       loadingContent: "",
