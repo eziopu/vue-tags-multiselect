@@ -43,16 +43,12 @@ export default function useApp(props, _context, dep) {
     return props.disabled ? -1 : 0;
   });
 
-  const tagPosition = computed(() => {
+  const isTagPositionVisible = computed(() => {
     let position = props.tagPosition;
 
-    if (position == "top" || position == "buttom") {
-      position += `${position} left`
-    }
+    const pattern = /^(top(-left|-right)?|bottom(-left|-right)?)$/;
 
-    const pattern = /^(top|bottom) (left|right)$/;
-
-    return pattern.test(position) ? position : null
+    return pattern.test(position);
   });
 
   // ============== METHODS ==============
@@ -183,7 +179,7 @@ export default function useApp(props, _context, dep) {
     keydown,
     tabindex,
 
-    tagPosition,
+    isTagPositionVisible,
 
     init,
     initKeydown,

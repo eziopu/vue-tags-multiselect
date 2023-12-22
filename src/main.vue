@@ -8,9 +8,9 @@
     @keydown="handleKeydown"
     @keyup="handleKeyup"
     @click="isEnable = true"
-    :class="{ active: isActive, disabled: disabled, loading: loading }"
+    :class="{ active: isActive, disabled: disabled, loading: loading, ['tag-'+tagPosition] :isTagPositionVisible }"
   >
-    <div class="tags" v-if="tagPosition != null">
+    <div class="tags" v-if="isTagPositionVisible">
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
@@ -25,7 +25,7 @@
       </VTag>
     </div>
     <div class="multiselect">
-      <div class="tags" ref="elTags" v-if="tagPosition == null">
+      <div class="tags" ref="elTags" v-if="!isTagPositionVisible">
         <VTag
           v-for="(tag, index) in merge == true
             ? tagsGroupByTitle
