@@ -43,6 +43,18 @@ export default function useApp(props, _context, dep) {
     return props.disabled ? -1 : 0;
   });
 
+  const tagPosition = computed(() => {
+    let position = props.tagPosition;
+
+    if (position == "top" || position == "buttom") {
+      position += `${position} left`
+    }
+
+    const pattern = /^(top|bottom) (left|right)$/;
+
+    return pattern.test(position) ? position : null
+  });
+
   // ============== METHODS ==============
 
   const setStashTag = dep.setStashTag;
@@ -170,6 +182,8 @@ export default function useApp(props, _context, dep) {
     conjunction,
     keydown,
     tabindex,
+
+    tagPosition,
 
     init,
     initKeydown,

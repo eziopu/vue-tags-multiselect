@@ -10,7 +10,7 @@
     @click="isEnable = true"
     :class="{ active: isActive, disabled: disabled, loading: loading }"
   >
-    <div class="tags" ref="elTags">
+    <div class="tags" v-if="tagPosition != null">
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
@@ -24,80 +24,97 @@
         </template>
       </VTag>
     </div>
-
-    <div
-      class="stashTag"
-      ref="elStashTag"
-      v-if="stashTag.key != null && isEditMode == false"
-    >
-      <VTag :tag="stashTag"> </VTag>
-    </div>
-
-    <div class="main" ref="elMain">
-      <Transition :name="transition ? 'dropdown' : ''">
-        <div
-          class="dropdowns"
-          v-show="isElDropdownVisible"
-          ref="elDropdown"
-          :style="{ left: `${elDropdownLeft}px` }"
-          :class="{
-            loading: loading || dropdownLoading,
-            transition: transition,
-          }"
+    <div class="multiselect">
+      <div class="tags" ref="elTags" v-if="tagPosition == null">
+        <VTag
+          v-for="(tag, index) in merge == true
+            ? tagsGroupByTitle
+            : tags.filter((tag) => tag !== undefined)"
+          ref="elTag"
+          :key="`tag-${index}`"
+          :tag="tag"
         >
+          <template v-slot:tag-conjunction>
+            <slot name="tag-conjunction"></slot>
+          </template>
+        </VTag>
+      </div>
+
+      <div
+        class="stashTag"
+        ref="elStashTag"
+        v-if="stashTag.key != null && isEditMode == false"
+      >
+        <VTag :tag="stashTag"> </VTag>
+      </div>
+
+      <div class="main" ref="elMain">
+        <Transition :name="transition ? 'dropdown' : ''">
           <div
-            v-show="loading == true || dropdownLoading == true"
-            class="dropdowns__loading"
-            :tabindex="-1"
+            class="dropdowns"
+            v-show="isElDropdownVisible"
+            ref="elDropdown"
+            :style="{ left: `${elDropdownLeft}px` }"
+            :class="{
+              loading: loading || dropdownLoading,
+              transition: transition,
+            }"
           >
-            <slot name="dropdowns-loading">
-              <slot name="loading">
-                <Loading></Loading>
+            <div
+              v-show="loading == true || dropdownLoading == true"
+              class="dropdowns__loading"
+              :tabindex="-1"
+            >
+              <slot name="dropdowns-loading">
+                <slot name="loading">
+                  <Loading></Loading>
+                </slot>
               </slot>
+            </div>
+
+            <VTagDropdown system>
+              <VTagOption v-if="isUndoOptionVisible" class="undo">
+                <!-- :divided="optionDisplayCount != 0" -->
+                <div @click="elOptionUndo()">
+                  <slot name="option-undo">
+                    <i class="option__undo--arrow-left"></i>Undo
+                  </slot>
+                </div>
+              </VTagOption>
+              <VTagOption v-if="isORConjunctionOptionVisible" class="conjunction">
+                <!-- :divided="haveOptionCanSelect" -->
+                <div @click="elOptionORConjunction()">
+                  <slot name="option-OR-conjunction">OR</slot>
+                </div>
+              </VTagOption>
+            </VTagDropdown>
+
+            <slot></slot>
+          </div>
+        </Transition>
+
+        <div class="fill" ref="elFill__div">
+          <div v-show="loading == true" class="fill__loading" ref="loading">
+            <slot name="loading">
+              <Loading></Loading>
             </slot>
           </div>
 
-          <VTagDropdown system>
-            <VTagOption v-if="isUndoOptionVisible" class="undo">
-              <!-- :divided="optionDisplayCount != 0" -->
-              <div @click="elOptionUndo()">
-                <slot name="option-undo">
-                  <i class="option__undo--arrow-left"></i>Undo
-                </slot>
-              </div>
-            </VTagOption>
-            <VTagOption v-if="isORConjunctionOptionVisible" class="conjunction">
-              <!-- :divided="haveOptionCanSelect" -->
-              <div @click="elOptionORConjunction()">
-                <slot name="option-OR-conjunction">OR</slot>
-              </div>
-            </VTagOption>
-          </VTagDropdown>
-
-          <slot></slot>
+          <input
+            v-model="elInputValue"
+            ref="elInput"
+            autocomplete="off"
+            tabindex="0"
+            type="search"
+            @focus="elInputFocus"
+            @blur="elInputBlur"
+            :disabled="elInputDisabled"
+            :maxlength="elInputMaxlength"
+            :placeholder="elInputPlaceholder"
+          />
         </div>
-      </Transition>
-
-      <div class="fill" ref="elFill__div">
-        <div v-show="loading == true" class="fill__loading" ref="loading">
-          <slot name="loading">
-            <Loading></Loading>
-          </slot>
-        </div>
-
-        <input
-          v-model="elInputValue"
-          ref="elInput"
-          autocomplete="off"
-          tabindex="0"
-          type="search"
-          @focus="elInputFocus"
-          @blur="elInputBlur"
-          :disabled="elInputDisabled"
-          :maxlength="elInputMaxlength"
-          :placeholder="elInputPlaceholder"
-        />
       </div>
+
     </div>
   </div>
 </template>
@@ -178,7 +195,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .vue-tags-multiselect {
-  & {
+  .multiselect {
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -189,16 +206,15 @@ export default defineComponent({
     min-height: 30px;
     padding: 0 0.2em;
     padding-right: 0.8em;
+  }
+  &.disabled,
+  &.disabled input {
+    cursor: no-drop !important;
+  }
 
-    &.disabled,
-    &.disabled input {
-      cursor: no-drop !important;
-    }
-
-    &.loading,
-    &.loading input {
-      cursor: wait !important;
-    }
+  &.loading,
+  &.loading input {
+    cursor: wait !important;
   }
   .main {
     & {
