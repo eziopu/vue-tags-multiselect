@@ -54,7 +54,7 @@
             class="dropdowns"
             v-show="isElDropdownVisible"
             ref="elDropdown"
-            :style="{ left: `${elDropdownLeft}px` }"
+            :style="elDropdownStyle"
             :class="{
               loading: loading || dropdownLoading,
               transition: transition,

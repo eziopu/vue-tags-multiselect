@@ -1,4 +1,4 @@
-import { ref, computed, watch, nextTick } from "vue";
+import { ref, reactive, computed, watch, nextTick } from "vue";
 
 export default function useElDropdown(props, _context, dep) {
   // ============== REFS ================
@@ -9,19 +9,17 @@ export default function useElDropdown(props, _context, dep) {
 
   const elMain = dep.elMain;
 
-  // ============== REFS DATA ================
-
-  const elDropdownLeft = ref(0);
-
   // ============== DATA ================
 
   const appIsActive = dep.isActive;
+
+  const isTagPositionVisible = dep.isTagPositionVisible;
 
   const editTagIndex = dep.editTagIndex;
 
   const stashTag = dep.stashTag;
 
-  const dropdownStatus = dep.dropdownStatus;
+  const dropdownStatus = dep.dropdownStatus;  
 
   // ============== COMPUTED ==============
 
@@ -65,29 +63,51 @@ export default function useElDropdown(props, _context, dep) {
     return props.disabled == false && appIsActive.value == true;
   });
 
-  // ============== WATCH ==============
+
+  // == elDropdownStyle ==============
+
+  const elDropdownStyle = reactive({
+    top: '90%',
+    left: '0px'
+  });
 
   watch(editTagIndex, async (value) => {
-    let offset = 0;
+    let leftOffset = 0;
+    let topOffset = 22;
 
     if (value != -1) {
       await nextTick();
       const editDiv = elApp.value.querySelector(
         ".tags .tag.editing .tag__value.editing"
       );
+
       if (editDiv != undefined) {
-        const elMainLeft = elMain.value.getBoundingClientRect().left || 0;
-        const editLeft = editDiv.getBoundingClientRect().left || 0;
-        offset = editLeft - elMainLeft || 0;
+        const elMainRect = elMain.value.getBoundingClientRect();
+        const elEditRect = editDiv.getBoundingClientRect();
+
+        // left
+        const elMainLeft = elMainRect.left || 0;
+        const elEditLeft = elEditRect.left || 0;
+        leftOffset = elEditLeft - elMainLeft || 0;
+
+        // top
+        if (isTagPositionVisible.value == true) {
+          const elMainTop = elMainRect.top || 0;
+          const elEditBottom = elEditRect.bottom || 0;
+          topOffset = elEditBottom - elMainTop || 0;
+        }
       }
+      
     }
 
-    elDropdownLeft.value = offset;
+    elDropdownStyle.left = `${leftOffset}px`;
+    elDropdownStyle.top = `${topOffset}px`;
   });
 
   return {
     elDropdown,
-    elDropdownLeft,
+    elDropdownStyle,
+
     isElDropdownVisible,
   };
 }
