@@ -1,6 +1,31 @@
 .bootstrap {
   .vue-tags-multiselect:not(.custom) {
-    & {
+    &.focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: #86b7fe;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    }
+  
+    &.disabled {
+      background-color: #e9ecef;
+      border-style: none;
+      box-shadow: none;
+    }
+  
+    &.disabled .tag {
+      .tag__title {
+        background-color: #b9b9b9;
+      }
+  
+      .tag__value,
+      .tag__close-icon {
+        background-color: #d8d8d8;
+      }
+    }
+
+    .multiselect {
       width: 100%;
       font-size: 1rem;
       font-weight: 400;
@@ -14,29 +39,6 @@
       appearance: none;
       border-radius: .25rem;
       transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    }
-    &.focus {
-      color: #212529;
-      background-color: #fff;
-      border-color: #86b7fe;
-      outline: 0;
-      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-    }
-    &.disabled {
-      background-color: #e9ecef;
-      border-style: none;
-      box-shadow: none;
-    }
-  
-    &.disabled .tag {
-      .tag__title {
-        background-color: #b9b9b9;
-      }
-
-      .tag__value,
-      .tag__close-icon {
-        background-color: #d8d8d8;
-      }
     }
 
     .dropdowns {

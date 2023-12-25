@@ -1,6 +1,17 @@
 .semantic-ui {
   .vue-tags-multiselect {
-    & {
+    &.focus {
+      border-color: #85b7d9;
+      color: rgba(0, 0, 0, .8);
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  
+    &.disabled {
+      opacity: .45;
+    }
+    
+    .multiselect {
       margin: 0;
       max-width: 100%;
       -webkit-box-flex: 1;
@@ -25,15 +36,6 @@
       transition: box-shadow .1s ease,border-color .1s ease,-webkit-box-shadow .1s ease;
       -webkit-box-shadow: none;
       box-shadow: none;
-    }
-    &.focus {
-      border-color: #85b7d9;
-      color: rgba(0,0,0,.8);
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-    &.disabled {
-      opacity: .45;
     }
 
     .dropdowns {
