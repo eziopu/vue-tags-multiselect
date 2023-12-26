@@ -7,7 +7,7 @@ export default function useElDropdown(props, _context, dep) {
 
   const elApp = dep.elApp;
 
-  const elMain = dep.elMain;
+  const elControls = dep.elControls;
 
   // ============== DATA ================
 
@@ -67,42 +67,42 @@ export default function useElDropdown(props, _context, dep) {
   // == elDropdownStyle ==============
 
   const elDropdownStyle = reactive({
-    top: '90%',
+    top: '0px',
     left: '0px'
   });
 
   watch(editTagIndex, async (value) => {
+    await nextTick();
+    
+    const elControlsRect = elControls.value.getBoundingClientRect();
+    let topOffset = elControlsRect.height || 0;
     let leftOffset = 0;
-    let topOffset = 22;
 
     if (value != -1) {
-      await nextTick();
-      const editDiv = elApp.value.querySelector(
-        ".tags .tag.editing .tag__value.editing"
+      const editTag = elApp.value.querySelector(
+        ".v-tags-multiselect__tags .tag.editing .tag__value.editing"
       );
 
-      if (editDiv != undefined) {
-        const elMainRect = elMain.value.getBoundingClientRect();
-        const elEditRect = editDiv.getBoundingClientRect();
+      if (editTag != undefined) {
+        const elTagRect = editTag.getBoundingClientRect();
 
         // left
-        const elMainLeft = elMainRect.left || 0;
-        const elEditLeft = elEditRect.left || 0;
-        leftOffset = elEditLeft - elMainLeft || 0;
+        const elControlsLeft = elControlsRect.left || 0;
+        const elEditLeft = elTagRect.left || 0;
+        leftOffset = elEditLeft - elControlsLeft || 0;
 
         // top
         if (isTagPositionVisible.value == true) {
-          const elMainTop = elMainRect.top || 0;
-          const elEditBottom = elEditRect.bottom || 0;
-          topOffset = elEditBottom - elMainTop || 0;
+          const elControlsTop = elControlsRect.top || 0;
+          const elEditBottom = elTagRect.bottom || 0;
+          topOffset = elEditBottom - elControlsTop || 0;
         }
       }
-      
     }
 
     elDropdownStyle.left = `${leftOffset}px`;
     elDropdownStyle.top = `${topOffset}px`;
-  });
+  }, { immediate: true });
 
   return {
     elDropdown,

@@ -34,7 +34,7 @@
           <LabelAndSelect value="transition" />
           <LabelAndSelect value="keyboard" />
           <LabelAndSelect value="debugLog" />
-          <LabelAndSelect value="tagPosition" :values="['null', 'top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right']" />
+          <LabelAndSelect value="tagPosition" :values="['null', 'top', 'bottom']" />
 
           <div class="flex-between text">
             <div>placeholder</div>

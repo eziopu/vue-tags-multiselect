@@ -13,7 +13,7 @@ export default function useApp(props, _context, dep) {
 
   const elApp = ref(null);
 
-  const elMain = ref(null);
+  const elControls = ref(null);
 
   const elTags = ref(null);
 
@@ -46,7 +46,7 @@ export default function useApp(props, _context, dep) {
   const isTagPositionVisible = computed(() => {
     let position = props.tagPosition;
 
-    const pattern = /^(top(-left|-right)?|bottom(-left|-right)?)$/;
+    const pattern = /(top|bottom)/;
 
     return pattern.test(position);
   });
@@ -167,7 +167,7 @@ export default function useApp(props, _context, dep) {
 
   return {
     elApp,
-    elMain,
+    elControls,
     elTags,
     elFill,
 
