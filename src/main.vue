@@ -1,6 +1,6 @@
 <template>
   <div
-    class="vue-tags-multiselect"
+    class="v-tags-multiselect"
     hidefocus="true"
     tabindex="0"
     ref="elApp"
@@ -10,7 +10,7 @@
     @click="isEnable = true"
     :class="{ active: isActive, disabled: disabled, loading: loading, ['tag-'+tagPosition] :isTagPositionVisible }"
   >
-    <div class="tags" v-if="isTagPositionVisible">
+    <div class="v-tags-multiselect__tags overflow-tags" v-if="isTagPositionVisible">
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
@@ -24,8 +24,11 @@
         </template>
       </VTag>
     </div>
-    <div class="multiselect">
-      <div class="tags" ref="elTags" v-if="!isTagPositionVisible">
+    <div class="v-tags-multiselect__main">
+      <div
+        class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
+        ref="elTags" v-if="!isTagPositionVisible"
+      >
         <VTag
           v-for="(tag, index) in merge == true
             ? tagsGroupByTitle
@@ -41,17 +44,17 @@
       </div>
 
       <div
-        class="stashTag"
+        class="v-tags-multiselect__main--stashTag"
         ref="elStashTag"
         v-if="stashTag.key != null && isEditMode == false"
       >
         <VTag :tag="stashTag"> </VTag>
       </div>
 
-      <div class="main" ref="elMain">
+      <div class="v-tags-multiselect__main--controls" ref="elControls">
         <Transition :name="transition ? 'dropdown' : ''">
           <div
-            class="dropdowns"
+            class="v-tags-multiselect__main--dropdowns"
             v-show="isElDropdownVisible"
             ref="elDropdown"
             :style="elDropdownStyle"
@@ -168,7 +171,7 @@ export default defineComponent({
     keyboard: { type: Boolean, default: true },
     conjunction: { type: String, default: "" }, // 'OR', 'AND'
     deleteIcon: { type: String, default: "always" }, // 'always', 'edit', 'none'
-    tagPosition: { type: String, default: "" },
+    tagPosition: { type: String, default: "" }, // 'top', 'bottom'
     debugLog: { type: Boolean, default: false },
     /**
      * placeholder
@@ -194,8 +197,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.vue-tags-multiselect {
-  .multiselect {
+.v-tags-multiselect {
+  .v-tags-multiselect__main {
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -216,7 +219,12 @@ export default defineComponent({
   &.loading input {
     cursor: wait !important;
   }
-  .main {
+  &.tag-bottom {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .v-tags-multiselect__main--controls {
     & {
       display: flex;
       flex-wrap: wrap;
@@ -251,7 +259,7 @@ export default defineComponent({
     }
   }
 
-  .dropdowns {
+  .v-tags-multiselect__main--dropdowns {
     position: absolute;
     border: 1px solid rgba(34, 36, 38, 0.15);
     background-color: white;
@@ -289,7 +297,7 @@ export default defineComponent({
     -webkit-transform: rotate(135deg);
   }
 
-  .loading:not(.vue-tags-multiselect):not(.dropdowns) {
+  .loading:not(.v-tags-multiselect):not(.v-tags-multiselect__main--dropdowns) {
     display: flex;
     align-items: center;
   }
