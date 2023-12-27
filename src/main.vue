@@ -222,7 +222,8 @@ export default defineComponent({
   &.loading input {
     cursor: wait !important;
   }
-  &.tag-bottom {
+
+  &[class*="tag-bottom"] {
     display: flex;
     flex-direction: column-reverse;
   }
