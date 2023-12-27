@@ -1,14 +1,6 @@
 import { ref, reactive, computed, watch, nextTick } from "vue";
 
 export default function useElDropdown(props, _context, dep) {
-  // ============== REFS ================
-
-  const elDropdown = ref(null);
-
-  const elApp = dep.elApp;
-
-  const elControls = dep.elControls;
-
   // ============== DATA ================
 
   const appIsActive = dep.isActive;
@@ -65,6 +57,15 @@ export default function useElDropdown(props, _context, dep) {
 
 
   // == elDropdownStyle ==============
+  // ============== REFS ================
+
+  const elDropdown = ref(null);
+
+  const elApp = dep.elApp;
+
+  const elControls = dep.elControls;
+
+  // ============== DATA ================
 
   const elDropdownStyle = reactive({
     top: '0px',
