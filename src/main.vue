@@ -10,7 +10,10 @@
     @click="isEnable = true"
     :class="{ active: isActive, disabled: disabled, loading: loading, ['tag-'+tagPosition] :isTagPositionVisible }"
   >
-    <div class="v-tags-multiselect__tags overflow-tags" v-if="isTagPositionVisible">
+    <div
+      class="v-tags-multiselect__tags overflow-tags"
+      ref="elTags" v-if="isTagPositionVisible"
+    >
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
