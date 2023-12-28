@@ -1,6 +1,6 @@
 <template>
   <div
-    class="vue-tags-multiselect"
+    class="v-tags-multiselect"
     hidefocus="true"
     tabindex="0"
     ref="elApp"
@@ -8,9 +8,12 @@
     @keydown="handleKeydown"
     @keyup="handleKeyup"
     @click="isEnable = true"
-    :class="{ active: isActive, disabled: disabled, loading: loading }"
+    :class="{ active: isActive, disabled: disabled, loading: loading, ['tag-'+tagPosition] :isTagPositionVisible }"
   >
-    <div class="tags" ref="elTags">
+    <div
+      class="v-tags-multiselect__tags overflow-tags"
+      ref="elTags" v-if="isTagPositionVisible"
+    >
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
@@ -24,80 +27,100 @@
         </template>
       </VTag>
     </div>
-
-    <div
-      class="stashTag"
-      ref="elStashTag"
-      v-if="stashTag.key != null && isEditMode == false"
-    >
-      <VTag :tag="stashTag"> </VTag>
-    </div>
-
-    <div class="main" ref="elMain">
-      <Transition :name="transition ? 'dropdown' : ''">
-        <div
-          class="dropdowns"
-          v-show="isElDropdownVisible"
-          ref="elDropdown"
-          :style="{ left: `${elDropdownLeft}px` }"
-          :class="{
-            loading: loading || dropdownLoading,
-            transition: transition,
-          }"
+    <div class="v-tags-multiselect__main">
+      <div
+        class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
+        ref="elTags" v-if="!isTagPositionVisible"
+      >
+        <VTag
+          v-for="(tag, index) in merge == true
+            ? tagsGroupByTitle
+            : tags.filter((tag) => tag !== undefined)"
+          ref="elTag"
+          :key="`tag-${index}`"
+          :tag="tag"
         >
+          <template v-slot:tag-conjunction>
+            <slot name="tag-conjunction"></slot>
+          </template>
+        </VTag>
+      </div>
+
+      <div
+        class="v-tags-multiselect__main--stashTag"
+        ref="elStashTag"
+        v-if="stashTag.key != null && isEditMode == false"
+      >
+        <VTag :tag="stashTag"> </VTag>
+      </div>
+
+      <div class="v-tags-multiselect__main--controls" ref="elControls">
+        <Transition :name="transition ? 'dropdown' : ''">
           <div
-            v-show="loading == true || dropdownLoading == true"
-            class="dropdowns__loading"
-            :tabindex="-1"
+            class="v-tags-multiselect__main--dropdowns"
+            v-show="isElDropdownVisible"
+            ref="elDropdown"
+            :style="elDropdownStyle"
+            :class="{
+              loading: loading || dropdownLoading,
+              transition: transition,
+            }"
           >
-            <slot name="dropdowns-loading">
-              <slot name="loading">
-                <Loading></Loading>
+            <div
+              v-show="loading == true || dropdownLoading == true"
+              class="dropdowns__loading"
+              :tabindex="-1"
+            >
+              <slot name="dropdowns-loading">
+                <slot name="loading">
+                  <Loading></Loading>
+                </slot>
               </slot>
+            </div>
+
+            <VTagDropdown system>
+              <VTagOption v-if="isUndoOptionVisible" class="undo">
+                <!-- :divided="optionDisplayCount != 0" -->
+                <div @click="elOptionUndo()">
+                  <slot name="option-undo">
+                    <i class="option__undo--arrow-left"></i>Undo
+                  </slot>
+                </div>
+              </VTagOption>
+              <VTagOption v-if="isORConjunctionOptionVisible" class="conjunction">
+                <!-- :divided="haveOptionCanSelect" -->
+                <div @click="elOptionORConjunction()">
+                  <slot name="option-OR-conjunction">OR</slot>
+                </div>
+              </VTagOption>
+            </VTagDropdown>
+
+            <slot></slot>
+          </div>
+        </Transition>
+
+        <div class="fill" ref="elFill__div">
+          <div v-show="loading == true" class="fill__loading" ref="loading">
+            <slot name="loading">
+              <Loading></Loading>
             </slot>
           </div>
 
-          <VTagDropdown system>
-            <VTagOption v-if="isUndoOptionVisible" class="undo">
-              <!-- :divided="optionDisplayCount != 0" -->
-              <div @click="elOptionUndo()">
-                <slot name="option-undo">
-                  <i class="option__undo--arrow-left"></i>Undo
-                </slot>
-              </div>
-            </VTagOption>
-            <VTagOption v-if="isORConjunctionOptionVisible" class="conjunction">
-              <!-- :divided="haveOptionCanSelect" -->
-              <div @click="elOptionORConjunction()">
-                <slot name="option-OR-conjunction">OR</slot>
-              </div>
-            </VTagOption>
-          </VTagDropdown>
-
-          <slot></slot>
+          <input
+            v-model="elInputValue"
+            ref="elInput"
+            autocomplete="off"
+            tabindex="0"
+            type="search"
+            @focus="elInputFocus"
+            @blur="elInputBlur"
+            :disabled="elInputDisabled"
+            :maxlength="elInputMaxlength"
+            :placeholder="elInputPlaceholder"
+          />
         </div>
-      </Transition>
-
-      <div class="fill" ref="elFill__div">
-        <div v-show="loading == true" class="fill__loading" ref="loading">
-          <slot name="loading">
-            <Loading></Loading>
-          </slot>
-        </div>
-
-        <input
-          v-model="elInputValue"
-          ref="elInput"
-          autocomplete="off"
-          tabindex="0"
-          type="search"
-          @focus="elInputFocus"
-          @blur="elInputBlur"
-          :disabled="elInputDisabled"
-          :maxlength="elInputMaxlength"
-          :placeholder="elInputPlaceholder"
-        />
       </div>
+
     </div>
   </div>
 </template>
@@ -151,15 +174,13 @@ export default defineComponent({
     keyboard: { type: Boolean, default: true },
     conjunction: { type: String, default: "" }, // 'OR', 'AND'
     deleteIcon: { type: String, default: "always" }, // 'always', 'edit', 'none'
+    tagPosition: { type: String, default: "" }, // 'top', 'bottom'
+    debugLog: { type: Boolean, default: false },
     /**
      * placeholder
      **/
     placeholders: { type: Object, default: () => {} },
     placeholder: { type: String, default: "" },
-    debugLog: { type: Boolean, default: false },
-    // loadingPlaceholder: { type: String, default: "Wait a moment, please." },
-    // selectDownPlaceholder: { type: String, default: "Selected End." },
-    // finishPlaceholder: { type: String, default: "Finish." },
   },
   setup(props, context) {
     return resolve(props, context, [
@@ -179,8 +200,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.vue-tags-multiselect {
-  & {
+.v-tags-multiselect {
+  .v-tags-multiselect__main {
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -191,18 +212,23 @@ export default defineComponent({
     min-height: 30px;
     padding: 0 0.2em;
     padding-right: 0.8em;
-
-    &.disabled,
-    &.disabled input {
-      cursor: no-drop !important;
-    }
-
-    &.loading,
-    &.loading input {
-      cursor: wait !important;
-    }
   }
-  .main {
+  &.disabled,
+  &.disabled input {
+    cursor: no-drop !important;
+  }
+
+  &.loading,
+  &.loading input {
+    cursor: wait !important;
+  }
+
+  &[class*="tag-bottom"] {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .v-tags-multiselect__main--controls {
     & {
       display: flex;
       flex-wrap: wrap;
@@ -237,7 +263,7 @@ export default defineComponent({
     }
   }
 
-  .dropdowns {
+  .v-tags-multiselect__main--dropdowns {
     position: absolute;
     border: 1px solid rgba(34, 36, 38, 0.15);
     background-color: white;
@@ -275,7 +301,7 @@ export default defineComponent({
     -webkit-transform: rotate(135deg);
   }
 
-  .loading:not(.vue-tags-multiselect):not(.dropdowns) {
+  .loading:not(.v-tags-multiselect):not(.v-tags-multiselect__main--dropdowns) {
     display: flex;
     align-items: center;
   }

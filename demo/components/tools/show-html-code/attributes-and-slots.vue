@@ -11,6 +11,7 @@
   --><span v-show="equality(app.debugLog, true)"><Space /><span class="pln">:</span><span class="atn">debugLog</span><span class="pun">=</span><span class="atv">"{{ app.debugLog }}"</span><br></span><!--
   --><span v-show="verify(app.deleteIcon) && app.deleteIcon != 'always'"><Space /><span class="pln">:</span><span class="atn">deleteIcon</span><span class="pun">=</span><span class="atv">"{{ app.deleteIcon }}"</span><br></span><!--
   --><span v-show="verify(app.conjunction)"><Space /><span class="pln">:</span><span class="atn">conjunction</span><span class="pun">=</span><span class="atv">"{{ app.conjunction }}"</span><br></span><!--
+  --><span v-show="verify(app.tagPosition)"><Space /><span class="pln">:</span><span class="atn">tagPosition</span><span class="pun">=</span><span class="atv">"{{ app.tagPosition }}"</span><br></span><!--
   --><span v-show="verifyText(app.placeholder)"><Space /><span class="pln">:</span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"{{ app.placeholder }}"</span><br></span><!--
   --><span v-show="Object.values(cleanedObject(app.placeholders)).length != 0"><!--
     --><Space /><!--

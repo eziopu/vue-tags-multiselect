@@ -1,6 +1,17 @@
 .semantic-ui {
-  .vue-tags-multiselect {
-    & {
+  .v-tags-multiselect {
+    &.focus {
+      border-color: #85b7d9;
+      color: rgba(0, 0, 0, .8);
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  
+    &.disabled {
+      opacity: .45;
+    }
+    
+    .v-tags-multiselect__main {
       margin: 0;
       max-width: 100%;
       -webkit-box-flex: 1;
@@ -26,17 +37,8 @@
       -webkit-box-shadow: none;
       box-shadow: none;
     }
-    &.focus {
-      border-color: #85b7d9;
-      color: rgba(0,0,0,.8);
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-    &.disabled {
-      opacity: .45;
-    }
 
-    .dropdowns {
+    .v-tags-multiselect__main--dropdowns {
       border: 1px solid rgba(34,36,38,.15);
       border-radius: .28571429rem !important;
       box-shadow: 0 2px 3px 0 rgb(34 36 38 / 15%);

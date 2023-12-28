@@ -13,7 +13,7 @@ export default function useApp(props, _context, dep) {
 
   const elApp = ref(null);
 
-  const elMain = ref(null);
+  const elControls = ref(null);
 
   const elTags = ref(null);
 
@@ -41,6 +41,14 @@ export default function useApp(props, _context, dep) {
 
   const tabindex = computed(() => {
     return props.disabled ? -1 : 0;
+  });
+
+  const isTagPositionVisible = computed(() => {
+    let position = props.tagPosition;
+
+    const pattern = /(top|bottom)/;
+
+    return pattern.test(position);
   });
 
   // ============== METHODS ==============
@@ -159,7 +167,7 @@ export default function useApp(props, _context, dep) {
 
   return {
     elApp,
-    elMain,
+    elControls,
     elTags,
     elFill,
 
@@ -170,6 +178,8 @@ export default function useApp(props, _context, dep) {
     conjunction,
     keydown,
     tabindex,
+
+    isTagPositionVisible,
 
     init,
     initKeydown,

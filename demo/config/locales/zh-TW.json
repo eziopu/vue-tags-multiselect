@@ -13,16 +13,18 @@
         "merge": "合併相同key值的option",
         "keyboard": "是否啟用keyboard操作",
         "transition": "是否啟用css動畫效果",
+        "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
+        "tagPosition__notice": "無論上下方並不影響<code class='tag'>keyboard</code>的操作",
         "conjunction": "選擇的模式",
         "conjunction__detail": {
-          "1": "- : 無, 當有完成的tag, 'OR'模式的按鈕會至頂顯示",
+          "1": "- : 當有完成的tag, 'OR'模式的按鈕會至頂顯示(預設值)",
           "2": "OR: 總是顯示還可以選擇的option",
           "3": "AND: 只顯示未選擇過的dropdown(篩選條件為key值)"
         },
         "deleteIcon": "刪除tag的按鈕顯示模式",
         "deleteIcon__notice": "編輯模式時鍵盤的delete按鈕依舊能刪除",
         "deleteIcon__detail": {
-          "1": "always: 總是顯示",
+          "1": "always: 總是顯示(預設值)",
           "2": "edit: 只在編輯模式顯示",
           "3": "none: 總是不顯示"
         },

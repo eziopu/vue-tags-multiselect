@@ -17,6 +17,7 @@
         :dropdownLoading="appProps.dropdownLoading"
         :search="appProps.search"
         :transition="appProps.transition"
+        :tagPosition="appProps.tagPosition"
         :create="appProps.create"
         :merge="appProps.merge"
         :deleteIcon="appProps.deleteIcon"

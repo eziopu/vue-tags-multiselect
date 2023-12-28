@@ -7,6 +7,8 @@ import Keyboard from "./components/keyboard.vue";
 import AppAttributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
 
+const isDev = false;
+
 const i18nLocale = useI18n();
 const frameworks = ["default", "bootstrap", "semantic-ui"];
 const theme = ref("default");
@@ -58,7 +60,7 @@ onMounted(async () => {
   />
 
   <div class="ui container" :class="theme">
-    <div class="ui-title">
+    <div class="ui-title" v-if="!isDev">
       <h1>vue-tags-multiselect</h1>
       <h2>{{ $t("ui.page.description.title") }}</h2>
     </div>
@@ -128,22 +130,26 @@ onMounted(async () => {
     </div>
     <hr />
 
-    <Keyboard></Keyboard>
-    <AppAttributes></AppAttributes>
-    <!-- 
-      <h3>Dropdown Slots Attributes</h3>
-      <DropdownAttributes></DropdownAttributes>
+    <div v-if="!isDev">
+      <Keyboard></Keyboard>
+      <AppAttributes></AppAttributes>
+      <!-- 
+        <h3>Dropdown Slots Attributes</h3>
+        <DropdownAttributes></DropdownAttributes>
 
-      <h3>Option Slots Attributes</h3>
-      <OptionAttributes></OptionAttributes>
+        <h3>Option Slots Attributes</h3>
+        <OptionAttributes></OptionAttributes>
 
-      <h3>Other Slots</h3>
-      <OtherSlots></OtherSlots>
+        <h3>Other Slots</h3>
+        <OtherSlots></OtherSlots>
 
-      <h3>Custome style</h3>
-      <CustomStyle></CustomStyle>
+        <h3>Custome style</h3>
+        <CustomStyle></CustomStyle>
 
-      <h3>Operate all Attributes</h3> -->
+        <h3>Operate all Attributes</h3>
+      -->
+    </div>
+
     <Play :theme="theme"></Play>
   </div>
 </template>
