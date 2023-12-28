@@ -13,6 +13,8 @@
         "merge": "when tags same title share display one",
         "keyboard": "enable keyboard operation",
         "transition": "enable css animation",
+        "tagPosition": "the placement of the tag. By default, it's positioned to the left of the input. It can be changed to be placed above or below the input",
+        "tagPosition__notice": "whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
         "conjunction": "select mode",
         "conjunction__detail": {
           "1": "- : after the second selected, 'OR' mode button will appear at the top",
