@@ -7,7 +7,7 @@ import Keyboard from "./components/keyboard.vue";
 import AppAttributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
 
-const isDev = true;
+const isDev = false;
 
 const i18nLocale = useI18n();
 const frameworks = ["default", "bootstrap", "semantic-ui"];

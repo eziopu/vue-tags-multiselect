@@ -7,6 +7,7 @@
     <Placeholders></Placeholders>
     <Search></Search>
     <Create></Create>
+    <TagPosition></TagPosition>
     <Merge></Merge>
     <TagConjunction></TagConjunction>
     <DeleteIcon></DeleteIcon>
@@ -26,9 +27,12 @@ import Merge from "./merge.vue";
 import Create from "./create.vue";
 import Search from "./search.vue";
 import TagConjunction from "./tag-conjunction.vue";
+import TagPosition from "./tag-position.vue";
 import Transition from "./transition.vue";
 import DeleteIcon from "./delete-icon.vue";
 import Placeholders from "./placeholders.vue";
+    
+
 
 export default {
   name: "app-app-attributes",
@@ -42,6 +46,7 @@ export default {
     Search,
     Create,
     TagConjunction,
+    TagPosition,
     Transition,
     DeleteIcon,
     Placeholders,
