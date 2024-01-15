@@ -55,7 +55,7 @@
       </div>
 
       <div class="v-tags-multiselect__main--controls" ref="elControls">
-        <Transition :name="transition ? 'dropdown' : ''">
+        <Transition :name="transition ? 'slide' : ''">
           <div
             class="v-tags-multiselect__main--dropdowns"
             v-show="isElDropdownVisible"
@@ -280,6 +280,11 @@ export default defineComponent({
       border: none !important;
     }
 
+    &.transition {
+      transition: all .3s ease-in-out;
+      transform-origin: top;
+    }
+    
     .dropdowns__loading {
       display: flex;
       align-items: center;
@@ -306,41 +311,9 @@ export default defineComponent({
     align-items: center;
   }
 
-  .transition {
-    transition: all 0.3s ease;
-  }
-
-  .dropdown-enter-active,
-  .dropdown-leave-active {
-    animation: growDown 300ms ease-in-out forwards;
-    transform-origin: top center;
-  }
-
-  .dropdown-enter,
-  .dropdown-leave-to {
-    animation: growUP 300ms ease-in-out forwards;
-    transform-origin: top center;
-  }
-
-  @keyframes growDown {
-    0% {
-      transform: scaleY(0);
-    }
-    80% {
-      transform: scaleY(1.1);
-    }
-    100% {
-      transform: scaleY(1);
-    }
-  }
-
-  @keyframes growUP {
-    0% {
-      transform: scaleY(1);
-    }
-    100% {
-      transform: scaleY(0);
-    }
+  .slide-enter,
+  .slide-leave-to{
+    transform: scaleY(0);
   }
 }
 </style>
