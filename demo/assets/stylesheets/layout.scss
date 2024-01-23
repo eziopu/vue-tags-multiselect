@@ -10,6 +10,20 @@ body {
   text-align: center;
 }
 
+span.arrow {
+  vertical-align: middle;
+  margin-top: -1px;
+  margin-left: 0.4rem;
+  display: inline-block;
+  width: 0;
+  height: 0;
+}
+span.arrow.down {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid #cccccc;
+}
+
 .container.default {
   table {
     width: 100%;

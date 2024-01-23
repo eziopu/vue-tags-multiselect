@@ -10,8 +10,17 @@ import Play from "./components/play-helps/main.vue";
 const isDev = false;
 
 const i18nLocale = useI18n();
+const colorMode = ref("dark");
+
 const frameworks = ["default", "bootstrap", "semantic-ui"];
 const theme = ref("default");
+
+const toggleColorMode = () => {
+  console.log(colorMode.value);
+  colorMode.value = (colorMode.value == "dark")
+    ? "light"
+    : "dark"
+}
 
 /* theme change */
 const changeTheme = (framework = "") => {
@@ -58,118 +67,145 @@ onMounted(async () => {
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+  <div :class="colorMode">
+    <header class="navbar">
+      <a href="/" class="">
+        <img class="logo" src="./assets/logo.svg" alt="Vue">
+        <span class="site-name">vue-tags-multiselect</span>
+      </a>
+      <nav class="navbar-items">
+        <button class="navbar-dropdown-title" type="button" aria-label="v2.0.0-rc.0">
+          <span class="title">v2.0.0-rc.0</span>
+          <span class="arrow down"></span>
+        </button>
+        <button class="navbar-dropdown-title" type="button" aria-label="Select language">
+          <span class="title">Languages</span>
+          <span class="arrow down"></span>
+        </button>
+      </nav>
+      <label class="color-mode-toggle" arial-label="Toggle dark mode">
+        <input type="checkbox">
+        <span>☀️</span>
+        <span>🌙</span>
+      </label>
+    </header>
 
-  <header class="navbar">
-    <a href="/" class="">
-      <img class="logo" src="./assets/logo.svg" alt="Vue">
-      <span class="site-name">vue-tags-multiselect</span>
-    </a>
-    <nav class="navbar-items">
-
-    </nav>
-  </header>
-
-  <aside class="sidebar">
-    <ul class="sidebar-items">
-      <li>
-        <p tabindex="0" class="sidebar-item sidebar-heading collapsible">Bundlers Reference <span class="right arrow"></span></p>
-      </li>
-    </ul>
-  </aside>
-
-  <main class="page ui container" :class="theme">
-    <div class="ui-title" v-if="!isDev">
-      <h1>vue-tags-multiselect</h1>
-      <h2>{{ $t("ui.page.description.title") }}</h2>
-    </div>
-    <div class="ui-frameworks">
-      <ul>
+    <aside class="sidebar">
+      <ul class="sidebar-items">
         <li>
-          <div class="framework">
-            <h4>UI framework:</h4>
-            <button
-              class="btn pointer"
-              v-for="(framework, index) in frameworks"
-              @click="changeTheme(framework)"
-              :key="`framework${index}`"
-              :class="{
-                active: theme == framework,
-                'btn-outline-primary': theme == 'bootstrap',
-                'ui primary button': theme == 'semantic-ui',
-                'basic ': theme == 'semantic-ui' && theme != framework,
-              }"
-            >
-              <span v-if="framework == 'default'">
-                {{ $t("ui.general.default") }}
-              </span>
-              <span v-else>{{ framework }}</span>
-              <span
-                class="version"
-                v-if="theme == framework && framework != 'default'"
-                v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
-              >
-              </span>
-            </button>
-          </div>
-        </li>
-
-        <li>
-          <h4>icon: font-awesome v4.7.0</h4>
-        </li>
-
-        <li>
-          <div class="language">
-            <h4>language:</h4>
-            <select v-model="$i18n.locale">
-              <option
-                v-for="locale in i18nLocale.availableLocales"
-                :key="locale"
-                :value="locale"
-              >
-                {{ $t(`ui.languages.${locale}`) }}
-              </option>
-            </select>
-          </div>
+          <p tabindex="0" class="sidebar-item sidebar-heading collapsible">
+            Bundlers Reference
+            <span class="right arrow"></span>
+          </p>
+          <ul class="sidebar-item-children"></ul>
+          <li>
+            <a aria-label="Command Line Interface" class="sidebar-item" href="/">
+              Command Line Interface
+            </a>
+          </li>
+          <li>
+            <a aria-label="Command Line Interface" class="sidebar-item" href="/">
+              TEST
+            </a>
+          </li>
         </li>
       </ul>
-    </div>
+    </aside>
 
-    <div class="demo" v-if="theme != 'default'">
-      <div class="demo-control">
-        <a
-          class="show-code-btn pointer"
-          style="color: inherit"
-          target="_blank"
-          :href="`https://github.com/eziopu/vue-tags-multiselect/blob/master/src/assets/stylesheets/${theme}.scss`"
-        >
-          scss <i class="fa fa-external-link"></i>
-        </a>
+    <main class="page ui container" :class="theme">
+      <div class="ui-title" v-if="!isDev">
+        <h1>vue-tags-multiselect</h1>
+        <h2>{{ $t("ui.page.description.title") }}</h2>
       </div>
-    </div>
-    <hr />
+      <div class="ui-frameworks">
+        <ul>
+          <li>
+            <div class="framework">
+              <h4>UI framework:</h4>
+              <button
+                class="btn pointer"
+                v-for="(framework, index) in frameworks"
+                @click="changeTheme(framework)"
+                :key="`framework${index}`"
+                :class="{
+                  active: theme == framework,
+                  'btn-outline-primary': theme == 'bootstrap',
+                  'ui primary button': theme == 'semantic-ui',
+                  'basic ': theme == 'semantic-ui' && theme != framework,
+                }"
+              >
+                <span v-if="framework == 'default'">
+                  {{ $t("ui.general.default") }}
+                </span>
+                <span v-else>{{ framework }}</span>
+                <span
+                  class="version"
+                  v-if="theme == framework && framework != 'default'"
+                  v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
+                >
+                </span>
+              </button>
+            </div>
+          </li>
 
-    <div v-if="!isDev">
-      <Keyboard></Keyboard>
-      <AppAttributes></AppAttributes>
-      <!-- 
-        <h3>Dropdown Slots Attributes</h3>
-        <DropdownAttributes></DropdownAttributes>
+          <li>
+            <h4>icon: font-awesome v4.7.0</h4>
+          </li>
 
-        <h3>Option Slots Attributes</h3>
-        <OptionAttributes></OptionAttributes>
+          <li>
+            <div class="language">
+              <h4>language:</h4>
+              <select v-model="$i18n.locale">
+                <option
+                  v-for="locale in i18nLocale.availableLocales"
+                  :key="locale"
+                  :value="locale"
+                >
+                  {{ $t(`ui.languages.${locale}`) }}
+                </option>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-        <h3>Other Slots</h3>
-        <OtherSlots></OtherSlots>
+      <div class="demo" v-if="theme != 'default'">
+        <div class="demo-control">
+          <a
+            class="show-code-btn pointer"
+            style="color: inherit"
+            target="_blank"
+            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/master/src/assets/stylesheets/${theme}.scss`"
+          >
+            scss <i class="fa fa-external-link"></i>
+          </a>
+        </div>
+      </div>
+      <hr />
 
-        <h3>Custome style</h3>
-        <CustomStyle></CustomStyle>
+      <div v-if="!isDev">
+        <Keyboard></Keyboard>
+        <AppAttributes></AppAttributes>
+        <!-- 
+          <h3>Dropdown Slots Attributes</h3>
+          <DropdownAttributes></DropdownAttributes>
 
-        <h3>Operate all Attributes</h3>
-      -->
-    </div>
+          <h3>Option Slots Attributes</h3>
+          <OptionAttributes></OptionAttributes>
 
-    <Play :theme="theme"></Play>
-  </main>
+          <h3>Other Slots</h3>
+          <OtherSlots></OtherSlots>
+
+          <h3>Custome style</h3>
+          <CustomStyle></CustomStyle>
+
+          <h3>Operate all Attributes</h3>
+        -->
+      </div>
+
+      <Play :theme="theme"></Play>
+    </main>
+  </div>
 </template>
 
 <style lang="scss" v-if="theme == 'bootstrap'">
@@ -182,6 +218,7 @@ onMounted(async () => {
 </style>
 
 <style lang="scss">
+@import "./assets/stylesheets/header.scss";
 @import "./assets/stylesheets/header.scss";
 @import "./assets/stylesheets/layout.scss";
 </style>
