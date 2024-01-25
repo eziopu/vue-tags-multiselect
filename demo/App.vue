@@ -6,6 +6,7 @@ import { useI18n } from "vue-i18n";
 import Keyboard from "./components/keyboard.vue";
 import AppAttributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
+import ToolSelect from "./components/tools/select.vue";
 
 const isDev = false;
 
@@ -69,25 +70,64 @@ onMounted(async () => {
   />
   <div :class="colorMode">
     <header class="navbar">
-      <a href="/" class="">
+      <a href="/" class="navbar-site">
         <img class="logo" src="./assets/logo.svg" alt="Vue">
-        <span class="site-name">vue-tags-multiselect</span>
+        <h1 class="site-name">vue-tags-multiselect</h1>
       </a>
-      <nav class="navbar-items">
-        <button class="navbar-dropdown-title" type="button" aria-label="v2.0.0-rc.0">
-          <span class="title">v2.0.0-rc.0</span>
-          <span class="arrow down"></span>
-        </button>
-        <button class="navbar-dropdown-title" type="button" aria-label="Select language">
-          <span class="title">Languages</span>
-          <span class="arrow down"></span>
-        </button>
-      </nav>
-      <label class="color-mode-toggle" arial-label="Toggle dark mode">
-        <input type="checkbox">
-        <span>☀️</span>
-        <span>🌙</span>
-      </label>
+      <div class="navbar-items">
+        <div class="navbar-dropdown">
+          <button class="navbar-dropdown--button">
+              <span v-if="theme == 'default'">
+                UI framework
+              </span>
+              <span v-else
+                v-html="theme + (theme == 'bootstrap' ? ' v4.6.0 ' : ' v2.4.1 ')"
+              >
+              </span>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="navbar-dropdown--content">
+            <span
+              class="navbar-dropdown--option"
+              v-for="(framework, index) in frameworks"
+              @click="changeTheme(framework)"
+              :key="`framework${index}`"
+              :value="locale"
+            >
+              <span v-if="framework == 'default'">
+                {{ $t("ui.general.default") }}
+              </span>
+              <span v-else>
+                {{ framework }}
+                <span
+                  class="version"
+                  v-if="theme == framework && framework != 'default'"
+                  v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
+                >
+                </span>
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="navbar-dropdown">
+          <button class="navbar-dropdown--button">
+              {{ $t(`ui.general.language`) }}
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="navbar-dropdown--content">
+            <span
+              class="navbar-dropdown--option"
+              v-for="locale in i18nLocale.availableLocales"
+              :key="locale"
+              :value="locale"
+              @click="$i18n.locale = locale"
+            >
+              {{ $t(`ui.languages.${locale}`) }}
+            </span>
+          </div>
+        </div>
+      </div>
     </header>
 
     <aside class="sidebar">
@@ -219,8 +259,8 @@ onMounted(async () => {
 
 <style lang="scss">
 @import "./assets/stylesheets/header.scss";
-@import "./assets/stylesheets/header.scss";
 @import "./assets/stylesheets/layout.scss";
+
 </style>
 
 <style scoped lang="scss">
