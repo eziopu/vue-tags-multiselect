@@ -8,7 +8,7 @@
 import { inject } from "vue";
 
 const theme = inject("theme");
-const frameworks = inject("frameworks") | [];
+const frameworks = inject("frameworks") || [];
 
 /* theme change */
 const changeTheme = (framework = "") => {
