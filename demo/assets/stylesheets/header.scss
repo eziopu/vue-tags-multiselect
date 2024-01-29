@@ -7,7 +7,6 @@ header.navbar {
   top: 0;
   left: 0;
   right: 0;
-  height: 3.6rem;
   padding: 3px 12px;
   box-sizing: border-box;
   border-bottom: 1px solid #3e4c5a;
@@ -34,6 +33,11 @@ header.navbar {
     color: #adbac7;
     position: relative;
     overflow-wrap: break-word;
+  }
+
+  .navbar-items {
+    display: flex;
+    align-items: baseline;
   }
 
   .navbar-items .navbar-item {

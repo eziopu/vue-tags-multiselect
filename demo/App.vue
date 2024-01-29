@@ -1,36 +1,24 @@
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
-import { useI18n } from "vue-i18n";
+import { ref, onMounted, nextTick, provide, readonly } from "vue";
 
 // import HelloWorld from "./components/HelloWorld.vue";
 import Keyboard from "./components/keyboard.vue";
 import AppAttributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
-import ToolSelect from "./components/tools/select.vue";
+
+import Header from "./components/layout/header/main.vue";
+
+const currentPage = ref("install");
+const pages = ["install", "attributes", "slots", "slot-dropdown", "slot-option", "play"];
+provide("currentPage", currentPage);
+provide("pages", readonly(pages));
 
 const isDev = false;
 
-const i18nLocale = useI18n();
-const colorMode = ref("dark");
-
-const frameworks = ["default", "bootstrap", "semantic-ui"];
 const theme = ref("default");
-
-const toggleColorMode = () => {
-  console.log(colorMode.value);
-  colorMode.value = (colorMode.value == "dark")
-    ? "light"
-    : "dark"
-}
-
-/* theme change */
-const changeTheme = (framework = "") => {
-  location.href =
-    window.location.protocol +
-    "//" +
-    window.location.host +
-    (framework != "default" ? "?theme=" + framework : "");
-};
+const frameworks = ["default", "bootstrap", "semantic-ui"];
+provide("theme", theme);
+provide("frameworks", readonly(frameworks));
 
 /* set theme */
 const urlQueryTheme = new URL(location.href).searchParams.get("theme");
@@ -40,6 +28,11 @@ if (
   })
 ) {
   theme.value = urlQueryTheme;
+}
+
+const hostname = location.pathname;
+if (hostname == "/") {
+  currentPage.value = pages[0];
 }
 
 onMounted(async () => {
@@ -69,68 +62,9 @@ onMounted(async () => {
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
   <div :class="colorMode">
-    <header class="navbar">
-      <a href="/" class="navbar-site">
-        <img class="logo" src="./assets/logo.svg" alt="Vue">
-        <h1 class="site-name">vue-tags-multiselect</h1>
-      </a>
-      <div class="navbar-items">
-        <div class="navbar-dropdown">
-          <button class="navbar-dropdown--button">
-              <span v-if="theme == 'default'">
-                UI framework
-              </span>
-              <span v-else
-                v-html="theme + (theme == 'bootstrap' ? ' v4.6.0 ' : ' v2.4.1 ')"
-              >
-              </span>
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="navbar-dropdown--content">
-            <span
-              class="navbar-dropdown--option"
-              v-for="(framework, index) in frameworks"
-              @click="changeTheme(framework)"
-              :key="`framework${index}`"
-              :value="locale"
-            >
-              <span v-if="framework == 'default'">
-                {{ $t("ui.general.default") }}
-              </span>
-              <span v-else>
-                {{ framework }}
-                <span
-                  class="version"
-                  v-if="theme == framework && framework != 'default'"
-                  v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
-                >
-                </span>
-              </span>
-            </span>
-          </div>
-        </div>
+    <Header />
 
-        <div class="navbar-dropdown">
-          <button class="navbar-dropdown--button">
-              {{ $t(`ui.general.language`) }}
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="navbar-dropdown--content">
-            <span
-              class="navbar-dropdown--option"
-              v-for="locale in i18nLocale.availableLocales"
-              :key="locale"
-              :value="locale"
-              @click="$i18n.locale = locale"
-            >
-              {{ $t(`ui.languages.${locale}`) }}
-            </span>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <aside class="sidebar">
+    <!-- <aside class="sidebar">
       <ul class="sidebar-items">
         <li>
           <p tabindex="0" class="sidebar-item sidebar-heading collapsible">
@@ -150,65 +84,9 @@ onMounted(async () => {
           </li>
         </li>
       </ul>
-    </aside>
+    </aside> -->
 
     <main class="page ui container" :class="theme">
-      <div class="ui-title" v-if="!isDev">
-        <h1>vue-tags-multiselect</h1>
-        <h2>{{ $t("ui.page.description.title") }}</h2>
-      </div>
-      <div class="ui-frameworks">
-        <ul>
-          <li>
-            <div class="framework">
-              <h4>UI framework:</h4>
-              <button
-                class="btn pointer"
-                v-for="(framework, index) in frameworks"
-                @click="changeTheme(framework)"
-                :key="`framework${index}`"
-                :class="{
-                  active: theme == framework,
-                  'btn-outline-primary': theme == 'bootstrap',
-                  'ui primary button': theme == 'semantic-ui',
-                  'basic ': theme == 'semantic-ui' && theme != framework,
-                }"
-              >
-                <span v-if="framework == 'default'">
-                  {{ $t("ui.general.default") }}
-                </span>
-                <span v-else>{{ framework }}</span>
-                <span
-                  class="version"
-                  v-if="theme == framework && framework != 'default'"
-                  v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
-                >
-                </span>
-              </button>
-            </div>
-          </li>
-
-          <li>
-            <h4>icon: font-awesome v4.7.0</h4>
-          </li>
-
-          <li>
-            <div class="language">
-              <h4>language:</h4>
-              <select v-model="$i18n.locale">
-                <option
-                  v-for="locale in i18nLocale.availableLocales"
-                  :key="locale"
-                  :value="locale"
-                >
-                  {{ $t(`ui.languages.${locale}`) }}
-                </option>
-              </select>
-            </div>
-          </li>
-        </ul>
-      </div>
-
       <div class="demo" v-if="theme != 'default'">
         <div class="demo-control">
           <a
@@ -221,7 +99,6 @@ onMounted(async () => {
           </a>
         </div>
       </div>
-      <hr />
 
       <div v-if="!isDev">
         <Keyboard></Keyboard>
@@ -260,6 +137,7 @@ onMounted(async () => {
 <style lang="scss">
 @import "./assets/stylesheets/header.scss";
 @import "./assets/stylesheets/layout.scss";
+@import "./assets/stylesheets/color.css";
 
 </style>
 
