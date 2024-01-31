@@ -1,4 +1,8 @@
 :root {
+  --background-color-transition: .3s ease;
+}
+
+:root {
   --background-color-primary: #ebebeb;
   --background-color-primary-transparent: #ebebebcc;
   --background-color-secondary: #dfdfdf;
@@ -8,7 +12,6 @@
   --text-color-primary: #222;
 }
 
-/* Define styles for the root window with dark - mode preference */
 :root.dark-theme {
   --background-color-primary: #1e1e1e;
   --background-color-primary-transparent: #1e1e1ecc;
@@ -23,4 +26,5 @@ html, body {
   background-color: var(--background-color-primary) !important;
   color-scheme: var(--color-scheme) !important;
   color: var(--text-color-primary) !important;
+  transition: background-color var(--background-color-transition);
 }
