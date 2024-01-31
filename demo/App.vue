@@ -93,7 +93,7 @@ onMounted(async () => {
             class="show-code-btn pointer"
             style="color: inherit"
             target="_blank"
-            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/master/src/assets/stylesheets/${framework}.scss`"
+            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/${framework}.scss`"
           >
             scss <i class="fa fa-external-link"></i>
           </a>
