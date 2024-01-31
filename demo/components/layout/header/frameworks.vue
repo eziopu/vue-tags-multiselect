@@ -7,27 +7,27 @@
 <script setup>
 import { inject } from "vue";
 
-const theme = inject("theme");
+const framework = inject("framework");
 const frameworks = inject("frameworks") || [];
 
-/* theme change */
-const changeTheme = (framework = "") => {
+/* framework change */
+const changeframework = (framework = "") => {
   location.href =
     window.location.protocol +
     "//" +
     window.location.host +
-    (framework != "default" ? "?theme=" + framework : "");
+    (framework != "default" ? "?framework=" + framework : "");
 };
 </script>
 
 <template>
   <div class="navbar-dropdown">
     <button class="navbar-dropdown--button">
-        <span v-if="theme == 'default'">
+        <span v-if="framework == 'default'">
           UI framework
         </span>
         <span v-else
-          v-html="theme + (theme == 'bootstrap' ? ' v4.6.0 ' : ' v2.4.1 ')"
+          v-html="framework + (framework == 'bootstrap' ? ' v4.6.0 ' : ' v2.4.1 ')"
         >
         </span>
       <i class="fa fa-caret-down"></i>
@@ -37,8 +37,8 @@ const changeTheme = (framework = "") => {
       <span
         v-for="(framework, index) in frameworks"
         class="navbar-dropdown--option"
-        :class="{active: theme == framework }"
-        @click="changeTheme(framework)"
+        :class="{active: framework == framework }"
+        @click="changeframework(framework)"
         :key="`framework${index}`"
         :value="locale"
       >
@@ -49,7 +49,7 @@ const changeTheme = (framework = "") => {
           {{ framework }}
           <span
             class="version"
-            v-if="theme == framework && framework != 'default'"
+            v-if="framework == framework && framework != 'default'"
             v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
           >
           </span>

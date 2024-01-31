@@ -51,14 +51,6 @@ export default {
     LabelAndSelect,
     GeneralDemo,
   },
-  props: {
-    theme: {
-      type: String,
-      default: () => {
-        return "default";
-      },
-    },
-  },
   data() {
     return {
       conjunction: "null",

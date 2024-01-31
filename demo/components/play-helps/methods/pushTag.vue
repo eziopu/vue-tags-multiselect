@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <h6 class="ui title" :class="{ ui: app.theme == 'semantic-ui' }">
+      <h6 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
         Parameter: object
       </h6>
       <div class="method__pushTag_parameter--main">

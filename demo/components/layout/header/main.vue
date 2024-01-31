@@ -8,7 +8,7 @@
     <div class="navbar-items">
       <Frameworks />
       <Languages />
-      <ColorMode />
+      <colorTheme />
     </div>
   </header>
 </template>
@@ -20,8 +20,8 @@
 </script>
 
 <script setup>
-import ColorMode from "./colorMode.vue";
 import Frameworks from "./frameworks.vue";
 import Languages from "./languages.vue";
+import colorTheme from "./colorTheme.vue";
 </script>
 

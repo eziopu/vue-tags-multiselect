@@ -6,7 +6,7 @@
         class="pointer"
         :class="{ active: app.displays.slots }"
       >
-        <h5 class="title" :class="{ ui: app.theme == 'semantic-ui' }">Slots</h5>
+        <h5 class="title" :class="{ ui: app.framework == 'semantic-ui' }">Slots</h5>
         <span class="arrow"></span>
       </div>
       <transition name="slide">

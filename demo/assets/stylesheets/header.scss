@@ -10,7 +10,7 @@ header.navbar {
   padding: 3px 12px;
   box-sizing: border-box;
   border-bottom: 1px solid #3e4c5a;
-  background-color: #22272e;
+  background-color: var(--background-color-primary);
 
   a {
     text-decoration: none;
@@ -30,7 +30,7 @@ header.navbar {
   .site-name {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #adbac7;
+    color: var(--text-color-primary);
     position: relative;
     overflow-wrap: break-word;
   }
@@ -45,67 +45,6 @@ header.navbar {
     display: inline-block;
     margin-left: 1.5rem;
   }
-
-  // .color-mode-toggle {
-  //   position: relative;
-  //   overflow: hidden;
-  //   display: inline-flex;
-  //   gap: 0.75rem;
-  //   align-items: center;
-  //   padding: 0.5rem;
-  //   background-color: #444;
-  //   border-radius: 2rem;
-  //   user-select: none;
-  //   cursor: pointer;
-  //   transition: translate 0.3s, background-color 0.8s;
-
-  //   &::before {
-  //     position: absolute;
-  //     top: 1px;
-  //     left: 1px;
-  //     content: "";
-  //     height: calc(100% - 2px);
-  //     aspect-ratio: 1;
-  //     border-radius: 50%;
-  //     transition: translate 0.3s, background-color 0.8s;
-  //     background: #fff;
-  //   }
-
-  //   input {
-  //     position: absolute;
-  //     appearance: none;
-  //   }
-
-  //   span {
-  //     position: relative;
-  //     transition: translate 0.6s ease 0.2s;
-
-  //     &:nth-of-type(1) {
-  //       translate: 0 150%;
-  //     }
-
-  //     &:nth-of-type(2) {
-  //       translate: 0 0%;
-  //     }
-  //   }
-
-  //   &:has(input:checked) {
-  //     background-color: #ddd;
-
-  //     span:nth-of-type(1) {
-  //       translate: 0 0%;
-  //     }
-
-  //     span:nth-of-type(2) {
-  //       translate: 0 -150%;
-  //     }
-  //   }
-
-  //   &:has(input:checked)::before {
-  //     translate: 100% 0;
-  //     background-color: #444;
-  //   }
-  // }
 
   .navbar-dropdown {
     float: left;
@@ -122,7 +61,6 @@ header.navbar {
       font-size: 16px;
       border: none;
       outline: none;
-      color: white;
       padding: 14px 16px;
       background-color: inherit;
       font-family: inherit;
@@ -132,7 +70,7 @@ header.navbar {
     .navbar-dropdown--content {
       display: none;
       position: absolute;
-      background-color: #f9f9f9;
+      background-color: var(--background-color-primary);
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
@@ -140,7 +78,7 @@ header.navbar {
 
     .navbar-dropdown--content .navbar-dropdown--option {
       float: none;
-      color: black;
+      color: var(--text-color-primary);
       padding: 6px 12px;
       text-decoration: none;
       display: block;
@@ -149,17 +87,7 @@ header.navbar {
     }
 
     .navbar-dropdown--content .navbar-dropdown--option:hover {
-      background-color: #ddd;
-    }
-  }
-
-
-
-  /* Use like: */
-  [data-mode="dark"] {
-    body {
-      background: #444;
-      color: #eee;
+      background-color: var(--background-color-secondary);
     }
   }
 }

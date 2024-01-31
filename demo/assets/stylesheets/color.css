@@ -1,15 +1,24 @@
 :root {
   --background-color-primary: #ebebeb;
-  --background-color-secondary: #fafafa;
+  --background-color-secondary: #dfdfdf;
+  --background-color-tertiary: #d8d8d8;
+  --color-scheme: atuo;
   --accent-color: #cacaca;
-  --text-primary-color: #222;
-  --element-size: 4rem;
+  --text-color-primary: #222;
 }
 
 /* Define styles for the root window with dark - mode preference */
 :root.dark-theme {
   --background-color-primary: #1e1e1e;
-  --background-color-secondary: #2d2d30;
+  --background-color-secondary: #28282b;
+  --background-color-tertiary: #2d2d30;
+  --color-scheme: dark;
   --accent-color: #3f3f3f;
-  --text-primary-color: #ddd;
+  --text-color-primary: #ddd;
+}
+
+html, body {
+  background-color: var(--background-color-primary) !important;
+  color-scheme: var(--color-scheme) !important;
+  color: var(--text-color-primary) !important;
 }

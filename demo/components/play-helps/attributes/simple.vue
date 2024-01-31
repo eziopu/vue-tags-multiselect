@@ -14,8 +14,8 @@
         <div
           class="simple attributes"
           :class="{
-            ui: app.theme == 'semantic-ui',
-            default: app.theme == 'default',
+            ui: app.framework == 'semantic-ui',
+            default: app.framework == 'default',
           }"
         >
           <LabelAndSelect value="disabled" />
@@ -53,8 +53,8 @@
         <div
           class="simple placeholders attributes"
           :class="{
-            ui: app.theme == 'semantic-ui',
-            default: app.theme == 'default',
+            ui: app.framework == 'semantic-ui',
+            default: app.framework == 'default',
           }"
         >
           <div class="flex-between text">

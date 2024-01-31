@@ -8,9 +8,9 @@
         :key="`mode${index}`"
         :class="{
           active: operateMode == mode,
-          'btn-outline-primary': theme == 'bootstrap',
-          'ui primary button': theme == 'semantic-ui',
-          'basic ': theme == 'semantic-ui' && operateMode != mode,
+          'btn-outline-primary': framework == 'bootstrap',
+          'ui primary button': framework == 'semantic-ui',
+          'basic ': framework == 'semantic-ui' && operateMode != mode,
         }"
       >
         {{ mode }}
@@ -188,7 +188,7 @@
     </Transition>
 
     <div id="datas">
-      <DataTable :theme="theme" :datas="tableDatas"></DataTable>
+      <DataTable :framework="framework" :datas="tableDatas"></DataTable>
     </div>
   </div>
 </template>
@@ -222,7 +222,7 @@ export default defineComponent({
     ShowHtmlCode,
   },
   props: {
-    theme: {
+    framework: {
       type: String,
       default: () => {
         return "default";

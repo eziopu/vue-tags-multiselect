@@ -14,8 +14,8 @@
         v-if="app.displays.slots"
         class="simple attributes"
         :class="{
-          ui: app.theme == 'semantic-ui',
-          default: app.theme == 'default',
+          ui: app.framework == 'semantic-ui',
+          default: app.framework == 'default',
         }"
       >
         <div class="flex-between text">

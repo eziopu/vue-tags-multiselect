@@ -15,19 +15,19 @@ provide("pages", readonly(pages));
 
 const isDev = false;
 
-const theme = ref("default");
+const framework = ref("default");
 const frameworks = ["default", "bootstrap", "semantic-ui"];
-provide("theme", theme);
+provide("framework", framework);
 provide("frameworks", readonly(frameworks));
 
-/* set theme */
-const urlQueryTheme = new URL(location.href).searchParams.get("theme");
+/* set framework */
+const urlQueryFramework = new URL(location.href).searchParams.get("framework");
 if (
   frameworks.find((framework) => {
-    return framework == urlQueryTheme;
+    return framework == urlQueryFramework;
   })
 ) {
-  theme.value = urlQueryTheme;
+  framework.value = urlQueryFramework;
 }
 
 const hostname = location.pathname;
@@ -44,14 +44,14 @@ onMounted(async () => {
 
 <template>
   <link
-    v-if="theme == 'bootstrap'"
+    v-if="framework == 'bootstrap'"
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
     crossorigin="anonymous"
   />
   <link
-    v-if="theme == 'semantic-ui'"
+    v-if="framework == 'semantic-ui'"
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
@@ -86,14 +86,14 @@ onMounted(async () => {
       </ul>
     </aside> -->
 
-    <main class="page ui container" :class="theme">
-      <div class="demo" v-if="theme != 'default'">
+    <main class="page ui container" :class="framework">
+      <div class="demo" v-if="framework != 'default'">
         <div class="demo-control">
           <a
             class="show-code-btn pointer"
             style="color: inherit"
             target="_blank"
-            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/master/src/assets/stylesheets/${theme}.scss`"
+            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/master/src/assets/stylesheets/${framework}.scss`"
           >
             scss <i class="fa fa-external-link"></i>
           </a>
@@ -120,16 +120,16 @@ onMounted(async () => {
         -->
       </div>
 
-      <Play :theme="theme"></Play>
+      <Play :framework="framework"></Play>
     </main>
   </div>
 </template>
 
-<style lang="scss" v-if="theme == 'bootstrap'">
+<style lang="scss" v-if="framework == 'bootstrap'">
 @import "./assets/stylesheets/UI-frameworks/bootstrap.scss";
 </style>
 
-<style lang="scss" v-if="theme == 'semantic-ui'">
+<style lang="scss" v-if="framework == 'semantic-ui'">
 @import "./assets/stylesheets/UI-frameworks/semantic-ui.scss";
 @import "./assets/stylesheets/UI-frameworks/bootstrap-display.css";
 </style>

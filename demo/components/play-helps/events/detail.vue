@@ -69,7 +69,7 @@
       <div><div>selectingTag</div></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
-        <pre class="data" :class="app.theme">{{
+        <pre class="data" :class="app.framework">{{
           app.tool.selectingTag || "{}"
         }}</pre>
       </div>
