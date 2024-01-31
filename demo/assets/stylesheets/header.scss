@@ -10,7 +10,7 @@ header.navbar {
   padding: 3px 12px;
   box-sizing: border-box;
   border-bottom: 1px solid #3e4c5a;
-  background-color: var(--background-color-primary);
+  background-color: var(--background-color-primary-transparent);
 
   a {
     text-decoration: none;
@@ -38,12 +38,13 @@ header.navbar {
   .navbar-items {
     display: flex;
     align-items: baseline;
+    cursor: pointer;
   }
 
   .navbar-items .navbar-item {
     position: relative;
     display: inline-block;
-    margin-left: 1.5rem;
+    margin: 0 0.6rem;
   }
 
   .navbar-dropdown {
@@ -57,7 +58,6 @@ header.navbar {
     }
 
     .navbar-dropdown--button {
-      cursor: pointer;
       font-size: 16px;
       border: none;
       outline: none;
@@ -74,20 +74,25 @@ header.navbar {
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
-    }
 
-    .navbar-dropdown--content .navbar-dropdown--option {
-      float: none;
-      color: var(--text-color-primary);
-      padding: 6px 12px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-      cursor: pointer;
-    }
+      .navbar-dropdown--option {
+        float: none;
+        color: var(--text-color-primary);
+        padding: 6px 12px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        cursor: pointer;
 
-    .navbar-dropdown--content .navbar-dropdown--option:hover {
-      background-color: var(--background-color-secondary);
+        &.active {
+          background-color: var(--background-color-secondary);
+          cursor: auto;
+        }
+      }
+
+      .navbar-dropdown--option:hover {
+        background-color: var(--background-color-tertiary);
+      }
     }
   }
 }

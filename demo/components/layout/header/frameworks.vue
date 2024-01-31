@@ -11,12 +11,15 @@ const framework = inject("framework");
 const frameworks = inject("frameworks") || [];
 
 /* framework change */
-const changeframework = (framework = "") => {
+const changeframework = (inputFramework = "") => {
+  if (framework.value == inputFramework) {
+    return;
+  }
   location.href =
     window.location.protocol +
     "//" +
     window.location.host +
-    (framework != "default" ? "?framework=" + framework : "");
+    (inputFramework != "default" ? "?framework=" + inputFramework : "");
 };
 </script>
 
@@ -35,22 +38,22 @@ const changeframework = (framework = "") => {
     
     <div class="navbar-dropdown--content">
       <span
-        v-for="(framework, index) in frameworks"
+        v-for="(inputFramework, index) in frameworks"
         class="navbar-dropdown--option"
-        :class="{active: framework == framework }"
-        @click="changeframework(framework)"
+        :class="{active: framework == inputFramework }"
+        @click="changeframework(inputFramework)"
         :key="`framework${index}`"
         :value="locale"
       >
-        <span v-if="framework == 'default'">
+        <span v-if="inputFramework == 'default'">
           {{ $t("ui.general.default") }}
         </span>
         <span v-else>
-          {{ framework }}
+          {{ inputFramework }}
           <span
             class="version"
-            v-if="framework == framework && framework != 'default'"
-            v-html="framework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
+            v-if="framework == inputFramework && inputFramework != 'default'"
+            v-html="inputFramework == 'bootstrap' ? ' v4.6.0' : ' v2.4.1'"
           >
           </span>
         </span>

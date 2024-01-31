@@ -1,6 +1,6 @@
 <script>
   export default {
-    name: "header-colorMode",
+    name: "header-colorTheme",
   }
 </script>
 
@@ -9,7 +9,7 @@
 import { ref } from "vue";
 
 const getTheme = () => {
-  return localStorage.getItem("user-color");
+  return localStorage.getItem("user-theme");
 }
 
 const getMediaPreference = () => {
@@ -32,10 +32,10 @@ const toggleTheme = () => {
   }
 }
 
-const setTheme = (color) => {
-  localStorage.setItem("user-theme", color);
-  userTheme.value = color;
-  document.documentElement.className = color;
+const setTheme = (theme) => {
+  localStorage.setItem("user-theme", theme);
+  userTheme.value = theme;
+  document.documentElement.className = theme;
 }
 
 const userTheme = ref("light-theme");
@@ -47,7 +47,7 @@ setTheme(initUserTheme);
 <template>
   <div class="navbar-item">
     <div class="navbar-item--toggle-theme" @click="toggleTheme()">
-      <i class="fa fa-moon-o" v-if="userTheme == 'light-color'"></i>
+      <i class="fa fa-moon-o" v-if="userTheme == 'light-theme'"></i>
       <i class="fa fa-sun-o" v-else></i>
     </div>
   </div>
@@ -55,7 +55,7 @@ setTheme(initUserTheme);
 
 <style scoped>
 .navbar-item--toggle-theme{
-  width: 1.2rem
+  width: 1.2rem;
 }
 i.fa {
   font-size: 1.2rem;

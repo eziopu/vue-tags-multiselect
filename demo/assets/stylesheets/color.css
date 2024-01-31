@@ -1,5 +1,6 @@
 :root {
   --background-color-primary: #ebebeb;
+  --background-color-primary-transparent: #ebebebcc;
   --background-color-secondary: #dfdfdf;
   --background-color-tertiary: #d8d8d8;
   --color-scheme: atuo;
@@ -10,6 +11,7 @@
 /* Define styles for the root window with dark - mode preference */
 :root.dark-theme {
   --background-color-primary: #1e1e1e;
+  --background-color-primary-transparent: #1e1e1ecc;
   --background-color-secondary: #28282b;
   --background-color-tertiary: #2d2d30;
   --color-scheme: dark;
