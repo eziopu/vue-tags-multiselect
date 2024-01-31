@@ -3,15 +3,43 @@ import { ref, onMounted, nextTick, provide, readonly } from "vue";
 
 // import HelloWorld from "./components/HelloWorld.vue";
 import Keyboard from "./components/keyboard.vue";
-import AppAttributes from "./components/app/main.vue";
+import Attributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
+// demo
+import Install from "./components/play-helps/main.vue";
+import Slots from "./components/play-helps/main.vue";
+import Dropdown from "./components/play-helps/main.vue";
+import Option from "./components/play-helps/main.vue";
 
 import Header from "./components/layout/header/main.vue";
 
 const currentPage = ref("install");
+const components = {
+  "install": Install,
+  "attributes": Attributes,
+  "slots": Slots,
+  "slot-dropdown": Dropdown,
+  "slot-option": Option,
+  "play": Play
+};
 const pages = ["install", "attributes", "slots", "slot-dropdown", "slot-option", "play"];
 provide("currentPage", currentPage);
-provide("pages", readonly(pages));
+provide("pages", readonly(Object.keys(components)));
+
+const getComponentPage = (input) => {
+  const component = components[input];
+  return component ? component : components["install"];
+}
+
+/* set current page */
+const urlPathname = new URL(location.href).pathname.replace(/\//g, '');
+if (urlPathname == "") {
+  currentPage.value = pages[5];
+} else {
+  if (components[urlPathname] != undefined) {
+    currentPage.value = urlPathname;
+  }
+}
 
 const isDev = false;
 
@@ -28,11 +56,6 @@ if (
   })
 ) {
   framework.value = urlQueryFramework;
-}
-
-const hostname = location.pathname;
-if (hostname == "/") {
-  currentPage.value = pages[0];
 }
 
 onMounted(async () => {
@@ -61,7 +84,7 @@ onMounted(async () => {
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
-  <div :class="colorMode">
+  <div>
     <Header />
 
     <!-- <aside class="sidebar">
@@ -99,11 +122,18 @@ onMounted(async () => {
           </a>
         </div>
       </div>
-
-      <div v-if="!isDev">
-        <Keyboard></Keyboard>
-        <AppAttributes></AppAttributes>
+      
+      {{ currentPage }}
+      <Transition mode="out-in">
+        <component
+          :is="getComponentPage(currentPage)"
+          :framework="framework">
+        </component>
+      </Transition>
+      
         <!-- 
+          <Keyboard></Keyboard>
+          <AppAttributes></AppAttributes>
           <h3>Dropdown Slots Attributes</h3>
           <DropdownAttributes></DropdownAttributes>
 
@@ -117,10 +147,9 @@ onMounted(async () => {
           <CustomStyle></CustomStyle>
 
           <h3>Operate all Attributes</h3>
+          <Play :framework="framework"></Play>
         -->
-      </div>
 
-      <Play :framework="framework"></Play>
     </main>
   </div>
 </template>
@@ -142,85 +171,5 @@ onMounted(async () => {
 </style>
 
 <style scoped lang="scss">
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-.container {
-  .ui-title {
-    margin: 12px 0;
-    display: flex;
-    align-items: flex-end;
-    @media (max-width: 768px) {
-      flex-wrap: wrap;
-    }
-    @media (min-width: 768px) {
-      h2 {
-        margin-left: 6px;
-      }
-    }
-  }
-  .ui-frameworks {
-    li {
-      margin: 6px 0;
-    }
 
-    .framework,
-    .language {
-      display: inline-flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-    .btn {
-      margin: 0 6px;
-    }
-  }
-  &.default {
-    .ui-frameworks .btn.active {
-      background: #dadada;
-    }
-  }
-  &.bootstrap,
-  &.default {
-    @media all and (max-width: 768px) {
-      .ui-frameworks .btn {
-        padding: 0.375rem 0.6rem;
-        .version {
-          font-size: 12px;
-        }
-      }
-    }
-    @media all and (max-width: 540px) {
-      .ui-frameworks .framework {
-        display: block;
-      }
-    }
-    @media all and (max-width: 417px) {
-      .ui-frameworks {
-        zoom: 80%;
-      }
-    }
-  }
-  &.semantic-ui {
-    @media all and (max-width: 540px) {
-      .ui-frameworks .btn {
-        padding: 0.7em 0.6em;
-      }
-    }
-    @media all and (max-width: 464px) {
-      .ui-frameworks {
-        .btn {
-          margin: 0 3px;
-        }
-        .framework {
-          display: block;
-        }
-      }
-    }
-  }
-}
 </style>

@@ -6,6 +6,7 @@
     </a>
 
     <div class="navbar-items">
+      <Pages />
       <Frameworks />
       <Languages />
       <colorTheme />
@@ -20,6 +21,7 @@
 </script>
 
 <script setup>
+import Pages from "./pages.vue";
 import Frameworks from "./frameworks.vue";
 import Languages from "./languages.vue";
 import colorTheme from "./colorTheme.vue";
