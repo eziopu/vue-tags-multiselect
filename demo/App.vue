@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from "vue";
 
-// import HelloWorld from "./components/HelloWorld.vue";
-import Keyboard from "./components/keyboard.vue";
+// == Components ==============
+// import Keyboard from "./components/keyboard.vue";
 import Attributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
 // demo
@@ -13,6 +13,8 @@ import Option from "./components/play-helps/main.vue";
 
 import Header from "./components/layout/header/main.vue";
 
+
+// == Page ==============
 const currentPage = ref("install");
 const components = {
   "install": Install,
@@ -41,8 +43,8 @@ if (urlPathname == "") {
   }
 }
 
-const isDev = false;
 
+// == Framework ==============
 const framework = ref("default");
 const frameworks = ["default", "bootstrap", "semantic-ui"];
 provide("framework", framework);
@@ -84,6 +86,7 @@ onMounted(async () => {
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+
   <div>
     <Header />
 
@@ -124,7 +127,7 @@ onMounted(async () => {
       </div>
       
       {{ currentPage }}
-      <Transition mode="out-in">
+      <Transition name="out-in">
         <component
           :is="getComponentPage(currentPage)"
           :framework="framework">
@@ -171,5 +174,18 @@ onMounted(async () => {
 </style>
 
 <style scoped lang="scss">
+.out-in-enter-active,
+.out-in-leave-active {
+  transition: all 0.25s ease-out;
+}
 
+.out-in-enter-from {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.out-in-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
 </style>

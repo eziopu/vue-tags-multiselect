@@ -18,6 +18,7 @@ const setCurrentPage = (input) => {
 const pushURLPathnameState = (newPath) => {
   const currentUrl = new URL(window.location.href);
   currentUrl.pathname = newPath;
+  
   const newUrl = currentUrl.href;
   window.history.pushState({ path: newUrl }, '', newUrl);
 }
