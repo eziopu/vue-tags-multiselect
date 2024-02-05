@@ -1,0 +1,23 @@
+html.dark-theme {
+  .v-tags-multiselect {
+    input {
+      color: var(--text-color-primary);
+    }
+
+    .v-tags-multiselect__main {
+      background-color: var(--background-color-secondary) !important;
+    }
+    .v-tags-multiselect__main--dropdowns {
+      background-color: var(--background-color-tertiary) !important;
+      color: var(--text-color-primary) !important;
+    }
+    .option.hover {
+      background-color: var(--background-color-primary) !important;
+      color: var(--color-scheme) !important;
+    }
+
+    .tag .tag__title {
+      color: var(--color-scheme) !important;
+    }
+  }
+}
