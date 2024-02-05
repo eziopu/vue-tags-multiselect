@@ -29,7 +29,7 @@ span.arrow {
 span.arrow.down {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 6px solid #cccccc;
+  border-top: 6px solid var(--text-color-primary);
 }
 
 .container.default {
@@ -171,12 +171,12 @@ span.arrow.down {
 
         &.titles h6 {
           margin: 0;
-          background: #e9ecef;
+          background: var(--background-color-secondary);
           padding: 0.75rem;
         }
 
         &:not(.titles):not(:last-child) {
-          border-bottom: 1px solid #dee2e6;
+          border-bottom: 1px solid var(--background-color-tertiary);
         }
 
         &:not(.titles)>div {
@@ -247,7 +247,7 @@ span.arrow.down {
       display: inline-block;
       width: 12px;
       height: 3px;
-      background-color: black;
+      background-color: var(--text-color-primary);
       transition: 0.4s ease;
     }
 
