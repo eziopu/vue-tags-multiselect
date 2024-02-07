@@ -12,6 +12,10 @@ html.dark-theme {
       color: var(--text-color-primary);
     }
 
+    .v-option__undo--arrow-left {
+      border-color: #c7c7c7;
+    }
+
     .v-option {
       color: #c7c7c7 !important
     }
@@ -25,8 +29,8 @@ html.dark-theme {
       color: #c7c7c7;
 
       .v-tag__title {
-        background-color: var(--background-color-tertiary);
-        color: #fff;
+        background-color: black;
+        color: #999;
       }
     }
   }

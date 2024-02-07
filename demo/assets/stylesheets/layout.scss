@@ -203,7 +203,7 @@ span.arrow.down {
             padding: 0.4rem;
 
             &:nth-child(even) {
-              background: #e9ecef;
+              background: var(--background-color-tertiary);
             }
 
             &>div {
