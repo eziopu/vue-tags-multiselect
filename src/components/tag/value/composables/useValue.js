@@ -42,11 +42,6 @@ export default function useValue(props, _context, dep) {
     return appEditTagIndex.value == props.tag.index;
   });
 
-  const noCustomeHoverAndEditMyself = computed(() => {
-    if (appIsLock.value) return false;
-    return editMyself.value == true && props.tag.custom == false;
-  });
-
   const editByinput = computed(() => {
     return props.tag.custom == true && editMyself.value == true;
   });
@@ -103,7 +98,6 @@ export default function useValue(props, _context, dep) {
     elTagValueContent,
     editByinput,
     editMyself,
-    noCustomeHoverAndEditMyself,
     keydownHorizontalLock,
 
     handleClick,

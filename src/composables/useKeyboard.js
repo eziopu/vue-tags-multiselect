@@ -95,7 +95,7 @@ export default function useKeyboard(props, context, dep) {
     setTimeout(() => {
       if (isActiveElementContainApp() == true) {
         const actElm = document.activeElement;
-        const isTagValueInput = actElm.classList.contains("tag__value--input");
+        const isTagValueInput = actElm.classList.contains("v-tag__value--input");
         keydown.horizontalLock = isTagValueInput;
         keydown.backspaceLock = isTagValueInput;
         keydown.enterLock = isTagValueInput;

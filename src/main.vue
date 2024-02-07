@@ -8,7 +8,7 @@
     @keydown="handleKeydown"
     @keyup="handleKeyup"
     @click="isEnable = true"
-    :class="{ active: isActive, disabled: disabled, loading: loading, ['tag-'+tagPosition] :isTagPositionVisible }"
+    :class="{ active: isActive, disabled: disabled, loading: loading, ['v-tag-'+tagPosition] :isTagPositionVisible }"
   >
     <div
       class="v-tags-multiselect__tags overflow-tags"
@@ -223,7 +223,7 @@ export default defineComponent({
     cursor: wait !important;
   }
 
-  &[class*="tag-bottom"] {
+  &[class*="v-tag-bottom"] {
     display: flex;
     flex-direction: column-reverse;
   }
