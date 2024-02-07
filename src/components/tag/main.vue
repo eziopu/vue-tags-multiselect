@@ -146,9 +146,9 @@ export default {
   & {
     display: inline-flex;
     vertical-align: -webkit-baseline-middle;
+    background-color:#ebebeb;
     transition: background-color 0.3s ease;
     margin: 0.2em 1.6px;
-    padding: 0.1em 0px;
   }
 
   .v-tag__values {
@@ -171,6 +171,8 @@ export default {
 
   .v-tag__title {
     color: initial;
+    background-color: #d8d8d8;
+
     border-radius: 0;
 
     border-top-left-radius: inherit;
@@ -224,23 +226,6 @@ export default {
     .v-tag__close-icon--right {
       margin-left: -2px;
       transform: rotate(45deg);
-    }
-  }
-
-  &,
-  .v-tag__close-icon {
-    background-color: #ebebeb;
-  }
-  .v-tag__title {
-    background-color: #d8d8d8;
-  }
-  &.hover {
-    &,
-    .v-tag__close-icon {
-      background-color: #d8d8d8;
-    }
-    .v-tag__title {
-      background-color: #c8c8c8;
     }
   }
 }
