@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dropdown"
+    class="v-dropdown"
     ref="elDropdown"
     :class="{
       'no-title': true,
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.dropdown {
+.v-dropdown {
   &.hidden {
     display: none;
   }

@@ -11,12 +11,12 @@ html.dark-theme {
       background-color: var(--background-color-tertiary) !important;
       color: var(--text-color-primary) !important;
     }
-    .option.hover {
+    .v-option.hover {
       background-color: var(--background-color-primary) !important;
       color: var(--color-scheme) !important;
     }
 
-    .tag .tag__title {
+    .v-tag .v-tag__title {
       color: var(--color-scheme) !important;
     }
   }

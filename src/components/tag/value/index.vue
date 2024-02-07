@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tag__value"
+    class="v-tag__value"
     :class="{
       editing: editMyself,
       pointer: isEditVisible,
@@ -10,13 +10,13 @@
     @click="handleClick"
   >
     <!-- {{ isInputValueRepeat }} | -->
-    <div v-if="editByinput && isInputValueRepeat" class="tag__value--warning">
-      {{ appPlaceholders.tagValueRepeat }}
+    <div v-if="editByinput && isInputValueRepeat" class="v-tag__value--warning">
+      {{ appPlaceholders.v-tagValueRepeat }}
     </div>
 
     <div
       v-show="tag.custom == false || !editByinput"
-      class="tag__value--content"
+      class="v-tag__value--content"
       :class="{
         transition: appProps.transition,
         outline: editMyself,
@@ -28,7 +28,7 @@
     />
     <input
       type="text"
-      class="tag__value--input"
+      class="v-tag__value--input"
       :class="{ error: isInputValueRepeat }"
       v-show="editByinput"
       v-model="inputValue"
@@ -80,9 +80,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tag__value {
+.v-tag__value {
   &:focus,
-  .tag__value--content:focus {
+  .v-tag__value--content:focus {
     outline: none;
   }
 
@@ -90,7 +90,7 @@ export default {
     cursor: pointer;
   }
 
-  .tag__value--input {
+  .v-tag__value--input {
     outline: none;
     line-height: 0em;
     transition: color 0.2s ease-in-out;
@@ -103,7 +103,7 @@ export default {
     }
   }
 
-  .tag__value--content {
+  .v-tag__value--content {
     &.transition:after {
       transform-origin: 0% 50%;
       transition: transform 250ms ease-in-out;
@@ -119,7 +119,7 @@ export default {
     }
   }
 
-  .tag__value--warning {
+  .v-tag__value--warning {
     position: absolute;
     // left: 10px;
     z-index: 1;

@@ -43,17 +43,17 @@
       border-radius: .28571429rem !important;
       box-shadow: 0 2px 3px 0 rgb(34 36 38 / 15%);
     }
-    .dropdown .option {
+    .v-dropdown .v-option {
       padding: .58571429rem 1.14285714rem;
       white-space: normal;
       word-wrap: normal;
     }
-    .dropdown .option.hover {
+    .v-dropdown .v-option.hover {
       background: rgba(0,0,0,.05);
       color: rgba(0,0,0,.95);
     }
   
-    .tag {
+    .v-tag {
       user-select: none;
       white-space: normal;
       font-size: 1em;
@@ -63,6 +63,7 @@
       border-radius: .28571429rem;
       margin: 0.1em 0.2em;
     }
+    
     input {
       color: #212529;
     }

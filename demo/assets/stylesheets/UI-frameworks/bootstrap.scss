@@ -14,13 +14,13 @@
       box-shadow: none;
     }
   
-    &.disabled .tag {
-      .tag__title {
+    &.disabled .v-tag {
+      .v-tag__title {
         background-color: #b9b9b9;
       }
   
-      .tag__value,
-      .tag__close-icon {
+      .v-tag__value,
+      .v-tag__close-icon {
         background-color: #d8d8d8;
       }
     }
@@ -53,7 +53,7 @@
       border-radius: .25rem;
     }
 
-    .tag {
+    .v-tag {
       border-radius: .25rem;
     }
 

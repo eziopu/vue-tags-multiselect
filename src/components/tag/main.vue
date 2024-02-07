@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tag"
+    class="v-tag"
     :class="[
       tag.classList,
       {
@@ -12,22 +12,22 @@
       v-if="tag.titleElm"
       v-html="tag.titleElm"
       :class="{
-        tag__title: true,
+        'v-tag__title': true,
         'no-value': !tag.values && !tag.value,
       }"
     />
     <ValueRender v-if="tag.valueElm || tag.value" :tag="tag" />
 
-    <div class="tag__values" v-if="tag.values">
+    <div class="v-tag__values" v-if="tag.values">
       <template
         v-for="(value, childIndex) in tag.values"
-        :key="`tag__value--${childIndex}`"
+        :key="`v-tag__value--${childIndex}`"
       >
         <ValueRender :tag="value" />
         <div
           v-if="childIndex + 1 != tag.values.length"
-          class="tag__values--conjunction"
-          :key="`tag__values--conjunction--${childIndex}`"
+          class="v-tag__values--conjunction"
+          :key="`v-tag__values--conjunction--${childIndex}`"
         >
           <slot name="tag-conjunction">&</slot>
         </div>
@@ -38,10 +38,10 @@
       v-if="isDeleteVisible"
       @click="deletes"
       :class="{ pointer: appIsLock == false }"
-      class="tag__close-icon"
+      class="v-tag__close-icon"
     >
-      <div class="tag__close-icon--left"></div>
-      <div class="tag__close-icon--right"></div>
+      <div class="v-tag__close-icon--left"></div>
+      <div class="v-tag__close-icon--right"></div>
     </div>
   </div>
 </template>
@@ -142,7 +142,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tag {
+.v-tag {
   & {
     display: inline-flex;
     vertical-align: -webkit-baseline-middle;
@@ -151,16 +151,16 @@ export default {
     padding: 0.1em 0px;
   }
 
-  .tag__values {
+  .v-tag__values {
     display: inline-flex;
 
-    .tag__values--conjunction {
+    .v-tag__values--conjunction {
       padding: 0px 2px;
     }
   }
 
-  .tag__title,
-  .tag__value {
+  .v-tag__title,
+  .v-tag__value {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,18 +169,18 @@ export default {
     transition: background-color 0.5s ease;
   }
 
-  .tag__title {
+  .v-tag__title {
     color: initial;
     border-radius: 0;
 
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
   }
-  .tag__title.no-value {
+  .v-tag__title.no-value {
     border-radius: inherit;
   }
 
-  .tag__value {
+  .v-tag__value {
     &.no-lable {
       border-top-left-radius: inherit;
       border-bottom-left-radius: inherit;
@@ -196,7 +196,7 @@ export default {
     cursor: pointer;
   }
 
-  .tag__close-icon {
+  .v-tag__close-icon {
     position: relative;
     width: 26px;
     display: inline-flex;
@@ -208,8 +208,8 @@ export default {
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
 
-    .tag__close-icon--left,
-    .tag__close-icon--right {
+    .v-tag__close-icon--left,
+    .v-tag__close-icon--right {
       position: relative;
       width: 2px;
       height: 18px;
@@ -217,29 +217,29 @@ export default {
       transition: background-color 0.5s ease;
     }
 
-    .tag__close-icon--left {
+    .v-tag__close-icon--left {
       transform: rotate(-45deg);
     }
 
-    .tag__close-icon--right {
+    .v-tag__close-icon--right {
       margin-left: -2px;
       transform: rotate(45deg);
     }
   }
 
   &,
-  .tag__close-icon {
+  .v-tag__close-icon {
     background-color: #ebebeb;
   }
-  .tag__title {
+  .v-tag__title {
     background-color: #d8d8d8;
   }
   &.hover {
     &,
-    .tag__close-icon {
+    .v-tag__close-icon {
       background-color: #d8d8d8;
     }
-    .tag__title {
+    .v-tag__title {
       background-color: #c8c8c8;
     }
   }

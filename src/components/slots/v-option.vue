@@ -1,6 +1,6 @@
 <template>
   <div
-    class="option"
+    class="v-option"
     ref="elOption"
     :class="{
       title: props.title == true,
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.option {
+.v-option {
   padding: 8px 18px;
   height: auto;
   text-align: left;
