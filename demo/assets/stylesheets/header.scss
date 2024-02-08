@@ -1,4 +1,4 @@
-header.navbar {
+header {
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -48,6 +48,15 @@ header.navbar {
     margin: 0 0.6rem;
   }
 
+  .navbar-line {
+    display: none;
+    border: 1px solid var(--text-color-primary);
+    margin: 0px 36px;
+    transition-delay: 0.5s;
+    transition: transform 0.5s cubic-bezier(0.215, 0.6, 0.355, 1);
+    transform: translateX(100%);
+  }
+
   .navbar-dropdown {
     float: left;
     overflow: hidden;
@@ -94,6 +103,177 @@ header.navbar {
       .navbar-dropdown--option:hover {
         background-color: var(--background-color-tertiary);
       }
+    }
+  }
+}
+
+/* =============================================================================
+* = .burger
+** ========================================================================== */
+:root {
+  --burger--size: 2.6rem;
+  --burger--bar--margin: 1.8rem;
+}
+
+
+header {
+  .header-burger {
+    display: none;
+    z-index: 4;
+    cursor: pointer;
+    flex: none;
+    position: relative;
+    width: var(--burger--size);
+    height: var(--burger--size);
+    padding: 0 6px;
+    vertical-align: middle;
+    // background: #151515;
+    cursor: pointer;
+  }
+
+  .burger__box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .burger__bar {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    border-radius: 0;
+    padding: 0 6px;
+    width: calc(var(--burger--size) * 0.8);
+    height: 1px;
+    // background: #fff;
+    background: #151515;
+    transition-duration: 0.5s;
+    transform-origin: 50% 50%;
+
+    &:first-of-type {
+      top: var(--burger--bar--margin);
+    }
+
+    &:nth-of-type(2) {
+      top: 50%;
+      margin-top: -0.5px;
+    }
+
+    &:nth-of-type(3) {
+      bottom: var(--burger--bar--margin);
+    }
+  }
+
+  &.active .header-burger .burger__box .burger__bar {
+    &:first-of-type {
+      top: 50%;
+      margin-top: -0.5px;
+      transition: top 0.5s, margin 0.5s, transform 0.5s ease 0.5s;
+      transform: rotate(-45deg);
+    }
+  
+    &:nth-of-type(2) {
+      opacity: 0;
+      transition-delay: 0.4s;
+      transform: rotateY(90deg);
+    }
+  
+    &:nth-of-type(3) {
+      bottom: 50%;
+      margin-bottom: -0.5px;
+      transition: bottom 0.5s, margin 0.5s, transform 0.5s ease 0.5s;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+/* =============================================================================
+ * = .header-overlay
+** ========================================================================== */
+
+.header-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  transition: 0.5s cubic-bezier(0.17, 0.84, 0.44, 1);
+  transition-property: background;
+}
+
+header.active .header-overlay {
+  display: block;
+}
+
+
+/* =============================================================================
+ * = RWD
+** ========================================================================== */
+
+@media (max-width: 890px) {
+  header {
+    .navbar-items {
+      position: fixed;
+
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: stretch;
+      justify-content: flex-end;
+
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      z-index: 4;
+      box-sizing: border-box;
+      width: 50%;
+      padding-top: var(--header-height);
+      background: var(--background-color-tertiary);
+      transform: translate(100%);
+      transition: transform .5s cubic-bezier(.215, .6, .355, 1);
+
+      .navbar-item {
+        display: block;
+        text-align: right;
+      }
+
+      .navbar-dropdown {
+        text-align: right;
+      }
+
+      .navbar-dropdown--content {
+        display: block;
+        position: relative;
+        text-align: right;
+      }
+
+    }
+
+    .header-burger {
+      display: block;
+    }
+  }
+
+  header.active {
+    .navbar-items {
+      visibility: visible;
+      box-shadow: 0 0 40px rgba(#333, 0.5);
+
+      transform: translateX(0%);
+      transition-duration: 0.5s;
+    }
+
+    .navbar-line {
+      display: block;
+      transform: translateX(0%);
     }
   }
 }

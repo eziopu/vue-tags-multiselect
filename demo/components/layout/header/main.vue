@@ -7,10 +7,15 @@
 
     <div class="navbar-items">
       <Pages />
+      <div class="navbar-line"></div>
       <Frameworks />
       <Languages />
       <colorTheme />
     </div>
+
+    <Burger />
+    <div class="header-overlay"></div>
+
   </header>
 </template>
 
@@ -25,5 +30,7 @@ import Pages from "./pages.vue";
 import Frameworks from "./frameworks.vue";
 import Languages from "./languages.vue";
 import colorTheme from "./colorTheme.vue";
+import Burger from "./burger.vue";
+
 </script>
 
