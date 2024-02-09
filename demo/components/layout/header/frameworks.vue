@@ -24,7 +24,7 @@ const changeframework = (inputFramework = "") => {
 </script>
 
 <template>
-  <div class="navbar-dropdown">
+  <div class="navbar-dropdown navbar-frameworks">
     <button class="navbar-dropdown--button">
         <span v-if="framework == 'default'">
           UI framework

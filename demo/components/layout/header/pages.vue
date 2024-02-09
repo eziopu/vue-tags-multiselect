@@ -26,7 +26,7 @@ const pushURLPathnameState = (newPath) => {
 </script>
 
 <template>
-  <div class="navbar-dropdown">
+  <div class="navbar-dropdown navbar-pages">
     <button class="navbar-dropdown--button">
         Pages
       <i class="fa fa-caret-down"></i>

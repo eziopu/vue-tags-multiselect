@@ -45,7 +45,7 @@ setTheme(initUserTheme);
 </script>
 
 <template>
-  <div class="navbar-item">
+  <div class="navbar-item navbar-toggleTheme">
     <div class="navbar-item--toggle-theme" @click="toggleTheme()">
       <i class="fa fa-moon-o" v-if="userTheme == 'light-theme'"></i>
       <i class="fa fa-sun-o" v-else></i>

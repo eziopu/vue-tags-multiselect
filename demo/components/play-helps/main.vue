@@ -432,7 +432,7 @@ export default defineComponent({
 .operate-mode {
   position: absolute;
   right: -6px;
-  top: -6px;
+  top: -12px;
 
   &.simple {
     right: 6px;

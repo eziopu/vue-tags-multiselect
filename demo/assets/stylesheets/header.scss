@@ -1,6 +1,6 @@
 header {
   position: fixed;
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
   align-items: center;
   z-index: 20;
@@ -31,6 +31,7 @@ header {
   .site-name {
     font-size: 1.3rem;
     font-weight: 600;
+    margin-top: 0;
     color: var(--text-color-primary);
     position: relative;
     overflow-wrap: break-word;
@@ -113,8 +114,8 @@ header {
 :root {
   --burger--size: 2.6rem;
   --burger--bar--margin: 1.8rem;
+  --burger--transition--time: 0.3s;
 }
-
 
 header {
   .header-burger {
@@ -123,11 +124,10 @@ header {
     cursor: pointer;
     flex: none;
     position: relative;
-    width: var(--burger--size);
+    width: calc(var(--burger--size) * 0.6);
     height: var(--burger--size);
     padding: 0 6px;
     vertical-align: middle;
-    // background: #151515;
     cursor: pointer;
   }
 
@@ -145,12 +145,11 @@ header {
     position: absolute;
     z-index: 2;
     border-radius: 0;
-    padding: 0 6px;
-    width: calc(var(--burger--size) * 0.8);
+    width: 100%;
     height: 1px;
     // background: #fff;
-    background: #151515;
-    transition-duration: 0.5s;
+    background: var(--text-color-primary);
+    transition-duration: calc(var(--burger--transition--time) * 1.5);;
     transform-origin: 50% 50%;
 
     &:first-of-type {
@@ -171,20 +170,26 @@ header {
     &:first-of-type {
       top: 50%;
       margin-top: -0.5px;
-      transition: top 0.5s, margin 0.5s, transform 0.5s ease 0.5s;
+      transition:
+        top var(--burger--transition--time)
+        margin var(--burger--transition--time),
+        transform var(--burger--transition--time) ease var(--burger--transition--time);
       transform: rotate(-45deg);
     }
   
     &:nth-of-type(2) {
       opacity: 0;
-      transition-delay: 0.4s;
+      transition-delay: calc(var(--burger--transition--time) * 0.8);
       transform: rotateY(90deg);
     }
   
     &:nth-of-type(3) {
       bottom: 50%;
       margin-bottom: -0.5px;
-      transition: bottom 0.5s, margin 0.5s, transform 0.5s ease 0.5s;
+      transition:
+        bottom var(--burger--transition--time),
+        margin var(--burger--transition--time),
+        transform var(--burger--transition--time) ease var(--burger--transition--time);
       transform: rotate(45deg);
     }
   }
@@ -234,9 +239,9 @@ header.active .header-overlay {
       left: auto;
       z-index: 4;
       box-sizing: border-box;
-      width: 50%;
+      width: 60%;
       padding-top: var(--header-height);
-      background: var(--background-color-tertiary);
+      background: var(--background-color-primary);
       transform: translate(100%);
       transition: transform .5s cubic-bezier(.215, .6, .355, 1);
 
@@ -250,11 +255,24 @@ header.active .header-overlay {
       }
 
       .navbar-dropdown--content {
-        display: block;
         position: relative;
-        text-align: right;
+        box-shadow: none;
       }
 
+      .navbar-dropdown--option {
+        text-align: right !important;
+        padding-right: 30px !important;
+      }
+
+      .navbar-toggleTheme {
+        position: absolute;
+        top: 10px;
+        zoom: 1.4;
+      }
+
+      .navbar-pages .navbar-dropdown--content{
+        display: block;
+      }
     }
 
     .header-burger {
@@ -265,7 +283,7 @@ header.active .header-overlay {
   header.active {
     .navbar-items {
       visibility: visible;
-      box-shadow: 0 0 40px rgba(#333, 0.5);
+      box-shadow: 0 0 40px rgba(var(--text-color-primary), 0.5);
 
       transform: translateX(0%);
       transition-duration: 0.5s;
@@ -274,6 +292,14 @@ header.active .header-overlay {
     .navbar-line {
       display: block;
       transform: translateX(0%);
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  header {
+    .navbar-items {
+      width: 80%;
     }
   }
 }
