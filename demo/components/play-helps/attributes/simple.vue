@@ -43,9 +43,10 @@
                 type="text"
                 class="form-control"
                 v-model="app.placeholder"
-                :style="app.framework == 'default'
-                  ? 'min-width: 100px; width: 100%;'
-                  : ''"
+                :style="{
+                  'min-width': app.framework != 'bootstrap' ? '100px' : '',
+                  'width': app.framework != 'bootstrap' ? '100%' : ''
+                }"
               />
             </div>
           </div>
@@ -137,7 +138,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .attributes:first-child {
-  @media (max-width: 768px) {
+  @media (max-width: 768px) and (min-width: 476px) {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
