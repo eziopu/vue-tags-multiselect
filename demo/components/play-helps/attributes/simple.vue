@@ -14,8 +14,8 @@
         <div
           class="simple attributes"
           :class="{
-            ui: app.theme == 'semantic-ui',
-            default: app.theme == 'default',
+            ui: app.framework == 'semantic-ui',
+            default: app.framework == 'default',
           }"
         >
           <LabelAndSelect value="disabled" />
@@ -43,6 +43,10 @@
                 type="text"
                 class="form-control"
                 v-model="app.placeholder"
+                :style="{
+                  'min-width': app.framework != 'bootstrap' ? '100px' : '',
+                  'width': app.framework != 'bootstrap' ? '100%' : ''
+                }"
               />
             </div>
           </div>
@@ -53,8 +57,8 @@
         <div
           class="simple placeholders attributes"
           :class="{
-            ui: app.theme == 'semantic-ui',
-            default: app.theme == 'default',
+            ui: app.framework == 'semantic-ui',
+            default: app.framework == 'default',
           }"
         >
           <div class="flex-between text">
@@ -134,7 +138,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .attributes:first-child {
-  @media (max-width: 768px) {
+  @media (max-width: 768px) and (min-width: 476px) {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }

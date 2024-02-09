@@ -67,7 +67,7 @@ export default defineComponent({
   name: "data-table",
   props: {
     props: {
-      theme: {
+      framework: {
         type: String,
         default: () => {
           return "default";

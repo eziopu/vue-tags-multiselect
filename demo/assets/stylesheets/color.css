@@ -1,0 +1,30 @@
+:root {
+  --background-color-transition: .3s ease;
+}
+
+:root {
+  --background-color-primary: #fff;
+  --background-color-primary-transparent: #ebebebcc;
+  --background-color-secondary: #dfdfdf;
+  --background-color-tertiary: #d8d8d8;
+  --color-scheme: atuo;
+  --accent-color: #cacaca;
+  --text-color-primary: #222;
+}
+
+:root.dark-theme {
+  --background-color-primary: #1e1e1e;
+  --background-color-primary-transparent: #1e1e1ecc;
+  --background-color-secondary: #28282b;
+  --background-color-tertiary: #2d2d30;
+  --color-scheme: dark;
+  --accent-color: #3f3f3f;
+  --text-color-primary: #ddd;
+}
+
+html, body {
+  background-color: var(--background-color-primary) !important;
+  color-scheme: var(--color-scheme) !important;
+  color: var(--text-color-primary) !important;
+  transition: background-color var(--background-color-transition);
+}

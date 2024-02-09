@@ -8,7 +8,7 @@
     @keydown="handleKeydown"
     @keyup="handleKeyup"
     @click="isEnable = true"
-    :class="{ active: isActive, disabled: disabled, loading: loading, ['tag-'+tagPosition] :isTagPositionVisible }"
+    :class="{ active: isActive, disabled: disabled, loading: loading, ['v-tag-'+tagPosition] :isTagPositionVisible }"
   >
     <div
       class="v-tags-multiselect__tags overflow-tags"
@@ -68,7 +68,7 @@
           >
             <div
               v-show="loading == true || dropdownLoading == true"
-              class="dropdowns__loading"
+              class="v-dropdowns__loading"
               :tabindex="-1"
             >
               <slot name="dropdowns-loading">
@@ -83,7 +83,7 @@
                 <!-- :divided="optionDisplayCount != 0" -->
                 <div @click="elOptionUndo()">
                   <slot name="option-undo">
-                    <i class="option__undo--arrow-left"></i>Undo
+                    <i class="v-option__undo--arrow-left"></i>Undo
                   </slot>
                 </div>
               </VTagOption>
@@ -223,7 +223,7 @@ export default defineComponent({
     cursor: wait !important;
   }
 
-  &[class*="tag-bottom"] {
+  &[class*="v-tag-bottom"] {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -285,7 +285,7 @@ export default defineComponent({
       transform-origin: top;
     }
     
-    .dropdowns__loading {
+    .v-dropdowns__loading {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -297,7 +297,7 @@ export default defineComponent({
     }
   }
 
-  .option__undo--arrow-left {
+  .v-option__undo--arrow-left {
     border: solid black;
     border-width: 0 3px 3px 0;
     display: inline-block;

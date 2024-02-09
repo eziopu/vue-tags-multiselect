@@ -38,14 +38,6 @@
 <script>
 export default {
   name: "app-basic",
-  props: {
-    theme: {
-      type: String,
-      default: () => {
-        return "default";
-      },
-    },
-  },
   data() {
     return {
       conjunctions: ["OR", "AND"],

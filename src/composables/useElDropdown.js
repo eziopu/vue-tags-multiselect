@@ -81,7 +81,7 @@ export default function useElDropdown(props, _context, dep) {
 
     if (value != -1) {
       const editTag = elApp.value.querySelector(
-        ".v-tags-multiselect__tags .tag.editing .tag__value.editing"
+        ".v-tags-multiselect__tags .v-tag.editing .v-tag__value.editing"
       );
 
       if (editTag != undefined) {

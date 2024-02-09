@@ -104,7 +104,7 @@ export default function useDropdown(props) {
     if (elDropdown.value == null) return [];
     const list = [...elDropdown.value.classList];
     const blacklist = new Set([
-      "dropdown",
+      "v-dropdown",
       "display-all",
       "no-title",
       "disabled",

@@ -95,7 +95,7 @@ export default function useKeyboard(props, context, dep) {
     setTimeout(() => {
       if (isActiveElementContainApp() == true) {
         const actElm = document.activeElement;
-        const isTagValueInput = actElm.classList.contains("tag__value--input");
+        const isTagValueInput = actElm.classList.contains("v-tag__value--input");
         keydown.horizontalLock = isTagValueInput;
         keydown.backspaceLock = isTagValueInput;
         keydown.enterLock = isTagValueInput;
@@ -110,11 +110,11 @@ export default function useKeyboard(props, context, dep) {
   const deleteTags = dep.deleteTags;
 
   const getDisplayOptionElms = () => {
-    return elDropdown.value.querySelectorAll(".option:not(.hidden)") || [];
+    return elDropdown.value.querySelectorAll(".v-option:not(.hidden)") || [];
   };
 
   const getTagValueElms = () => {
-    return elTags.value.querySelectorAll(".tag__value") || [];
+    return elTags.value.querySelectorAll(".v-tag__value") || [];
   };
 
   const publicLog = dep.log;

@@ -14,8 +14,8 @@
         v-if="app.displays.events"
         class="simple container"
         :class="{
-          ui: app.theme == 'semantic-ui',
-          default: app.theme == 'default',
+          ui: app.framework == 'semantic-ui',
+          default: app.framework == 'default',
         }"
       >
         <div class="row">
@@ -30,7 +30,7 @@
         </div>
         <div class="row">
           <div>selectingTag</div>
-          <pre class="data" :class="app.theme">{{
+          <pre class="data" :class="app.framework">{{
             app.tool.selectingTag || "{}"
           }}</pre>
         </div>

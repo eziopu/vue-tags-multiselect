@@ -6,7 +6,7 @@
         class="pointer"
         :class="{ active: app.displays.events }"
       >
-        <h5 class="title" :class="{ ui: app.theme == 'semantic-ui' }">
+        <h5 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
           Events
         </h5>
         <span class="arrow"></span>

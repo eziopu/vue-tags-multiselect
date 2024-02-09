@@ -1,0 +1,37 @@
+html.dark-theme {
+  .v-tags-multiselect {
+    input {
+      color: var(--text-color-primary);
+    }
+
+    .v-tags-multiselect__main {
+      background-color: var(--background-color-secondary);
+    }
+    .v-tags-multiselect__main--dropdowns {
+      background-color: var(--background-color-tertiary);
+      color: var(--text-color-primary);
+    }
+
+    .v-option__undo--arrow-left {
+      border-color: #c7c7c7;
+    }
+
+    .v-option {
+      color: #c7c7c7 !important
+    }
+    .v-option.hover {
+      background-color: var(--background-color-primary);
+      color: #fff !important
+    }
+
+    .v-tag {
+      background-color: var(--background-color-primary);
+      color: #c7c7c7;
+
+      .v-tag__title {
+        background-color: black;
+        color: #999;
+      }
+    }
+  }
+}
