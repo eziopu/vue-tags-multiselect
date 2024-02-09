@@ -43,6 +43,9 @@
                 type="text"
                 class="form-control"
                 v-model="app.placeholder"
+                :style="app.framework == 'default'
+                  ? 'min-width: 100px; width: 100%;'
+                  : ''"
               />
             </div>
           </div>
