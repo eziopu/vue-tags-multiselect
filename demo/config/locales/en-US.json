@@ -113,7 +113,7 @@
   "ui":{
     "languages": {
       "en-US": "English",
-      "zh-TW": "繁體中文"
+      "zh-Hant": "繁體中文"
     },
     "general": {
       "language": "language",
