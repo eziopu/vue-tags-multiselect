@@ -104,10 +104,18 @@ export default function useDelete(props, _context, dep) {
   };
 
   const deleteTag = dep.deleteTag;
+  const appIsPassTagInputBlur = inject("appIsPassTagInputBlur");
   const elInputBlur = () => {
+    if (appIsPassTagInputBlur.value == true) {
+      appIsPassTagInputBlur.value = false;
+      return;
+    }
+
     if (inputValue.value == "" || inputValue.value == null) {
       deleteTag("elInputBlur", "value is empty");
-    } else if (appIsOnlyOneTheTag(props.tag.key, inputValue.value) == false) {
+    } else if (
+      appIsOnlyOneTheTag(props.tag.key, inputValue.value) == false
+    ) {
       deleteTag("elInputBlur", "value duplication");
     }
     blur();

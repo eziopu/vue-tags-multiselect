@@ -1,4 +1,4 @@
-import { reactive, computed, provide, readonly } from "vue";
+import { ref, reactive, computed, provide, readonly } from "vue";
 
 export default function usePreprocessedData(props) {
   // ================= Dropdown status ====================
@@ -48,10 +48,19 @@ export default function usePreprocessedData(props) {
 
   provide("appIsLock", readonly(appIsLock));
 
+  // ================= Tag custome edit input ====================
+  // ============== REF ================
+  const isPassTagInputBlur = ref(false);
+  
+  // ============== PROVIDE ==============
+  provide("appIsPassTagInputBlur", isPassTagInputBlur);
+
+
   return {
     dropdownStatus,
     isAllDropdownIsDown,
     isAllDropdownIsHidden,
+    isPassTagInputBlur,
 
     appIsLock,
     appIsFinish,

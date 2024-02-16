@@ -123,6 +123,7 @@ export default function useKeyboard(props, context, dep) {
   };
 
   const init = dep.init;
+  const isPassTagInputBlur = dep.isPassTagInputBlur;
   const handleKeydown = async (event) => {
     context.emit("keydown", event, $this);
 
@@ -157,6 +158,7 @@ export default function useKeyboard(props, context, dep) {
               handleSystemOption();
             } else {
               log(`click option`);
+              isPassTagInputBlur.value = true;
               option.click();
             }
             keydown.verticalIndex = -1;
