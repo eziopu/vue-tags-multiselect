@@ -21,6 +21,10 @@ header {
     display: flex;
     align-items: center;
 
+    &:hover {
+      text-decoration: none;
+    }
+
     @media (max-width: 340px) {
       zoom: .8;
     }
