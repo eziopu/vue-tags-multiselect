@@ -102,7 +102,6 @@ export default function useTag(_props, context, dep) {
     }
 
     const tag = tags[editTagIndex.value];
-
     if (tag == undefined) {
       log(`cannot update the tag, tag is undefined`, `error`);
       return;
@@ -113,8 +112,8 @@ export default function useTag(_props, context, dep) {
     tag.valueElm = item.valueElm || null;
     tag.displayValue = !!item.displayValue;
     log(`${tag.key} tag update`, `success`);
-    log2(`old value is`, oldValue);
-    log2(`new value is`, item.value);
+    log2(`old value : ${oldValue}`);
+    log2(`new value : ${item.value}`);
   };
 
   const deleteTags = (indexs = []) => {
@@ -138,6 +137,7 @@ export default function useTag(_props, context, dep) {
     const filterTags = tags.filter((tag) => {
       return tag.key == keyName && tag.value == value;
     });
+    
     return filterTags.length == 1;
   };
 
