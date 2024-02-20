@@ -45,19 +45,10 @@ setTheme(initUserTheme);
 </script>
 
 <template>
-  <div class="navbar-item navbar-toggleTheme">
+  <div class="navbar-item navbar-icon navbar-toggleTheme">
     <div class="navbar-item--toggle-theme" @click="toggleTheme()">
       <i class="fa fa-moon-o" v-if="userTheme == 'light-theme'"></i>
       <i class="fa fa-sun-o" v-else></i>
     </div>
   </div>
 </template>
-
-<style scoped>
-.navbar-item--toggle-theme{
-  width: 1.2rem;
-}
-i.fa {
-  font-size: 1.2rem;
-}
-</style>

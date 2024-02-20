@@ -11,6 +11,14 @@
       <Frameworks />
       <Languages />
       <colorTheme />
+      <a class="navbar-item navbar-icon navbar-github"
+        href="https://github.com/eziopu/vue-tags-multiselect"
+        target="_blank"
+        title="open github">
+        <div class="navbar-item--github">
+          <i class="fa fa-github"></i>
+        </div>
+      </a>
     </div>
 
     <Burger />

@@ -90,28 +90,6 @@ onMounted(async () => {
   <div>
     <Header />
 
-    <!-- <aside class="sidebar">
-      <ul class="sidebar-items">
-        <li>
-          <p tabindex="0" class="sidebar-item sidebar-heading collapsible">
-            Bundlers Reference
-            <span class="right arrow"></span>
-          </p>
-          <ul class="sidebar-item-children"></ul>
-          <li>
-            <a aria-label="Command Line Interface" class="sidebar-item" href="/">
-              Command Line Interface
-            </a>
-          </li>
-          <li>
-            <a aria-label="Command Line Interface" class="sidebar-item" href="/">
-              TEST
-            </a>
-          </li>
-        </li>
-      </ul>
-    </aside> -->
-
     <main class="page ui container" :class="framework">
       <div class="demo" v-if="framework != 'default'">
         <div class="demo-control">
@@ -119,7 +97,7 @@ onMounted(async () => {
             class="show-code-btn pointer"
             style="color: inherit"
             target="_blank"
-            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/${framework}.scss`"
+            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/UI-frameworks/${framework}.scss`"
           >
             scss <i class="fa fa-external-link"></i>
           </a>

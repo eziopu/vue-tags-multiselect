@@ -60,6 +60,19 @@ header {
     margin: 0 0.6rem;
   }
 
+  .navbar-icon {
+    width: 1.2rem;
+    color: var(--text-color-primary);
+
+    i.fa {
+      font-size: 1.2rem;
+    }
+
+    .fa-github {
+      zoom: 1.1;
+    }
+  }
+
   .navbar-line {
     display: none;
     border: 1px solid var(--text-color-primary);
@@ -283,12 +296,16 @@ header.active .header-overlay {
         padding-right: 30px !important;
       }
 
-      .navbar-toggleTheme {
+      .navbar-toggleTheme,
+      .navbar-github {
         position: absolute;
         top: 10px;
         zoom: 1.4;
       }
-
+      .navbar-github {
+        left: 2.2rem;
+      }
+      
       .navbar-pages .navbar-dropdown--content{
         display: block;
       }
