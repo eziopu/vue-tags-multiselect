@@ -11,7 +11,7 @@
   >
     <!-- {{ isInputValueRepeat }} | -->
     <div v-if="editByinput && isInputValueRepeat" class="v-tag__value--warning">
-      {{ appPlaceholders.v-tagValueRepeat }}
+      {{ appPlaceholders.tagValueRepeat }}
     </div>
 
     <div
