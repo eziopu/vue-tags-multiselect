@@ -93,9 +93,11 @@ header {
       display: none;
       position: absolute;
       background-color: var(--background-color-primary);
-      min-width: 160px;
+      border: 1px solid var(--accent-color);
+      border-radius: 0.25rem;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
+      margin: -6px;
 
       .navbar-dropdown--option {
         float: none;
@@ -268,9 +270,15 @@ header.active .header-overlay {
       .navbar-dropdown--content {
         position: relative;
         box-shadow: none;
+        margin: 0;
+        margin-right: 1.3rem;
+        border: 0;
+        border-radius: 0;
+        border-right: 1px solid var(--text-color-primary);
       }
 
       .navbar-dropdown--option {
+        padding: 10px 3px !important;
         text-align: right !important;
         padding-right: 30px !important;
       }
