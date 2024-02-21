@@ -15,18 +15,18 @@ import Header from "./components/layout/header/main.vue";
 
 
 // == Page ==============
-const currentPage = ref("install");
 const components = {
-  "install": Install,
-  "attributes": Attributes,
-  "slots": Slots,
-  "slot-dropdown": Dropdown,
-  "slot-option": Option,
-  "play": Play
+  "Install": Install,
+  "Attributes": Attributes,
+  "Slots": Slots,
+  "Slot-dropdown": Dropdown,
+  "Slot-option": Option,
+  "Play": Play
 };
-const pages = ["install", "attributes", "slots", "slot-dropdown", "slot-option", "play"];
+const pages = Object.keys(components);
+const currentPage = ref(pages[0]);
 provide("currentPage", currentPage);
-provide("pages", readonly(Object.keys(components)));
+provide("pages", readonly(pages));
 
 const getComponentPage = (input) => {
   const component = components[input];
@@ -36,7 +36,7 @@ const getComponentPage = (input) => {
 /* set current page */
 const urlPathname = new URL(location.href).pathname.replace(/\//g, '');
 if (urlPathname == "") {
-  currentPage.value = pages[5];
+  currentPage.value = pages[0];
 } else {
   if (components[urlPathname] != undefined) {
     currentPage.value = urlPathname;
@@ -91,20 +91,31 @@ onMounted(async () => {
     <Header />
 
     <main class="page ui container" :class="framework">
-      <div class="demo" v-if="framework != 'default'">
-        <div class="demo-control">
-          <a
-            class="show-code-btn pointer"
-            style="color: inherit"
-            target="_blank"
-            :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/UI-frameworks/${framework}.scss`"
-          >
-            scss <i class="fa fa-external-link"></i>
-          </a>
+      <div class="page-title">
+        <h2>{{ currentPage.replace(/-/g, " ") }}</h2>
+
+        <div class="demo page-framework-css" v-if="framework != 'default'">
+          <div class="demo-control">
+            <a
+              class="show-code-btn pointer"
+              style="color: inherit"
+              target="_blank"
+              :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/UI-frameworks/${framework}.scss`"
+            >
+              framework css <i class="fa fa-external-link"></i>
+            </a>
+          </div>
         </div>
+        <!-- <a v-if="framework != 'default'"
+          class="show-code-btn pointer"
+          style="color: inherit"
+          target="_blank"
+          :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/UI-frameworks/${framework}.scss`"
+        >
+          framework css <i class="fa fa-external-link"></i>
+        </a> -->
       </div>
-      
-      {{ currentPage }}
+
       <Transition name="out-in">
         <component
           :is="getComponentPage(currentPage)"
@@ -165,5 +176,17 @@ onMounted(async () => {
 .out-in-leave-to {
   opacity: 0;
   transform: translateX(-10px);
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  
+  h2 {
+    margin-top: 1.6rem;
+  }
+  .page-framework-css {
+    white-space:nowrap;
+  }
 }
 </style>

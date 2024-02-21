@@ -12,7 +12,8 @@ const pages = inject("pages") || [];
 
 const setCurrentPage = (input) => {
   currentPage.value = input;
-  pushURLPathnameState(input);
+  const urlPage = input.toLowerCase();
+  pushURLPathnameState(urlPage);
 }
 
 const pushURLPathnameState = (newPath) => {
@@ -28,7 +29,7 @@ const pushURLPathnameState = (newPath) => {
 <template>
   <div class="navbar-dropdown navbar-pages">
     <button class="navbar-dropdown--button">
-        Pages
+        {{ currentPage == "Install" ? "Pages" : currentPage }}
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="navbar-dropdown--content">
