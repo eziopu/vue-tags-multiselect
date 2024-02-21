@@ -5,9 +5,9 @@
       class="pointer"
       :class="{ active: app.displays.methods }"
     >
-      <h5 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
+      <h3 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
         Methods
-      </h5>
+      </h3>
       <span class="arrow"></span>
     </div>
 

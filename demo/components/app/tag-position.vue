@@ -1,6 +1,6 @@
 <template>
   <div id="tag-position" class="demo">
-    <h4>Tag position</h4>
+    <h3>Tag position</h3>
     <div class="depiction">
       {{ $t("attributes.description.app.tagPosition") }}
       <br>

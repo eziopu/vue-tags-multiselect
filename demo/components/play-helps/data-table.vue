@@ -1,18 +1,18 @@
 <template>
   <div class="detail attributes container">
     <div class="row titles">
-      <div><h6>#</h6></div>
+      <div><h5>#</h5></div>
       <div>
-        <h6>{{ $t("ui.general.Country") }}</h6>
+        <h5>{{ $t("ui.general.Country") }}</h5>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Name") }}</h6>
+        <h5>{{ $t("ui.general.Name") }}</h5>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Height(m)") }}</h6>
+        <h5>{{ $t("ui.general.Height(m)") }}</h5>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Remark") }}</h6>
+        <h5>{{ $t("ui.general.Remark") }}</h5>
       </div>
     </div>
     <transition-group name="list-complete">
@@ -53,7 +53,7 @@
         :key="`blank${index}`"
       >
         <div v-if="datas.length == 0 && index == 6" style="width: 100%">
-          <h6>{{ $t("ui.general.NotFind") }}</h6>
+          <h5>{{ $t("ui.general.NotFind") }}</h5>
         </div>
         <div v-else>&emsp;</div>
       </div>
@@ -84,7 +84,7 @@ export default defineComponent({
       type: Array,
       default: () => {
         let i = [...Array(11)].map(() => `&emsp;`);
-        i[5] = `<h6 class="text-center">Not find any</h6>`;
+        i[5] = `<h5 class="text-center">Not find any</h5>`;
         return i;
       },
     },

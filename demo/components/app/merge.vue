@@ -1,6 +1,6 @@
 <template>
   <div id="merge" class="demo">
-    <h4>Merge</h4>
+    <h3>Merge</h3>
     <div class="depiction">
       {{ $t("attributes.description.app.merge") }}
     </div>

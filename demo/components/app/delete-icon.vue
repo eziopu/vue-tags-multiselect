@@ -1,6 +1,6 @@
 <template>
   <div id="delete-icon" class="demo">
-    <h4>Delete icon</h4>
+    <h3>Delete icon</h3>
     <div class="depiction">
       {{ $t("attributes.description.app.deleteIcon") }}
       *{{ $t("attributes.description.app.deleteIcon__notice") }}

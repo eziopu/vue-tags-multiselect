@@ -5,7 +5,7 @@
       class="pointer"
       :class="{ active: app.displays.events }"
     >
-      <h5 class="ui title">Events</h5>
+      <h3 class="ui title">Events</h3>
       <span class="arrow"></span>
     </div>
 

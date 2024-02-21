@@ -1,6 +1,6 @@
 <template>
   <div id="basic" class="demo">
-    <h4>Basic</h4>
+    <h3>Basic</h3>
     <div class="depiction">
       {{ $t("ui.page.description.basic") }}
     </div>

@@ -6,9 +6,9 @@
         class="pointer"
         :class="{ active: app.displays.events }"
       >
-        <h5 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
+        <h3 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
           Events
-        </h5>
+        </h3>
         <span class="arrow"></span>
       </div>
       <transition name="slide">

@@ -1,6 +1,6 @@
 <template>
   <div id="placeholders" class="demo">
-    <h4>Placeholders</h4>
+    <h3>Placeholders</h3>
     <div class="depiction">
       {{ $t(`${i18nAppPath}.placeholder`) }}
 

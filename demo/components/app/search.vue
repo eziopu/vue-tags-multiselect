@@ -1,6 +1,6 @@
 <template>
   <div id="search" class="demo">
-    <h4>Search</h4>
+    <h3>Search</h3>
     <div class="depiction">
       {{ $t("attributes.description.app.search") }}
     </div>

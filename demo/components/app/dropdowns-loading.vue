@@ -1,6 +1,6 @@
 <template>
   <div id="dropdowns-loading" class="demo">
-    <h4>Dropdown loading</h4>
+    <h3>Dropdown loading</h3>
     <div class="depiction">
       {{ $t("attributes.description.app.dropdownLoading") }}
       <div class="sub-depiction">

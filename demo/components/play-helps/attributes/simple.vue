@@ -5,7 +5,7 @@
       class="pointer"
       :class="{ active: app.displays.attributes }"
     >
-      <h5 class="ui title">Attributes</h5>
+      <h3 class="ui title">Attributes</h3>
       <span class="arrow"></span>
     </div>
 
@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <h6 style="margin: 18px 0">Placeholders</h6>
+        <h4 style="margin: 18px 0">Placeholders</h4>
 
         <div
           class="simple placeholders attributes"

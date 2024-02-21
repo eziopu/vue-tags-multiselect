@@ -1,6 +1,6 @@
 <template>
   <div id="add-option" class="demo">
-    <h4>Add option</h4>
+    <h3>Add option</h3>
     <div class="depiction">
       <span v-html="$t('ui.page.description.addOption')"></span>
 

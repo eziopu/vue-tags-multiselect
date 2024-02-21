@@ -1,6 +1,6 @@
 <template>
   <div id="conjunction" class="demo">
-    <h4>Conjunction</h4>
+    <h3>Conjunction</h3>
     <div class="depiction">
       {{ $t("attributes.description.app.conjunction") }},
       {{ $t("ui.general.defaultIs__key", { key: "null" }) }}

@@ -7,9 +7,9 @@
       class="pointer"
       :class="{ active: app.displays.slotAttributes.option }"
     >
-      <h5 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
+      <h3 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
         Slot Option Attributes
-      </h5>
+      </h3>
       <span class="arrow"></span>
     </div>
 
