@@ -12,6 +12,7 @@ import Dropdown from "./components/play-helps/main.vue";
 import Option from "./components/play-helps/main.vue";
 
 import Header from "./components/layout/header/main.vue";
+import Pagination from "./components/layout/pagination.vue";
 
 
 // == Page ==============
@@ -133,26 +134,8 @@ onMounted(async () => {
           :framework="framework">
         </component>
       </Transition>
-      
-        <!-- 
-          <Keyboard></Keyboard>
-          <AppAttributes></AppAttributes>
-          <h3>Dropdown Slots Attributes</h3>
-          <DropdownAttributes></DropdownAttributes>
 
-          <h3>Option Slots Attributes</h3>
-          <OptionAttributes></OptionAttributes>
-
-          <h3>Other Slots</h3>
-          <OtherSlots></OtherSlots>
-
-          <h3>Custome style</h3>
-          <CustomStyle></CustomStyle>
-
-          <h3>Operate all Attributes</h3>
-          <Play :framework="framework"></Play>
-        -->
-
+      <Pagination />
     </main>
   </div>
 </template>
