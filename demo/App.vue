@@ -159,24 +159,10 @@ if (
 @import "./assets/stylesheets/package-dark-theme.scss";
 @import "./assets/stylesheets/header.scss";
 @import "./assets/stylesheets/layout.scss";
+@import "./assets/stylesheets/pretty-code.scss";
 </style>
 
 <style scoped lang="scss">
-.out-in-enter-active,
-.out-in-leave-active {
-  transition: all 0.25s ease-out;
-}
-
-.out-in-enter-from {
-  opacity: 0;
-  transform: translateX(10px);
-}
-
-.out-in-leave-to {
-  opacity: 0;
-  transform: translateX(-10px);
-}
-
 .page-title {
   display: flex;
   justify-content: space-between;

@@ -2,19 +2,19 @@
   <div class="detail attributes container">
     <div class="row titles">
       <div>
-        <h6>{{ $t("ui.general.Attribute") }}</h6>
+        <h4>{{ $t("ui.general.Attribute") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Description") }}</h6>
+        <h4>{{ $t("ui.general.Description") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Type") }}</h6>
+        <h4>{{ $t("ui.general.Type") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.AcceptedValues") }}</h6>
+        <h4>{{ $t("ui.general.AcceptedValues") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Default") }}</h6>
+        <h4>{{ $t("ui.general.Default") }}</h4>
       </div>
     </div>
 
@@ -302,7 +302,7 @@
 
     <div class="row">
       <div class="flex-between text">
-        <h6>Placeholders</h6>
+        <h4>Placeholders</h4>
       </div>
     </div>
 

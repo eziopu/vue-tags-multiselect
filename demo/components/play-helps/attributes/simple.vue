@@ -1,124 +1,111 @@
 <template>
   <div>
     <div
-      @click="app.displays.attributes = !app.displays.attributes"
-      class="pointer"
-      :class="{ active: app.displays.attributes }"
+      class="simple attributes"
+      :class="{
+        ui: app.framework == 'semantic-ui',
+        default: app.framework == 'default',
+      }"
     >
-      <h3 class="ui title">Attributes</h3>
-      <span class="arrow"></span>
-    </div>
+      <LabelAndSelect value="disabled" />
+      <LabelAndSelect value="search" />
+      <LabelAndSelect value="loading" />
+      <LabelAndSelect value="dropdownLoading" />
+      <LabelAndSelect value="create" />
+      <LabelAndSelect
+        value="deleteIcon"
+        :values="['always', 'edit', 'none']"
+      />
 
-    <transition name="slide">
-      <div v-if="app.displays.attributes">
-        <div
-          class="simple attributes"
-          :class="{
-            ui: app.framework == 'semantic-ui',
-            default: app.framework == 'default',
-          }"
-        >
-          <LabelAndSelect value="disabled" />
-          <LabelAndSelect value="search" />
-          <LabelAndSelect value="loading" />
-          <LabelAndSelect value="dropdownLoading" />
-          <LabelAndSelect value="create" />
-          <LabelAndSelect
-            value="deleteIcon"
-            :values="['always', 'edit', 'none']"
+      <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
+      <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
+
+      <LabelAndSelect value="transition" />
+      <LabelAndSelect value="keyboard" />
+      <LabelAndSelect value="debugLog" />
+      <LabelAndSelect value="tagPosition" :values="['null', 'top', 'bottom']" />
+
+      <div class="flex-between text">
+        <div>placeholder</div>
+        <div class="ui input">
+          <input
+            type="text"
+            class="form-control"
+            v-model="app.placeholder"
+            :style="{
+              'min-width': app.framework != 'bootstrap' ? '100px' : '',
+              'width': app.framework != 'bootstrap' ? '100%' : ''
+            }"
           />
-
-          <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
-          <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
-
-          <LabelAndSelect value="transition" />
-          <LabelAndSelect value="keyboard" />
-          <LabelAndSelect value="debugLog" />
-          <LabelAndSelect value="tagPosition" :values="['null', 'top', 'bottom']" />
-
-          <div class="flex-between text">
-            <div>placeholder</div>
-            <div class="ui input">
-              <input
-                type="text"
-                class="form-control"
-                v-model="app.placeholder"
-                :style="{
-                  'min-width': app.framework != 'bootstrap' ? '100px' : '',
-                  'width': app.framework != 'bootstrap' ? '100%' : ''
-                }"
-              />
-            </div>
-          </div>
-        </div>
-
-        <h4 style="margin: 18px 0">Placeholders</h4>
-
-        <div
-          class="simple placeholders attributes"
-          :class="{
-            ui: app.framework == 'semantic-ui',
-            default: app.framework == 'default',
-          }"
-        >
-          <div class="flex-between text">
-            <div>initial</div>
-            <div class="ui input">
-              <input
-                type="text"
-                class="form-control"
-                v-model="app.placeholders.initial"
-              />
-            </div>
-          </div>
-          <div class="flex-between text">
-            <div>loading</div>
-            <div class="ui input">
-              <input
-                type="text"
-                class="form-control"
-                v-model="app.placeholders.loading"
-                :placeholder="`Wait a moment, please.`"
-              />
-            </div>
-          </div>
-          <div class="flex-between text">
-            <div>tagValueRepeat</div>
-            <div class="ui input">
-              <input
-                type="text"
-                class="form-control"
-                v-model="app.placeholders.tagValueRepeat"
-                :placeholder="`repeat !`"
-              />
-            </div>
-          </div>
-          <div class="flex-between text">
-            <div>selectDown</div>
-            <div class="ui input">
-              <input
-                type="text"
-                class="form-control"
-                v-model="app.placeholders.selectDown"
-                :placeholder="`Selected End.`"
-              />
-            </div>
-          </div>
-          <div class="flex-between text">
-            <div>finish</div>
-            <div class="ui input">
-              <input
-                type="text"
-                class="form-control"
-                v-model="app.placeholders.finish"
-                :disabled="app.create == 'true'"
-                :placeholder="`Finish.`"
-              />
-            </div>
-          </div>
         </div>
       </div>
-    </transition>
+    </div>
+
+    <h4 style="margin: 18px 0">Placeholders</h4>
+
+    <div
+      class="simple placeholders attributes"
+      :class="{
+        ui: app.framework == 'semantic-ui',
+        default: app.framework == 'default',
+      }"
+    >
+      <div class="flex-between text">
+        <div>initial</div>
+        <div class="ui input">
+          <input
+            type="text"
+            class="form-control"
+            v-model="app.placeholders.initial"
+          />
+        </div>
+      </div>
+      <div class="flex-between text">
+        <div>loading</div>
+        <div class="ui input">
+          <input
+            type="text"
+            class="form-control"
+            v-model="app.placeholders.loading"
+            :placeholder="`Wait a moment, please.`"
+          />
+        </div>
+      </div>
+      <div class="flex-between text">
+        <div>tagValueRepeat</div>
+        <div class="ui input">
+          <input
+            type="text"
+            class="form-control"
+            v-model="app.placeholders.tagValueRepeat"
+            :placeholder="`repeat !`"
+          />
+        </div>
+      </div>
+      <div class="flex-between text">
+        <div>selectDown</div>
+        <div class="ui input">
+          <input
+            type="text"
+            class="form-control"
+            v-model="app.placeholders.selectDown"
+            :placeholder="`Selected End.`"
+          />
+        </div>
+      </div>
+      <div class="flex-between text">
+        <div>finish</div>
+        <div class="ui input">
+          <input
+            type="text"
+            class="form-control"
+            v-model="app.placeholders.finish"
+            :disabled="app.create == 'true'"
+            :placeholder="`Finish.`"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
