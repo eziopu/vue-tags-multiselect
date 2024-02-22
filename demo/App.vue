@@ -1,6 +1,16 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from "vue";
 
+// == google-code-prettify ==============
+const prettyCode = async () => {
+  await nextTick();
+  // eslint-disable-next-line no-undef
+  PR.prettyPrint();
+}
+onMounted(() => {
+  prettyCode();
+});
+
 // == Components ==============
 // import Keyboard from "./components/keyboard.vue";
 import Attributes from "./components/app/main.vue";
@@ -52,6 +62,7 @@ const setCurrentPage = (input) => {
     top: 0,
     behavior: 'smooth'
   });
+  prettyCode();
 }
 
 const pushURLPathnameState = (newPath) => {
@@ -79,12 +90,6 @@ if (
 ) {
   framework.value = urlQueryFramework;
 }
-
-onMounted(async () => {
-  await nextTick();
-  // eslint-disable-next-line no-undef
-  PR.prettyPrint();
-});
 </script>
 
 <template>
