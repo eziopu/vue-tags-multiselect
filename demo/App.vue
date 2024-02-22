@@ -43,10 +43,29 @@ if (urlPathname == "") {
   }
 }
 
+const setCurrentPage = (input) => {
+  currentPage.value = input;
+  const urlPage = input.toLowerCase();
+  pushURLPathnameState(urlPage);
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+const pushURLPathnameState = (newPath) => {
+  const currentUrl = new URL(window.location.href);
+  currentUrl.pathname = newPath;
+  
+  const newUrl = currentUrl.href;
+  window.history.pushState({ path: newUrl }, '', newUrl);
+}
+provide("setCurrentPage", setCurrentPage);
+
 
 // == Framework ==============
-const framework = ref("default");
 const frameworks = ["default", "bootstrap", "semantic-ui"];
+const framework = ref(frameworks[0]);
 provide("framework", framework);
 provide("frameworks", readonly(frameworks));
 
@@ -106,14 +125,6 @@ onMounted(async () => {
             </a>
           </div>
         </div>
-        <!-- <a v-if="framework != 'default'"
-          class="show-code-btn pointer"
-          style="color: inherit"
-          target="_blank"
-          :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/UI-frameworks/${framework}.scss`"
-        >
-          framework css <i class="fa fa-external-link"></i>
-        </a> -->
       </div>
 
       <Transition name="out-in">

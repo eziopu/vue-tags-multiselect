@@ -7,22 +7,9 @@
 <script setup>
 import { inject } from "vue";
 
+const setCurrentPage = inject("setCurrentPage");
 const currentPage = inject("currentPage");
 const pages = inject("pages") || [];
-
-const setCurrentPage = (input) => {
-  currentPage.value = input;
-  const urlPage = input.toLowerCase();
-  pushURLPathnameState(urlPage);
-}
-
-const pushURLPathnameState = (newPath) => {
-  const currentUrl = new URL(window.location.href);
-  currentUrl.pathname = newPath;
-  
-  const newUrl = currentUrl.href;
-  window.history.pushState({ path: newUrl }, '', newUrl);
-}
 
 </script>
 
@@ -41,7 +28,7 @@ const pushURLPathnameState = (newPath) => {
         :class="{active: currentPage == page }"
         @click="setCurrentPage(page)"
       >
-        {{ page }}
+        {{ page.replace(/-/g, " ") }}
       </span>
     </div>
   </div>
