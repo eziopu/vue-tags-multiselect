@@ -1,6 +1,16 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from "vue";
 
+// == google-code-prettify ==============
+const prettyCode = async () => {
+  await nextTick();
+  // eslint-disable-next-line no-undef
+  PR.prettyPrint();
+}
+onMounted(() => {
+  prettyCode();
+});
+
 // == Components ==============
 // import Keyboard from "./components/keyboard.vue";
 import Attributes from "./components/app/main.vue";
@@ -12,6 +22,7 @@ import Dropdown from "./components/play-helps/main.vue";
 import Option from "./components/play-helps/main.vue";
 
 import Header from "./components/layout/header/main.vue";
+import Pagination from "./components/layout/pagination.vue";
 
 
 // == Page ==============
@@ -43,10 +54,30 @@ if (urlPathname == "") {
   }
 }
 
+const setCurrentPage = (input) => {
+  currentPage.value = input;
+  const urlPage = input.toLowerCase();
+  pushURLPathnameState(urlPage);
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+  prettyCode();
+}
+
+const pushURLPathnameState = (newPath) => {
+  const currentUrl = new URL(window.location.href);
+  currentUrl.pathname = newPath;
+  
+  const newUrl = currentUrl.href;
+  window.history.pushState({ path: newUrl }, '', newUrl);
+}
+provide("setCurrentPage", setCurrentPage);
+
 
 // == Framework ==============
-const framework = ref("default");
 const frameworks = ["default", "bootstrap", "semantic-ui"];
+const framework = ref(frameworks[0]);
 provide("framework", framework);
 provide("frameworks", readonly(frameworks));
 
@@ -59,12 +90,6 @@ if (
 ) {
   framework.value = urlQueryFramework;
 }
-
-onMounted(async () => {
-  await nextTick();
-  // eslint-disable-next-line no-undef
-  PR.prettyPrint();
-});
 </script>
 
 <template>
@@ -106,14 +131,6 @@ onMounted(async () => {
             </a>
           </div>
         </div>
-        <!-- <a v-if="framework != 'default'"
-          class="show-code-btn pointer"
-          style="color: inherit"
-          target="_blank"
-          :href="`https://github.com/eziopu/vue-tags-multiselect/blob/main/demo/assets/stylesheets/UI-frameworks/${framework}.scss`"
-        >
-          framework css <i class="fa fa-external-link"></i>
-        </a> -->
       </div>
 
       <Transition name="out-in">
@@ -122,26 +139,8 @@ onMounted(async () => {
           :framework="framework">
         </component>
       </Transition>
-      
-        <!-- 
-          <Keyboard></Keyboard>
-          <AppAttributes></AppAttributes>
-          <h3>Dropdown Slots Attributes</h3>
-          <DropdownAttributes></DropdownAttributes>
 
-          <h3>Option Slots Attributes</h3>
-          <OptionAttributes></OptionAttributes>
-
-          <h3>Other Slots</h3>
-          <OtherSlots></OtherSlots>
-
-          <h3>Custome style</h3>
-          <CustomStyle></CustomStyle>
-
-          <h3>Operate all Attributes</h3>
-          <Play :framework="framework"></Play>
-        -->
-
+      <Pagination />
     </main>
   </div>
 </template>
