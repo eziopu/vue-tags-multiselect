@@ -49,8 +49,9 @@ const urlPathname = new URL(location.href).pathname.replace(/\//g, '');
 if (urlPathname == "") {
   currentPage.value = pages[0];
 } else {
-  if (components[urlPathname] != undefined) {
-    currentPage.value = urlPathname;
+  const componentKey = urlPathname.charAt(0).toUpperCase() + urlPathname.slice(1);
+  if (components[componentKey] != undefined) {
+    currentPage.value = componentKey;
   }
 }
 
