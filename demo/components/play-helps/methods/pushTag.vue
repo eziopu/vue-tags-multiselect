@@ -3,12 +3,12 @@
     <div class="method__pushTag">
       <div class="method__pushTag--main">
         <div class="row titles">
-          <div><h6>Function name</h6></div>
+          <div><h4>Function name</h4></div>
           <div>
-            <h6>{{ $t("ui.general.Description") }}</h6>
+            <h4>{{ $t("ui.general.Description") }}</h4>
           </div>
           <div>
-            <h6>{{ $t("ui.general.ParameterType") }}</h6>
+            <h4>{{ $t("ui.general.ParameterType") }}</h4>
           </div>
         </div>
         <div class="row">
@@ -39,25 +39,25 @@
           </div>
         </div>
       </div>
-      <h6 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
+      <h4 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
         Parameter: object
-      </h6>
+      </h4>
       <div class="method__pushTag_parameter--main">
         <div class="row titles">
           <div>
-            <h6>{{ $t("ui.general.Attribute") }}</h6>
+            <h5>{{ $t("ui.general.Attribute") }}</h5>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Description") }}</h6>
+            <h5>{{ $t("ui.general.Description") }}</h5>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Type") }}</h6>
+            <h5>{{ $t("ui.general.Type") }}</h5>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Default") }}</h6>
+            <h5>{{ $t("ui.general.Default") }}</h5>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Required") }}</h6>
+            <h5>{{ $t("ui.general.Required") }}</h5>
           </div>
         </div>
         <div

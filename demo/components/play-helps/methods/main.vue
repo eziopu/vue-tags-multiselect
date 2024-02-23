@@ -2,7 +2,7 @@
   <div id="methods">
     <div
       @click="app.displays.methods = !app.displays.methods"
-      class="pointer"
+      class="help-title pointer"
       :class="{ active: app.displays.methods }"
     >
       <h3 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
