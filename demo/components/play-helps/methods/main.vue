@@ -1,16 +1,10 @@
 <template>
   <div id="methods">
-    <div
-      @click="app.displays.methods = !app.displays.methods"
-      class="help-title pointer"
-      :class="{ active: app.displays.methods }"
-    >
-      <h3 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
-        Methods
-      </h3>
-      <span class="arrow"></span>
-    </div>
-
+    <HelpTitle 
+      label="Methods"
+      target="methods"
+    />
+    
     <transition name="slide">
       <PushTag v-if="app.displays.methods"></PushTag>
     </transition>
@@ -19,6 +13,7 @@
 
 <script>
 import InjectApp from "../mixins/inject-app.js";
+import HelpTitle from "../components/title.vue";
 import PushTag from "./pushTag.vue";
 
 import { defineComponent } from "vue";
@@ -26,6 +21,7 @@ export default defineComponent({
   name: "attributes-main",
   mixins: [InjectApp],
   components: {
+    HelpTitle,
     PushTag,
   },
 });

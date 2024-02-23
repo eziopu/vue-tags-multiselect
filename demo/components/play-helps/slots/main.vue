@@ -1,15 +1,9 @@
 <template>
   <div id="slots">
-    <div
-      @click="app.displays.slots = !app.displays.slots"
-      class="help-title pointer "
-      :class="{ active: app.displays.slots }"
-    >
-      <h3 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
-        Slots
-      </h3>
-      <span class="arrow"></span>
-    </div>
+    <HelpTitle 
+      label="Slots"
+      target="slots"
+    />
     
     <Transition name="slide">
       <template v-if="app.displays.slots">
@@ -26,6 +20,7 @@
 
 <script>
 import InjectApp from "../mixins/inject-app.js";
+import HelpTitle from "../components/title.vue";
 import Detail from "./detail.vue";
 import Simple from "./simple.vue";
 
@@ -34,6 +29,7 @@ export default defineComponent({
   name: "slots-main",
   mixins: [InjectApp],
   components: {
+    HelpTitle,
     Detail,
     Simple,
   },

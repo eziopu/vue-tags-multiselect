@@ -1,23 +1,14 @@
 <template>
   <div id="slotAttributesDropdown">
-    <div
-      @click="
-        app.displays.slotAttributes.dropdown =
-          !app.displays.slotAttributes.dropdown
-      "
-      class="help-title pointer"
-      :class="{ active: app.displays.slotAttributes.dropdown }"
-    >
-      <h3 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
-        Slot Dropdown Attributes
-      </h3>
-      <span class="arrow"></span>
-    </div>
+    <HelpTitle 
+      label="Slot Dropdown Attributes"
+      target="slotDropdown"
+    />
 
     <transition name="slide">
       <div
         class="detail attributes container"
-        v-if="app.displays.slotAttributes.dropdown"
+        v-if="app.displays.slotDropdown"
       >
         <div class="row titles">
           <div>
@@ -193,10 +184,15 @@
 
 <script>
 import InjectApp from "../mixins/inject-app.js";
+import HelpTitle from "../components/title.vue";
+
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "slots-dropdown",
   mixins: [InjectApp],
+  components: {
+    HelpTitle,
+  },
 });
 </script>
 

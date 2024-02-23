@@ -1,15 +1,9 @@
 <template>
   <div id="attributes">
-    <div
-      @click="app.displays.attributes = !app.displays.attributes"
-      class="help-title pointer "
-      :class="{ active: app.displays.attributes }"
-    >
-      <h3 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
-        Attributes
-      </h3>
-      <span class="arrow"></span>
-    </div>
+    <HelpTitle 
+      label="Attributes"
+      target="attributes"
+    />
     
     <Transition name="slide">
       <template v-if="app.displays.attributes">
@@ -27,16 +21,18 @@
 
 <script>
 import InjectApp from "../mixins/inject-app.js";
+import HelpTitle from "../components/title.vue";
 import Detail from "./detail.vue";
 import Simple from "./simple.vue";
 
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "attributes-main",
+  mixins: [InjectApp],
   components: {
+    HelpTitle,
     Detail,
     Simple,
   },
-  mixins: [InjectApp],
 });
 </script>

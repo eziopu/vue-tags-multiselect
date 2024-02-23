@@ -280,13 +280,11 @@ export default defineComponent({
         slots: false,
         events: false,
         methods: false,
+        slotDropdown: false,
+        slotOption: false,
         details: {
           conjunction: false,
           deleteIcon: false,
-        },
-        slotAttributes: {
-          dropdown: false,
-          option: false,
         },
       },
     };
