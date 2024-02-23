@@ -1,41 +1,27 @@
 <template>
-  <div>
-    <div
-      @click="app.displays.events = !app.displays.events"
-      class="pointer"
-      :class="{ active: app.displays.events }"
-    >
-      <h3 class="ui title">Events</h3>
-      <span class="arrow"></span>
-    </div>
-
-    <transition name="slide">
-      <div
-        v-if="app.displays.events"
-        class="simple container"
-        :class="{
-          ui: app.framework == 'semantic-ui',
-          default: app.framework == 'default',
-        }"
-      >
-        <div class="row">
-          <div class="flex-between">
-            <span>status</span>
-            <span>{{ app.tool.status || "[]" }}</span>
-          </div>
-          <div class="flex-between">
-            <span>inputValue</span>
-            <span>{{ app.tool.inputValue || "-" }}</span>
-          </div>
-        </div>
-        <div class="row">
-          <div>selectingTag</div>
-          <pre class="data" :class="app.framework">{{
-            app.tool.selectingTag || "{}"
-          }}</pre>
-        </div>
+  <div
+    class="simple container"
+    :class="{
+      ui: app.framework == 'semantic-ui',
+      default: app.framework == 'default',
+    }"
+  >
+    <div class="row">
+      <div class="flex-between">
+        <span>status</span>
+        <span>{{ app.tool.status || "[]" }}</span>
       </div>
-    </transition>
+      <div class="flex-between">
+        <span>inputValue</span>
+        <span>{{ app.tool.inputValue || "-" }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div>selectingTag</div>
+      <pre class="data" :class="app.framework">{{
+        app.tool.selectingTag || "{}"
+      }}</pre>
+    </div>
   </div>
 </template>
 

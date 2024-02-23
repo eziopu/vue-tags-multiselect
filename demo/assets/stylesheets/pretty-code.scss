@@ -1,0 +1,67 @@
+.demo {
+  pre {
+    margin: 0;
+    margin-top: 6px;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    color: white;
+    background-color: #333;
+    border-radius: 3px;
+    white-space: pre-wrap;
+    transform-origin: top;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .prettyprint.lang-html.customize {
+    .tag {
+      color: #61afef;
+    }
+
+    .atn {
+      color: #e0e2e4;
+    }
+
+    .lit,
+    .lit span {
+      color: #facd22 !important;
+    }
+
+    .atv {
+      color: #ca9564;
+    }
+
+    .com {
+      color: #66747b;
+    }
+
+    .white,
+    .white>* {
+      color: #ffffff !important;
+    }
+
+    .cyan-blue,
+    .cyan-blue span {
+      color: #53abb7;
+    }
+
+    .green,
+    .green span {
+      color: #8ac379;
+    }
+
+    .purple,
+    .purple span {
+      color: #c678dd;
+    }
+
+    .red,
+    .red span {
+      color: #e06c62;
+    }
+
+    .bolder {
+      font-weight: bolder;
+    }
+  }
+}

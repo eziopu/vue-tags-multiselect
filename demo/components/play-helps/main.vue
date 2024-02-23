@@ -18,18 +18,12 @@
     </div>
 
     <div id="helps">
-      <Attributes></Attributes>
-      <hr />
-      <Slots></Slots>
-      <hr />
-      <Events></Events>
-      <hr />
-      <Methods></Methods>
-      <hr />
-      <SlotsAttributesDropdown></SlotsAttributesDropdown>
-      <hr />
-      <SlotsAttributesOption></SlotsAttributesOption>
-      <hr />
+      <Attributes />
+      <Slots />
+      <Events />
+      <Methods />
+      <SlotsAttributesDropdown />
+      <SlotsAttributesOption />
     </div>
 
     <Transition name="slide">

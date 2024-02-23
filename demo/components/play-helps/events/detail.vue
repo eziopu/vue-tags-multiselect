@@ -2,19 +2,19 @@
   <div class="detail attributes container">
     <div class="row titles">
       <div>
-        <h6>{{ $t("ui.general.Name") }}</h6>
+        <h4>{{ $t("ui.general.Name") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Output") }}</h6>
+        <h4>{{ $t("ui.general.Output") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Description") }}</h6>
+        <h4>{{ $t("ui.general.Description") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Type") }}</h6>
+        <h4>{{ $t("ui.general.Type") }}</h4>
       </div>
       <div>
-        <h6>{{ $t("ui.general.Parameters") }}</h6>
+        <h4>{{ $t("ui.general.Parameters") }}</h4>
       </div>
     </div>
     <div class="row">

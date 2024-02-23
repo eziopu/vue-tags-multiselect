@@ -1,21 +1,26 @@
 <template>
   <div id="events">
-    <template v-if="app.operateMode == 'detail'">
-      <div
-        @click="app.displays.events = !app.displays.events"
-        class="pointer"
-        :class="{ active: app.displays.events }"
-      >
-        <h3 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
-          Events
-        </h3>
-        <span class="arrow"></span>
-      </div>
-      <transition name="slide">
-        <Detail v-if="app.displays.events"></Detail>
-      </transition>
-    </template>
-    <Simple v-else></Simple>
+    <div
+      @click="app.displays.events = !app.displays.events"
+      class="help-title pointer "
+      :class="{ active: app.displays.events }"
+    >
+      <h3 class="title" :class="{ ui: app.framework == 'semantic-ui' }">
+        Events
+      </h3>
+      <span class="arrow"></span>
+    </div>
+    
+    <Transition name="slide">
+      <template v-if="app.displays.events">
+
+        <Transition name="out-in">
+          <Detail v-if="app.operateMode == 'detail'"></Detail>
+          <Simple v-else></Simple>
+        </Transition>
+
+      </template>
+    </Transition>
   </div>
 </template>
 
