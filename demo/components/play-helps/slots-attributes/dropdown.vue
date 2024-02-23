@@ -5,7 +5,7 @@
         app.displays.slotAttributes.dropdown =
           !app.displays.slotAttributes.dropdown
       "
-      class="pointer"
+      class="help-title pointer"
       :class="{ active: app.displays.slotAttributes.dropdown }"
     >
       <h3 class="ui title" :class="{ ui: app.framework == 'semantic-ui' }">
@@ -21,19 +21,19 @@
       >
         <div class="row titles">
           <div>
-            <h6>{{ $t("ui.general.Attribute") }}</h6>
+            <h4>{{ $t("ui.general.Attribute") }}</h4>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Description") }}</h6>
+            <h4>{{ $t("ui.general.Description") }}</h4>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Type") }}</h6>
+            <h4>{{ $t("ui.general.Type") }}</h4>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Default") }}</h6>
+            <h4>{{ $t("ui.general.Default") }}</h4>
           </div>
           <div>
-            <h6>{{ $t("ui.general.Required") }}</h6>
+            <h4>{{ $t("ui.general.Required") }}</h4>
           </div>
         </div>
         <div class="row">
