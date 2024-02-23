@@ -34,3 +34,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped lang="scss">
+.help-title {
+  padding-bottom: 0.6rem;
+  &:not(.active) {
+    border-bottom: 2px solid #999;
+  }
+}
+</style>
