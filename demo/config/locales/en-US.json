@@ -141,6 +141,7 @@
       "description": {
         "title": "demo, This page use",
         "keyboard": "Keyboard",
+        "keyboardSub": "When the package gains focus, the following keyboard keys can be used",
         "basic": "no slot components, no parameter, just a tag bar",
         "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
         "addOptionSub": {

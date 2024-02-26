@@ -1,5 +1,7 @@
 <template>
   <div id="app-attributes">
+    <Keyboard></Keyboard>
+    
     <Basic></Basic>
     <AddOption></AddOption>
     <Conjunction></Conjunction>
@@ -17,6 +19,8 @@
 </template>
 
 <script>
+import Keyboard from "./keyboard.vue";
+
 import Basic from "./basic.vue";
 import AddOption from "./add-option.vue";
 import Conjunction from "./conjunction.vue";
@@ -37,6 +41,7 @@ import Placeholders from "./placeholders.vue";
 export default {
   name: "app-app-attributes",
   components: {
+    Keyboard,
     Basic,
     AddOption,
     Conjunction,

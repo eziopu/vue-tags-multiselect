@@ -1,6 +1,9 @@
 <template>
   <div id="keyboard">
-    <h5>{{ $t("ui.page.description.keyboard") }}</h5>
+    <h3>{{ $t("ui.page.description.keyboard") }}</h3>
+    <div class="depiction">
+      {{ $t("ui.page.description.keyboardSub") }}
+    </div>
     <div class="keyboard">
       <div class="keyboard-column">
         <div class="delete" :class="{ active: keyCode == 8 }">
