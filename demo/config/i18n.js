@@ -21,6 +21,7 @@ document.querySelector('html').setAttribute('lang', defaultLocale);
 
 const i18n = createI18n({
   legacy: false, // 要把 legacy 設為 false，才可以使用 Composition API
+  warnHtmlMessage: false, // disable warning HTML in message
   locale: defaultLocale,
   globalInjection: true,
   messages: messages,
