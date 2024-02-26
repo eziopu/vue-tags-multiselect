@@ -43,7 +43,7 @@ const changeframework = (inputFramework = "") => {
         :class="{active: framework == inputFramework }"
         @click="changeframework(inputFramework)"
         :key="`framework${index}`"
-        :value="locale"
+        :value="inputFramework"
       >
         <span v-if="inputFramework == 'default'">
           {{ $t("ui.general.default") }}
