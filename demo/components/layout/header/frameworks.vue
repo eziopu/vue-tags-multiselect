@@ -15,11 +15,9 @@ const changeframework = (inputFramework = "") => {
   if (framework.value == inputFramework) {
     return;
   }
-  location.href =
-    window.location.protocol +
-    "//" +
-    window.location.host +
-    (inputFramework != "default" ? "?framework=" + inputFramework : "");
+  const url = window.location;
+  const search = inputFramework != "default" ? "?framework=" + inputFramework : "";
+  location.href = url.protocol + "//" + url.host + url.pathname + search;
 };
 </script>
 
