@@ -16,7 +16,7 @@ onMounted(() => {
 import Attributes from "./components/app/main.vue";
 import Play from "./components/play-helps/main.vue";
 // demo
-import Install from "./components/play-helps/main.vue";
+import HowToUse from "./components/how-to-use/main.vue";
 import Slots from "./components/play-helps/main.vue";
 import Dropdown from "./components/play-helps/main.vue";
 import Option from "./components/play-helps/main.vue";
@@ -27,7 +27,7 @@ import Pagination from "./components/layout/pagination.vue";
 
 // == Page ==============
 const components = {
-  "Install": Install,
+  "How-to-use": HowToUse,
   "Attributes": Attributes,
   "Slots": Slots,
   "Slot-dropdown": Dropdown,
@@ -41,7 +41,7 @@ provide("pages", readonly(pages));
 
 const getComponentPage = (input) => {
   const component = components[input];
-  return component ? component : components["install"];
+  return component ? component : components["HowToUse"];
 }
 
 /* set current page */

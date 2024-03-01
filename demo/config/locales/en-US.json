@@ -1,5 +1,17 @@
 {
   "_comment": "en-US English (United States) 英文",
+  "description": {
+    "main": "This is a complex multi-selector.",
+    "sub": {
+      "1": "this package consists of a two-layer structure, similar to a dropdown wrapping another dropdown.",
+      "2": "will duplicate the HTML content of options as the display basis for tags.",
+      "3": "finally, it will output an object containing keys and values."
+    },
+    "setup": {
+      "global": "in main.js you can mount it as a global Vue component",
+      "component": "in a specific component (e.g.: Component.vue)"
+    }
+  },
   "attributes": {
     "description": {
       "app": {
