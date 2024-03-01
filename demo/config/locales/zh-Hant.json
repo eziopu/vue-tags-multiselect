@@ -6,6 +6,10 @@
       "1": "此套件由兩層結構組成，類似dropdown包著dropdown",
       "2": "會複製option的html內容作為tag的顯示依據",
       "3": "最後會輸出一個包含key與values的object"
+    },
+    "setup": {
+      "global": "在 main.js 中，你可以將它掛載為全域的 Vue 元件",
+      "component": "在特定的元件中(例如：Component.vue)"
     }
   },
   "attributes": {
