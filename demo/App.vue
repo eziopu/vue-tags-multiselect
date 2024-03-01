@@ -57,7 +57,7 @@ if (urlPathname == "") {
 
 const setCurrentPage = (input) => {
   currentPage.value = input;
-  const urlPage = input.toLowerCase();
+  const urlPage = input == pages[0] ? '' : input.toLowerCase();
   pushURLPathnameState(urlPage);
   window.scrollTo({
     top: 0,
