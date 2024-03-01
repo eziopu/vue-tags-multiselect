@@ -12,9 +12,11 @@
     &lt;v-tag-option value="Māre"<span v-show="appSelecteds.country[0]"> selected</span>&gt;<span v-html="renderData('data.country.Māre')"></span>&lt;/v-tag-option&gt;
     &lt;v-tag-option value="Eldia"<span v-show="appSelecteds.country[1]"> selected</span>&gt;<span v-html="renderData('data.country.Eldia')"></span>&lt;/v-tag-option&gt;
   &lt;/v-tag-dropdown&gt;
-  </slot>
-  <slot name="name" v-if="appDropdownSetting.display.name"><!--
-  -->&lt;v-tag-dropdown value="name"<span v-show="appDropdownSetting.custom.name"> custom</span>&gt;
+  </slot><!--  
+
+  --><slot name="name" v-if="appDropdownSetting.display.name"><!--
+  -->
+  &lt;v-tag-dropdown value="name"<span v-show="appDropdownSetting.custom.name"> custom</span>&gt;
     &lt;v-tag-option title&gt;
       &lt;i class="fa fa-user"&gt;&lt;/i&gt; <span v-html="renderData('general.Name')"></span>
     &lt;/v-tag-option&gt;
@@ -28,9 +30,11 @@
       <span v-html="renderData('data.name.Armin Arlert')"></span>
     &lt;/v-tag-option&gt;
   &lt;/v-tag-dropdown&gt;
-  </slot>
-  <slot name="remark" v-if="appDropdownSetting.display.remark"><!--
-  -->&lt;v-tag-dropdown value="remark" display-all<span v-show="appDropdownSetting.custom.remark"> custom</span>&gt;
+  </slot><!--  
+
+  --><slot name="remark" v-if="appDropdownSetting.display.remark"><!--
+  -->
+  &lt;v-tag-dropdown value="remark" display-all<span v-show="appDropdownSetting.custom.remark"> custom</span>&gt;
     &lt;v-tag-option title&gt;
       &lt;i class="fa fa-sticky-note"&gt;&lt;/i&gt; <span v-html="renderData('general.Remark')"></span>
     &lt;/v-tag-option&gt;
