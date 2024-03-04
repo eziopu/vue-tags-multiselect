@@ -19,7 +19,17 @@
     </div>
 
     <div class="flex-between">
-      <ALineCode :slots="{ optionUndo: optionUndo }" class="a-line-code" />
+      <ShowHtmlCode
+        class="a-line-code tag prettyprint lang-html customize"
+        :app="{optionUndoContent: optionUndo}"
+        :dropdownSetting="{
+          display: {
+            country: false,
+            name: false,
+            remark: false,
+          }
+        }"
+      />
 
       <div class="demo-app" :class="['option-undo', appStatus]">
         <FocusDemoApp 
@@ -34,20 +44,20 @@
 </template>
 
 <script>
-import ALineCode from "./tools/a-line-code.vue";
 import FocusDemoApp from "./tools/focus-demo-app.vue";
+import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "option-undo",
   components: {
-    ALineCode,
     FocusDemoApp,
+    ShowHtmlCode,
   },
   data() {
     return {
       appStatus: [],
       showpPlaceholder: false,
-      optionUndo: "",
+      optionUndo: " < Undo",
     };
   },
 };

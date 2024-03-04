@@ -21,9 +21,16 @@
     </div>
 
     <div class="flex-between">
-      <ALineCode
-        :slots="{ optionORConjunction: optionORConjunction }"
-        class="a-line-code"
+      <ShowHtmlCode
+        class="a-line-code tag prettyprint lang-html customize"
+        :app="{optionORConjunctionContent: optionORConjunction}"
+        :dropdownSetting="{
+          display: {
+            country: false,
+            name: false,
+            remark: false,
+          }
+        }"
       />
 
       <div class="demo-app" :class="appStatus">
@@ -39,14 +46,14 @@
 </template>
 
 <script>
-import ALineCode from "./tools/a-line-code.vue";
 import FocusDemoApp from "./tools/focus-demo-app.vue";
+import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "option-OR-conjunction",
   components: {
-    ALineCode,
     FocusDemoApp,
+    ShowHtmlCode,
   },
   data() {
     return {
