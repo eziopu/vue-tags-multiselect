@@ -1,6 +1,6 @@
 <template>
   <div id="tag-conjunction" class="demo">
-    <h3>tag conjunction</h3>
+    <h3>Tag conjunction</h3>
     <div class="depiction">
       {{ $t("attributes.description.slots.tag-conjunction") }}
     </div>

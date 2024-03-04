@@ -1,6 +1,6 @@
 <template>
   <div id="option-undo" class="demo">
-    <h3>option undo</h3>
+    <h3>Option undo</h3>
     <div class="depiction">
       {{ $t("attributes.description.slots.option-undo") }}
     </div>

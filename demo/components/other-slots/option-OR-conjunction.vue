@@ -1,6 +1,6 @@
 <template>
   <div id="option-OR-conjunction" class="demo">
-    <h3>option OR conjunction</h3>
+    <h3>Option OR conjunction</h3>
     <div class="depiction">
       {{ $t("attributes.description.slots.option-OR-conjunction") }}
     </div>
