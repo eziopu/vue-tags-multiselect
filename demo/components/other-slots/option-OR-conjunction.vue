@@ -1,6 +1,6 @@
 <template>
   <div id="option-OR-conjunction" class="demo">
-    <h4>option OR conjunction</h4>
+    <h3>option OR conjunction</h3>
     <div class="depiction">
       {{ $t("attributes.description.slots.option-OR-conjunction") }}
     </div>
@@ -28,6 +28,7 @@
 
       <div class="demo-app" :class="appStatus">
         <FocusDemoApp
+          isORConjunctionDemo
           v-model="appStatus"
           :slots="{ optionORConjunction: optionORConjunction }"
         >
