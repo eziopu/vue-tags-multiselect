@@ -35,6 +35,7 @@
       />
 
       <GeneralDemo
+        class="demo-app"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :selecteds="{
