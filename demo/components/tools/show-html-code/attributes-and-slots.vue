@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       slotKeise: [
-        "tagConjunction",
+        "tagConjunctionContent",
         "loadingContent",
         "optionUndoContent",
         "optionORConjunctionContent",

@@ -17,7 +17,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="tagConjunction"
+            v-model="tagConjunctionContent"
             :disabled="merge == 'false'"
             :placeholder="`default: &`"
           />
@@ -32,7 +32,7 @@
       }"
       :app="{
         merge: merge == 'true' ? true : false,
-        tagConjunction: tagConjunction,
+        tagConjunctionContent: tagConjunctionContent,
       }"
     >
     </GeneralDemo>
@@ -53,7 +53,7 @@ export default {
     return {
       countryValuesSelected: true,
       merge: "true",
-      tagConjunction: "",
+      tagConjunctionContent: "",
     };
   },
 };

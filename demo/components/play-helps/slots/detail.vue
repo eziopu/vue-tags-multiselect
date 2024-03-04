@@ -60,7 +60,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="app.tagConjunction"
+            v-model="app.tagConjunctionContent"
             :disabled="app.merge == 'false'"
             :placeholder="`&`"
           />

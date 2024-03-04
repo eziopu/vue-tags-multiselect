@@ -54,8 +54,8 @@
         :placeholder="placeholderText(placeholder)"
         :placeholders="placeholders"
       >
-        <template v-slot:tag-conjunction v-if="tagConjunction != ''">
-          <span v-html="tagConjunction"></span>
+        <template v-slot:tag-conjunction v-if="tagConjunctionContent != ''">
+          <span v-html="tagConjunctionContent"></span>
         </template>
         <template v-slot:loading v-if="loadingContent != ''">
           <span v-html="loadingContent"></span>
@@ -259,7 +259,7 @@ export default defineComponent({
         finish: "",
         tagValueRepeat: "",
       },
-      tagConjunction: "",
+      tagConjunctionContent: "",
       optionUndoContent: "",
       optionORConjunctionContent: "",
       tool: {
