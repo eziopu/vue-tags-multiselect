@@ -45,7 +45,7 @@
       &lt;i class="fa fa-close"&gt;&lt;/i&gt;
     &lt;/v-tag-option&gt;
   &lt;/v-tag-dropdown&gt;
-  </slot>
+  </slot><span v-if="appDropdownSetting.display.remark == false">...</span>
 &lt;/v-tags-multiselect&gt;
 </code></pre>
 </template>
