@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="flex-between">
+    <div class="code-block flex-between">
       <ShowHtmlCode
         class="a-line-code tag prettyprint lang-html customize"
         :app="{optionORConjunctionContent: optionORConjunction}"
