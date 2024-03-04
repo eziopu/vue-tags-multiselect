@@ -1,11 +1,11 @@
 <template>
   <pre><code><!--
--->&lt;vue-tags-multiselect<br><!--
+-->&lt;v-tags-multiselect<br><!--
 --><Space />v-model="result"<br><!--
 
-  --><AttributesAndSlots :app="app" />
-  <slot name="country" v-if="appDropdownSetting.display.country"><!--
-  -->&lt;v-tag-dropdown value="country"<span v-show="appDropdownSetting.custom.country"> custom</span>&gt;
+  --><AttributesAndSlots :app="app" /><!--
+  --><slot name="country" v-if="appDropdownSetting.display.country"><!--
+  --><Space />&lt;v-tag-dropdown value="country"<span v-show="appDropdownSetting.custom.country"> custom</span>&gt;
     &lt;v-tag-option title&gt;
       &lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span>
     &lt;/v-tag-option&gt;

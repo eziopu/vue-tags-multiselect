@@ -28,7 +28,7 @@
     :value="app[slotKey]"
     :key="slotKey"
     :keyName="slotKey"
-  /><!--
+  /><br v-show="isAnySlot"><!--
 --></template>
 
 <script>
@@ -59,6 +59,17 @@ export default {
         "dropdownLoadingContent",
       ],
     };
+  },
+  computed: {
+    isAnySlot() {
+      let result = false;
+      this.slotKeise.forEach(slotKey => {
+        if (this.app[slotKey] != undefined && this.app[slotKey] != "") {
+          result = true
+        }
+      });
+      return result;
+    },
   },
   methods: {
     verify(value) {
