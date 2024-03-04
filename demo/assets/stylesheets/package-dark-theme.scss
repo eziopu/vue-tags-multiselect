@@ -16,6 +16,18 @@ html.dark-theme {
       border-color: #c7c7c7;
     }
 
+    i.loading__icon {
+      border-color: white;
+      border-top-color: var(--background-color-primary);
+    }
+
+    .fill__loading{
+      color: var(--text-color-primary);
+    }
+    .v-dropdowns__loading {
+      color: var(--background-color-primary);
+    }
+
     .v-option {
       color: #c7c7c7 !important
     }
