@@ -15,12 +15,12 @@
       <span v-html="slots.optionORConjunction"></span>
     </template>
     <v-tag-dropdown value="country">
-      <v-tag-option title ref="option1Title">
+      <v-tag-option title ref="option1Title" :selected="isUndoDemo">
         <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
       </v-tag-option>
       <v-tag-option
         value="Māre"
-        :selected="verifyText(slots.optionORConjunction)"
+        :selected="isORConjunctionDemo"
       >
         {{ $t("ui.data.country.Māre") }}
       </v-tag-option>
@@ -51,6 +51,18 @@ export default {
       type: Object,
       default: () => {
         return {};
+      },
+    },
+    isUndoDemo: {
+      type: Boolean,
+      default: () => {
+        return false;
+      },
+    },
+    isORConjunctionDemo: {
+      type: Boolean,
+      default: () => {
+        return false;
       },
     },
   },
@@ -100,7 +112,7 @@ export default {
     autoFocusinApp() {
       this.$nextTick(() => {
         let app = this.$refs.vueTagsMultiselect;
-        app.isFocus = true;
+        app.isActive = true;
         document.removeEventListener("focusin", app.focusChanged);
       });
     },

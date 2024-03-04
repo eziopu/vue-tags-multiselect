@@ -1,6 +1,6 @@
 <template>
   <div id="option-undo" class="demo">
-    <h4>option undo</h4>
+    <h3>option undo</h3>
     <div class="depiction">
       {{ $t("attributes.description.slots.option-undo") }}
     </div>
@@ -22,7 +22,11 @@
       <ALineCode :slots="{ optionUndo: optionUndo }" class="a-line-code" />
 
       <div class="demo-app" :class="['option-undo', appStatus]">
-        <FocusDemoApp v-model="appStatus" :slots="{ optionUndo: optionUndo }">
+        <FocusDemoApp 
+          isUndoDemo
+          v-model="appStatus"
+          :slots="{ optionUndo: optionUndo }"
+        >
         </FocusDemoApp>
       </div>
     </div>
