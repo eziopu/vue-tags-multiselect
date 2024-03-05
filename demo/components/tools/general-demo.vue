@@ -26,8 +26,8 @@
         :placeholder="appProps.placeholder"
         :placeholders="appProps.placeholders"
       >
-        <template v-slot:tag-conjunction v-if="appProps.tagConjunction != ''">
-          <span v-html="appProps.tagConjunction"></span>
+        <template v-slot:tag-conjunction v-if="appProps.tagConjunctionContent != ''">
+          <span v-html="appProps.tagConjunctionContent"></span>
         </template>
         <template v-slot:loading v-if="appProps.loadingContent != ''">
           <span v-html="appProps.loadingContent"></span>
