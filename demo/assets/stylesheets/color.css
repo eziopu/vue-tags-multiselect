@@ -10,6 +10,7 @@
   --color-scheme: atuo;
   --accent-color: #cacaca;
   --text-color-primary: #222;
+  --text-color-primary-secondary: #4d4d4d;
 }
 
 :root.dark-theme {
@@ -20,6 +21,7 @@
   --color-scheme: dark;
   --accent-color: #3f3f3f;
   --text-color-primary: #ddd;
+  --text-color-primary-secondary: #696969;
 }
 
 html, body {

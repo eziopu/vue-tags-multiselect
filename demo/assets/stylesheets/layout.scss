@@ -57,6 +57,10 @@ main.bootstrap {
   }
 }
 
+hr {
+  border: 1px solid var(--text-color-primary-secondary) !important;
+}
+
 .demo {
   margin-top: 30px;
   margin-bottom: 30px;
