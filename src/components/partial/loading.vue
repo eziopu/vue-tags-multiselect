@@ -1,6 +1,6 @@
 <template>
-  <div class="loading">
-    <i class="loading__icon"></i>
+  <div class="v-partial-loading">
+    <i class="v-partial-loading__icon"></i>
   </div>
 </template>
 
@@ -11,12 +11,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.loading {
+.v-partial-loading {
   & {
     display: flex;
     align-items: center;
   }
-  i.loading__icon {
+  i.v-partial-loading__icon {
     border: 4px solid #ebebeb;
     border-top: 4px solid #c8c8c8;
     border-radius: 80%;
