@@ -48,8 +48,8 @@
         <span class="i-block d-md-none" style="margin-right: 6px">
           {{ $t("ui.general.Default") }}:
         </span>
-        <div class="loading-icon">
-          <i class="loading"></i>
+        <div class="demo__loading">
+          <i class="demo__loading--icon"></i>
         </div>
       </div>
     </div>
@@ -88,8 +88,8 @@
             class="form-control"
             v-model="app.optionUndoContent"
           />
-          <div class="fake-placeholder" v-if="app.optionUndoContent == ''">
-            <i class="arrow-left"></i>Undo
+          <div class="demo__fake-placeholder" v-if="app.optionUndoContent == ''">
+            <i class="demo__arrow-left"></i>Undo
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
-        <i class="arrow-left"></i> Undo
+        <i class="demo__arrow-left"></i> Undo
       </div>
     </div>
     <div class="row">
@@ -144,8 +144,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "./assets/stylesheets.scss";
-
 .loading-icon {
   display: flex;
   align-items: center;
