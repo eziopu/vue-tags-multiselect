@@ -15,6 +15,12 @@ html.dark-theme {
     .v-option__undo--arrow-left {
       border-color: #c7c7c7;
     }
+    
+    .v-partial-loading
+    .v-partial-loading__icon {
+      border-color: #414141;
+      border-top-color: #c8c8c8;
+    }
 
     .v-option {
       color: #c7c7c7 !important
