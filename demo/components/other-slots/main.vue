@@ -14,7 +14,7 @@ import TagConjunction from "./tag-conjunction.vue";
 import Loadings from "../app/loadings.vue";
 
 export default {
-  name: "app-attributes",
+  name: "other-slots",
   components: {
     OptionORconjunction,
     OptionUndo,
