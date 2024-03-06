@@ -73,7 +73,7 @@
             >
               <slot name="dropdowns-loading">
                 <slot name="loading">
-                  <Loading></Loading>
+                  <PartialLoading></PartialLoading>
                 </slot>
               </slot>
             </div>
@@ -99,10 +99,10 @@
           </div>
         </Transition>
 
-        <div class="fill" ref="elFill__div">
-          <div v-show="loading == true" class="fill__loading" ref="loading">
+        <div class="v-tags-multiselect__main--fill">
+          <div v-show="loading == true" class="v-tags-multiselect__main--fill__loading" ref="loading">
             <slot name="loading">
-              <Loading></Loading>
+              <PartialLoading></PartialLoading>
             </slot>
           </div>
 
@@ -127,7 +127,7 @@
 
 <script>
 import VTag from "./components/tag/main.vue";
-import Loading from "./components/partial/loading.vue";
+import PartialLoading from "./components/partial/loading.vue";
 import VTagDropdown from "./components/slots/v-dropdown.vue";
 import VTagOption from "./components/slots/v-option.vue";
 
@@ -159,7 +159,7 @@ export default defineComponent({
 
   components: {
     VTag,
-    Loading,
+    PartialLoading,
     VTagDropdown,
     VTagOption,
   },
@@ -219,7 +219,8 @@ export default defineComponent({
   }
 
   &.loading,
-  &.loading input {
+  &.loading input,
+  &.loading .v-tags-multiselect__main {
     cursor: wait !important;
   }
 
@@ -239,7 +240,7 @@ export default defineComponent({
       // overflow: hidden;
     }
 
-    .fill {
+    .v-tags-multiselect__main--fill {
       flex-grow: 1;
       display: flex;
       align-items: center;

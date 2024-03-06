@@ -17,8 +17,6 @@ export default function useApp(props, _context, dep) {
 
   const elTags = ref(null);
 
-  const elFill = ref(null);
-
   const elInput = dep.elInput;
 
   // ============== DATA ================
@@ -169,7 +167,6 @@ export default function useApp(props, _context, dep) {
     elApp,
     elControls,
     elTags,
-    elFill,
 
     isActive,
     isEnable,

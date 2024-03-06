@@ -51,6 +51,10 @@
       list-style: none;
       border: 1px solid rgba(0,0,0,.15);
       border-radius: .25rem;
+
+      .v-dropdowns__loading {
+        margin: -0.5rem 0;
+      }
     }
 
     .v-tag {
