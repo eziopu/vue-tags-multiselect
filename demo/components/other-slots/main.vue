@@ -3,7 +3,8 @@
     <OptionORconjunction />
     <OptionUndo />
     <TagConjunction />
-    <Loadings />
+    <Loading />
+    <DropdownLoading />
   </div>
 </template>
 
@@ -11,7 +12,8 @@
 import OptionORconjunction from "./option-OR-conjunction.vue";
 import OptionUndo from "./option-undo.vue";
 import TagConjunction from "./tag-conjunction.vue";
-import Loadings from "../app/loadings.vue";
+import Loading from "./loading.vue";
+import DropdownLoading from "./dropdown-loading.vue";
 
 export default {
   name: "other-slots",
@@ -19,7 +21,8 @@ export default {
     OptionORconjunction,
     OptionUndo,
     TagConjunction,
-    Loadings,
+    Loading,
+    DropdownLoading,
   },
 };
 </script>
