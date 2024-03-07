@@ -22,14 +22,10 @@ html.dark-theme {
       border-top-color: #c8c8c8;
     }
 
-    i.loading__icon {
-      border-color: white;
-      border-top-color: var(--background-color-primary);
-    }
-
-    .fill__loading{
+    .v-tags-multiselect__main--fill__loading{
       color: var(--text-color-primary);
     }
+
     .v-dropdowns__loading {
       color: var(--background-color-primary);
     }
