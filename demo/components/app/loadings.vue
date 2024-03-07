@@ -79,10 +79,6 @@ export default {
     .demo-app {
       width: 100%;
     }
-
-    .demo-app.selecting {
-      margin-bottom: 230px;
-    }
   }
 }
 </style>

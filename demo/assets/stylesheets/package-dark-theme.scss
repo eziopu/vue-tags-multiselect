@@ -22,6 +22,14 @@ html.dark-theme {
       border-top-color: #c8c8c8;
     }
 
+    .v-tags-multiselect__main--fill__loading{
+      color: var(--text-color-primary);
+    }
+
+    .v-dropdowns__loading {
+      color: var(--background-color-primary);
+    }
+
     .v-option {
       color: #c7c7c7 !important
     }

@@ -21,7 +21,7 @@
         <input
           type="text"
           class="form-control"
-          v-model="app.tagConjunction"
+          v-model="app.tagConjunctionContent"
           :disabled="app.merge == 'false'"
           :placeholder="`&`"
         />
@@ -35,8 +35,8 @@
           class="form-control"
           v-model="app.optionUndoContent"
         />
-        <div class="fake-placeholder" v-if="app.optionUndoContent == ''">
-          <i class="arrow-left"></i>Undo
+        <div class="demo__fake-placeholder" v-if="app.optionUndoContent == ''">
+          <i class="demo__arrow-left"></i>Undo
         </div>
       </div>
     </div>
@@ -63,7 +63,3 @@ export default defineComponent({
   mixins: [InjectApp],
 });
 </script>
-
-<style scoped lang="scss">
-@import "./assets/stylesheets.scss";
-</style>

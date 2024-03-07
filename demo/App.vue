@@ -160,6 +160,7 @@ if (
 @import "./assets/stylesheets/package-dark-theme.scss";
 @import "./assets/stylesheets/header.scss";
 @import "./assets/stylesheets/layout.scss";
+@import "./assets/stylesheets/demo-layout.scss";
 @import "./assets/stylesheets/pretty-code.scss";
 </style>
 

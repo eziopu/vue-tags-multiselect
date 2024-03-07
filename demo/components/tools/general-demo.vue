@@ -26,8 +26,8 @@
         :placeholder="appProps.placeholder"
         :placeholders="appProps.placeholders"
       >
-        <template v-slot:tag-conjunction v-if="appProps.tagConjunction != ''">
-          <span v-html="appProps.tagConjunction"></span>
+        <template v-slot:tag-conjunction v-if="appProps.tagConjunctionContent != ''">
+          <span v-html="appProps.tagConjunctionContent"></span>
         </template>
         <template v-slot:loading v-if="appProps.loadingContent != ''">
           <span v-html="appProps.loadingContent"></span>
@@ -96,6 +96,7 @@
           <i class="fa fa-refresh"></i>
         </span>
         <span
+          v-if="displayShowCodeBtn"
           class="show-code-btn pointer"
           :class="{ active: showCode }"
           @click="showCode = !showCode"
@@ -141,6 +142,12 @@ export default {
       type: Boolean,
       default: () => {
         return false;
+      },
+    },
+    displayShowCodeBtn: {
+      type: Boolean,
+      default: () => {
+        return true;
       },
     },
     displayRefreshBtn: {
