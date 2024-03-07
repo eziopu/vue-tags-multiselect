@@ -51,7 +51,7 @@
           "initial": "初始預設文字, 僅在無tag時顯示",
           "loading": "讀取中文字",
           "loading__detail": {
-            "1": "僅在參數<code class='tag'>loading</code>或<code class='tag'>dropdownLoading</code>為 true 時顯示"
+            "1": "僅在參數<code class='tag'>loading</code>為 true 時顯示"
           },
           "selectDown": "選項皆完成後的文字",
           "selectDown__detail": {
@@ -73,7 +73,7 @@
         "loading": "讀取中的模板",
         "loading__notice": "僅在參數<code>loading</code>為 true 時運作",
         "dropdowns-loading": "下拉式選單讀取中的模板",
-        "dropdowns-loading__notice": "會強制覆蓋<code class='tag'>loading</code>的模板",
+        "dropdowns-loading__notice": "只針對dropdown區塊的loading模板",
         "tag-conjunction": "tag合併後value之間的連接符號",
         "tag-conjunction__notice": "僅在參數<code class='tag'>merge</code>為 true 時運作",
         "option-undo": "下拉選單中返回的模板",
