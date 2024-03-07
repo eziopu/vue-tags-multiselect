@@ -3,6 +3,9 @@
     <h3>Tag conjunction</h3>
     <div class="depiction">
       {{ $t("attributes.description.slots.tag-conjunction") }}
+      <div class="sub-depiction">
+        <p v-html="$t('attributes.description.slots.tag-conjunction__notice')"></p>
+      </div>
     </div>
 
     <hr />
@@ -24,7 +27,10 @@
     <div class="code-block flex-between">
       <ShowHtmlCode
         class="a-line-code tag prettyprint lang-html customize"
-        :app="{tagConjunctionContent: tagConjunctionContent}"
+        :app="{
+          merge: merge,
+          tagConjunctionContent: tagConjunctionContent
+        }"
         :dropdownSetting="{
           display: {
             country: false,

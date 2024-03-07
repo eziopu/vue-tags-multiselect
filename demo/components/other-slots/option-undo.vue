@@ -21,7 +21,7 @@
     <div class="code-block flex-between">
       <ShowHtmlCode
         class="a-line-code tag prettyprint lang-html customize"
-        :app="{optionUndoContent: optionUndo}"
+        :app="{optionUndoContent: optionUndo || ' < Undo '}"
         :dropdownSetting="{
           display: {
             country: false,
@@ -57,7 +57,7 @@ export default {
     return {
       appStatus: [],
       showpPlaceholder: false,
-      optionUndo: " < Undo",
+      optionUndo: "",
     };
   },
 };
