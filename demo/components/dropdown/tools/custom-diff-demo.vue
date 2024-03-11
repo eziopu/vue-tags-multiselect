@@ -9,7 +9,6 @@
       <v-tags-multiselect
         v-if="reloadByI18n"
         deleteIcon="none"
-        conjunction="OR"
       >
         <v-tag-dropdown value="country" :custom="appCustomer">
           <v-tag-option title>
@@ -22,12 +21,24 @@
             {{ $t("ui.data.country.Eldia") }}
           </v-tag-option>
         </v-tag-dropdown>
+        <v-tag-dropdown value="name">
+          <v-tag-option title>
+            <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
+          </v-tag-option>
+          <v-tag-option value="Grisha Yeager">
+            {{ $t("ui.data.name.Grisha Yeager") }}
+          </v-tag-option>
+          <v-tag-option value="Eren Yeager">
+            {{ $t("ui.data.name.Eren Yeager") }}
+          </v-tag-option>
+          <v-tag-option value="Armin Arlert">
+            {{ $t("ui.data.name.Armin Arlert") }}
+          </v-tag-option>
+        </v-tag-dropdown>
       </v-tags-multiselect>
     </div>
 
-    <div class="depiction" v-if="appCustomer == true">
-      <ALineCode bolder="custom" />
-    </div>
+    <ALineCode bolder="custom" v-if="appCustomer == true" />
   </div>
 </template>
 

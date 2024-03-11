@@ -69,6 +69,34 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
+    &.to5-5 {
+      & > div:first-child {
+        width: 48%;
+      }
+      & > div:last-child {
+        width: 48%;
+      }
+    }
+
+    &.to6-4 {
+      & > div:first-child {
+        width: 58%;
+      }
+      & > div:last-child {
+        width: 38%;
+      }
+    }
+    &.to5-5, &.to6-4 {
+      @media (max-width: 768px) {
+        & {
+          flex-direction: column;
+        }
+        & > div {
+          width: 100% !important;
+        }
+      }
+    }
   }
 
   .demo__fake-placeholder {
