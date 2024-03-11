@@ -107,6 +107,14 @@ export const PACKAGE_EVENT = {
   editing: {},
 }
 
+export const PACKAGE_SLOTS = {
+  tagConjunction: "",
+  loading: "",
+  optionUndo: "",
+  optionORConjunction: "",
+  dropdownLoading: "",
+}
+
 export const PACKAGE_V_DROPDOWN_PROPS = {
   isDisplayForDemo: true, // for show code
   disabled: false,
@@ -126,6 +134,7 @@ export const PACKAGE_V_OPTION_PROPS = {
 
 export const DEMO_SETTING = {
   props: PACKAGE_PROPS,
+  slots: PACKAGE_SLOTS,
   event: PACKAGE_EVENT,
   option: {
     country: generate_v_options(3),
@@ -141,4 +150,25 @@ export const DEMO_SETTING = {
 
 function generate_v_options(number) {
   return Array.from({ length: number }, () => ({ ...PACKAGE_V_OPTION_PROPS }));
+}
+
+// :option="{
+// country: [{}, { selected: true }, { selected: true }],
+//       }"
+export function merge_v_options(inputs = [{}]) {
+  let options = DEMO_SETTING.option;
+  // options = {country: [], ...}
+
+  Object.entries(options).forEach(option => {
+    const [key, value] = option;
+    // value = [{...}, {...}, ...]
+
+    if (inputs[key] != undefined) {
+      for (let index = 0; index < value.length; index++) {
+        options[key][index] = {...value[index], ...inputs[key][index]}
+      }
+    }
+  });
+
+  return options;
 }
