@@ -86,9 +86,9 @@ export const PACKAGE_PROPS = {
   placeholder: "",
   placeholders: {
     initial: "",
-    loading: "Wait a moment, please.",
-    selectDown: "Selected End.",
-    finish: "Finish.",
+    loading: "",
+    selectDown: "",
+    finish: "",
     tagValueRepeat: "",
   },
   dropdownLoading: false,
@@ -108,7 +108,7 @@ export const PACKAGE_EVENT = {
 }
 
 export const PACKAGE_V_DROPDOWN_PROPS = {
-  isDisplayForDemo: false, // for show code
+  isDisplayForDemo: true, // for show code
   disabled: false,
   divided: false,
   displayAll: false,
@@ -117,7 +117,7 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
 }
 
 export const PACKAGE_V_OPTION_PROPS = {
-  isDisplayForDemo: false, // for show code
+  isDisplayForDemo: true, // for show code
   displayValue: false,
   disabled: false,
   divided: false,
@@ -135,7 +135,7 @@ export const DEMO_SETTING = {
   dropdown: {
     country: PACKAGE_V_DROPDOWN_PROPS,
     name: PACKAGE_V_DROPDOWN_PROPS,
-    remark: PACKAGE_V_DROPDOWN_PROPS,
+    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ displayAll: true}},
   },
 }
 
