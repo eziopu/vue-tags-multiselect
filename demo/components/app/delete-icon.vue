@@ -53,7 +53,6 @@ export default {
   },
   data() {
     return {
-      countryValuesSelected: true,
       merge: "true",
       deleteIcon: "always",
     };
