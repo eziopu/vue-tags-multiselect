@@ -54,10 +54,11 @@ import Space from "./space.vue";
 import AttributesAndSlots from "./attributes-and-slots.vue";
 import DropdownProps from "./dropdown-props-template.vue";
 import OptionProps from "./option-props-template.vue";
-import { DEMO_SETTING } from "../../models.js";
+import PackageAttributes from "../mixins/package-attributes.js";
 
 export default {
   name: "show-html-code",
+  mixins: [PackageAttributes],
   components: {
     Space,
     AttributesAndSlots,
@@ -65,24 +66,6 @@ export default {
     OptionProps,
   },
   props: {
-    app: {
-      type: Object,
-      default: () => {
-        return DEMO_SETTING.props;
-      },
-    },
-    dropdown: {
-      type: Object,
-      default: () => {
-        return DEMO_SETTING.dropdown;
-      },
-    },
-    option: {
-      type: Object,
-      default: () => {
-        return DEMO_SETTING.option;
-      },
-    },
     selecteds: { // need delete
       type: Object,
       default: () => {
@@ -96,41 +79,12 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      appProps: DEMO_SETTING.props,
-      appEvent: DEMO_SETTING.event,
-      appDropdown: DEMO_SETTING.dropdown,
-      appOption: DEMO_SETTING.option,
-    };
-  },
   watch: {
     "$i18n.locale": {
       handler() {
         this.$forceUpdate();
       },
       deep: true,
-    },
-    app: {
-      handler(value) {
-        this.appProps = { ...this.appProps, ...value };
-      },
-      deep: true,
-      immediate: true,
-    },
-    dropdown: {
-      handler(value) {
-        this.appDropdown = { ...this.appDropdown, ...value };
-      },
-      deep: true,
-      immediate: true,
-    },
-    option: {
-      handler(value) {
-        this.appOption = { ...this.appOption, ...value };
-      },
-      deep: true,
-      immediate: true,
     },
   },
   methods: {

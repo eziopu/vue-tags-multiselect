@@ -26,24 +26,24 @@
         :placeholder="appProps.placeholder"
         :placeholders="appProps.placeholders"
       >
-        <template v-slot:tag-conjunction v-if="appProps.tagConjunctionContent != ''">
+        <template v-slot:tag-conjunction v-if="appSlots.tagConjunction != ''">
           <span v-html="appProps.tagConjunctionContent"></span>
         </template>
-        <template v-slot:loading v-if="appProps.loadingContent != ''">
+        <template v-slot:loading v-if="appSlots.loading != ''">
           <span v-html="appProps.loadingContent"></span>
         </template>
-        <template v-slot:option-undo v-if="appProps.optionUndoContent != ''">
+        <template v-slot:option-undo v-if="appSlots.optionUndo != ''">
           <span v-html="appProps.optionUndoContent"></span>
         </template>
         <template
           v-slot:optionU-OR-conjunction
-          v-if="appProps.optionORConjunctionContent != ''"
+          v-if="appSlots.optionORConjunction != ''"
         >
           <span v-html="appProps.optionORConjunctionContent"></span>
         </template>
         <template
           v-slot:dropdowns-loading
-          v-if="appProps.dropdownLoadingContent != ''"
+          v-if="appSlots.dropdownLoading != ''"
         >
           <span v-html="appProps.dropdownLoadingContent"></span>
         </template>
@@ -197,6 +197,7 @@
           v-show="showCode"
           class="prettyprint lang-html customize"
           :app="appProps"
+          :slots="appSlots"
           :dropdown="appDropdown"
           :option="appOption"
         ></ShowHtmlCode>
@@ -209,33 +210,15 @@
 import ShowHtmlCode from "./show-html-code/main.vue";
 import ReloadByI18n from "./mixins/reload-by-i18n.js";
 import ReloadByBtn from "./mixins/reload-by-btn.js";
-import { DEMO_SETTING } from "../models.js";
+import PackageAttributes from "./mixins/package-attributes.js";
 
 export default {
-  mixins: [ReloadByI18n, ReloadByBtn],
+  mixins: [ReloadByI18n, ReloadByBtn, PackageAttributes],
   props: {
     autoFocus: {
       type: Boolean,
       default: () => {
         return false;
-      },
-    },
-    app: {
-      type: Object,
-      default: () => {
-        return DEMO_SETTING.props;
-      },
-    },
-    dropdown: {
-      type: Object,
-      default: () => {
-        return DEMO_SETTING.dropdown;
-      },
-    },
-    option: {
-      type: Object,
-      default: () => {
-        return DEMO_SETTING.option;
       },
     },
     displayOutput: {
@@ -270,11 +253,6 @@ export default {
     return {
       search: "true",
       showCode: false,
-      // default values
-      appProps: DEMO_SETTING.props,
-      appEvent: DEMO_SETTING.event,
-      appDropdown: DEMO_SETTING.dropdown,
-      appOption: DEMO_SETTING.option,
       appSelecteds: { // need delete
         country: [false, false],
         name: [false, false, false],
@@ -299,27 +277,6 @@ export default {
           this.focusinApp();
         }
       },
-      immediate: true,
-    },
-    app: {
-      handler(value) {
-        this.appProps = { ...this.appProps, ...value };
-      },
-      deep: true,
-      immediate: true,
-    },
-    dropdown: {
-      handler(value) {
-        this.appDropdown = { ...this.appDropdown, ...value };
-      },
-      deep: true,
-      immediate: true,
-    },
-    option: {
-      handler(value) {
-        this.appOption = { ...this.appOption, ...value };
-      },
-      deep: true,
       immediate: true,
     },
   },
