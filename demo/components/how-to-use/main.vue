@@ -60,12 +60,9 @@
     </h3>
     <ShowHtmlCode
       class="prettyprint lang-html customize"
-      :dropdownSetting="{
-        display: {
-          country: true,
-          name: false,
-          remark: false,
-        }
+      :dropdown="{
+        name: {isDisplayForDemo: false},
+        remark: {isDisplayForDemo: false}
       }"
     ></ShowHtmlCode>
   </div>
