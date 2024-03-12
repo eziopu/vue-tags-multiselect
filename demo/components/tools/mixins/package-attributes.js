@@ -6,65 +6,45 @@ export default {
     app: {
       type: Object,
       default: () => {
-        return DEMO_SETTING.props;
+        return {};
       },
     },
     slots: {
       type: Object,
       default: () => {
-        return DEMO_SETTING.slots;
+        return {};
       },
     },
     dropdown: {
       type: Object,
       default: () => {
-        return DEMO_SETTING.dropdown;
+        return {};
       },
     },
     option: {
       type: Object,
       default: () => {
-        return DEMO_SETTING.option;
+        return {};
       },
     },
   },
   data() {
     return {
-      appProps: DEMO_SETTING.props,
-      appSlots: DEMO_SETTING.slots,
       appEvent: DEMO_SETTING.event,
-      appDropdown: DEMO_SETTING.dropdown,
-      appOption: DEMO_SETTING.option,
     };
   },
-  watch: {
-    app: {
-      handler(value) {
-        this.appProps = { ...this.appProps, ...value };
-      },
-      deep: true,
-      immediate: true,
+  computed: {
+    appProps() {
+      return { ...DEMO_SETTING.props, ...this.app };
     },
-    slots: {
-      handler(value) {
-        this.appSlots = { ...this.appSlots, ...value };
-      },
-      deep: true,
-      immediate: true,
+    appSlots() {
+      return { ...DEMO_SETTING.slots, ...this.slots };
     },
-    dropdown: {
-      handler(value) {
-        this.appDropdown = { ...this.appDropdown, ...value };
-      },
-      deep: true,
-      immediate: true,
+    appDropdown() {
+      return { ...DEMO_SETTING.dropdown, ...this.dropdown };
     },
-    option: {
-      handler(value) {
-        this.appOption = merge_v_options(value);
-      },
-      deep: true,
-      immediate: true,
+    appOption() {
+      return merge_v_options(this.option);
     },
   },
 };
