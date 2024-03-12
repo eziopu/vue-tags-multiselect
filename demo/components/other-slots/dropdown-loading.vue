@@ -38,14 +38,13 @@
         :app="{
           loading: loading,
           dropdownLoading: dropdownLoading,
-          dropdownLoadingContent: dropdownLoadingContent || '...'
         }"
-        :dropdownSetting="{
-          display: {
-            country: false,
-            name: false,
-            remark: false,
-          }
+        :slots="{
+          dropdownLoading: dropdownLoadingContent || '...'
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false},
+          remark: {isDisplayForDemo: false}
         }"
       />
 
@@ -57,7 +56,12 @@
         :app="{
           loading: loading == 'true' ? true : false,
           dropdownLoading: dropdownLoading == 'true' ? true : false,
-          dropdownLoadingContent: dropdownLoadingContent,
+        }"
+        :slots="{
+          dropdownLoading: dropdownLoadingContent,
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false}
         }"
       />
     </div>
