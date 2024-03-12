@@ -1,16 +1,16 @@
 <template>
   <div id="dropdown-custom" class="demo">
-    <h4>Custom</h4>
-    <div class="depiction">
-      {{ $t("attributes.description.dropdown.custom") }} <br />
-      *{{ $t("ui.page.sentence.click_the_tag_to_edit_mode") }}
-    </div>
+    <h3>Custom</h3>
+      <div class="depiction">
+        {{ $t("attributes.description.dropdown.custom") }} <br />
+        *{{ $t("ui.page.sentence.click_the_tag_to_edit_mode") }}
+      </div>
 
-    <div class="flex-between">
-      <CustomDiffDemo :appCustomer="true" />
-      <CustomDiffDemo :appCustomer="false" />
+      <div class="flex-between to6-4">
+        <CustomDiffDemo :appCustomer="true" />
+        <CustomDiffDemo :appCustomer="false" />
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -23,27 +23,3 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
-.flex-between {
-  div:last-child {
-    width: 40%;
-  }
-  @media all and (max-width: 1200px) {
-    div:last-child {
-      width: 30%;
-    }
-  }
-  @media all and (max-width: 992px) {
-    & {
-      flex-direction: column;
-    }
-    div:first-child,
-    div:last-child {
-      width: 100%;
-    }
-    div:last-child {
-      margin-top: 24px;
-    }
-  }
-}
-</style>

@@ -1,11 +1,18 @@
 <template>
   <div id="dropdown-value" class="demo">
-    <h4>Value</h4>
-    <div class="depiction">
-      {{ $t("attributes.description.dropdown.value") }}
-      *{{ $t("ui.general.required") }}
-      <br />
-      <ALineCode bolder="value" />
+    <h3>Value</h3>
+    <div class="flex-between to6-4">
+      <div class="depiction">
+        {{ $t("attributes.description.dropdown.value") }}
+        *{{ $t("ui.general.required") }}
+        <br />
+        <ALineCode bolder="value" />
+      </div>
+      <div>
+        result is object array 
+        <br />
+        <pre><code>{ country: [...], ...}</code></pre>
+      </div>
     </div>
   </div>
 </template>

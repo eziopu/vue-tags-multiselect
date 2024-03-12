@@ -3,49 +3,52 @@
 -->&lt;v-tags-multiselect<br><!--
 --><Space />v-model="result"<br><!--
 
-  --><AttributesAndSlots :app="app" /><!--
-  --><slot name="country" v-if="appDropdownSetting.display.country"><!--
-  --><Space />&lt;v-tag-dropdown value="country"<span v-show="appDropdownSetting.custom.country"> custom</span>&gt;
-    &lt;v-tag-option title&gt;
+  --><AttributesAndSlots :app="app" :slots="slots" /><!--
+  --><slot name="country" v-if="appDropdown.country.isDisplayForDemo"><!--
+  --><Space />&lt;v-tag-dropdown value="country"<DropdownProps :props="appDropdown.country" />&gt;
+    &lt;v-tag-option title<OptionProps :props="appOption.country[0]" />&gt;
       &lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span>
     &lt;/v-tag-option&gt;
-    &lt;v-tag-option value="Māre"<span v-show="appSelecteds.country[0]"> selected</span>&gt;<span v-html="renderData('data.country.Māre')"></span>&lt;/v-tag-option&gt;
-    &lt;v-tag-option value="Eldia"<span v-show="appSelecteds.country[1]"> selected</span>&gt;<span v-html="renderData('data.country.Eldia')"></span>&lt;/v-tag-option&gt;
-  &lt;/v-tag-dropdown&gt;
-  </slot><!--  
-
-  --><slot name="name" v-if="appDropdownSetting.display.name"><!--
-  -->
-  &lt;v-tag-dropdown value="name"<span v-show="appDropdownSetting.custom.name"> custom</span>&gt;
-    &lt;v-tag-option title&gt;
+    &lt;v-tag-option value="Māre"<OptionProps :props="appOption.country[1]" />&gt;<span v-html="renderData('data.country.Māre')"></span>&lt;/v-tag-option&gt;
+    &lt;v-tag-option value="Eldia"<OptionProps :props="appOption.country[2]" />&gt;<span v-html="renderData('data.country.Eldia')"></span>&lt;/v-tag-option&gt;
+  &lt;/v-tag-dropdown&gt;<!--
+  --></slot><!--
+  --><slot name="name" v-if="appDropdown.name.isDisplayForDemo"><!--
+  --><br>
+  &lt;v-tag-dropdown value="name"<DropdownProps :props="appDropdown.name" />&gt;
+    &lt;v-tag-option title<OptionProps :props="appOption.name[0]" />&gt;
       &lt;i class="fa fa-user"&gt;&lt;/i&gt; <span v-html="renderData('general.Name')"></span>
     &lt;/v-tag-option&gt;
-    &lt;v-tag-option value="Grisha Yeager"<span v-show="appSelecteds.name[0]"> selected</span>&gt;
+    &lt;v-tag-option value="Grisha Yeager"<OptionProps :props="appOption.name[1]" />&gt;
       <span v-html="renderData('data.name.Grisha Yeager')"></span>
     &lt;/v-tag-option&gt;
-    &lt;v-tag-option value="Eren Yeager"<span v-show="appSelecteds.name[1]"> selected</span>&gt;
+    &lt;v-tag-option value="Eren Yeager"<OptionProps :props="appOption.name[2]" />&gt;
       <span v-html="renderData('data.name.Eren Yeager')"></span>
     &lt;/v-tag-option&gt;
-    &lt;v-tag-option value="Armin Arlert"<span v-show="appSelecteds.name[2]"> selected</span>&gt;
+    &lt;v-tag-option value="Armin Arlert"<OptionProps :props="appOption.name[3]" />&gt;
       <span v-html="renderData('data.name.Armin Arlert')"></span>
     &lt;/v-tag-option&gt;
-  &lt;/v-tag-dropdown&gt;
-  </slot><!--  
+  &lt;/v-tag-dropdown&gt;<!--
+  --></slot><!--  
 
-  --><slot name="remark" v-if="appDropdownSetting.display.remark"><!--
-  -->
-  &lt;v-tag-dropdown value="remark" display-all<span v-show="appDropdownSetting.custom.remark"> custom</span>&gt;
-    &lt;v-tag-option title&gt;
+  --><slot name="remark" v-if="appDropdown.remark.isDisplayForDemo"><!--
+  --><br>
+  &lt;v-tag-dropdown value="remark"<DropdownProps :props="appDropdown.remark" />&gt;
+    &lt;v-tag-option title<OptionProps :props="appOption.remark[0]" />&gt;
       &lt;i class="fa fa-sticky-note"&gt;&lt;/i&gt; <span v-html="renderData('general.Remark')"></span>
     &lt;/v-tag-option&gt;
-    &lt;v-tag-option value="yes<span v-show="appSelecteds.remark[0]"> selected</span>"&gt;
+    &lt;v-tag-option value="yes<OptionProps :props="appOption.remark[1]" />"&gt;
       &lt;i class="fa fa-check"&gt;&lt;/i&gt;
     &lt;/v-tag-option&gt;
-    &lt;v-tag-option value="no"<span v-show="appSelecteds.remark[1]"> selected</span>&gt;
+    &lt;v-tag-option value="no"<OptionProps :props="appOption.remark[2]" />&gt;
       &lt;i class="fa fa-close"&gt;&lt;/i&gt;
     &lt;/v-tag-option&gt;
-  &lt;/v-tag-dropdown&gt;
-  </slot><span v-if="appDropdownSetting.display.remark == false">...</span>
+  &lt;/v-tag-dropdown&gt;<!--
+  --></slot><!--
+  --><span v-if="appDropdown.remark.isDisplayForDemo == false"><!--
+    --><br v-if="appDropdown.country.isDisplayForDemo || appDropdown.name.isDisplayForDemo" /><!--
+    --><Space />...<!--
+  --></span>
 &lt;/v-tags-multiselect&gt;
 </code></pre>
 </template>
@@ -53,53 +56,18 @@
 <script>
 import Space from "./space.vue";
 import AttributesAndSlots from "./attributes-and-slots.vue";
+import DropdownProps from "./dropdown-props-template.vue";
+import OptionProps from "./option-props-template.vue";
+import PackageAttributes from "../mixins/package-attributes.js";
 
 export default {
   name: "show-html-code",
+  mixins: [PackageAttributes],
   components: {
     Space,
     AttributesAndSlots,
-  },
-  props: {
-    app: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-    selecteds: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-    dropdownSetting: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-  },
-  data() {
-    return {
-      appSelecteds: {
-        country: [false, false],
-        name: [false, false, false],
-        remark: [false, false],
-      },
-      appDropdownSetting: {
-        display: {
-          country: true,
-          name: true,
-          remark: true,
-        },
-        custom: {
-          country: false,
-          name: false,
-          remark: false,
-        },
-      },
-    };
+    DropdownProps,
+    OptionProps,
   },
   watch: {
     "$i18n.locale": {
@@ -108,31 +76,6 @@ export default {
       },
       deep: true,
     },
-    selecteds: {
-      handler(value) {
-        this.appSelecteds = {
-          ...this.appSelecteds,
-          ...value,
-        };
-      },
-      deep: true,
-    },
-    dropdownSetting: {
-      handler(value) {
-        this.appDropdownSetting = {
-          ...this.appDropdownSetting,
-          ...value,
-        };
-      },
-      deep: true,
-    },
-  },
-  created() {
-    this.appSelecteds = { ...this.appSelecteds, ...this.selecteds };
-    this.appDropdownSetting = {
-      ...this.appDropdownSetting,
-      ...this.dropdownSetting,
-    };
   },
   methods: {
     renderData(value) {

@@ -21,36 +21,46 @@
     <div class="code-block flex-between">
       <ShowHtmlCode
         class="a-line-code tag prettyprint lang-html customize"
-        :app="{optionUndoContent: optionUndo || ' < Undo '}"
-        :dropdownSetting="{
-          display: {
-            country: false,
-            name: false,
-            remark: false,
-          }
+        :slots="{
+          optionUndo: optionUndo || '...'
+        }"
+        :dropdown="{
+          country: {isDisplayForDemo: false},
+          name: {isDisplayForDemo: false},
+          remark: {isDisplayForDemo: false}
         }"
       />
 
-      <div class="demo-app" :class="['option-undo', appStatus]">
-        <FocusDemoApp 
-          isUndoDemo
-          v-model="appStatus"
-          :slots="{ optionUndo: optionUndo }"
-        >
-        </FocusDemoApp>
-      </div>
+      <GeneralDemo
+        class="demo-app"
+        :autoFocus="true"
+        :displayRefreshBtn="true"
+        :displayShowCodeBtn="false"
+        :app="{
+          loading: loading == 'true' ? true : false,
+        }"
+        :slots="{
+          optionUndo: optionUndo,
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false}
+        }"
+        :option="{
+          country: [{selected: true}],
+        }"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import FocusDemoApp from "./tools/focus-demo-app.vue";
+import GeneralDemo from "../tools/general-demo.vue";
 import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "option-undo",
   components: {
-    FocusDemoApp,
+    GeneralDemo,
     ShowHtmlCode,
   },
   data() {

@@ -1,11 +1,12 @@
 <template>
-  <div id="dropdown-slots" class="demo">
-    <Value></Value>
-    <Custom></Custom>
+  <div id="dropdown-slot" class="demo">
+    <Value />
+    <Custom />
+
     <div class="flex-between">
       <div class="attributes">
         <div class="attribute">
-          <h4>DisplayAll</h4>
+          <h3>DisplayAll</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.dropdown.display-all") }}
@@ -18,7 +19,7 @@
           </div>
         </div>
         <div class="attribute">
-          <h4>Disabled</h4>
+          <h3>Disabled</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.dropdown.disabled") }}
@@ -31,7 +32,7 @@
           </div>
         </div>
         <div class="attribute">
-          <h4>Divided</h4>
+          <h3>Divided</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.dropdown.divided") }}
@@ -44,7 +45,7 @@
           </div>
         </div>
         <div class="attribute">
-          <h4>Hidden</h4>
+          <h3>Hidden</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.dropdown.hidden") }}
@@ -58,16 +59,18 @@
         <h6>
           *{{ $t("ui.page.sentence.attribute_only_change_first_dropdown") }}
         </h6>
-        <FocusDemoApp
-          v-model="appStatus"
+        <GeneralDemo
+          class="demo-app"
+          :autoFocus="true"
+          :displayRefreshBtn="true"
+          :displayShowCodeBtn="false"
           :dropdown="{
             displayAll: toBoolean(displayAll),
             disabled: toBoolean(disabled),
             divided: toBoolean(divided),
             hidden: toBoolean(hidden),
           }"
-        >
-        </FocusDemoApp>
+        />
       </div>
     </div>
   </div>
@@ -77,15 +80,15 @@
 import Value from "./value.vue";
 import Custom from "./custom.vue";
 import LabelAndSelect from "../tools/label-and-select.vue";
-import FocusDemoApp from "../tools/focus-demo-app.vue";
+import GeneralDemo from "../tools/general-demo.vue";
 
 export default {
-  name: "dropdown-slots-main",
+  name: "dropdown-slot",
   components: {
     Value,
     Custom,
     LabelAndSelect,
-    FocusDemoApp,
+    GeneralDemo,
   },
   data() {
     return {

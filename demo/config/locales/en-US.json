@@ -38,7 +38,7 @@
         "deleteIcon__detail": {
           "1": "always: whether show",
           "2": "edit: only edit this tag show",
-          "3": "none: whether do not show"
+          "3": "none: whether do not show *only able to use the keyboard's delete key"
         },
         "placeholder": "input placeholder, please choose one of the following to use",
         "placeholder__detail": {

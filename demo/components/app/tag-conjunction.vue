@@ -27,12 +27,14 @@
 
     <GeneralDemo
       :displayRefreshBtn="true"
-      :selecteds="{
-        country: [true, true],
+      :option="{
+        country: [{}, {selected: true}, {selected: true}],
       }"
       :app="{
         merge: merge == 'true' ? true : false,
-        tagConjunctionContent: tagConjunctionContent,
+      }"
+      :slots="{
+        tagConjunction: tagConjunctionContent,
       }"
     >
     </GeneralDemo>
@@ -51,7 +53,6 @@ export default {
   },
   data() {
     return {
-      countryValuesSelected: true,
       merge: "true",
       tagConjunctionContent: "",
     };

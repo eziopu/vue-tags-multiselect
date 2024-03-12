@@ -31,24 +31,29 @@
         class="a-line-code tag prettyprint lang-html customize"
         :app="{
           loading: loading,
-          loadingContent: loadingContent || '...'
         }"
-        :dropdownSetting="{
-          display: {
-            country: false,
-            name: false,
-            remark: false,
-          }
+        :slots="{
+          loading: loadingContent || '...',
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false},
+          remark: {isDisplayForDemo: false}
         }"
       />
 
       <GeneralDemo
         class="demo-app"
+        :autoFocus="true"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
           loading: loading == 'true' ? true : false,
-          loadingContent: loadingContent,
+        }"
+        :slots="{
+          loading: loadingContent,
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false}
         }"
       />
     </div>

@@ -38,7 +38,7 @@
         "deleteIcon__detail": {
           "1": "always: 總是顯示(預設值)",
           "2": "edit: 只在編輯模式顯示",
-          "3": "none: 總是不顯示"
+          "3": "none: 總是不顯示 *只能使用鍵盤的刪除鍵"
         },
         "placeholder": "預設文字, 請選以下一種來使用",
         "placeholder__detail": {

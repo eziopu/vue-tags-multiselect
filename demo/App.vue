@@ -18,7 +18,7 @@ import Play from "./components/play-helps/main.vue";
 // demo
 import HowToUse from "./components/how-to-use/main.vue";
 import Slots from "./components/other-slots/main.vue";
-import Dropdown from "./components/play-helps/main.vue";
+import Dropdown from "./components/dropdown/main.vue";
 import Option from "./components/play-helps/main.vue";
 
 import Header from "./components/layout/header/main.vue";

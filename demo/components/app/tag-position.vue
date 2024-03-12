@@ -18,8 +18,8 @@
 
     <GeneralDemo
       :displayRefreshBtn="true"
-      :selecteds="{
-        country: [true],
+      :option="{
+        country: [{}, {selected: true}],
       }"
       :app="{
         tagPosition: tagPosition,

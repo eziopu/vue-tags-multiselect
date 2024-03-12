@@ -72,3 +72,99 @@ export const DATAS = [
     remark: "",
   },
 ];
+
+export const PACKAGE_PROPS = {
+  disabled: false,
+  loading: false,
+  dropdownLoading: false,
+  search: true,
+  transition: true,
+  create: true,
+  merge: true,
+  debugLog: false,
+  conjunction: "",
+  tagPosition: "",
+  deleteIcon: "always",
+  placeholder: "",
+  placeholders: {
+    initial: "",
+    loading: "",
+    selectDown: "",
+    finish: "",
+    tagValueRepeat: "",
+  },
+}
+
+export const PACKAGE_EVENT = {
+  result: [],
+  status: [],
+  selectingTag: {},
+  inputValue: "",
+  editing: {},
+}
+
+export const PACKAGE_SLOTS = {
+  tagConjunction: "",
+  loading: "",
+  optionUndo: "",
+  optionORConjunction: "",
+  dropdownLoading: "",
+}
+
+export const PACKAGE_V_DROPDOWN_PROPS = {
+  isDisplayForDemo: true, // for show code
+  disabled: false,
+  divided: false,
+  displayAll: false,
+  hidden: false,
+  custom: false,
+}
+
+export const PACKAGE_V_OPTION_PROPS = {
+  isDisplayForDemo: true, // for show code
+  displayValue: false,
+  disabled: false,
+  divided: false,
+  selected: false,
+}
+
+export const DEMO_SETTING = {
+  props: PACKAGE_PROPS,
+  slots: PACKAGE_SLOTS,
+  event: PACKAGE_EVENT,
+  option: {
+    country: generate_v_options(3),
+    name: generate_v_options(4),
+    remark: generate_v_options(3),
+  },
+  dropdown: {
+    country: PACKAGE_V_DROPDOWN_PROPS,
+    name: PACKAGE_V_DROPDOWN_PROPS,
+    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ displayAll: true}},
+  },
+}
+
+function generate_v_options(number) {
+  return Array.from({ length: number }, () => ({ ...PACKAGE_V_OPTION_PROPS }));
+}
+
+// :option="{
+// country: [{}, { selected: true }, { selected: true }],
+//       }"
+export function merge_v_options(inputs = [{}]) {
+  let options = JSON.parse(JSON.stringify(DEMO_SETTING.option));
+  // options = {country: [], ...}
+
+  Object.entries(options).forEach(option => {
+    const [key, value] = option;
+    // value = [{...}, {...}, ...]
+
+    if (inputs[key] != undefined) {
+      for (let index = 0; index < value.length; index++) {
+        options[key][index] = {...value[index], ...inputs[key][index]}
+      }
+    }
+  });
+
+  return options;
+}

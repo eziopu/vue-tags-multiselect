@@ -1,8 +1,10 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
-  <code class="tag prettyprint lang-html customize"
-    >&lt;v-tag-dropdown
-    <span :class="{ bolder: bolder.includes('value') }">value</span>="country"<!-- 
+<pre class="tag prettyprint lang-html customize"><code><!--
+  -->&lt;v-tags-multiselect<br><!--
+  --><Space />v-model="result"<br><!--
+  -->&gt;<br><!--
+  --><Space />&lt;v-tag-dropdown <span :class="{ bolder: bolder.includes('value') }">value</span>="country"<!-- 
     --><span v-show="bolder.includes('disabled')" class="bolder"> disabled</span
     ><!--
     --><span v-show="bolder.includes('divided')" class="bolder"> divided</span
@@ -13,13 +15,20 @@
     ><!--
     --><span v-show="bolder.includes('custom')" class="bolder"> custom</span
     ><!--
-    -->&gt; ... &lt;/v-tag-dropdown&gt;</code
-  >
+    -->&gt;<br><!--
+    --><Space :n="2" />...<br><!--
+    --><Space />&lt;/v-tag-dropdown&gt;<br><!--
+  -->&lt;/v-tags-multiselect&gt;<!--
+--></code></pre>
 </template>
 
 <script>
+import Space from "../../tools/show-html-code/space.vue";
 export default {
   name: "dropdown-tools-line-code",
+  components: {
+    Space,
+  },
   props: {
     bolder: {
       type: String,

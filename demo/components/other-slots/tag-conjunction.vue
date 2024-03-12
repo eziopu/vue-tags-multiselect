@@ -29,14 +29,13 @@
         class="a-line-code tag prettyprint lang-html customize"
         :app="{
           merge: merge,
-          tagConjunctionContent: tagConjunctionContent
         }"
-        :dropdownSetting="{
-          display: {
-            country: false,
-            name: false,
-            remark: false,
-          }
+        :slots="{
+          tagConjunction: tagConjunctionContent || '...',
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false},
+          remark: {isDisplayForDemo: false}
         }"
       />
 
@@ -44,12 +43,17 @@
         class="demo-app"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
-        :selecteds="{
-          country: [true, true],
-        }"
         :app="{
           merge: merge == 'true' ? true : false,
-          tagConjunctionContent: tagConjunctionContent,
+        }"
+        :slots="{
+          tagConjunction: tagConjunctionContent,
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false}
+        }"
+        :option="{
+          country: [{}, {selected: true}, {selected: true}],
         }"
       />
     </div>
@@ -72,7 +76,7 @@ export default {
     return {
       merge: "true",
       showpPlaceholder: false,
-      tagConjunctionContent: "&",
+      tagConjunctionContent: "",
     };
   },
 };
