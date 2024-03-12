@@ -69,20 +69,6 @@ export default {
     DropdownProps,
     OptionProps,
   },
-  props: {
-    selecteds: { // need delete
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-    dropdownSetting: { // need delete
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-  },
   watch: {
     "$i18n.locale": {
       handler() {

@@ -247,8 +247,6 @@ export default {
     return {
       search: "true",
       showCode: false,
-      appSelecteds: { // need delete
-      },
     };
   },
   model: {
