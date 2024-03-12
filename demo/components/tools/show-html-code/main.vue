@@ -5,8 +5,7 @@
 
   --><AttributesAndSlots :app="app" :slots="slots" /><!--
   --><slot name="country" v-if="appDropdown.country.isDisplayForDemo"><!--
-  -->
-  &lt;v-tag-dropdown value="country"<DropdownProps :props="appDropdown.country" />&gt;
+  --><Space />&lt;v-tag-dropdown value="country"<DropdownProps :props="appDropdown.country" />&gt;
     &lt;v-tag-option title<OptionProps :props="appOption.country[0]" />&gt;
       &lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span>
     &lt;/v-tag-option&gt;
@@ -15,7 +14,7 @@
   &lt;/v-tag-dropdown&gt;<!--
   --></slot><!--
   --><slot name="name" v-if="appDropdown.name.isDisplayForDemo"><!--
-  -->
+  --><br>
   &lt;v-tag-dropdown value="name"<DropdownProps :props="appDropdown.name" />&gt;
     &lt;v-tag-option title<OptionProps :props="appOption.name[0]" />&gt;
       &lt;i class="fa fa-user"&gt;&lt;/i&gt; <span v-html="renderData('general.Name')"></span>
@@ -33,7 +32,7 @@
   --></slot><!--  
 
   --><slot name="remark" v-if="appDropdown.remark.isDisplayForDemo"><!--
-  -->
+  --><br>
   &lt;v-tag-dropdown value="remark"<DropdownProps :props="appDropdown.remark" />&gt;
     &lt;v-tag-option title<OptionProps :props="appOption.remark[0]" />&gt;
       &lt;i class="fa fa-sticky-note"&gt;&lt;/i&gt; <span v-html="renderData('general.Remark')"></span>
