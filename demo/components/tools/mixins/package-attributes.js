@@ -1,4 +1,5 @@
-import { DEMO_SETTING, merge_v_options } from "../../models.js";
+import { DEMO_SETTING as SETTING, merge_v_options } from "../../models.js";
+const DEMO_SETTING = JSON.parse(JSON.stringify(SETTING));
 
 export default {
   props: {

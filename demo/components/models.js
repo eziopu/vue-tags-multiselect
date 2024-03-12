@@ -152,7 +152,7 @@ function generate_v_options(number) {
 // country: [{}, { selected: true }, { selected: true }],
 //       }"
 export function merge_v_options(inputs = [{}]) {
-  let options = DEMO_SETTING.option;
+  let options = JSON.parse(JSON.stringify(DEMO_SETTING.option));
   // options = {country: [], ...}
 
   Object.entries(options).forEach(option => {
