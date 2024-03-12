@@ -29,8 +29,8 @@
 
     <GeneralDemo
       :displayRefreshBtn="true"
-      :selecteds="{
-        country: [true, true],
+      :option="{
+        country: [{}, {selected: true}, {selected: true}],
       }"
       :app="{
         merge: merge == 'true' ? true : false,

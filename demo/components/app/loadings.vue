@@ -12,12 +12,14 @@
         :autoFocus="true"
         :app="{
           loading: attributes.loading == 'true' ? true : false,
-          loadingContent: attributes.loadingContent,
           dropdownLoading: attributes.dropdownLoading == 'true' ? true : false,
-          dropdownLoadingContent: attributes.dropdownLoadingContent,
           placeholders: {
             loading: attributes.loadingPlaceholder || undefined,
           },
+        }"
+        :slots="{
+          loading: attributes.loadingContent,
+          dropdownLoading: attributes.dropdownLoadingContent,
         }"
       ></GeneralDemo>
     </div>

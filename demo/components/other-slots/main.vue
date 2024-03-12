@@ -1,5 +1,5 @@
 <template>
-  <div id="app-attributes">
+  <div id="other-slots">
     <OptionORconjunction />
     <OptionUndo />
     <TagConjunction />
