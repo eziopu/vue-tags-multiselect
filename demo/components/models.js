@@ -76,12 +76,14 @@ export const DATAS = [
 export const PACKAGE_PROPS = {
   disabled: false,
   loading: false,
+  dropdownLoading: false,
   search: true,
   transition: true,
   create: true,
   merge: true,
   debugLog: false,
   conjunction: "",
+  tagPosition: "",
   deleteIcon: "always",
   placeholder: "",
   placeholders: {
@@ -91,12 +93,6 @@ export const PACKAGE_PROPS = {
     finish: "",
     tagValueRepeat: "",
   },
-  dropdownLoading: false,
-  tagConjunction: "",
-  loadingContent: "",
-  dropdownLoadingContent: "",
-  optionUndoContent: "",
-  optionORConjunctionContent: "",
 }
 
 export const PACKAGE_EVENT = {
