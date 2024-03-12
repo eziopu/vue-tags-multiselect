@@ -27,25 +27,25 @@
         :placeholders="appProps.placeholders"
       >
         <template v-slot:tag-conjunction v-if="appSlots.tagConjunction != ''">
-          <span v-html="appProps.tagConjunctionContent"></span>
+          <span v-html="appSlots.tagConjunction"></span>
         </template>
         <template v-slot:loading v-if="appSlots.loading != ''">
-          <span v-html="appProps.loadingContent"></span>
+          <span v-html="appSlots.loading"></span>
         </template>
         <template v-slot:option-undo v-if="appSlots.optionUndo != ''">
-          <span v-html="appProps.optionUndoContent"></span>
+          <span v-html="appSlots.optionUndo"></span>
         </template>
         <template
           v-slot:optionU-OR-conjunction
           v-if="appSlots.optionORConjunction != ''"
         >
-          <span v-html="appProps.optionORConjunctionContent"></span>
+          <span v-html="appSlots.optionORConjunction"></span>
         </template>
         <template
           v-slot:dropdowns-loading
           v-if="appSlots.dropdownLoading != ''"
         >
-          <span v-html="appProps.dropdownLoadingContent"></span>
+          <span v-html="appSlots.dropdownLoading"></span>
         </template>
 
         <v-tag-dropdown
@@ -239,12 +239,6 @@ export default {
         return false;
       },
     },
-    selecteds: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
   },
   components: {
     ShowHtmlCode,
@@ -254,9 +248,6 @@ export default {
       search: "true",
       showCode: false,
       appSelecteds: { // need delete
-        country: [false, false],
-        name: [false, false, false],
-        remark: [false, false],
       },
     };
   },

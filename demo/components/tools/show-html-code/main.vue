@@ -3,7 +3,7 @@
 -->&lt;v-tags-multiselect<br><!--
 --><Space />v-model="result"<br><!--
 
-  --><AttributesAndSlots :app="app" /><!--
+  --><AttributesAndSlots :app="app" :slots="slots" /><!--
   --><slot name="country" v-if="appDropdown.country.isDisplayForDemo"><!--
   --><Space />&lt;v-tag-dropdown value="country"<DropdownProps :props="appDropdown.country" />&gt;
     &lt;v-tag-option title<OptionProps :props="appOption.country[0]" />&gt;

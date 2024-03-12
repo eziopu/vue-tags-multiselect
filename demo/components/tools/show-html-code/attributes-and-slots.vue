@@ -25,7 +25,7 @@
   --></span><!--
 -->&gt;<!--
   --><br><SlotsTemplate v-for="slotKey in slotKeise"
-    :value="app[slotKey]"
+    :value="slots[slotKey]"
     :key="slotKey"
     :keyName="slotKey"
   /><br v-show="isAnySlot"><!--
@@ -48,15 +48,21 @@ export default {
         return {};
       },
     },
+    slots: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   data() {
     return {
       slotKeise: [
-        "tagConjunctionContent",
-        "loadingContent",
-        "optionUndoContent",
-        "optionORConjunctionContent",
-        "dropdownLoadingContent",
+        "tagConjunction",
+        "loading",
+        "optionUndo",
+        "optionORConjunction",
+        "dropdownLoading",
       ],
     };
   },
@@ -64,7 +70,7 @@ export default {
     isAnySlot() {
       let result = false;
       this.slotKeise.forEach(slotKey => {
-        if (this.app[slotKey] != undefined && this.app[slotKey] != "") {
+        if (this.slots[slotKey] != undefined && this.slots[slotKey] != "") {
           result = true
         }
       });
