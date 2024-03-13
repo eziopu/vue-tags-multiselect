@@ -113,5 +113,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-
+  .attributes {
+    margin-bottom: 1rem;
+  }
 </style>
