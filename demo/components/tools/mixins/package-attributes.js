@@ -1,4 +1,9 @@
-import { DEMO_SETTING as SETTING, merge_v_options } from "../../models.js";
+import {
+  DEMO_SETTING as SETTING,
+  merge_v_dropdowns,
+  merge_v_options
+} from "../../models.js";
+
 const DEMO_SETTING = JSON.parse(JSON.stringify(SETTING));
 
 export default {
@@ -41,7 +46,7 @@ export default {
       return { ...DEMO_SETTING.slots, ...this.slots };
     },
     appDropdown() {
-      return { ...DEMO_SETTING.dropdown, ...this.dropdown };
+      return merge_v_dropdowns(this.dropdown);
     },
     appOption() {
       return merge_v_options(this.option);

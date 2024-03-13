@@ -4,17 +4,15 @@
   -->&lt;v-tags-multiselect<br><!--
   --><Space />v-model="result"<br><!--
   -->&gt;<br><!--
-  --><Space />&lt;v-tag-dropdown <span :class="{ bolder: bolder.includes('value') }">value</span>="country"<!-- 
-    --><span v-show="bolder.includes('disabled')" class="bolder"> disabled</span
-    ><!--
-    --><span v-show="bolder.includes('divided')" class="bolder"> divided</span
-    ><!--
-    --><span v-show="bolder.includes('displayAll')" class="bolder"> displayAll</span
-    ><!--
-    --><span v-show="bolder.includes('hidden')" class="bolder"> hidden</span
-    ><!--
-    --><span v-show="bolder.includes('custom')" class="bolder"> custom</span
-    ><!--
+  --><Space />&lt;v-tag-dropdown <!--
+    --><span :class="{ bolder: bolders.includes('value') }">value</span>="country"<!-- 
+    --><span v-show="isToMuch"><br ><Space /></span><!--
+    --><span v-show="bolders.includes('disabled')" class="bolder"> disabled</span><!--
+    --><span v-show="bolders.includes('divided')" class="bolder"> divided</span><!--
+    --><span v-show="bolders.includes('displayAll')" class="bolder"> display-all</span><!--
+    --><span v-show="bolders.includes('hidden')" class="bolder"> hidden</span><!--
+    --><span v-show="bolders.includes('custom')" class="bolder"> custom</span><!--
+    --><span v-show="isToMuch"><br ><Space /></span><!--
     -->&gt;<br><!--
     --><Space :n="2" />...<br><!--
     --><Space />&lt;/v-tag-dropdown&gt;<br><!--
@@ -30,11 +28,16 @@ export default {
     Space,
   },
   props: {
-    bolder: {
-      type: String,
+    bolders: {
+      type: Array,
       default: () => {
-        return "";
+        return [];
       },
+    },
+  },
+  computed: {
+    isToMuch() {
+      return this.bolders.length >= 3;
     },
   },
 };
