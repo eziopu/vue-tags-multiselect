@@ -148,11 +148,31 @@ function generate_v_options(number) {
   return Array.from({ length: number }, () => ({ ...PACKAGE_V_OPTION_PROPS }));
 }
 
+function deep_clone(input) {
+  return JSON.parse(JSON.stringify(input));
+}
+
+export function merge_v_dropdowns(inputs = {}) {
+  let dropdowns = deep_clone(DEMO_SETTING.dropdown);
+  // dropdowns = {country: {}, ...}
+
+  Object.entries(dropdowns).forEach(dropdown => {
+    const [key, value] = dropdown;
+    // value = {...}
+
+    if (inputs[key] != undefined) {
+      dropdowns[key] = { ...value, ...inputs[key] }
+    }
+  });
+
+  return dropdowns;
+}
+
 // :option="{
 // country: [{}, { selected: true }, { selected: true }],
 //       }"
 export function merge_v_options(inputs = [{}]) {
-  let options = JSON.parse(JSON.stringify(DEMO_SETTING.option));
+  let options = deep_clone(DEMO_SETTING.option);
   // options = {country: [], ...}
 
   Object.entries(options).forEach(option => {
