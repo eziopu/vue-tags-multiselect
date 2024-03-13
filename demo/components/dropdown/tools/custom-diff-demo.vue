@@ -38,7 +38,7 @@
       </v-tags-multiselect>
     </div>
 
-    <ALineCode bolder="custom" v-if="appCustomer == true" />
+    <ALineCode :bolders="['custom']" v-if="appCustomer == true" />
   </div>
 </template>
 

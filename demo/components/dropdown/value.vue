@@ -6,7 +6,7 @@
         {{ $t("attributes.description.dropdown.value") }}
         *{{ $t("ui.general.required") }}
         <br />
-        <ALineCode bolder="value" />
+        <ALineCode :bolders="['value']" />
       </div>
       <div>
         result is object array 
