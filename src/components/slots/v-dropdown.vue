@@ -46,6 +46,9 @@ export default {
   &.hidden {
     display: none;
   }
+  &.divided {
+    border-top: 1px solid rgba(34, 36, 38, 0.15);
+  }
   &.disabled {
     cursor: not-allowed;
   }
