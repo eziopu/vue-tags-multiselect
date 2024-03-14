@@ -46,5 +46,8 @@ export default {
   &.hidden {
     display: none;
   }
+  &.disabled {
+    cursor: not-allowed;
+  }
 }
 </style>

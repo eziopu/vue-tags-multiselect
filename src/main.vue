@@ -215,7 +215,7 @@ export default defineComponent({
   }
   &.disabled,
   &.disabled input {
-    cursor: no-drop !important;
+    cursor: not-allowed !important;
   }
 
   &.loading,
