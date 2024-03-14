@@ -3,6 +3,15 @@
     <div class="flex-between to6-4">
       <div class="attributes">
         <div class="attribute">
+          <h3>Hidden</h3>
+          <div class="flex-between">
+            <div class="depiction">
+              {{ $t("attributes.description.dropdown.hidden") }}
+            </div>
+            <LabelAndSelect label="" v-model="attributes.hidden" />
+          </div>
+        </div>
+        <div class="attribute">
           <h3>DisplayAll</h3>
           <div class="flex-between">
             <div class="depiction">
@@ -29,25 +38,18 @@
           </div>
         </div>
         <div class="attribute">
-          <h3>Divided</h3>
+          <div style="display: flex; align-items: center;">
+            <h3>Divided</h3>
+            <small style="margin-left: .6rem;">*{{ $t("ui.page.sentence.notice.change_the_second") }}</small>
+          </div>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.dropdown.divided") }}
             </div>
             <LabelAndSelect
               label=""
-              :disabled="attributes.hidden == 'true'"
               v-model="attributes.divided"
             />
-          </div>
-        </div>
-        <div class="attribute">
-          <h3>Hidden</h3>
-          <div class="flex-between">
-            <div class="depiction">
-              {{ $t("attributes.description.dropdown.hidden") }}
-            </div>
-            <LabelAndSelect label="" v-model="attributes.hidden" />
           </div>
         </div>
 
@@ -56,7 +58,12 @@
 
       <div class="demo-app">
         <h4>
-          *{{ $t("ui.page.sentence.attribute_only_change_first_dropdown") }}
+          <p>
+            * {{ $t("ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown") }}
+          </p>
+          <p>
+            {{ $t("ui.page.sentence.Some_attributes_will_change_the_second_dropdown") }}
+          </p>
         </h4>
         <GeneralDemo
           :autoFocus="true"
@@ -66,8 +73,10 @@
             country: {
               displayAll: toBoolean(attributes.displayAll),
               disabled: toBoolean(attributes.disabled),
-              divided: toBoolean(attributes.divided),
               hidden: toBoolean(attributes.hidden),
+            },
+            name: {
+              divided: toBoolean(attributes.divided),
             },
           }"
         />

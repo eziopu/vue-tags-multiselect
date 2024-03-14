@@ -3,7 +3,7 @@
     <h3>Custom</h3>
       <div class="depiction">
         {{ $t("attributes.description.dropdown.custom") }} <br />
-        *{{ $t("ui.page.sentence.click_the_tag_to_edit_mode") }}
+        *{{ $t("ui.page.sentence.notice.click_the_tag_to_edit_mode") }}
       </div>
 
       <div class="flex-between to6-4">

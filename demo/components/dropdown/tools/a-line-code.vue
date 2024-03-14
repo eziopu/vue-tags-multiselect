@@ -8,7 +8,6 @@
     --><span :class="{ bolder: bolders.includes('value') }">value</span>="country"<!-- 
     --><span v-show="isToMuch"><br ><Space /></span><!--
     --><span v-show="bolders.includes('disabled')" class="bolder"> disabled</span><!--
-    --><span v-show="bolders.includes('divided')" class="bolder"> divided</span><!--
     --><span v-show="bolders.includes('displayAll')" class="bolder"> display-all</span><!--
     --><span v-show="bolders.includes('hidden')" class="bolder"> hidden</span><!--
     --><span v-show="bolders.includes('custom')" class="bolder"> custom</span><!--
@@ -16,6 +15,14 @@
     -->&gt;<br><!--
     --><Space :n="2" />...<br><!--
     --><Space />&lt;/v-tag-dropdown&gt;<br><!--
+      // name
+    --><span v-show="bolders.includes('divided')"><!--
+      --><br><!--
+      --><Space />&lt;v-tag-dropdown value="name"<span class="bolder"> divided</span><!-- 
+      -->&gt;<br><!--
+      --><Space :n="2" />...<br><!--
+      --><Space />&lt;/v-tag-dropdown&gt;<br><!--
+    --></span><!--
   -->&lt;/v-tags-multiselect&gt;<!--
 --></code></pre>
 </template>
@@ -37,7 +44,7 @@ export default {
   },
   computed: {
     isToMuch() {
-      return this.bolders.length >= 3;
+      return this.bolders.filter(item => item !== "divided").length >= 3;
     },
   },
 };
