@@ -205,7 +205,7 @@ export default defineComponent({
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    border: 1px solid rgba(34, 36, 38, 0.15);
+    border: 1px solid #22242626;
     text-align: left;
     cursor: text;
     min-width: 0;
@@ -266,7 +266,7 @@ export default defineComponent({
 
   .v-tags-multiselect__main--dropdowns {
     position: absolute;
-    border: 1px solid rgba(34, 36, 38, 0.15);
+    border: 1px solid #22242626;
     background-color: white;
     overflow: hidden;
     z-index: 11;
@@ -293,7 +293,7 @@ export default defineComponent({
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgb(242 242 242 / 63%);
+      background: #f2f2f2a1;
       z-index: 1;
     }
   }
