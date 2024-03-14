@@ -55,9 +55,9 @@
       </div>
 
       <div class="demo-app">
-        <h6>
+        <h4>
           *{{ $t("ui.page.sentence.attribute_only_change_first_dropdown") }}
-        </h6>
+        </h4>
         <GeneralDemo
           :autoFocus="true"
           :displayRefreshBtn="true"

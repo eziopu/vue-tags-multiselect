@@ -108,7 +108,7 @@
         "hidden": "don't show this dropdown",
         "custom": "this tag value can use intput value",
         "disabled": "whether options are disabled in this dropdown",
-        "divided": "whether a divider is displayed"
+        "divided": "whether a top divider is displayed"
       },
       "option": {
         "value": "tag value",

@@ -46,5 +46,11 @@ export default {
   &.hidden {
     display: none;
   }
+  &.divided {
+    border-top: 1px solid #22242626;
+  }
+  &.disabled {
+    cursor: not-allowed;
+  }
 }
 </style>

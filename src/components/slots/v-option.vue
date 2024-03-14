@@ -71,7 +71,7 @@ export default {
   }
 
   &.divided {
-    border-bottom: 1px solid #2224261a;
+    border-top: 1px solid #22242626;
   }
 
   &.hover {
