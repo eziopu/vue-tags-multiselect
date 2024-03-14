@@ -18,10 +18,10 @@ export default function useDropdown(props, _context, dep) {
   const isSearchable = dep.isSearchable;
 
   const isDisabled = computed(() => {
-    if (props.title == true) {
-      return props.disabled;
+    if (dropdown.props.disabled == true) {
+      return true;
     }
-    return props.disabled || dropdown.props.disabled || app.props.disabled;
+    return props.disabled || app.props.disabled;
   });
 
   const isSelected = computed(() => {
