@@ -122,6 +122,7 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
 
 export const PACKAGE_V_OPTION_PROPS = {
   isDisplayForDemo: true, // for show code
+  title: false,
   displayValue: false,
   disabled: false,
   divided: false,
@@ -145,7 +146,9 @@ export const DEMO_SETTING = {
 }
 
 function generate_v_options(number) {
-  return Array.from({ length: number }, () => ({ ...PACKAGE_V_OPTION_PROPS }));
+  const result = Array.from({ length: number }, () => ({ ...PACKAGE_V_OPTION_PROPS }));
+  result[0].title = true;
+  return result;
 }
 
 function deep_clone(input) {
