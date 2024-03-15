@@ -5,22 +5,21 @@
   --><Space />v-model="result"<br><!--
   -->&gt;<br><!--
   --><Space />&lt;v-tag-dropdown value="country"&gt;<br><!--
-    --><span v-show="showTitle"><!--
-      --><Space :n="2"/>&lt;v-tag-option <span :class="{ bolder: bolders.includes('title') }">title</span>&gt;<br><!--
-        --><Space :n="4"/>&lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span><br><!--
-      --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
-    --></span><!--
+
+    --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('title')">title</span>&gt;<br><!--
+      --><Space :n="4"/>&lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span><br><!--
+    --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
     --><Space :n="2"/>&lt;v-tag-option<!--
-      --><span :class="{ bolder: bolders.includes('value') }">value</span>="mare"<!--
-      --><span class="bolder" v-if="bolders.includes('selected')"> selected</span><!--
-      --><span class="bolder" v-if="bolders.includes('displayValue')"> display-value</span><!--
-      --><span v-if="bolders.includes('displayValue')"><br/>   // or <span class="bolder">:displayValue="true"</span><br/>  </span><!--
+      --><span :class="getClass('value')"> value</span>="mare"<!--
+      --><span class="bolder" v-if="isBolder('selected')"> selected</span><!--
+      --><span class="bolder" v-if="isBolder('displayValue')"> display-value</span><!--
+      --><span v-if="isBolder('displayValue')"><br/>   // or <span class="bolder">:displayValue="true"</span><br/>  </span><!--
       -->&gt;<br><!--
       --><Space :n="4"/><span v-html="renderData('data.country.Māre')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
-    --><Space :n="2"/>&lt;v-tag-option <span :class="{ bolder: bolders.includes('value') }">value</span>="eldia"&gt;<br><!--
+    --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('value')">value</span>="eldia"&gt;<br><!--
       --><Space :n="4"/><span v-html="renderData('data.country.Eldia')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
@@ -53,8 +52,14 @@ export default {
     },
   },
   methods: {
-    renderData(value) {
-      return this.$t("ui." + value);
+    renderData(input) {
+      return this.$t("ui." + input);
+    },
+    getClass(input) {
+      return { bolder: this.isBolder(input) }
+    },
+    isBolder(input) {
+      return this.bolders.includes(input);
     },
   },
 };
