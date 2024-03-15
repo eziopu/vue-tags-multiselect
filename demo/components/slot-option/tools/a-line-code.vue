@@ -25,7 +25,7 @@
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
     --><Space />&lt;/v-tag-dropdown&gt;<br><!--
-    --><Space :n="2" />...<br><!--
+    --><Space />...<br><!--
   -->&lt;/v-tags-multiselect&gt;<!--
 --></code></pre>
 </template>
