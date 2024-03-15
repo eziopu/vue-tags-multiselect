@@ -112,9 +112,17 @@
       },
       "option": {
         "value": "tag value",
-        "value__notice": "required when not title option",
-        "title": "tag label, options entry point, not title option will hidden, if dropdown display-all is true",
-        "title__notice": "if dropdown display-all is true, all option don't hidden",
+        "value__notice": "optional,",
+        "value__notices": {
+          "0": "filled: Assign dropdown values upon click",
+          "1": "not filled: No click event assigned and no dropdown values assigned",
+          "2": "if dropdown values need to be assigned without being filled, use <code class='tag'>pushTag</code> method"
+        },
+        "title": "starting point of dropdown, other options will not be displayed",
+        "title__notices": {
+          "1": "unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
+          "2": "there can be no title option inside the dropdown"
+        },
         "display-value": "tag select finished value don't show html template",
         "disabled": "whether to disable",
         "divided": "whether a divider is displayed",
