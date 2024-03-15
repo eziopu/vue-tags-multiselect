@@ -1,24 +1,23 @@
 <template>
   <div id="option-title" class="demo">
-    <h4>Title</h4>
-    <div class="depiction">
-      {{ $t("attributes.description.option.title") }}
-    </div>
+    <h3>Title</h3>
 
-    <div class="flex-between">
-      <ALineCode bolder="title" class="a-line-code" />
+    <div class="flex-between to5-5">
+      <div class="depiction">
+        {{ $t("attributes.description.option.title") }}
+        <ALineCode :bolders="['title']" />
+      </div>
 
-      <div class="demo-app" :class="appStatus">
-        <FocusDemoApp
-          v-model="appStatus"
-          :dropdown="{
-            hiddenName: true,
+      <div class="demo-app">
+        <GeneralDemo
+          :autoFocus="true"
+          :displayOutput="true"
+          :displayRefreshBtn="true"
+          :displayShowCodeBtn="false"
+          :app="{
+            placeholder: 'click country option!'
           }"
-          :option="{
-            title: true,
-          }"
-        >
-        </FocusDemoApp>
+        />
       </div>
     </div>
   </div>
@@ -26,21 +25,13 @@
 
 <script>
 import ALineCode from "./tools/a-line-code.vue";
-import FocusDemoApp from "../tools/focus-demo-app.vue";
+import GeneralDemo from "../tools/general-demo.vue";
 
 export default {
   name: "option-title",
   components: {
     ALineCode,
-    FocusDemoApp,
-  },
-  data() {
-    return {
-      appStatus: [],
-    };
+    GeneralDemo,
   },
 };
 </script>
-<style scoped lang="scss">
-@import "./assets/stylesheets.scss";
-</style>
