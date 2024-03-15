@@ -1,5 +1,5 @@
 <template>
-  <div id="dropdown-slot" class="demo">
+  <div id="slot-dropdown" class="demo">
     <Value />
     <Custom />
     <Other />
@@ -12,7 +12,7 @@ import Custom from "./custom.vue";
 import Other from "./other.vue";
 
 export default {
-  name: "dropdown-slot",
+  name: "slot-dropdown",
   components: {
     Value,
     Custom,
