@@ -58,21 +58,21 @@
           :custom="appDropdown.country.custom"
         >
           <v-tag-option
-            v-for="(item, index) in ['title', 'Māre', 'Eldia']"
-            v-show="appOption.country[index].isDisplayForDemo"
+            v-for="(item, index) in appOption.country"
+            v-show="item.isDisplayForDemo"
             :key="`option_country_${index}`"
-            :value="item"
-            :title="appOption.country[index].title"
-            :displayValue="appOption.country[index].displayValue"
-            :disabled="appOption.country[index].disabled"
-            :divided="appOption.country[index].divided"
-            :selected="appOption.country[index].selected"
+            :value="item.value"
+            :title="item.title"
+            :displayValue="item.displayValue"
+            :disabled="item.disabled"
+            :divided="item.divided"
+            :selected="item.selected"
           >
             <template v-if="index == 0">
               <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
             </template>
             <template v-else>
-              {{ $t(`ui.data.country.${item}`) }}
+              {{ $t(`ui.data.country.${item.valueForDemo}`) }}
             </template>
           </v-tag-option>
         </v-tag-dropdown>
@@ -87,21 +87,21 @@
           :custom="appDropdown.name.custom"
         >
           <v-tag-option 
-            v-for="(item, index) in ['title', 'Grisha Yeager', 'Eren Yeager', 'Armin Arlert']"
-            v-show="appOption.name[index].isDisplayForDemo"
+            v-for="(item, index) in appOption.name"
+            v-show="item.isDisplayForDemo"
             :key="`option_name_${index}`"
-            :value="item"
-            :title="appOption.name[index].title"
-            :displayValue="appOption.name[index].displayValue"
-            :disabled="appOption.name[index].disabled"
-            :divided="appOption.name[index].divided"
-            :selected="appOption.name[index].selected"
+            :value="item.value"
+            :title="item.title"
+            :displayValue="item.displayValue"
+            :disabled="item.disabled"
+            :divided="item.divided"
+            :selected="item.selected"
           >
             <template v-if="index == 0">
               <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
             </template>
             <template v-else>
-              {{ $t(`ui.data.name.${item}`) }}
+              {{ $t(`ui.data.name.${item.valueForDemo}`) }}
             </template>
           </v-tag-option>
         </v-tag-dropdown>
@@ -116,23 +116,23 @@
           :custom="appDropdown.remark.custom"
         >
           <v-tag-option
-            v-for="(item, index) in ['title', 'yes', 'no']"
-            v-show="appOption.remark[index].isDisplayForDemo"
+            v-for="(item, index) in appOption.remark"
+            v-show="item.isDisplayForDemo"
             :key="`option_remark_${index}`"
-            :value="item"
-            :title="appOption.remark[index].title"
-            :displayValue="appOption.remark[0].displayValue"
-            :disabled="appOption.remark[0].disabled"
-            :divided="appOption.remark[0].divided"
-            :selected="appOption.remark[0].selected"
+            :value="item.value"
+            :title="item.title"
+            :displayValue="item.displayValue"
+            :disabled="item.disabled"
+            :divided="item.divided"
+            :selected="item.selected"
           >
             <template v-if="index == 0">
               <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
             </template>
-            <template v-if="item == 'yes'">
+            <template v-if="item.value == 'yes'">
               <i class="fa fa-check"></i>
             </template>
-            <template v-if="item == 'no'">
+            <template v-if="item.value == 'no'">
               <i class="fa fa-close"></i>
             </template>
           </v-tag-option>
