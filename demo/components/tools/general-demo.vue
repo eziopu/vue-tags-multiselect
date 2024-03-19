@@ -182,6 +182,9 @@ import PackageAttributes from "./mixins/package-attributes.js";
 export default {
   mixins: [ReloadByI18n, ReloadByBtn, PackageAttributes],
   props: {
+    modelValue: {
+      type: Array,
+    },
     autoFocus: {
       type: Boolean,
       default: () => {
@@ -216,10 +219,7 @@ export default {
       showCode: false,
     };
   },
-  model: {
-    prop: "value",
-    event: "update:modelValue",
-  },
+  emits: ["update:modelValue"],
   watch: {
     "appEvent.status": {
       handler(value) {
