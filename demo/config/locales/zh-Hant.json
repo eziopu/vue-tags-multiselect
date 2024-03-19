@@ -138,6 +138,8 @@
     "general": {
       "language": "語言",
       "required": "必填",
+      "filled": "有填寫",
+      "not_filled": "沒有填寫",
       "example": "範例",
       "default": "預設",
       "defaultIs__key": "預設值為{key}",

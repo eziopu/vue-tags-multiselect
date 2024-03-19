@@ -138,6 +138,8 @@
     "general": {
       "language": "language",
       "required": "required",
+      "filled": "filled",
+      "not_filled": "not filled",      
       "example": "example",
       "default": "default",
       "defaultIs__key": "default is {key}",
