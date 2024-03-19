@@ -1,5 +1,6 @@
 <!-- eslint-disable prettier/prettier -->
 <template><!--
+  --><span v-show="props.value != ''"> value="{{ props.value }}"</span><!--
   --><span v-show="props.disabled"> disabled</span><!--
   --><span v-show="props.divided"> divided</span><!--
   --><span v-show="props.displayAll"> display-all</span><!--

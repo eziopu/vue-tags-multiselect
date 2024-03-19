@@ -113,6 +113,7 @@ export const PACKAGE_SLOTS = {
 
 export const PACKAGE_V_DROPDOWN_PROPS = {
   isDisplayForDemo: true, // for show code
+  value: "",
   disabled: false,
   divided: false,
   displayAll: false,
@@ -141,9 +142,9 @@ export const DEMO_SETTING = {
     remark: generate_v_options(['', 'yes', 'no']),
   },
   dropdown: {
-    country: PACKAGE_V_DROPDOWN_PROPS,
-    name: PACKAGE_V_DROPDOWN_PROPS,
-    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ displayAll: true}},
+    country: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'country' } },
+    name: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'name' } },
+    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'remark', displayAll: true}},
   },
 }
 
