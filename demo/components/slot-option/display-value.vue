@@ -11,14 +11,14 @@ import GeneralDemo from "../tools/general-demo.vue";
 
 <template>
   <div id="option-display-value" class="demo">
-    <h4>Display value</h4>
+    <h3>Display value</h3>
     <div class="depiction">
       {{ $t("attributes.description.option.display-value") }}
     </div>
 
     <div class="flex-between to5-5">
       <div>
-        <h5>true</h5>
+        <h4>true</h4>
         <GeneralDemo
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
@@ -31,7 +31,7 @@ import GeneralDemo from "../tools/general-demo.vue";
         />
       </div>
       <div>
-        <h5>false <small> *{{ $t("ui.general.default") }}</small></h5>
+        <h4>false <small> *{{ $t("ui.general.default") }}</small></h4>
         <GeneralDemo
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"

@@ -16,7 +16,7 @@ const demoStatus = ref([]);
 
 <template>
   <div id="option-selected" class="demo" :class="demoStatus">
-    <h4>Selected</h4>
+    <h3>Selected</h3>
     <div class="flex-between to5-5">
       <div class="depiction">
         {{ $t(`${i18n}.selected`) }}
