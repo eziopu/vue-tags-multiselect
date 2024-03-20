@@ -2,7 +2,7 @@
   <div id="slot-option" class="demo">
     <Value />
     <Title />
-    <!-- <Selected /> -->
+    <Selected />
     <!-- <DisplayValue /> -->
     <!-- <Other /> -->
   </div>
@@ -11,7 +11,7 @@
 <script>
 import Value from "./value.vue";
 import Title from "./title.vue";
-// import Selected from "./selected.vue";
+import Selected from "./selected.vue";
 // import DisplayValue from "./display-value.vue";
 // import Other from "../other.vue";
 
@@ -21,7 +21,7 @@ export default {
     Value,
     // eslint-disable-next-line vue/no-reserved-component-names
     Title,
-    // Selected,
+    Selected,
     // DisplayValue,
     // Other
   },
