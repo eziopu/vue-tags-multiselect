@@ -1,3 +1,14 @@
+<script>
+export default {
+  name: "option-display-value",
+};
+</script>
+
+<script setup>
+import ALineCode from "./tools/a-line-code.vue";
+import GeneralDemo from "../tools/general-demo.vue";
+</script>
+
 <template>
   <div id="option-display-value" class="demo">
     <h4>Display value</h4>
@@ -5,42 +16,39 @@
       {{ $t("attributes.description.option.display-value") }}
     </div>
 
-    <div class="flex-between">
-      <DisplayValue :appDisplayValue="true" />
-      <DisplayValue :appDisplayValue="false" />
+    <div class="flex-between to5-5">
+      <div>
+        <h5>true</h5>
+        <GeneralDemo
+          :displayRefreshBtn="true"
+          :displayShowCodeBtn="false"
+          :dropdown="{
+            name: {isDisplayForDemo: false},
+          }"
+          :option="{
+            country: [{}, {selected: true, displayValue: true}],
+          }"
+        />
+      </div>
+      <div>
+        <h5>false <small> *{{ $t("ui.general.default") }}</small></h5>
+        <GeneralDemo
+          :displayRefreshBtn="true"
+          :displayShowCodeBtn="false"
+          :dropdown="{
+            name: {isDisplayForDemo: false},
+          }"
+          :option="{
+            country: [{}, {selected: true}],
+          }"
+        />
+      </div>
+    </div>
+
+    <div class="flex-between to5-5">
+      <div>
+        <ALineCode :bolders="['displayValue', 'selected']" />
+      </div>
     </div>
   </div>
 </template>
-
-<script>
-import DisplayValue from "./tools/display-value-diff-demo.vue";
-
-export default {
-  name: "option-display-value",
-  components: {
-    DisplayValue,
-  },
-};
-</script>
-<style scoped lang="scss">
-.flex-between {
-  div:first-child {
-    width: 50%;
-  }
-  div:last-child {
-    width: 40%;
-  }
-  @media all and (max-width: 992px) {
-    & {
-      flex-direction: column;
-    }
-    div:first-child,
-    div:last-child {
-      width: 100%;
-    }
-    div:last-child {
-      margin-top: 24px;
-    }
-  }
-}
-</style>

@@ -3,7 +3,7 @@
     <Value />
     <Title />
     <Selected />
-    <!-- <DisplayValue /> -->
+    <DisplayValue />
     <!-- <Other /> -->
   </div>
 </template>
@@ -12,7 +12,7 @@
 import Value from "./value.vue";
 import Title from "./title.vue";
 import Selected from "./selected.vue";
-// import DisplayValue from "./display-value.vue";
+import DisplayValue from "./display-value.vue";
 // import Other from "../other.vue";
 
 export default {
@@ -22,7 +22,7 @@ export default {
     // eslint-disable-next-line vue/no-reserved-component-names
     Title,
     Selected,
-    // DisplayValue,
+    DisplayValue,
     // Other
   },
 };
