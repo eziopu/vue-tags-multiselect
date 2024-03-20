@@ -3,21 +3,21 @@
     <div class="flex-between to6-4">
       <div class="attributes">
         <div class="attribute">
-          <h4>Disabled</h4>
+          <h3>Disabled</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.option.disabled") }}
             </div>
-            <LabelAndSelect label="" v-model="disabled" />
+            <LabelAndSelect label="" v-model="attributes.disabled" />
           </div>
         </div>
         <div class="attribute">
-          <h4>Divided</h4>
+          <h3>Divided</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t("attributes.description.option.divided") }}
             </div>
-            <LabelAndSelect label="" v-model="divided" />
+            <LabelAndSelect label="" v-model="attributes.divided" />
           </div>
         </div>
 
@@ -27,16 +27,17 @@
       <div class="demo-app">
         <h4>
           <p>
-            * {{ $t("ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_first_option") }}
-          </p>
-          <p>
-            {{ $t("ui.page.sentence.Some_attributes_will_change_the_second_option") }}
+            * {{ $t("ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_second_option") }}
           </p>
         </h4>
         <GeneralDemo
           :autoFocus="true"
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
+          :dropdown="{
+            country: {displayAll: true},
+            name: {isDisplayForDemo: false},
+          }"
           :option="{
             country: [
               {}, {
@@ -66,18 +67,18 @@ export default {
   data() {
     return {
       attributes: {
-        displayAll: "false",
         disabled: "false",
         divided: "false",
-        hidden: "false",
+        displayAll: "true",
       }
     };
   },
   computed: {
     bolders() {
-      return Object.entries(this.attributes)
-        .filter(([key, value]) => key != "" && value === "true")
-        .map(([key]) => key);
+      const result = Object.entries(this.attributes)
+      .filter(([key, value]) => key != "" && value === "true")
+      .map(([key]) => key)
+      return result;
     },
   },
   methods: {
