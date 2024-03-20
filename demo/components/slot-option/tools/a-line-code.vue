@@ -1,9 +1,7 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
 <pre class="tag prettyprint lang-html customize"><code><!--
-  -->&lt;v-tags-multiselect<br><!--
-  --><Space />v-model="result"<br><!--
-  -->&gt;<br><!--
+  -->&lt;v-tags-multiselect v-model="result"&gt;<br><!--
   --><Space />&lt;v-tag-dropdown value="country"&gt;<br><!--
 
     --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('title')">title</span>&gt;<br><!--
@@ -11,7 +9,7 @@
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
     --><Space :n="2"/>&lt;v-tag-option<!--
-      --><span :class="getClass('value')"> value</span>="mare"<!--
+      --><span :class="getClass('value')"> value</span>="Māre"<!--
       --><span class="bolder" v-if="isBolder('selected')"> selected</span><!--
       --><span class="bolder" v-if="isBolder('displayValue')"> display-value</span><!--
       --><span v-if="isBolder('displayValue')"><br/>   // or <span class="bolder">:displayValue="true"</span><br/>  </span><!--
@@ -19,7 +17,7 @@
       --><Space :n="4"/><span v-html="renderData('data.country.Māre')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
-    --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('value')">value</span>="eldia"&gt;<br><!--
+    --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('value')">value</span>="Eldia"&gt;<br><!--
       --><Space :n="4"/><span v-html="renderData('data.country.Eldia')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
