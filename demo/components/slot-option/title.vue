@@ -1,37 +1,47 @@
+
+<script>
+export default {
+  name: "option-title",
+};
+</script>
+
+<script setup>
+import ALineCode from "./tools/a-line-code.vue";
+import GeneralDemo from "../tools/general-demo.vue";
+
+const i18n = "attributes.description.option";
+
+import { ref } from "vue";
+const demoStatus = ref([]);
+</script>
+
 <template>
-  <div id="option-title" class="demo">
+  <div id="option-title" class="demo" :class="demoStatus">
     <h3>Title</h3>
 
     <div class="flex-between to5-5">
       <div class="depiction">
-        {{ $t("attributes.description.option.title") }}
+        {{ $t(`${i18n}.title`) }}
         <ALineCode :bolders="['title']" />
       </div>
 
-      <div class="demo-app">
-        <GeneralDemo
-          :autoFocus="true"
-          :displayOutput="true"
-          :displayRefreshBtn="true"
-          :displayShowCodeBtn="false"
-          :app="{
-            placeholder: 'click country option!'
-          }"
-        />
-      </div>
+      <GeneralDemo
+        v-model="demoStatus"
+        :autoFocus="true"
+        :displayOutput="true"
+        :displayRefreshBtn="true"
+        :displayShowCodeBtn="false"
+        :app="{
+          placeholder: 'click country option!'
+        }"
+        :dropdown="{
+          name: {isDisplayForDemo: false},
+        }"
+      />
     </div>
   </div>
 </template>
 
-<script>
-import ALineCode from "./tools/a-line-code.vue";
-import GeneralDemo from "../tools/general-demo.vue";
-
-export default {
-  name: "option-title",
-  components: {
-    ALineCode,
-    GeneralDemo,
-  },
-};
-</script>
+<style scoped lang="scss">
+@import "./assets/stylesheets.scss";
+</style>

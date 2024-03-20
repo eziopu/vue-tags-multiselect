@@ -1,28 +1,9 @@
-.flex-between {
-  .a-line-code {
-    width: 50%;
-  }
+@media (max-width: 768px) {
+  .demo {
+    transition: all 0.2s ease-out;
 
-  .demo-app {
-    width: 40%;
-  }
-
-  @media all and (max-width: 992px) {
-    & {
-      flex-direction: column;
-    }
-
-    .a-line-code,
-    .demo-app {
-      width: 100%;
-    }
-
-    .demo-app {
-      margin-top: 24px;
-
-      &.selecting {
-        margin-bottom: 70px;
-      }
+    &.selecting {
+      margin-bottom: 12rem;
     }
   }
 }
