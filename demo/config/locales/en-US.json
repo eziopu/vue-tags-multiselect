@@ -126,7 +126,8 @@
         "display-value": "tag select finished value don't show html template",
         "disabled": "whether to disable",
         "divided": "whether a divider is displayed",
-        "selected": "default selected tag"
+        "selected": "default selected tag",
+        "selected__notice": "still can be deleted"
       }
     }
   },

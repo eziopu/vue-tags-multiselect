@@ -126,7 +126,8 @@
         "display-value": "標籤的value值是否要顯示value而不是html渲染的樣式",
         "disabled": "是否禁用",
         "divided": "是否底部有分隔線",
-        "selected": "是否為預設"
+        "selected": "是否為預設",
+        "selected__notice": "還是可以被刪除"
       }
     }
   },
