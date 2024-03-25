@@ -44,7 +44,7 @@ watch(isTitle, async () => {
           <LabelAndSelect label="option title" v-model="isTitle" />
           <LabelAndSelect label="dropdown display-all" v-model="dropdownDisplayAll" />
         </div>
-        
+
         <ALineCode
           :isNotTitle="!toBoolean(isTitle)"
           :bolders="dropdownDisplayAll == 'true' ? ['displayAll'] : []"

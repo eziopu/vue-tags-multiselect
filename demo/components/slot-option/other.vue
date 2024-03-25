@@ -1,3 +1,33 @@
+
+<script>
+export default {
+  name: "option-other-attributes",
+};
+</script>
+
+<script setup>
+import { reactive, computed } from "vue";
+import LabelAndSelect from "../tools/label-and-select.vue";
+import GeneralDemo from "../tools/general-demo.vue";
+import ALineCode from "./tools/a-line-code.vue";
+
+const attributes = reactive({
+  disabled: "false",
+  divided: "false",
+  displayAll: "true",
+})
+
+const bolders = computed(() => {
+  return Object.entries(attributes)
+    .filter(([key, value]) => key != "" && value === "true")
+    .map(([key]) => key)
+});
+
+const toBoolean = (input) => {
+  return input == "false" ? false : true;
+}
+</script>
+
 <template>
   <div id="option-other-attributes" class="demo">
     <div class="flex-between to6-4">
@@ -52,42 +82,6 @@
   </div>
 </template>
 
-<script>
-import LabelAndSelect from "../tools/label-and-select.vue";
-import GeneralDemo from "../tools/general-demo.vue";
-import ALineCode from "./tools/a-line-code.vue";
-
-export default {
-  name: "option-other-attributes",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-    ALineCode,
-  },
-  data() {
-    return {
-      attributes: {
-        disabled: "false",
-        divided: "false",
-        displayAll: "true",
-      }
-    };
-  },
-  computed: {
-    bolders() {
-      const result = Object.entries(this.attributes)
-      .filter(([key, value]) => key != "" && value === "true")
-      .map(([key]) => key)
-      return result;
-    },
-  },
-  methods: {
-    toBoolean(value) {
-      return value == "false" ? false : true;
-    },
-  },
-};
-</script>
 <style scoped lang="scss">
   .attributes {
     margin-bottom: 1rem;

@@ -5,12 +5,12 @@ export default {
 </script>
 
 <script setup>
+import { ref, inject } from "vue";
 import ALineCode from "./tools/a-line-code.vue";
 import GeneralDemo from "../tools/general-demo.vue";
 
 const i18n = "attributes.description.option";
 
-import { ref, inject } from "vue";
 const firstDemoStatus = ref([]);
 const secondDemoStatus = ref([]);
 

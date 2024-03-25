@@ -6,12 +6,11 @@ export default {
 </script>
 
 <script setup>
+import { ref } from "vue";
 import ALineCode from "./tools/a-line-code.vue";
 import GeneralDemo from "../tools/general-demo.vue";
 
 const i18n = "attributes.description.option";
-
-import { ref } from "vue";
 const demoStatus = ref([]);
 </script>
 
