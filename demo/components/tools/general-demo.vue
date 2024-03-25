@@ -48,95 +48,101 @@
           <span v-html="appSlots.dropdownLoading"></span>
         </template>
 
-        <v-tag-dropdown
-          value="country"
-          v-if="appDropdown.country.isDisplayForDemo"
-          :disabled="appDropdown.country.disabled"
-          :divided="appDropdown.country.divided"
-          :displayAll="appDropdown.country.displayAll"
-          :hidden="appDropdown.country.hidden"
-          :custom="appDropdown.country.custom"
-        >
-          <v-tag-option
-            v-for="(item, index) in appOption.country"
-            v-show="item.isDisplayForDemo"
-            :key="`option_country_${index}`"
-            :value="item.value"
-            :title="item.title"
-            :displayValue="item.displayValue"
-            :disabled="item.disabled"
-            :divided="item.divided"
-            :selected="item.selected"
+        <slot name="country">
+          <v-tag-dropdown
+            value="country"
+            v-if="appDropdown.country.isDisplayForDemo"
+            :disabled="appDropdown.country.disabled"
+            :divided="appDropdown.country.divided"
+            :displayAll="appDropdown.country.displayAll"
+            :hidden="appDropdown.country.hidden"
+            :custom="appDropdown.country.custom"
           >
-            <template v-if="index == 0">
-              <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
-            </template>
-            <template v-else>
-              {{ $t(`ui.data.country.${item.valueForDemo}`) }}
-            </template>
-          </v-tag-option>
-        </v-tag-dropdown>
+            <v-tag-option
+              v-for="(item, index) in appOption.country"
+              v-show="item.isDisplayForDemo"
+              :key="`option_country_${index}`"
+              :value="item.value"
+              :title="item.title"
+              :displayValue="item.displayValue"
+              :disabled="item.disabled"
+              :divided="item.divided"
+              :selected="item.selected"
+            >
+              <template v-if="index == 0">
+                <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
+              </template>
+              <template v-else>
+                {{ $t(`ui.data.country.${item.valueForDemo}`) }}
+              </template>
+            </v-tag-option>
+          </v-tag-dropdown>
+        </slot>
 
-        <v-tag-dropdown
-          value="name"
-          v-if="appDropdown.name.isDisplayForDemo"
-          :disabled="appDropdown.name.disabled"
-          :divided="appDropdown.name.divided"
-          :displayAll="appDropdown.name.displayAll"
-          :hidden="appDropdown.name.hidden"
-          :custom="appDropdown.name.custom"
-        >
-          <v-tag-option 
-            v-for="(item, index) in appOption.name"
-            v-show="item.isDisplayForDemo"
-            :key="`option_name_${index}`"
-            :value="item.value"
-            :title="item.title"
-            :displayValue="item.displayValue"
-            :disabled="item.disabled"
-            :divided="item.divided"
-            :selected="item.selected"
+        <slot name="name">
+          <v-tag-dropdown
+            value="name"
+            v-if="appDropdown.name.isDisplayForDemo"
+            :disabled="appDropdown.name.disabled"
+            :divided="appDropdown.name.divided"
+            :displayAll="appDropdown.name.displayAll"
+            :hidden="appDropdown.name.hidden"
+            :custom="appDropdown.name.custom"
           >
-            <template v-if="index == 0">
-              <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
-            </template>
-            <template v-else>
-              {{ $t(`ui.data.name.${item.valueForDemo}`) }}
-            </template>
-          </v-tag-option>
-        </v-tag-dropdown>
-
-        <v-tag-dropdown
-          value="remark"
-          v-if="appDropdown.remark.isDisplayForDemo"
-          :disabled="appDropdown.remark.disabled"
-          :divided="appDropdown.remark.divided"
-          :displayAll="appDropdown.remark.displayAll"
-          :hidden="appDropdown.remark.hidden"
-          :custom="appDropdown.remark.custom"
-        >
-          <v-tag-option
-            v-for="(item, index) in appOption.remark"
-            v-show="item.isDisplayForDemo"
-            :key="`option_remark_${index}`"
-            :value="item.value"
-            :title="item.title"
-            :displayValue="item.displayValue"
-            :disabled="item.disabled"
-            :divided="item.divided"
-            :selected="item.selected"
+            <v-tag-option 
+              v-for="(item, index) in appOption.name"
+              v-show="item.isDisplayForDemo"
+              :key="`option_name_${index}`"
+              :value="item.value"
+              :title="item.title"
+              :displayValue="item.displayValue"
+              :disabled="item.disabled"
+              :divided="item.divided"
+              :selected="item.selected"
+            >
+              <template v-if="index == 0">
+                <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
+              </template>
+              <template v-else>
+                {{ $t(`ui.data.name.${item.valueForDemo}`) }}
+              </template>
+            </v-tag-option>
+          </v-tag-dropdown>
+        </slot>
+        
+        <slot name="remark">
+          <v-tag-dropdown
+            value="remark"
+            v-if="appDropdown.remark.isDisplayForDemo"
+            :disabled="appDropdown.remark.disabled"
+            :divided="appDropdown.remark.divided"
+            :displayAll="appDropdown.remark.displayAll"
+            :hidden="appDropdown.remark.hidden"
+            :custom="appDropdown.remark.custom"
           >
-            <template v-if="index == 0">
-              <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
-            </template>
-            <template v-if="item.value == 'yes'">
-              <i class="fa fa-check"></i>
-            </template>
-            <template v-if="item.value == 'no'">
-              <i class="fa fa-close"></i>
-            </template>
-          </v-tag-option>
-        </v-tag-dropdown>
+            <v-tag-option
+              v-for="(item, index) in appOption.remark"
+              v-show="item.isDisplayForDemo"
+              :key="`option_remark_${index}`"
+              :value="item.value"
+              :title="item.title"
+              :displayValue="item.displayValue"
+              :disabled="item.disabled"
+              :divided="item.divided"
+              :selected="item.selected"
+            >
+              <template v-if="index == 0">
+                <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
+              </template>
+              <template v-if="item.value == 'yes'">
+                <i class="fa fa-check"></i>
+              </template>
+              <template v-if="item.value == 'no'">
+                <i class="fa fa-close"></i>
+              </template>
+            </v-tag-option>
+          </v-tag-dropdown>
+        </slot>
       </v-tags-multiselect>
 
       <div class="demo-control">

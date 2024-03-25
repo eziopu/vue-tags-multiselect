@@ -9,6 +9,7 @@ import Value from "./value.vue";
 import Title from "./title.vue";
 import Selected from "./selected.vue";
 import DisplayValue from "./display-value.vue";
+import NoTitle from "./no-title.vue";
 import Other from "./other.vue";
 </script>
 
@@ -16,6 +17,7 @@ import Other from "./other.vue";
   <div id="slot-option" class="demo">
     <Value />
     <Title />
+    <NoTitle />
     <Selected />
     <DisplayValue />
     <Other />

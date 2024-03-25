@@ -123,6 +123,7 @@
           "1": "unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
           "2": "there can be no title option inside the dropdown"
         },
+        "no_title": "the dropdown without a title option will always be displayed regardless of whether the parameter display-all is set to true or not.",
         "display-value": "tag select finished value don't show html template",
         "disabled": "whether to disable",
         "divided": "whether a divider is displayed",

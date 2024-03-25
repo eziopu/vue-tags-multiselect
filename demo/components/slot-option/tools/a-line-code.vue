@@ -2,10 +2,10 @@
 <template>
 <pre class="tag prettyprint lang-html customize"><code><!--
   -->&lt;v-tags-multiselect v-model="result"&gt;<br><!--
-  --><Space />&lt;v-tag-dropdown value="country"<span v-if="isBolder('displayAll')"> display-all</span>&gt;<br><!--
+    --><Space />&lt;v-tag-dropdown value="country"<span v-if="isBolder('displayAll')"> display-all</span>&gt;<br><!--
 
-    --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('title')">title</span>&gt;<br><!--
-      --><Space :n="4"/>&lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span><br><!--
+    --><Space :n="2"/>&lt;v-tag-option<span v-if="!isNotTitle" :class="getClass('title')"> title</span>&gt;<br><!--
+      --><Space :n="3"/>&lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
     --><Space :n="2"/>&lt;v-tag-option<!--
@@ -16,14 +16,15 @@
       --><span class="bolder" v-if="isBolder('divided')"> divided</span><!--
       --><span v-if="isBolder('displayValue')"><br/>   // or <span class="bolder">:displayValue="true"</span><br/>  </span><!--
       -->&gt;<br><!--
-      --><Space :n="4"/><span v-html="renderData('data.country.Māre')"></span><br><!--
+      --><Space :n="3"/><span v-html="renderData('data.country.Māre')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
 
     --><Space :n="2"/>&lt;v-tag-option <span :class="getClass('value')">value</span>="Eldia"&gt;<br><!--
-      --><Space :n="4"/><span v-html="renderData('data.country.Eldia')"></span><br><!--
+      --><Space :n="3"/><span v-html="renderData('data.country.Eldia')"></span><br><!--
     --><Space :n="2"/>&lt;/v-tag-option&gt;<br><!--
-
-    --><Space />&lt;/v-tag-dropdown&gt;<br><!--
+  
+      --><Space />&lt;/v-tag-dropdown&gt;<br><!--
+    
     --><Space />...<br><!--
   -->&lt;/v-tags-multiselect&gt;<!--
 --></code></pre>
@@ -38,10 +39,10 @@ export default {
     Space,
   },
   props: {
-    showTitle: {
+    isNotTitle: {
       type: Boolean,
       default: () => {
-        return true;
+        return false;
       },
     },
     bolders: {
