@@ -112,13 +112,23 @@
       },
       "option": {
         "value": "標籤的value值",
-        "value__notice": "必填, 如果是title option則不用",
-        "title": "標籤的標題, 同個dropdown的進入點, 其餘的option不會顯示",
-        "title__notice": "除非dropdown的display-all參數為true 或是該dropdown沒有title option的存在, 其餘的option才會顯示",
+        "value__notice": "非必填,",
+        "value__notices": {
+          "0": "有填寫: 點擊後賦予dropdown值(values)",
+          "1": "沒有填寫: 則不賦予點擊事件與不賦予dropdown值(values)",
+          "2": "若沒有填寫的情況又要賦予dropdown值，請使用<code class='tag'>pushTag</code> method"
+        },
+        "title": "dropdown的起始點, 其餘的option將不會顯示",
+        "title__notices": {
+          "1": "除非dropdown的參數<code class='tag'>display-all</code>為true 或是該dropdown沒有title option的存在, 其餘的option才會顯示",
+          "2": "dropdown內可以沒有任何的title option"
+        },
+        "no_title": "沒有title option的dropdown, 無論dropdown的參數<code class='tag'>display-all</code>是否為true, 皆會顯示",
         "display-value": "標籤的value值是否要顯示value而不是html渲染的樣式",
         "disabled": "是否禁用",
         "divided": "是否底部有分隔線",
-        "selected": "是否為預設"
+        "selected": "是否為預設",
+        "selected__notice": "還是可以被刪除"
       }
     }
   },
@@ -130,6 +140,8 @@
     "general": {
       "language": "語言",
       "required": "必填",
+      "filled": "有填寫",
+      "not_filled": "沒有填寫",
       "example": "範例",
       "default": "預設",
       "defaultIs__key": "預設值為{key}",
@@ -171,6 +183,7 @@
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "此demo的參數變動只會改變第一個 dropdown",
         "Some_attributes_will_change_the_second_dropdown": "部分參數改變第二個 dropdown",
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_option(title)": "此demo的參數變動只會改變第一個 option(title)",
+        "The_attributes_changes_in_this_demo_will_only_affect_the_second_option": "此demo的參數變動只會改變第二個 option",
         "Some_attributes_will_change_the_second_option": "部分參數改變第二個 option",
         "notice": {
           "click_the_tag_to_edit_mode": "點擊 tag value 的區域, 讓他變成編輯模式",

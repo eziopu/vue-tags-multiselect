@@ -112,13 +112,23 @@
       },
       "option": {
         "value": "tag value",
-        "value__notice": "required when not title option",
-        "title": "tag label, options entry point, not title option will hidden, if dropdown display-all is true",
-        "title__notice": "if dropdown display-all is true, all option don't hidden",
+        "value__notice": "optional,",
+        "value__notices": {
+          "0": "filled: Assign dropdown values upon click",
+          "1": "not filled: No click event assigned and no dropdown values assigned",
+          "2": "if dropdown values need to be assigned without being filled, use <code class='tag'>pushTag</code> method"
+        },
+        "title": "starting point of dropdown, other options will not be displayed",
+        "title__notices": {
+          "1": "unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
+          "2": "there can be no title option inside the dropdown"
+        },
+        "no_title": "the dropdown without a title option will always be displayed regardless of whether the parameter <code class='tag'>display-all</code> is set to true or not.",
         "display-value": "tag select finished value don't show html template",
         "disabled": "whether to disable",
         "divided": "whether a divider is displayed",
-        "selected": "default selected tag"
+        "selected": "default selected tag",
+        "selected__notice": "still can be deleted"
       }
     }
   },
@@ -130,6 +140,8 @@
     "general": {
       "language": "language",
       "required": "required",
+      "filled": "filled",
+      "not_filled": "not filled",      
       "example": "example",
       "default": "default",
       "defaultIs__key": "default is {key}",
@@ -170,7 +182,8 @@
         "Go_to_detail_option_attributes_description": "Go to detail option attributes description",
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "The attributes changes in this demo will only affect the first dropdown",
         "Some_attributes_will_change_the_second_dropdown": "Some attributes will change the second dropdown",
-        "The_attributes_changes_in_this_demo_will_only_affect_the_first_option(title)": "The attributes changes in this demo will only affect the first option",
+        "The_attributes_changes_in_this_demo_will_only_affect_the_first_option(title)": "The attributes changes in this demo will only affect the first option(title)",
+        "The_attributes_changes_in_this_demo_will_only_affect_the_second_option": "The attributes changes in this demo will only affect the second option",
         "Some_attributes_will_change_the_second_option": "Some attributes will change the second option",
         "notice": {
           "click_the_tag_to_edit_mode": "click the tag to edit mode",

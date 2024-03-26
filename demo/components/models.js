@@ -113,6 +113,7 @@ export const PACKAGE_SLOTS = {
 
 export const PACKAGE_V_DROPDOWN_PROPS = {
   isDisplayForDemo: true, // for show code
+  value: "",
   disabled: false,
   divided: false,
   displayAll: false,
@@ -122,6 +123,9 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
 
 export const PACKAGE_V_OPTION_PROPS = {
   isDisplayForDemo: true, // for show code
+  valueForDemo: "",
+  title: false,
+  value: "",
   displayValue: false,
   disabled: false,
   divided: false,
@@ -133,19 +137,27 @@ export const DEMO_SETTING = {
   slots: PACKAGE_SLOTS,
   event: PACKAGE_EVENT,
   option: {
-    country: generate_v_options(3),
-    name: generate_v_options(4),
-    remark: generate_v_options(3),
+    country: generate_v_options(['', 'Māre', 'Eldia']),
+    name: generate_v_options(['', 'Grisha Yeager', 'Eren Yeager', 'Armin Arlert']),
+    remark: generate_v_options(['', 'yes', 'no']),
   },
   dropdown: {
-    country: PACKAGE_V_DROPDOWN_PROPS,
-    name: PACKAGE_V_DROPDOWN_PROPS,
-    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ displayAll: true}},
+    country: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'country' } },
+    name: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'name' } },
+    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'remark', displayAll: true}},
   },
 }
 
-function generate_v_options(number) {
-  return Array.from({ length: number }, () => ({ ...PACKAGE_V_OPTION_PROPS }));
+function generate_v_options(values = [""]) {
+  return Array.from({ length: values.length }, (_value, index) => {
+    if (index == 0) {
+      return { ...PACKAGE_V_OPTION_PROPS, ...{ title: true } };
+    }
+    return { ...PACKAGE_V_OPTION_PROPS, ...{ 
+      value: values[index],
+      valueForDemo: values[index]
+    }};
+  });
 }
 
 function deep_clone(input) {
