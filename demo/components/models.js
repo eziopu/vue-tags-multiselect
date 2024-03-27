@@ -96,7 +96,7 @@ export const PACKAGE_PROPS = {
 }
 
 export const PACKAGE_EVENT = {
-  result: [],
+  result: {},
   status: [],
   selectingTag: {},
   inputValue: "",
