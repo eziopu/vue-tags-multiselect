@@ -1,7 +1,9 @@
 <template>
-  <div class="attribute flex-between">
-    <div v-if="label">{{ label }} :&nbsp;</div>
-    <select v-model="newValue" :disabled="disabled">
+  <div class="attribute" :class="{flexBetween: flexBetween, flex: !flexBetween}">
+    <div v-if="label" class="attribute__label">
+      {{ label }}<span class="attribute__label--colon">:</span>
+    </div>
+    <select v-model="newValue" :disabled="disabled" class="attribute__select">
       <option v-for="item in values" :key="item">
         {{ item }}
       </option>
@@ -13,6 +15,12 @@
 export default {
   name: "label-and-select",
   props: {
+    flexBetween: {
+      type: Boolean,
+      default: () => {
+        return false;
+      },
+    },
     disabled: {
       type: Boolean,
       default: () => {
@@ -61,3 +69,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.attribute__label--colon {
+  margin: 0 .3rem;
+}
+</style>
