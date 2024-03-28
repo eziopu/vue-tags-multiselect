@@ -17,10 +17,6 @@ const demoStatus = ref([]);
 const dropdownDisplayAll = ref('false');
 const isTitle = ref('false');
 
-const toBoolean = (input) => {
-  return input == "false" ? false : true;
-}
-
 watch(dropdownDisplayAll, async () => {
   await nextTick();
   elGeneralDemo.value.reloadByBtnFun();
@@ -46,7 +42,7 @@ watch(isTitle, async () => {
         </div>
 
         <ALineCode
-          :isNotTitle="!toBoolean(isTitle)"
+          :isNotTitle="!$toBoolean(isTitle)"
           :bolders="dropdownDisplayAll == 'true' ? ['displayAll'] : []"
         />
       </div>
@@ -62,12 +58,12 @@ watch(isTitle, async () => {
             :displayShowCodeBtn="false"
             :dropdown="{
               country: {
-                displayAll: toBoolean(dropdownDisplayAll), 
+                displayAll: $toBoolean(dropdownDisplayAll), 
               },
               name: {isDisplayForDemo: false},
             }"
             :option="{
-              country: [{title: toBoolean(isTitle)}],
+              country: [{title: $toBoolean(isTitle)}],
             }"
           >
           </GeneralDemo>

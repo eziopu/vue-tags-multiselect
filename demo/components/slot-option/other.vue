@@ -6,7 +6,7 @@ export default {
 </script>
 
 <script setup>
-import { reactive, computed } from "vue";
+import { reactive } from "vue";
 import LabelAndSelect from "../tools/label-and-select.vue";
 import GeneralDemo from "../tools/general-demo.vue";
 import ALineCode from "./tools/a-line-code.vue";
@@ -17,15 +17,6 @@ const attributes = reactive({
   displayAll: "true",
 })
 
-const bolders = computed(() => {
-  return Object.entries(attributes)
-    .filter(([key, value]) => key != "" && value === "true")
-    .map(([key]) => key)
-});
-
-const toBoolean = (input) => {
-  return input == "false" ? false : true;
-}
 </script>
 
 <template>
@@ -51,7 +42,7 @@ const toBoolean = (input) => {
           </div>
         </div>
 
-        <ALineCode :bolders="bolders" />
+        <ALineCode :bolders="$objectKeyToArray(attributes, 'true')" />
       </div>
 
       <div class="demo-app">
@@ -71,8 +62,8 @@ const toBoolean = (input) => {
           :option="{
             country: [
               {}, {
-                disabled: toBoolean(attributes.disabled),
-                divided: toBoolean(attributes.divided),
+                disabled: $toBoolean(attributes.disabled),
+                divided: $toBoolean(attributes.divided),
               }
             ]
           }"

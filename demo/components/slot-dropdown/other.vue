@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <ALineCode :bolders="bolders" />
+        <ALineCode :bolders="$objectKeyToArray(attributes, 'true')" />
       </div>
 
       <div class="demo-app">
@@ -71,12 +71,12 @@
           :displayShowCodeBtn="false"
           :dropdown="{
             country: {
-              displayAll: toBoolean(attributes.displayAll),
-              disabled: toBoolean(attributes.disabled),
-              hidden: toBoolean(attributes.hidden),
+              displayAll: $toBoolean(attributes.displayAll),
+              disabled: $toBoolean(attributes.disabled),
+              hidden: $toBoolean(attributes.hidden),
             },
             name: {
-              divided: toBoolean(attributes.divided),
+              divided: $toBoolean(attributes.divided),
             },
           }"
         />
@@ -106,18 +106,6 @@ export default {
         hidden: "false",
       }
     };
-  },
-  computed: {
-    bolders() {
-      return Object.entries(this.attributes)
-        .filter(([key, value]) => key != "" && value === "true")
-        .map(([key]) => key);
-    },
-  },
-  methods: {
-    toBoolean(value) {
-      return value == "false" ? false : true;
-    },
   },
 };
 </script>
