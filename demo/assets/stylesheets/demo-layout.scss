@@ -18,6 +18,15 @@
     }
   }
 
+  .attributes.with-demo-control {
+    margin-right: 6rem;
+  }
+
+  .attribute {
+    margin-top: .3rem;
+    margin-bottom:.3rem;
+  }
+
   .attribute.disable {
     pointer-events: none;
     opacity: 0.6;
@@ -63,6 +72,28 @@
 
   .detail {
     margin: 0 0;
+  }
+  
+  .flex {
+    display: flex;
+
+    @media (max-width: 376px) {
+      display: block;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    &.to3-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 768px) {
+      & {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
   }
 
   .flex-between {
