@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="attributes flex-between">
+    <div class="attributes with-demo-control">
       <LabelAndSelect
         label="conjunction"
         :values="['AND', 'OR', 'null']"

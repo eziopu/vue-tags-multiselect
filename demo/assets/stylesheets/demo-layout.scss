@@ -76,10 +76,6 @@
   
   .flex {
     display: flex;
-
-    @media (max-width: 376px) {
-      display: block;
-    }
   }
 
   .grid {
@@ -89,7 +85,7 @@
     &.to3-3 {
       grid-template-columns: repeat(3, 1fr);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 576px) {
       & {
         grid-template-columns: repeat(1, 1fr);
       }

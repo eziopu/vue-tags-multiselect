@@ -8,7 +8,7 @@
       *<span v-html="$t('attributes.description.app.tagPosition__notice')"></span>
     </div>
 
-    <div class="attributes flex-between">
+    <div class="attributes with-demo-control">
       <LabelAndSelect
         label="tagPosition"
         v-model="tagPosition"
@@ -39,12 +39,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-bottom: 6px;
-}
-</style>

@@ -6,7 +6,7 @@
       {{ $t("attributes.description.app.transition") }}
     </div>
 
-    <div class="attributes flex-between">
+    <div class="attributes with-demo-control">
       <LabelAndSelect label="transition" v-model="transition" />
     </div>
 
@@ -28,12 +28,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-bottom: 6px;
-}
-</style>

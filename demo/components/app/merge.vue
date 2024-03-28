@@ -6,7 +6,7 @@
       {{ $t("attributes.description.app.merge") }}
     </div>
 
-    <div class="attributes flex-between">
+    <div class="attributes with-demo-control">
       <LabelAndSelect label="merge" v-model="attributes.merge" />
     </div>
 
@@ -33,12 +33,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-bottom: 6px;
-}
-</style>

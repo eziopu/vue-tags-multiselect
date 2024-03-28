@@ -165,11 +165,8 @@ export default {
   width: 50%;
   padding: 0 12px;
 }
-.attribute {
-  margin-bottom: 6px;
-  .lebel {
-    width: 180px;
-  }
+.attribute .lebel {
+  width: 180px;
 }
 .placeholders.attribute {
   margin-left: 12px;

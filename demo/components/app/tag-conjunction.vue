@@ -9,7 +9,7 @@
       ></span>
     </div>
 
-    <div class="attributes flex-between">
+    <div class="attributes flex-between with-demo-control">
       <LabelAndSelect label="merge" v-model="merge" />
       <div class="attribute flex-between text">
         <span> tag-conjunction: </span>
@@ -54,12 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-bottom: 6px;
-}
+
 
 @media all and (max-width: 992px) {
   .attributes {
