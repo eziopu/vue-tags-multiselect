@@ -1,6 +1,7 @@
 <template>
   <div id="tag-conjunction" class="demo">
-    <h3>Tag conjunction</h3>
+    <ToolTitle>Tag conjunction</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.slots.tag-conjunction") }}
       *<span
@@ -8,7 +9,6 @@
       ></span>
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect label="merge" v-model="merge" />
       <div class="attribute flex-between text">

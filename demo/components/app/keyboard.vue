@@ -1,6 +1,7 @@
 <template>
   <div id="keyboard">
-    <h3>{{ $t("ui.page.description.keyboard") }}</h3>
+    <ToolTitle>{{ $t("ui.page.description.keyboard") }}</ToolTitle>
+    
     <div class="depiction">
       {{ $t("ui.page.description.keyboardSub") }}
     </div>

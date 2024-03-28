@@ -1,6 +1,7 @@
 <template>
   <div id="placeholders" class="demo">
-    <h3>Placeholders</h3>
+    <ToolTitle>Placeholders</ToolTitle>
+
     <div class="depiction">
       {{ $t(`${i18nAppPath}.placeholder`) }}
 
@@ -20,7 +21,6 @@
       </div>
     </div>
 
-    <hr />
     <div class="flex-between">
       <div class="placeholder attributes">
         <div class="attribute flex-between text">
@@ -103,7 +103,7 @@
         />
         <LabelAndSelect label="loading" v-model="attributes.loading" />
         <LabelAndSelect label="create" v-model="attributes.create" />
-        <hr />
+
         <div class="depiction">
           <div class="attribute">
             loading:

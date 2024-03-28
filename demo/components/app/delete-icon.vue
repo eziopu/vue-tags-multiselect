@@ -1,6 +1,7 @@
 <template>
   <div id="delete-icon" class="demo">
-    <h3>Delete icon</h3>
+    <ToolTitle>Delete icon</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.deleteIcon") }}
       *{{ $t("attributes.description.app.deleteIcon__notice") }}
@@ -17,7 +18,6 @@
       </div>
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect label="merge" v-model="attributes.merge" />
       <LabelAndSelect

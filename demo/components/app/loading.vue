@@ -1,11 +1,11 @@
 <template>
   <div id="loading" class="demo">
-    <h3>Loading</h3>
+    <ToolTitle>Loading</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.loading") }}
     </div>
 
-    <hr />
     <div class="attributes">
       <LabelAndSelect label="loading" v-model="attributes.loading" />
 

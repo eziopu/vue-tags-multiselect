@@ -1,6 +1,7 @@
 <template>
   <div id="dropdowns-loading" class="demo">
-    <h3>Dropdown loading</h3>
+    <ToolTitle>Dropdown loading</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.dropdownLoading") }}
       <div class="sub-depiction">
@@ -10,7 +11,6 @@
       </div>
     </div>
 
-    <hr />
     <div class="attributes">
       <LabelAndSelect
         label="dropdownLoading"

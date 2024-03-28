@@ -1,11 +1,11 @@
 <template>
   <div id="search" class="demo">
-    <h3>Search</h3>
+    <ToolTitle>Search</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.search") }}
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect label="search" v-model="search" />
     </div>

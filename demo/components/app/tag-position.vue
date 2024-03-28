@@ -1,13 +1,13 @@
 <template>
   <div id="tag-position" class="demo">
-    <h3>Tag position</h3>
+    <ToolTitle>Tag position</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.tagPosition") }}
       <br>
       *<span v-html="$t('attributes.description.app.tagPosition__notice')"></span>
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect
         label="tagPosition"

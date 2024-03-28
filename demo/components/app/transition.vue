@@ -1,11 +1,11 @@
 <template>
   <div id="Transition" class="demo">
-    <h3>Transition</h3>
+    <ToolTitle>Transition</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.transition") }}
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect label="transition" v-model="transition" />
     </div>

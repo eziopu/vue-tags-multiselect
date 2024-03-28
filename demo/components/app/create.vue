@@ -1,12 +1,12 @@
 <template>
   <div id="create" class="demo">
-    <h3>Create</h3>
+    <ToolTitle>Create</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.create") }} <br />
       {{ $t("attributes.description.app.create__notice") }}
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect label="create" v-model="attributes.create" />
       <LabelAndSelect label="search" v-model="attributes.search" />

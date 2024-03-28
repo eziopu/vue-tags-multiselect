@@ -1,11 +1,11 @@
 <template>
   <div id="merge" class="demo">
-    <h3>Merge</h3>
+    <ToolTitle>Merge</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.merge") }}
     </div>
 
-    <hr />
     <div class="attributes flex-between">
       <LabelAndSelect label="merge" v-model="attributes.merge" />
     </div>
