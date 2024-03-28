@@ -1,12 +1,11 @@
 <template>
   <div id="app-attributes">
-    <Keyboard></Keyboard>
     
     <Basic></Basic>
     <AddOption></AddOption>
+    <Keyboard></Keyboard>
     <Conjunction></Conjunction>
     <Disabled></Disabled>
-    <Placeholders></Placeholders>
     <Search></Search>
     <Create></Create>
     <TagPosition></TagPosition>
@@ -14,6 +13,7 @@
     <TagConjunction></TagConjunction>
     <DeleteIcon></DeleteIcon>
     <AppTransition></AppTransition>
+    <Placeholders></Placeholders>
     <Loadings></Loadings>
   </div>
 </template>

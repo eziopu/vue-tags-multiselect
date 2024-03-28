@@ -81,6 +81,7 @@ export const PACKAGE_PROPS = {
   transition: true,
   create: true,
   merge: true,
+  keyboard: true,
   debugLog: false,
   conjunction: "",
   tagPosition: "",
