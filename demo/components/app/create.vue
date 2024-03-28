@@ -8,33 +8,26 @@
 
     <hr />
     <div class="attributes flex-between">
-      <LabelAndSelect label="create" v-model="create" />
-      <LabelAndSelect label="search" v-model="search" />
+      <LabelAndSelect label="create" v-model="attributes.create" />
+      <LabelAndSelect label="search" v-model="attributes.search" />
     </div>
 
     <GeneralDemo
-      :app="{
-        create: create == 'true' ? true : false,
-        search: search == 'true' ? true : false,
-      }"
+      :app="attributes"
     ></GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 
 export default {
   name: "app-create",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      create: "true",
-      search: "false",
+      attributes: {
+        create: true,
+        search: false,
+      }
     };
   },
 };

@@ -19,10 +19,10 @@
 
     <hr />
     <div class="attributes flex-between">
-      <LabelAndSelect label="merge" v-model="merge" />
+      <LabelAndSelect label="merge" v-model="attributes.merge" />
       <LabelAndSelect
         label="deleteIcon"
-        v-model="deleteIcon"
+        v-model="attributes.deleteIcon"
         :values="['always', 'edit', 'none']"
       />
     </div>
@@ -32,29 +32,22 @@
       :option="{
         country: [{}, {selected: true}, {selected: true}],
       }"
-      :app="{
-        merge: merge == 'true' ? true : false,
-        deleteIcon: deleteIcon,
-      }"
+      :app="attributes"
     >
     </GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 
 export default {
   name: "app-delete-icon",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      merge: "true",
-      deleteIcon: "always",
+      attributes: {
+        merge: true,
+        deleteIcon: "always",
+      }
     };
   },
 };

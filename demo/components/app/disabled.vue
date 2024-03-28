@@ -7,30 +7,23 @@
 
     <hr />
     <div class="attributes flex-between">
-      <LabelAndSelect label="disabled" v-model="disabled" />
+      <LabelAndSelect label="disabled" v-model="attributes.disabled" />
     </div>
 
     <GeneralDemo
-      :app="{
-        disabled: disabled == 'true' ? true : false,
-      }"
+      :app="attributes"
     ></GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-disabled",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      disabled: "true",
+      attributes: {
+        disabled: true,
+      }
     };
   },
 };

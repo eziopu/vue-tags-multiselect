@@ -12,25 +12,18 @@
 
     <GeneralDemo
       :app="{
-        search: search == 'true' ? true : false,
+        search: search,
       }"
     ></GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-search",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      search: "true",
+      search: true,
     };
   },
 };

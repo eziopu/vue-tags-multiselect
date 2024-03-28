@@ -6,6 +6,9 @@
     </div>
 
     <div class="demo-component relative">
+      <div class="output">
+        v-model output value: {{ result }}
+      </div>
       <v-tags-multiselect
         v-model="result"
         placeholder="Click and input enter me !"
@@ -40,65 +43,9 @@ export default {
   name: "app-basic",
   data() {
     return {
-      conjunctions: ["OR", "AND"],
-      conjunction: "",
-      merge: "true",
+      result: {},
       show_code: false,
-      result: [],
-      filters: [
-        {
-          name: "Country",
-          key: "country",
-          values: ["Eldia", "Māre"],
-        },
-        {
-          name: "Remark",
-          key: "remark",
-          values: ["yes", "no"],
-        },
-        {
-          name: "Height(cm)",
-          key: "height",
-          symbols: [">", "<"],
-          values: ["15000", "10000"],
-        },
-      ],
-    };
-  },
+    }
+  }
 };
 </script>
-
-<style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-bottom: 6px;
-}
-@media all and (max-width: 992px) {
-  .attributes {
-    flex-wrap: wrap;
-  }
-  .attribute {
-    &:nth-child(1) {
-      width: 50%;
-    }
-    &:nth-child(2) {
-      width: 50%;
-    }
-    &:nth-child(3) {
-      width: 100%;
-    }
-  }
-}
-@media all and (max-width: 470px) {
-  .attribute {
-    &:nth-child(1) {
-      width: 100%;
-    }
-    &:nth-child(2) {
-      width: 100%;
-    }
-  }
-}
-</style>

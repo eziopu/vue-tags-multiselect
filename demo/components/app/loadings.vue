@@ -29,14 +29,12 @@
 <script>
 import Loading from "./loading.vue";
 import DropdownsLoading from "./dropdowns-loading.vue";
-import GeneralDemo from "../tools/general-demo.vue";
 
 export default {
   name: "app-loadings",
   components: {
     Loading,
     DropdownsLoading,
-    GeneralDemo,
   },
   data() {
     return {

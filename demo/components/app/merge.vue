@@ -7,7 +7,7 @@
 
     <hr />
     <div class="attributes flex-between">
-      <LabelAndSelect label="merge" v-model="merge" />
+      <LabelAndSelect label="merge" v-model="attributes.merge" />
     </div>
 
     <GeneralDemo
@@ -15,27 +15,20 @@
       :option="{
         country: [{}, {selected: true}, {selected: true}],
       }"
-      :app="{
-        merge: merge == 'true' ? true : false,
-      }"
+      :app="attributes"
     >
     </GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-merge",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      merge: "true",
+      attributes: {
+        merge: true,
+      }
     };
   },
 };

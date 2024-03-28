@@ -26,7 +26,7 @@
         <div class="attribute flex-between text">
           <div class="lebel">placeholder :</div>
           <div class="ui input">
-            <input type="text" class="form-control" v-model="placeholder" />
+            <input type="text" class="form-control" v-model="attributes.placeholder" />
           </div>
         </div>
 
@@ -37,7 +37,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="placeholders.initial"
+              v-model="attributes.placeholders.initial"
             />
           </div>
         </div>
@@ -48,8 +48,8 @@
             <input
               type="text"
               class="form-control"
-              v-model="placeholders.loading"
-              :disabled="loading == 'false'"
+              v-model="attributes.placeholders.loading"
+              :disabled="attributes.loading == false"
               :placeholder="`Wait a moment, please.`"
             />
           </div>
@@ -61,8 +61,8 @@
             <input
               type="text"
               class="form-control"
-              v-model="placeholders.selectDown"
-              :disabled="create == 'false'"
+              v-model="attributes.placeholders.selectDown"
+              :disabled="attributes.create == false"
               :placeholder="`Selected End.`"
             />
           </div>
@@ -74,8 +74,8 @@
             <input
               type="text"
               class="form-control"
-              v-model="placeholders.finish"
-              :disabled="create == 'true'"
+              v-model="attributes.placeholders.finish"
+              :disabled="attributes.create == true"
               :placeholder="`Finish.`"
             />
           </div>
@@ -87,7 +87,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="placeholders.tagValueRepeat"
+              v-model="attributes.placeholders.tagValueRepeat"
               :placeholder="`repeat !`"
             />
           </div>
@@ -98,11 +98,11 @@
       <div class="app attributes">
         <LabelAndSelect
           label="conjunction"
-          v-model="conjunction"
+          v-model="attributes.conjunction"
           :values="['AND', 'OR', 'null']"
         />
-        <LabelAndSelect label="loading" v-model="loading" />
-        <LabelAndSelect label="create" v-model="create" />
+        <LabelAndSelect label="loading" v-model="attributes.loading" />
+        <LabelAndSelect label="create" v-model="attributes.create" />
         <hr />
         <div class="depiction">
           <div class="attribute">
@@ -129,43 +129,32 @@
 
     <GeneralDemo
       :displayRefreshBtn="true"
-      :app="{
-        create: create == 'true' ? true : false,
-        loading: loading == 'true' ? true : false,
-        conjunction: conjunction,
-        placeholder: placeholder,
-        placeholders: placeholders,
-      }"
+      :app="attributes"
     >
     </GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-placeholders",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
       i18nAppPath: "attributes.description.app",
-      loading: "false",
-      create: "false",
-      conjunction: "AND",
-
-      placeholder: "",
-      placeholders: {
-        initial: "",
-        loading: "",
-        selectDown: "",
-        finish: "",
-        tagValueRepeat: "",
-      },
+      attributes: {
+        loading: false,
+        create: false,
+        conjunction: "AND",
+  
+        placeholder: "",
+        placeholders: {
+          initial: "",
+          loading: "",
+          selectDown: "",
+          finish: "",
+          tagValueRepeat: "",
+        },
+      }
     };
   },
 };

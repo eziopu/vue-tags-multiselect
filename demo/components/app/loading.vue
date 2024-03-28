@@ -36,8 +36,6 @@
 </template>
 
 <script>
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-loading",
   inject: ["getLoadingAttributes"],
@@ -45,9 +43,6 @@ export default {
     attributes() {
       return this.getLoadingAttributes();
     },
-  },
-  components: {
-    LabelAndSelect,
   },
 };
 </script>
