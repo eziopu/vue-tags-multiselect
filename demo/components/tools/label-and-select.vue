@@ -32,14 +32,11 @@ export default {
       },
     },
     modelValue: {
-      type: String,
+      type: [Boolean, String],
       default: () => {
-        return "false";
+        return false;
       },
     },
-  },
-  data() {
-    return {};
   },
   model: {
     prop: "value",
@@ -51,8 +48,15 @@ export default {
         return this.modelValue;
       },
       set(value) {
-        this.$emit("update:modelValue", value);
+        this.$emit("update:modelValue", this.toBoolean(value));
       },
+    },
+  },
+  methods: {
+    toBoolean(value) {
+      if (value === "true" || value === true) return true;
+      if (value === "false" || value === false) return false;
+      return value;
     },
   },
 };
