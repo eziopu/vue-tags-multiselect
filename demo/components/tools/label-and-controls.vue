@@ -3,17 +3,30 @@
     <div v-if="label" class="attribute__label">
       {{ label }}<span class="attribute__label--colon">:</span>
     </div>
-    <select v-model="newValue" :disabled="disabled" class="attribute__select">
-      <option v-for="item in values" :key="item">
-        {{ item }}
-      </option>
-    </select>
+    <template v-if="model == 'select'">
+      <select v-model="newValue" :disabled="disabled" class="attribute__select">
+        <option v-for="item in values" :key="item">
+          {{ item }}
+        </option>
+      </select>
+    </template>
+    <template v-if="model == 'input'">
+      <div class="ui input attribute__input">
+        <input
+          class="form-control"
+          v-model="newValue"
+          :type="text"
+          :disabled="disabled"
+          :placeholder="placeholder"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
-  name: "label-and-select",
+  name: "label-and-controls",
   props: {
     flexBetween: {
       type: Boolean,
@@ -33,16 +46,40 @@ export default {
         return "";
       },
     },
+    modelValue: {
+      type: [String, Boolean],
+      default: () => {
+        return "";
+      },
+    },
+    model: {
+      type: String,
+      default: () => {
+        return 'select';
+      },
+    },
+    /**
+     * input
+     **/
+    text: {
+      type: String,
+      default: () => {
+        return "text";
+      },
+    },
+    placeholder: {
+      type: String,
+      default: () => {
+        return "";
+      },
+    },
+    /**
+     * select
+     **/
     values: {
       type: Array,
       default: () => {
         return ["true", "false"];
-      },
-    },
-    modelValue: {
-      type: [Boolean, String],
-      default: () => {
-        return false;
       },
     },
   },
