@@ -1,20 +1,26 @@
 <template>
-  <div class="attribute flex">
-    <div v-if="label" class="attribute__label">
-      {{ label }}<span class="attribute__label--colon">:</span>
+  <div class="attribute flex tool-attribute" :class="model">
+    <div v-if="label" class="tool-attribute__label">
+      {{ label }}<span class="tool-attribute__label--colon">:</span>
     </div>
     <template v-if="model == 'select'">
-      <select v-model="newValue" :disabled="disabled" class="attribute__select">
+      <select
+        v-model="newValue"
+        class="tool-attribute__select"
+        :disabled="disabled"
+        :style="{'width': width}"
+      >
         <option v-for="item in values" :key="item">
           {{ item }}
         </option>
       </select>
     </template>
     <template v-if="model == 'input'">
-      <div class="ui input attribute__input">
+      <div class="ui input tool-attribute__input">
         <input
-          class="form-control"
           v-model="newValue"
+          class="form-control"
+          :style="{'width': width}"
           :type="text"
           :disabled="disabled"
           :placeholder="placeholder"
@@ -67,6 +73,12 @@ export default {
         return "";
       },
     },
+    width: {
+      type: String,
+      default: () => {
+        return "atuo";
+      },
+    },
     /**
      * select
      **/
@@ -101,13 +113,20 @@ export default {
 };
 </script>
 
-<style>
-.attribute__label--colon {
+<style scoped lang="scss">
+.tool-attribute {
+  flex-flow: wrap;
+}
+
+.tool-attribute__label--colon {
   margin: 0 .3rem;
 }
 
-.attribute__select:disabled,
-.attribute__input input[disabled] {
+.tool-attribute__select:disabled,
+.tool-attribute__input input[disabled] {
   cursor: not-allowed !important;
+}
+.tool-attribute__input {
+  flex: 1 1 auto; /* 或者使用 flex: 1; */
 }
 </style>
