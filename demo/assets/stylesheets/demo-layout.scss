@@ -74,10 +74,6 @@
     margin: 0 0;
   }
   
-  .flex {
-    display: flex;
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -92,10 +88,29 @@
     }
   }
 
+  .flex {
+    display: flex;
+  }
+
+  .flex-column {
+    display: flex;
+    flex-direction: column
+  }
+  
   .flex-between {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
+    &.to4-6 {
+      &>div:first-child {
+        width: 38%;
+      }
+
+      &>div:last-child {
+        width: 58%;
+      }
+    }
 
     &.to5-5 {
       & > div:first-child {
@@ -114,7 +129,7 @@
         width: 38%;
       }
     }
-    &.to5-5, &.to6-4 {
+    &.to4-6, &.to5-5, &.to6-4 {
       @media (max-width: 768px) {
         & {
           flex-direction: column;

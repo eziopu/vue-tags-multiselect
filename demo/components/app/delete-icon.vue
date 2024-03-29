@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="attributes with-demo-control grid">
+    <div class="attributes flex-between to4-6 with-demo-control">
       <LabelAndControls label="merge" v-model="attributes.merge" />
       <LabelAndControls
         label="deleteIcon"

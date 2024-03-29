@@ -8,29 +8,19 @@
 
     <div class="attributes">
       <LabelAndControls label="loading" v-model="attributes.loading" />
-
-      <div class="attribute">
-        <span> loading placeholder: </span>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="attributes.loadingPlaceholder"
-            placeholder="default: Wait a moment, please."
-          />
-        </div>
-      </div>
-
-      <div class="attribute">
-        <span> loading icon slot: </span>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="attributes.loadingContent"
-          />
-        </div>
-      </div>
+      <LabelAndControls
+        model="input"
+        class="flex-column"
+        label="loading placeholder"
+        v-model="attributes.loadingPlaceholder"
+        placeholder="default: Wait a moment, please."
+      />
+      <LabelAndControls
+        model="input"
+        class="flex-column"
+        label="loading icon slot"
+        v-model="attributes.loadingContent"
+      />
     </div>
   </div>
 </template>
@@ -46,9 +36,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.attribute {
-  margin-bottom: 6px;
-}
-</style>

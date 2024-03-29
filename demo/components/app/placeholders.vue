@@ -21,80 +21,58 @@
       </div>
     </div>
 
-    <div class="flex-between">
+    <div class="flex-between to5-5">
       <div class="placeholder attributes">
-        <div class="attribute flex-between text">
-          <div class="lebel">placeholder :</div>
-          <div class="ui input">
-            <input type="text" class="form-control" v-model="attributes.placeholder" />
-          </div>
-        </div>
+        <LabelAndControls
+          class="flex-between to4-6"
+          model="input"
+          label="placeholder"
+          v-model="attributes.placeholder"
+        />
 
         <div class="attribute">placeholders: {</div>
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">initial :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
+          <div class="placeholders__attribute">
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="initial"
               v-model="attributes.placeholders.initial"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">loading :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="loading"
               v-model="attributes.placeholders.loading"
               :disabled="attributes.loading == false"
               :placeholder="`Wait a moment, please.`"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">selectDown :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="selectDown"
               v-model="attributes.placeholders.selectDown"
               :disabled="attributes.create == false"
               :placeholder="`Selected End.`"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">finish :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="finish"
               v-model="attributes.placeholders.finish"
               :disabled="attributes.create == true"
               :placeholder="`Finish.`"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">tagValueRepeat :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="tagValueRepeat"
               v-model="attributes.placeholders.tagValueRepeat"
               :placeholder="`repeat !`"
             />
           </div>
-        </div>
-
         <div class="attribute">}</div>
       </div>
+
       <div class="app attributes">
         <LabelAndControls
           label="conjunction"
@@ -161,66 +139,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.attributes {
-  width: 50%;
-  padding: 0 12px;
-}
-.attribute .lebel {
-  width: 180px;
-}
-.placeholders.attribute {
-  margin-left: 12px;
-}
-
-.depiction .attribute {
-  margin-bottom: 12px;
-}
-
-@media all and (max-width: 768px) {
-  .attributes {
-    &:first-child {
-      width: 60%;
-    }
-    &:last-child {
-      width: 40%;
-    }
-  }
-  .attributes {
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-    .lebel {
-      width: 100%;
-    }
-    .attribute.text {
-      flex-wrap: wrap;
-    }
-    .attribute:nth-child(1) {
-      order: 1;
-      width: 100%;
-    }
-    .attribute:nth-child(2) {
-      order: 0;
-      max-width: 280px;
-    }
-  }
-}
-@media all and (max-width: 490px) {
-  .demo > .flex-between {
-    flex-direction: column;
-  }
-  .attributes {
-    &:first-child {
-      width: 100%;
-    }
-    &:last-child {
-      width: 100%;
-    }
-  }
-  .ui.input {
-    width: 100%;
-  }
-  .app.attributes .attribute {
-    max-width: 100%;
-  }
+.placeholders__attribute {
+  padding-left: 1rem;
 }
 </style>

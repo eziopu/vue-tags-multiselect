@@ -1,5 +1,5 @@
 <template>
-  <div class="attribute" :class="{flexBetween: flexBetween, flex: !flexBetween}">
+  <div class="attribute flex">
     <div v-if="label" class="attribute__label">
       {{ label }}<span class="attribute__label--colon">:</span>
     </div>
@@ -28,12 +28,6 @@
 export default {
   name: "label-and-controls",
   props: {
-    flexBetween: {
-      type: Boolean,
-      default: () => {
-        return false;
-      },
-    },
     disabled: {
       type: Boolean,
       default: () => {
@@ -110,5 +104,10 @@ export default {
 <style>
 .attribute__label--colon {
   margin: 0 .3rem;
+}
+
+.attribute__select:disabled,
+.attribute__input input[disabled] {
+  cursor: not-allowed !important;
 }
 </style>

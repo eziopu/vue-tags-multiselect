@@ -7,7 +7,7 @@
       {{ $t("attributes.description.app.create__notice") }}
     </div>
 
-    <div class="attributes with-demo-control grid">
+    <div class="attributes flex-between to4-6 with-demo-control">
       <LabelAndControls label="create" v-model="attributes.create" />
       <LabelAndControls label="search" v-model="attributes.search" />
     </div>

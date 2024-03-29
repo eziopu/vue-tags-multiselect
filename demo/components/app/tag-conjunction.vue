@@ -9,13 +9,14 @@
       ></span>
     </div>
 
-    <div class="attributes flex-between with-demo-control">
+    <div class="attributes flex-between to4-6 with-demo-control">
       <LabelAndControls label="merge" v-model="merge" />
       <LabelAndControls
         model="input"
+        class="tagConjunctionContent"
         label="tag-conjunction"
         v-model="tagConjunctionContent"
-        :disabled="merge == 'false'"
+        :disabled="merge == false"
         :placeholder="`default: &`"
       />
     </div>
@@ -49,20 +50,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.attribute.text {
-  width: 50%;
-
-  @media all and (max-width: 992px) {
-    width: 60%;
-  }
-  @media all and (max-width: 768px) {
-    width: 100%;
-  }
-}
-@media all and (max-width: 768px) {
-  .attributes {
-    flex-direction: column;
-  }
-}
 
 </style>
