@@ -12,7 +12,7 @@
     </div>
 
     <div class="attributes">
-      <LabelAndSelect
+      <LabelAndControls
         label="dropdownLoading"
         v-model="attributes.dropdownLoading"
         :disabled="attributes.loading == 'true'"

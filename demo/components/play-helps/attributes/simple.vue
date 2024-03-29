@@ -7,23 +7,23 @@
         default: app.framework == 'default',
       }"
     >
-      <LabelAndSelect value="disabled" />
-      <LabelAndSelect value="search" />
-      <LabelAndSelect value="loading" />
-      <LabelAndSelect value="dropdownLoading" />
-      <LabelAndSelect value="create" />
-      <LabelAndSelect
+      <LabelAndControls value="disabled" />
+      <LabelAndControls value="search" />
+      <LabelAndControls value="loading" />
+      <LabelAndControls value="dropdownLoading" />
+      <LabelAndControls value="create" />
+      <LabelAndControls
         value="deleteIcon"
         :values="['always', 'edit', 'none']"
       />
 
-      <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
-      <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
+      <LabelAndControls value="merge" :disabled="app.conjunction == 'AND'" />
+      <LabelAndControls value="conjunction" :values="['AND', 'OR', 'null']" />
 
-      <LabelAndSelect value="transition" />
-      <LabelAndSelect value="keyboard" />
-      <LabelAndSelect value="debugLog" />
-      <LabelAndSelect value="tagPosition" :values="['null', 'top', 'bottom']" />
+      <LabelAndControls value="transition" />
+      <LabelAndControls value="keyboard" />
+      <LabelAndControls value="debugLog" />
+      <LabelAndControls value="tagPosition" :values="['null', 'top', 'bottom']" />
 
       <div class="flex-between text">
         <div>placeholder</div>
@@ -111,15 +111,11 @@
 
 <script>
 import InjectApp from "../mixins/inject-app.js";
-import LabelAndSelect from "./label-and-select.vue";
 
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "attributes-simple",
   mixins: [InjectApp],
-  components: {
-    LabelAndSelect,
-  },
 });
 </script>
 

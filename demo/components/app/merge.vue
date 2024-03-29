@@ -7,7 +7,7 @@
     </div>
 
     <div class="attributes with-demo-control">
-      <LabelAndSelect label="merge" v-model="attributes.merge" />
+      <LabelAndControls label="merge" v-model="attributes.merge" />
     </div>
 
     <GeneralDemo

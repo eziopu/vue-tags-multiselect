@@ -7,8 +7,6 @@ export default {
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import ALineCode from "./tools/a-line-code.vue";
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 
 const i18n = "attributes.description.option";
 
@@ -37,8 +35,8 @@ watch(isTitle, async () => {
         <br />
 
         <div class="attributes">
-          <LabelAndSelect label="option title" v-model="isTitle" />
-          <LabelAndSelect label="dropdown display-all" v-model="dropdownDisplayAll" />
+          <LabelAndControls label="option title" v-model="isTitle" />
+          <LabelAndControls label="dropdown display-all" v-model="dropdownDisplayAll" />
         </div>
 
         <ALineCode

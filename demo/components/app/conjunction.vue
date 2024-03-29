@@ -19,7 +19,7 @@
     </div>
 
     <div class="attributes with-demo-control">
-      <LabelAndSelect
+      <LabelAndControls
         label="conjunction"
         :values="['AND', 'OR', 'null']"
         v-model="attributes.conjunction"
@@ -27,7 +27,11 @@
     </div>
 
     <GeneralDemo
+      :displayRefreshBtn="true"
       :app="attributes"
+      :option="{
+        country: [{}, {selected: true}],
+      }"
     ></GeneralDemo>
   </div>
 </template>

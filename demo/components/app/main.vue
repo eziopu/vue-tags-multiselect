@@ -4,10 +4,10 @@
     <Basic></Basic>
     <AddOption></AddOption>
     <Keyboard></Keyboard>
-    <Conjunction></Conjunction>
     <Disabled></Disabled>
     <Search></Search>
     <Create></Create>
+    <Conjunction></Conjunction>
     <TagPosition></TagPosition>
     <Merge></Merge>
     <TagConjunction></TagConjunction>

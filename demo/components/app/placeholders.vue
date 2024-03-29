@@ -96,13 +96,13 @@
         <div class="attribute">}</div>
       </div>
       <div class="app attributes">
-        <LabelAndSelect
+        <LabelAndControls
           label="conjunction"
           v-model="attributes.conjunction"
           :values="['AND', 'OR', 'null']"
         />
-        <LabelAndSelect label="loading" v-model="attributes.loading" />
-        <LabelAndSelect label="create" v-model="attributes.create" />
+        <LabelAndControls label="loading" v-model="attributes.loading" />
+        <LabelAndControls label="create" v-model="attributes.create" />
 
         <div class="depiction">
           <div class="attribute">

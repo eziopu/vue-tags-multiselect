@@ -7,7 +7,7 @@
     </div>
 
     <div class="attributes">
-      <LabelAndSelect label="loading" v-model="attributes.loading" />
+      <LabelAndControls label="loading" v-model="attributes.loading" />
 
       <div class="attribute">
         <span> loading placeholder: </span>

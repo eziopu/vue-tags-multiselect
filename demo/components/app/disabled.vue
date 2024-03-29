@@ -7,7 +7,7 @@
     </div>
 
     <div class="attributes flex-between">
-      <LabelAndSelect label="disabled" v-model="attributes.disabled" />
+      <LabelAndControls label="disabled" v-model="attributes.disabled" />
     </div>
 
     <GeneralDemo

@@ -8,7 +8,7 @@
     <KeyboardTemplate />
     
     <div class="attributes with-demo-control">
-      <LabelAndSelect label="keyboard" v-model="keyboard" />
+      <LabelAndControls label="keyboard" v-model="keyboard" />
     </div>
 
     <GeneralDemo

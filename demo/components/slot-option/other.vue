@@ -7,8 +7,7 @@ export default {
 
 <script setup>
 import { reactive } from "vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-import GeneralDemo from "../tools/general-demo.vue";
+
 import ALineCode from "./tools/a-line-code.vue";
 
 const attributes = reactive({
@@ -29,7 +28,7 @@ const attributes = reactive({
             <div class="depiction">
               {{ $t("attributes.description.option.disabled") }}
             </div>
-            <LabelAndSelect label="" v-model="attributes.disabled" />
+            <LabelAndControls label="" v-model="attributes.disabled" />
           </div>
         </div>
         <div class="attribute">
@@ -38,7 +37,7 @@ const attributes = reactive({
             <div class="depiction">
               {{ $t("attributes.description.option.divided") }}
             </div>
-            <LabelAndSelect label="" v-model="attributes.divided" />
+            <LabelAndControls label="" v-model="attributes.divided" />
           </div>
         </div>
 

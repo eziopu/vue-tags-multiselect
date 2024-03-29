@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <LabelAndSelect label="loading" v-model="loading" />
+      <LabelAndControls label="loading" v-model="loading" />
     </div>
 
     <div class="code-block flex-between">
@@ -61,15 +61,11 @@
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "loading-slot",
   components: {
-    GeneralDemo,
-    LabelAndSelect,
     ShowHtmlCode,
   },
   data() {

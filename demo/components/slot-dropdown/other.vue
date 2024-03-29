@@ -8,7 +8,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.hidden") }}
             </div>
-            <LabelAndSelect label="" v-model="attributes.hidden" />
+            <LabelAndControls label="" v-model="attributes.hidden" />
           </div>
         </div>
         <div class="attribute">
@@ -17,7 +17,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.display-all") }}
             </div>
-            <LabelAndSelect
+            <LabelAndControls
               label=""
               v-model="attributes.displayAll"
               :disabled="attributes.hidden == 'true'"
@@ -30,7 +30,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.disabled") }}
             </div>
-            <LabelAndSelect
+            <LabelAndControls
               label=""
               :disabled="attributes.hidden == 'true'"
               v-model="attributes.disabled"
@@ -46,7 +46,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.divided") }}
             </div>
-            <LabelAndSelect
+            <LabelAndControls
               label=""
               v-model="attributes.divided"
             />
@@ -86,15 +86,11 @@
 </template>
 
 <script>
-import LabelAndSelect from "../tools/label-and-select.vue";
-import GeneralDemo from "../tools/general-demo.vue";
 import ALineCode from "./tools/a-line-code.vue";
 
 export default {
   name: "dropdown-other-attributes",
   components: {
-    LabelAndSelect,
-    GeneralDemo,
     ALineCode,
   },
   data() {

@@ -21,7 +21,7 @@
           />
         </div>
       </div>
-      <LabelAndSelect label="merge" v-model="merge" />
+      <LabelAndControls label="merge" v-model="merge" />
     </div>
 
     <div class="code-block flex-between">
@@ -61,15 +61,11 @@
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "tag-conjunction",
   components: {
-    GeneralDemo,
-    LabelAndSelect,
     ShowHtmlCode,
   },
   data() {

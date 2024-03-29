@@ -19,8 +19,8 @@
     </div>
 
     <div class="attributes with-demo-control grid">
-      <LabelAndSelect label="merge" v-model="attributes.merge" />
-      <LabelAndSelect
+      <LabelAndControls label="merge" v-model="attributes.merge" />
+      <LabelAndControls
         label="deleteIcon"
         v-model="attributes.deleteIcon"
         :values="['always', 'edit', 'none']"

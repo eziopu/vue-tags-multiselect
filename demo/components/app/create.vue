@@ -8,8 +8,8 @@
     </div>
 
     <div class="attributes with-demo-control grid">
-      <LabelAndSelect label="create" v-model="attributes.create" />
-      <LabelAndSelect label="search" v-model="attributes.search" />
+      <LabelAndControls label="create" v-model="attributes.create" />
+      <LabelAndControls label="search" v-model="attributes.search" />
     </div>
 
     <GeneralDemo

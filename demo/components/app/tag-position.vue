@@ -9,7 +9,7 @@
     </div>
 
     <div class="attributes with-demo-control">
-      <LabelAndSelect
+      <LabelAndControls
         label="tagPosition"
         v-model="tagPosition"
         :values="['null', 'top', 'bottom']"

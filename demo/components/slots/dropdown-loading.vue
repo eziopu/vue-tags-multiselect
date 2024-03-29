@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="attributes flex-between">
-      <LabelAndSelect label="dropdownLoading" v-model="dropdownLoading" />
-      <LabelAndSelect label="loading" v-model="loading" />
+      <LabelAndControls label="dropdownLoading" v-model="dropdownLoading" />
+      <LabelAndControls label="loading" v-model="loading" />
     </div>
 
     <div class="code-block flex-between">
@@ -69,15 +69,11 @@
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "dropdown-loading",
   components: {
-    GeneralDemo,
-    LabelAndSelect,
     ShowHtmlCode,
   },
   data() {

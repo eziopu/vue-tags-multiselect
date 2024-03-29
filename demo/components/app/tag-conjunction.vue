@@ -10,19 +10,14 @@
     </div>
 
     <div class="attributes flex-between with-demo-control">
-      <LabelAndSelect label="merge" v-model="merge" />
-      <div class="attribute flex-between text">
-        <span> tag-conjunction: </span>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="tagConjunctionContent"
-            :disabled="merge == 'false'"
-            :placeholder="`default: &`"
-          />
-        </div>
-      </div>
+      <LabelAndControls label="merge" v-model="merge" />
+      <LabelAndControls
+        model="input"
+        label="tag-conjunction"
+        v-model="tagConjunctionContent"
+        :disabled="merge == 'false'"
+        :placeholder="`default: &`"
+      />
     </div>
 
     <GeneralDemo
@@ -54,24 +49,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.attribute.text {
+  width: 50%;
 
-
-@media all and (max-width: 992px) {
-  .attributes {
-    &:nth-child(1) {
-      width: 30%;
-    }
-    &:nth-child(2) {
-      width: 80%;
-    }
+  @media all and (max-width: 992px) {
+    width: 60%;
+  }
+  @media all and (max-width: 768px) {
+    width: 100%;
   }
 }
 @media all and (max-width: 768px) {
   .attributes {
-    display: block !important;
-  }
-  .flex-between.text {
-    display: block !important;
+    flex-direction: column;
   }
 }
+
 </style>

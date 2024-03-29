@@ -7,7 +7,7 @@
     </div>
 
     <div class="attributes with-demo-control">
-      <LabelAndSelect label="search" v-model="search" />
+      <LabelAndControls label="search" v-model="search" />
     </div>
 
     <GeneralDemo

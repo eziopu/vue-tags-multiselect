@@ -7,7 +7,7 @@
     </div>
 
     <div class="attributes with-demo-control">
-      <LabelAndSelect label="transition" v-model="transition" />
+      <LabelAndControls label="transition" v-model="transition" />
     </div>
 
     <GeneralDemo
