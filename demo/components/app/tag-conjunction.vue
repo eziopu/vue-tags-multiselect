@@ -1,6 +1,7 @@
 <template>
   <div id="tag-conjunction" class="demo">
-    <h3>Tag conjunction</h3>
+    <ToolTitle>Tag conjunction</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.slots.tag-conjunction") }}
       *<span
@@ -8,21 +9,16 @@
       ></span>
     </div>
 
-    <hr />
-    <div class="attributes flex-between">
-      <LabelAndSelect label="merge" v-model="merge" />
-      <div class="attribute flex-between text">
-        <span> tag-conjunction: </span>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="tagConjunctionContent"
-            :disabled="merge == 'false'"
-            :placeholder="`default: &`"
-          />
-        </div>
-      </div>
+    <div class="attributes flex-between to4-6 with-demo-control">
+      <LabelAndControls label="merge" v-model="merge" />
+      <LabelAndControls
+        model="input"
+        class="tagConjunctionContent"
+        label="tag-conjunction"
+        v-model="tagConjunctionContent"
+        :disabled="merge == false"
+        :placeholder="`default: &`"
+      />
     </div>
 
     <GeneralDemo
@@ -31,7 +27,7 @@
         country: [{}, {selected: true}, {selected: true}],
       }"
       :app="{
-        merge: merge == 'true' ? true : false,
+        merge: merge,
       }"
       :slots="{
         tagConjunction: tagConjunctionContent,
@@ -42,18 +38,11 @@
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-tag-conjunction",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      merge: "true",
+      merge: true,
       tagConjunctionContent: "",
     };
   },
@@ -61,29 +50,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-bottom: 6px;
-}
 
-@media all and (max-width: 992px) {
-  .attributes {
-    &:nth-child(1) {
-      width: 30%;
-    }
-    &:nth-child(2) {
-      width: 80%;
-    }
-  }
-}
-@media all and (max-width: 768px) {
-  .attributes {
-    display: block !important;
-  }
-  .flex-between.text {
-    display: block !important;
-  }
-}
 </style>

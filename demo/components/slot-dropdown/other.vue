@@ -1,5 +1,7 @@
 <template>
   <div id="dropdown-other-attributes" class="demo">
+    <hr>
+    
     <div class="flex-between to6-4">
       <div class="attributes">
         <div class="attribute">
@@ -8,7 +10,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.hidden") }}
             </div>
-            <LabelAndSelect label="" v-model="attributes.hidden" />
+            <LabelAndControls label="" v-model="attributes.hidden" />
           </div>
         </div>
         <div class="attribute">
@@ -17,7 +19,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.display-all") }}
             </div>
-            <LabelAndSelect
+            <LabelAndControls
               label=""
               v-model="attributes.displayAll"
               :disabled="attributes.hidden == 'true'"
@@ -30,7 +32,7 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.disabled") }}
             </div>
-            <LabelAndSelect
+            <LabelAndControls
               label=""
               :disabled="attributes.hidden == 'true'"
               v-model="attributes.disabled"
@@ -46,14 +48,14 @@
             <div class="depiction">
               {{ $t("attributes.description.dropdown.divided") }}
             </div>
-            <LabelAndSelect
+            <LabelAndControls
               label=""
               v-model="attributes.divided"
             />
           </div>
         </div>
 
-        <ALineCode :bolders="bolders" />
+        <ALineCode :bolders="$objectKeyToArray(attributes, 'true')" />
       </div>
 
       <div class="demo-app">
@@ -71,12 +73,12 @@
           :displayShowCodeBtn="false"
           :dropdown="{
             country: {
-              displayAll: toBoolean(attributes.displayAll),
-              disabled: toBoolean(attributes.disabled),
-              hidden: toBoolean(attributes.hidden),
+              displayAll: $toBoolean(attributes.displayAll),
+              disabled: $toBoolean(attributes.disabled),
+              hidden: $toBoolean(attributes.hidden),
             },
             name: {
-              divided: toBoolean(attributes.divided),
+              divided: $toBoolean(attributes.divided),
             },
           }"
         />
@@ -86,15 +88,11 @@
 </template>
 
 <script>
-import LabelAndSelect from "../tools/label-and-select.vue";
-import GeneralDemo from "../tools/general-demo.vue";
 import ALineCode from "./tools/a-line-code.vue";
 
 export default {
   name: "dropdown-other-attributes",
   components: {
-    LabelAndSelect,
-    GeneralDemo,
     ALineCode,
   },
   data() {
@@ -106,18 +104,6 @@ export default {
         hidden: "false",
       }
     };
-  },
-  computed: {
-    bolders() {
-      return Object.entries(this.attributes)
-        .filter(([key, value]) => key != "" && value === "true")
-        .map(([key]) => key);
-    },
-  },
-  methods: {
-    toBoolean(value) {
-      return value == "false" ? false : true;
-    },
   },
 };
 </script>

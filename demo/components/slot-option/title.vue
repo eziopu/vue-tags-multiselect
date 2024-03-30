@@ -16,7 +16,7 @@ const demoStatus = ref([]);
 
 <template>
   <div id="option-title" class="demo" :class="demoStatus">
-    <h3>Title</h3>
+    <ToolTitle>Title</ToolTitle>
 
     <div class="flex-between to5-5">
       <div class="depiction">

@@ -38,7 +38,7 @@
     </div>
 
     <div class="row">
-      <LabelAndSelect value="disabled" />
+      <LabelAndControls value="disabled" />
       <div>{{ $t("attributes.description.app.disabled") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="row">
-      <LabelAndSelect value="search" />
+      <LabelAndControls value="search" />
       <div>{{ $t("attributes.description.app.search") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -76,7 +76,7 @@
     </div>
 
     <div class="row">
-      <LabelAndSelect value="loading" />
+      <LabelAndControls value="loading" />
       <div>{{ $t("attributes.description.app.loading") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -96,7 +96,7 @@
 
     <!-- dropdownLoading -->
     <div class="row">
-      <LabelAndSelect value="dropdownLoading" />
+      <LabelAndControls value="dropdownLoading" />
       <div>{{ $t("attributes.description.app.dropdownLoading") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -116,7 +116,7 @@
 
     <!-- create -->
     <div class="row">
-      <LabelAndSelect value="create" />
+      <LabelAndControls value="create" />
       <div>{{ $t("attributes.description.app.create") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -136,7 +136,7 @@
 
     <!-- deleteIcon -->
     <div class="row">
-      <LabelAndSelect value="deleteIcon" :values="['always', 'edit', 'none']" />
+      <LabelAndControls value="deleteIcon" :values="['always', 'edit', 'none']" />
       <div>
         <span
           @click="
@@ -178,7 +178,7 @@
 
     <!-- merge -->
     <div class="row">
-      <LabelAndSelect value="merge" :disabled="app.conjunction == 'AND'" />
+      <LabelAndControls value="merge" :disabled="app.conjunction == 'AND'" />
       <div>{{ $t("attributes.description.app.merge") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -198,7 +198,7 @@
 
     <!-- conjunction -->
     <div class="row">
-      <LabelAndSelect value="conjunction" :values="['AND', 'OR', 'null']" />
+      <LabelAndControls value="conjunction" :values="['AND', 'OR', 'null']" />
       <div>
         <span
           @click="
@@ -238,7 +238,7 @@
 
     <!-- transition -->
     <div class="row">
-      <LabelAndSelect value="transition" />
+      <LabelAndControls value="transition" />
       <div>{{ $t("attributes.description.app.transition") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -258,7 +258,7 @@
 
     <!-- keyboard -->
     <div class="row">
-      <LabelAndSelect value="keyboard" />
+      <LabelAndControls value="keyboard" />
       <div>{{ $t("attributes.description.app.keyboard") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -475,15 +475,11 @@
 
 <script>
 import InjectApp from "../mixins/inject-app.js";
-import LabelAndSelect from "./label-and-select.vue";
 
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "attributes-detail",
   mixins: [InjectApp],
-  components: {
-    LabelAndSelect,
-  },
 });
 </script>
 <style scoped lang="scss">

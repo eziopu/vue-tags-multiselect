@@ -6,31 +6,24 @@ export default {
 </script>
 
 <script setup>
-import { reactive, computed } from "vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-import GeneralDemo from "../tools/general-demo.vue";
+import { ref, reactive } from "vue";
+
 import ALineCode from "./tools/a-line-code.vue";
 
+const demoStatus = ref([]);
 const attributes = reactive({
   disabled: "false",
   divided: "false",
   displayAll: "true",
 })
 
-const bolders = computed(() => {
-  return Object.entries(attributes)
-    .filter(([key, value]) => key != "" && value === "true")
-    .map(([key]) => key)
-});
-
-const toBoolean = (input) => {
-  return input == "false" ? false : true;
-}
 </script>
 
 <template>
-  <div id="option-other-attributes" class="demo">
-    <div class="flex-between to6-4">
+  <div id="option-other-attributes" class="demo" :class="demoStatus">
+    <hr>
+
+    <div class="flex-between to5-5">
       <div class="attributes">
         <div class="attribute">
           <h3>Disabled</h3>
@@ -38,7 +31,7 @@ const toBoolean = (input) => {
             <div class="depiction">
               {{ $t("attributes.description.option.disabled") }}
             </div>
-            <LabelAndSelect label="" v-model="attributes.disabled" />
+            <LabelAndControls label="" v-model="attributes.disabled" />
           </div>
         </div>
         <div class="attribute">
@@ -47,11 +40,11 @@ const toBoolean = (input) => {
             <div class="depiction">
               {{ $t("attributes.description.option.divided") }}
             </div>
-            <LabelAndSelect label="" v-model="attributes.divided" />
+            <LabelAndControls label="" v-model="attributes.divided" />
           </div>
         </div>
 
-        <ALineCode :bolders="bolders" />
+        <ALineCode :bolders="$objectKeyToArray(attributes, 'true')" />
       </div>
 
       <div class="demo-app">
@@ -61,6 +54,7 @@ const toBoolean = (input) => {
           </p>
         </h4>
         <GeneralDemo
+          v-model="demoStatus"
           :autoFocus="true"
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
@@ -71,8 +65,8 @@ const toBoolean = (input) => {
           :option="{
             country: [
               {}, {
-                disabled: toBoolean(attributes.disabled),
-                divided: toBoolean(attributes.divided),
+                disabled: $toBoolean(attributes.disabled),
+                divided: $toBoolean(attributes.divided),
               }
             ]
           }"
@@ -83,7 +77,13 @@ const toBoolean = (input) => {
 </template>
 
 <style scoped lang="scss">
-  .attributes {
-    margin-bottom: 1rem;
+@media (max-width: 768px) {
+  .demo {
+    transition: all 0.2s ease-out;
+
+    &.selecting {
+      margin-bottom: 18rem;
+    }
   }
+}
 </style>

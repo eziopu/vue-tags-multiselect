@@ -7,8 +7,6 @@ export default {
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import ALineCode from "./tools/a-line-code.vue";
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
 
 const i18n = "attributes.description.option";
 
@@ -16,10 +14,6 @@ const elGeneralDemo = ref(null);
 const demoStatus = ref([]);
 const dropdownDisplayAll = ref('false');
 const isTitle = ref('false');
-
-const toBoolean = (input) => {
-  return input == "false" ? false : true;
-}
 
 watch(dropdownDisplayAll, async () => {
   await nextTick();
@@ -34,19 +28,20 @@ watch(isTitle, async () => {
 
 <template>
   <div id="option-no-title" class="demo">
-    <h3>No title</h3>
+    <ToolTitle>No title</ToolTitle>
+
     <div class="flex-between to5-5">
       <div class="depiction">
         <span v-html="$t(`${i18n}.no_title`)"></span>
         <br />
 
         <div class="attributes">
-          <LabelAndSelect label="option title" v-model="isTitle" />
-          <LabelAndSelect label="dropdown display-all" v-model="dropdownDisplayAll" />
+          <LabelAndControls label="option title" v-model="isTitle" />
+          <LabelAndControls label="dropdown display-all" v-model="dropdownDisplayAll" />
         </div>
 
         <ALineCode
-          :isNotTitle="!toBoolean(isTitle)"
+          :isNotTitle="!$toBoolean(isTitle)"
           :bolders="dropdownDisplayAll == 'true' ? ['displayAll'] : []"
         />
       </div>
@@ -62,12 +57,12 @@ watch(isTitle, async () => {
             :displayShowCodeBtn="false"
             :dropdown="{
               country: {
-                displayAll: toBoolean(dropdownDisplayAll), 
+                displayAll: $toBoolean(dropdownDisplayAll), 
               },
               name: {isDisplayForDemo: false},
             }"
             :option="{
-              country: [{title: toBoolean(isTitle)}],
+              country: [{title: $toBoolean(isTitle)}],
             }"
           >
           </GeneralDemo>

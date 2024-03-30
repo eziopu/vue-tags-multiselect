@@ -22,6 +22,7 @@
         :merge="appProps.merge"
         :deleteIcon="appProps.deleteIcon"
         :conjunction="appProps.conjunction"
+        :keyboard="appProps.keyboard"
         :debugLog="appProps.debugLog"
         :placeholder="appProps.placeholder"
         :placeholders="appProps.placeholders"

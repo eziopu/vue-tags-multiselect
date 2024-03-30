@@ -1,24 +1,30 @@
 <template>
   <div id="app-attributes">
-    <Keyboard></Keyboard>
     
     <Basic></Basic>
     <AddOption></AddOption>
-    <Conjunction></Conjunction>
+    <Keyboard></Keyboard>
     <Disabled></Disabled>
-    <Placeholders></Placeholders>
     <Search></Search>
     <Create></Create>
+    <Conjunction></Conjunction>
     <TagPosition></TagPosition>
     <Merge></Merge>
     <TagConjunction></TagConjunction>
     <DeleteIcon></DeleteIcon>
-    <Transition></Transition>
+    <AppTransition></AppTransition>
+    <Placeholders></Placeholders>
     <Loadings></Loadings>
   </div>
 </template>
 
 <script>
+export default {
+  name: "app-app-attributes",
+};
+</script>
+
+<script setup>
 import Keyboard from "./keyboard.vue";
 
 import Basic from "./basic.vue";
@@ -32,29 +38,7 @@ import Create from "./create.vue";
 import Search from "./search.vue";
 import TagConjunction from "./tag-conjunction.vue";
 import TagPosition from "./tag-position.vue";
-import Transition from "./transition.vue";
+import AppTransition from "./transition.vue";
 import DeleteIcon from "./delete-icon.vue";
 import Placeholders from "./placeholders.vue";
-    
-
-
-export default {
-  name: "app-app-attributes",
-  components: {
-    Keyboard,
-    Basic,
-    AddOption,
-    Conjunction,
-    Disabled,
-    Loadings,
-    Merge,
-    Search,
-    Create,
-    TagConjunction,
-    TagPosition,
-    Transition,
-    DeleteIcon,
-    Placeholders,
-  },
-};
 </script>

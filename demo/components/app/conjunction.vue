@@ -1,6 +1,7 @@
 <template>
   <div id="conjunction" class="demo">
-    <h3>Conjunction</h3>
+    <ToolTitle>Conjunction</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.app.conjunction") }},
       {{ $t("ui.general.defaultIs__key", { key: "null" }) }}
@@ -17,66 +18,33 @@
       </div>
     </div>
 
-    <hr />
-    <div class="attributes flex-between">
-      <LabelAndSelect
+    <div class="attributes with-demo-control">
+      <LabelAndControls
         label="conjunction"
         :values="['AND', 'OR', 'null']"
-        v-model="conjunction"
-      />
-      <LabelAndSelect
-        label="merge"
-        :disabled="conjunction == 'AND'"
-        v-model="merge"
-        :class="{ disable: conjunction == 'AND' }"
+        v-model="attributes.conjunction"
       />
     </div>
 
     <GeneralDemo
-      :app="{
-        merge: merge == 'true' ? true : false,
-        conjunction: conjunction,
+      :displayRefreshBtn="true"
+      :app="attributes"
+      :option="{
+        country: [{}, {selected: true}],
       }"
     ></GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-conjunction",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
-      conjunction: "null",
-      merge: "true",
-      show_code: false,
-      result: [],
+      attributes: {
+        conjunction: "null",
+      }
     };
   },
 };
 </script>
-
-<style scoped lang="scss">
-.attributes {
-  padding-right: 80px;
-}
-.attribute {
-  margin-right: 12px;
-  margin-bottom: 6px;
-}
-.attributes.flex-between {
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-@media all and (max-width: 376px) {
-  .attributes.flex-between {
-    display: block;
-  }
-}
-</style>

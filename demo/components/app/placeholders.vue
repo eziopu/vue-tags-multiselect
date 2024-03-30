@@ -1,6 +1,7 @@
 <template>
   <div id="placeholders" class="demo">
-    <h3>Placeholders</h3>
+    <ToolTitle>Placeholders</ToolTitle>
+
     <div class="depiction">
       {{ $t(`${i18nAppPath}.placeholder`) }}
 
@@ -20,90 +21,67 @@
       </div>
     </div>
 
-    <hr />
-    <div class="flex-between">
+    <div class="flex-between to5-5">
       <div class="placeholder attributes">
-        <div class="attribute flex-between text">
-          <div class="lebel">placeholder :</div>
-          <div class="ui input">
-            <input type="text" class="form-control" v-model="placeholder" />
-          </div>
-        </div>
+        <LabelAndControls
+          class="flex-between to4-6"
+          model="input"
+          label="placeholder"
+          v-model="attributes.placeholder"
+        />
 
         <div class="attribute">placeholders: {</div>
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">initial :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
-              v-model="placeholders.initial"
+          <div class="placeholders__attribute">
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="initial"
+              v-model="attributes.placeholders.initial"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">loading :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
-              v-model="placeholders.loading"
-              :disabled="loading == 'false'"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="loading"
+              v-model="attributes.placeholders.loading"
+              :disabled="attributes.loading == false"
               :placeholder="`Wait a moment, please.`"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">selectDown :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
-              v-model="placeholders.selectDown"
-              :disabled="create == 'false'"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="selectDown"
+              v-model="attributes.placeholders.selectDown"
+              :disabled="attributes.create == false"
               :placeholder="`Selected End.`"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">finish :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
-              v-model="placeholders.finish"
-              :disabled="create == 'true'"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="finish"
+              v-model="attributes.placeholders.finish"
+              :disabled="attributes.create == true"
               :placeholder="`Finish.`"
             />
-          </div>
-        </div>
-
-        <div class="placeholders attribute flex-between text">
-          <div class="lebel">tagValueRepeat :</div>
-          <div class="ui input">
-            <input
-              type="text"
-              class="form-control"
-              v-model="placeholders.tagValueRepeat"
+            <LabelAndControls
+              class="flex-between to4-6"
+              model="input"
+              label="tagValueRepeat"
+              v-model="attributes.placeholders.tagValueRepeat"
               :placeholder="`repeat !`"
             />
           </div>
-        </div>
-
         <div class="attribute">}</div>
       </div>
+
       <div class="app attributes">
-        <LabelAndSelect
+        <LabelAndControls
           label="conjunction"
-          v-model="conjunction"
+          v-model="attributes.conjunction"
           :values="['AND', 'OR', 'null']"
         />
-        <LabelAndSelect label="loading" v-model="loading" />
-        <LabelAndSelect label="create" v-model="create" />
-        <hr />
+        <LabelAndControls label="loading" v-model="attributes.loading" />
+        <LabelAndControls label="create" v-model="attributes.create" />
+
         <div class="depiction">
           <div class="attribute">
             loading:
@@ -129,112 +107,39 @@
 
     <GeneralDemo
       :displayRefreshBtn="true"
-      :app="{
-        create: create == 'true' ? true : false,
-        loading: loading == 'true' ? true : false,
-        conjunction: conjunction,
-        placeholder: placeholder,
-        placeholders: placeholders,
-      }"
+      :app="attributes"
     >
     </GeneralDemo>
   </div>
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
-import LabelAndSelect from "../tools/label-and-select.vue";
-
 export default {
   name: "app-placeholders",
-  components: {
-    LabelAndSelect,
-    GeneralDemo,
-  },
   data() {
     return {
       i18nAppPath: "attributes.description.app",
-      loading: "false",
-      create: "false",
-      conjunction: "AND",
-
-      placeholder: "",
-      placeholders: {
-        initial: "",
-        loading: "",
-        selectDown: "",
-        finish: "",
-        tagValueRepeat: "",
-      },
+      attributes: {
+        loading: false,
+        create: false,
+        conjunction: "AND",
+  
+        placeholder: "",
+        placeholders: {
+          initial: "",
+          loading: "",
+          selectDown: "",
+          finish: "",
+          tagValueRepeat: "",
+        },
+      }
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
-.attributes {
-  width: 50%;
-  padding: 0 12px;
-}
-.attribute {
-  margin-bottom: 6px;
-  .lebel {
-    width: 180px;
-  }
-}
-.placeholders.attribute {
-  margin-left: 12px;
-}
-
-.depiction .attribute {
-  margin-bottom: 12px;
-}
-
-@media all and (max-width: 768px) {
-  .attributes {
-    &:first-child {
-      width: 60%;
-    }
-    &:last-child {
-      width: 40%;
-    }
-  }
-  .attributes {
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-    .lebel {
-      width: 100%;
-    }
-    .attribute.text {
-      flex-wrap: wrap;
-    }
-    .attribute:nth-child(1) {
-      order: 1;
-      width: 100%;
-    }
-    .attribute:nth-child(2) {
-      order: 0;
-      max-width: 280px;
-    }
-  }
-}
-@media all and (max-width: 490px) {
-  .demo > .flex-between {
-    flex-direction: column;
-  }
-  .attributes {
-    &:first-child {
-      width: 100%;
-    }
-    &:last-child {
-      width: 100%;
-    }
-  }
-  .ui.input {
-    width: 100%;
-  }
-  .app.attributes .attribute {
-    max-width: 100%;
-  }
+.placeholders__attribute {
+  padding-left: 1rem;
 }
 </style>

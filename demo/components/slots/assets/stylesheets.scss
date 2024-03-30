@@ -1,37 +1,45 @@
-.ui.input {
-  margin-left: .6rem;
+.demo {
+  transition: all 0.2s ease-out;
 }
 
-.code-block.flex-between {
+.demo-app {
+  margin-top: .3rem;
+}
 
-  .a-line-code {
-    width: 50%;
+@media (max-width: 768px) {
+  .demo.selecting {
+    margin-bottom: 12rem;
   }
-
   .demo-app {
-    width: 40%;
+    margin-top: 2rem;
+  }
+}
+
+
+.input-select {
+  width: 48%;
+
+  @media (max-width: 992px) {
+    width: 100%;
+
+    & > div:last-child {
+      width: 48%;
+    }
   }
 
-  @media all and (max-width: 992px) {
-    & {
-      flex-direction: column;
+  @media (max-width: 768px) {
+    & > div:last-child {
+      width: 30%;
+      justify-content: flex-end;
     }
+  }
 
-    .a-line-code,
-    .demo-app {
+  @media (max-width: 576px) {
+    flex-direction: column;
+
+    & > div:last-child {
       width: 100%;
-    }
-
-    .demo-app {
-      margin-top: 24px;
-
-      &.selecting {
-        margin-bottom: 70px;
-      }
-
-      &.option-undo.selecting {
-        margin-bottom: 116px;
-      }
+      justify-content: flex-start;
     }
   }
 }
