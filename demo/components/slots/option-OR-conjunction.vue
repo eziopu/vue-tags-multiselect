@@ -1,40 +1,38 @@
 <template>
-  <div id="option-OR-conjunction" class="demo">
-    <h3>Option OR conjunction</h3>
+  <div id="option-OR-conjunction" class="demo" :class="demoStatus">
+    <ToolTitle>Option OR conjunction</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.slots.option-OR-conjunction") }}
     </div>
 
-    <hr />
-    <div class="attributes flex-between">
-      <div class="attribute flex-between text">
-        <span> option-OR-conjunction: </span>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="optionORConjunction"
-            :placeholder="`default: OR`"
-          />
-        </div>
-      </div>
+    <div class="attributes flex-between to5-5">
+      <LabelAndControls
+        model="input"
+        label="option-OR-conjunction"
+        v-model="optionORConjunction"
+        :placeholder="`default : OR`"
+      />
     </div>
 
-    <div class="code-block flex-between">
-      <ShowHtmlCode
-        class="a-line-code tag prettyprint lang-html customize"
-        :slots="{
-          optionORConjunction: optionORConjunction || '...'
-        }"
-        :dropdown="{
-          country: {isDisplayForDemo: false},
-          name: {isDisplayForDemo: false},
-          remark: {isDisplayForDemo: false}
-        }"
-      />
+    <div class="flex-between to5-5">
+      <div>
+        <ShowHtmlCode
+          class="tag prettyprint lang-html customize"
+          :slots="{
+            optionORConjunction: optionORConjunction || '...'
+          }"
+          :dropdown="{
+            country: {isDisplayForDemo: false},
+            name: {isDisplayForDemo: false},
+            remark: {isDisplayForDemo: false}
+          }"
+        />
+      </div>
 
       <GeneralDemo
         class="demo-app"
+        v-model="demoStatus"
         :autoFocus="true"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
@@ -56,18 +54,16 @@
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
 import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "option-OR-conjunction",
   components: {
-    GeneralDemo,
     ShowHtmlCode,
   },
   data() {
     return {
-      appStatus: [],
+      demoStatus: [],
       optionORConjunction: "",
     };
   },
