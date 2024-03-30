@@ -2,11 +2,6 @@
   transition: all 0.2s ease-out;
 }
 
-.a-line-code {
-  width: 50%;
-}
-
-.a-line-code,
 .demo-app {
   margin-top: .3rem;
 }
@@ -17,5 +12,34 @@
   }
   .demo-app {
     margin-top: 2rem;
+  }
+}
+
+
+.input-select {
+  width: 48%;
+
+  @media (max-width: 992px) {
+    width: 100%;
+
+    & > div:last-child {
+      width: 48%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & > div:last-child {
+      width: 30%;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+
+    & > div:last-child {
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 }

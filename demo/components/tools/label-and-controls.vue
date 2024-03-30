@@ -17,7 +17,7 @@
     </template>
     <template v-if="model == 'input'">
       <div class="ui input tool-attribute__input">
-        <div class="tool-attribute__input--fake-placeholder">
+        <div class="tool-attribute__input--fake-placeholder" :class="[framework, {'active': isActive}]">
           <slot name="fake-placeholder"></slot>
         </div>
         <input
@@ -27,6 +27,8 @@
           :type="text"
           :disabled="disabled"
           :placeholder="placeholder"
+          @focus="isActive = true"
+          @blur="isActive = false"
         />
       </div>
     </template>
@@ -36,6 +38,7 @@
 <script>
 export default {
   name: "label-and-controls",
+  inject: ["framework"],
   props: {
     disabled: {
       type: Boolean,
@@ -92,6 +95,11 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      isActive: false
+    }
+  },
   model: {
     prop: "value",
     event: "update:modelValue",
@@ -137,11 +145,25 @@ export default {
 
 .tool-attribute__input--fake-placeholder {
   position: absolute;
-  padding-left: .9rem;
   top: 50%;
   user-select:none;
   pointer-events: none;
   transform: translate(0%, -50%);
   color: #6c757d;
+
+  
+  &.default{
+    padding-left: .3rem;
+  }
+  &.bootstrap{
+    padding-left: .9rem;
+  }
+  &.semantic-ui{
+    padding-left: 1.1rem;
+    opacity: 0.6;
+    &.active {
+      opacity: 1;
+    }
+  }
 }
 </style>

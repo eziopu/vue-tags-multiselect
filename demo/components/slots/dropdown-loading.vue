@@ -1,6 +1,7 @@
 <template>
-  <div id="dropdown-loading" class="demo">
-    <h3>Dropdown loading</h3>
+  <div id="dropdown-loading" class="demo" :class="demoStatus">
+    <ToolTitle>Dropdown loading</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.slots.dropdowns-loading") }}
       <div class="sub-depiction">
@@ -8,54 +9,53 @@
       </div>
     </div>
 
-    <hr />
-    <div class="attributes flex-between">
-      <div class="attribute flex-between text">
-        <span> dropdown-loading: </span>
-        <div class="ui input relative">
-          <input
-            type="text"
-            class="form-control"
-            v-model="dropdownLoadingContent"
-          />
-          <div class="demo__fake-placeholder" v-if="dropdownLoadingContent == ''">
-            <div class="demo__loading">
-              <span>default: </span>
-              <i class="demo__loading--icon"></i>
-            </div>
+    <div class="attributes">
+      <LabelAndControls
+        model="input"
+        label="dropdown-loading"
+        v-model="dropdownLoadingContent"
+      >
+        <template v-slot:fake-placeholder v-if="dropdownLoadingContent == ''">
+          <div class="demo__loading">
+            <span>default : </span>
+            <i class="demo__loading--icon"></i>
           </div>
-        </div>
-      </div>
+        </template>
+      </LabelAndControls>
     </div>
+
     <div class="attributes flex-between">
       <LabelAndControls label="dropdownLoading" v-model="dropdownLoading" />
       <LabelAndControls label="loading" v-model="loading" />
     </div>
 
-    <div class="code-block flex-between">
-      <ShowHtmlCode
-        class="a-line-code tag prettyprint lang-html customize"
-        :app="{
-          loading: loading,
-          dropdownLoading: dropdownLoading,
-        }"
-        :slots="{
-          dropdownLoading: dropdownLoadingContent || '...'
-        }"
-        :dropdown="{
-          name: {isDisplayForDemo: false},
-          remark: {isDisplayForDemo: false}
-        }"
-      />
+    <div class="flex-between to5-5">
+      <div>
+        <ShowHtmlCode
+          class="tag prettyprint lang-html customize"
+          :app="{
+            loading: loading,
+            dropdownLoading: dropdownLoading,
+          }"
+          :slots="{
+            dropdownLoading: dropdownLoadingContent || '...'
+          }"
+          :dropdown="{
+            name: {isDisplayForDemo: false},
+            remark: {isDisplayForDemo: false}
+          }"
+        />
+      </div>
 
       <GeneralDemo
         class="demo-app"
+        v-model="demoStatus"
         :autoFocus="true"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
-          loading: loading == 'true' ? true : false,
-          dropdownLoading: dropdownLoading == 'true' ? true : false,
+          loading: loading,
+          dropdownLoading: dropdownLoading,
         }"
         :slots="{
           dropdownLoading: dropdownLoadingContent,
@@ -78,8 +78,9 @@ export default {
   },
   data() {
     return {
-      loading: "false",
-      dropdownLoading: "true",
+      demoStatus: [],
+      loading: false,
+      dropdownLoading: true,
       dropdownLoadingContent: "",
     };
   },
@@ -88,21 +89,14 @@ export default {
 
 <style scoped lang="scss">
 @import "./assets/stylesheets.scss";
-.attributes.flex-between {
-  width: 50%;
-  @media all and (max-width: 992px) {
+.attributes {
+  width: 48%;
+  @media (max-width: 768px) {
     width: 100%;
   }
-}
 
-@media all and (max-width: 500px) {
-  .attributes {
+  @media (max-width: 397px) {
     flex-direction: column;
   }
 }
-
-.attributes:not(:first-of-type) .attribute {
-  margin-top: .6rem;
-}
-
 </style>

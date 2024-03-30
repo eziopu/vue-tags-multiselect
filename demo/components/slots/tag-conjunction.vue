@@ -1,6 +1,7 @@
 <template>
-  <div id="tag-conjunction" class="demo">
-    <h3>Tag conjunction</h3>
+  <div id="tag-conjunction" class="demo" :class="demoStatus">
+    <ToolTitle>Tag conjunction</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.slots.tag-conjunction") }}
       <div class="sub-depiction">
@@ -8,43 +9,40 @@
       </div>
     </div>
 
-    <hr />
-    <div class="attributes flex-between">
-      <div class="attribute flex-between text">
-        <span> tag-conjunction: </span>
-        <div class="ui input relative">
-          <input
-            type="text"
-            class="form-control"
-            v-model="tagConjunctionContent"
-            :placeholder="`default: &`"
-          />
-        </div>
-      </div>
-      <LabelAndControls label="merge" v-model="merge" />
+    <div class="attributes flex-between input-select">
+      <LabelAndControls
+        model="input"
+        label="tag-conjunction"
+        v-model="tagConjunctionContent"
+        :placeholder="`default : &`"
+      />
+      <LabelAndControls calss="merge" label="merge" v-model="merge" />
     </div>
 
-    <div class="code-block flex-between">
-      <ShowHtmlCode
-        class="a-line-code tag prettyprint lang-html customize"
-        :app="{
-          merge: merge,
-        }"
-        :slots="{
-          tagConjunction: tagConjunctionContent || '...',
-        }"
-        :dropdown="{
-          name: {isDisplayForDemo: false},
-          remark: {isDisplayForDemo: false}
-        }"
-      />
+    <div class="flex-between to5-5">
+      <div>
+        <ShowHtmlCode
+          class="tag prettyprint lang-html customize"
+          :app="{
+            merge: merge,
+          }"
+          :slots="{
+            tagConjunction: tagConjunctionContent || '...',
+          }"
+          :dropdown="{
+            name: {isDisplayForDemo: false},
+            remark: {isDisplayForDemo: false}
+          }"
+        />
+      </div>
 
       <GeneralDemo
         class="demo-app"
+        v-model="demoStatus"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
-          merge: merge == 'true' ? true : false,
+          merge: merge,
         }"
         :slots="{
           tagConjunction: tagConjunctionContent,
@@ -70,8 +68,8 @@ export default {
   },
   data() {
     return {
-      merge: "true",
-      showpPlaceholder: false,
+      demoStatus: [],
+      merge: true,
       tagConjunctionContent: "",
     };
   },
@@ -80,20 +78,4 @@ export default {
 
 <style scoped lang="scss">
 @import "./assets/stylesheets.scss";
-.attributes.flex-between {
-  width: 50%;
-  @media all and (max-width: 992px) {
-    width: 100%;
-  }
-}
-
-@media all and (max-width: 500px) {
-  .attributes {
-    flex-direction: column;
-  }
-  .attribute:last-child {
-    margin-top: .6rem;
-  }
-}
-
 </style>

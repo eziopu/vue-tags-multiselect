@@ -1,38 +1,41 @@
 <template>
-  <div id="option-undo" class="demo">
-    <h3>Option undo</h3>
+  <div id="option-undo" class="demo" :class="demoStatus">
+    <ToolTitle>Option undo</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.slots.option-undo") }}
     </div>
 
-    <hr />
-    <div class="attributes flex-between">
-      <div class="attribute flex-between text">
-        <span> option-undo: </span>
-        <div class="ui input relative">
-          <input type="text" class="form-control" v-model="optionUndo" />
-          <div class="demo__fake-placeholder" v-if="optionUndo == ''">
-            default: <i class="demo__arrow-left"></i>Undo
-          </div>
-        </div>
-      </div>
+    <div class="attributes flex-between to5-5">
+      <LabelAndControls
+        model="input"
+        label="option-undo"
+        v-model="optionUndo"
+      >
+        <template v-slot:fake-placeholder v-if="optionUndo == ''">
+          default : <i class="demo__arrow-left"></i>Undo
+        </template>
+      </LabelAndControls>
     </div>
 
-    <div class="code-block flex-between">
-      <ShowHtmlCode
-        class="a-line-code tag prettyprint lang-html customize"
-        :slots="{
-          optionUndo: optionUndo || '...'
-        }"
-        :dropdown="{
-          country: {isDisplayForDemo: false},
-          name: {isDisplayForDemo: false},
-          remark: {isDisplayForDemo: false}
-        }"
-      />
+    <div class="flex-between to5-5">
+      <div>
+        <ShowHtmlCode
+            class="tag prettyprint lang-html customize"
+          :slots="{
+            optionUndo: optionUndo || '...'
+          }"
+          :dropdown="{
+            country: {isDisplayForDemo: false},
+            name: {isDisplayForDemo: false},
+            remark: {isDisplayForDemo: false}
+          }"
+        />
+      </div>
 
       <GeneralDemo
         class="demo-app"
+        v-model="demoStatus"
         :autoFocus="true"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
@@ -54,19 +57,16 @@
 </template>
 
 <script>
-import GeneralDemo from "../tools/general-demo.vue";
 import ShowHtmlCode from "../tools/show-html-code/main.vue"
 
 export default {
   name: "option-undo",
   components: {
-    GeneralDemo,
     ShowHtmlCode,
   },
   data() {
     return {
-      appStatus: [],
-      showpPlaceholder: false,
+      demoStatus: [],
       optionUndo: "",
     };
   },
