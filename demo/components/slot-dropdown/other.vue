@@ -1,5 +1,7 @@
 <template>
   <div id="dropdown-other-attributes" class="demo">
+    <hr>
+    
     <div class="flex-between to6-4">
       <div class="attributes">
         <div class="attribute">

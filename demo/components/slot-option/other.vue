@@ -6,10 +6,11 @@ export default {
 </script>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, reactive } from "vue";
 
 import ALineCode from "./tools/a-line-code.vue";
 
+const demoStatus = ref([]);
 const attributes = reactive({
   disabled: "false",
   divided: "false",
@@ -19,7 +20,9 @@ const attributes = reactive({
 </script>
 
 <template>
-  <div id="option-other-attributes" class="demo">
+  <div id="option-other-attributes" class="demo" :class="demoStatus">
+    <hr>
+
     <div class="flex-between to6-4">
       <div class="attributes">
         <div class="attribute">
@@ -51,6 +54,7 @@ const attributes = reactive({
           </p>
         </h4>
         <GeneralDemo
+          v-model="demoStatus"
           :autoFocus="true"
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
@@ -73,7 +77,13 @@ const attributes = reactive({
 </template>
 
 <style scoped lang="scss">
-  .attributes {
-    margin-bottom: 1rem;
+@media (max-width: 768px) {
+  .demo {
+    transition: all 0.2s ease-out;
+
+    &.selecting {
+      margin-bottom: 18rem;
+    }
   }
+}
 </style>

@@ -11,7 +11,8 @@ import GeneralDemo from "../tools/general-demo.vue";
 
 <template>
   <div id="option-display-value" class="demo">
-    <h3>Display value</h3>
+    <ToolTitle>Display value</ToolTitle>
+
     <div class="depiction">
       {{ $t("attributes.description.option.display-value") }}
     </div>

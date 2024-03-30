@@ -28,7 +28,8 @@ watch(isTitle, async () => {
 
 <template>
   <div id="option-no-title" class="demo">
-    <h3>No title</h3>
+    <ToolTitle>No title</ToolTitle>
+
     <div class="flex-between to5-5">
       <div class="depiction">
         <span v-html="$t(`${i18n}.no_title`)"></span>

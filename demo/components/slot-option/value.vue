@@ -19,7 +19,8 @@ const framework = inject("framework");
 
 <template>
   <div id="option-value" class="demo">
-    <h3>Value</h3>
+    <ToolTitle>Value</ToolTitle>
+
     <div class="flex-between to5-5">
       <div class="depiction">
       {{ $t(`${i18n}.value`) }}
