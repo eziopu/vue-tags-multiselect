@@ -23,7 +23,7 @@ const attributes = reactive({
   <div id="option-other-attributes" class="demo" :class="demoStatus">
     <hr>
 
-    <div class="flex-between to6-4">
+    <div class="flex-between to5-5">
       <div class="attributes">
         <div class="attribute">
           <h3>Disabled</h3>
