@@ -17,6 +17,9 @@
     </template>
     <template v-if="model == 'input'">
       <div class="ui input tool-attribute__input">
+        <div class="tool-attribute__input--fake-placeholder">
+          <slot name="fake-placeholder"></slot>
+        </div>
         <input
           v-model="newValue"
           class="form-control"
@@ -126,7 +129,19 @@ export default {
 .tool-attribute__input input[disabled] {
   cursor: not-allowed !important;
 }
+
 .tool-attribute__input {
-  flex: 1 1 auto; /* 或者使用 flex: 1; */
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.tool-attribute__input--fake-placeholder {
+  position: absolute;
+  padding-left: .9rem;
+  top: 50%;
+  user-select:none;
+  pointer-events: none;
+  transform: translate(0%, -50%);
+  color: #6c757d;
 }
 </style>
