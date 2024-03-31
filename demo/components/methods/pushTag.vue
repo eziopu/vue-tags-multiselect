@@ -6,6 +6,7 @@ export default {
 
 <script setup>
 import { ref, reactive } from "vue";
+import ShowPushTagFunctionCode from "./show-codes/push-tag-function.vue";
 import PushTagFunctionCode from "./tools/push-tag-function-code.vue";
 
 const demoStatus = ref([]);
@@ -35,9 +36,9 @@ const parameters = reactive({
       
       <div class="sub-depiction">
         <h4>{{ $t("ui.general.example") }} :</h4>
-        <PushTagFunctionCode simple />
+        <ShowPushTagFunctionCode simple />
         or
-        <PushTagFunctionCode />
+        <ShowPushTagFunctionCode />
       </div>
     </div>
 
