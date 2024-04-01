@@ -1,13 +1,6 @@
 <script>
 export default {
   name: "methods-pushTag__demo0",
-  data() {
-    return {
-      demoStatus: [],
-      // I don't know use ref([]) template don't work
-      // The situation remains the same with use "getCurrentInstance().ctx.$forceUpdate" 
-    };
-  },
 };
 </script>
 
@@ -15,20 +8,10 @@ export default {
 import { ref, nextTick } from "vue";
 import ShowCode from "./show-codes/demo0.vue";
 
-const elVTagsMultiselect = ref(null);
-// const demoStatus = ref([]);
-const demoResult = ref({});
-
-/* auto focus app*/
-const autoFocusocusinApp = async () => {
-  await nextTick();
-  if (elVTagsMultiselect.value) {
-    elVTagsMultiselect.value.isActive = true;
-  }
-}
-autoFocusocusinApp();
+const demoStatus = ref([]);
 
 /* demo use*/
+const elGeneralDemo = ref(null);
 const height1 = ref(null);
 const height2 = ref(null);
 const elInputHeight1 = ref(null);
@@ -54,12 +37,12 @@ const inputHeight = async () => {
 }
 const pushHeightValue = async () => {
   await nextTick();
-  elVTagsMultiselect.value.pushTag({
-    key: "height",
-    value: `${height1.value} ~ ${height2.value}`,
-  });
+  if (elGeneralDemo.value) {
+    elGeneralDemo.value.$.refs.VTagsMultiselect.pushTag({
+      key: "height",
+      value: `${height1.value} ~ ${height2.value}`,
+    });
 
-  if (elInputHeight1.value) {
     elInputHeight1.value.blur();
     elInputHeight2.value.blur();
   }
@@ -86,54 +69,51 @@ const pushHeightValue = async () => {
         <ShowCode />
       </div>
 
-      <v-tags-multiselect
-        v-model="demoResult"
-        ref="elVTagsMultiselect"
-        @status="(e) => (demoStatus = e)"
+      <GeneralDemo
+        ref="elGeneralDemo"
+        v-model="demoStatus"
+        :autoFocus="true"
+        :displayOutput="true"
+        :displayRefreshBtn="true"
+        :displayShowCodeBtn="false"
+        :dropdown="{
+          name: {isDisplayForDemo: false},
+        }"
       >
-        <v-tag-dropdown value="country">
-          <v-tag-option title>
-            <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
-          </v-tag-option>
-          <v-tag-option value="Māre">{{
-            $t("ui.data.country.Māre")
-          }}</v-tag-option>
-          <v-tag-option value="Eldia">{{
-            $t("ui.data.country.Eldia")
-          }}</v-tag-option>
-        </v-tag-dropdown>
+        <template #remark>
+          <v-tag-dropdown value="height" display-all>
+            <v-tag-option title>
+              <i class="fa fa-user"></i> {{ $t("ui.general.Height(m)") }}
+            </v-tag-option>
+            <v-tag-option>
+              <input
+                type="number"
+                name="height1"
+                min="1"
+                :max="height2 || 60"
+                style="width: 5em"
+                :placeholder="`0 ~ ${height2 || 60}`"
+                v-model="height1"
+                ref="elInputHeight1"
+                @keydown.enter="inputHeight()"
+              />
+              ~
+              <input
+                type="number"
+                name="height2"
+                :min="Number(height1) + 1 || 0"
+                max="60"
+                style="width: 5em"
+                :placeholder="`${Number(height1) + 1 || 0} ~ 60`"
+                v-model="height2"
+                ref="elInputHeight2"
+                @keydown.enter="inputHeight()"
+              />
+            </v-tag-option>
+          </v-tag-dropdown>
+        </template>
+      </GeneralDemo>
 
-        <v-tag-dropdown value="height" display-all>
-          <v-tag-option title>
-            <i class="fa fa-user"></i> {{ $t("ui.general.Height(m)") }}
-          </v-tag-option>
-          <v-tag-option>
-            <input
-              type="number"
-              name="height1"
-              min="1"
-              :max="height2 || 60"
-              style="width: 5em"
-              :placeholder="`0 ~ ${height2 || 60}`"
-              v-model="height1"
-              ref="elInputHeight1"
-              @keydown.enter="inputHeight()"
-            />
-            ~
-            <input
-              type="number"
-              name="height2"
-              :min="Number(height1) + 1 || 0"
-              max="60"
-              style="width: 5em"
-              :placeholder="`${Number(height1) + 1 || 0} ~ 60`"
-              v-model="height2"
-              ref="elInputHeight2"
-              @keydown.enter="inputHeight()"
-            />
-          </v-tag-option>
-        </v-tag-dropdown>
-      </v-tags-multiselect>
     </div>
   </div>
 </template>
