@@ -77,7 +77,7 @@ const parameters = {
 </template>
 
 <style scoped lang="scss">
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   #method-pushTag__parameter--table .row {
     & > div:nth-child(1) {
       width: 15+2%;
