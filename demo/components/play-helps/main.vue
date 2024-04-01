@@ -34,7 +34,7 @@
       <v-tags-multiselect
         v-if="reloadByI18n"
         v-model="result"
-        ref="vueTagsMultiselect"
+        ref="VTagsMultiselect"
         @status="(e) => (tool.status = e)"
         @selectingTag="(e) => (tool.selectingTag = e)"
         @inputValue="(e) => (tool.inputValue = e)"
@@ -107,14 +107,14 @@
           <v-tag-option>
             <div
               @click="
-                $refs.vueTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })
+                $refs.VTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })
               "
             >
               TEST
             </div>
           </v-tag-option>
           <v-tag-option>
-            <div @click="$refs.vueTagsMultiselect.pushTag({ value: 'TEST2' })">
+            <div @click="$refs.VTagsMultiselect.pushTag({ value: 'TEST2' })">
               TEST2
             </div>
           </v-tag-option>
@@ -371,7 +371,7 @@ export default defineComponent({
       return;
     },
     pushHeightValue() {
-      this.$refs.vueTagsMultiselect.pushTag({
+      this.$refs.VTagsMultiselect.pushTag({
         key: "height",
         value: `${this.height1} ~ ${this.height2}`,
       });

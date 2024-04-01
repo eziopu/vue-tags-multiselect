@@ -3,7 +3,7 @@
     <v-tags-multiselect
       v-if="reloadByI18n"
       class="focus-demo-app custom cybr-search-bar"
-      ref="vueTagsMultiselect"
+      ref="VTagsMultiselect"
     >
       <v-tag-dropdown class="blue" value="country" display-all custom>
         <v-tag-option title>
@@ -68,7 +68,7 @@ export default {
     autoFocusinApp() {
       setTimeout(() => {
         this.$nextTick(() => {
-          let app = this.$refs.vueTagsMultiselect;
+          let app = this.$refs.VTagsMultiselect;
           app.isFocus = true;
           document.removeEventListener("focusin", app.focusChanged);
         });

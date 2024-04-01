@@ -2,7 +2,7 @@
   <v-tags-multiselect
     v-if="reloadByI18n"
     class="focus-demo-app"
-    ref="vueTagsMultiselect"
+    ref="VTagsMultiselect"
     conjunction="AND"
     @status="(e) => (status = e)"
   >
@@ -121,7 +121,7 @@ export default {
   methods: {
     autoFocusinApp() {
       this.$nextTick(() => {
-        let app = this.$refs.vueTagsMultiselect;
+        let app = this.$refs.VTagsMultiselect;
         app.isFocus = true;
         document.removeEventListener("focusin", app.focusChanged);
       });

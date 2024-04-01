@@ -7,7 +7,7 @@
       <v-tags-multiselect
         v-if="reloadByI18n && reloadByBtn"
         v-model="appEvent.result"
-        ref="vueTagsMultiselect"
+        ref="VTagsMultiselect"
         @status="(e) => (appEvent.status = e)"
         @selectingTag="(e) => (appEvent.selectingTag = e)"
         @inputValue="(e) => (appEvent.inputValue = e)"
@@ -246,7 +246,7 @@ export default {
   methods: {
     focusinApp() {
       this.$nextTick(() => {
-        let app = this.$refs.vueTagsMultiselect;
+        let app = this.$refs.VTagsMultiselect;
         app.isActive = true;
         // document.removeEventListener("focusin", app.focusChanged);
       });
