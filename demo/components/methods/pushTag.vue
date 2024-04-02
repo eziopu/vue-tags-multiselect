@@ -8,6 +8,7 @@ export default {
 import ShowPushTagFunctionCode from "./show-codes/push-tag-function.vue";
 import Parameter from "./pushTag-components/parameter.vue";
 import Demo0 from "./pushTag-components/demos/demo0.vue";
+const i18n = "attributes.description.methods.pushTag";
 </script>
 
 <template>
@@ -16,10 +17,10 @@ import Demo0 from "./pushTag-components/demos/demo0.vue";
 
     <div class="depiction">
       <p>
-        {{ $t("attributes.description.methods.pushTag.1") }}
+        {{ $t(`${i18n}.description`) }}
       </p>
       <p>
-        {{ $t("attributes.description.methods.pushTag.2") }}
+        {{ $t(`${i18n}.sub-description`) }}
       </p>
       
       <div class="sub-depiction">
