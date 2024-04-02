@@ -47,6 +47,9 @@ const pushHeightValue = async () => {
     elInputHeight2.value.blur();
   }
 }
+
+const i18n = "attributes.description.methods.pushTag.demo0";
+const dropdownDisplayAll = ref(true);
 </script>
 
 <template>
@@ -56,17 +59,22 @@ const pushHeightValue = async () => {
     </h4>
 
     <div class="depiction">
-      <p>
-        {{ $t("attributes.description.methods.pushTag.1") }}
-      </p>
+      <p v-html="$t(`${i18n}.description`)"></p>
       
       <div class="sub-depiction">
+        *<span v-html="$t(`${i18n}.notice`)"></span>
+        <p v-html="$t(`${i18n}.comment`)"></p>
       </div>
+
     </div>
 
     <div class="flex-between to6-4">
       <div>
-        <ShowCode />
+        <LabelAndControls
+          label="v-tag-dropdown display-all"
+          v-model="dropdownDisplayAll"
+        />
+        <ShowCode :dropdownDisplayAll="dropdownDisplayAll" />
       </div>
 
       <GeneralDemo
@@ -81,7 +89,7 @@ const pushHeightValue = async () => {
         }"
       >
         <template #remark>
-          <v-tag-dropdown value="height" display-all>
+          <v-tag-dropdown value="height" :displayAll="dropdownDisplayAll">
             <v-tag-option title>
               <i class="fa fa-user"></i> {{ $t("ui.general.Height(m)") }}
             </v-tag-option>

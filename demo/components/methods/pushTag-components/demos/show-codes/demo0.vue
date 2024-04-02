@@ -10,7 +10,7 @@
       --><Space :n="2"/>...<br><!--
     --><Space />&lt;/v-tag-dropdown&gt;<br><!--
     
--->  &lt;v-tag-dropdown value="height" display-all&gt;
+-->  &lt;v-tag-dropdown value="height"<span v-show="dropdownDisplayAll"> display-all</span>&gt;
     &lt;v-tag-option title&gt;
       &lt;i class="fa fa-user"&gt;&lt;/i&gt; <span v-html="renderData('general.Height(m)')"></span>
     &lt;/v-tag-option&gt;
@@ -57,28 +57,16 @@ export default {
     Space,
   },
   props: {
-    isNotTitle: {
+    dropdownDisplayAll: {
       type: Boolean,
       default: () => {
-        return false;
-      },
-    },
-    bolders: {
-      type: Array,
-      default: () => {
-        return [];
+        return true;
       },
     },
   },
   methods: {
     renderData(input) {
       return this.$t("ui." + input);
-    },
-    getClass(input) {
-      return { bolder: this.isBolder(input) }
-    },
-    isBolder(input) {
-      return this.bolders.includes(input);
     },
   },
 };
