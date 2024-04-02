@@ -88,8 +88,31 @@
       },
       "methods": {
         "pushTag": {
-          "1": "Force push a tag to an app",
-          "2": "When the key and value within the parameter (tag object) correspond to a dropdown or option, it will automatically match, including the case where the app is currently being selected.",
+          "description": "force assign a tag to the package",
+          "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",
+          "no-key": {
+            "description": "when the content of the parameter (tag object) has no key | When there is no key",
+            "simple-description": "when there is no key",
+            "1": "if the current state is in selection mode, it will match the current <code class='tag'>&lt;v-tag-dropdown&gt;</code>",
+            "2": "in other cases, it will directly generate the tag"
+          },
+          "has-key": {
+            "description": "when the content of the parameter (tag object) has a key | When there is a key",
+            "simple-description": "when there is a key",
+            "1": "if there is a matching key for the selected <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will automatically match and complete that tag",
+            "2": "if there is a matching key but not for the selected <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will automatically search for that <code class='tag'>&lt;v-tag-dropdown&gt;</code> and match",
+            "3": "if there is no matching key for <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will directly generate the tag"
+          },
+          "demo0": {
+            "description": "When adding components in <code class='tag'>&lt;v-tag-option&gt;</code>, this method must be used",
+            "notice": "to input external values, please do not fill in the value of <code class='tag'>&lt;v-tag-option&gt;</code>",
+            "comment": "the display-all in the <code class='tag'>&lt;v-tag-dropdown&gt;</code> in the example is just for convenience, turning it off does not affect the operation"
+          },
+          "demo1": {
+            "description": "manipulable, the submission button will delay sending for {second} seconds",
+            "sub-description": "after clicking the submission button, please proceed immediately",
+            "first": "apply quickly"
+          },
           "parameter": {
             "key": "tag key",
             "value": "tag value",

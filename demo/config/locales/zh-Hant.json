@@ -88,8 +88,31 @@
       },
       "methods": {
         "pushTag": {
-          "1": "強制賦予一個tag給app",
-          "2": "當參數(tag object)內容的key與value有對應dropdown或是option時會自動匹配(包含app正在選擇中的情況)",
+          "description": "強制賦予一個tag給app",
+          "sub-description": "會依照你輸入的參數與套件情況, 創建全新的tag或是與當前的tag結合",
+          "no-key": {
+            "description": "當參數(tag object)內容沒有key時 | 沒有key時",
+            "simple-description": "沒有key時",
+            "1": "若當前為選擇狀態中, 會匹配當前的 <code class='tag'>&lt;v-tag-dropdown&gt;</code>",
+            "2": "其餘狀況, 會直接生成tag"
+          },
+          "has-key": {
+            "description": "當參數(tag object)內容有key時 | 有key時",
+            "simple-description": "有key時",
+            "1": "有相符合選擇中 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會自動匹配並完成該tag",
+            "2": "有相符合但非選擇中 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會自動找尋該 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 並匹配",
+            "3": "無相符合 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會直接生成tag"
+          },
+          "demo0": {
+            "description": "在 <code class='tag'>&lt;v-tag-option&gt;</code> 加入組件, 就必須使用此方式",
+            "notice": "為了輸入外部的值, <code class='tag'>&lt;v-tag-option&gt;</code> 的 value 請不要填寫",
+            "comment": "範例中的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> display-all 僅是方便操作而已, 關掉並不影響操作"
+          },
+          "demo1": {
+            "description": "任人擺布, 送出按鈕會延遲 {second} 發送",
+            "sub-description": "送出按鈕後, 請立刻去操作",
+            "first": "快速套用"
+          },
           "parameter": {
             "key": "標籤的key值",
             "value": "標籤的value值",
