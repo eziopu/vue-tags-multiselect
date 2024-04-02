@@ -5,15 +5,7 @@ export default {
 </script>
 
 <script setup>
-const parameters = {
-  key: { type: "string", default: "null", required: "no" },
-  value: { type: "string", default: "null", required: "*yes" },
-  valueElm: { type: "string", default: "null", required: "no" },
-  titleElm: { type: "string", default: "null", required: "no" },
-  classList: { type: "array", default: "[]", required: "no" },
-  custom: { type: "boolean", default: "false", required: "no" },
-  displayValue: { type: "boolean", default: "false", required: "no" },
-};
+import { PARAMETERS } from "./models.js";
 </script>
 
 <template>
@@ -38,7 +30,7 @@ const parameters = {
 
     <div
       class="row"
-      v-for="(value, key) in parameters"
+      v-for="(value, key) in PARAMETERS"
       :key="`parameters_${key}`"
     >
       <div>{{ key }}</div>
