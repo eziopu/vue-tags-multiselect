@@ -8,6 +8,7 @@ export default {
 import ShowPushTagFunctionCode from "./show-codes/push-tag-function.vue";
 import Parameter from "./pushTag-components/parameter.vue";
 import Demo0 from "./pushTag-components/demos/demo0.vue";
+import Demo1 from "./pushTag-components/demos/demo1.vue";
 const i18n = "attributes.description.methods.pushTag";
 </script>
 
@@ -35,9 +36,10 @@ const i18n = "attributes.description.methods.pushTag";
       Parameter : object
     </h4>
 
-    <Parameter></Parameter>
+    <Parameter />
 
-    <Demo0></Demo0>
+    <Demo0 />
+    <Demo1 />
 
   </div>
 </template>

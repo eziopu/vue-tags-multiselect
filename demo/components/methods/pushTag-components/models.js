@@ -16,7 +16,7 @@ export function get_attributes(inputs = {}) {
   const parameters = deep_clone(PARAMETERS);
 
   Object.keys(parameters).forEach(key => {
-    parameters[key] = inputs[key] || undefined;
+    parameters[key] = inputs[key] || (parameters[key].type == 'boolean' ? false : '');
   });
 
   return parameters;

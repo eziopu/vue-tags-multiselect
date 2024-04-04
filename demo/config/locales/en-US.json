@@ -109,9 +109,11 @@
             "comment": "the display-all in the <code class='tag'>&lt;v-tag-dropdown&gt;</code> in the example is just for convenience, turning it off does not affect the operation"
           },
           "demo1": {
-            "description": "manipulable, the submission button will delay sending for {second} seconds",
-            "sub-description": "after clicking the submission button, please proceed immediately",
-            "first": "apply quickly"
+            "title": "arbitrary operation",
+            "description": "the submission button will delay sending for",
+            "description-1": "seconds",
+            "sub-description": "after clicking the button, please proceed immediately",
+            "first": "quick apply scenario"
           },
           "parameter": {
             "key": "tag key",
