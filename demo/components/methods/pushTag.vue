@@ -46,7 +46,6 @@ const i18nHasKey = `${i18n}.has-key`;
         <ul>
           <li v-html="$t(`${i18nHasKey}.1`)"></li>
           <li v-html="$t(`${i18nHasKey}.2`)"></li>
-          <li v-html="$t(`${i18nHasKey}.3`)"></li>
         </ul>
       </div>
     </div>
