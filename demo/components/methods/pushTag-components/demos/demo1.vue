@@ -14,7 +14,7 @@ const demoStatus = ref([]);
 const elGeneralDemo = ref(null);
 const delay = ref(3);
 const attributes = reactive(get_attributes())
-console.log(attributes);
+
 const pushTag = async () => {
   await nextTick();
   timer.value = delay.value;
@@ -75,33 +75,34 @@ const i18n = "attributes.description.methods.pushTag.demo1";
     </div>
 
     <div class="flex-between to6-4">
-      <div>
-        <div class="pushTag-demo1__attributes-title flex-between to5-5">
+      <div class="pushTag-demo1__attributes">
+        <div class="pushTag-demo1__attributes--title">
           <span>attributes: {</span>
-          <button type="button" 
-            class="small ui button btn btn-secondary btn-sm" 
-            @click="pushTag()"
-            :class="{process: isProcess}"
-          >
-            <template v-if="isProcess">
-              {{ timer.toFixed(1) }} s
-            </template>
-            <template v-else>
-              submit
-            </template>
-          </button>
         </div>
-        <div class="pushTag-demo1__attributes attributes">
+        <div class="pushTag-demo1__attributes--controls attributes">
           <LabelAndControls
             v-for="(PARAMETER, key) in PARAMETERS"
-            class="flex-between to4-6"
             :key="`attribute_${key}`"
+            class="flex-between"
+            :class="{'to4-6': PARAMETER.type == 'boolean' ? false : true}"
             :label="key"
             :model="PARAMETER.type == 'boolean' ? 'select' : 'input'"
             v-model="attributes[key]"
           />
         </div>
         <div class="attribute">}</div>
+        <button type="button" 
+          class="pushTag-demo1__attributes--submit small ui button btn btn-secondary btn-sm" 
+          @click="pushTag()"
+          :class="{process: isProcess}"
+        >
+          <template v-if="isProcess">
+            {{ timer.toFixed(1) }} s
+          </template>
+          <template v-else>
+            submit
+          </template>
+        </button>
       </div>
 
       <GeneralDemo
@@ -138,10 +139,22 @@ const i18n = "attributes.description.methods.pushTag.demo1";
     cursor: wait;
   }
 }
-.pushTag-demo1__attributes-title {
-  align-items: flex-end;
+.pushTag-demo1__attributes {
+  position: relative;
   @media (max-width: 768px) {
-    flex-direction: row !important;
+    margin-bottom: 3rem;
+  }
+}
+.pushTag-demo1__attributes--submit {
+  position: absolute;
+  right: 0;
+  @media (min-width: 768px) {
+    top: 0;
+    margin-top: -.6rem;
+  }
+  @media (max-width: 768px) {
+    bottom: 0;
+    margin-bottom: -2rem;
   }
 }
 
