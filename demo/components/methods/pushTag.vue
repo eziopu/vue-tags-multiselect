@@ -10,6 +10,8 @@ import Parameter from "./pushTag-components/parameter.vue";
 import Demo0 from "./pushTag-components/demos/demo0.vue";
 import Demo1 from "./pushTag-components/demos/demo1.vue";
 const i18n = "attributes.description.methods.pushTag";
+const i18nNoKey = `${i18n}.no-key`;
+const i18nHasKey = `${i18n}.has-key`;
 </script>
 
 <template>
@@ -30,6 +32,23 @@ const i18n = "attributes.description.methods.pushTag";
         or
         <ShowPushTagFunctionCode />
       </div>
+
+      <div class="depiction__no-key">
+        <p v-html="$t(`${i18nNoKey}.description`)"></p>
+        <ul>
+          <li v-html="$t(`${i18nNoKey}.1`)"></li>
+          <li v-html="$t(`${i18nNoKey}.2`)"></li>
+        </ul>
+      </div>
+
+      <div class="depiction__has-key">
+        <p v-html="$t(`${i18nHasKey}.description`)"></p>
+        <ul>
+          <li v-html="$t(`${i18nHasKey}.1`)"></li>
+          <li v-html="$t(`${i18nHasKey}.2`)"></li>
+          <li v-html="$t(`${i18nHasKey}.3`)"></li>
+        </ul>
+      </div>
     </div>
 
     <h4 class="ui title method-pushTag__parameter--title">
@@ -49,4 +68,18 @@ const i18n = "attributes.description.methods.pushTag";
   margin-top: 1.6rem;
   margin-bottom: 1.2rem;
 }
+
+.depiction__no-key,
+.depiction__has-key {
+  ul {
+    margin-top: 0;
+  }
+  p, li {
+    margin-bottom: .3rem;
+  }
+}
+.depiction__no-key {
+  margin-top: 1rem;
+}
+
 </style>
