@@ -5,10 +5,11 @@ export default {
 </script>
 
 <script setup>
-import { ref, reactive, nextTick, onUnmounted } from "vue";
+import { ref, reactive, inject, nextTick, onUnmounted } from "vue";
 import { PARAMETERS, get_attributes } from "../models.js";
 
 const demoStatus = ref([]);
+const framework = inject("framework");
 
 /* demo use*/
 const elGeneralDemo = ref(null);
@@ -26,7 +27,10 @@ const pushTag = async () => {
   startTimer();
   setTimeout(() => {
     if (elGeneralDemo.value) {
-      elGeneralDemo.value.$.refs.VTagsMultiselect.pushTag(attributes);
+      elGeneralDemo.value.$.refs.VTagsMultiselect.pushTag({
+        ...attributes,
+        ...{classList: [attributes.classList]}
+      });
     }
     isProcess.value = false;
   }, delay.value*1000);
@@ -51,7 +55,20 @@ onUnmounted(() => {
   clearInterval(intervalId);
 });
 
-const i18n = "attributes.description.methods.pushTag.demo1";
+const demoDropdownSelected = ref(false);
+const firstDemo = (input = {}) => {
+  attributes.key = input.key;
+  attributes.value = input.value;
+  demoDropdownSelected.value = input.seleting == true ? true : false 
+  
+  elGeneralDemo.value.reloadByBtnFun();
+  pushTag();
+}
+
+const i18nMain = "attributes.description.methods.pushTag";
+const i18n = `${i18nMain}.demo1`;
+const i18nNoKey = `${i18nMain}.no-key`;
+const i18nHasKey = `${i18nMain}.has-key`;
 </script>
 
 <template>
@@ -67,9 +84,41 @@ const i18n = "attributes.description.methods.pushTag.demo1";
       <span v-html="$t(`${i18n}.description-1`)"></span>
       <p v-html="$t(`${i18n}.sub-description`)"></p>
       
+      <span v-html="$t(`${i18n}.first`)"></span>
       <div class="sub-depiction">
-        <span v-html="$t(`${i18n}.first`)"></span>
+        <div class="depiction__first-demo">
+          <p v-html="$t(`${i18nNoKey}.description`, 0)"></p>
+          <div class="depiction__first-demo--colon"> : </div>
+          <button type="button" 
+            class="small ui button btn btn-secondary btn-sm" 
+            @click="firstDemo({key: '', value: 'test', seleting: true})"
+          >
+            <span v-html="$t(`${i18nNoKey}.1`, 0)"></span>
+          </button>
+          <button type="button" 
+            class="small ui button btn btn-secondary btn-sm" 
+            @click="firstDemo({key: '', value: 'test'})"
+          >
+            <span v-html="$t(`${i18nNoKey}.2`, 0)"></span>
+          </button>
+        </div>
 
+        <div class="depiction__first-demo">
+          <p v-html="$t(`${i18nHasKey}.description`, 0)"></p>
+          <div class="depiction__first-demo--colon"> : </div>
+          <button type="button" 
+            class="small ui button btn btn-secondary btn-sm" 
+            @click="firstDemo({key: 'country', value: 'test'})"
+          >
+            <span v-html="$t(`${i18nHasKey}.1`, 0)"></span>
+          </button>
+          <button type="button" 
+            class="small ui button btn btn-secondary btn-sm" 
+            @click="firstDemo({key: 'noSameKey', value: 'test'})"
+          >
+            <span v-html="$t(`${i18nHasKey}.2`, 0)"></span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -92,9 +141,9 @@ const i18n = "attributes.description.methods.pushTag.demo1";
         </div>
         <div class="attribute">}</div>
         <button type="button" 
-          class="pushTag-demo1__attributes--submit small ui button btn btn-secondary btn-sm" 
+          class="pushTag-demo1__attributes--submit small ui primary button btn btn-primary btn-sm"
           @click="pushTag()"
-          :class="{process: isProcess}"
+          :class="[framework, {process: isProcess}]"
         >
           <template v-if="isProcess">
             {{ timer.toFixed(1) }} s
@@ -112,8 +161,14 @@ const i18n = "attributes.description.methods.pushTag.demo1";
         :displayOutput="true"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
+        :app="{
+          debugLog: true
+        }"
         :dropdown="{
           name: {isDisplayForDemo: false},
+        }"
+        :option="{
+          country: [{selected: demoDropdownSelected}],
         }"
       >
       </GeneralDemo>
@@ -139,6 +194,21 @@ const i18n = "attributes.description.methods.pushTag.demo1";
     cursor: wait;
   }
 }
+
+.depiction__first-demo {
+  display: flex;
+  margin-bottom: .3rem;
+  align-items: center;
+
+  .depiction__first-demo--colon {
+    margin: 0 0.3rem;
+  }
+
+  &:last-child {
+    margin-bottom: 2rem;
+  }
+}
+
 .pushTag-demo1__attributes {
   position: relative;
   @media (max-width: 768px) {
@@ -150,11 +220,20 @@ const i18n = "attributes.description.methods.pushTag.demo1";
   right: 0;
   @media (min-width: 768px) {
     top: 0;
-    margin-top: -.6rem;
+    margin-top: -.6rem !important;
+
+    &.semantic-ui {
+      margin-top: -1rem !important;
+      margin-right: 0;
+    }
   }
   @media (max-width: 768px) {
     bottom: 0;
-    margin-bottom: -2rem;
+    margin-bottom: -2rem !important;
+    &.semantic-ui {
+      margin-bottom: -1.2rem !important;
+      margin-right: 0;
+    }
   }
 }
 
