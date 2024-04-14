@@ -11,6 +11,7 @@ export default {
   methods: {
     reloadByBtnFun() {
       this.reloadByBtn = false;
+      this.appEvent.result = {};
       this.$nextTick(() => {
         setTimeout(() => {
           this.reloadByBtn = true;

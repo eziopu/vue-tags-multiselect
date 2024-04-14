@@ -1,7 +1,7 @@
 <template>
   <pre><code><!--
 -->&lt;vue-tags-multiselect<br><!--
---><Space />ref="vueTagsMultiselect"<br><!--
+--><Space />ref="VTagsMultiselect"<br><!--
 --><Space />v-model="result"<br><!--
 
   --><AttributesAndSlots :app="app" />
@@ -54,7 +54,7 @@
         :placeholder="`${height1 || 0} ~ 60`"
         v-model="height2"
         ref="inputHeight2"
-        @keydown.enter="<span class="lit">()</span> => <span class="lit">{</span> <span class="cyan-blue">$refs</span>.<span class="cyan-blue">vueTagsMultiselect</span>.pushTag<span class="purple">(</span>
+        @keydown.enter="<span class="lit">()</span> => <span class="lit">{</span> <span class="cyan-blue">$refs</span>.<span class="cyan-blue">VTagsMultiselect</span>.pushTag<span class="purple">(</span>
           {<span class="red">key</span>: <span class="green">"height"</span>, <span class="red">value</span>: <span class="green">`${height1} ~ ${height2}`</span>}
         <span class="purple">)</span>; <span class="lit">}</span>"
       /&gt;

@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  .demo {
+    transition: all 0.2s ease-out;
+
+    &.selecting {
+      margin-bottom: 12rem;
+    }
+  }
+}

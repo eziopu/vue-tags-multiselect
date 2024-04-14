@@ -21,7 +21,7 @@
       <Attributes />
       <Slots />
       <Events />
-      <Methods />
+      <Exposes />
       <SlotsAttributesDropdown />
       <SlotsAttributesOption />
     </div>
@@ -34,7 +34,7 @@
       <v-tags-multiselect
         v-if="reloadByI18n"
         v-model="result"
-        ref="vueTagsMultiselect"
+        ref="VTagsMultiselect"
         @status="(e) => (tool.status = e)"
         @selectingTag="(e) => (tool.selectingTag = e)"
         @inputValue="(e) => (tool.inputValue = e)"
@@ -107,14 +107,14 @@
           <v-tag-option>
             <div
               @click="
-                $refs.vueTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })
+                $refs.VTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })
               "
             >
               TEST
             </div>
           </v-tag-option>
           <v-tag-option>
-            <div @click="$refs.vueTagsMultiselect.pushTag({ value: 'TEST2' })">
+            <div @click="$refs.VTagsMultiselect.pushTag({ value: 'TEST2' })">
               TEST2
             </div>
           </v-tag-option>
@@ -193,7 +193,7 @@ import Events from "./events/main.vue";
 import Slots from "./slots/main.vue";
 import SlotsAttributesDropdown from "./slots-attributes/dropdown.vue";
 import SlotsAttributesOption from "./slots-attributes/option.vue";
-import Methods from "./methods/main.vue";
+import Exposes from "./exposes/main.vue";
 import ShowHtmlCode from "./show-html-code.vue";
 
 import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
@@ -212,7 +212,7 @@ export default defineComponent({
     DataTable,
     SlotsAttributesDropdown,
     SlotsAttributesOption,
-    Methods,
+    Exposes,
     ShowHtmlCode,
   },
   props: {
@@ -279,7 +279,7 @@ export default defineComponent({
         attributes: true,
         slots: false,
         events: false,
-        methods: false,
+        exposes: false,
         slotDropdown: false,
         slotOption: false,
         details: {
@@ -371,7 +371,7 @@ export default defineComponent({
       return;
     },
     pushHeightValue() {
-      this.$refs.vueTagsMultiselect.pushTag({
+      this.$refs.VTagsMultiselect.pushTag({
         key: "height",
         value: `${this.height1} ~ ${this.height2}`,
       });

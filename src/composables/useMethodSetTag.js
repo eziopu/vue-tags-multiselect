@@ -65,7 +65,8 @@ export default function useEventSetTag(props, _context, dep) {
   const mergeStashTagToFinish = (input = {}) => {
     const newTag = {
       value: input.value,
-      displayValue: true,
+      valueElm: input.valueElm || null,
+      classList: input.classList,
     };
     if (input.titleElm) {
       newTag.titleElm = input.titleElm || null;
@@ -84,13 +85,13 @@ export default function useEventSetTag(props, _context, dep) {
     dep.log3("get parameter", item);
 
     try {
-      if (input.value == "") throw ["error", "value is empty"];
+      if (input.value == null) throw ["error", "value is empty"];
       if (appIsLock.value == true) throw ["error", "app is lock"];
 
       const targetKey =
         input.key == null && stashTag.key != null ? stashTag.key : input.key;
 
-      // 是否已存在
+        // 是否已存在
       if (isDuplicateTag(targetKey, input.value)) {
         // 例外狀況, 編輯中 且該tagkey 只有一個時 不回傳錯誤
         // const tagsGroupByKey = { "country": ["val1", "val2"], "country2": ["val1"] } (computed)
@@ -118,7 +119,8 @@ export default function useEventSetTag(props, _context, dep) {
         if (isEditMode.value == true) {
           updateTag({
             value: input.value,
-            displayValue: true,
+            valueElm: input.valueElm,
+            classList: input.classList,
           });
           focusApp("updateTag()");
           throw ["success", "update tag"];
@@ -139,11 +141,10 @@ export default function useEventSetTag(props, _context, dep) {
         });
         throw ["success", "call option set tag"];
       }
-
+      
       if (props.create == false) {
         throw ["error", "key not found and props create is false"];
       } else {
-        input.displayValue = true;
         setTagToTags(input);
         setStashTag();
         throw ["success", "generate a tag"];

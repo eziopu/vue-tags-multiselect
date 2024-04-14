@@ -86,10 +86,34 @@
         "selectingTag": "get current selected tag",
         "inputValue": "get the current input's value."
       },
-      "methods": {
+      "exposes": {
         "pushTag": {
-          "1": "Force push a tag to an app",
-          "2": "When the key and value within the parameter (tag object) correspond to a dropdown or option, it will automatically match, including the case where the app is currently being selected.",
+          "description": "force assign a tag to the package",
+          "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",
+          "no-key": {
+            "description": "when the content of the parameter (tag object) has no key | when no key is input",
+            "simple-description": "when there is no key",
+            "1": "if the current state is in selecting mode, it will match the current <code class='tag'>&lt;v-tag-dropdown&gt;</code> | in selecting mode",
+            "2": "in other cases, it will directly generate the tag | Not in selecting mode"
+          },
+          "has-key": {
+            "description": "when the content of the parameter (tag object) has a key | when a key is input",
+            "simple-description": "When there is a key",
+            "1": "if there is a matching key for the same <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will automatically match and complete that tag, regardless of whether it is in selecting mode | When there is the same key",
+            "2": "if there is no matching key for <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will directly generate the tag | When there is no same key"
+          },
+          "demo0": {
+            "description": "When adding components in <code class='tag'>&lt;v-tag-option&gt;</code>, this method must be used",
+            "notice": "to input external values, please do not fill in the value of <code class='tag'>&lt;v-tag-option&gt;</code>",
+            "comment": "the display-all in the <code class='tag'>&lt;v-tag-dropdown&gt;</code> in the example is just for convenience, turning it off does not affect the operation"
+          },
+          "demo1": {
+            "title": "arbitrary operation",
+            "description": "the submission button will delay sending for",
+            "description-1": "seconds",
+            "sub-description": "after clicking the button, please proceed immediately",
+            "first": "quick apply scenario"
+          },
           "parameter": {
             "key": "tag key",
             "value": "tag value",
