@@ -5,7 +5,6 @@ export const PARAMETERS = {
   titleElm: { type: "string", default: "null", required: "no" },
   classList: { type: "array", default: "[]", required: "no" },
   custom: { type: "boolean", default: "false", required: "no" },
-  displayValue: { type: "boolean", default: "false", required: "no" },
 }
 
 function deep_clone(input) {

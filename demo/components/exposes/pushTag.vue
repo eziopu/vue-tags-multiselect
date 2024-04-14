@@ -49,7 +49,7 @@ const i18nHasKey = `${i18n}.has-key`;
     </div>
 
     <h4 class="ui title method-pushTag__parameter--title">
-      Parameter : object
+      Attributes
     </h4>
 
     <Parameter />

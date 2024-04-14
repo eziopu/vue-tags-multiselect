@@ -55,7 +55,7 @@ const dropdownDisplayAll = ref(true);
 <template>
   <div id="exposes-pushTag__pushTag-demo0" class="demo" :class="demoStatus">
     <h4 class="ui title method-pushTag__parameter--title">
-      Demo : In option
+      Demo 1 : In option
     </h4>
 
     <div class="depiction">

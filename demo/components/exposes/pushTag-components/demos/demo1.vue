@@ -74,12 +74,12 @@ const i18nHasKey = `${i18nMain}.has-key`;
 <template>
   <div id="exposes-pushTag__pushTag-demo1" class="demo" :class="demoStatus">
     <h4 class="ui title method-pushTag__parameter--title">
-      Demo : {{ $t(`${i18n}.title`) }}
+      Demo 2 : {{ $t(`${i18n}.title`) }}
     </h4>
 
     <div class="depiction">
       <span v-html="$t(`${i18n}.description`)"></span>
-      <input type="number" :min="0" style="width: 3rem" v-model="delay">
+      <input type="number" :min="0" class="depiction__delay-input" v-model="delay">
 
       <span v-html="$t(`${i18n}.description-1`)"></span>
       <p v-html="$t(`${i18n}.sub-description`)"></p>
@@ -193,6 +193,11 @@ const i18nHasKey = `${i18nMain}.has-key`;
   &.process {
     cursor: wait;
   }
+}
+
+.depiction__delay-input {
+  width: 3rem;
+  margin: 0 .3rem;
 }
 
 .depiction__first-demo {
