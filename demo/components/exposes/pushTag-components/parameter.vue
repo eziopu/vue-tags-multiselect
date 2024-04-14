@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "methods-pushTag__parameter",
+  name: "exposes-pushTag__parameter",
 };
 </script>
 
@@ -39,7 +39,7 @@ import { PARAMETERS } from "./models.js";
           >{{ $t("ui.general.Description") }}:
         </span>
         <span>{{
-          $t(`attributes.description.methods.pushTag.parameter.${key}`)
+          $t(`attributes.description.exposes.pushTag.parameter.${key}`)
         }}</span>
       </div>
 

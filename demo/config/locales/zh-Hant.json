@@ -86,7 +86,7 @@
         "selectingTag": "取得當前選擇的tag(包括選擇中, 編輯中)",
         "inputValue": "取得當前 input 的 value 值"
       },
-      "methods": {
+      "exposes": {
         "pushTag": {
           "description": "強制賦予一個tag給app",
           "sub-description": "會依照你輸入的參數與套件情況, 創建全新的tag或是與當前的tag結合",

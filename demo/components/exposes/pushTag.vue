@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "methods-pushTag",
+  name: "exposes-pushTag",
 };
 </script>
 
@@ -9,13 +9,13 @@ import ShowPushTagFunctionCode from "./show-codes/push-tag-function.vue";
 import Parameter from "./pushTag-components/parameter.vue";
 import Demo0 from "./pushTag-components/demos/demo0.vue";
 import Demo1 from "./pushTag-components/demos/demo1.vue";
-const i18n = "attributes.description.methods.pushTag";
+const i18n = "attributes.description.exposes.pushTag";
 const i18nNoKey = `${i18n}.no-key`;
 const i18nHasKey = `${i18n}.has-key`;
 </script>
 
 <template>
-  <div id="methods-pushTag" class="demo">
+  <div id="exposes-pushTag" class="demo">
     <ToolTitle>pushTag</ToolTitle>
 
     <div class="depiction">

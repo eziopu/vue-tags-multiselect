@@ -1,12 +1,12 @@
 <template>
-  <div id="methods">
+  <div id="exposes">
     <HelpTitle 
-      label="Methods"
-      target="methods"
+      label="Exposes"
+      target="exposes"
     />
     
     <transition name="slide">
-      <PushTag v-if="app.displays.methods"></PushTag>
+      <PushTag v-if="app.displays.exposes"></PushTag>
     </transition>
   </div>
 </template>

@@ -18,9 +18,9 @@
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>
-              {{ $t("attributes.description.methods.pushTag.1") }},
+              {{ $t("attributes.description.exposes.pushTag.1") }},
               <br class="d-none d-sm-block" />
-              {{ $t("attributes.description.methods.pushTag.2") }}
+              {{ $t("attributes.description.exposes.pushTag.2") }}
             </span>
           </div>
           <div>
@@ -71,7 +71,7 @@
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>{{
-              $t(`attributes.description.methods.pushTag.parameter.${key}`)
+              $t(`attributes.description.exposes.pushTag.parameter.${key}`)
             }}</span>
           </div>
 
@@ -106,7 +106,7 @@
 import InjectApp from "../mixins/inject-app.js";
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "app-methods-pushTag",
+  name: "app-exposes-pushTag",
   mixins: [InjectApp],
   data() {
     return {

@@ -20,7 +20,7 @@ import HowToUse from "./components/how-to-use/main.vue";
 import Slots from "./components/slots/main.vue";
 import SlotDropdown from "./components/slot-dropdown/main.vue";
 import SlotOption from "./components/slot-option/main.vue";
-import Methods from "./components/methods/main.vue";
+import Exposes from "./components/exposes/main.vue";
 
 import Header from "./components/layout/header/main.vue";
 import Pagination from "./components/layout/pagination.vue";
@@ -33,7 +33,7 @@ const components = {
   "Slots": Slots,
   "Slot-dropdown": SlotDropdown,
   "Slot-option": SlotOption,
-  "Methods": Methods,
+  "Exposes": Exposes,
   "Play": Play
 };
 const pages = Object.keys(components);

@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "methods-pushTag__demo0",
+  name: "exposes-pushTag__demo0",
 };
 </script>
 
@@ -48,12 +48,12 @@ const pushHeightValue = async () => {
   }
 }
 
-const i18n = "attributes.description.methods.pushTag.demo0";
+const i18n = "attributes.description.exposes.pushTag.demo0";
 const dropdownDisplayAll = ref(true);
 </script>
 
 <template>
-  <div id="methods-pushTag__pushTag-demo0" class="demo" :class="demoStatus">
+  <div id="exposes-pushTag__pushTag-demo0" class="demo" :class="demoStatus">
     <h4 class="ui title method-pushTag__parameter--title">
       Demo : In option
     </h4>

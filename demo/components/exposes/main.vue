@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "app-methods",
+  name: "app-exposes",
 };
 </script>
 
@@ -9,7 +9,7 @@ import PushTag from "./pushTag.vue";
 </script>
 
 <template>
-  <div id="app-methods" class="demo">
+  <div id="app-exposes" class="demo">
     <PushTag />
   </div>
 </template>

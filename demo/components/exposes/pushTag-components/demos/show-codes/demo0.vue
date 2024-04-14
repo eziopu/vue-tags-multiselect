@@ -52,7 +52,7 @@
 import Space from "../../../../tools/show-html-code/space.vue";
 
 export default {
-  name: "methods-pushTag__demo0--show-code",
+  name: "exposes-pushTag__demo0--show-code",
   components: {
     Space,
   },

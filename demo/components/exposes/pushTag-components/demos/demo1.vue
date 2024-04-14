@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "methods-pushTag__demo1",
+  name: "exposes-pushTag__demo1",
 };
 </script>
 
@@ -65,14 +65,14 @@ const firstDemo = (input = {}) => {
   pushTag();
 }
 
-const i18nMain = "attributes.description.methods.pushTag";
+const i18nMain = "attributes.description.exposes.pushTag";
 const i18n = `${i18nMain}.demo1`;
 const i18nNoKey = `${i18nMain}.no-key`;
 const i18nHasKey = `${i18nMain}.has-key`;
 </script>
 
 <template>
-  <div id="methods-pushTag__pushTag-demo1" class="demo" :class="demoStatus">
+  <div id="exposes-pushTag__pushTag-demo1" class="demo" :class="demoStatus">
     <h4 class="ui title method-pushTag__parameter--title">
       Demo : {{ $t(`${i18n}.title`) }}
     </h4>

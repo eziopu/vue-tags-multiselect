@@ -86,7 +86,7 @@
         "selectingTag": "get current selected tag",
         "inputValue": "get the current input's value."
       },
-      "methods": {
+      "exposes": {
         "pushTag": {
           "description": "force assign a tag to the package",
           "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",

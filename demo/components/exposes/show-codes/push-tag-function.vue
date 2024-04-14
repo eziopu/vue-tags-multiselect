@@ -23,7 +23,7 @@
 import Space from "../../tools/show-html-code/space.vue";
 
 export default {
-  name: "methods-tools-line-code",
+  name: "exposes-tools-line-code",
   components: {
     Space,
   },
