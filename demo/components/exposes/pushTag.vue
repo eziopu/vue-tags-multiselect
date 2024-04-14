@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import ShowPushTagFunctionCode from "./show-codes/push-tag-function.vue";
+import ShowPushTagFunctionCode from "./pushTag-components/show-codes/main.vue";
 import Parameter from "./pushTag-components/parameter.vue";
 import Demo0 from "./pushTag-components/demos/demo0.vue";
 import Demo1 from "./pushTag-components/demos/demo1.vue";
@@ -28,8 +28,6 @@ const i18nHasKey = `${i18n}.has-key`;
       
       <div class="sub-depiction">
         <h4>{{ $t("ui.general.example") }} :</h4>
-        <ShowPushTagFunctionCode simple />
-        or
         <ShowPushTagFunctionCode />
       </div>
 

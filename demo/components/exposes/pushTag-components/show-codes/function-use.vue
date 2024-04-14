@@ -1,6 +1,5 @@
 <!-- eslint-disable prettier/prettier -->
-<template>
-<pre class="prettyprint lang-html customize"><code><!--
+<template><!--
   --><span class="tag">pushTag</span><!--
     --><span class="atv">(</span><!--
       --><span class="purple">{</span><!--
@@ -16,14 +15,13 @@
         --></span><!--
     --><span class="purple">}</span><!--
   --><span class="atv">)</span><!--
---></code></pre>
-</template>
+--></template>
 
 <script>
-import Space from "../../tools/show-html-code/space.vue";
+import Space from "../../../tools/show-html-code/space.vue";
 
 export default {
-  name: "exposes-tools-line-code",
+  name: "exposes-pushTag-show-codes-function-use",
   components: {
     Space,
   },
@@ -40,7 +38,7 @@ export default {
 <style scoped lang="scss">
 .rwd {
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: inline;
   }
 }
