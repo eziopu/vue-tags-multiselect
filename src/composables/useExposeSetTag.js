@@ -1,7 +1,7 @@
 import { reactive, provide } from "vue";
 import { getTagModel, getAppCallOptionSetTag } from "../models";
 
-export default function useEventSetTag(props, _context, dep) {
+export default function useExposeSetTag(props, context, dep) {
   // ============== DATA ==============
 
   const appIsLock = dep.appIsLock;

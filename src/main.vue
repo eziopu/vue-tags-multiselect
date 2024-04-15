@@ -8,6 +8,7 @@
     @keydown="handleKeydown"
     @keyup="handleKeyup"
     @click="isEnable = true"
+    :key="elAppKeyForRerender"
     :class="{ active: isActive, disabled: disabled, loading: loading, ['v-tag-'+tagPosition] :isTagPositionVisible }"
   >
     <div
@@ -141,7 +142,8 @@ import useElDropdown from "./composables/useElDropdown";
 import useSystemOption from "./composables/useSystemOption";
 import useStatus from "./composables/useStatus";
 import useKeyboard from "./composables/useKeyboard";
-import useMethodSetTag from "./composables/useMethodSetTag";
+import useExposeSetTag from "./composables/useExposeSetTag";
+import useExpose from "./composables/useExpose";
 
 import { defineComponent } from "vue";
 
@@ -193,7 +195,8 @@ export default defineComponent({
       useElDropdown,
       useStatus,
       useKeyboard,
-      useMethodSetTag,
+      useExposeSetTag,
+      useExpose,
     ]);
   },
 });
