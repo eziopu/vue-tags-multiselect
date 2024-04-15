@@ -60,8 +60,8 @@ const firstDemo = (input = {}) => {
   attributes.key = input.key;
   attributes.value = input.value;
   demoDropdownSelected.value = input.seleting == true ? true : false 
-  
-  elGeneralDemo.value.reloadByBtnFun();
+
+  elGeneralDemo.value.reload();
   pushTag();
 }
 

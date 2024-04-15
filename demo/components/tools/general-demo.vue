@@ -5,7 +5,6 @@
     </div>
     <div class="demo-component relative">
       <v-tags-multiselect
-        v-if="reloadByI18n && reloadByBtn"
         v-model="appEvent.result"
         ref="VTagsMultiselect"
         @status="(e) => (appEvent.status = e)"
@@ -150,8 +149,7 @@
         <span
           v-if="displayRefreshBtn"
           class="show-code-btn pointer"
-          :class="{ active: !reloadByBtn }"
-          @click="reloadByBtnFun()"
+          @click="reload()"
         >
           <i class="fa fa-refresh"></i>
         </span>
@@ -182,12 +180,10 @@
 
 <script>
 import ShowHtmlCode from "./show-html-code/main.vue";
-import ReloadByI18n from "./mixins/reload-by-i18n.js";
-import ReloadByBtn from "./mixins/reload-by-btn.js";
 import PackageAttributes from "./mixins/package-attributes.js";
 
 export default {
-  mixins: [ReloadByI18n, ReloadByBtn, PackageAttributes],
+  mixins: [PackageAttributes],
   props: {
     modelValue: {
       type: Array,
@@ -228,6 +224,18 @@ export default {
   },
   emits: ["update:modelValue"],
   watch: {
+    "$i18n.locale": {
+      handler() {
+        this.$nextTick(() => {
+          setTimeout(() => {
+            if (this.autoFocus == true) {
+              this.focusinApp();
+            }
+          }, 10);
+        });
+      },
+      deep: true,
+    },
     "appEvent.status": {
       handler(value) {
         this.$emit("update:modelValue", value);
@@ -247,8 +255,18 @@ export default {
     focusinApp() {
       this.$nextTick(() => {
         let app = this.$refs.VTagsMultiselect;
-        app.isActive = true;
+        app.focus();
         // document.removeEventListener("focusin", app.focusChanged);
+      });
+    },
+    reload() {
+      this.$nextTick(() => {
+        let app = this.$refs.VTagsMultiselect;
+        app.initialize();
+
+        if (this.autoFocus == true) {
+          this.focusinApp();
+        }
       });
     },
   },

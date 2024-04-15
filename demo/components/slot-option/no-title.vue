@@ -17,12 +17,12 @@ const isTitle = ref('false');
 
 watch(dropdownDisplayAll, async () => {
   await nextTick();
-  elGeneralDemo.value.reloadByBtnFun();
+  elGeneralDemo.value.reload();
 });
 
 watch(isTitle, async () => {
   await nextTick();
-  elGeneralDemo.value.reloadByBtnFun();
+  elGeneralDemo.value.reload();
 });
 </script>
 

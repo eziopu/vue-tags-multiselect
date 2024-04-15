@@ -5,9 +5,9 @@
 <span class="purple">import</span> <span class="atv">{</span> <span class="red">ref</span> <span class="atv">}</span> <span class="purple">from</span> <span class="green">'vue'</span>
 <span class="purple">const</span> elVTagsMultiselect = <span class="tag">ref</span>(<span class="atv">null</span>)
 
-elVTagsMultiselect.<FunctionUse simple />
+elVTagsMultiselect.value.<FunctionUse simple />
 // or
-elVTagsMultiselect.<FunctionUse />
+elVTagsMultiselect.value.<FunctionUse />
 &lt;/script&gt;
 
 &lt;template&gt;<br><!--
