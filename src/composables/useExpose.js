@@ -13,11 +13,20 @@ export default function useExpose(_props, context, dep) {
     init("expose blur()");
   }
 
+  const elInputValue = dep.elInputValue;
+  const clear = () => {
+    elInputValue.value = "";
+  }
+
   const tags = dep.tags;
+  const clearTags = () => {
+    tags.splice(0, tags.length);
+  }
+
   const rerenderCount = ref(0);
   const initialize = () => {
     init("expose initialize()");
-    tags.splice(0, tags.length);
+    clearTags();
     rerenderCount.value += 1;
   }
 
@@ -26,7 +35,7 @@ export default function useExpose(_props, context, dep) {
   });
 
   const pushTag = dep.pushTag;
-  context.expose({ pushTag, focus, blur, initialize })
+  context.expose({ initialize, focus, blur, clear, clearTags, pushTag})
 
   return {
     elAppKeyForRerender

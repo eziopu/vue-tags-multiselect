@@ -87,8 +87,23 @@
         "inputValue": "取得當前 input 的 value 值"
       },
       "exposes": {
+        "focus": {
+          "description": "使套件的輸入框取得焦點"
+        },
+        "blur": {
+          "description": "讓套件的輸入框失去焦點，並隱藏下拉式選單"
+        },
+        "clear": {
+          "description": "清空輸入框"
+        },
+        "clearTags": {
+          "description": "清空已選擇的tag"
+        },
+        "initialize": {
+          "description": "重新初始化套件"
+        },
         "pushTag": {
-          "description": "強制賦予一個tag給app",
+          "description": "強制賦予一個tag給套件",
           "sub-description": "會依照你輸入的參數與套件情況, 創建全新的tag或是與當前的tag結合",
           "no-key": {
             "description": "當參數(tag object)內容沒有key時 | 沒有輸入key",

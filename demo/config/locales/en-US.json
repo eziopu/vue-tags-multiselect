@@ -87,6 +87,21 @@
         "inputValue": "get the current input's value."
       },
       "exposes": {
+        "focus": {
+          "description": "focuses on the input box of the package"
+        },
+        "blur": {
+          "description": "causes the input box of the package to lose focus and hides the dropdown menu"
+        },
+        "clear": {
+          "description": "clears the input box"
+        },
+        "clearTags": {
+          "description": "clears the selected tags"
+        },
+        "initialize": {
+          "description": "reinitializes the package"
+        },
         "pushTag": {
           "description": "force assign a tag to the package",
           "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",
