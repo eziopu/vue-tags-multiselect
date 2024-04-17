@@ -65,7 +65,7 @@ const firstDemo = (input = {}) => {
   pushTag();
 }
 
-const i18nMain = "attributes.description.exposes.pushTag";
+const i18nMain = "attributes.exposes.pushTag";
 const i18n = `${i18nMain}.demo1`;
 const i18nNoKey = `${i18nMain}.no-key`;
 const i18nHasKey = `${i18nMain}.has-key`;

@@ -3,9 +3,9 @@
     <ToolTitle>Tag conjunction</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.slots.tag-conjunction") }}
+      {{ $t("attributes.slots.tag-conjunction") }}
       <div class="sub-depiction">
-        <p v-html="$t('attributes.description.slots.tag-conjunction__notice')"></p>
+        <p v-html="$t('attributes.slots.tag-conjunction__notice')"></p>
       </div>
     </div>
 

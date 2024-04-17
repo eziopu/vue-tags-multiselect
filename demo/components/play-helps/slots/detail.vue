@@ -13,7 +13,7 @@
     </div>
     <div class="row">
       <div><div>v-tag-dropdown</div></div>
-      <div v-html="$t('attributes.description.slots.v-tag-dropdown')"></div>
+      <div v-html="$t('attributes.slots.v-tag-dropdown')"></div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
         <span>-</span>
@@ -21,7 +21,7 @@
     </div>
     <div class="row">
       <div><div>v-tag-option</div></div>
-      <div v-html="$t('attributes.description.slots.v-tag-option')"></div>
+      <div v-html="$t('attributes.slots.v-tag-option')"></div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
         <span>-</span>
@@ -39,9 +39,9 @@
         </div>
       </div>
       <div>
-        <span> {{ $t("attributes.description.slots.loading") }} *</span>
+        <span> {{ $t("attributes.slots.loading") }} *</span>
         <span
-          v-html="$t('attributes.description.slots.loading__notice')"
+          v-html="$t('attributes.slots.loading__notice')"
         ></span>
       </div>
       <div style="display: inline-flex">
@@ -68,10 +68,10 @@
       </div>
       <div>
         <span
-          v-html="$t('attributes.description.slots.tag-conjunction')"
+          v-html="$t('attributes.slots.tag-conjunction')"
         ></span>
         *<span
-          v-html="$t('attributes.description.slots.tag-conjunction__notice')"
+          v-html="$t('attributes.slots.tag-conjunction__notice')"
         ></span>
       </div>
       <div>
@@ -94,9 +94,9 @@
         </div>
       </div>
       <div>
-        <span v-html="$t('attributes.description.slots.option-undo')"></span>
+        <span v-html="$t('attributes.slots.option-undo')"></span>
         *<span
-          v-html="$t('attributes.description.slots.option-undo__notice')"
+          v-html="$t('attributes.slots.option-undo__notice')"
         ></span>
       </div>
       <div>
@@ -118,11 +118,11 @@
       </div>
       <div>
         <span
-          v-html="$t('attributes.description.slots.option-OR-conjunction')"
+          v-html="$t('attributes.slots.option-OR-conjunction')"
         ></span>
         *<span
           v-html="
-            $t('attributes.description.slots.option-OR-conjunction__notice')
+            $t('attributes.slots.option-OR-conjunction__notice')
           "
         ></span>
       </div>

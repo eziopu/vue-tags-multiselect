@@ -118,7 +118,7 @@ export default {
   name: "app-placeholders",
   data() {
     return {
-      i18nAppPath: "attributes.description.app",
+      i18nAppPath: "attributes.app",
       attributes: {
         loading: false,
         create: false,

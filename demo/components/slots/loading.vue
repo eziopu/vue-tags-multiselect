@@ -3,7 +3,7 @@
     <ToolTitle>Loading</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.slots.loading") }}
+      {{ $t("attributes.slots.loading") }}
     </div>
 
     <div class="attributes flex-between input-select">

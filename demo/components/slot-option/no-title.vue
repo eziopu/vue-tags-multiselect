@@ -8,7 +8,7 @@ export default {
 import { ref, watch, nextTick } from "vue";
 import ALineCode from "./tools/a-line-code.vue";
 
-const i18n = "attributes.description.option";
+const i18n = "attributes.option";
 
 const elGeneralDemo = ref(null);
 const demoStatus = ref([]);

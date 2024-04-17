@@ -3,17 +3,17 @@
     <ToolTitle>Delete icon</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.deleteIcon") }}
-      *{{ $t("attributes.description.app.deleteIcon__notice") }}
+      {{ $t("attributes.app.deleteIcon") }}
+      *{{ $t("attributes.app.deleteIcon__notice") }}
       <div class="sub-depiction">
         <p>
-          {{ $t("attributes.description.app.deleteIcon__detail.1") }}
+          {{ $t("attributes.app.deleteIcon__detail.1") }}
         </p>
         <p>
-          {{ $t("attributes.description.app.deleteIcon__detail.2") }}
+          {{ $t("attributes.app.deleteIcon__detail.2") }}
         </p>
         <p>
-          {{ $t("attributes.description.app.deleteIcon__detail.3") }}
+          {{ $t("attributes.app.deleteIcon__detail.3") }}
         </p>
       </div>
     </div>

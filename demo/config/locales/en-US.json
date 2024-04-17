@@ -13,162 +13,160 @@
     }
   },
   "attributes": {
-    "description": {
-      "app": {
-        "v-model": "binding value",
-        "disabled": "whether input is disabled",
-        "loading": "whether input is loading",
-        "dropdownLoading": "whether dropdown is loading",
-        "search": "option value search by app input value",
-        "create": "create tag with no title, value is by input",
-        "create__notice": "then create and search is false, The input will be unable to accept text",
-        "merge": "when tags same title share display one",
-        "keyboard": "enable keyboard operation",
-        "transition": "enable css animation",
-        "tagPosition": "the placement of the tag. By default, it's positioned to the left of the input. It can be changed to be placed above or below the input",
-        "tagPosition__notice": "whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
-        "conjunction": "select mode",
-        "conjunction__detail": {
-          "1": "- : after the second selected, 'OR' mode button will appear at the top",
-          "2": "OR: always show options that can be selected",
-          "3": "AND: selected tag don't show (filter by tag key)"
+    "app": {
+      "v-model": "binding value",
+      "disabled": "whether input is disabled",
+      "loading": "whether input is loading",
+      "dropdownLoading": "whether dropdown is loading",
+      "search": "option value search by app input value",
+      "create": "create tag with no title, value is by input",
+      "create__notice": "then create and search is false, The input will be unable to accept text",
+      "merge": "when tags same title share display one",
+      "keyboard": "enable keyboard operation",
+      "transition": "enable css animation",
+      "tagPosition": "the placement of the tag. By default, it's positioned to the left of the input. It can be changed to be placed above or below the input",
+      "tagPosition__notice": "whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
+      "conjunction": "select mode",
+      "conjunction__detail": {
+        "1": "- : after the second selected, 'OR' mode button will appear at the top",
+        "2": "OR: always show options that can be selected",
+        "3": "AND: selected tag don't show (filter by tag key)"
+      },
+      "deleteIcon": "tag delete display logic and where",
+      "deleteIcon__notice": "when editing mode, keyboard delete always work",
+      "deleteIcon__detail": {
+        "1": "always: whether show",
+        "2": "edit: only edit this tag show",
+        "3": "none: whether do not show *only able to use the keyboard's delete key"
+      },
+      "placeholder": "input placeholder, please choose one of the following to use",
+      "placeholder__detail": {
+        "placeholder": "A string type that is like the placeholder of an input box",
+        "placeholders": "An object type that stores various placeholder for different contexts",
+        "remark": "The weight of placeholder will be greater than placeholders"
+      },
+      "placeholders__detail": "individual scenario input placeholder",
+      "placeholders": {
+        "initial": "initial default text, only displayed when there is no tag.",
+        "loading": "The text being loaded.",
+        "loading__detail": {
+          "1": "only displayed when the parameter <code class='tag'>loading</code> is true."
         },
-        "deleteIcon": "tag delete display logic and where",
-        "deleteIcon__notice": "when editing mode, keyboard delete always work",
-        "deleteIcon__detail": {
-          "1": "always: whether show",
-          "2": "edit: only edit this tag show",
-          "3": "none: whether do not show *only able to use the keyboard's delete key"
+        "selectDown": "text displayed after all options are completed.",
+        "selectDown__detail": {
+          "1": "only displayed when the parameter <code class='tag'>create</code> is true."
         },
-        "placeholder": "input placeholder, please choose one of the following to use",
-        "placeholder__detail": {
-          "placeholder": "A string type that is like the placeholder of an input box",
-          "placeholders": "An object type that stores various placeholder for different contexts",
-          "remark": "The weight of placeholder will be greater than placeholders"
+        "finish": "text displayed after all options are completed.",
+        "finish__detail": {
+          "1": "only displayed when the parameter <code class='tag'>create</code> is false."
         },
-        "placeholders__detail": "individual scenario input placeholder",
-        "placeholders": {
-          "initial": "initial default text, only displayed when there is no tag.",
-          "loading": "The text being loaded.",
-          "loading__detail": {
-            "1": "only displayed when the parameter <code class='tag'>loading</code> is true."
-          },
-          "selectDown": "text displayed after all options are completed.",
-          "selectDown__detail": {
-            "1": "only displayed when the parameter <code class='tag'>create</code> is true."
-          },
-          "finish": "text displayed after all options are completed.",
-          "finish__detail": {
-            "1": "only displayed when the parameter <code class='tag'>create</code> is false."
-          },
-          "tagValueRepeat": "displayed when updating a tag detects a duplicate value.",
-          "tagValueRepeat__detail": {
-            "1": "Only flashes twice and disappears after focusing on the tag element."
-          }
+        "tagValueRepeat": "displayed when updating a tag detects a duplicate value.",
+        "tagValueRepeat__detail": {
+          "1": "Only flashes twice and disappears after focusing on the tag element."
         }
-      },
-      "slots": {
-        "v-tag-dropdown": "content of the multiselect, usually a <code>&lt;v-tag-dropdown&gt;</code> element",
-        "v-tag-option": "content of the v-tag-dropdown menu, usually a <code>&lt;v-tag-option&gt;</code> element",
-        "loading": "loading template",
-        "loading__notice": "only attribute <code>loading</code> is true will work",
-        "dropdowns-loading": "dropdown loading template",
-        "dropdowns-loading__notice": "only the loading template for the dropdown section.",
-        "tag-conjunction": "tags value connection symbol",
-        "tag-conjunction__notice": "only attribute <code class='tag'>merge</code> is true will work",
-        "option-undo": "option undo template in dropdown",
-        "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>v-tag-option</code> display",
-        "option-OR-conjunction": "option OR conjunction template in dropdown",
-        "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
-      },
-      "events": {
-        "status": "get current operating mode",
-        "selectingTag": "get current selected tag",
-        "inputValue": "get the current input's value."
-      },
-      "exposes": {
-        "focus": {
-          "description": "focuses on the input box of the package"
-        },
-        "blur": {
-          "description": "causes the input box of the package to lose focus and hides the dropdown menu"
-        },
-        "clear": {
-          "description": "clears the input box"
-        },
-        "clearTags": {
-          "description": "clears the selected tags"
-        },
-        "initialize": {
-          "description": "reinitializes the package"
-        },
-        "pushTag": {
-          "description": "force assign a tag to the package",
-          "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",
-          "no-key": {
-            "description": "when the content of the parameter (tag object) has no key | when no key is input",
-            "simple-description": "when there is no key",
-            "1": "if the current state is in selecting mode, it will match the current <code class='tag'>&lt;v-tag-dropdown&gt;</code> | in selecting mode",
-            "2": "in other cases, it will directly generate the tag | Not in selecting mode"
-          },
-          "has-key": {
-            "description": "when the content of the parameter (tag object) has a key | when a key is input",
-            "simple-description": "When there is a key",
-            "1": "if there is a matching key for the same <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will automatically match and complete that tag, regardless of whether it is in selecting mode | When there is the same key",
-            "2": "if there is no matching key for <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will directly generate the tag | When there is no same key"
-          },
-          "demo0": {
-            "description": "When adding components in <code class='tag'>&lt;v-tag-option&gt;</code>, this method must be used",
-            "notice": "to input external values, please do not fill in the value of <code class='tag'>&lt;v-tag-option&gt;</code>",
-            "comment": "the display-all in the <code class='tag'>&lt;v-tag-dropdown&gt;</code> in the example is just for convenience, turning it off does not affect the operation"
-          },
-          "demo1": {
-            "title": "arbitrary operation",
-            "description": "the submission button will delay sending for",
-            "description-1": "seconds",
-            "sub-description": "after clicking the button, please proceed immediately",
-            "first": "quick apply scenario"
-          },
-          "parameter": {
-            "key": "tag key",
-            "value": "tag value",
-            "valueElm": "html element for the value",
-            "titleElm": "html element for the title",
-            "classList": "custom class name", 
-            "custom": "after completing the tag, is it possible to freely modify the value of the tag",
-            "displayValue": "after completing the tag, is it possible to change the displayed value of the tag"
-          }
-        }
-      },
-      "dropdown": {
-        "value": "tag key",
-        "class": "HTML element class, will be applied to the tag",
-        "display-all": "show all options in this dropdown",
-        "hidden": "don't show this dropdown",
-        "custom": "this tag value can use intput value",
-        "disabled": "whether options are disabled in this dropdown",
-        "divided": "whether a top divider is displayed"
-      },
-      "option": {
-        "value": "tag value",
-        "value__notice": "optional,",
-        "value__notices": {
-          "0": "filled: Assign dropdown values upon click",
-          "1": "not filled: No click event assigned and no dropdown values assigned",
-          "2": "if dropdown values need to be assigned without being filled, use <code class='tag'>pushTag</code> method"
-        },
-        "title": "starting point of dropdown, other options will not be displayed",
-        "title__notices": {
-          "1": "unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
-          "2": "there can be no title option inside the dropdown"
-        },
-        "no_title": "the dropdown without a title option will always be displayed regardless of whether the parameter <code class='tag'>display-all</code> is set to true or not.",
-        "display-value": "tag select finished value don't show html template",
-        "disabled": "whether to disable",
-        "divided": "whether a divider is displayed",
-        "selected": "default selected tag",
-        "selected__notice": "still can be deleted"
       }
+    },
+    "slots": {
+      "v-tag-dropdown": "content of the multiselect, usually a <code>&lt;v-tag-dropdown&gt;</code> element",
+      "v-tag-option": "content of the v-tag-dropdown menu, usually a <code>&lt;v-tag-option&gt;</code> element",
+      "loading": "loading template",
+      "loading__notice": "only attribute <code>loading</code> is true will work",
+      "dropdowns-loading": "dropdown loading template",
+      "dropdowns-loading__notice": "only the loading template for the dropdown section.",
+      "tag-conjunction": "tags value connection symbol",
+      "tag-conjunction__notice": "only attribute <code class='tag'>merge</code> is true will work",
+      "option-undo": "option undo template in dropdown",
+      "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>v-tag-option</code> display",
+      "option-OR-conjunction": "option OR conjunction template in dropdown",
+      "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
+    },
+    "events": {
+      "status": "get current operating mode",
+      "selectingTag": "get current selected tag",
+      "inputValue": "get the current input's value."
+    },
+    "exposes": {
+      "focus": {
+        "description": "focuses on the input box of the package"
+      },
+      "blur": {
+        "description": "causes the input box of the package to lose focus and hides the dropdown menu"
+      },
+      "clear": {
+        "description": "clears the input box"
+      },
+      "clearTags": {
+        "description": "clears the selected tags"
+      },
+      "initialize": {
+        "description": "reinitializes the package"
+      },
+      "pushTag": {
+        "description": "force assign a tag to the package",
+        "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",
+        "no-key": {
+          "description": "when the content of the parameter (tag object) has no key | when no key is input",
+          "simple-description": "when there is no key",
+          "1": "if the current state is in selecting mode, it will match the current <code class='tag'>&lt;v-tag-dropdown&gt;</code> | in selecting mode",
+          "2": "in other cases, it will directly generate the tag | Not in selecting mode"
+        },
+        "has-key": {
+          "description": "when the content of the parameter (tag object) has a key | when a key is input",
+          "simple-description": "When there is a key",
+          "1": "if there is a matching key for the same <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will automatically match and complete that tag, regardless of whether it is in selecting mode | When there is the same key",
+          "2": "if there is no matching key for <code class='tag'>&lt;v-tag-dropdown&gt;</code>, it will directly generate the tag | When there is no same key"
+        },
+        "demo0": {
+          "description": "When adding components in <code class='tag'>&lt;v-tag-option&gt;</code>, this method must be used",
+          "notice": "to input external values, please do not fill in the value of <code class='tag'>&lt;v-tag-option&gt;</code>",
+          "comment": "the display-all in the <code class='tag'>&lt;v-tag-dropdown&gt;</code> in the example is just for convenience, turning it off does not affect the operation"
+        },
+        "demo1": {
+          "title": "arbitrary operation",
+          "description": "the submission button will delay sending for",
+          "description-1": "seconds",
+          "sub-description": "after clicking the button, please proceed immediately",
+          "first": "quick apply scenario"
+        },
+        "parameter": {
+          "key": "tag key",
+          "value": "tag value",
+          "valueElm": "html element for the value",
+          "titleElm": "html element for the title",
+          "classList": "custom class name", 
+          "custom": "after completing the tag, is it possible to freely modify the value of the tag",
+          "displayValue": "after completing the tag, is it possible to change the displayed value of the tag"
+        }
+      }
+    },
+    "dropdown": {
+      "value": "tag key",
+      "class": "HTML element class, will be applied to the tag",
+      "display-all": "show all options in this dropdown",
+      "hidden": "don't show this dropdown",
+      "custom": "this tag value can use intput value",
+      "disabled": "whether options are disabled in this dropdown",
+      "divided": "whether a top divider is displayed"
+    },
+    "option": {
+      "value": "tag value",
+      "value__notice": "optional,",
+      "value__notices": {
+        "0": "filled: Assign dropdown values upon click",
+        "1": "not filled: No click event assigned and no dropdown values assigned",
+        "2": "if dropdown values need to be assigned without being filled, use <code class='tag'>pushTag</code> method"
+      },
+      "title": "starting point of dropdown, other options will not be displayed",
+      "title__notices": {
+        "1": "unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
+        "2": "there can be no title option inside the dropdown"
+      },
+      "no_title": "the dropdown without a title option will always be displayed regardless of whether the parameter <code class='tag'>display-all</code> is set to true or not.",
+      "display-value": "tag select finished value don't show html template",
+      "disabled": "whether to disable",
+      "divided": "whether a divider is displayed",
+      "selected": "default selected tag",
+      "selected__notice": "still can be deleted"
     }
   },
   "ui":{

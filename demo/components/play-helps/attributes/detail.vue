@@ -20,7 +20,7 @@
 
     <div class="row">
       <div><div>model-value / v-model</div></div>
-      <div>{{ $t("attributes.description.app.v-model") }}</div>
+      <div>{{ $t("attributes.app.v-model") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>object</span>
@@ -39,7 +39,7 @@
 
     <div class="row">
       <LabelAndControls value="disabled" />
-      <div>{{ $t("attributes.description.app.disabled") }}</div>
+      <div>{{ $t("attributes.app.disabled") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -58,7 +58,7 @@
 
     <div class="row">
       <LabelAndControls value="search" />
-      <div>{{ $t("attributes.description.app.search") }}</div>
+      <div>{{ $t("attributes.app.search") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -77,7 +77,7 @@
 
     <div class="row">
       <LabelAndControls value="loading" />
-      <div>{{ $t("attributes.description.app.loading") }}</div>
+      <div>{{ $t("attributes.app.loading") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -97,7 +97,7 @@
     <!-- dropdownLoading -->
     <div class="row">
       <LabelAndControls value="dropdownLoading" />
-      <div>{{ $t("attributes.description.app.dropdownLoading") }}</div>
+      <div>{{ $t("attributes.app.dropdownLoading") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -117,7 +117,7 @@
     <!-- create -->
     <div class="row">
       <LabelAndControls value="create" />
-      <div>{{ $t("attributes.description.app.create") }}</div>
+      <div>{{ $t("attributes.app.create") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -145,19 +145,19 @@
           class="pointer"
           :class="{ active: app.displays.details.deleteIcon }"
         >
-          {{ $t("attributes.description.app.deleteIcon") }}
+          {{ $t("attributes.app.deleteIcon") }}
           <span class="arrow"></span>
           <br />
-          *{{ $t("attributes.description.app.deleteIcon__notice") }}
+          *{{ $t("attributes.app.deleteIcon__notice") }}
         </span>
         <span v-show="app.displays.details.deleteIcon" class="detail">
           <br />
           <hr style="margin: 2px" />
-          {{ $t("attributes.description.app.deleteIcon__detail.1") }}
+          {{ $t("attributes.app.deleteIcon__detail.1") }}
           <br />
-          {{ $t("attributes.description.app.deleteIcon__detail.2") }}
+          {{ $t("attributes.app.deleteIcon__detail.2") }}
           <br />
-          {{ $t("attributes.description.app.deleteIcon__detail.3") }}
+          {{ $t("attributes.app.deleteIcon__detail.3") }}
         </span>
       </div>
       <div>
@@ -179,7 +179,7 @@
     <!-- merge -->
     <div class="row">
       <LabelAndControls value="merge" :disabled="app.conjunction == 'AND'" />
-      <div>{{ $t("attributes.description.app.merge") }}</div>
+      <div>{{ $t("attributes.app.merge") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -207,17 +207,17 @@
           class="pointer"
           :class="{ active: app.displays.details.conjunction }"
         >
-          {{ $t("attributes.description.app.conjunction") }}
+          {{ $t("attributes.app.conjunction") }}
           <span class="arrow"></span>
         </span>
         <span v-show="app.displays.details.conjunction" class="detail">
           <br />
           <hr style="margin: 2px" />
-          {{ $t("attributes.description.app.conjunction__detail.1") }}
+          {{ $t("attributes.app.conjunction__detail.1") }}
           <br />
-          {{ $t("attributes.description.app.conjunction__detail.2") }}
+          {{ $t("attributes.app.conjunction__detail.2") }}
           <br />
-          {{ $t("attributes.description.app.conjunction__detail.3") }}
+          {{ $t("attributes.app.conjunction__detail.3") }}
         </span>
       </div>
       <div>
@@ -239,7 +239,7 @@
     <!-- transition -->
     <div class="row">
       <LabelAndControls value="transition" />
-      <div>{{ $t("attributes.description.app.transition") }}</div>
+      <div>{{ $t("attributes.app.transition") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -259,7 +259,7 @@
     <!-- keyboard -->
     <div class="row">
       <LabelAndControls value="keyboard" />
-      <div>{{ $t("attributes.description.app.keyboard") }}</div>
+      <div>{{ $t("attributes.app.keyboard") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>boolean</span>
@@ -283,7 +283,7 @@
           <input type="text" class="form-control" v-model="app.placeholder" />
         </div>
       </div>
-      <div>{{ $t("attributes.description.app.placeholder") }}</div>
+      <div>{{ $t("attributes.app.placeholder") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>string</span>
@@ -317,7 +317,7 @@
           />
         </div>
       </div>
-      <div>{{ $t("attributes.description.app.placeholders.initial") }}</div>
+      <div>{{ $t("attributes.app.placeholders.initial") }}</div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>string</span>
@@ -346,7 +346,7 @@
           />
         </div>
       </div>
-      <div v-html="$t('attributes.description.app.placeholders.loading')"></div>
+      <div v-html="$t('attributes.app.placeholders.loading')"></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>string</span>
@@ -380,7 +380,7 @@
         </div>
       </div>
       <div
-        v-html="$t('attributes.description.app.placeholders.tagValueRepeat')"
+        v-html="$t('attributes.app.placeholders.tagValueRepeat')"
       ></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -415,7 +415,7 @@
         </div>
       </div>
       <div
-        v-html="$t('attributes.description.app.placeholders.selectDown')"
+        v-html="$t('attributes.app.placeholders.selectDown')"
       ></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -450,7 +450,7 @@
           />
         </div>
       </div>
-      <div v-html="$t('attributes.description.app.placeholders.finish')"></div>
+      <div v-html="$t('attributes.app.placeholders.finish')"></div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
         <span>string</span>

@@ -3,7 +3,7 @@
     <ToolTitle>Disabled</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.disabled") }}
+      {{ $t("attributes.app.disabled") }}
     </div>
 
     <div class="attributes flex-between">

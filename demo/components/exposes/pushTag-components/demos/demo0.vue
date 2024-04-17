@@ -48,7 +48,7 @@ const pushHeightValue = async () => {
   }
 }
 
-const i18n = "attributes.description.exposes.pushTag.demo0";
+const i18n = "attributes.exposes.pushTag.demo0";
 const dropdownDisplayAll = ref(true);
 </script>
 

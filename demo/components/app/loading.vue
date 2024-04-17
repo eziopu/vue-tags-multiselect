@@ -3,7 +3,7 @@
     <ToolTitle>Loading</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.loading") }}
+      {{ $t("attributes.app.loading") }}
     </div>
 
     <div class="attributes">

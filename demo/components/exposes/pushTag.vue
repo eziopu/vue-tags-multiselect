@@ -9,7 +9,7 @@ import ShowPushTagFunctionCode from "./pushTag-components/show-codes/main.vue";
 import Parameter from "./pushTag-components/parameter.vue";
 import Demo0 from "./pushTag-components/demos/demo0.vue";
 import Demo1 from "./pushTag-components/demos/demo1.vue";
-const i18n = "attributes.description.exposes.pushTag";
+const i18n = "attributes.exposes.pushTag";
 const i18nNoKey = `${i18n}.no-key`;
 const i18nHasKey = `${i18n}.has-key`;
 </script>

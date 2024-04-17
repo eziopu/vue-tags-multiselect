@@ -42,7 +42,7 @@ const submit = (input = "") => {
   app[input]();
 }
 
-const i18n = "attributes.description.exposes";
+const i18n = "attributes.exposes";
 </script>
 
 <template>

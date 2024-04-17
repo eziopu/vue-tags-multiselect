@@ -3,17 +3,17 @@
     <ToolTitle>Conjunction</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.conjunction") }},
+      {{ $t("attributes.app.conjunction") }},
       {{ $t("ui.general.defaultIs__key", { key: "null" }) }}
       <div class="sub-depiction">
         <p>
-          {{ $t("attributes.description.app.conjunction__detail.1") }}
+          {{ $t("attributes.app.conjunction__detail.1") }}
         </p>
         <p>
-          {{ $t("attributes.description.app.conjunction__detail.2") }}
+          {{ $t("attributes.app.conjunction__detail.2") }}
         </p>
         <p>
-          {{ $t("attributes.description.app.conjunction__detail.3") }}
+          {{ $t("attributes.app.conjunction__detail.3") }}
         </p>
       </div>
     </div>
