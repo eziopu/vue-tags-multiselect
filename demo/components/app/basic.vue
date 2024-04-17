@@ -2,7 +2,7 @@
   <div id="basic" class="demo">
     <ToolTitle>Basic</ToolTitle>
     <div class="depiction">
-      {{ $t("ui.page.description.basic") }}
+      {{ $t("ui.page.basic") }}
     </div>
 
     <div class="demo-component relative">

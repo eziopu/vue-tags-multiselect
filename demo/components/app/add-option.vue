@@ -3,12 +3,12 @@
     <ToolTitle>Add option</ToolTitle>
 
     <div class="depiction">
-      <span v-html="$t('ui.page.description.addOption')"></span>
+      <span v-html="$t('ui.page.addOption')"></span>
 
       <div class="sub-depiction">
-        <p v-html="$t('ui.page.description.addOptionSub.1')"></p>
-        <p v-html="$t('ui.page.description.addOptionSub.2')"></p>
-        <p v-html="$t('ui.page.description.addOptionSub.3')"></p>
+        <p v-html="$t('ui.page.addOptionSub.1')"></p>
+        <p v-html="$t('ui.page.addOptionSub.2')"></p>
+        <p v-html="$t('ui.page.addOptionSub.3')"></p>
         <br />
         <p>
           <a href="#dropdown-slots">

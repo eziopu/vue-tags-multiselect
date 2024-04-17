@@ -189,21 +189,19 @@
       "NotFind": "Not find any"
     },
     "page": {
-      "description": {
-        "title": "demo, This page use",
-        "keyboard": "Keyboard",
-        "keyboardSub": "when the package gains focus, the following keyboard keys can be used",
-        "basic": "no slot components, no parameter, just a tag bar",
-        "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
-        "addOptionSub": {
-          "1": "v-tag-dropdown: is tag key name",
-          "2": "v-tag-option: is tag key value, it's inside the v-tag-dropdown",
-          "3": "if one <code class='tag'>&lt;v-tag-option&gt;</code> is title, will hide other option to next step show"
-        },
-        "customStyle": "slot <code class='tag'>v-tag-dropdown</code> element className not only use in dropdown, but also use by selected tag.",
-        "customStyleSub": {
-          "1": "if you want to slot <code class='tag'>v-tag-option</code> className use by selected tag's value, can create your own elements in it"
-        }
+      "title": "demo, This page use",
+      "keyboard": "Keyboard",
+      "keyboardSub": "when the package gains focus, the following keyboard keys can be used",
+      "basic": "no slot components, no parameter, just a tag bar",
+      "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
+      "addOptionSub": {
+        "1": "v-tag-dropdown: is tag key name",
+        "2": "v-tag-option: is tag key value, it's inside the v-tag-dropdown",
+        "3": "if one <code class='tag'>&lt;v-tag-option&gt;</code> is title, will hide other option to next step show"
+      },
+      "customStyle": "slot <code class='tag'>v-tag-dropdown</code> element className not only use in dropdown, but also use by selected tag.",
+      "customStyleSub": {
+        "1": "if you want to slot <code class='tag'>v-tag-option</code> className use by selected tag's value, can create your own elements in it"
       },
       "sentence": {
         "Go_to_detail_option_attributes_description": "Go to detail option attributes description",

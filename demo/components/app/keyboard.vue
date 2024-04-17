@@ -1,9 +1,9 @@
 <template>
   <div id="keyboard" class="demo">
-    <ToolTitle>{{ $t("ui.page.description.keyboard") }}</ToolTitle>
+    <ToolTitle>{{ $t("ui.page.keyboard") }}</ToolTitle>
     
     <div class="depiction">
-      {{ $t("ui.page.description.keyboardSub") }}
+      {{ $t("ui.page.keyboardSub") }}
     </div>
     <KeyboardTemplate />
     

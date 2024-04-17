@@ -189,21 +189,19 @@
       "NotFind": "無符合資料"
     },
     "page": {
-      "description": {
-        "title": "此demo頁面使用了",
-        "keyboard": "按鍵配置",
-        "keyboardSub": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
-        "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
-        "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
-        "addOptionSub": {
-          "1": "v-tag-dropdown: 標籤的key值",
-          "2": "v-tag-option: 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
-          "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
-        },
-        "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
-        "customStyleSub": {
-          "1": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可"
-        }
+      "title": "此demo頁面使用了",
+      "keyboard": "按鍵配置",
+      "keyboardSub": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
+      "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
+      "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
+      "addOptionSub": {
+        "1": "v-tag-dropdown: 標籤的key值",
+        "2": "v-tag-option: 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
+        "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
+      },
+      "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
+      "customStyleSub": {
+        "1": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可"
       },
       "sentence": {
         "Go_to_detail_option_attributes_description": "前往 option 參數說明區",
