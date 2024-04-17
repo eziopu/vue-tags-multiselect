@@ -14,16 +14,16 @@
       <h3>
         {{ $t("ui.general.Description") }}
       </h3>
-      <p>{{ $t("description.main") }}</p>
+      <p>{{ $t("package.main") }}</p>
       <ul>
         <li>
-          <p>{{ $t("description.sub.1") }}</p>
+          <p>{{ $t("package.description.1") }}</p>
         </li>
         <li>
-          <p>{{ $t("description.sub.2") }}</p>
+          <p>{{ $t("package.description.2") }}</p>
         </li>
         <li>
-          <p>{{ $t("description.sub.3") }}</p>
+          <p>{{ $t("package.description.3") }}</p>
         </li>
       </ul>
     </div>
@@ -37,7 +37,7 @@
       Setup
     </h3>
     <h4>
-      <li> {{ $t("description.setup.global") }}</li>
+      <li> {{ $t("package.setup.global") }}</li>
     </h4>
 
     <pre><code class="prettyprint lang-js"><!--
@@ -48,7 +48,7 @@
 
     or
     <h4>
-      <li>  {{ $t("description.setup.component") }} </li>
+      <li>  {{ $t("package.setup.component") }} </li>
     </h4>
     <pre><code class="prettyprint lang-js"><!--
       -->import 'vue-tags-multiselect/dist/style.css';

@@ -1,8 +1,8 @@
 {
   "_comment": "zh-Hant Chinese (T)",
-  "description": {
+  "package": {
     "main": "這是個複雜的多選器",
-    "sub": {
+    "description": {
       "1": "此套件由兩層結構組成，類似dropdown包著dropdown",
       "2": "會複製option的html內容作為tag的顯示依據",
       "3": "最後會輸出一個包含key與values的object"
