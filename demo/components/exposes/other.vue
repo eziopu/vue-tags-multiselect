@@ -57,7 +57,7 @@ const i18n = "attributes.exposes";
           <h3>{{ keyName }}()</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t(`${i18n}.${keyName}.description`) }}
+              {{ $t(`${i18n}.${keyName}`) }}
             </div>
 
             <button type="button" 
