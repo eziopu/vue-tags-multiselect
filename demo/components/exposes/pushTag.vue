@@ -16,7 +16,7 @@ const i18nHasKey = `${i18n}.has-key`;
 
 <template>
   <div id="exposes-pushTag" class="demo">
-    <ToolTitle>pushTag</ToolTitle>
+    <ToolTitle>pushTag({ ... })</ToolTitle>
 
     <div class="depiction">
       <p>

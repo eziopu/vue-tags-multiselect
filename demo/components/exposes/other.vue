@@ -54,7 +54,7 @@ const i18n = "attributes.description.exposes";
           v-for="keyName in keys"
           :key="keyName"
         >
-          <h3>{{ keyName.charAt(0).toUpperCase() + keyName.slice(1) }}</h3>
+          <h3>{{ keyName }}()</h3>
           <div class="flex-between">
             <div class="depiction">
               {{ $t(`${i18n}.${keyName}.description`) }}
