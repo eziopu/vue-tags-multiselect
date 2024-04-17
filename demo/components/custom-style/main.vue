@@ -4,7 +4,7 @@
       <p v-html="$t('ui.page.customStyle')"></p>
 
       <div class="sub-depiction">
-        <p v-html="$t('ui.page.customStyleSub.1')"></p>
+        <p v-html="$t('ui.page.customStyle__details')"></p>
       </div>
     </div>
     <FocusDemoApp></FocusDemoApp>

@@ -7,13 +7,13 @@
       {{ $t("ui.general.defaultIs__key", { key: "null" }) }}
       <div class="sub-depiction">
         <p>
-          {{ $t("attributes.app.conjunction__detail.1") }}
+          {{ $t("attributes.app.conjunction__parameters.null") }}
         </p>
         <p>
-          {{ $t("attributes.app.conjunction__detail.2") }}
+          {{ $t("attributes.app.conjunction__parameters.OR") }}
         </p>
         <p>
-          {{ $t("attributes.app.conjunction__detail.3") }}
+          {{ $t("attributes.app.conjunction__parameters.AND") }}
         </p>
       </div>
     </div>

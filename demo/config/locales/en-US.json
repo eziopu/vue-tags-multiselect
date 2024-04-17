@@ -27,20 +27,20 @@
       "tagPosition": "the placement of the tag. By default, it's positioned to the left of the input. It can be changed to be placed above or below the input",
       "tagPosition__notice": "whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
       "conjunction": "select mode",
-      "conjunction__detail": {
-        "1": "- : after the second selected, 'OR' mode button will appear at the top",
-        "2": "OR: always show options that can be selected",
-        "3": "AND: selected tag don't show (filter by tag key)"
+      "conjunction__parameters": {
+        "null": "- : after the second selected, 'OR' mode button will appear at the top",
+        "OR": "OR: always show options that can be selected",
+        "AND": "AND: selected tag don't show (filter by tag key)"
       },
       "deleteIcon": "tag delete display logic and where",
       "deleteIcon__notice": "when editing mode, keyboard delete always work",
-      "deleteIcon__detail": {
-        "1": "always: whether show",
-        "2": "edit: only edit this tag show",
-        "3": "none: whether do not show *only able to use the keyboard's delete key"
+      "deleteIcon__parameters": {
+        "always": "always: whether show",
+        "edit": "edit: only edit this tag show",
+        "none": "none: whether do not show *only able to use the keyboard's delete key"
       },
       "placeholder": "input placeholder, please choose one of the following to use",
-      "placeholder__detail": {
+      "placeholder__details": {
         "placeholder": "A string type that is like the placeholder of an input box",
         "placeholders": "An object type that stores various placeholder for different contexts",
         "remark": "The weight of placeholder will be greater than placeholders"
@@ -49,21 +49,13 @@
       "placeholders": {
         "initial": "initial default text, only displayed when there is no tag.",
         "loading": "The text being loaded.",
-        "loading__detail": {
-          "1": "only displayed when the parameter <code class='tag'>loading</code> is true."
-        },
+        "loading__detail": "only displayed when the parameter <code class='tag'>loading</code> is true.",
         "selectDown": "text displayed after all options are completed.",
-        "selectDown__detail": {
-          "1": "only displayed when the parameter <code class='tag'>create</code> is true."
-        },
+        "selectDown__detail": "only displayed when the parameter <code class='tag'>create</code> is true.",
         "finish": "text displayed after all options are completed.",
-        "finish__detail": {
-          "1": "only displayed when the parameter <code class='tag'>create</code> is false."
-        },
+        "finish__detail": "only displayed when the parameter <code class='tag'>create</code> is false.",
         "tagValueRepeat": "displayed when updating a tag detects a duplicate value.",
-        "tagValueRepeat__detail": {
-          "1": "Only flashes twice and disappears after focusing on the tag element."
-        }
+        "tagValueRepeat__detail": "Only flashes twice and disappears after focusing on the tag element."
       }
     },
     "slots": {
@@ -92,7 +84,7 @@
       "clearTags": "clears the selected tags",
       "initialize": "reinitializes the package",
       "pushTag": "force assign a tag to the package",
-      "pushTag__detail": {
+      "pushTag__details": {
         "sub-description": "will create a brand new tag or combine with the current tag depending on the parameters you input and the package situation",
         "no-key": {
           "description": "when the content of the parameter (tag object) has no key | when no key is input",
@@ -191,18 +183,16 @@
     "page": {
       "title": "demo, This page use",
       "keyboard": "Keyboard",
-      "keyboardSub": "when the package gains focus, the following keyboard keys can be used",
+      "keyboard__detail": "when the package gains focus, the following keyboard keys can be used",
       "basic": "no slot components, no parameter, just a tag bar",
       "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
-      "addOptionSub": {
+      "addOption__details": {
         "1": "v-tag-dropdown: is tag key name",
         "2": "v-tag-option: is tag key value, it's inside the v-tag-dropdown",
         "3": "if one <code class='tag'>&lt;v-tag-option&gt;</code> is title, will hide other option to next step show"
       },
       "customStyle": "slot <code class='tag'>v-tag-dropdown</code> element className not only use in dropdown, but also use by selected tag.",
-      "customStyleSub": {
-        "1": "if you want to slot <code class='tag'>v-tag-option</code> className use by selected tag's value, can create your own elements in it"
-      },
+      "customStyle__details": "if you want to slot <code class='tag'>v-tag-option</code> className use by selected tag's value, can create your own elements in it",
       "sentence": {
         "Go_to_detail_option_attributes_description": "Go to detail option attributes description",
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "The attributes changes in this demo will only affect the first dropdown",

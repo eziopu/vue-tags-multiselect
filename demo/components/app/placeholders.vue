@@ -8,15 +8,15 @@
       <div class="sub-depiction">
         <p>
           placeholder:
-          {{ $t(`${i18nAppPath}.placeholder__detail.placeholder`) }}
+          {{ $t(`${i18nAppPath}.placeholder__details.placeholder`) }}
         </p>
         <p>
           placeholders:
-          {{ $t(`${i18nAppPath}.placeholder__detail.placeholders`) }}
+          {{ $t(`${i18nAppPath}.placeholder__details.placeholders`) }}
         </p>
         <p>
           *
-          {{ $t(`${i18nAppPath}.placeholder__detail.remark`) }}
+          {{ $t(`${i18nAppPath}.placeholder__details.remark`) }}
         </p>
       </div>
     </div>
@@ -86,19 +86,19 @@
           <div class="attribute">
             loading:
             <span
-              v-html="$t(`${i18nAppPath}.placeholders.loading__detail.1`)"
+              v-html="$t(`${i18nAppPath}.placeholders.loading__detail`)"
             ></span>
           </div>
           <div class="attribute">
             selectDown:
             <span
-              v-html="$t(`${i18nAppPath}.placeholders.selectDown__detail.1`)"
+              v-html="$t(`${i18nAppPath}.placeholders.selectDown__detail`)"
             ></span>
           </div>
           <div class="attribute">
             finish:
             <span
-              v-html="$t(`${i18nAppPath}.placeholders.finish__detail.1`)"
+              v-html="$t(`${i18nAppPath}.placeholders.finish__detail`)"
             ></span>
           </div>
         </div>

@@ -3,7 +3,7 @@
     <ToolTitle>{{ $t("ui.page.keyboard") }}</ToolTitle>
     
     <div class="depiction">
-      {{ $t("ui.page.keyboardSub") }}
+      {{ $t("ui.page.keyboard__detail") }}
     </div>
     <KeyboardTemplate />
     

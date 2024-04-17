@@ -27,20 +27,20 @@
       "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
       "tagPosition__notice": "無論上下方並不影響 <code class='tag'>keyboard</code> 的操作",
       "conjunction": "選擇的模式",
-      "conjunction__detail": {
-        "1": "- : 當有完成的tag, 'OR'模式的按鈕會至頂顯示(預設值)",
-        "2": "OR: 總是顯示還可以選擇的option",
-        "3": "AND: 只顯示未選擇過的dropdown(篩選條件為key值)"
+      "conjunction__parameters": {
+        "null": "- : 當有完成的tag, 'OR'模式的按鈕會至頂顯示(預設值)",
+        "OR": "OR: 總是顯示還可以選擇的option",
+        "AND": "AND: 只顯示未選擇過的dropdown(篩選條件為key值)"
       },
       "deleteIcon": "刪除tag的按鈕顯示模式",
       "deleteIcon__notice": "編輯模式時鍵盤的delete按鈕依舊能刪除",
-      "deleteIcon__detail": {
-        "1": "always: 總是顯示(預設值)",
-        "2": "edit: 只在編輯模式顯示",
-        "3": "none: 總是不顯示 *只能使用鍵盤的刪除鍵"
+      "deleteIcon__parameters": {
+        "always": "always: 總是顯示(預設值)",
+        "edit": "edit: 只在編輯模式顯示",
+        "none": "none: 總是不顯示 *只能使用鍵盤的刪除鍵"
       },
       "placeholder": "預設文字, 請選以下一種來使用",
-      "placeholder__detail": {
+      "placeholder__details": {
         "placeholder": "類型為string，如同'輸入框'的placeholder",
         "placeholders": "類型為object，放置各種不同情境的placeholder",
         "remark": "placeholder的權重會大於placeholders"
@@ -49,21 +49,13 @@
       "placeholders": {
         "initial": "初始預設文字, 僅在無tag時顯示",
         "loading": "讀取中文字",
-        "loading__detail": {
-          "1": "僅在參數 <code class='tag'>loading</code> 為 true 時顯示"
-        },
+        "loading__detail": "僅在參數 <code class='tag'>loading</code> 為 true 時顯示",
         "selectDown": "選項皆完成後的文字",
-        "selectDown__detail": {
-          "1": "僅在參數 <code class='tag'>create</code> 為 true 時顯示"
-        },
+        "selectDown__detail": "僅在參數 <code class='tag'>create</code> 為 true 時顯示",
         "finish": "選項皆完成後的文字",
-        "finish__detail": {
-          "1": "僅在參數 <code class='tag'>create</code> 為 false 時顯示"
-        },
+        "finish__detail": "僅在參數 <code class='tag'>create</code> 為 false 時顯示",
         "tagValueRepeat": "更新tag 檢測到value重複時顯示",
-        "tagValueRepeat__detail": {
-          "1": "聚焦tag元件後僅會閃爍兩次後消失"
-        }
+        "tagValueRepeat__detail": "聚焦tag元件後僅會閃爍兩次後消失"
       }
     },
     "slots": {
@@ -92,7 +84,7 @@
       "clearTags": "清空已選擇的tag",
       "initialize": "重新初始化套件",
       "pushTag": "強制賦予一個tag給套件",
-      "pushTag__detail": {
+      "pushTag__details": {
         "sub-description": "會依照你輸入的參數與套件情況, 創建全新的tag或是與當前的tag結合",
         "no-key": {
           "description": "當參數(tag object)內容沒有key時 | 沒有輸入key",
@@ -191,18 +183,16 @@
     "page": {
       "title": "此demo頁面使用了",
       "keyboard": "按鍵配置",
-      "keyboardSub": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
+      "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
       "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
       "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
-      "addOptionSub": {
+      "addOption__details": {
         "1": "v-tag-dropdown: 標籤的key值",
         "2": "v-tag-option: 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
         "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
       },
       "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
-      "customStyleSub": {
-        "1": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可"
-      },
+      "customStyle__details": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可",
       "sentence": {
         "Go_to_detail_option_attributes_description": "前往 option 參數說明區",
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "此demo的參數變動只會改變第一個 dropdown",

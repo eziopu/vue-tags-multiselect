@@ -153,11 +153,11 @@
         <span v-show="app.displays.details.deleteIcon" class="detail">
           <br />
           <hr style="margin: 2px" />
-          {{ $t("attributes.app.deleteIcon__detail.1") }}
+          {{ $t("attributes.app.deleteIcon__parameters.always") }}
           <br />
-          {{ $t("attributes.app.deleteIcon__detail.2") }}
+          {{ $t("attributes.app.deleteIcon__parameters.edit") }}
           <br />
-          {{ $t("attributes.app.deleteIcon__detail.3") }}
+          {{ $t("attributes.app.deleteIcon__parameters.3") }}
         </span>
       </div>
       <div>
@@ -213,11 +213,11 @@
         <span v-show="app.displays.details.conjunction" class="detail">
           <br />
           <hr style="margin: 2px" />
-          {{ $t("attributes.app.conjunction__detail.1") }}
+          {{ $t("attributes.app.conjunction__parameters.null") }}
           <br />
-          {{ $t("attributes.app.conjunction__detail.2") }}
+          {{ $t("attributes.app.conjunction__parameters.OR") }}
           <br />
-          {{ $t("attributes.app.conjunction__detail.3") }}
+          {{ $t("attributes.app.conjunction__parameters.AND") }}
         </span>
       </div>
       <div>

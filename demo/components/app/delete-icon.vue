@@ -7,13 +7,13 @@
       *{{ $t("attributes.app.deleteIcon__notice") }}
       <div class="sub-depiction">
         <p>
-          {{ $t("attributes.app.deleteIcon__detail.1") }}
+          {{ $t("attributes.app.deleteIcon__parameters.always") }}
         </p>
         <p>
-          {{ $t("attributes.app.deleteIcon__detail.2") }}
+          {{ $t("attributes.app.deleteIcon__parameters.edit") }}
         </p>
         <p>
-          {{ $t("attributes.app.deleteIcon__detail.3") }}
+          {{ $t("attributes.app.deleteIcon__parameters.none") }}
         </p>
       </div>
     </div>
