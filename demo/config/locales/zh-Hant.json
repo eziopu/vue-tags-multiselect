@@ -23,6 +23,7 @@
       "create__notice": "當 create 與 search 皆為 false 時, 輸入框將無法輸入文字",
       "merge": "合併相同key值的option",
       "keyboard": "是否啟用keyboard操作",
+      "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
       "transition": "是否啟用css動畫效果",
       "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
       "tagPosition__notice": "無論上下方並不影響 <code class='tag'>keyboard</code> 的操作",
@@ -181,9 +182,6 @@
       "NotFind": "無符合資料"
     },
     "page": {
-      "title": "此demo頁面使用了",
-      "keyboard": "按鍵配置",
-      "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
       "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
       "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
       "addOption__details": {

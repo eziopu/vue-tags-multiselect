@@ -23,6 +23,7 @@
       "create__notice": "then create and search is false, The input will be unable to accept text",
       "merge": "when tags same title share display one",
       "keyboard": "enable keyboard operation",
+      "keyboard__detail": "when the package gains focus, the following keyboard keys can be used",
       "transition": "enable css animation",
       "tagPosition": "the placement of the tag. By default, it's positioned to the left of the input. It can be changed to be placed above or below the input",
       "tagPosition__notice": "whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
@@ -181,9 +182,6 @@
       "NotFind": "Not find any"
     },
     "page": {
-      "title": "demo, This page use",
-      "keyboard": "Keyboard",
-      "keyboard__detail": "when the package gains focus, the following keyboard keys can be used",
       "basic": "no slot components, no parameter, just a tag bar",
       "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
       "addOption__details": {

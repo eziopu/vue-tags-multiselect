@@ -1,9 +1,10 @@
 <template>
   <div id="keyboard" class="demo">
-    <ToolTitle>{{ $t("ui.page.keyboard") }}</ToolTitle>
+    <ToolTitle>Keyboard</ToolTitle>
     
     <div class="depiction">
-      {{ $t("ui.page.keyboard__detail") }}
+      <p>{{ $t("attributes.app.keyboard") }}</p>
+      <p>{{ $t("attributes.app.keyboard__detail") }}</p>
     </div>
     <KeyboardTemplate />
     
