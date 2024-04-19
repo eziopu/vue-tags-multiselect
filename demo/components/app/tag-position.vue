@@ -3,9 +3,9 @@
     <ToolTitle>Tag position</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.tagPosition") }}
+      {{ $t("attributes.app.tagPosition") }}
       <br>
-      *<span v-html="$t('attributes.description.app.tagPosition__notice')"></span>
+      *<span v-html="$t('attributes.app.tagPosition__notice')"></span>
     </div>
 
     <div class="attributes with-demo-control">

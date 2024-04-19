@@ -3,7 +3,7 @@
     <ToolTitle>Option OR conjunction</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.slots.option-OR-conjunction") }}
+      {{ $t("attributes.slots.option-OR-conjunction") }}
     </div>
 
     <div class="attributes flex-between to5-5">

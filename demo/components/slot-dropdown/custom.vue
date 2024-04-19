@@ -3,7 +3,7 @@
     <ToolTitle>Custom</ToolTitle>
     
     <div class="depiction">
-      {{ $t("attributes.description.dropdown.custom") }} <br />
+      {{ $t("attributes.dropdown.custom") }} <br />
       *{{ $t("ui.page.sentence.notice.click_the_tag_to_edit_mode") }}
     </div>
 

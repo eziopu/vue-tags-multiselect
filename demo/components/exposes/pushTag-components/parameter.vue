@@ -39,7 +39,7 @@ import { PARAMETERS } from "./models.js";
           >{{ $t("ui.general.Description") }}:
         </span>
         <span>{{
-          $t(`attributes.description.exposes.pushTag.parameter.${key}`)
+          $t(`attributes.exposes.pushTag__detail.parameter.${key}`)
         }}</span>
       </div>
 

@@ -3,7 +3,7 @@
     <ToolTitle>Merge</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.merge") }}
+      {{ $t("attributes.app.merge") }}
     </div>
 
     <div class="attributes with-demo-control">

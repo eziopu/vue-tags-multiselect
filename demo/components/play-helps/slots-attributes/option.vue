@@ -33,7 +33,7 @@
             <span class="i-block d-md-none"
               >{{ $t("ui.general.Description") }}:
             </span>
-            <span>{{ $t("attributes.description.option.value") }}</span>
+            <span>{{ $t("attributes.option.value") }}</span>
           </div>
           <div>
             <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -59,7 +59,7 @@
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>
-              {{ $t("attributes.description.option.title") }}
+              {{ $t("attributes.option.title") }}
             </span>
           </div>
           <div>
@@ -81,7 +81,7 @@
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>
-              {{ $t("attributes.description.option.display-value") }}
+              {{ $t("attributes.option.display-value") }}
             </span>
           </div>
           <div>
@@ -102,7 +102,7 @@
             <span class="i-block d-md-none"
               >{{ $t("ui.general.Description") }}:
             </span>
-            <span> {{ $t("attributes.description.option.disabled") }} </span>
+            <span> {{ $t("attributes.option.disabled") }} </span>
           </div>
           <div>
             <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -122,7 +122,7 @@
             <span class="i-block d-md-none"
               >{{ $t("ui.general.Description") }}:
             </span>
-            <span> {{ $t("attributes.description.option.selected") }} </span>
+            <span> {{ $t("attributes.option.selected") }} </span>
           </div>
           <div>
             <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>

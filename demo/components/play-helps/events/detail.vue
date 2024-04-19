@@ -27,7 +27,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.status") }}</span>
+        <span>{{ $t("attributes.events.status") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -54,7 +54,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.inputValue") }}</span>
+        <span>{{ $t("attributes.events.inputValue") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
@@ -77,7 +77,7 @@
         <span class="i-block d-md-none"
           >{{ $t("ui.general.Description") }}:
         </span>
-        <span>{{ $t("attributes.description.events.selectingTag") }}</span>
+        <span>{{ $t("attributes.events.selectingTag") }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>

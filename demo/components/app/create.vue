@@ -3,8 +3,8 @@
     <ToolTitle>Create</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.app.create") }} <br />
-      {{ $t("attributes.description.app.create__notice") }}
+      {{ $t("attributes.app.create") }} <br />
+      {{ $t("attributes.app.create__notice") }}
     </div>
 
     <div class="attributes flex-between to4-6 with-demo-control">

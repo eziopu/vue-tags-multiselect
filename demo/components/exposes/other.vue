@@ -42,7 +42,7 @@ const submit = (input = "") => {
   app[input]();
 }
 
-const i18n = "attributes.description.exposes";
+const i18n = "attributes.exposes";
 </script>
 
 <template>
@@ -57,7 +57,7 @@ const i18n = "attributes.description.exposes";
           <h3>{{ keyName }}()</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t(`${i18n}.${keyName}.description`) }}
+              {{ $t(`${i18n}.${keyName}`) }}
             </div>
 
             <button type="button" 

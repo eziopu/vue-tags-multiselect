@@ -8,7 +8,7 @@
           <h3>Hidden</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.description.dropdown.hidden") }}
+              {{ $t("attributes.dropdown.hidden") }}
             </div>
             <LabelAndControls label="" v-model="attributes.hidden" />
           </div>
@@ -17,7 +17,7 @@
           <h3>DisplayAll</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.description.dropdown.display-all") }}
+              {{ $t("attributes.dropdown.display-all") }}
             </div>
             <LabelAndControls
               label=""
@@ -30,7 +30,7 @@
           <h3>Disabled</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.description.dropdown.disabled") }}
+              {{ $t("attributes.dropdown.disabled") }}
             </div>
             <LabelAndControls
               label=""
@@ -46,7 +46,7 @@
           </div>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.description.dropdown.divided") }}
+              {{ $t("attributes.dropdown.divided") }}
             </div>
             <LabelAndControls
               label=""

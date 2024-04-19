@@ -29,7 +29,7 @@ const attributes = reactive({
           <h3>Disabled</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.description.option.disabled") }}
+              {{ $t("attributes.option.disabled") }}
             </div>
             <LabelAndControls label="" v-model="attributes.disabled" />
           </div>
@@ -38,7 +38,7 @@ const attributes = reactive({
           <h3>Divided</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.description.option.divided") }}
+              {{ $t("attributes.option.divided") }}
             </div>
             <LabelAndControls label="" v-model="attributes.divided" />
           </div>

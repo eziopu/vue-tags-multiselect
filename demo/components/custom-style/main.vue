@@ -1,10 +1,10 @@
 <template>
   <div id="custom-style" class="demo">
     <div class="depiction">
-      <p v-html="$t('ui.page.description.customStyle')"></p>
+      <p v-html="$t('ui.page.customStyle')"></p>
 
       <div class="sub-depiction">
-        <p v-html="$t('ui.page.description.customStyleSub.1')"></p>
+        <p v-html="$t('ui.page.customStyle__details')"></p>
       </div>
     </div>
     <FocusDemoApp></FocusDemoApp>

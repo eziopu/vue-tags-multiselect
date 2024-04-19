@@ -14,7 +14,7 @@ import GeneralDemo from "../tools/general-demo.vue";
     <ToolTitle>Display value</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.description.option.display-value") }}
+      {{ $t("attributes.option.display-value") }}
     </div>
 
     <div class="flex-between to5-5">

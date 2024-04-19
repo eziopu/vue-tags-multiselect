@@ -18,9 +18,9 @@
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>
-              {{ $t("attributes.description.exposes.pushTag.1") }},
+              {{ $t("attributes.exposes.pushTag__details.1") }},
               <br class="d-none d-sm-block" />
-              {{ $t("attributes.description.exposes.pushTag.2") }}
+              {{ $t("attributes.exposes.pushTag__details.2") }}
             </span>
           </div>
           <div>
@@ -71,7 +71,7 @@
               >{{ $t("ui.general.Description") }}:
             </span>
             <span>{{
-              $t(`attributes.description.exposes.pushTag.parameter.${key}`)
+              $t(`attributes.exposes.pushTag__details.parameter.${key}`)
             }}</span>
           </div>
 

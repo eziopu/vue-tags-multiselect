@@ -1,8 +1,8 @@
 {
   "_comment": "zh-Hant Chinese (T)",
-  "description": {
+  "package": {
     "main": "這是個複雜的多選器",
-    "sub": {
+    "description": {
       "1": "此套件由兩層結構組成，類似dropdown包著dropdown",
       "2": "會複製option的html內容作為tag的顯示依據",
       "3": "最後會輸出一個包含key與values的object"
@@ -13,162 +13,143 @@
     }
   },
   "attributes": {
-    "description": {
-      "app": {
-        "v-model": "綁定值",
-        "disabled": "是否禁用",
-        "loading": "是否在讀取中",
-        "dropdownLoading": "下拉式選單是否在讀取中",
-        "search": "是否可使用輸入框搜尋 option 的 value值",
-        "create": "是否可使用輸入框建立 tag",
-        "create__notice": "當 create 與 search 皆為 false 時, 輸入框將無法輸入文字",
-        "merge": "合併相同key值的option",
-        "keyboard": "是否啟用keyboard操作",
-        "transition": "是否啟用css動畫效果",
-        "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
-        "tagPosition__notice": "無論上下方並不影響 <code class='tag'>keyboard</code> 的操作",
-        "conjunction": "選擇的模式",
-        "conjunction__detail": {
-          "1": "- : 當有完成的tag, 'OR'模式的按鈕會至頂顯示(預設值)",
-          "2": "OR: 總是顯示還可以選擇的option",
-          "3": "AND: 只顯示未選擇過的dropdown(篩選條件為key值)"
-        },
-        "deleteIcon": "刪除tag的按鈕顯示模式",
-        "deleteIcon__notice": "編輯模式時鍵盤的delete按鈕依舊能刪除",
-        "deleteIcon__detail": {
-          "1": "always: 總是顯示(預設值)",
-          "2": "edit: 只在編輯模式顯示",
-          "3": "none: 總是不顯示 *只能使用鍵盤的刪除鍵"
-        },
-        "placeholder": "預設文字, 請選以下一種來使用",
-        "placeholder__detail": {
-          "placeholder": "類型為string，如同'輸入框'的placeholder",
-          "placeholders": "類型為object，放置各種不同情境的placeholder",
-          "remark": "placeholder的權重會大於placeholders"
-        },
-        "placeholders__detail": "個別情境的文字",
-        "placeholders": {
-          "initial": "初始預設文字, 僅在無tag時顯示",
-          "loading": "讀取中文字",
-          "loading__detail": {
-            "1": "僅在參數 <code class='tag'>loading</code> 為 true 時顯示"
-          },
-          "selectDown": "選項皆完成後的文字",
-          "selectDown__detail": {
-            "1": "僅在參數 <code class='tag'>create</code> 為 true 時顯示"
-          },
-          "finish": "選項皆完成後的文字",
-          "finish__detail": {
-            "1": "僅在參數 <code class='tag'>create</code> 為 false 時顯示"
-          },
-          "tagValueRepeat": "更新tag 檢測到value重複時顯示",
-          "tagValueRepeat__detail": {
-            "1": "聚焦tag元件後僅會閃爍兩次後消失"
-          }
-        }
+    "app": {
+      "v-model": "綁定值",
+      "disabled": "是否禁用",
+      "loading": "是否在讀取中",
+      "dropdownLoading": "下拉式選單是否在讀取中",
+      "search": "是否可使用輸入框搜尋 option 的 value值",
+      "create": "是否可使用輸入框建立 tag",
+      "create__notice": "當 create 與 search 皆為 false 時, 輸入框將無法輸入文字",
+      "merge": "合併相同key值的option",
+      "keyboard": "是否啟用keyboard操作",
+      "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
+      "transition": "是否啟用css動畫效果",
+      "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
+      "tagPosition__notice": "無論上下方並不影響 <code class='tag'>keyboard</code> 的操作",
+      "conjunction": "選擇的模式",
+      "conjunction__parameters": {
+        "null": "- : 當有完成的tag, 'OR'模式的按鈕會至頂顯示(預設值)",
+        "OR": "OR: 總是顯示還可以選擇的option",
+        "AND": "AND: 只顯示未選擇過的dropdown(篩選條件為key值)"
       },
-      "slots": {
-        "v-tag-dropdown": "下拉選單的容器, 請使用 <code>&lt;v-tag-dropdown&gt;</code> 元件",
-        "v-tag-option": "下拉選單的內容, 請使用 <code>&lt;v-tag-option&gt;</code> 元件",
-        "loading": "讀取中的模板",
-        "loading__notice": "僅在參數<code>loading</code> 為 true 時運作",
-        "dropdowns-loading": "下拉式選單讀取中的模板",
-        "dropdowns-loading__notice": "只針對dropdown區塊的loading模板",
-        "tag-conjunction": "tag合併後value之間的連接符號",
-        "tag-conjunction__notice": "僅在參數 <code class='tag'>merge</code> 為 true 時運作",
-        "option-undo": "下拉選單中返回的模板",
-        "option-undo__notice": "僅在選擇了 <code class='tag'>title</code>  <code class='tag'>v-tag-option</code> 後顯示",
-        "option-OR-conjunction": "下拉選單中更改成OR模式的模板",
-        "option-OR-conjunction__notice": "僅在參數 <code class='tag'>conjunction</code> 為 'null' 時顯示"
+      "deleteIcon": "刪除tag的按鈕顯示模式",
+      "deleteIcon__notice": "編輯模式時鍵盤的delete按鈕依舊能刪除",
+      "deleteIcon__parameters": {
+        "always": "always: 總是顯示(預設值)",
+        "edit": "edit: 只在編輯模式顯示",
+        "none": "none: 總是不顯示 *只能使用鍵盤的刪除鍵"
       },
-      "events": {
-        "status": "取得當前操作的模式名稱",
-        "selectingTag": "取得當前選擇的tag(包括選擇中, 編輯中)",
-        "inputValue": "取得當前 input 的 value 值"
+      "placeholder": "預設文字, 請選以下一種來使用",
+      "placeholder__details": {
+        "placeholder": "類型為string，如同'輸入框'的placeholder",
+        "placeholders": "類型為object，放置各種不同情境的placeholder",
+        "remark": "placeholder的權重會大於placeholders"
       },
-      "exposes": {
-        "focus": {
-          "description": "使套件的輸入框取得焦點"
-        },
-        "blur": {
-          "description": "讓套件的輸入框失去焦點，並隱藏下拉式選單"
-        },
-        "clear": {
-          "description": "清空輸入框"
-        },
-        "clearTags": {
-          "description": "清空已選擇的tag"
-        },
-        "initialize": {
-          "description": "重新初始化套件"
-        },
-        "pushTag": {
-          "description": "強制賦予一個tag給套件",
-          "sub-description": "會依照你輸入的參數與套件情況, 創建全新的tag或是與當前的tag結合",
-          "no-key": {
-            "description": "當參數(tag object)內容沒有key時 | 沒有輸入key",
-            "simple-description": "沒有key時",
-            "1": "若當前為選擇狀態中, 會匹配當前的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> | 選擇狀態中",
-            "2": "其餘狀況, 會直接生成tag | 非選擇狀態中"
-          },
-          "has-key": {
-            "description": "當參數(tag object)內容有key時 | 有輸入key",
-            "simple-description": "有key時",
-            "1": "有相同的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會自動匹配並完成該tag, 無論是否在選擇狀態中 | 有一樣的key",
-            "2": "無相符合 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會直接生成tag | 沒有一樣的key"
-          },
-          "demo0": {
-            "description": "在 <code class='tag'>&lt;v-tag-option&gt;</code> 加入組件, 就必須使用此方式",
-            "notice": "為了輸入外部的值, <code class='tag'>&lt;v-tag-option&gt;</code> 的 value 請不要填寫",
-            "comment": "範例中的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> display-all 僅是方便操作而已, 關掉並不影響操作"
-          },
-          "demo1": {
-            "title": "任意把玩",
-            "description": "送出按鈕會延遲",
-            "description-1": "秒後發送",
-            "sub-description": "按下按鈕後請立刻去操作",
-            "first": "快速套用情境"
-          },
-          "parameter": {
-            "key": "標籤的key值",
-            "value": "標籤的value值",
-            "valueElm": "value的顯示元件",
-            "titleElm": "title的顯示元件",
-            "classList": "自定義的class name", 
-            "custom": "完成tag後, 是否允許任意修改標籤的value值",
-            "displayValue": "完成tag後, 是否改顯示標籤的value值"
-          }
-        }
-      },
-      "dropdown": {
-        "value": "標籤的key值",
-        "class": "HTML元件的class, 會直接套用至最後完成的標籤上",
-        "display-all": "是否顯示裡面所有的option(title option與option全部顯示)",
-        "hidden": "是否隱藏",
-        "custom": "是否允許任意修改標籤的value值",
-        "disabled": "是否禁用該dropdown內的所有的option",
-        "divided": "是否頂部有分隔線"
-      },
-      "option": {
-        "value": "標籤的value值",
-        "value__notice": "非必填,",
-        "value__notices": {
-          "0": "有填寫: 點擊後賦予dropdown值(values)",
-          "1": "沒有填寫: 則不賦予點擊事件與不賦予dropdown值(values)",
-          "2": "若沒有填寫的情況又要賦予dropdown值，請使用 <code class='tag'>pushTag</code> method"
-        },
-        "title": "dropdown的起始點, 其餘的option將不會顯示",
-        "title__notices": {
-          "1": "除非dropdown的參數 <code class='tag'>display-all</code> 為true 或是該dropdown沒有title option的存在, 其餘的option才會顯示",
-          "2": "dropdown內可以沒有任何的title option"
-        },
-        "no_title": "沒有title option的dropdown, 無論dropdown的參數 <code class='tag'>display-all</code> 是否為true, 皆會顯示",
-        "display-value": "標籤的value值是否要顯示value而不是html渲染的樣式",
-        "disabled": "是否禁用",
-        "divided": "是否底部有分隔線",
-        "selected": "是否為預設",
-        "selected__notice": "還是可以被刪除"
+      "placeholders__detail": "個別情境的文字",
+      "placeholders": {
+        "initial": "初始預設文字, 僅在無tag時顯示",
+        "loading": "讀取中文字",
+        "loading__detail": "僅在參數 <code class='tag'>loading</code> 為 true 時顯示",
+        "selectDown": "選項皆完成後的文字",
+        "selectDown__detail": "僅在參數 <code class='tag'>create</code> 為 true 時顯示",
+        "finish": "選項皆完成後的文字",
+        "finish__detail": "僅在參數 <code class='tag'>create</code> 為 false 時顯示",
+        "tagValueRepeat": "更新tag 檢測到value重複時顯示",
+        "tagValueRepeat__detail": "聚焦tag元件後僅會閃爍兩次後消失"
       }
+    },
+    "slots": {
+      "v-tag-dropdown": "下拉選單的容器, 請使用 <code>&lt;v-tag-dropdown&gt;</code> 元件",
+      "v-tag-option": "下拉選單的內容, 請使用 <code>&lt;v-tag-option&gt;</code> 元件",
+      "loading": "讀取中的模板",
+      "loading__notice": "僅在參數<code>loading</code> 為 true 時運作",
+      "dropdowns-loading": "下拉式選單讀取中的模板",
+      "dropdowns-loading__notice": "只針對dropdown區塊的loading模板",
+      "tag-conjunction": "tag合併後value之間的連接符號",
+      "tag-conjunction__notice": "僅在參數 <code class='tag'>merge</code> 為 true 時運作",
+      "option-undo": "下拉選單中返回的模板",
+      "option-undo__notice": "僅在選擇了 <code class='tag'>title</code>  <code class='tag'>v-tag-option</code> 後顯示",
+      "option-OR-conjunction": "下拉選單中更改成OR模式的模板",
+      "option-OR-conjunction__notice": "僅在參數 <code class='tag'>conjunction</code> 為 'null' 時顯示"
+    },
+    "events": {
+      "status": "取得當前操作的模式名稱",
+      "selectingTag": "取得當前選擇的tag(包括選擇中, 編輯中)",
+      "inputValue": "取得當前 input 的 value 值"
+    },
+    "exposes": {
+      "focus": "使套件的輸入框取得焦點",
+      "blur": "讓套件的輸入框失去焦點，並隱藏下拉式選單",
+      "clear": "清空輸入框",
+      "clearTags": "清空已選擇的tag",
+      "initialize": "重新初始化套件",
+      "pushTag": "強制賦予一個tag給套件",
+      "pushTag__details": {
+        "sub-description": "會依照你輸入的參數與套件情況, 創建全新的tag或是與當前的tag結合",
+        "no-key": {
+          "description": "當參數(tag object)內容沒有key時 | 沒有輸入key",
+          "simple-description": "沒有key時",
+          "1": "若當前為選擇狀態中, 會匹配當前的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> | 選擇狀態中",
+          "2": "其餘狀況, 會直接生成tag | 非選擇狀態中"
+        },
+        "has-key": {
+          "description": "當參數(tag object)內容有key時 | 有輸入key",
+          "simple-description": "有key時",
+          "1": "有相同的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會自動匹配並完成該tag, 無論是否在選擇狀態中 | 有一樣的key",
+          "2": "無相符合 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 的key, 會直接生成tag | 沒有一樣的key"
+        },
+        "demo0": {
+          "description": "在 <code class='tag'>&lt;v-tag-option&gt;</code> 加入組件, 就必須使用此方式",
+          "notice": "為了輸入外部的值, <code class='tag'>&lt;v-tag-option&gt;</code> 的 value 請不要填寫",
+          "comment": "範例中的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> display-all 僅是方便操作而已, 關掉並不影響操作"
+        },
+        "demo1": {
+          "title": "任意把玩",
+          "description": "送出按鈕會延遲",
+          "description-1": "秒後發送",
+          "sub-description": "按下按鈕後請立刻去操作",
+          "first": "快速套用情境"
+        },
+        "parameter": {
+          "key": "標籤的key值",
+          "value": "標籤的value值",
+          "valueElm": "value的顯示元件",
+          "titleElm": "title的顯示元件",
+          "classList": "自定義的class name", 
+          "custom": "完成tag後, 是否允許任意修改標籤的value值",
+          "displayValue": "完成tag後, 是否改顯示標籤的value值"
+        }
+      }
+    },
+    "dropdown": {
+      "value": "標籤的key值",
+      "class": "HTML元件的class, 會直接套用至最後完成的標籤上",
+      "display-all": "是否顯示裡面所有的option(title option與option全部顯示)",
+      "hidden": "是否隱藏",
+      "custom": "是否允許任意修改標籤的value值",
+      "disabled": "是否禁用該dropdown內的所有的option",
+      "divided": "是否頂部有分隔線"
+    },
+    "option": {
+      "value": "標籤的value值",
+      "value__notice": "非必填,",
+      "value__notices": {
+        "0": "有填寫: 點擊後賦予dropdown值(values)",
+        "1": "沒有填寫: 則不賦予點擊事件與不賦予dropdown值(values)",
+        "2": "若沒有填寫的情況又要賦予dropdown值，請使用 <code class='tag'>pushTag</code> method"
+      },
+      "title": "dropdown的起始點, 其餘的option將不會顯示",
+      "title__notices": {
+        "1": "除非dropdown的參數 <code class='tag'>display-all</code> 為true 或是該dropdown沒有title option的存在, 其餘的option才會顯示",
+        "2": "dropdown內可以沒有任何的title option"
+      },
+      "no_title": "沒有title option的dropdown, 無論dropdown的參數 <code class='tag'>display-all</code> 是否為true, 皆會顯示",
+      "display-value": "標籤的value值是否要顯示value而不是html渲染的樣式",
+      "disabled": "是否禁用",
+      "divided": "是否底部有分隔線",
+      "selected": "是否為預設",
+      "selected__notice": "還是可以被刪除"
     }
   },
   "ui": {
@@ -201,22 +182,15 @@
       "NotFind": "無符合資料"
     },
     "page": {
-      "description": {
-        "title": "此demo頁面使用了",
-        "keyboard": "按鍵配置",
-        "keyboardSub": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
-        "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
-        "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
-        "addOptionSub": {
-          "1": "v-tag-dropdown: 標籤的key值",
-          "2": "v-tag-option: 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
-          "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
-        },
-        "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
-        "customStyleSub": {
-          "1": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可"
-        }
+      "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
+      "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
+      "addOption__details": {
+        "1": "v-tag-dropdown: 標籤的key值",
+        "2": "v-tag-option: 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
+        "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
       },
+      "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
+      "customStyle__details": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可",
       "sentence": {
         "Go_to_detail_option_attributes_description": "前往 option 參數說明區",
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "此demo的參數變動只會改變第一個 dropdown",
