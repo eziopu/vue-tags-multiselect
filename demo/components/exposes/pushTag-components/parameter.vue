@@ -12,19 +12,19 @@ import { PARAMETERS } from "./models.js";
   <div id="method-pushTag__parameter--table" class="demo__table container">
     <div class="row titles">
       <div>
-        <h5>{{ $t("ui.general.Attribute") }}</h5>
+        <h5>{{ $t(`ui.general.Attribute`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Description") }}</h5>
+        <h5>{{ $t(`ui.general.Description`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Type") }}</h5>
+        <h5>{{ $t(`ui.general.Type`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Default") }}</h5>
+        <h5>{{ $t(`ui.general.Default`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Required") }}</h5>
+        <h5>{{ $t(`ui.general.Required`) }}</h5>
       </div>
     </div>
 
@@ -36,22 +36,22 @@ import { PARAMETERS } from "./models.js";
       <div>{{ key }}</div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.Description") }}:
+          >{{ $t(`ui.general.Description`) }}:
         </span>
         <span>{{
-          $t(`attributes.exposes.pushTag__detail.parameter.${key}`)
+          $t(`attributes.exposes.pushTag__details.parameter.${key}`)
         }}</span>
       </div>
 
       <div>
         <span class="i-block d-md-none">
-          {{ $t("ui.general.Type") }}:
+          {{ $t(`ui.general.Type`) }}:
         </span>
         {{ value.type }}
       </div>
       <div>
         <span class="i-block d-md-none">
-          {{ $t("ui.general.Default") }}:
+          {{ $t(`ui.general.Default`) }}:
         </span>
         {{ value.default }}
       </div>
@@ -60,7 +60,7 @@ import { PARAMETERS } from "./models.js";
       </div>
       <div v-else>
         <span class="i-block d-md-none">
-          {{ $t("ui.general.Required") }}:
+          {{ $t(`ui.general.Required`) }}:
         </span>
         {{ value.required }}
       </div>

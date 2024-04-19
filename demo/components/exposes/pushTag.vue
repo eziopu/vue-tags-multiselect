@@ -27,7 +27,7 @@ const i18nHasKey = `${i18n}.has-key`;
       </p>
       
       <div class="sub-depiction">
-        <h4>{{ $t("ui.general.example") }} :</h4>
+        <h4>{{ $t(`ui.general.example`) }} :</h4>
         <ShowPushTagFunctionCode />
       </div>
 

@@ -70,7 +70,7 @@
               :selected="item.selected"
             >
               <template v-if="index == 0">
-                <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
+                <i class="fa fa-flag"></i> {{ $t(`ui.general.Country`) }}
               </template>
               <template v-else>
                 {{ $t(`ui.data.country.${item.valueForDemo}`) }}
@@ -101,7 +101,7 @@
               :selected="item.selected"
             >
               <template v-if="index == 0">
-                <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
+                <i class="fa fa-user"></i> {{ $t(`ui.general.Name`) }}
               </template>
               <template v-else>
                 {{ $t(`ui.data.name.${item.valueForDemo}`) }}
@@ -132,7 +132,7 @@
               :selected="item.selected"
             >
               <template v-if="index == 0">
-                <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
+                <i class="fa fa-sticky-note"></i> {{ $t(`ui.general.Remark`) }}
               </template>
               <template v-if="item.value == 'yes'">
                 <i class="fa fa-check"></i>

@@ -71,28 +71,28 @@
         </template>
         <v-tag-dropdown value="country" display-all custom>
           <v-tag-option title>
-            <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
+            <i class="fa fa-flag"></i> {{ $t(`ui.general.Country`) }}
           </v-tag-option>
           <v-tag-option value="Māre">{{
-            $t("ui.data.country.Māre")
+            $t(`ui.data.country.Māre`)
           }}</v-tag-option>
           <v-tag-option value="Eldia">{{
-            $t("ui.data.country.Eldia")
+            $t(`ui.data.country.Eldia`)
           }}</v-tag-option>
         </v-tag-dropdown>
         <v-tag-dropdown value="name">
           <v-tag-option title divided>
-            <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
+            <i class="fa fa-user"></i> {{ $t(`ui.general.Name`) }}
             <small>(loading)</small>
           </v-tag-option>
           <v-tag-option value="Grisha Yeager">{{
-            $t("ui.data.name.Grisha Yeager")
+            $t(`ui.data.name.Grisha Yeager`)
           }}</v-tag-option>
           <v-tag-option value="Eren Yeager">{{
-            $t("ui.data.name.Eren Yeager")
+            $t(`ui.data.name.Eren Yeager`)
           }}</v-tag-option>
           <v-tag-option value="Armin Arlert">{{
-            $t("ui.data.name.Armin Arlert")
+            $t(`ui.data.name.Armin Arlert`)
           }}</v-tag-option>
           <v-tag-option
             v-for="(otherName, index) in otherNames"
@@ -121,7 +121,7 @@
         </v-tag-dropdown>
         <v-tag-dropdown value="height" display-all>
           <v-tag-option title>
-            <i class="fa fa-user"></i> {{ $t("ui.general.Height(m)") }}
+            <i class="fa fa-user"></i> {{ $t(`ui.general.Height(m)`) }}
           </v-tag-option>
           <v-tag-option>
             <input
@@ -151,7 +151,7 @@
         </v-tag-dropdown>
         <v-tag-dropdown value="remark" display-all>
           <v-tag-option title>
-            <i class="fa fa-sticky-note"></i> {{ $t("ui.general.Remark") }}
+            <i class="fa fa-sticky-note"></i> {{ $t(`ui.general.Remark`) }}
           </v-tag-option>
           <v-tag-option value="yes">
             <i class="fa fa-check"></i>

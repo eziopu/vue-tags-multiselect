@@ -12,42 +12,42 @@
       >
         <div class="row titles">
           <div>
-            <h4>{{ $t("ui.general.Attribute") }}</h4>
+            <h4>{{ $t(`ui.general.Attribute`) }}</h4>
           </div>
           <div>
-            <h4>{{ $t("ui.general.Description") }}</h4>
+            <h4>{{ $t(`ui.general.Description`) }}</h4>
           </div>
           <div>
-            <h4>{{ $t("ui.general.Type") }}</h4>
+            <h4>{{ $t(`ui.general.Type`) }}</h4>
           </div>
           <div>
-            <h4>{{ $t("ui.general.Default") }}</h4>
+            <h4>{{ $t(`ui.general.Default`) }}</h4>
           </div>
           <div>
-            <h4>{{ $t("ui.general.Required") }}</h4>
+            <h4>{{ $t(`ui.general.Required`) }}</h4>
           </div>
         </div>
         <div class="row">
           <div><div>value</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.value") }}</span>
+            <span>{{ $t(`attributes.dropdown.value`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>string</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>-</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Required") }}:
+              >{{ $t(`ui.general.Required`) }}:
             </span>
             <span>*yes</span>
           </div>
@@ -56,23 +56,23 @@
           <div><div>class</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.class") }}</span>
+            <span>{{ $t(`attributes.dropdown.class`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>string</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>-</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Required") }}:
+              >{{ $t(`ui.general.Required`) }}:
             </span>
             <span>no</span>
           </div>
@@ -81,17 +81,17 @@
           <div><div>display-all</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.display-all") }}</span>
+            <span>{{ $t(`attributes.dropdown.display-all`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>boolean</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>false</span>
           </div>
@@ -101,17 +101,17 @@
           <div><div>hidden</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.hidden") }}</span>
+            <span>{{ $t(`attributes.dropdown.hidden`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>boolean</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>false</span>
           </div>
@@ -121,17 +121,17 @@
           <div><div>custom</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.custom") }}</span>
+            <span>{{ $t(`attributes.dropdown.custom`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>boolean</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>true</span>
           </div>
@@ -141,17 +141,17 @@
           <div><div>disabled</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.disabled") }}</span>
+            <span>{{ $t(`attributes.dropdown.disabled`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>boolean</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>false</span>
           </div>
@@ -161,17 +161,17 @@
           <div><div>divided</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
-            <span>{{ $t("attributes.dropdown.divided") }}</span>
+            <span>{{ $t(`attributes.dropdown.divided`) }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
             <span>boolean</span>
           </div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Default") }}:
+              >{{ $t(`ui.general.Default`) }}:
             </span>
             <span>false</span>
           </div>

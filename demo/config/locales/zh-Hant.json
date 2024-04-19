@@ -133,7 +133,7 @@
     },
     "option": {
       "value": "標籤的value值",
-      "value__notice": "非必填,",
+      "value__notice": "非必填",
       "value__notices": {
         "0": "有填寫: 點擊後賦予dropdown值(values)",
         "1": "沒有填寫: 則不賦予點擊事件與不賦予dropdown值(values)",
@@ -163,13 +163,12 @@
       "filled": "有填寫",
       "not_filled": "沒有填寫",
       "example": "範例",
-      "default": "預設",
       "defaultIs__key": "預設值為{key}",
       "Attribute": "屬性",
       "Description": "描述",
       "Type": "類型",
       "AcceptedValues": "可接受值",
-      "Default": "預設值",
+      "Default": "預設值 | 預設",
       "FunctionName": "函數名稱",
       "Name": "名稱",
       "Output": "輸出",
@@ -185,8 +184,8 @@
       "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
       "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
       "addOption__details": {
-        "1": "v-tag-dropdown: 標籤的key值",
-        "2": "v-tag-option: 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
+        "1": "<code class='tag'>&lt;v-tag-dropdown&gt;</code> : 標籤的key值",
+        "2": "<code class='tag'>&lt;v-tag-option&gt;</code> : 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
         "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
       },
       "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",

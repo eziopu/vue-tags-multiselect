@@ -48,7 +48,7 @@ const pushHeightValue = async () => {
   }
 }
 
-const i18n = "attributes.exposes.pushTag__detail.demo0";
+const i18n = "attributes.exposes.pushTag__details.demo0";
 const dropdownDisplayAll = ref(true);
 </script>
 
@@ -91,7 +91,7 @@ const dropdownDisplayAll = ref(true);
         <template #remark>
           <v-tag-dropdown value="height" :displayAll="dropdownDisplayAll">
             <v-tag-option title>
-              <i class="fa fa-user"></i> {{ $t("ui.general.Height(m)") }}
+              <i class="fa fa-user"></i> {{ $t(`ui.general.Height(m)`) }}
             </v-tag-option>
             <v-tag-option>
               <input

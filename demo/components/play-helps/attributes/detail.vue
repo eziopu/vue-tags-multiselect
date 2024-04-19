@@ -2,94 +2,94 @@
   <div class="detail attributes container">
     <div class="row titles">
       <div>
-        <h4>{{ $t("ui.general.Attribute") }}</h4>
+        <h4>{{ $t(`ui.general.Attribute`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Description") }}</h4>
+        <h4>{{ $t(`ui.general.Description`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Type") }}</h4>
+        <h4>{{ $t(`ui.general.Type`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.AcceptedValues") }}</h4>
+        <h4>{{ $t(`ui.general.AcceptedValues`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Default") }}</h4>
+        <h4>{{ $t(`ui.general.Default`) }}</h4>
       </div>
     </div>
 
     <div class="row">
       <div><div>model-value / v-model</div></div>
-      <div>{{ $t("attributes.app.v-model") }}</div>
+      <div>{{ $t(`attributes.app.v-model`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>object</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div class="d-none d-md-block">
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>-</span>
       </div>
     </div>
 
     <div class="row">
       <LabelAndControls value="disabled" />
-      <div>{{ $t("attributes.app.disabled") }}</div>
+      <div>{{ $t(`attributes.app.disabled`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>false</span>
       </div>
     </div>
 
     <div class="row">
       <LabelAndControls value="search" />
-      <div>{{ $t("attributes.app.search") }}</div>
+      <div>{{ $t(`attributes.app.search`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>true</span>
       </div>
     </div>
 
     <div class="row">
       <LabelAndControls value="loading" />
-      <div>{{ $t("attributes.app.loading") }}</div>
+      <div>{{ $t(`attributes.app.loading`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>false</span>
       </div>
     </div>
@@ -97,19 +97,19 @@
     <!-- dropdownLoading -->
     <div class="row">
       <LabelAndControls value="dropdownLoading" />
-      <div>{{ $t("attributes.app.dropdownLoading") }}</div>
+      <div>{{ $t(`attributes.app.dropdownLoading`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>false</span>
       </div>
     </div>
@@ -117,19 +117,19 @@
     <!-- create -->
     <div class="row">
       <LabelAndControls value="create" />
-      <div>{{ $t("attributes.app.create") }}</div>
+      <div>{{ $t(`attributes.app.create`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>true</span>
       </div>
     </div>
@@ -145,33 +145,33 @@
           class="pointer"
           :class="{ active: app.displays.details.deleteIcon }"
         >
-          {{ $t("attributes.app.deleteIcon") }}
+          {{ $t(`attributes.app.deleteIcon`) }}
           <span class="arrow"></span>
           <br />
-          *{{ $t("attributes.app.deleteIcon__notice") }}
+          *{{ $t(`attributes.app.deleteIcon__notice`) }}
         </span>
         <span v-show="app.displays.details.deleteIcon" class="detail">
           <br />
           <hr style="margin: 2px" />
-          {{ $t("attributes.app.deleteIcon__parameters.always") }}
+          {{ $t(`attributes.app.deleteIcon__parameters.always`) }}
           <br />
-          {{ $t("attributes.app.deleteIcon__parameters.edit") }}
+          {{ $t(`attributes.app.deleteIcon__parameters.edit`) }}
           <br />
-          {{ $t("attributes.app.deleteIcon__parameters.3") }}
+          {{ $t(`attributes.app.deleteIcon__parameters.3`) }}
         </span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>always / edit / none</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>always</span>
       </div>
     </div>
@@ -179,19 +179,19 @@
     <!-- merge -->
     <div class="row">
       <LabelAndControls value="merge" :disabled="app.conjunction == 'AND'" />
-      <div>{{ $t("attributes.app.merge") }}</div>
+      <div>{{ $t(`attributes.app.merge`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>true</span>
       </div>
     </div>
@@ -207,31 +207,31 @@
           class="pointer"
           :class="{ active: app.displays.details.conjunction }"
         >
-          {{ $t("attributes.app.conjunction") }}
+          {{ $t(`attributes.app.conjunction`) }}
           <span class="arrow"></span>
         </span>
         <span v-show="app.displays.details.conjunction" class="detail">
           <br />
           <hr style="margin: 2px" />
-          {{ $t("attributes.app.conjunction__parameters.null") }}
+          {{ $t(`attributes.app.conjunction__parameters.null`) }}
           <br />
-          {{ $t("attributes.app.conjunction__parameters.OR") }}
+          {{ $t(`attributes.app.conjunction__parameters.OR`) }}
           <br />
-          {{ $t("attributes.app.conjunction__parameters.AND") }}
+          {{ $t(`attributes.app.conjunction__parameters.AND`) }}
         </span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>AND / OR / -</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>-</span>
       </div>
     </div>
@@ -239,19 +239,19 @@
     <!-- transition -->
     <div class="row">
       <LabelAndControls value="transition" />
-      <div>{{ $t("attributes.app.transition") }}</div>
+      <div>{{ $t(`attributes.app.transition`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>true</span>
       </div>
     </div>
@@ -259,19 +259,19 @@
     <!-- keyboard -->
     <div class="row">
       <LabelAndControls value="keyboard" />
-      <div>{{ $t("attributes.app.keyboard") }}</div>
+      <div>{{ $t(`attributes.app.keyboard`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>boolean</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>true</span>
       </div>
     </div>
@@ -283,19 +283,19 @@
           <input type="text" class="form-control" v-model="app.placeholder" />
         </div>
       </div>
-      <div>{{ $t("attributes.app.placeholder") }}</div>
+      <div>{{ $t(`attributes.app.placeholder`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>-</span>
       </div>
     </div>
@@ -317,19 +317,19 @@
           />
         </div>
       </div>
-      <div>{{ $t("attributes.app.placeholders.initial") }}</div>
+      <div>{{ $t(`attributes.app.placeholders.initial`) }}</div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="d-none d-md-block">
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.AcceptedValues") }}:
+          >{{ $t(`ui.general.AcceptedValues`) }}:
         </span>
         <span>-</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>-</span>
       </div>
     </div>
@@ -346,21 +346,21 @@
           />
         </div>
       </div>
-      <div v-html="$t('attributes.app.placeholders.loading')"></div>
+      <div v-html="$t(`attributes.app.placeholders.loading`)"></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="flex-between">
         <div class="d-none d-md-block">
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.AcceptedValues") }}:
+            >{{ $t(`ui.general.AcceptedValues`) }}:
           </span>
           <span>-</span>
         </div>
         <div>
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.Default") }}:
+            >{{ $t(`ui.general.Default`) }}:
           </span>
           <span>Wait a moment, please.</span>
         </div>
@@ -380,22 +380,22 @@
         </div>
       </div>
       <div
-        v-html="$t('attributes.app.placeholders.tagValueRepeat')"
+        v-html="$t(`attributes.app.placeholders.tagValueRepeat`)"
       ></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="flex-between">
         <div class="d-none d-md-block">
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.AcceptedValues") }}:
+            >{{ $t(`ui.general.AcceptedValues`) }}:
           </span>
           <span>-</span>
         </div>
         <div>
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.Default") }}:
+            >{{ $t(`ui.general.Default`) }}:
           </span>
           <span>repeat !</span>
         </div>
@@ -415,22 +415,22 @@
         </div>
       </div>
       <div
-        v-html="$t('attributes.app.placeholders.selectDown')"
+        v-html="$t(`attributes.app.placeholders.selectDown`)"
       ></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="flex-between">
         <div class="d-none d-md-block">
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.AcceptedValues") }}:
+            >{{ $t(`ui.general.AcceptedValues`) }}:
           </span>
           <span>-</span>
         </div>
         <div>
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.Default") }}:
+            >{{ $t(`ui.general.Default`) }}:
           </span>
           <span>Selected End.</span>
         </div>
@@ -450,21 +450,21 @@
           />
         </div>
       </div>
-      <div v-html="$t('attributes.app.placeholders.finish')"></div>
+      <div v-html="$t(`attributes.app.placeholders.finish`)"></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="flex-between">
         <div class="d-none d-md-block">
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.AcceptedValues") }}:
+            >{{ $t(`ui.general.AcceptedValues`) }}:
           </span>
           <span>-</span>
         </div>
         <div>
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.Default") }}:
+            >{{ $t(`ui.general.Default`) }}:
           </span>
           <span>Finish.</span>
         </div>

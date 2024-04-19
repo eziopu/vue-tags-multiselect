@@ -23,16 +23,16 @@ const framework = inject("framework");
 
     <div class="flex-between to5-5">
       <div class="depiction">
-      {{ $t(`${i18n}.value`) }}
-      *{{ $t(`${i18n}.value__notice`) }}
+        <p>
+          {{ $t(`${i18n}.value`) }}
+          *{{ $t(`${i18n}.value__notice`) }}
+        </p>
 
-       <div class="sub-depiction">
-        <p
-          v-for="index in [0,1,2]"
-          :key="index"
-          v-html="$t(`${i18n}.value__notices.${index}`)"
-        />
-      </div>
+        <ul>
+          <li v-for="index in [0,1,2]" :key="index">
+            <p v-html="$t(`${i18n}.value__notices.${index}`)"></p>
+          </li>
+        </ul>
 
         <br />
         <ALineCode :bolders="['value']" />

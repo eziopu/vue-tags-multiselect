@@ -2,28 +2,28 @@
   <div class="detail attributes container">
     <div class="row titles">
       <div>
-        <h4>{{ $t("ui.general.Name") }}</h4>
+        <h4>{{ $t(`ui.general.Name`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Description") }}</h4>
+        <h4>{{ $t(`ui.general.Description`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Default") }}</h4>
+        <h4>{{ $t(`ui.general.Default`) }}</h4>
       </div>
     </div>
     <div class="row">
       <div><div>v-tag-dropdown</div></div>
-      <div v-html="$t('attributes.slots.v-tag-dropdown')"></div>
+      <div v-html="$t(`attributes.slots.v-tag-dropdown`)"></div>
       <div class="d-none d-md-block">
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>-</span>
       </div>
     </div>
     <div class="row">
       <div><div>v-tag-option</div></div>
-      <div v-html="$t('attributes.slots.v-tag-option')"></div>
+      <div v-html="$t(`attributes.slots.v-tag-option`)"></div>
       <div class="d-none d-md-block">
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <span>-</span>
       </div>
     </div>
@@ -39,14 +39,14 @@
         </div>
       </div>
       <div>
-        <span> {{ $t("attributes.slots.loading") }} *</span>
+        <span> {{ $t(`attributes.slots.loading`) }} *</span>
         <span
-          v-html="$t('attributes.slots.loading__notice')"
+          v-html="$t(`attributes.slots.loading__notice`)"
         ></span>
       </div>
       <div style="display: inline-flex">
         <span class="i-block d-md-none" style="margin-right: 6px">
-          {{ $t("ui.general.Default") }}:
+          {{ $t(`ui.general.Default`) }}:
         </span>
         <div class="demo__loading">
           <i class="demo__loading--icon"></i>
@@ -68,14 +68,14 @@
       </div>
       <div>
         <span
-          v-html="$t('attributes.slots.tag-conjunction')"
+          v-html="$t(`attributes.slots.tag-conjunction`)"
         ></span>
         *<span
-          v-html="$t('attributes.slots.tag-conjunction__notice')"
+          v-html="$t(`attributes.slots.tag-conjunction__notice`)"
         ></span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         &
       </div>
     </div>
@@ -94,13 +94,13 @@
         </div>
       </div>
       <div>
-        <span v-html="$t('attributes.slots.option-undo')"></span>
+        <span v-html="$t(`attributes.slots.option-undo`)"></span>
         *<span
-          v-html="$t('attributes.slots.option-undo__notice')"
+          v-html="$t(`attributes.slots.option-undo__notice`)"
         ></span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         <i class="demo__arrow-left"></i> Undo
       </div>
     </div>
@@ -118,16 +118,16 @@
       </div>
       <div>
         <span
-          v-html="$t('attributes.slots.option-OR-conjunction')"
+          v-html="$t(`attributes.slots.option-OR-conjunction`)"
         ></span>
         *<span
           v-html="
-            $t('attributes.slots.option-OR-conjunction__notice')
+            $t(`attributes.slots.option-OR-conjunction__notice`)
           "
         ></span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Default") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
         OR
       </div>
     </div>

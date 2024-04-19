@@ -5,30 +5,30 @@
         <div class="row titles">
           <div><h4>Function name</h4></div>
           <div>
-            <h4>{{ $t("ui.general.Description") }}</h4>
+            <h4>{{ $t(`ui.general.Description`) }}</h4>
           </div>
           <div>
-            <h4>{{ $t("ui.general.ParameterType") }}</h4>
+            <h4>{{ $t(`ui.general.ParameterType`) }}</h4>
           </div>
         </div>
         <div class="row">
           <div><div>pushTag</div></div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
             <span>
-              {{ $t("attributes.exposes.pushTag__details.1") }},
+              {{ $t(`attributes.exposes.pushTag__details.1`) }},
               <br class="d-none d-sm-block" />
-              {{ $t("attributes.exposes.pushTag__details.2") }}
+              {{ $t(`attributes.exposes.pushTag__details.2`) }}
             </span>
           </div>
           <div>
-            <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
-            <span>tag object*{{ $t("ui.general.required") }}</span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
+            <span>tag object*{{ $t(`ui.general.required`) }}</span>
           </div>
           <div>
-            {{ $t("ui.general.example") }}
+            {{ $t(`ui.general.example`) }}
             :
             <code>pushTag({value: Eldia})</code>
             or
@@ -45,19 +45,19 @@
       <div class="method__pushTag_parameter--main">
         <div class="row titles">
           <div>
-            <h5>{{ $t("ui.general.Attribute") }}</h5>
+            <h5>{{ $t(`ui.general.Attribute`) }}</h5>
           </div>
           <div>
-            <h5>{{ $t("ui.general.Description") }}</h5>
+            <h5>{{ $t(`ui.general.Description`) }}</h5>
           </div>
           <div>
-            <h5>{{ $t("ui.general.Type") }}</h5>
+            <h5>{{ $t(`ui.general.Type`) }}</h5>
           </div>
           <div>
-            <h5>{{ $t("ui.general.Default") }}</h5>
+            <h5>{{ $t(`ui.general.Default`) }}</h5>
           </div>
           <div>
-            <h5>{{ $t("ui.general.Required") }}</h5>
+            <h5>{{ $t(`ui.general.Required`) }}</h5>
           </div>
         </div>
         <div
@@ -68,7 +68,7 @@
           <div>{{ key }}</div>
           <div>
             <span class="i-block d-md-none"
-              >{{ $t("ui.general.Description") }}:
+              >{{ $t(`ui.general.Description`) }}:
             </span>
             <span>{{
               $t(`attributes.exposes.pushTag__details.parameter.${key}`)
@@ -77,13 +77,13 @@
 
           <div>
             <span class="i-block d-md-none">
-              {{ $t("ui.general.Type") }}:
+              {{ $t(`ui.general.Type`) }}:
             </span>
             {{ value.type }}
           </div>
           <div>
             <span class="i-block d-md-none">
-              {{ $t("ui.general.Default") }}:
+              {{ $t(`ui.general.Default`) }}:
             </span>
             {{ value.default }}
           </div>
@@ -92,7 +92,7 @@
           </div>
           <div v-else>
             <span class="i-block d-md-none">
-              {{ $t("ui.general.Required") }}:
+              {{ $t(`ui.general.Required`) }}:
             </span>
             {{ value.required }}
           </div>

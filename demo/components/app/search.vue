@@ -3,7 +3,7 @@
     <ToolTitle>Search</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.app.search") }}
+      {{ $t(`attributes.app.search`) }}
     </div>
 
     <div class="attributes with-demo-control">

@@ -44,7 +44,7 @@ const changeframework = (inputFramework = "") => {
         :value="inputFramework"
       >
         <span v-if="inputFramework == 'default'">
-          {{ $t("ui.general.default") }}
+          {{ $t("ui.general.Default", 0) }}
         </span>
         <span v-else>
           {{ inputFramework }}

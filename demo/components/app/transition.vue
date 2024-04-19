@@ -3,7 +3,7 @@
     <ToolTitle>Transition</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.app.transition") }}
+      {{ $t(`attributes.app.transition`) }}
     </div>
 
     <div class="attributes with-demo-control">

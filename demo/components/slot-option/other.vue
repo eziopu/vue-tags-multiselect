@@ -29,7 +29,7 @@ const attributes = reactive({
           <h3>Disabled</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.option.disabled") }}
+              {{ $t(`attributes.option.disabled`) }}
             </div>
             <LabelAndControls label="" v-model="attributes.disabled" />
           </div>
@@ -38,7 +38,7 @@ const attributes = reactive({
           <h3>Divided</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.option.divided") }}
+              {{ $t(`attributes.option.divided`) }}
             </div>
             <LabelAndControls label="" v-model="attributes.divided" />
           </div>
@@ -50,7 +50,7 @@ const attributes = reactive({
       <div class="demo-app">
         <h4>
           <p>
-            * {{ $t("ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_second_option") }}
+            * {{ $t(`ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_second_option`) }}
           </p>
         </h4>
         <GeneralDemo

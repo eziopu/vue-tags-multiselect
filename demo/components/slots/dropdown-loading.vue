@@ -3,9 +3,9 @@
     <ToolTitle>Dropdown loading</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.slots.dropdowns-loading") }}
+      {{ $t(`attributes.slots.dropdowns-loading`) }}
       <div class="sub-depiction">
-        <p v-html="$t('attributes.slots.dropdowns-loading__notice')"></p>
+        <p v-html="$t(`attributes.slots.dropdowns-loading__notice`)"></p>
       </div>
     </div>
 

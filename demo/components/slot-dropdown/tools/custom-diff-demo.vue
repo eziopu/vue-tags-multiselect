@@ -2,7 +2,7 @@
   <div class="custom-diff-demo">
     <div class="depiction">
       <h6>{{ appCustomer }}</h6>
-      <span v-if="appCustomer == false"> *{{ $t("ui.general.default") }} </span>
+      <span v-if="appCustomer == false"> *{{ $t("ui.general.Default", 0) }} </span>
     </div>
 
     <div class="demo-component relative">
@@ -12,27 +12,27 @@
       >
         <v-tag-dropdown value="country" :custom="appCustomer">
           <v-tag-option title>
-            <i class="fa fa-flag"></i> {{ $t("ui.general.Country") }}
+            <i class="fa fa-flag"></i> {{ $t(`ui.general.Country`) }}
           </v-tag-option>
           <v-tag-option value="Māre" selected>
-            {{ $t("ui.data.country.Māre") }}
+            {{ $t(`ui.data.country.Māre`) }}
           </v-tag-option>
           <v-tag-option value="Eldia">
-            {{ $t("ui.data.country.Eldia") }}
+            {{ $t(`ui.data.country.Eldia`) }}
           </v-tag-option>
         </v-tag-dropdown>
         <v-tag-dropdown value="name">
           <v-tag-option title>
-            <i class="fa fa-user"></i> {{ $t("ui.general.Name") }}
+            <i class="fa fa-user"></i> {{ $t(`ui.general.Name`) }}
           </v-tag-option>
           <v-tag-option value="Grisha Yeager">
-            {{ $t("ui.data.name.Grisha Yeager") }}
+            {{ $t(`ui.data.name.Grisha Yeager`) }}
           </v-tag-option>
           <v-tag-option value="Eren Yeager">
-            {{ $t("ui.data.name.Eren Yeager") }}
+            {{ $t(`ui.data.name.Eren Yeager`) }}
           </v-tag-option>
           <v-tag-option value="Armin Arlert">
-            {{ $t("ui.data.name.Armin Arlert") }}
+            {{ $t(`ui.data.name.Armin Arlert`) }}
           </v-tag-option>
         </v-tag-dropdown>
       </v-tags-multiselect>

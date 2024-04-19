@@ -2,40 +2,40 @@
   <div class="detail attributes container">
     <div class="row titles">
       <div>
-        <h4>{{ $t("ui.general.Name") }}</h4>
+        <h4>{{ $t(`ui.general.Name`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Output") }}</h4>
+        <h4>{{ $t(`ui.general.Output`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Description") }}</h4>
+        <h4>{{ $t(`ui.general.Description`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Type") }}</h4>
+        <h4>{{ $t(`ui.general.Type`) }}</h4>
       </div>
       <div>
-        <h4>{{ $t("ui.general.Parameters") }}</h4>
+        <h4>{{ $t(`ui.general.Parameters`) }}</h4>
       </div>
     </div>
     <div class="row">
       <div><div>status</div></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Output`) }}: </span>
         <span>{{ app.tool.status || "[]" }}</span>
       </div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.Description") }}:
+          >{{ $t(`ui.general.Description`) }}:
         </span>
-        <span>{{ $t("attributes.events.status") }}</span>
+        <span>{{ $t(`attributes.events.status`) }}</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.Parameters") }}:
+          >{{ $t(`ui.general.Parameters`) }}:
         </span>
         <span
           >disabled / loading / editing / selecting / select down / finish /
@@ -47,17 +47,17 @@
     <div class="row">
       <div><div>inputValue</div></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Output`) }}: </span>
         <span>{{ app.tool.inputValue || "-" }}</span>
       </div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.Description") }}:
+          >{{ $t(`ui.general.Description`) }}:
         </span>
-        <span>{{ $t("attributes.events.inputValue") }}</span>
+        <span>{{ $t(`attributes.events.inputValue`) }}</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="d-none d-md-block">
@@ -68,19 +68,19 @@
     <div class="row">
       <div><div>selectingTag</div></div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Output") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Output`) }}: </span>
         <pre class="data" :class="app.framework">{{
           app.tool.selectingTag || "{}"
         }}</pre>
       </div>
       <div>
         <span class="i-block d-md-none"
-          >{{ $t("ui.general.Description") }}:
+          >{{ $t(`ui.general.Description`) }}:
         </span>
-        <span>{{ $t("attributes.events.selectingTag") }}</span>
+        <span>{{ $t(`attributes.events.selectingTag`) }}</span>
       </div>
       <div>
-        <span class="i-block d-md-none">{{ $t("ui.general.Type") }}: </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
         <span>string</span>
       </div>
       <div class="d-none d-md-block">

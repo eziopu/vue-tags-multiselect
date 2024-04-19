@@ -3,7 +3,7 @@
     <ToolTitle>Option undo</ToolTitle>
 
     <div class="depiction">
-      {{ $t("attributes.slots.option-undo") }}
+      {{ $t(`attributes.slots.option-undo`) }}
     </div>
 
     <div class="attributes flex-between to5-5">

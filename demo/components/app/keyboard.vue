@@ -3,8 +3,8 @@
     <ToolTitle>Keyboard</ToolTitle>
     
     <div class="depiction">
-      <p>{{ $t("attributes.app.keyboard") }}</p>
-      <p>{{ $t("attributes.app.keyboard__detail") }}</p>
+      <p>{{ $t(`attributes.app.keyboard`) }}</p>
+      <p>{{ $t(`attributes.app.keyboard__detail`) }}</p>
     </div>
     <KeyboardTemplate />
     

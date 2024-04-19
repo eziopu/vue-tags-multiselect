@@ -4,8 +4,8 @@
 
     <div class="flex-between to6-4">
       <div class="depiction">
-        {{ $t("attributes.dropdown.value") }}
-        *{{ $t("ui.general.required") }}
+        {{ $t(`attributes.dropdown.value`) }}
+        *{{ $t(`ui.general.required`) }}
         <br />
         <ALineCode :bolders="['value']" />
       </div>

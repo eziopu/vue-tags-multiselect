@@ -3,17 +3,20 @@
     <ToolTitle>Add option</ToolTitle>
 
     <div class="depiction">
-      <span v-html="$t('ui.page.addOption')"></span>
+      <p v-html="$t(`ui.page.addOption`)"></p>
+
+      <ul>
+        <li v-for="index in [1,2,3]" :key="index">
+          <p v-html="$t(`ui.page.addOption__details.${index}`)"></p>
+        </li>
+      </ul>
 
       <div class="sub-depiction">
-        <p v-html="$t('ui.page.addOption__details.1')"></p>
-        <p v-html="$t('ui.page.addOption__details.2')"></p>
-        <p v-html="$t('ui.page.addOption__details.3')"></p>
         <br />
         <p>
           <a href="#dropdown-slots">
             {{
-              $t("ui.page.sentence.Go_to_detail_option_attributes_description")
+              $t(`ui.page.sentence.Go_to_detail_option_attributes_description`)
             }}
           </a>
         </p>

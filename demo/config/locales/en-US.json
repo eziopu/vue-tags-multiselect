@@ -20,13 +20,13 @@
       "dropdownLoading": "Whether dropdown is loading",
       "search": "Option value search by app input value",
       "create": "Create tag with no title, value is by input",
-      "create__notice": "Then create and search is false, The input will be unable to accept text",
+      "create__notice": "then create and search is false, The input will be unable to accept text",
       "merge": "When tags same title share display one",
       "keyboard": "Enable keyboard operation",
       "keyboard__detail": "When the package gains focus, the following keyboard keys can be used",
       "transition": "Enable css animation",
       "tagPosition": "The placement of the tag. By default, it's positioned to the left of the input. It can be changed to be placed above or below the input",
-      "tagPosition__notice": "Whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
+      "tagPosition__notice": "whether above or below, doesn't affect <code class='tag'>keyboard</code> operations",
       "conjunction": "Select mode",
       "conjunction__parameters": {
         "null": "- : after the second selected, 'OR' mode button will appear at the top",
@@ -34,7 +34,7 @@
         "AND": "AND: selected tag don't show (filter by tag key)"
       },
       "deleteIcon": "Tag delete display logic and where",
-      "deleteIcon__notice": "When editing mode, keyboard delete always work",
+      "deleteIcon__notice": "when editing mode, keyboard delete always work",
       "deleteIcon__parameters": {
         "always": "always: whether show",
         "edit": "edit: only edit this tag show",
@@ -133,7 +133,7 @@
     },
     "option": {
       "value": "Tag value",
-      "value__notice": "Optional,",
+      "value__notice": "optional",
       "value__notices": {
         "0": "Filled: Assign dropdown values upon click",
         "1": "Not filled: No click event assigned and no dropdown values assigned",
@@ -149,7 +149,7 @@
       "disabled": "Whether to disable",
       "divided": "Whether a divider is displayed",
       "selected": "Default selected tag",
-      "selected__notice": "Still can be deleted"
+      "selected__notice": "still can be deleted"
     }
   },
   "ui":{
@@ -163,13 +163,12 @@
       "filled": "Filled",
       "not_filled": "Not filled",      
       "example": "Example",
-      "default": "Default",
       "defaultIs__key": "Default is {key}",
       "Attribute": "Attribute",
       "Description": "Description",
       "Type": "Type",
       "AcceptedValues": "Accepted Values",
-      "Default": "Default",
+      "Default": "Defaul | default",
       "FunctionName": "Function name",
       "Name": "Name",
       "Output": "Output",
@@ -185,8 +184,8 @@
       "basic": "No slot components, no parameter, just a tag bar",
       "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
       "addOption__details": {
-        "1": "v-tag-dropdown: is tag key name",
-        "2": "v-tag-option: is tag key value, it's inside the v-tag-dropdown",
+        "1": "<code class='tag'>&lt;v-tag-dropdown&gt;</code> : is tag key name",
+        "2": "<code class='tag'>&lt;v-tag-option&gt;</code> : is tag key value, it's inside the <code class='tag'>&lt;v-tag-dropdown&gt;</code>",
         "3": "If one <code class='tag'>&lt;v-tag-option&gt;</code> is title, will hide other option to next step show"
       },
       "customStyle": "Slot <code class='tag'>v-tag-dropdown</code> element className not only use in dropdown, but also use by selected tag.",

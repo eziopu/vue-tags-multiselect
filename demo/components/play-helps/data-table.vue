@@ -3,16 +3,16 @@
     <div class="row titles">
       <div><h5>#</h5></div>
       <div>
-        <h5>{{ $t("ui.general.Country") }}</h5>
+        <h5>{{ $t(`ui.general.Country`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Name") }}</h5>
+        <h5>{{ $t(`ui.general.Name`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Height(m)") }}</h5>
+        <h5>{{ $t(`ui.general.Height(m)`) }}</h5>
       </div>
       <div>
-        <h5>{{ $t("ui.general.Remark") }}</h5>
+        <h5>{{ $t(`ui.general.Remark`) }}</h5>
       </div>
     </div>
     <transition-group name="list-complete">
@@ -27,22 +27,22 @@
         </div>
         <div>
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.Country") }}:
+            >{{ $t(`ui.general.Country`) }}:
           </span>
           {{ $t(`ui.data.country.${data.country}`) }}
         </div>
         <div>
-          <span class="i-block d-md-none">{{ $t("ui.general.Name") }}: </span>
+          <span class="i-block d-md-none">{{ $t(`ui.general.Name`) }}: </span>
           {{ $t(`ui.data.name.${data.name}`) }}
         </div>
         <div>
           <span class="i-block d-md-none"
-            >{{ $t("ui.general.Height(m)") }}:
+            >{{ $t(`ui.general.Height(m)`) }}:
           </span>
           {{ data.height }}
         </div>
         <div>
-          <span class="i-block d-md-none">{{ $t("ui.general.Remark") }}: </span>
+          <span class="i-block d-md-none">{{ $t(`ui.general.Remark`) }}: </span>
           {{ getRemarkI18n(data.remark) }}
         </div>
       </div>
@@ -53,7 +53,7 @@
         :key="`blank${index}`"
       >
         <div v-if="datas.length == 0 && index == 6" style="width: 100%">
-          <h5>{{ $t("ui.general.NotFind") }}</h5>
+          <h5>{{ $t(`ui.general.NotFind`) }}</h5>
         </div>
         <div v-else>&emsp;</div>
       </div>

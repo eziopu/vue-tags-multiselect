@@ -8,7 +8,7 @@
           <h3>Hidden</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.dropdown.hidden") }}
+              {{ $t(`attributes.dropdown.hidden`) }}
             </div>
             <LabelAndControls label="" v-model="attributes.hidden" />
           </div>
@@ -17,7 +17,7 @@
           <h3>DisplayAll</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.dropdown.display-all") }}
+              {{ $t(`attributes.dropdown.display-all`) }}
             </div>
             <LabelAndControls
               label=""
@@ -30,7 +30,7 @@
           <h3>Disabled</h3>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.dropdown.disabled") }}
+              {{ $t(`attributes.dropdown.disabled`) }}
             </div>
             <LabelAndControls
               label=""
@@ -42,11 +42,11 @@
         <div class="attribute">
           <div style="display: flex; align-items: center;">
             <h3>Divided</h3>
-            <small style="margin-left: .6rem;">*{{ $t("ui.page.sentence.notice.change_the_second") }}</small>
+            <small style="margin-left: .6rem;">*{{ $t(`ui.page.sentence.notice.change_the_second`) }}</small>
           </div>
           <div class="flex-between">
             <div class="depiction">
-              {{ $t("attributes.dropdown.divided") }}
+              {{ $t(`attributes.dropdown.divided`) }}
             </div>
             <LabelAndControls
               label=""
@@ -61,10 +61,10 @@
       <div class="demo-app">
         <h4>
           <p>
-            * {{ $t("ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown") }}
+            * {{ $t(`ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown`) }}
           </p>
           <p>
-            {{ $t("ui.page.sentence.Some_attributes_will_change_the_second_dropdown") }}
+            {{ $t(`ui.page.sentence.Some_attributes_will_change_the_second_dropdown`) }}
           </p>
         </h4>
         <GeneralDemo

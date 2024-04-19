@@ -5,20 +5,26 @@
     <div class="depiction">
       {{ $t(`${i18nAppPath}.placeholder`) }}
 
-      <div class="sub-depiction">
-        <p>
-          placeholder:
-          {{ $t(`${i18nAppPath}.placeholder__details.placeholder`) }}
-        </p>
-        <p>
-          placeholders:
-          {{ $t(`${i18nAppPath}.placeholder__details.placeholders`) }}
-        </p>
-        <p>
-          *
-          {{ $t(`${i18nAppPath}.placeholder__details.remark`) }}
-        </p>
-      </div>
+      <ul>
+        <li>
+          <p>
+            placeholder:
+            {{ $t(`${i18nAppPath}.placeholder__details.placeholder`) }}
+          </p>
+        </li>
+        <li>
+          <p>
+            placeholders:
+            {{ $t(`${i18nAppPath}.placeholder__details.placeholders`) }}
+          </p>
+        </li>
+        <li>
+          <p>
+            *
+            {{ $t(`${i18nAppPath}.placeholder__details.remark`) }}
+          </p>
+        </li>
+      </ul>
     </div>
 
     <div class="flex-between to5-5">
