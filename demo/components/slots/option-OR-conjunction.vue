@@ -36,9 +36,6 @@
         :autoFocus="true"
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
-        :app="{
-          loading: loading == 'true' ? true : false,
-        }"
         :slots="{
           optionORConjunction: optionORConjunction,
         }"

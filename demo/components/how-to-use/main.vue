@@ -7,7 +7,6 @@
   import ShowHtmlCode from "../tools/show-html-code/main.vue";
 </script>
 
-
 <template>
   <div id="how-to-use" class="demo">
     <div class="description">
