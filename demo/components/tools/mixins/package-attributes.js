@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      appEvent: { ...DEMO_SETTING.event, ...{} },
+      appEvents: { ...DEMO_SETTING.events, ...{} },
     };
   },
   computed: {

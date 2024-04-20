@@ -96,7 +96,7 @@ export const PACKAGE_PROPS = {
   },
 }
 
-export const PACKAGE_EVENT = {
+export const PACKAGE_EVENTS = {
   result: {},
   status: [],
   selectingTag: {},
@@ -136,7 +136,7 @@ export const PACKAGE_V_OPTION_PROPS = {
 export const DEMO_SETTING = {
   props: PACKAGE_PROPS,
   slots: PACKAGE_SLOTS,
-  event: PACKAGE_EVENT,
+  events: PACKAGE_EVENTS,
   option: {
     country: generate_v_options(['', 'Māre', 'Eldia']),
     name: generate_v_options(['', 'Grisha Yeager', 'Eren Yeager', 'Armin Arlert']),

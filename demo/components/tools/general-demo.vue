@@ -1,16 +1,16 @@
 <template>
   <div class="general-demo-template">
     <div class="output" v-if="displayOutput == true">
-      v-model output value: {{ appEvent.result }}
+      v-model output value: {{ appEvents.result }}
     </div>
     <div class="demo-component relative">
       <v-tags-multiselect
-        v-model="appEvent.result"
+        v-model="appEvents.result"
         ref="VTagsMultiselect"
-        @status="(e) => (appEvent.status = e)"
-        @selectingTag="(e) => (appEvent.selectingTag = e)"
-        @inputValue="(e) => (appEvent.inputValue = e)"
-        @editing="(e) => (appEvent.editing = e)"
+        @status="(e) => (appEvents.status = e)"
+        @selectingTag="(e) => (appEvents.selectingTag = e)"
+        @inputValue="(e) => (appEvents.inputValue = e)"
+        @editing="(e) => (appEvents.editing = e)"
         :disabled="appProps.disabled"
         :loading="appProps.loading"
         :dropdownLoading="appProps.dropdownLoading"
@@ -236,7 +236,7 @@ export default {
       },
       deep: true,
     },
-    "appEvent.status": {
+    "appEvents.status": {
       handler(value) {
         this.$emit("update:modelValue", value);
       },
