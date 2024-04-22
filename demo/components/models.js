@@ -73,7 +73,7 @@ export const DATAS = [
   },
 ];
 
-export const PACKAGE_PROPS = {
+export const PACKAGE_ATTRIBUTES = {
   disabled: false,
   loading: false,
   dropdownLoading: false,
@@ -97,7 +97,6 @@ export const PACKAGE_PROPS = {
 }
 
 export const PACKAGE_EVENTS = {
-  result: {},
   status: [],
   selectingTag: {},
   inputValue: "",
@@ -134,7 +133,7 @@ export const PACKAGE_V_OPTION_PROPS = {
 }
 
 export const DEMO_SETTING = {
-  props: PACKAGE_PROPS,
+  attributes: PACKAGE_ATTRIBUTES,
   slots: PACKAGE_SLOTS,
   events: PACKAGE_EVENTS,
   option: {

@@ -39,8 +39,8 @@ export default {
     };
   },
   computed: {
-    appProps() {
-      return { ...DEMO_SETTING.props, ...this.app };
+    appAttributes() {
+      return { ...DEMO_SETTING.attributes, ...this.app };
     },
     appSlots() {
       return { ...DEMO_SETTING.slots, ...this.slots };

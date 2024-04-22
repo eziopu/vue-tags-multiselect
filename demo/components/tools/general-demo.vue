@@ -1,30 +1,30 @@
 <template>
   <div class="general-demo-template">
     <div class="output" v-if="displayOutput == true">
-      v-model output value: {{ appEvents.result }}
+      v-model output value: {{ v_model }}
     </div>
     <div class="demo-component relative">
       <v-tags-multiselect
-        v-model="appEvents.result"
+        v-model="v_model"
         ref="VTagsMultiselect"
         @status="(e) => (appEvents.status = e)"
         @selectingTag="(e) => (appEvents.selectingTag = e)"
         @inputValue="(e) => (appEvents.inputValue = e)"
         @editing="(e) => (appEvents.editing = e)"
-        :disabled="appProps.disabled"
-        :loading="appProps.loading"
-        :dropdownLoading="appProps.dropdownLoading"
-        :search="appProps.search"
-        :transition="appProps.transition"
-        :tagPosition="appProps.tagPosition"
-        :create="appProps.create"
-        :merge="appProps.merge"
-        :deleteIcon="appProps.deleteIcon"
-        :conjunction="appProps.conjunction"
-        :keyboard="appProps.keyboard"
-        :debugLog="appProps.debugLog"
-        :placeholder="appProps.placeholder"
-        :placeholders="appProps.placeholders"
+        :disabled="appAttributes.disabled"
+        :loading="appAttributes.loading"
+        :dropdownLoading="appAttributes.dropdownLoading"
+        :search="appAttributes.search"
+        :transition="appAttributes.transition"
+        :tagPosition="appAttributes.tagPosition"
+        :create="appAttributes.create"
+        :merge="appAttributes.merge"
+        :deleteIcon="appAttributes.deleteIcon"
+        :conjunction="appAttributes.conjunction"
+        :keyboard="appAttributes.keyboard"
+        :debugLog="appAttributes.debugLog"
+        :placeholder="appAttributes.placeholder"
+        :placeholders="appAttributes.placeholders"
       >
         <template v-slot:tag-conjunction v-if="appSlots.tagConjunction != ''">
           <span v-html="appSlots.tagConjunction"></span>
@@ -168,7 +168,7 @@
         <ShowHtmlCode
           v-show="showCode"
           class="prettyprint lang-html customize"
-          :app="appProps"
+          :app="appAttributes"
           :slots="appSlots"
           :dropdown="appDropdown"
           :option="appOption"
@@ -220,6 +220,7 @@ export default {
     return {
       search: "true",
       showCode: false,
+      v_model: {},
     };
   },
   emits: ["update:modelValue"],
