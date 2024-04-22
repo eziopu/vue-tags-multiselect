@@ -127,11 +127,13 @@
 </template>
 
 <script>
+// components
 import VTag from "./components/tag/main.vue";
 import PartialLoading from "./components/partial/loading.vue";
 import VTagDropdown from "./components/slots/v-dropdown.vue";
 import VTagOption from "./components/slots/v-option.vue";
 
+// resolve
 import resolve from "./utils/resolve";
 import useLog from "./composables/useLog";
 import usePreprocessedData from "./composables/usePreprocessedData";
@@ -151,14 +153,19 @@ export default defineComponent({
   name: "v-tags-multiselect",
   emits: [
     "update:modelValue",
-    "status",
-    "edit",
-    "inputValue",
+    // app
+    "focus",
+    "blur",
     "keydown",
     "keyup",
-    "selectingTag",
+    "status",
+    "inputValue",
+    // dropdown
+    "visible-change",
+    // tag
+    "remove-tag",
+    "selecting-tag",
   ],
-
   components: {
     VTag,
     PartialLoading,

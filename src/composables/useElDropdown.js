@@ -1,6 +1,6 @@
 import { ref, reactive, computed, watch, nextTick } from "vue";
 
-export default function useElDropdown(props, _context, dep) {
+export default function useElDropdown(props, context, dep) {
   // ============== DATA ================
 
   const appIsActive = dep.isActive;
@@ -30,6 +30,7 @@ export default function useElDropdown(props, _context, dep) {
     }
     return isAllDropdownIsHidden.value;
   });
+
 
   const isElDropdownVisible = computed(() => {
     if (editTagIndex.value != -1) {
@@ -104,6 +105,8 @@ export default function useElDropdown(props, _context, dep) {
     elDropdownStyle.left = `${leftOffset}px`;
     elDropdownStyle.top = `${topOffset}px`;
   }, { immediate: true });
+  
+  context.emit("visible-change", isElDropdownVisible);
 
   return {
     elDropdown,

@@ -4,11 +4,7 @@ import { getKeydownModel } from "../models";
 
 import { APP_INPUT_BLUR } from "../timeouts.js";
 
-export default function useApp(props, _context, dep) {
-  // dep.log("function useApp");
-  // dep.log("props =", props);
-  // dep.log("context =", context);
-
+export default function useApp(props, context, dep) {
   // ============== REFS ================
 
   const elApp = ref(null);
@@ -116,6 +112,7 @@ export default function useApp(props, _context, dep) {
       return;
     }
     dep.log(`InputFocus`, `available`);
+    context.emit("focus");
     appEnable();
 
     if (focusReInit.value == true) {
@@ -135,6 +132,7 @@ export default function useApp(props, _context, dep) {
         dep.log2(`actElm :`, document.activeElement);
 
         isActive.value = false;
+        context.emit("blur");
         init("elInputBlur()");
       } else {
         isActive.value = true;
