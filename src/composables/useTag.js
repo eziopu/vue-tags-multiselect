@@ -72,7 +72,6 @@ export default function useTag(_props, context, dep) {
   });
 
   watch(tagsGroupByKey, (value) => {
-    context.emit("change");
     context.emit("update:modelValue", value);
   });
 
