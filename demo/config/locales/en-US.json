@@ -21,6 +21,7 @@
       "search": "Option value search by app input value",
       "create": "Create tag with no title, value is by input",
       "create__notice": "then create and search is false, The input will be unable to accept text",
+      "clearable": "Whether to enable the clear button",
       "merge": "When tags same title share display one",
       "keyboard": "Enable keyboard operation",
       "keyboard__detail": "When the package gains focus, the following keyboard keys can be used",
@@ -74,9 +75,14 @@
       "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
     },
     "events": {
-      "status": "Get current operating mode",
-      "selectingTag": "Get current selected tag",
-      "inputValue": "Get the current input's value."
+      "focus": "Triggered when the package gains focus",
+      "blur": "Triggered when the package loses focus",
+      "status": "Obtains the current operation status",
+      "clear": "Triggered when the user clicks the clear button",
+      "input-value": "Obtains the current value of the input",
+      "visible-change": "Triggered when the dropdown box appears/disappears",
+      "remove-tag": "Triggered when a tag is removed",
+      "selecting-tag": "Obtains the current selected tag (including selected and editing)"
     },
     "exposes": {
       "focus": "Focuses on the input box of the package",
