@@ -73,6 +73,49 @@ export const DATAS = [
   },
 ];
 
+function get_type(input) {
+  if (Array.isArray(input)) return "Array";
+  const type = typeof input;
+
+  if (type == "string" && input.includes("=> void")) {
+    return "Function"
+  }
+  return type.charAt(0).toUpperCase() + type.slice(1);
+}
+
+function to_object(input, supplyInputs = undefined) {
+  return {
+    type: get_type(input),
+    default: input,
+    acceptedValues: supplyInputs,
+  }
+}
+
+function to_detail_attributes(obj, supplyObj) {
+  const result = {};
+  for (const key in obj) {
+    result[key] = (typeof obj[key] === 'object' && obj[key] !== null)
+      ? to_detail_attributes(obj[key])
+      : to_object(obj[key], obj[key]['inputs'], supplyObj[key])
+  }
+  return result;
+}
+
+//------------------------------------------------------------------------------
+// ATTRIBUTES
+//------------------------------------------------------------------------------
+
+export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
+  return to_detail_attributes(
+    PACKAGE_ATTRIBUTES,
+    {
+      deleteIcon: ['always', 'edit', 'none'],
+      tagPosition: ['top', 'bottom'],
+      conjunction: ['OR', 'AND'],
+    }
+  )
+}
+
 export const PACKAGE_ATTRIBUTES = {
   disabled: false,
   loading: false,
@@ -96,12 +139,45 @@ export const PACKAGE_ATTRIBUTES = {
   },
 }
 
-export const PACKAGE_EVENTS = {
-  status: [],
-  selectingTag: {},
-  inputValue: "",
-  editing: {},
+//------------------------------------------------------------------------------
+// EVENTS
+//------------------------------------------------------------------------------
+
+export const GET_PACKAGE_EVENTS_DETAIL = () => {
+  return {
+    focus: to_object("() => void"),
+    blur: to_object("() => void"),
+    clear: to_object("() => void"),
+    status: to_object("(status: array) => void", [
+      "disabled",
+      "loading",
+      "searching",
+      "editing",
+      "selecting",
+      "finish",
+      "delect-down"
+    ]),
+    inputValue: to_object("(value: string) => void"),
+    visibleChange: to_object("(visible: boolean) => void"),
+    removeTag: to_object("(tag: object) => void"),
+    selectingTag: to_object("(tag: object) => void"),
+  }
 }
+
+export const PACKAGE_EVENTS = {
+  focus: () => { },
+  blur: () => { },
+  clear: () => { },
+  status: () => { },
+  inputValue: (String) => { return String },
+  visibleChange: (Boolean) => { return Boolean },
+  removeTag: (Object) => { return Object },
+  selectingTag: (Object) => { return Object },
+}
+
+//------------------------------------------------------------------------------
+// SLOTS
+//------------------------------------------------------------------------------
 
 export const PACKAGE_SLOTS = {
   tagConjunction: "",
@@ -110,6 +186,10 @@ export const PACKAGE_SLOTS = {
   optionORConjunction: "",
   dropdownLoading: "",
 }
+
+//------------------------------------------------------------------------------
+// V_DROPDOWN_PROPS
+//------------------------------------------------------------------------------
 
 export const PACKAGE_V_DROPDOWN_PROPS = {
   isDisplayForDemo: true, // for show code
@@ -120,6 +200,10 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
   hidden: false,
   custom: false,
 }
+
+//------------------------------------------------------------------------------
+// V_OPTION_PROPS
+//------------------------------------------------------------------------------
 
 export const PACKAGE_V_OPTION_PROPS = {
   isDisplayForDemo: true, // for show code
@@ -144,7 +228,7 @@ export const DEMO_SETTING = {
   dropdown: {
     country: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'country' } },
     name: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'name' } },
-    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'remark', displayAll: true}},
+    remark: { ...PACKAGE_V_DROPDOWN_PROPS, ...{ value: 'remark', displayAll: true } },
   },
 }
 
@@ -153,10 +237,12 @@ function generate_v_options(values = [""]) {
     if (index == 0) {
       return { ...PACKAGE_V_OPTION_PROPS, ...{ title: true } };
     }
-    return { ...PACKAGE_V_OPTION_PROPS, ...{ 
-      value: values[index],
-      valueForDemo: values[index]
-    }};
+    return {
+      ...PACKAGE_V_OPTION_PROPS, ...{
+        value: values[index],
+        valueForDemo: values[index]
+      }
+    };
   });
 }
 
@@ -181,8 +267,8 @@ export function merge_v_dropdowns(inputs = {}) {
 }
 
 // :option="{
-// country: [{}, { selected: true }, { selected: true }],
-//       }"
+//   country: [{}, { selected: true }, { selected: true }],
+// }"
 export function merge_v_options(inputs = [{}]) {
   let options = deep_clone(DEMO_SETTING.option);
   // options = {country: [], ...}
@@ -193,7 +279,7 @@ export function merge_v_options(inputs = [{}]) {
 
     if (inputs[key] != undefined) {
       for (let index = 0; index < value.length; index++) {
-        options[key][index] = {...value[index], ...inputs[key][index]}
+        options[key][index] = { ...value[index], ...inputs[key][index] }
       }
     }
   });
