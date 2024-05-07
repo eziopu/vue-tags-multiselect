@@ -1,6 +1,6 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
-<pre class="tag prettyprint lang-html customize"><code><!--
+  <pre class="tag prettyprint lang-html customize"><code><!--
   -->&lt;v-tags-multiselect<br><!--
     --><span v-for="(item, key) in items" :key="key"><!--
         --><Space /><!--
@@ -14,10 +14,12 @@
             --><span class="atv"> => </span><!--
 
             --><span class="lit">(</span><!--
+                --><span class="rwd" :class="key"><br/><Space :n="2"/></span><!--
                 --><span>{{ item[1] }}</span>.<!--
                 --><span class="red">value</span><!--
                 --><span class="cyan-blue">{{ item[2] }}</span><!--
-                --><span class="red">{{ item[3] }}</span><!--
+                --><span class="red">{{ item[0] }}</span><!--
+                --><span class="rwd" :class="key"><br/><Space /></span><!--
             --><span class="lit">)</span><!--
             -->"<!--
         --><br><!--
@@ -38,16 +40,35 @@ export default {
   data() {
     return {
       items: {
-        focus: ['', 'focusCount', '++', ''],
-        blur: ['', 'blurCount', '++', ''],
-        clear: ['', 'clearCount', '++', ''],
-        status: ['e', 'statusArray', ' = ', 'e'],
-        'input-value': ['e', 'inputValue', ' = ', 'e'],
-        'visible-change': ['e', 'visibleChange', ' = ', 'e'],
-        'remove-tag': ['e', 'removeTag', ' = ', 'e'],
-        'selecting-tag': ['e', 'selectingTag', ' = ', 'e']
+        focus: ['', 'focusCount', '++'],
+        blur: ['', 'blurCount', '++'],
+        clear: ['', 'clearCount', '++'],
+        status: ['array', 'statusArray', ' = '],
+        'input-value': ['string', 'inputValue', ' = '],
+        'visible-change': ['boolean', 'visibleChange', ' = '],
+        'remove-tag': ['tag', 'removeTag', ' = '],
+        'selecting-tag': ['tag', 'selectingTag', ' = '],
       }
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.rwd {
+  display: none;
+  
+  @media (max-width: 1200px) {
+    &.visible-change {
+      display: inline;
+    }
+  }
+  @media (min-width: 769px) and (max-width: 992px) {
+    display: inline;
+  }
+  
+  @media (max-width: 499px) {
+    display: inline;
+  }
+}
+</style>
