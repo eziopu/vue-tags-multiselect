@@ -157,10 +157,10 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
       "finish",
       "delect-down"
     ]),
-    inputValue: to_object("(value: string) => void"),
-    visibleChange: to_object("(visible: boolean) => void"),
-    removeTag: to_object("(tag: object) => void"),
-    selectingTag: to_object("(tag: object) => void"),
+    'input-value': to_object("(value: string) => void"),
+    'visible-change': to_object("(visible: boolean) => void"),
+    'remove-tag': to_object("(tag: object) => void"),
+    'selecting-tag': to_object("(tag: object) => void"),
   }
 }
 
