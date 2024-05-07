@@ -1,10 +1,8 @@
-import { ref, nextTick, getCurrentInstance, watch, provide } from "vue";
+import { ref, nextTick, watch, provide } from "vue";
 
 import { APP_KEYDOWN_LOCK_BY_TAG_INPUT_FOCUS } from "../timeouts.js";
 
-export default function useKeyboard(props, context, dep) {
-  const $this = getCurrentInstance().proxy;
-
+export default function useKeyboard(props, _context, dep) {
   // ============== DEPENDENCIES ==============
 
   const focusApp = dep.focusApp;
@@ -125,8 +123,6 @@ export default function useKeyboard(props, context, dep) {
   const init = dep.init;
   const isPassTagInputBlur = dep.isPassTagInputBlur;
   const handleKeydown = async (event) => {
-    context.emit("keydown", event, $this);
-
     if (props.keyboard == false) {
       log(
         "method is not yet enabled because the props keyboard value is false.",
@@ -359,15 +355,10 @@ export default function useKeyboard(props, context, dep) {
     }
   };
 
-  const handleKeyup = (event) => {
-    context.emit("keyup", event, $this);
-  };
-
   // ============== PROVIDE ==============
   provide("appHandleKeydown", handleKeydown);
 
   return {
     handleKeydown,
-    handleKeyup,
   };
 }

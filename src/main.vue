@@ -156,10 +156,8 @@ export default defineComponent({
     // app
     "focus",
     "blur",
-    "keydown",
-    "keyup",
     "status",
-    "inputValue",
+    "input-value",
     // dropdown
     "visible-change",
     // tag
