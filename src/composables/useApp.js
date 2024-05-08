@@ -1,4 +1,4 @@
-import { ref, reactive, computed, provide, readonly } from "vue";
+import { ref, reactive, watch, computed, provide, readonly } from "vue";
 
 import { getKeydownModel } from "../models";
 
@@ -112,7 +112,6 @@ export default function useApp(props, context, dep) {
       return;
     }
     dep.log(`InputFocus`, `available`);
-    context.emit("focus");
     appEnable();
 
     if (focusReInit.value == true) {
@@ -132,13 +131,21 @@ export default function useApp(props, context, dep) {
         dep.log2(`actElm :`, document.activeElement);
 
         isActive.value = false;
-        context.emit("blur");
         init("elInputBlur()");
       } else {
         isActive.value = true;
       }
     }, APP_INPUT_BLUR);
   };
+
+  // ============== WATCH TO EMIT ==============
+
+  watch(
+    isActive,
+    (value) => {
+      context.emit(value ? "focus" : "blur");
+    }
+  );
 
   // ============== PROVIDE ==============
 
