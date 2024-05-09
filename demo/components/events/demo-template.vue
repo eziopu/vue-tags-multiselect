@@ -19,8 +19,16 @@ const { label, contents } = toRefs(props);
     <h3>{{ label }} : <small>{{ contents.default }}</small></h3>
 
     <div class="depiction">
-      {{ $t(`attributes.events.${label}`) }}
+      <p>
+        {{ $t(`attributes.events.${label}`) }}
+      </p>
+
+      <p v-if="contents.acceptedValues">
+        values : 
+        {{ contents.acceptedValues }}
+      </p>
     </div>
+
 
   </div>
 </template>
