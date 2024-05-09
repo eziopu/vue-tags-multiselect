@@ -127,6 +127,10 @@ export default function useTag(_props, context, dep) {
     for (const index of indexs) {
       // Do not use splice.
       // deleting or updating tag by index may affect the calculation of the index.
+      context.emit("remove-tag", {
+        key: tags[index].key,
+        value: tags[index].value,
+      });
       delete tags[index];
       // tags.splice(index, 1);
       log(`delete tag by index is ${index}`, `success`);
@@ -176,7 +180,7 @@ export default function useTag(_props, context, dep) {
   // ============== EMIT ==============
 
   watch(stashTag, (value) => {
-    context.emit("selectingTag", value.key ? (delete value.index, value) : {});
+    context.emit("selecting-tag", value.key ? (delete value.index, value) : {});
   });
 
   return {

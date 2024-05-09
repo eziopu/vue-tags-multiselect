@@ -63,7 +63,7 @@ export default function useElInput(props, context, dep) {
 
   // ============== EMIT ==============
 
-  context.emit("inputValue", elInputValue);
+  context.emit("input-value", elInputValue);
 
   return {
     elInput,

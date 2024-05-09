@@ -127,11 +127,13 @@
 </template>
 
 <script>
+// components
 import VTag from "./components/tag/main.vue";
 import PartialLoading from "./components/partial/loading.vue";
 import VTagDropdown from "./components/slots/v-dropdown.vue";
 import VTagOption from "./components/slots/v-option.vue";
 
+// resolve
 import resolve from "./utils/resolve";
 import useLog from "./composables/useLog";
 import usePreprocessedData from "./composables/usePreprocessedData";
@@ -151,14 +153,17 @@ export default defineComponent({
   name: "v-tags-multiselect",
   emits: [
     "update:modelValue",
+    // app
+    "focus",
+    "blur",
     "status",
-    "edit",
-    "inputValue",
-    "keydown",
-    "keyup",
-    "selectingTag",
+    "input-value",
+    // dropdown
+    "visible-change",
+    // tag
+    "remove-tag",
+    "selecting-tag",
   ],
-
   components: {
     VTag,
     PartialLoading,
@@ -319,5 +324,14 @@ export default defineComponent({
   .slide-leave-to{
     transform: scaleY(0);
   }
+
+  /* clears the ‘X’ from Internet Explorer */
+  input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+  input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+  /* clears the ‘X’ from Chrome */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 </style>

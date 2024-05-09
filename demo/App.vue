@@ -21,6 +21,7 @@ import Slots from "./components/slots/main.vue";
 import SlotDropdown from "./components/slot-dropdown/main.vue";
 import SlotOption from "./components/slot-option/main.vue";
 import Exposes from "./components/exposes/main.vue";
+import Events from "./components/events/main.vue";
 
 import Header from "./components/layout/header/main.vue";
 import Pagination from "./components/layout/pagination.vue";
@@ -34,6 +35,7 @@ const components = {
   "Slot-dropdown": SlotDropdown,
   "Slot-option": SlotOption,
   "Exposes": Exposes,
+  "Events": Events,
   "Play": Play
 };
 const pages = Object.keys(components);

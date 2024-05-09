@@ -1,14 +1,10 @@
-import { ref, reactive, computed, provide, readonly } from "vue";
+import { ref, reactive, watch, computed, provide, readonly } from "vue";
 
 import { getKeydownModel } from "../models";
 
 import { APP_INPUT_BLUR } from "../timeouts.js";
 
-export default function useApp(props, _context, dep) {
-  // dep.log("function useApp");
-  // dep.log("props =", props);
-  // dep.log("context =", context);
-
+export default function useApp(props, context, dep) {
   // ============== REFS ================
 
   const elApp = ref(null);
@@ -141,6 +137,15 @@ export default function useApp(props, _context, dep) {
       }
     }, APP_INPUT_BLUR);
   };
+
+  // ============== WATCH TO EMIT ==============
+
+  watch(
+    isActive,
+    (value) => {
+      context.emit(value ? "focus" : "blur");
+    }
+  );
 
   // ============== PROVIDE ==============
 

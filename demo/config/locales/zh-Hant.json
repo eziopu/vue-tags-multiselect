@@ -21,6 +21,7 @@
       "search": "是否可使用輸入框搜尋 option 的 value值",
       "create": "是否可使用輸入框建立 tag",
       "create__notice": "當 create 與 search 皆為 false 時, 輸入框將無法輸入文字",
+      "clearable": "是否啟用清空按鈕",
       "merge": "合併相同key值的option",
       "keyboard": "是否啟用keyboard操作",
       "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
@@ -74,9 +75,14 @@
       "option-OR-conjunction__notice": "僅在參數 <code class='tag'>conjunction</code> 為 'null' 時顯示"
     },
     "events": {
-      "status": "取得當前操作的模式名稱",
-      "selectingTag": "取得當前選擇的tag(包括選擇中, 編輯中)",
-      "inputValue": "取得當前 input 的 value 值"
+      "focus": "當套件獲得焦點時觸發",
+      "blur": "當套件失去焦點時觸發",
+      "status": "取得當前操作的狀態",
+      "clear": "使用者點擊清空按鈕時觸發",
+      "input-value": "取得當前 input 的值",
+      "visible-change": "下拉方塊出現/隱藏時觸發",
+      "remove-tag": "移除tag時觸發",
+      "selecting-tag": "取得當前選擇的tag(包括選擇中, 編輯中)"
     },
     "exposes": {
       "focus": "使套件的輸入框取得焦點",
