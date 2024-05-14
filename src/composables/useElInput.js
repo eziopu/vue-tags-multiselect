@@ -22,20 +22,19 @@ export default function useElInput(props, context, dep) {
     return getPlaceholdersModel(props.placeholders);
   });
 
+  const appIsLock = dep.appIsLock;
+  const appIsFinish = dep.appIsFinish;
   const elInputDisabled = computed(() => {
-    return props.search == false && props.create == false;
+    return appIsLock.value == true || appIsFinish.value == true || (props.search == false && props.create == false);
   });
 
-  const appIsLock = dep.appIsLock;
   const elInputMaxlength = computed(() => {
-    return appIsLock.value == true ||
-      elInputDisabled.value ||
+    return elInputDisabled.value == true ||
       (stashTag.key != null && stashTag.custom == false)
       ? 0
       : 99;
   });
 
-  const appIsFinish = dep.appIsFinish;
   const isAllDropdownIsDown = dep.isAllDropdownIsDown;
   const elInputPlaceholder = computed(() => {
     if (props.placeholder != "" && !stashTag.key) {
