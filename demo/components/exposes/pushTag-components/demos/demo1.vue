@@ -56,7 +56,7 @@ onUnmounted(() => {
 });
 
 const demoDropdownSelected = ref(false);
-const firstDemo = (input = {}) => {
+const fastDemo = (input = {}) => {
   attributes.key = input.key;
   attributes.value = input.value;
   demoDropdownSelected.value = input.seleting == true ? true : false 
@@ -84,37 +84,37 @@ const i18nHasKey = `${i18nMain}.has-key`;
       <span v-html="$t(`${i18n}.description-1`)"></span>
       <p v-html="$t(`${i18n}.sub-description`)"></p>
       
-      <span v-html="$t(`${i18n}.first`)"></span>
+      <span v-html="$t(`${i18n}.fast`)"></span>
       <div class="sub-depiction">
-        <div class="depiction__first-demo">
+        <div class="depiction__fast-demo">
           <p v-html="$t(`${i18nNoKey}.description`, 0)"></p>
-          <div class="depiction__first-demo--colon"> : </div>
+          <div class="depiction__fast-demo--colon"> : </div>
           <button type="button" 
             class="small ui button btn btn-secondary btn-sm" 
-            @click="firstDemo({key: '', value: 'test', seleting: true})"
+            @click="fastDemo({key: '', value: 'test', seleting: true})"
           >
             <span v-html="$t(`${i18nNoKey}.1`, 0)"></span>
           </button>
           <button type="button" 
             class="small ui button btn btn-secondary btn-sm" 
-            @click="firstDemo({key: '', value: 'test'})"
+            @click="fastDemo({key: '', value: 'test'})"
           >
             <span v-html="$t(`${i18nNoKey}.2`, 0)"></span>
           </button>
         </div>
 
-        <div class="depiction__first-demo">
+        <div class="depiction__fast-demo">
           <p v-html="$t(`${i18nHasKey}.description`, 0)"></p>
-          <div class="depiction__first-demo--colon"> : </div>
+          <div class="depiction__fast-demo--colon"> : </div>
           <button type="button" 
             class="small ui button btn btn-secondary btn-sm" 
-            @click="firstDemo({key: 'country', value: 'test'})"
+            @click="fastDemo({key: 'country', value: 'test'})"
           >
             <span v-html="$t(`${i18nHasKey}.1`, 0)"></span>
           </button>
           <button type="button" 
             class="small ui button btn btn-secondary btn-sm" 
-            @click="firstDemo({key: 'noSameKey', value: 'test'})"
+            @click="fastDemo({key: 'noSameKey', value: 'test'})"
           >
             <span v-html="$t(`${i18nHasKey}.2`, 0)"></span>
           </button>
@@ -200,12 +200,12 @@ const i18nHasKey = `${i18nMain}.has-key`;
   margin: 0 .3rem;
 }
 
-.depiction__first-demo {
+.depiction__fast-demo {
   display: flex;
   margin-bottom: .3rem;
   align-items: center;
 
-  .depiction__first-demo--colon {
+  .depiction__fast-demo--colon {
     margin: 0 0.3rem;
   }
 

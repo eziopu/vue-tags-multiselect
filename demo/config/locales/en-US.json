@@ -115,7 +115,7 @@
           "description": "The submission button will delay sending for",
           "description-1": "Seconds",
           "sub-description": "After clicking the button, please proceed immediately",
-          "first": "Quick apply scenario"
+          "fast": "Quick apply scenario"
         },
         "parameter": {
           "key": "Tag key",

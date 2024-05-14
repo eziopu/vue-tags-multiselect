@@ -115,7 +115,7 @@
           "description": "送出按鈕會延遲",
           "description-1": "秒後發送",
           "sub-description": "按下按鈕後請立刻去操作",
-          "first": "快速套用情境"
+          "fast": "快速套用情境"
         },
         "parameter": {
           "key": "標籤的key值",
