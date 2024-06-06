@@ -78,6 +78,11 @@
       "focus": "Triggered when the package gains focus",
       "blur": "Triggered when the package loses focus",
       "status": "Obtains the current operation status",
+      "status__parameter_extended_description": {
+        "selecting": "@:attributes.events.selecting-tag",
+        "finish": "All options are completed and <code class='tag'>create</code> 為 false",
+        "delect-down": "All options are completed but <code class='tag'>create</code> 為 true"
+      },
       "clear": "Triggered when the user clicks the clear button",
       "input-value": "Obtains the current value of the input",
       "visible-change": "Triggered when the dropdown box appears/disappears",
@@ -184,7 +189,8 @@
       "Country": "Country",
       "Height(m)": "Height(m)",
       "Remark": "Remark",
-      "NotFind": "Not find any"
+      "NotFind": "Not find any",
+      "Extended": "Extended description"
     },
     "page": {
       "basic": "No slot components, no parameter, just a tag bar",

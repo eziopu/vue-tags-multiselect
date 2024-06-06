@@ -78,6 +78,11 @@
       "focus": "當套件獲得焦點時觸發",
       "blur": "當套件失去焦點時觸發",
       "status": "取得當前操作的狀態",
+      "status__parameter_extended_description": {
+        "selecting": "@:attributes.events.selecting-tag",
+        "finish": "選項皆完成且 <code class='tag'>create</code> 為 false",
+        "delect-down": "選項皆完成但 <code class='tag'>create</code> 為 true"
+      },
       "clear": "使用者點擊清空按鈕時觸發",
       "input-value": "取得當前 input 的值",
       "visible-change": "下拉方塊出現/隱藏時觸發",
@@ -184,7 +189,8 @@
       "Country": "國家",
       "Height(m)": "身高(m)",
       "Remark": "備註",
-      "NotFind": "無符合資料"
+      "NotFind": "無符合資料",
+      "Extended": "補充說明"
     },
     "page": {
       "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",

@@ -1,22 +1,19 @@
 <script setup>
-import { defineProps, toRefs } from "vue";
+import { defineProps, toRefs } from 'vue'
 
 const props = defineProps({
   label: String,
-  contents: Object,
-});
+  contents: Object
+})
 
-const { label, contents } = toRefs(props);
-
-// const convertToKebabCase = (str) => {
-//   return str.replace(/[A-Z]/g, match => '-' + match.toLowerCase()).replace(/^-/, '');
-// }
-
+const { label, contents } = toRefs(props)
 </script>
 
 <template>
   <div :id="`events-${label}`">
-    <h3>{{ label }} : <small>{{ contents.default }}</small></h3>
+    <h3>
+      {{ label }} : <small>{{ contents.default }}</small>
+    </h3>
 
     <div class="depiction">
       <p>
@@ -24,17 +21,17 @@ const { label, contents } = toRefs(props);
       </p>
 
       <p v-if="contents.acceptedValues">
-        values : 
+        values :
         {{ contents.acceptedValues }}
       </p>
+
+      <slot />
     </div>
-
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "events-disabled",
-};
+  name: 'events-demo-template'
+}
 </script>

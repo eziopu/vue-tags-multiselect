@@ -51,6 +51,18 @@ const attributes = reactive({
         :label="key"
         :contents="EVENT"
       >
+        <ul v-if="key == 'status'">
+          <li
+            v-for="(value, key) in ['selecting', 'finish', 'delect-down']"
+            :key="key"
+            style="margin-bottom: 6px"
+          >
+            {{ value }}:
+            <span
+              v-html="$t(`attributes.events.status__parameter_extended_description.${value}`)"
+            ></span>
+          </li>
+        </ul>
       </DemoTemplate>
     </div>
     <div class="general-demo-result" :class="demoStatus">
