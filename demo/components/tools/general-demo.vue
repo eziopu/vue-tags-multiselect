@@ -7,6 +7,7 @@
         ref="VTagsMultiselect"
         @focus="() => $emit(`focus`)"
         @blur="() => $emit(`blur`)"
+        @clear="() => $emit(`clear`)"
         @status="
           (e) => {
             $emit(`update:modelValue`, e)
@@ -227,6 +228,7 @@ export default {
     // app
     'focus',
     'blur',
+    'clear',
     'status',
     'input-value',
     // dropdown
