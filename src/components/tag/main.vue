@@ -34,20 +34,18 @@
       </template>
     </div>
 
-    <div
+    <PartialClose
       v-if="isDeleteVisible"
       @click="deletes"
       :class="{ pointer: appIsLock == false }"
-      class="v-tag__close-icon"
     >
-      <div class="v-tag__close-icon--left"></div>
-      <div class="v-tag__close-icon--right"></div>
-    </div>
+    </PartialClose>
   </div>
 </template>
 
 <script>
 import ValueRender from "./value/index.vue";
+import PartialClose from "../partial/close.vue";
 
 import { computed, inject } from "vue";
 
@@ -55,6 +53,7 @@ export default {
   name: "v-tag",
   components: {
     ValueRender,
+    PartialClose,
   },
   props: {
     tag: {
@@ -196,37 +195,6 @@ export default {
 
   .pointer {
     cursor: pointer;
-  }
-
-  .v-tag__close-icon {
-    position: relative;
-    width: 26px;
-    display: inline-flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    transition: background-color 0.5s ease;
-
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-
-    .v-tag__close-icon--left,
-    .v-tag__close-icon--right {
-      position: relative;
-      width: 2px;
-      height: 18px;
-      background-color: #a2a2a2;
-      transition: background-color 0.5s ease;
-    }
-
-    .v-tag__close-icon--left {
-      transform: rotate(-45deg);
-    }
-
-    .v-tag__close-icon--right {
-      margin-left: -2px;
-      transform: rotate(45deg);
-    }
   }
 }
 </style>
