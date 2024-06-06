@@ -1,5 +1,5 @@
 <template>
-  <div class="v-partial__close-icon">
+  <div class="v-partial__close-icon" :class="{ disabled: disabled }">
     <div class="v-partial__close-icon--left"></div>
     <div class="v-partial__close-icon--right"></div>
   </div>
@@ -7,7 +7,13 @@
 
 <script>
 export default {
-  name: 'partial-close'
+  name: 'partial-close',
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 
@@ -23,6 +29,10 @@ export default {
 
   border-top-right-radius: inherit;
   border-bottom-right-radius: inherit;
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
 
   .v-partial__close-icon--left,
   .v-partial__close-icon--right {

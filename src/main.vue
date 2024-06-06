@@ -9,12 +9,14 @@
     @keyup="handleKeyup"
     @click="isEnable = true"
     :key="elAppKeyForRerender"
-    :class="{ active: isActive, disabled: disabled, loading: loading, ['v-tag-'+tagPosition] :isTagPositionVisible }"
+    :class="{
+      active: isActive,
+      disabled: disabled,
+      loading: loading,
+      ['v-tag-' + tagPosition]: isTagPositionVisible
+    }"
   >
-    <div
-      class="v-tags-multiselect__tags overflow-tags"
-      ref="elTags" v-if="isTagPositionVisible"
-    >
+    <div class="v-tags-multiselect__tags overflow-tags" ref="elTags" v-if="isTagPositionVisible">
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
@@ -31,7 +33,8 @@
     <div class="v-tags-multiselect__main">
       <div
         class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
-        ref="elTags" v-if="!isTagPositionVisible"
+        ref="elTags"
+        v-if="!isTagPositionVisible"
       >
         <VTag
           v-for="(tag, index) in merge == true
@@ -64,7 +67,7 @@
             :style="elDropdownStyle"
             :class="{
               loading: loading || dropdownLoading,
-              transition: transition,
+              transition: transition
             }"
           >
             <div
@@ -83,9 +86,7 @@
               <VTagOption v-if="isUndoOptionVisible" class="undo">
                 <!-- :divided="optionDisplayCount != 0" -->
                 <div @click="elOptionUndo()">
-                  <slot name="option-undo">
-                    <i class="v-option__undo--arrow-left"></i>Undo
-                  </slot>
+                  <slot name="option-undo"> <i class="v-option__undo--arrow-left"></i>Undo </slot>
                 </div>
               </VTagOption>
               <VTagOption v-if="isORConjunctionOptionVisible" class="conjunction">
@@ -101,7 +102,11 @@
         </Transition>
 
         <div class="v-tags-multiselect__main--fill">
-          <div v-show="loading == true" class="v-tags-multiselect__main--fill__loading" ref="loading">
+          <div
+            v-show="loading == true"
+            class="v-tags-multiselect__main--fill__loading"
+            ref="loading"
+          >
             <slot name="loading">
               <PartialLoading></PartialLoading>
             </slot>
@@ -119,56 +124,62 @@
             :maxlength="elInputMaxlength"
             :placeholder="elInputPlaceholder"
           />
+
+          <PartialClose v-show="isClearableVisible" @click="clear" class="v-tags-clear">
+          </PartialClose>
         </div>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
 // components
-import VTag from "./components/tag/main.vue";
-import PartialLoading from "./components/partial/loading.vue";
-import VTagDropdown from "./components/slots/v-dropdown.vue";
-import VTagOption from "./components/slots/v-option.vue";
+import VTag from './components/tag/main.vue'
+import PartialLoading from './components/partial/loading.vue'
+import PartialClose from './components/partial/close.vue'
+import VTagDropdown from './components/slots/v-dropdown.vue'
+import VTagOption from './components/slots/v-option.vue'
 
 // resolve
-import resolve from "./utils/resolve";
-import useLog from "./composables/useLog";
-import usePreprocessedData from "./composables/usePreprocessedData";
-import useTag from "./composables/useTag";
-import useElInput from "./composables/useElInput";
-import useApp from "./composables/useApp";
-import useElDropdown from "./composables/useElDropdown";
-import useSystemOption from "./composables/useSystemOption";
-import useStatus from "./composables/useStatus";
-import useKeyboard from "./composables/useKeyboard";
-import useExposeSetTag from "./composables/useExposeSetTag";
-import useExpose from "./composables/useExpose";
+import resolve from './utils/resolve'
+import useLog from './composables/useLog'
+import usePreprocessedData from './composables/usePreprocessedData'
+import useTag from './composables/useTag'
+import useElInput from './composables/useElInput'
+import useApp from './composables/useApp'
+import useElDropdown from './composables/useElDropdown'
+import useSystemOption from './composables/useSystemOption'
+import useStatus from './composables/useStatus'
+import useKeyboard from './composables/useKeyboard'
+import useExposeSetTag from './composables/useExposeSetTag'
+import useExpose from './composables/useExpose'
+import useClearable from './composables/useClearable'
 
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "v-tags-multiselect",
+  name: 'v-tags-multiselect',
   emits: [
-    "update:modelValue",
+    'update:modelValue',
     // app
-    "focus",
-    "blur",
-    "status",
-    "input-value",
+    'focus',
+    'blur',
+    'clear',
+    'status',
+    'input-value',
     // dropdown
-    "visible-change",
+    'visible-change',
     // tag
-    "remove-tag",
-    "selecting-tag",
+    'remove-tag',
+    'selecting-tag'
   ],
   components: {
     VTag,
     PartialLoading,
+    PartialClose,
     VTagDropdown,
-    VTagOption,
+    VTagOption
   },
   props: {
     disabled: { type: Boolean, default: false },
@@ -177,17 +188,18 @@ export default defineComponent({
     search: { type: Boolean, default: true },
     transition: { type: Boolean, default: true },
     create: { type: Boolean, default: true },
+    clearable: { type: Boolean, default: true },
     merge: { type: Boolean, default: true },
     keyboard: { type: Boolean, default: true },
-    conjunction: { type: String, default: "" }, // 'OR', 'AND'
-    deleteIcon: { type: String, default: "always" }, // 'always', 'edit', 'none'
-    tagPosition: { type: String, default: "" }, // 'top', 'bottom'
+    conjunction: { type: String, default: '' }, // 'OR', 'AND'
+    deleteIcon: { type: String, default: 'always' }, // 'always', 'edit', 'none'
+    tagPosition: { type: String, default: '' }, // 'top', 'bottom'
     debugLog: { type: Boolean, default: false },
     /**
      * placeholder
      **/
     placeholders: { type: Object, default: () => {} },
-    placeholder: { type: String, default: "" },
+    placeholder: { type: String, default: '' }
   },
   setup(props, context) {
     return resolve(props, context, [
@@ -200,11 +212,12 @@ export default defineComponent({
       useElDropdown,
       useStatus,
       useKeyboard,
+      useClearable,
       useExposeSetTag,
-      useExpose,
-    ]);
-  },
-});
+      useExpose
+    ])
+  }
+})
 </script>
 
 <style scoped lang="scss">
@@ -232,7 +245,7 @@ export default defineComponent({
     cursor: wait !important;
   }
 
-  &[class*="v-tag-bottom"] {
+  &[class*='v-tag-bottom'] {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -290,10 +303,10 @@ export default defineComponent({
     }
 
     &.transition {
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       transform-origin: top;
     }
-    
+
     .v-dropdowns__loading {
       display: flex;
       align-items: center;
@@ -315,23 +328,38 @@ export default defineComponent({
     -webkit-transform: rotate(135deg);
   }
 
+  .v-tags-clear {
+    padding-left: 1em;
+    transform: scale(0.8);
+  }
+
   .loading:not(.v-tags-multiselect):not(.v-tags-multiselect__main--dropdowns) {
     display: flex;
     align-items: center;
   }
 
   .slide-enter,
-  .slide-leave-to{
+  .slide-leave-to {
     transform: scaleY(0);
   }
 
   /* clears the ‘X’ from Internet Explorer */
-  input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
-  input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+  input[type='search']::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  input[type='search']::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
   /* clears the ‘X’ from Chrome */
-  input[type="search"]::-webkit-search-decoration,
-  input[type="search"]::-webkit-search-cancel-button,
-  input[type="search"]::-webkit-search-results-button,
-  input[type="search"]::-webkit-search-results-decoration { display: none; }
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+    display: none;
+  }
 }
 </style>
