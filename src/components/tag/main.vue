@@ -37,7 +37,7 @@
     <PartialClose
       v-if="isDeleteVisible"
       @click="deletes"
-      :class="{ pointer: appIsLock == false }"
+      :disabled="appIsLock == false"
     >
     </PartialClose>
   </div>
@@ -191,10 +191,6 @@ export default {
       border-top-right-radius: inherit;
       border-bottom-right-radius: inherit;
     }
-  }
-
-  .pointer {
-    cursor: pointer;
   }
 }
 </style>
