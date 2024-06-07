@@ -25,6 +25,7 @@
         :transition="appAttributes.transition"
         :tagPosition="appAttributes.tagPosition"
         :create="appAttributes.create"
+        :clearable="appAttributes.clearable"
         :merge="appAttributes.merge"
         :deleteIcon="appAttributes.deleteIcon"
         :conjunction="appAttributes.conjunction"

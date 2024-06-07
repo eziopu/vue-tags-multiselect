@@ -36,6 +36,7 @@ const settingDemoDropdown = (input) => {
 
 const attributes = reactive({
   create: true,
+  clearable: true,
   loading: false,
   conjunction: 'null'
 })
@@ -97,13 +98,16 @@ const attributes = reactive({
 
       <div class="general-demo__inner general-demo__fast-attributes">
         <span class="general-demo__label">attributes : </span>
-        <LabelAndControls label="create" v-model="attributes.create" />
-        <LabelAndControls label="loading" v-model="attributes.loading" />
-        <LabelAndControls
-          label="conjunction"
-          v-model="attributes.conjunction"
-          :values="['AND', 'OR', 'null']"
-        />
+        <div class="general-demo__attributes-controls grid">
+          <LabelAndControls label="clearable" v-model="attributes.clearable" />
+          <LabelAndControls label="create" v-model="attributes.create" />
+          <LabelAndControls label="loading" v-model="attributes.loading" />
+          <LabelAndControls
+            label="conjunction"
+            v-model="attributes.conjunction"
+            :values="['AND', 'OR', 'null']"
+          />
+        </div>
       </div>
 
       <GeneralDemo
@@ -170,12 +174,16 @@ const attributes = reactive({
   }
 
   .general-demo__fast-attributes {
-    .general-demo__label {
-      flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    .general-demo__attributes-controls {
+      padding-left: 12px;
     }
 
     @media (max-width: 1200px) {
-      gap: 6px;
       flex-wrap: wrap;
 
       .general-demo__label {
