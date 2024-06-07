@@ -6,6 +6,7 @@
     <Keyboard></Keyboard>
     <Disabled></Disabled>
     <Search></Search>
+    <Clearable></Clearable>
     <Create></Create>
     <Conjunction></Conjunction>
     <TagPosition></TagPosition>
@@ -36,6 +37,7 @@ import Loadings from "./loadings.vue";
 import Merge from "./merge.vue";
 import Create from "./create.vue";
 import Search from "./search.vue";
+import Clearable from "./clearable.vue";
 import TagConjunction from "./tag-conjunction.vue";
 import TagPosition from "./tag-position.vue";
 import AppTransition from "./transition.vue";
