@@ -1,5 +1,5 @@
 <template>
-  <div class="v-partial__close-icon" :class="{ disabled: disabled }">
+  <div class="v-partial__close-icon" :class="{ disabled: !disabled }">
     <div class="v-partial__close-icon--left"></div>
     <div class="v-partial__close-icon--right"></div>
   </div>

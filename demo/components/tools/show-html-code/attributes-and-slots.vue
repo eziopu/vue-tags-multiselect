@@ -6,6 +6,7 @@
   --><span v-show="equality(app.search, false)"><Space /><span class="pln">:</span><span class="atn">search</span><span class="pun">=</span><span class="atv">"{{ app.search }}"</span><br></span><!--
   --><span v-show="equality(app.transition, false)"><Space /><span class="pln">:</span><span class="atn">transition</span><span class="pun">=</span><span class="atv">"{{ app.transition }}"</span><br></span><!--
   --><span v-show="equality(app.create, false)"><Space /><span class="pln">:</span><span class="atn">create</span><span class="pun">=</span><span class="atv">"{{ app.create }}"</span><br></span><!--
+  --><span v-show="equality(app.clearable, true)"><Space /><span class="pln">:</span><span class="atn">clearable</span><span class="pun">=</span><span class="atv">"{{ app.clearable }}"</span><br></span><!--
   --><span v-show="equality(app.merge, false)"><Space /><span class="pln">:</span><span class="atn">merge</span><span class="pun">=</span><span class="atv">"{{ app.merge }}"</span><br></span><!--
   --><span v-show="equality(app.keyboard, false)"><Space /><span class="pln">:</span><span class="atn">keyboard</span><span class="pun">=</span><span class="atv">"{{ app.keyboard }}"</span><br></span><!--
   --><span v-show="equality(app.debugLog, true)"><Space /><span class="pln">:</span><span class="atn">debugLog</span><span class="pun">=</span><span class="atv">"{{ app.debugLog }}"</span><br></span><!--

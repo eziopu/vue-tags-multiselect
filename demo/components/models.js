@@ -123,6 +123,7 @@ export const PACKAGE_ATTRIBUTES = {
   search: true,
   transition: true,
   create: true,
+  clearable: false,
   merge: true,
   keyboard: true,
   debugLog: false,
