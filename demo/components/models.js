@@ -91,12 +91,12 @@ function to_object(input, supplyInputs = undefined) {
   }
 }
 
-function to_detail_attributes(obj, supplyObj) {
+function to_detail_attributes(obj, supplyObj = {}) {
   const result = {};
   for (const key in obj) {
     result[key] = (typeof obj[key] === 'object' && obj[key] !== null)
       ? to_detail_attributes(obj[key])
-      : to_object(obj[key], obj[key]['inputs'], supplyObj[key])
+      : to_object(obj[key], supplyObj[key])
   }
   return result;
 }
