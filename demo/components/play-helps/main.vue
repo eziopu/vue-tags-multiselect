@@ -196,13 +196,13 @@ import SlotsAttributesOption from "./slots-attributes/option.vue";
 import Exposes from "./exposes/main.vue";
 import ShowHtmlCode from "./show-html-code.vue";
 
-import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
 import DataTable from "./data-table.vue";
 
-import { DATAS } from "./../models.js";
+import { DATAS, GET_PACKAGE_ATTRIBUTES_DETAIL } from "./../models.js";
 
-import { defineComponent } from "vue";
-export default defineComponent({
+import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
+
+export default {
   name: "play-helps",
   mixins: [ReloadByI18n],
   components: {
@@ -226,10 +226,12 @@ export default defineComponent({
   provide() {
     return {
       getDemo: () => this,
+      attributes_detail: this.attributes_detail,
     };
   },
   data() {
     return {
+      attributes_detail: GET_PACKAGE_ATTRIBUTES_DETAIL(),
       operateMode: "simple", // simple, detail
       show_code: false,
       originTableDatas: DATAS,
@@ -417,7 +419,7 @@ export default defineComponent({
       }
     },
   },
-});
+};
 </script>
 
 <style scoped lang="scss">
