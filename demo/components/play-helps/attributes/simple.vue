@@ -7,7 +7,7 @@ export default {
 import { inject } from 'vue'
 
 const framework = inject('framework')
-const appAttributes = inject('attributes_detail')
+const appAttributes = inject('attributes')
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const appAttributes = inject('attributes_detail')
       <template v-for="(attribute, key) in appAttributes" :key="key">
         <template v-if="key != 'placeholder' && key != 'placeholders'">
           <LabelAndControls
-            :label="key"
+            :label="$toKebabCase(key)"
             v-model="attribute.value"
             :values="attribute.acceptedValues"
           />
@@ -53,7 +53,7 @@ const appAttributes = inject('attributes_detail')
     >
       <template v-for="(attribute, key) in appAttributes.placeholders" :key="key">
         <LabelAndControls
-          :label="key"
+          :label="$toKebabCase(key)"
           model="input"
           v-model="attribute.value"
           :values="attribute.acceptedValues"

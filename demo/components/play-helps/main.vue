@@ -198,7 +198,8 @@ import ShowHtmlCode from "./show-html-code.vue";
 
 import DataTable from "./data-table.vue";
 
-import { DATAS, GET_PACKAGE_ATTRIBUTES_DETAIL } from "./../models.js";
+import { DATAS, GET_PACKAGE_ATTRIBUTES_DETAIL, PACKAGE_SLOTS } from "./../models.js";
+const PACKAGE_SLOTS_CLONE = JSON.parse(JSON.stringify(PACKAGE_SLOTS));
 
 import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
 
@@ -226,12 +227,14 @@ export default {
   provide() {
     return {
       getDemo: () => this,
-      attributes_detail: this.attributes_detail,
+      attributes: this.attributes,
+      slots: this.slots,
     };
   },
   data() {
     return {
-      attributes_detail: GET_PACKAGE_ATTRIBUTES_DETAIL(),
+      attributes: GET_PACKAGE_ATTRIBUTES_DETAIL(),
+      slots: PACKAGE_SLOTS_CLONE,
       operateMode: "simple", // simple, detail
       show_code: false,
       originTableDatas: DATAS,
@@ -279,7 +282,7 @@ export default {
       isFetchProcessing: false,
       displays: {
         attributes: true,
-        slots: false,
+        slots: true,
         events: false,
         exposes: false,
         slotDropdown: false,

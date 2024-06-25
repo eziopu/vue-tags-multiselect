@@ -295,31 +295,52 @@
           grid-template-columns: repeat(1, 1fr);
         }
 
-        @media (max-width: 440px) {
+        @media (max-width: 450px) {
           display: flex;
           flex-direction: column;
-        }
-      }
-
-      .tool-attribute {
-        align-items: center;
-
-        @media (max-width: 500px) {
-          justify-content: space-between;
-        }
-      }
-
-      .tool-attribute__label {
-        width: 140px;
-
-        @media (max-width: 500px) {
-          width: auto;
         }
       }
 
       .play-attributes-simple__placeholders {
         padding-left: 12px !important;
         grid-template-columns: repeat(2, 1fr) !important;
+
+        .tool-attribute__label {
+          width: 132px;
+        }
+      }
+    }
+
+    .tool-attribute {
+      align-items: center;
+
+      .tool-attribute__input input {
+        max-width: 240px;
+      }
+
+      @media (min-width: 991px) {
+        .tool-attribute__label {
+          width: 148px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        justify-content: space-between;
+      }
+    }
+
+
+    #play-slots-simple {
+      @media (min-width: 410px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tool-attribute__label {
+        width: 160px;
+
+        @media (max-width: 991px) {
+          width: 100%;
+        }
       }
     }
 

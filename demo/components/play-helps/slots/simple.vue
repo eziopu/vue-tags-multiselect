@@ -1,18 +1,37 @@
+<script>
+export default {
+  name: 'play-slots-simple'
+}
+</script>
+<script setup>
+import { inject } from 'vue'
+
+const framework = inject('framework')
+const appSlots = inject('slots')
+</script>
+
 <template>
-  <div class="simple attributes"
+  <div
+    id="play-slots-simple"
+    class="simple attributes"
     :class="{
-      ui: app.framework == 'semantic-ui',
-      default: app.framework == 'default',
+      ui: framework == 'semantic-ui',
+      default: framework == 'default'
     }"
   >
+    <template v-for="(appSlot, key) in appSlots" :key="key">
+        <LabelAndControls
+          :label="key != 'optionORConjunction' ? $toKebabCase(key) : 'option-OR-conjunction'"
+          model="input"
+          v-model="appSlot.value"
+        />
+      </template>
+      
+    <!-- 
     <div class="flex-between text">
       <div>loading</div>
       <div class="ui input">
-        <input
-          type="text"
-          class="form-control"
-          v-model="app.loadingContent"
-        />
+        <input type="text" class="form-control" v-model="app.loadingContent" />
       </div>
     </div>
     <div class="flex-between text">
@@ -30,11 +49,7 @@
     <div class="flex-between text">
       <div>option-undo</div>
       <div class="ui input relative">
-        <input
-          type="text"
-          class="form-control"
-          v-model="app.optionUndoContent"
-        />
+        <input type="text" class="form-control" v-model="app.optionUndoContent" />
         <div class="demo__fake-placeholder" v-if="app.optionUndoContent == ''">
           <i class="demo__arrow-left"></i>Undo
         </div>
@@ -51,15 +66,7 @@
         />
       </div>
     </div>
+    -->
     <div class="clear"></div>
   </div>
 </template>
-
-<script>
-import InjectApp from "../mixins/inject-app.js";
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "slots-simple",
-  mixins: [InjectApp],
-});
-</script>
