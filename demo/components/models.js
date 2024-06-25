@@ -87,6 +87,7 @@ function to_object(input, supplyInputs = undefined) {
   return {
     type: get_type(input),
     default: input,
+    value: input,
     acceptedValues: supplyInputs,
   }
 }
@@ -110,8 +111,8 @@ export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
     PACKAGE_ATTRIBUTES,
     {
       deleteIcon: ['always', 'edit', 'none'],
-      tagPosition: ['top', 'bottom'],
-      conjunction: ['OR', 'AND'],
+      tagPosition: ['null', 'top', 'bottom'],
+      conjunction: ['null', 'OR', 'AND'],
     }
   )
 }
@@ -127,8 +128,8 @@ export const PACKAGE_ATTRIBUTES = {
   merge: true,
   keyboard: true,
   debugLog: false,
-  conjunction: "",
-  tagPosition: "",
+  conjunction: "null",
+  tagPosition: "null",
   deleteIcon: "always",
   placeholder: "",
   placeholders: {
