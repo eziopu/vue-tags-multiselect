@@ -83,7 +83,7 @@ function get_type(input) {
   return type.charAt(0).toUpperCase() + type.slice(1);
 }
 
-function to_object(input, inputValue = "", supplyInputs = []) {
+function to_object(input, inputValue, supplyInputs = []) {
   return {
     type: get_type(input),
     default: input,
@@ -151,6 +151,8 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
     focus: to_object("() => void"),
     blur: to_object("() => void"),
     clear: to_object("() => void"),
+    'input-value': to_object("(value: string) => void"),
+    'visible-change': to_object("(visible: boolean) => void"),
     status: to_object("(status: array) => void", [], [
       "disabled",
       "loading",
@@ -160,10 +162,8 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
       "finish",
       "delect-down"
     ]),
-    'input-value': to_object("(value: string) => void"),
-    'visible-change': to_object("(visible: boolean) => void"),
-    'remove-tag': to_object("(tag: object) => void"),
-    'selecting-tag': to_object("(tag: object) => void"),
+    'remove-tag': to_object("(tag: object) => void", {}),
+    'selecting-tag': to_object("(tag: object) => void", {}),
   }
 }
 

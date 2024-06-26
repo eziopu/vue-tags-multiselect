@@ -10,7 +10,7 @@
           active: operateMode == mode,
           'btn-outline-primary': framework == 'bootstrap',
           'ui primary button': framework == 'semantic-ui',
-          'basic ': framework == 'semantic-ui' && operateMode != mode,
+          'basic ': framework == 'semantic-ui' && operateMode != mode
         }"
       >
         {{ mode }}
@@ -63,37 +63,24 @@
         <template v-slot:option-undo v-if="optionUndoContent != ''">
           <span v-html="optionUndoContent"></span>
         </template>
-        <template
-          v-slot:option-OR-conjunction
-          v-if="optionORConjunctionContent != ''"
-        >
+        <template v-slot:option-OR-conjunction v-if="optionORConjunctionContent != ''">
           <span v-html="optionORConjunctionContent"></span>
         </template>
         <v-tag-dropdown value="country" display-all custom>
           <v-tag-option title>
             <i class="fa fa-flag"></i> {{ $t(`ui.general.Country`) }}
           </v-tag-option>
-          <v-tag-option value="Māre">{{
-            $t(`ui.data.country.Māre`)
-          }}</v-tag-option>
-          <v-tag-option value="Eldia">{{
-            $t(`ui.data.country.Eldia`)
-          }}</v-tag-option>
+          <v-tag-option value="Māre">{{ $t(`ui.data.country.Māre`) }}</v-tag-option>
+          <v-tag-option value="Eldia">{{ $t(`ui.data.country.Eldia`) }}</v-tag-option>
         </v-tag-dropdown>
         <v-tag-dropdown value="name">
           <v-tag-option title divided>
             <i class="fa fa-user"></i> {{ $t(`ui.general.Name`) }}
             <small>(loading)</small>
           </v-tag-option>
-          <v-tag-option value="Grisha Yeager">{{
-            $t(`ui.data.name.Grisha Yeager`)
-          }}</v-tag-option>
-          <v-tag-option value="Eren Yeager">{{
-            $t(`ui.data.name.Eren Yeager`)
-          }}</v-tag-option>
-          <v-tag-option value="Armin Arlert">{{
-            $t(`ui.data.name.Armin Arlert`)
-          }}</v-tag-option>
+          <v-tag-option value="Grisha Yeager">{{ $t(`ui.data.name.Grisha Yeager`) }}</v-tag-option>
+          <v-tag-option value="Eren Yeager">{{ $t(`ui.data.name.Eren Yeager`) }}</v-tag-option>
+          <v-tag-option value="Armin Arlert">{{ $t(`ui.data.name.Armin Arlert`) }}</v-tag-option>
           <v-tag-option
             v-for="(otherName, index) in otherNames"
             :key="`otherName${index}`"
@@ -105,18 +92,10 @@
         <v-tag-dropdown value="push_value_test">
           <v-tag-option title> push value test </v-tag-option>
           <v-tag-option>
-            <div
-              @click="
-                $refs.VTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })
-              "
-            >
-              TEST
-            </div>
+            <div @click="$refs.VTagsMultiselect.pushTag({ value: 'TEST', key: 'fuc' })">TEST</div>
           </v-tag-option>
           <v-tag-option>
-            <div @click="$refs.VTagsMultiselect.pushTag({ value: 'TEST2' })">
-              TEST2
-            </div>
+            <div @click="$refs.VTagsMultiselect.pushTag({ value: 'TEST2' })">TEST2</div>
           </v-tag-option>
         </v-tag-dropdown>
         <v-tag-dropdown value="height" display-all>
@@ -175,10 +154,7 @@
     </div>
 
     <Transition name="slide">
-      <ShowHtmlCode
-        v-show="show_code"
-        class="prettyprint lang-html customize"
-      ></ShowHtmlCode>
+      <ShowHtmlCode v-show="show_code" class="prettyprint lang-html customize"></ShowHtmlCode>
     </Transition>
 
     <div id="datas">
@@ -188,23 +164,28 @@
 </template>
 
 <script>
-import Attributes from "./attributes/main.vue";
-import Events from "./events/main.vue";
-import Slots from "./slots/main.vue";
-import SlotsAttributesDropdown from "./slots-attributes/dropdown.vue";
-import SlotsAttributesOption from "./slots-attributes/option.vue";
-import Exposes from "./exposes/main.vue";
-import ShowHtmlCode from "./show-html-code.vue";
+import Attributes from './attributes/main.vue'
+import Events from './events/main.vue'
+import Slots from './slots/main.vue'
+import SlotsAttributesDropdown from './slots-attributes/dropdown.vue'
+import SlotsAttributesOption from './slots-attributes/option.vue'
+import Exposes from './exposes/main.vue'
+import ShowHtmlCode from './show-html-code.vue'
 
-import DataTable from "./data-table.vue";
+import DataTable from './data-table.vue'
 
-import { DATAS, GET_PACKAGE_ATTRIBUTES_DETAIL, PACKAGE_SLOTS } from "./../models.js";
-const PACKAGE_SLOTS_CLONE = JSON.parse(JSON.stringify(PACKAGE_SLOTS));
+import {
+  DATAS,
+  GET_PACKAGE_ATTRIBUTES_DETAIL,
+  PACKAGE_SLOTS,
+  GET_PACKAGE_EVENTS_DETAIL
+} from './../models.js'
+const PACKAGE_SLOTS_CLONE = JSON.parse(JSON.stringify(PACKAGE_SLOTS))
 
-import ReloadByI18n from "../tools/mixins/reload-by-i18n.js";
+import ReloadByI18n from '../tools/mixins/reload-by-i18n.js'
 
 export default {
-  name: "play-helps",
+  name: 'play-helps',
   mixins: [ReloadByI18n],
   components: {
     Attributes,
@@ -214,64 +195,66 @@ export default {
     SlotsAttributesDropdown,
     SlotsAttributesOption,
     Exposes,
-    ShowHtmlCode,
+    ShowHtmlCode
   },
   props: {
     framework: {
       type: String,
       default: () => {
-        return "default";
-      },
-    },
+        return 'default'
+      }
+    }
   },
   provide() {
     return {
       getDemo: () => this,
       attributes: this.attributes,
       slots: this.slots,
-    };
+      events: this.events
+    }
   },
   data() {
     return {
       attributes: GET_PACKAGE_ATTRIBUTES_DETAIL(),
       slots: PACKAGE_SLOTS_CLONE,
-      operateMode: "simple", // simple, detail
+      events: GET_PACKAGE_EVENTS_DETAIL(),
+      operateMode: 'simple', // simple, detail
       show_code: false,
       originTableDatas: DATAS,
 
       // app
-      disabled: "false",
-      loading: "false",
-      dropdownLoading: "false",
-      search: "true",
-      keyboard: "true",
-      debugLog: "true",
-      transition: "true",
-      create: "true",
-      merge: "true",
-      tagPosition: "null",
-      conjunction: "null",
-      deleteIcon: "always",
-      loadingContent: "",
-      loadingPlaceholder: "",
-      selectDownPlaceholder: "",
-      finishPlaceholder: "",
-      placeholder: "",
+      disabled: 'false',
+      loading: 'false',
+      dropdownLoading: 'false',
+      search: 'true',
+      keyboard: 'true',
+      debugLog: 'true',
+      transition: 'true',
+      create: 'true',
+      merge: 'true',
+      tagPosition: 'null',
+      conjunction: 'null',
+      deleteIcon: 'always',
+      loadingContent: '',
+      loadingPlaceholder: '',
+      selectDownPlaceholder: '',
+      finishPlaceholder: '',
+      placeholder: '',
       placeholders: {
-        initial: "",
-        loading: "",
-        selectDown: "",
-        finish: "",
-        tagValueRepeat: "",
+        initial: '',
+        loading: '',
+        selectDown: '',
+        finish: '',
+        tagValueRepeat: ''
       },
-      tagConjunctionContent: "",
-      optionUndoContent: "",
-      optionORConjunctionContent: "",
+      tagConjunctionContent: '',
+      optionUndoContent: '',
+      optionORConjunctionContent: '',
       tool: {
         status: [],
         selectingTag: {},
-        inputValue: "",
-        editing: {},
+        inputValue: '',
+        editing: {}
       },
       isFetchDatas: false,
       result: {},
@@ -282,147 +265,148 @@ export default {
       isFetchProcessing: false,
       displays: {
         attributes: true,
-        slots: true,
-        events: false,
+        slots: false,
+        events: true,
         exposes: false,
         slotDropdown: false,
         slotOption: false,
         details: {
           conjunction: false,
-          deleteIcon: false,
-        },
-      },
-    };
+          deleteIcon: false
+        }
+      }
+    }
   },
   watch: {
     tool: {
       handler(value) {
-        let { status, selectingTag, editing } = value;
+        let { status, selectingTag, editing } = value
         if (
-          this.loading == "false" &&
+          this.loading == 'false' &&
           this.isFetchDatas == false &&
-          status.includes("loading") == false &&
-          (status.includes("editing") || status.includes("selecting")) &&
-          (selectingTag.key == "name" || editing.key == "name")
+          status.includes('loading') == false &&
+          (status.includes('editing') || status.includes('selecting')) &&
+          (selectingTag.key == 'name' || editing.key == 'name')
         ) {
-          this.fetchNames();
+          this.fetchNames()
         }
-        if (selectingTag.key != "name" && editing.key != "name") {
-          this.otherNames = [];
-          this.isFetchDatas = false;
+        if (selectingTag.key != 'name' && editing.key != 'name') {
+          this.otherNames = []
+          this.isFetchDatas = false
         }
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   computed: {
     tableDatas() {
       try {
-        if (Object.keys(this.result).length == 0) throw "no result";
-        let result = [];
+        if (Object.keys(this.result).length == 0) throw 'no result'
+        let result = []
         this.originTableDatas.forEach((originData) => {
           if (this.comparator(originData) == true) {
-            result.push(originData);
+            result.push(originData)
           }
-        });
-        return result || [];
+        })
+        return result || []
       } catch (error) {
-        return this.originTableDatas;
+        return this.originTableDatas
       }
-    },
+    }
   },
   mounted() {},
   methods: {
     placeholderText(value) {
-      if (value == "" || value == undefined) return undefined;
-      return value;
+      if (value == '' || value == undefined) return undefined
+      return value
     },
     fetchNames() {
-      if (this.loading == "true") return;
-      this.loading = "true";
+      if (this.loading == 'true') return
+      this.loading = 'true'
 
-      let length = this.originTableDatas.length;
+      let length = this.originTableDatas.length
       this.originTableDatas.forEach((data, index) => {
-        if (3 >= index) return;
-        setTimeout(() => {
-          this.otherNames.push({
-            displayValue: data.name,
-            value: data.name,
-          });
-        }, 300 * (index - 2));
-      });
+        if (3 >= index) return
+        setTimeout(
+          () => {
+            this.otherNames.push({
+              displayValue: data.name,
+              value: data.name
+            })
+          },
+          300 * (index - 2)
+        )
+      })
 
-      this.isFetchDatas = true;
-      setTimeout(() => {
-        this.loading = "false";
-      }, 300 * (length - 3));
+      this.isFetchDatas = true
+      setTimeout(
+        () => {
+          this.loading = 'false'
+        },
+        300 * (length - 3)
+      )
     },
     inputHeight() {
-      let { height1, height2 } = this;
-      if (
-        height1 == height2 ||
-        (height2 != undefined && height1 == undefined)
-      ) {
-        this.$refs.inputHeight1.focus();
-        return;
+      let { height1, height2 } = this
+      if (height1 == height2 || (height2 != undefined && height1 == undefined)) {
+        this.$refs.inputHeight1.focus()
+        return
       }
       if (height1 != undefined && height2 == undefined) {
-        this.$refs.inputHeight2.focus();
-        return;
+        this.$refs.inputHeight2.focus()
+        return
       }
       if (Number(height1) != 0 && Number(height2) != 0) {
-        this.pushHeightValue();
+        this.pushHeightValue()
       }
-      return;
+      return
     },
     pushHeightValue() {
       this.$refs.VTagsMultiselect.pushTag({
-        key: "height",
-        value: `${this.height1} ~ ${this.height2}`,
-      });
-      this.$refs.inputHeight1.blur();
-      this.$refs.inputHeight2.blur();
+        key: 'height',
+        value: `${this.height1} ~ ${this.height2}`
+      })
+      this.$refs.inputHeight1.blur()
+      this.$refs.inputHeight2.blur()
     },
     comparator(data = {}) {
       // data = { country: "Māre", height: 15, ... }
       // result = { "country": [ "Māre" ] }
       try {
-        let booleans = []; // length == Object.keys(data).length
+        let booleans = [] // length == Object.keys(data).length
         Object.keys(data).forEach((keyName) => {
-          let value = data[keyName]; // Māre, 15
-          if (keyName == "remark") {
-            value = value == "" ? "no" : "yes";
+          let value = data[keyName] // Māre, 15
+          if (keyName == 'remark') {
+            value = value == '' ? 'no' : 'yes'
           }
-          let result = false;
-          let resultValues = this.result[keyName]; // ["Māre", "Eldia"] or ["0~60"] or ["yes"]
+          let result = false
+          let resultValues = this.result[keyName] // ["Māre", "Eldia"] or ["0~60"] or ["yes"]
           if (resultValues == undefined) {
-            booleans.push(true);
+            booleans.push(true)
           } else {
-            if (keyName == "height") {
+            if (keyName == 'height') {
               let heightAttay = resultValues[0]
-                .replace(/\s/g, "")
-                .split("~")
+                .replace(/\s/g, '')
+                .split('~')
                 .sort((a, b) => {
-                  return a - b;
-                });
+                  return a - b
+                })
               if (value >= heightAttay[0] && heightAttay[1] >= value) {
-                result = true;
+                result = true
               }
             } else {
-              result = resultValues.includes(value);
+              result = resultValues.includes(value)
             }
-            booleans.push(result);
+            booleans.push(result)
           }
-        });
-        return booleans.filter(Boolean).length == booleans.length
-          ? true
-          : false;
+        })
+        return booleans.filter(Boolean).length == booleans.length ? true : false
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
