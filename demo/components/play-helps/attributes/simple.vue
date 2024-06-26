@@ -41,7 +41,6 @@ const appAttributes = inject('attributes')
       </div>
     </div>
 
-
     <h4 style="margin: 18px 0">Placeholders</h4>
 
     <div
@@ -62,3 +61,13 @@ const appAttributes = inject('attributes')
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+@media (min-width: 450px) and (max-width: 991px) {
+  .play-attributes-simple__placeholders {
+    .attribute:last-child {
+      justify-content: flex-start !important;
+    }
+  }
+}
+</style>
