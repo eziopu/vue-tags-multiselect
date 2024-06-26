@@ -83,11 +83,11 @@ function get_type(input) {
   return type.charAt(0).toUpperCase() + type.slice(1);
 }
 
-function to_object(input, supplyInputs = undefined) {
+function to_object(input, inputValue = "", supplyInputs = []) {
   return {
     type: get_type(input),
     default: input,
-    value: input,
+    value: inputValue,
     acceptedValues: supplyInputs,
   }
 }
@@ -95,9 +95,10 @@ function to_object(input, supplyInputs = undefined) {
 function to_detail_attributes(obj, supplyObj = {}) {
   const result = {};
   for (const key in obj) {
-    result[key] = (typeof obj[key] === 'object' && obj[key] !== null)
-      ? to_detail_attributes(obj[key])
-      : to_object(obj[key], supplyObj[key])
+    const value = obj[key];
+    result[key] = (typeof value === 'object' && value !== null)
+      ? to_detail_attributes(value)
+      : to_object(value, value, supplyObj[key])
   }
   return result;
 }
@@ -150,7 +151,7 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
     focus: to_object("() => void"),
     blur: to_object("() => void"),
     clear: to_object("() => void"),
-    status: to_object("(status: array) => void", [
+    status: to_object("(status: array) => void", [], [
       "disabled",
       "loading",
       "searching",
