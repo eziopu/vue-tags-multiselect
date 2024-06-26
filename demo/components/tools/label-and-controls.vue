@@ -8,22 +8,25 @@
         v-model="newValue"
         class="tool-attribute__select"
         :disabled="disabled"
-        :style="{'width': width}"
+        :style="{ width: width }"
       >
-        <option v-for="item in values" :key="item">
+        <option v-for="item in options" :key="item">
           {{ item }}
         </option>
       </select>
     </template>
     <template v-if="model == 'input'">
       <div class="ui input tool-attribute__input">
-        <div class="tool-attribute__input--fake-placeholder" :class="[framework, {'active': isActive}]">
+        <div
+          class="tool-attribute__input--fake-placeholder"
+          :class="[framework, { active: isActive }]"
+        >
           <slot name="fake-placeholder"></slot>
         </div>
         <input
           v-model="newValue"
           class="form-control"
-          :style="{'width': width}"
+          :style="{ width: width }"
           :type="text"
           :disabled="disabled"
           :placeholder="placeholder"
@@ -37,32 +40,32 @@
 
 <script>
 export default {
-  name: "label-and-controls",
-  inject: ["framework"],
+  name: 'label-and-controls',
+  inject: ['framework'],
   props: {
     disabled: {
       type: Boolean,
       default: () => {
-        return false;
-      },
+        return false
+      }
     },
     label: {
       type: String,
       default: () => {
-        return "";
-      },
+        return ''
+      }
     },
     modelValue: {
       type: [String, Boolean],
       default: () => {
-        return "";
-      },
+        return ''
+      }
     },
     model: {
       type: String,
       default: () => {
-        return 'select';
-      },
+        return 'select'
+      }
     },
     /**
      * input
@@ -70,20 +73,20 @@ export default {
     text: {
       type: String,
       default: () => {
-        return "text";
-      },
+        return 'text'
+      }
     },
     placeholder: {
       type: String,
       default: () => {
-        return "";
-      },
+        return ''
+      }
     },
     width: {
       type: String,
       default: () => {
-        return "atuo";
-      },
+        return 'atuo'
+      }
     },
     /**
      * select
@@ -91,9 +94,9 @@ export default {
     values: {
       type: Array,
       default: () => {
-        return ["true", "false"];
-      },
-    },
+        return []
+      }
+    }
   },
   data() {
     return {
@@ -101,27 +104,30 @@ export default {
     }
   },
   model: {
-    prop: "value",
-    event: "update:modelValue",
+    prop: 'value',
+    event: 'update:modelValue'
   },
   computed: {
     newValue: {
       get() {
-        return this.modelValue;
+        return this.modelValue
       },
       set(value) {
-        this.$emit("update:modelValue", this.toBoolean(value));
-      },
+        this.$emit('update:modelValue', this.toBoolean(value))
+      }
     },
+    options() {
+      return this.values.length > 0 ? this.values : ['true', 'false']
+    }
   },
   methods: {
     toBoolean(value) {
-      if (value === "true" || value === true) return true;
-      if (value === "false" || value === false) return false;
-      return value;
-    },
-  },
-};
+      if (value === 'true' || value === true) return true
+      if (value === 'false' || value === false) return false
+      return value
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -130,7 +136,7 @@ export default {
 }
 
 .tool-attribute__label--colon {
-  margin: 0 .3rem;
+  margin: 0 0.3rem;
 }
 
 .tool-attribute__select:disabled,
@@ -138,7 +144,7 @@ export default {
   cursor: not-allowed !important;
 }
 
-.tool-attribute__input {
+.tool-attribute__inpput {
   position: relative;
   flex: 1 1 auto;
 }
@@ -146,19 +152,18 @@ export default {
 .tool-attribute__input--fake-placeholder {
   position: absolute;
   top: 50%;
-  user-select:none;
+  user-select: none;
   pointer-events: none;
   transform: translate(0%, -50%);
   color: #6c757d;
 
-  
-  &.default{
-    padding-left: .3rem;
+  &.default {
+    padding-left: 0.3rem;
   }
-  &.bootstrap{
-    padding-left: .9rem;
+  &.bootstrap {
+    padding-left: 0.9rem;
   }
-  &.semantic-ui{
+  &.semantic-ui {
     padding-left: 1.1rem;
     opacity: 0.6;
     &.active {
