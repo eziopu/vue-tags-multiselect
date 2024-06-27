@@ -179,6 +179,21 @@ export const PACKAGE_EVENTS = {
 }
 
 //------------------------------------------------------------------------------
+// EXPOSES
+//------------------------------------------------------------------------------
+
+export const GET_PACKAGE_EXPOSES_DETAIL = () => {
+  return {
+    focus: to_object("() => void"),
+    blur: to_object("() => void"),
+    clear: to_object("() => void"),
+    clearTags: to_object("() => void"),
+    initialize: to_object("() => void"),
+    pushTag: to_object("(tag: object) => void"),
+  }
+}
+
+//------------------------------------------------------------------------------
 // SLOTS
 //------------------------------------------------------------------------------
 

@@ -178,7 +178,8 @@ import {
   DATAS,
   GET_PACKAGE_ATTRIBUTES_DETAIL,
   PACKAGE_SLOTS,
-  GET_PACKAGE_EVENTS_DETAIL
+  GET_PACKAGE_EVENTS_DETAIL,
+  GET_PACKAGE_EXPOSES_DETAIL,
 } from './../models.js'
 const PACKAGE_SLOTS_CLONE = JSON.parse(JSON.stringify(PACKAGE_SLOTS))
 
@@ -208,9 +209,11 @@ export default {
   provide() {
     return {
       getDemo: () => this,
+      displays: this.displays,
       attributes: this.attributes,
       slots: this.slots,
-      events: this.events
+      events: this.events,
+      exposes: this.exposes
     }
   },
   data() {
@@ -218,6 +221,7 @@ export default {
       attributes: GET_PACKAGE_ATTRIBUTES_DETAIL(),
       slots: PACKAGE_SLOTS_CLONE,
       events: GET_PACKAGE_EVENTS_DETAIL(),
+      exposes: GET_PACKAGE_EXPOSES_DETAIL(),
       operateMode: 'simple', // simple, detail
       show_code: false,
       originTableDatas: DATAS,
@@ -264,10 +268,10 @@ export default {
       otherNames: [],
       isFetchProcessing: false,
       displays: {
-        attributes: true,
+        attributes: false,
         slots: false,
-        events: true,
-        exposes: false,
+        events: false,
+        exposes: true,
         slotDropdown: false,
         slotOption: false,
         details: {
