@@ -20,7 +20,7 @@ const { label, contents } = toRefs(props)
         {{ $t(`attributes.events.${label}`) }}
       </p>
 
-      <p v-if="contents.acceptedValues">
+      <p v-if="contents.acceptedValues && contents.acceptedValues.length != 0">
         values :
         {{ contents.acceptedValues }}
       </p>
