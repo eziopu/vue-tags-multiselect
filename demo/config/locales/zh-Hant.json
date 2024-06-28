@@ -17,6 +17,7 @@
       "v-model": "綁定值",
       "disabled": "是否禁用",
       "loading": "是否在讀取中",
+      "debugLog": "是否在瀏覽器的開發者工具內顯示console.log",
       "dropdownLoading": "下拉式選單是否在讀取中",
       "search": "是否可使用輸入框搜尋 option 的 value值",
       "create": "是否可使用輸入框建立 tag",
