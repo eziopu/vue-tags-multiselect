@@ -96,7 +96,7 @@ function to_detail_attributes(obj, supplyObj = {}) {
   const result = {};
   for (const key in obj) {
     const value = obj[key];
-    result[key] = (typeof value === 'object' && value !== null)
+    result[key] = (typeof value === 'object' && Array.isArray(value) != true && value !== null)
       ? to_detail_attributes(value)
       : to_object(value, value, supplyObj[key])
   }
@@ -209,6 +209,12 @@ export const PACKAGE_SLOTS = {
 // V_DROPDOWN_PROPS
 //------------------------------------------------------------------------------
 
+export const GET_PACKAGE_V_DROPDOWN_PROPS_DETAIL = () => {
+  // eslint-disable-next-line no-unused-vars
+  const { isDisplayForDemo, ...rest } = PACKAGE_V_DROPDOWN_PROPS;
+  return to_detail_attributes(rest);
+}
+
 export const PACKAGE_V_DROPDOWN_PROPS = {
   isDisplayForDemo: true, // for show code
   value: "",
@@ -217,6 +223,7 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
   displayAll: false,
   hidden: false,
   custom: false,
+  class: [],
 }
 
 //------------------------------------------------------------------------------
