@@ -268,11 +268,11 @@ export default {
       otherNames: [],
       isFetchProcessing: false,
       displays: {
-        attributes: false,
+        attributes: true,
         slots: false,
         events: false,
         exposes: false,
-        slotDropdown: true,
+        slotDropdown: false,
         slotOption: false,
         details: {
           conjunction: false,

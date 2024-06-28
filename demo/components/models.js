@@ -108,7 +108,7 @@ function to_detail_attributes(obj, supplyObj = {}) {
 //------------------------------------------------------------------------------
 
 export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
-  return to_detail_attributes(
+  let result = to_detail_attributes(
     PACKAGE_ATTRIBUTES,
     {
       deleteIcon: ['always', 'edit', 'none'],
@@ -116,6 +116,11 @@ export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
       conjunction: ['null', 'OR', 'AND'],
     }
   )
+  Object.keys(result.placeholders).forEach(key => {
+    result.placeholders[key].value = '';
+  });
+  
+  return result;
 }
 
 export const PACKAGE_ATTRIBUTES = {
@@ -135,10 +140,10 @@ export const PACKAGE_ATTRIBUTES = {
   placeholder: "",
   placeholders: {
     initial: "",
-    loading: "",
-    selectDown: "",
-    finish: "",
-    tagValueRepeat: "",
+    loading: "Wait a moment, please.",
+    selectDown: "Selected End.",
+    finish: "Finish.",
+    tagValueRepeat: "repeat !",
   },
 }
 

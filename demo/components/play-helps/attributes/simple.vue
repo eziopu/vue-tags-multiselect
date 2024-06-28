@@ -56,6 +56,7 @@ const appAttributes = inject('attributes')
           model="input"
           v-model="attribute.value"
           :values="attribute.acceptedValues"
+          :placeholder="attribute.default"
         />
       </template>
     </div>
