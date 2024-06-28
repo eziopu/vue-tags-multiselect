@@ -230,15 +230,22 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
 // V_OPTION_PROPS
 //------------------------------------------------------------------------------
 
+export const GET_PACKAGE_V_OPTION_PROPS_DETAIL = () => {
+  // eslint-disable-next-line no-unused-vars
+  const { isDisplayForDemo, valueForDemo, ...rest } = PACKAGE_V_OPTION_PROPS;
+  return to_detail_attributes(rest);
+}
+
 export const PACKAGE_V_OPTION_PROPS = {
   isDisplayForDemo: true, // for show code
   valueForDemo: "",
-  title: false,
   value: "",
+  title: false,
   displayValue: false,
   disabled: false,
   divided: false,
   selected: false,
+  class: [],
 }
 
 export const DEMO_SETTING = {

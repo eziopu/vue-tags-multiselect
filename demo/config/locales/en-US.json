@@ -155,6 +155,7 @@
         "1": "Unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
         "2": "There can be no title option inside the dropdown"
       },
+      "class": "@:attributes.dropdown.class",
       "no_title": "The dropdown without a title option will always be displayed regardless of whether the parameter <code class='tag'>display-all</code> is set to true or not.",
       "display-value": "Tag select finished value don't show html template",
       "disabled": "Whether to disable",

@@ -155,6 +155,7 @@
         "1": "除非dropdown的參數 <code class='tag'>display-all</code> 為true 或是該dropdown沒有title option的存在, 其餘的option才會顯示",
         "2": "dropdown內可以沒有任何的title option"
       },
+      "class": "@:attributes.dropdown.class",
       "no_title": "沒有title option的dropdown, 無論dropdown的參數 <code class='tag'>display-all</code> 是否為true, 皆會顯示",
       "display-value": "標籤的value值是否要顯示value而不是html渲染的樣式",
       "disabled": "是否禁用",
