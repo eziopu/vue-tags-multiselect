@@ -1,200 +1,58 @@
+<script>
+export default {
+  name: 'slots-dropdown'
+}
+</script>
+<script setup>
+import { inject } from 'vue'
+import { GET_PACKAGE_V_DROPDOWN_PROPS_DETAIL } from '../../models.js'
+import HelpTitle from '../components/title.vue'
+
+const displays = inject('displays')
+const attributes = GET_PACKAGE_V_DROPDOWN_PROPS_DETAIL()
+</script>
+
 <template>
   <div id="slotAttributesDropdown">
-    <HelpTitle 
-      label="Slot Dropdown Attributes"
-      target="slotDropdown"
-    />
+    <HelpTitle label="Slot Dropdown Attributes" target="slotDropdown" />
 
     <transition name="slide">
-      <div
-        class="detail attributes container"
-        v-if="app.displays.slotDropdown"
-      >
+      <div class="detail attributes container" v-if="displays.slotDropdown">
         <div class="row titles">
-          <div>
-            <h4>{{ $t(`ui.general.Attribute`) }}</h4>
-          </div>
-          <div>
-            <h4>{{ $t(`ui.general.Description`) }}</h4>
-          </div>
-          <div>
-            <h4>{{ $t(`ui.general.Type`) }}</h4>
-          </div>
-          <div>
-            <h4>{{ $t(`ui.general.Default`) }}</h4>
-          </div>
-          <div>
-            <h4>{{ $t(`ui.general.Required`) }}</h4>
+          <div
+            v-for="value in ['Attribute', 'Description', 'Type', 'Default', 'Required']"
+            :key="value"
+          >
+            <h4>{{ $t(`ui.general.${value}`) }}</h4>
           </div>
         </div>
-        <div class="row">
-          <div><div>value</div></div>
+
+        <div class="row" v-for="(attribute, key) in attributes" :key="key">
           <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.value`) }}</span>
+            <div>{{ $toKebabCase(key) }}</div>
+          </div>
+          <div>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Description`) }}: </span>
+            <span>{{ $t(`attributes.dropdown.${$toKebabCase(key)}`) }}</span>
           </div>
           <div>
             <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>string</span>
+            <span>{{ attribute.type }}</span>
           </div>
           <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>-</span>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
+            <span>{{ attribute.default }}</span>
           </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Required`) }}:
-            </span>
-            <span>*yes</span>
+          <div v-if="key == 'value'">
+            <span class="i-block d-md-none">{{ $t(`ui.general.Required`) }}: </span>
+            *yes
           </div>
-        </div>
-        <div class="row">
-          <div><div>class</div></div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.class`) }}</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>string</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>-</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Required`) }}:
-            </span>
-            <span>no</span>
-          </div>
-        </div>
-        <div class="row">
-          <div><div>display-all</div></div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.display-all`) }}</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>boolean</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>false</span>
-          </div>
-          <div class="d-none d-md-block">no</div>
-        </div>
-        <div class="row">
-          <div><div>hidden</div></div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.hidden`) }}</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>boolean</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>false</span>
-          </div>
-          <div class="d-none d-md-block">no</div>
-        </div>
-        <div class="row">
-          <div><div>custom</div></div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.custom`) }}</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>boolean</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>true</span>
-          </div>
-          <div class="d-none d-md-block">no</div>
-        </div>
-        <div class="row">
-          <div><div>disabled</div></div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.disabled`) }}</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>boolean</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>false</span>
-          </div>
-          <div class="d-none d-md-block">no</div>
-        </div>
-        <div class="row">
-          <div><div>divided</div></div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Description`) }}:
-            </span>
-            <span>{{ $t(`attributes.dropdown.divided`) }}</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-            <span>boolean</span>
-          </div>
-          <div>
-            <span class="i-block d-md-none"
-              >{{ $t(`ui.general.Default`) }}:
-            </span>
-            <span>false</span>
-          </div>
-          <div class="d-none d-md-block">no</div>
+          <div v-else class="d-none d-md-block">no</div>
         </div>
       </div>
     </transition>
   </div>
 </template>
-
-<script>
-import InjectApp from "../mixins/inject-app.js";
-import HelpTitle from "../components/title.vue";
-
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "slots-dropdown",
-  mixins: [InjectApp],
-  components: {
-    HelpTitle,
-  },
-});
-</script>
 
 <style scoped lang="scss">
 @media all and (min-width: 576px) {

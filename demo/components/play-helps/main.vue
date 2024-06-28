@@ -213,7 +213,7 @@ export default {
       attributes: this.attributes,
       slots: this.slots,
       events: this.events,
-      exposes: this.exposes
+      exposes: this.exposes,
     }
   },
   data() {
@@ -271,8 +271,8 @@ export default {
         attributes: false,
         slots: false,
         events: false,
-        exposes: true,
-        slotDropdown: false,
+        exposes: false,
+        slotDropdown: true,
         slotOption: false,
         details: {
           conjunction: false,
