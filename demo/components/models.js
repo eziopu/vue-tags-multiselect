@@ -106,6 +106,24 @@ function to_detail_attributes(obj, supplyObj = {}) {
 //------------------------------------------------------------------------------
 // ATTRIBUTES
 //------------------------------------------------------------------------------
+export const GET_ATTRIBUTES_IS_DISABLED = (keyName, attributes = {}) => {
+  if (keyName == 'merge') {
+    return attributes.conjunction.value == 'AND';
+  }
+  if (keyName == 'tagConjunction') {
+    return attributes.merge.value == false;
+  }
+  if (keyName == 'placeholders.loading') {
+    return attributes.loading.value == false;
+  }
+  if (keyName == 'placeholders.selectDown') {
+    return attributes.create.value == false;
+  }
+  if (keyName == 'placeholders.finish') {
+    return attributes.create.value == true;
+  }
+  return false
+}
 
 export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
   let result = to_detail_attributes(
