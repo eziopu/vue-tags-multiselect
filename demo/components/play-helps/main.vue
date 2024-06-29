@@ -222,7 +222,7 @@ export default {
       slots: PACKAGE_SLOTS_CLONE,
       events: GET_PACKAGE_EVENTS_DETAIL(),
       exposes: GET_PACKAGE_EXPOSES_DETAIL(),
-      operateMode: 'simple', // simple, detail
+      operateMode: 'detail', // simple, detail
       show_code: false,
       originTableDatas: DATAS,
 

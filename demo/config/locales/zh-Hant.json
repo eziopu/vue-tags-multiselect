@@ -50,15 +50,15 @@
       },
       "placeholders__detail": "個別情境的文字",
       "placeholders": {
-        "initial": "初始預設文字, 僅在無tag時顯示",
+        "initial": "初始預設文字, 僅在無tag時啟用",
         "loading": "讀取中文字",
-        "loading__detail": "僅在參數 <code class='tag'>loading</code> 為 true 時顯示",
+        "loading__notice": "僅在參數 <code class='tag'>loading</code> 為 true 時啟用",
         "selectDown": "選項皆完成後的文字",
-        "selectDown__detail": "僅在參數 <code class='tag'>create</code> 為 true 時顯示",
+        "selectDown__notice": "僅在參數 <code class='tag'>create</code> 為 true 時啟用",
         "finish": "選項皆完成後的文字",
-        "finish__detail": "僅在參數 <code class='tag'>create</code> 為 false 時顯示",
-        "tagValueRepeat": "更新tag 檢測到value重複時顯示",
-        "tagValueRepeat__detail": "聚焦tag元件後僅會閃爍兩次後消失"
+        "finish__notice": "僅在參數 <code class='tag'>create</code> 為 false 時啟用",
+        "tagValueRepeat": "更新tag 檢測到value重複時啟用",
+        "tagValueRepeat__notice": "聚焦tag元件後僅會閃爍兩次後消失"
       }
     },
     "slots": {

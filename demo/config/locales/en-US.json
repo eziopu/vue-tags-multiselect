@@ -50,15 +50,15 @@
       },
       "placeholders__detail": "Individual scenario input placeholder",
       "placeholders": {
-        "initial": "Initial default text, only displayed when there is no tag.",
+        "initial": "Initial default text, only enabled when there is no tag.",
         "loading": "The text being loaded.",
-        "loading__detail": "Only displayed when the parameter <code class='tag'>loading</code> is true.",
+        "loading__notice": "Only enabled when the parameter <code class='tag'>loading</code> is true.",
         "selectDown": "Text displayed after all options are completed.",
-        "selectDown__detail": "Only displayed when the parameter <code class='tag'>create</code> is true.",
+        "selectDown__notice": "Only enabled when the parameter <code class='tag'>create</code> is true.",
         "finish": "Text displayed after all options are completed.",
-        "finish__detail": "Only displayed when the parameter <code class='tag'>create</code> is false.",
+        "finish__notice": "Only enabled when the parameter <code class='tag'>create</code> is false.",
         "tagValueRepeat": "Displayed when updating a tag detects a duplicate value.",
-        "tagValueRepeat__detail": "Only flashes twice and disappears after focusing on the tag element."
+        "tagValueRepeat__notice": "Only flashes twice and disappears after focusing on the tag element."
       }
     },
     "slots": {
