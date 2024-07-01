@@ -66,14 +66,14 @@
       "v-tag-option": "Content of the v-tag-dropdown menu, usually a <code>&lt;v-tag-option&gt;</code> element",
       "loading": "Loading template",
       "loading__notice": "only attribute <code>loading</code> is true will work",
-      "dropdowns-loading": "Dropdown loading template",
-      "dropdowns-loading__notice": "only the loading template for the dropdown section.",
+      "dropdown-loading": "Dropdown loading template",
+      "dropdown-loading__notice": "only the loading template for the dropdown section.",
       "tag-conjunction": "Tags value connection symbol",
       "tag-conjunction__notice": "only attribute <code class='tag'>merge</code> is true will work",
       "option-undo": "Option undo template in dropdown",
-      "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>v-tag-option</code> display",
+      "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>&lt;v-tag-option&gt;</code> display",
       "option-OR-conjunction": "Option OR conjunction template in dropdown",
-      "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
+      "option-OR-conjunction__notice": "only attribute <code class='tag'>conjunction</code> is 'null' display"
     },
     "events": {
       "focus": "Triggered when the package gains focus",
