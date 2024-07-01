@@ -1,12 +1,12 @@
 <template>
-  <div id="dropdowns-loading" class="demo">
+  <div id="dropdown-loading" class="demo">
     <ToolTitle>Dropdown loading</ToolTitle>
 
     <div class="depiction">
       {{ $t(`attributes.app.dropdownLoading`) }}
       <div class="sub-depiction">
         <p
-          v-html="$t(`attributes.slots.dropdowns-loading__notice`)"
+          v-html="$t(`attributes.slots.dropdown-loading__notice`)"
         ></p>
       </div>
     </div>
@@ -32,7 +32,7 @@
 <script>
 
 export default {
-  name: "app-dropdowns-loading",
+  name: "app-dropdown-loading",
   inject: ["getLoadingAttributes"],
   computed: {
     attributes() {

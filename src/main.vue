@@ -75,7 +75,7 @@
               class="v-dropdowns__loading"
               :tabindex="-1"
             >
-              <slot name="dropdowns-loading">
+              <slot name="dropdown-loading">
                 <slot name="loading">
                   <PartialLoading></PartialLoading>
                 </slot>

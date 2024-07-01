@@ -12,7 +12,6 @@ const displays = reactive({
   deleteIcon: false
 })
 const appAttributes = inject('attributes')
-console.log(appAttributes)
 </script>
 
 <template>

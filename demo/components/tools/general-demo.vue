@@ -46,7 +46,7 @@
         <template v-slot:optionU-OR-conjunction v-if="appSlots.optionORConjunction != ''">
           <span v-html="appSlots.optionORConjunction"></span>
         </template>
-        <template v-slot:dropdowns-loading v-if="appSlots.dropdownLoading != ''">
+        <template v-slot:dropdown-loading v-if="appSlots.dropdownLoading != ''">
           <span v-html="appSlots.dropdownLoading"></span>
         </template>
 

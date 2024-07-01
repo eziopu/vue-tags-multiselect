@@ -19,12 +19,12 @@ const appSlots = inject('slots')
       default: framework == 'default'
     }"
   >
-    <template v-for="(appSlot, key) in appSlots" :key="key">
-      <LabelAndControls
-        :label="key != 'optionORConjunction' ? $toKebabCase(key) : 'option-OR-conjunction'"
-        model="input"
-        v-model="appSlot.value"
-      />
-    </template>
+    <LabelAndControls
+      v-for="(appSlot, key) in appSlots"
+      :key="key"
+      :label="key != 'optionORConjunction' ? $toKebabCase(key) : 'option-OR-conjunction'"
+      model="input"
+      v-model="appSlot.value"
+    />
   </div>
 </template>
