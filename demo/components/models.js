@@ -137,7 +137,7 @@ export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
   Object.keys(result.placeholders).forEach(key => {
     result.placeholders[key].value = '';
   });
-  
+
   return result;
 }
 
@@ -220,12 +220,23 @@ export const GET_PACKAGE_EXPOSES_DETAIL = () => {
 // SLOTS
 //------------------------------------------------------------------------------
 
+export const GET_PACKAGE_SLOTS_DETAIL = () => {
+  let result = to_detail_attributes(PACKAGE_SLOTS);
+  Object.keys(result).forEach(key => {
+    result[key].value = '';
+  });
+  return result;
+}
+
+const demo__loading = '<div class="demo__loading"><i class="demo__loading--icon"></i></div>';
 export const PACKAGE_SLOTS = {
-  tagConjunction: "",
-  loading: "",
-  optionUndo: "",
-  optionORConjunction: "",
-  dropdownLoading: "",
+  'v-tag-dropdown': '',
+  'v-tag-option': '',
+  tagConjunction: '&',
+  loading: demo__loading,
+  dropdownLoading: demo__loading,
+  optionUndo: '<i class="demo__arrow-left"></i> Undo',
+  optionORConjunction: 'OR',
 }
 
 //------------------------------------------------------------------------------

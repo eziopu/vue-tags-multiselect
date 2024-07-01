@@ -177,11 +177,10 @@ import DataTable from './data-table.vue'
 import {
   DATAS,
   GET_PACKAGE_ATTRIBUTES_DETAIL,
-  PACKAGE_SLOTS,
+  GET_PACKAGE_SLOTS_DETAIL,
   GET_PACKAGE_EVENTS_DETAIL,
   GET_PACKAGE_EXPOSES_DETAIL,
 } from './../models.js'
-const PACKAGE_SLOTS_CLONE = JSON.parse(JSON.stringify(PACKAGE_SLOTS))
 
 import ReloadByI18n from '../tools/mixins/reload-by-i18n.js'
 
@@ -219,7 +218,7 @@ export default {
   data() {
     return {
       attributes: GET_PACKAGE_ATTRIBUTES_DETAIL(),
-      slots: PACKAGE_SLOTS_CLONE,
+      slots: GET_PACKAGE_SLOTS_DETAIL(),
       events: GET_PACKAGE_EVENTS_DETAIL(),
       exposes: GET_PACKAGE_EXPOSES_DETAIL(),
       operateMode: 'detail', // simple, detail
@@ -268,8 +267,8 @@ export default {
       otherNames: [],
       isFetchProcessing: false,
       displays: {
-        attributes: true,
-        slots: false,
+        attributes: false,
+        slots: true,
         events: false,
         exposes: false,
         slotDropdown: false,
