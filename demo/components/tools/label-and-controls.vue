@@ -20,6 +20,7 @@
         <div
           class="tool-attribute__input--fake-placeholder"
           :class="[framework, { active: isActive }]"
+          v-show="newValue == ''"
         >
           <slot name="fake-placeholder"></slot>
         </div>
@@ -137,6 +138,10 @@ export default {
 
 .tool-attribute__label--colon {
   margin: 0 0.3rem;
+}
+
+.tool-attribute__input {
+  position: relative;
 }
 
 .tool-attribute__select:disabled,
