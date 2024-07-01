@@ -8,11 +8,11 @@ export function toBoolean (input) {
   return input == "false" ? false : true;
 }
 
-export function toKebabCase(str) {
+export function toKebabCase(str = '') {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-export function toCamelCase(str) {
+export function toCamelCase(str = '') {
   return str.replace(/-([a-z])/g, function (__match, p1) {
     return p1.toUpperCase();
   });
