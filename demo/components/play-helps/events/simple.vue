@@ -26,7 +26,7 @@ const appEvents = inject('events')
     >
       <span>{{ key }}{{ appEvent.default }}</span>
       <pre v-if="appEvent.default == '(tag: object) => void'" class="data" :class="framework"><!-- 
-        -->{{ appEvents['selecting-tag'].value || '{}' }}<!--
+        -->{{ appEvent.value || '{}' }}<!--
       --></pre>
       <span v-else>
         {{ appEvent.value || '-' }}

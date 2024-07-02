@@ -29,7 +29,7 @@ const appEvents = inject('events')
           class="data"
           :class="framework"
         ><!-- 
-        -->{{ appEvents['selecting-tag'].value || '{}' }}<!--
+        -->{{ appEvent.value || '{}' }}<!--
       --></pre>
         <span v-else>
           {{ appEvent.value || '-' }}
