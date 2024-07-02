@@ -15,9 +15,6 @@ const appAttributes = inject('attributes')
 const labelToKebabCase = (input) => {
   return input != 'optionORConjunction' ? $toKebabCase(input) : 'option-OR-conjunction'
 }
-console.log('////')
-console.log(appSlots)
-console.log('////')
 </script>
 
 <template>
@@ -71,117 +68,24 @@ console.log('////')
         <div v-html="attribute.default"></div>
       </div>
     </div>
-
-    <div class="row">
-      <div><div>v-tag-dropdown</div></div>
-      <div v-html="$t(`attributes.slots.v-tag-dropdown`)"></div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>-</span>
-      </div>
-    </div>
-    <div class="row">
-      <div><div>v-tag-option</div></div>
-      <div v-html="$t(`attributes.slots.v-tag-option`)"></div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>-</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex-between text">
-        <div>loading</div>
-        <div class="ui input loading">
-          <input type="text" class="form-control" v-model="appSlots.loadingContent" />
-        </div>
-      </div>
-      <div>
-        <span> {{ $t(`attributes.slots.loading`) }} *</span>
-        <span v-html="$t(`attributes.slots.loading__notice`)"></span>
-      </div>
-      <div style="display: inline-flex">
-        <span class="i-block d-md-none" style="margin-right: 6px">
-          {{ $t(`ui.general.Default`) }}:
-        </span>
-        <div class="demo__loading">
-          <i class="demo__loading--icon"></i>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex-between text">
-        <div>tag-conjunction</div>
-        <div class="ui input mini-width">
-          <input
-            type="text"
-            class="form-control"
-            v-model="appSlots.tagConjunctionContent"
-            :disabled="appAttributes.merge == 'false'"
-            :placeholder="`&`"
-          />
-        </div>
-      </div>
-      <div>
-        <span v-html="$t(`attributes.slots.tag-conjunction`)"></span>
-        *<span v-html="$t(`attributes.slots.tag-conjunction__notice`)"></span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        &
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex-between text">
-        <div>option-undo</div>
-        <div class="ui input mini-width relative">
-          <input type="text" class="form-control" v-model="appSlots.optionUndoContent" />
-          <div class="demo__fake-placeholder" v-if="appSlots.optionUndoContent == ''">
-            <i class="demo__arrow-left"></i>Undo
-          </div>
-        </div>
-      </div>
-      <div>
-        <span v-html="$t(`attributes.slots.option-undo`)"></span>
-        *<span v-html="$t(`attributes.slots.option-undo__notice`)"></span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <i class="demo__arrow-left"></i> Undo
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex-between text">
-        <div>option-OR-conjunction</div>
-        <div class="ui input mini-width">
-          <input
-            type="text"
-            class="form-control"
-            v-model="appSlots.optionORConjunctionContent"
-            :placeholder="`OR`"
-          />
-        </div>
-      </div>
-      <div>
-        <span v-html="$t(`attributes.slots.option-OR-conjunction`)"></span>
-        *<span v-html="$t(`attributes.slots.option-OR-conjunction__notice`)"></span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        OR
-      </div>
-    </div>
   </div>
 </template>
 
 <style lang="scss">
 // for tool css
 #play-slots-detail {
-  .tool-attribute {
-    justify-content: space-between;
-    // flex-flow: row;
+  @media (min-width: 992px) {
+    .tool-attribute {
+      justify-content: space-between;
+    }
     .tool-attribute__input {
-      position: relative;
       width: 120px !important;
+    }
+  }
+  @media (max-width: 450px) {
+    .tool-attribute {
+      align-items: flex-start !important;
+      flex-direction: column;
     }
   }
 }
@@ -194,17 +98,6 @@ console.log('////')
     align-items: center;
   }
 }
-
-// .row {
-//   .ui.input {
-//     &.loading {
-//       max-width: 160px;
-//     }
-//     &.mini-width {
-//       max-width: 100px;
-//     }
-//   }
-// }
 
 @media all and (min-width: 576px) {
   .row {

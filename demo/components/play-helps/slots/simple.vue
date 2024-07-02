@@ -4,10 +4,18 @@ export default {
 }
 </script>
 <script setup>
-import { inject } from 'vue'
+import { inject, getCurrentInstance } from 'vue'
+import { GET_ATTRIBUTES_IS_DISABLED } from '../../models.js'
+
+const { $toKebabCase } = getCurrentInstance().appContext.config.globalProperties
 
 const framework = inject('framework')
+const appAttributes = inject('attributes')
 const appSlots = inject('slots')
+
+const labelToKebabCase = (input) => {
+  return input != 'optionORConjunction' ? $toKebabCase(input) : 'option-OR-conjunction'
+}
 </script>
 
 <template>
@@ -19,12 +27,38 @@ const appSlots = inject('slots')
       default: framework == 'default'
     }"
   >
-    <LabelAndControls
-      v-for="(appSlot, key) in appSlots"
-      :key="key"
-      :label="key != 'optionORConjunction' ? $toKebabCase(key) : 'option-OR-conjunction'"
-      model="input"
-      v-model="appSlot.value"
-    />
+    <template v-for="(attribute, key) in appSlots" :key="key">
+      <template v-if="attribute.default == ''">
+        <div>
+          <h4>{{ key }}</h4>
+          <div v-html="$t(`attributes.slots.${labelToKebabCase(key)}`)"></div>
+        </div>
+      </template>
+
+      <template v-else>
+        <LabelAndControls
+          v-model="attribute.value"
+          :label="labelToKebabCase(key)"
+          :class="labelToKebabCase(key)"
+          model="input"
+          :disabled="GET_ATTRIBUTES_IS_DISABLED(key, appAttributes)"
+        >
+          <template v-slot:fake-placeholder>
+            <span>default&nbsp;:&nbsp;</span> <span v-html="attribute.default"></span>
+          </template>
+        </LabelAndControls>
+      </template>
+    </template>
+
   </div>
 </template>
+
+<style lang="scss">
+#play-slots-simple {
+  @media (min-width: 991px) {
+    .tool-attribute__label {
+      width: 180px !important;
+    }
+  }
+}
+</style>

@@ -162,6 +162,9 @@ export default {
   transform: translate(0%, -50%);
   color: #6c757d;
 
+  display: flex;
+  align-items: center;
+
   &.default {
     padding-left: 0.3rem;
   }
