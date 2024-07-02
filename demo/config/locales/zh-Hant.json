@@ -62,10 +62,10 @@
       }
     },
     "slots": {
-      "v-tag-dropdown": "下拉選單的容器, 請使用 <code>&lt;v-tag-dropdown&gt;</code> 元件",
-      "v-tag-option": "下拉選單的內容, 請使用 <code>&lt;v-tag-option&gt;</code> 元件",
+      "v-tag-dropdown": "下拉選單的容器, 請使用 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 元件",
+      "v-tag-option": "下拉選單的內容, 請使用 <code class='tag'>&lt;v-tag-option&gt;</code> 元件",
       "loading": "讀取中的模板",
-      "loading__notice": "僅在參數<code>loading</code> 為 true 時運作",
+      "loading__notice": "僅在參數<code class='tag'>loading</code> 為 true 時運作",
       "dropdown-loading": "下拉式選單讀取中的模板",
       "dropdown-loading__notice": "只針對dropdown區塊的loading模板",
       "tag-conjunction": "tag合併後value之間的連接符號",

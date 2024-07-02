@@ -62,10 +62,10 @@
       }
     },
     "slots": {
-      "v-tag-dropdown": "Content of the multiselect, usually a <code>&lt;v-tag-dropdown&gt;</code> element",
-      "v-tag-option": "Content of the v-tag-dropdown menu, usually a <code>&lt;v-tag-option&gt;</code> element",
+      "v-tag-dropdown": "Content of the multiselect, usually a <code class='tag'>&lt;v-tag-dropdown&gt;</code> element",
+      "v-tag-option": "Content of the v-tag-dropdown menu, usually a <code class='tag'>&lt;v-tag-option&gt;</code> element",
       "loading": "Loading template",
-      "loading__notice": "only attribute <code>loading</code> is true will work",
+      "loading__notice": "only attribute <code class='tag'>loading</code> is true will work",
       "dropdown-loading": "Dropdown loading template",
       "dropdown-loading__notice": "only the loading template for the dropdown section.",
       "tag-conjunction": "Tags value connection symbol",
