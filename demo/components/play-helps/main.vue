@@ -179,7 +179,7 @@ import {
   GET_PACKAGE_ATTRIBUTES_DETAIL,
   GET_PACKAGE_SLOTS_DETAIL,
   GET_PACKAGE_EVENTS_DETAIL,
-  GET_PACKAGE_EXPOSES_DETAIL,
+  GET_PACKAGE_EXPOSES_DETAIL
 } from './../models.js'
 
 import ReloadByI18n from '../tools/mixins/reload-by-i18n.js'
@@ -212,7 +212,7 @@ export default {
       attributes: this.attributes,
       slots: this.slots,
       events: this.events,
-      exposes: this.exposes,
+      exposes: this.exposes
     }
   },
   data() {
@@ -224,6 +224,15 @@ export default {
       operateMode: 'detail', // simple, detail
       show_code: false,
       originTableDatas: DATAS,
+
+      displays: {
+        attributes: false,
+        slots: false,
+        events: true,
+        exposes: false,
+        slotDropdown: false,
+        slotOption: false
+      },
 
       // app
       disabled: 'false',
@@ -265,19 +274,7 @@ export default {
       height2: undefined,
       // select name fetch logic
       otherNames: [],
-      isFetchProcessing: false,
-      displays: {
-        attributes: false,
-        slots: true,
-        events: false,
-        exposes: false,
-        slotDropdown: false,
-        slotOption: false,
-        details: {
-          conjunction: false,
-          deleteIcon: false
-        }
-      }
+      isFetchProcessing: false
     }
   },
   watch: {
