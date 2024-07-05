@@ -1,12 +1,8 @@
 <script setup>
-import { defineProps, toRefs } from 'vue'
-
-const props = defineProps({
+defineProps({
   label: String,
   contents: Object
 })
-
-const { label, contents } = toRefs(props)
 </script>
 
 <template>
