@@ -5,8 +5,8 @@ export default {
 </script>
 <script setup>
 import { inject } from 'vue'
+import ValueTemplate from './components/value.vue'
 
-const framework = inject('framework')
 const appEvents = inject('events')
 </script>
 
@@ -24,16 +24,7 @@ const appEvents = inject('events')
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Output`) }}: </span>
-        <pre
-          v-if="appEvent.default == '(tag: object) => void'"
-          class="data"
-          :class="framework"
-        ><!-- 
-        -->{{ appEvent.value || '{}' }}<!--
-      --></pre>
-        <span v-else>
-          {{ appEvent.value || '-' }}
-        </span>
+        <ValueTemplate :keyName="key" :attribute="appEvent"></ValueTemplate>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Description`) }}: </span>
@@ -48,7 +39,6 @@ const appEvents = inject('events')
 </template>
 
 <style scoped lang="scss">
-@import './assets/stylesheets.scss';
 @media all and (min-width: 576px) {
   .row {
     & > div:nth-child(1) {

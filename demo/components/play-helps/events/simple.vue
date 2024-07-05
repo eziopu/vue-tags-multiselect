@@ -5,6 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject } from 'vue'
+import ValueTemplate from './components/value.vue'
 
 const framework = inject('framework')
 const appEvents = inject('events')
@@ -25,18 +26,12 @@ const appEvents = inject('events')
       :class="{ 'attribute-row': /object/.test(appEvent.default) }"
     >
       <span>{{ key }}{{ appEvent.default }}</span>
-      <pre v-if="appEvent.default == '(tag: object) => void'" class="data" :class="framework"><!-- 
-        -->{{ appEvent.value || '{}' }}<!--
-      --></pre>
-      <span v-else>
-        {{ appEvent.value || '-' }}
-      </span>
+      <ValueTemplate :keyName="key" :attribute="appEvent"></ValueTemplate>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import './assets/stylesheets.scss';
 .attribute-row {
   flex-direction: column;
 }

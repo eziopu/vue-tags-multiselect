@@ -171,9 +171,9 @@ export const PACKAGE_ATTRIBUTES = {
 
 export const GET_PACKAGE_EVENTS_DETAIL = () => {
   return {
-    focus: to_object("() => void"),
-    blur: to_object("() => void"),
-    clear: to_object("() => void"),
+    focus: to_object("() => void", 0),
+    blur: to_object("() => void", 0),
+    clear: to_object("() => void", 0),
     'input-value': to_object("(value: string) => void"),
     'visible-change': to_object("(visible: boolean) => void"),
     status: to_object("(status: array) => void", [], [
