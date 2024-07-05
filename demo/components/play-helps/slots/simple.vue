@@ -31,7 +31,7 @@ const labelToKebabCase = (input) => {
       <template v-if="attribute.default == ''">
         <div>
           <h4>{{ key }}</h4>
-          <div v-html="$t(`attributes.slots.${labelToKebabCase(key)}`)"></div>
+          <div class="depiction" v-html="$t(`attributes.slots.${labelToKebabCase(key)}`)"></div>
         </div>
       </template>
 
@@ -49,7 +49,6 @@ const labelToKebabCase = (input) => {
         </LabelAndControls>
       </template>
     </template>
-
   </div>
 </template>
 
