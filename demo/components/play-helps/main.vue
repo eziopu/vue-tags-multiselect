@@ -35,37 +35,49 @@
         v-if="reloadByI18n"
         v-model="result"
         ref="VTagsMultiselect"
-        @status="(e) => (tool.status = e)"
-        @selectingTag="(e) => (tool.selectingTag = e)"
-        @inputValue="(e) => (tool.inputValue = e)"
-        @editing="(e) => (tool.editing = e)"
-        :disabled="disabled == 'true' ? true : false"
-        :loading="loading == 'true' ? true : false"
-        :dropdownLoading="dropdownLoading == 'true' ? true : false"
-        :search="search == 'true' ? true : false"
-        :transition="transition == 'true' ? true : false"
-        :keyboard="keyboard == 'true' ? true : false"
-        :debugLog="debugLog == 'true' ? true : false"
-        :create="create == 'true' ? true : false"
-        :merge="merge == 'true' ? true : false"
-        :deleteIcon="deleteIcon"
-        :conjunction="conjunction"
-        :tagPosition="tagPosition"
-        :placeholder="placeholderText(placeholder)"
-        :placeholders="placeholders"
+        @focus="() => (events.focus.value += 1)"
+        @blur="() => (events.blur.value += 1)"
+        @clear="() => (events.clear.value += 1)"
+        @input-value="(e) => (events['input-value'].value = e)"
+        @visible-change="(e) => (events['visible-change'].value = e)"
+        @status="(e) => (events['status'].value = e)"
+        @remove-tag="(e) => (events['remove-tag'].value = e)"
+        @selecting-tag="(e) => (events['selecting-tag'].value = e)"
+        :disabled="attributes.disabled.value"
+        :loading="attributes.loading.value"
+        :dropdownLoading="attributes.dropdownLoading.value"
+        :search="attributes.search.value"
+        :transition="attributes.transition.value"
+        :keyboard="attributes.keyboard.value"
+        :debugLog="attributes.debugLog.value"
+        :create="attributes.create.value"
+        :merge="attributes.merge.value"
+        :deleteIcon="attributes.deleteIcon.value"
+        :conjunction="attributes.conjunction.value"
+        :tagPosition="attributes.tagPosition.value"
+        :placeholder="attributes.placeholder.value"
+        :placeholders="
+          Object.fromEntries(
+            Object.entries(attributes.placeholders).map(([key, value]) => [key, value.value])
+          )
+        "
       >
-        <template v-slot:tag-conjunction v-if="tagConjunctionContent != ''">
-          <span v-html="tagConjunctionContent"></span>
+        <template v-slot:tag-conjunction v-if="slots.tagConjunction.value != ''">
+          <span v-html="slots.tagConjunction.value"></span>
         </template>
-        <template v-slot:loading v-if="loadingContent != ''">
-          <span v-html="loadingContent"></span>
+        <template v-slot:loading v-if="slots.loading.value != ''">
+          <span v-html="slots.loading.value"></span>
         </template>
-        <template v-slot:option-undo v-if="optionUndoContent != ''">
-          <span v-html="optionUndoContent"></span>
+        <template v-slot:dropdown-loading v-if="slots.dropdownLoading.value != ''">
+          <span v-html="slots.dropdownLoading.value"></span>
         </template>
-        <template v-slot:option-OR-conjunction v-if="optionORConjunctionContent != ''">
-          <span v-html="optionORConjunctionContent"></span>
+        <template v-slot:option-undo v-if="slots.optionUndo.value != ''">
+          <span v-html="slots.optionUndo.value"></span>
         </template>
+        <template v-slot:option-OR-conjunction v-if="slots.optionORConjunction.value != ''">
+          <span v-html="slots.optionORConjunction.value"></span>
+        </template>
+
         <v-tag-dropdown value="country" display-all custom>
           <v-tag-option title>
             <i class="fa fa-flag"></i> {{ $t(`ui.general.Country`) }}
@@ -208,7 +220,9 @@ export default {
   provide() {
     return {
       getDemo: () => this,
+      getOperateMode: () => this.operateMode,
       displays: this.displays,
+
       attributes: this.attributes,
       slots: this.slots,
       events: this.events,
