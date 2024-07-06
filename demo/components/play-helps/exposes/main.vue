@@ -40,7 +40,7 @@ const appExposes = inject('exposes')
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .attribute-row {
   flex-direction: column;
   justify-content: flex-start !important;

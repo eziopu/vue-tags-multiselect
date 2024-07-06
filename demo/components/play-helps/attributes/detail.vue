@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject, reactive } from 'vue'
-import { GET_ATTRIBUTES_IS_DISABLED } from '../../models.js'
+import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
 
 const displays = reactive({
   conjunction: false,
@@ -50,8 +50,13 @@ const appAttributes = inject('attributes')
           :label="$toKebabCase(key)"
           v-model="attribute.value"
           :values="attribute.acceptedValues"
-          :disabled="GET_ATTRIBUTES_IS_DISABLED(key, appAttributes)"
-        />
+          :disabled="!!GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)"
+        >
+          <template v-slot:tooltip v-if="GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)">
+            {{ GET_ATTRIBUTE_INVALID_REASON(key, appAttributes) }}
+          </template>
+        </LabelAndControls>
+
         <div v-if="attribute.acceptedValues.length == 0 || key == 'tagPosition'">
           {{ $t(`attributes.app.${key}`) }}
           <p v-if="$te(`attributes.app.${key}__notice`)">
@@ -98,9 +103,7 @@ const appAttributes = inject('attributes')
       />
       <div>
         {{ $t(`attributes.app.placeholder`) }}
-        <p>
-          * {{ $t(`attributes.app.placeholder__details.remark`) }}
-        </p>
+        <p>* {{ $t(`attributes.app.placeholder__details.remark`) }}</p>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
@@ -133,7 +136,7 @@ const appAttributes = inject('attributes')
             :label="$toKebabCase(subKey)"
             model="input"
             v-model="subPlaceholder.value"
-            :disabled="GET_ATTRIBUTES_IS_DISABLED(`placeholders.${subKey}`, appAttributes)"
+            :disabled="!!GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes)"
           />
           <div>
             {{ $t(`attributes.app.placeholders.${subKey}`) }}

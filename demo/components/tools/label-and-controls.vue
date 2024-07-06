@@ -1,5 +1,5 @@
 <template>
-  <div class="attribute flex tool-attribute" :class="model">
+  <div class="attribute flex tool-attribute" :class="[model, { 'tool-tooltip': $slots.tooltip }]">
     <div v-if="label" class="tool-attribute__label">
       {{ label }}<span class="tool-attribute__label--colon">:</span>
     </div>
@@ -36,6 +36,10 @@
         />
       </div>
     </template>
+
+    <span class="tool-tooltip__text">
+      <slot name="tooltip"></slot>
+    </span>
   </div>
 </template>
 

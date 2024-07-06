@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject, getCurrentInstance } from 'vue'
-import { GET_ATTRIBUTES_IS_DISABLED } from '../../models.js'
+import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
 
 const { $toKebabCase } = getCurrentInstance().appContext.config.globalProperties
 
@@ -41,7 +41,7 @@ const labelToKebabCase = (input) => {
           :label="labelToKebabCase(key)"
           :class="labelToKebabCase(key)"
           model="input"
-          :disabled="GET_ATTRIBUTES_IS_DISABLED(key, appAttributes)"
+          :disabled="!!GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)"
         >
           <template v-slot:fake-placeholder>
             <span>default&nbsp;:&nbsp;</span> <span v-html="attribute.default"></span>

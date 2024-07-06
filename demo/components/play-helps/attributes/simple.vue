@@ -5,6 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject } from 'vue'
+import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
 
 const framework = inject('framework')
 const appAttributes = inject('attributes')
@@ -25,7 +26,12 @@ const appAttributes = inject('attributes')
             :label="$toKebabCase(key)"
             v-model="attribute.value"
             :values="attribute.acceptedValues"
-          />
+            :disabled="!!GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)"
+          >
+            <template v-slot:tooltip v-if="GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)">
+              {{ GET_ATTRIBUTE_INVALID_REASON(key, appAttributes) }}
+            </template>
+          </LabelAndControls>
         </template>
       </template>
       <div class="attribute play-attributes-simple__placeholder">

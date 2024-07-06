@@ -235,53 +235,19 @@ export default {
       slots: GET_PACKAGE_SLOTS_DETAIL(),
       events: GET_PACKAGE_EVENTS_DETAIL(),
       exposes: GET_PACKAGE_EXPOSES_DETAIL(),
-      operateMode: 'detail', // simple, detail
+      operateMode: 'simple', // simple, detail
       show_code: false,
       originTableDatas: DATAS,
 
       displays: {
-        attributes: false,
+        attributes: true,
         slots: false,
-        events: true,
+        events: false,
         exposes: false,
         slotDropdown: false,
         slotOption: false
       },
 
-      // app
-      disabled: 'false',
-      loading: 'false',
-      dropdownLoading: 'false',
-      search: 'true',
-      keyboard: 'true',
-      debugLog: 'true',
-      transition: 'true',
-      create: 'true',
-      merge: 'true',
-      tagPosition: 'null',
-      conjunction: 'null',
-      deleteIcon: 'always',
-      loadingContent: '',
-      loadingPlaceholder: '',
-      selectDownPlaceholder: '',
-      finishPlaceholder: '',
-      placeholder: '',
-      placeholders: {
-        initial: '',
-        loading: '',
-        selectDown: '',
-        finish: '',
-        tagValueRepeat: ''
-      },
-      tagConjunctionContent: '',
-      optionUndoContent: '',
-      optionORConjunctionContent: '',
-      tool: {
-        status: [],
-        selectingTag: {},
-        inputValue: '',
-        editing: {}
-      },
       isFetchDatas: false,
       result: {},
       height1: undefined,
@@ -292,8 +258,10 @@ export default {
     }
   },
   watch: {
-    tool: {
+    events: {
       handler(value) {
+        console.log(`events = `, value);
+        /*
         let { status, selectingTag, editing } = value
         if (
           this.loading == 'false' &&
@@ -308,6 +276,7 @@ export default {
           this.otherNames = []
           this.isFetchDatas = false
         }
+          */
       },
       deep: true
     }

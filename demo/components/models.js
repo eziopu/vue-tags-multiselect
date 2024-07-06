@@ -106,24 +106,33 @@ function to_detail_attributes(obj, supplyObj = {}) {
 //------------------------------------------------------------------------------
 // ATTRIBUTES
 //------------------------------------------------------------------------------
-export const GET_ATTRIBUTES_IS_DISABLED = (keyName, attributes = {}) => {
-  if (keyName == 'merge') {
-    return attributes.conjunction.value == 'AND';
+const ATTRIBUTE_VALIDATIONS = {
+  merge: {
+    condition: (attrs) => attrs.conjunction.value === 'AND',
+    message: 'Attribute conjunction is "AND"'
+  },
+  tagConjunction: {
+    condition: (attrs) => attrs.merge.value === false,
+    message: 'Attribute merge is false'
+  },
+  'placeholders.loading': {
+    condition: (attrs) => attrs.loading.value === false,
+    message: 'Attribute loading is false'
+  },
+  'placeholders.selectDown': {
+    condition: (attrs) => attrs.create.value === false,
+    message: 'Attribute create is false'
+  },
+  'placeholders.finish': {
+    condition: (attrs) => attrs.create.value === true,
+    message: 'Attribute create is true'
   }
-  if (keyName == 'tagConjunction') {
-    return attributes.merge.value == false;
-  }
-  if (keyName == 'placeholders.loading') {
-    return attributes.loading.value == false;
-  }
-  if (keyName == 'placeholders.selectDown') {
-    return attributes.create.value == false;
-  }
-  if (keyName == 'placeholders.finish') {
-    return attributes.create.value == true;
-  }
-  return false
-}
+};
+
+export const GET_ATTRIBUTE_INVALID_REASON = (keyName, attributes = {}) => {
+  const validation = ATTRIBUTE_VALIDATIONS[keyName];
+  return validation && validation.condition(attributes) ? validation.message : undefined;
+};
 
 export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
   let result = to_detail_attributes(
