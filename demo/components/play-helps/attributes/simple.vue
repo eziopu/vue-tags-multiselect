@@ -63,7 +63,15 @@ const appAttributes = inject('attributes')
           v-model="attribute.value"
           :values="attribute.acceptedValues"
           :placeholder="attribute.default"
-        />
+          :disabled="!!GET_ATTRIBUTE_INVALID_REASON(`placeholders.${key}`, appAttributes)"
+        >
+          <template
+            v-slot:tooltip
+            v-if="GET_ATTRIBUTE_INVALID_REASON(`placeholders.${key}`, appAttributes)"
+          >
+            {{ GET_ATTRIBUTE_INVALID_REASON(`placeholders.${key}`, appAttributes) }}
+          </template>
+        </LabelAndControls>
       </template>
     </div>
   </div>

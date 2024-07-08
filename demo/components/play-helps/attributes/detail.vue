@@ -136,8 +136,18 @@ const appAttributes = inject('attributes')
             :label="$toKebabCase(subKey)"
             model="input"
             v-model="subPlaceholder.value"
+            :values="subPlaceholder.acceptedValues"
+            :placeholder="subPlaceholder.default"
             :disabled="!!GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes)"
-          />
+          >
+            <template
+              v-slot:tooltip
+              v-if="GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes)"
+            >
+              {{ GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes) }}
+            </template>
+          </LabelAndControls>
+          
           <div>
             {{ $t(`attributes.app.placeholders.${subKey}`) }}
             <p v-if="$te(`attributes.app.placeholders.${subKey}__notice`)">
