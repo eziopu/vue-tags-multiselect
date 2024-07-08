@@ -3,43 +3,45 @@
     <div v-if="label" class="tool-attribute__label">
       {{ label }}<span class="tool-attribute__label--colon">:</span>
     </div>
-    <template v-if="model == 'select'">
-      <select
-        v-model="newValue"
-        class="tool-attribute__select"
-        :disabled="disabled"
-        :style="{ width: width }"
-      >
-        <option v-for="item in options" :key="item">
-          {{ item }}
-        </option>
-      </select>
-    </template>
-    <template v-if="model == 'input'">
-      <div class="ui input tool-attribute__input">
-        <div
-          class="tool-attribute__input--fake-placeholder"
-          :class="[framework, { active: isActive }]"
-          v-show="newValue == ''"
-        >
-          <slot name="fake-placeholder"></slot>
-        </div>
-        <input
+    <div class="tool-attribute__operate">
+      <template v-if="model == 'select'">
+        <select
           v-model="newValue"
-          class="form-control"
-          :style="{ width: width }"
-          :type="text"
+          class="tool-attribute__select"
           :disabled="disabled"
-          :placeholder="placeholder"
-          @focus="isActive = true"
-          @blur="isActive = false"
-        />
-      </div>
-    </template>
-
-    <span class="tool-tooltip__text">
-      <slot name="tooltip"></slot>
-    </span>
+          :style="{ width: width }"
+        >
+          <option v-for="item in options" :key="item">
+            {{ item }}
+          </option>
+        </select>
+      </template>
+      <template v-if="model == 'input'">
+        <div class="ui input tool-attribute__input">
+          <div
+            class="tool-attribute__input--fake-placeholder"
+            :class="[framework, { active: isActive }]"
+            v-show="newValue == ''"
+          >
+            <slot name="fake-placeholder"></slot>
+          </div>
+          <input
+            v-model="newValue"
+            class="form-control"
+            :style="{ width: width }"
+            :type="text"
+            :disabled="disabled"
+            :placeholder="placeholder"
+            @focus="isActive = true"
+            @blur="isActive = false"
+          />
+        </div>
+      </template>
+  
+      <span class="tool-tooltip__text">
+        <slot name="tooltip"></slot>
+      </span>
+    </div>
   </div>
 </template>
 
