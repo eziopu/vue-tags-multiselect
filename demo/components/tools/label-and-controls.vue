@@ -1,9 +1,9 @@
 <template>
-  <div class="attribute flex tool-attribute" :class="[model, { 'tool-tooltip': $slots.tooltip }]">
+  <div class="attribute flex tool-attribute" :class="model">
     <div v-if="label" class="tool-attribute__label">
       {{ label }}<span class="tool-attribute__label--colon">:</span>
     </div>
-    <div class="tool-attribute__operate">
+    <div class="tool-attribute__operate" :class="{ 'tool-tooltip': $slots.tooltip }">
       <template v-if="model == 'select'">
         <select
           v-model="newValue"
