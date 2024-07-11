@@ -16,19 +16,13 @@
       </div>
     </div>
     <transition-group name="list-complete">
-      <div
-        class="row list-complete-item"
-        v-for="(data, index) in datas"
-        :key="`data${index}`"
-      >
+      <div class="row list-complete-item" v-for="(data, index) in datas" :key="`data${index}`">
         <div>
           <span class="i-block d-md-none">#</span>
           {{ index + 1 }}
         </div>
         <div>
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.Country`) }}:
-          </span>
+          <span class="i-block d-md-none">{{ $t(`ui.general.Country`) }}: </span>
           {{ $t(`ui.data.country.${data.country}`) }}
         </div>
         <div>
@@ -36,9 +30,7 @@
           {{ $t(`ui.data.name.${data.name}`) }}
         </div>
         <div>
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.Height(m)`) }}:
-          </span>
+          <span class="i-block d-md-none">{{ $t(`ui.general.Height(m)`) }}: </span>
           {{ data.height }}
         </div>
         <div>
@@ -62,45 +54,37 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
-  name: "data-table",
+  name: 'data-table',
   props: {
-    props: {
-      framework: {
-        type: String,
-        default: () => {
-          return "default";
-        },
-      },
-    },
     datas: {
       type: Array,
       default: () => {
-        return [];
-      },
+        return []
+      }
     },
     notFindDatas: {
       type: Array,
       default: () => {
-        let i = [...Array(11)].map(() => `&emsp;`);
-        i[5] = `<h5 class="text-center">Not find any</h5>`;
-        return i;
-      },
-    },
+        let i = [...Array(11)].map(() => `&emsp;`)
+        i[5] = `<h5 class="text-center">Not find any</h5>`
+        return i
+      }
+    }
   },
   methods: {
     getRemarkI18n(test) {
-      if (!test) return "-";
+      if (!test) return '-'
       try {
-        let i18n = this.$t(`ui.data.remark.${test}`);
-        if (i18n) return i18n;
+        let i18n = this.$t(`ui.data.remark.${test}`)
+        if (i18n) return i18n
       } catch (error) {
-        return "-";
+        return '-'
       }
-    },
-  },
-});
+    }
+  }
+})
 </script>
 
 <style scoped lang="scss">

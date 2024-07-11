@@ -25,7 +25,7 @@ const appEvents = inject('events')
       :key="key"
       :class="{ 'attribute-row': /object/.test(appEvent.default) }"
     >
-      <span>{{ key }}{{ appEvent.default }}</span>
+      <span>{{ $toKebabCase(key) }}{{ appEvent.default }}</span>
       <ValueTemplate :keyName="key" :attribute="appEvent"></ValueTemplate>
     </div>
   </div>

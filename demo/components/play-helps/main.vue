@@ -38,11 +38,11 @@
         @focus="() => (events.focus.value += 1)"
         @blur="() => (events.blur.value += 1)"
         @clear="() => (events.clear.value += 1)"
-        @input-value="(e) => (events['input-value'].value = e)"
-        @visible-change="(e) => (events['visible-change'].value = e)"
-        @status="(e) => (events['status'].value = e)"
-        @remove-tag="(e) => (events['remove-tag'].value = e)"
-        @selecting-tag="(e) => (events['selecting-tag'].value = e)"
+        @input-value="(e) => (events.inputValue.value = e)"
+        @visible-change="(e) => (events.visibleChange.value = e)"
+        @status="(e) => (events.status.value = e)"
+        @remove-tag="(e) => (events.removeTag.value = e)"
+        @selecting-tag="(e) => (events.selectingTag.value = e)"
         :disabled="attributes.disabled.value"
         :loading="attributes.loading.value"
         :dropdownLoading="attributes.dropdownLoading.value"
@@ -165,12 +165,19 @@
       </div>
     </div>
 
+    <!-- <GeneralDemo
+      ref="generalDemo"
+      :app="{
+        placeholder: 'Click me !',
+      }"
+    ></GeneralDemo> -->
+
     <Transition name="slide">
       <ShowHtmlCode v-show="show_code" class="prettyprint lang-html customize"></ShowHtmlCode>
     </Transition>
 
     <div id="datas">
-      <DataTable :framework="framework" :datas="tableDatas"></DataTable>
+      <DataTable :datas="tableDatas"></DataTable>
     </div>
   </div>
 </template>
@@ -199,6 +206,7 @@ import ReloadByI18n from '../tools/mixins/reload-by-i18n.js'
 export default {
   name: 'play-helps',
   mixins: [ReloadByI18n],
+  inject: ['framework'],
   components: {
     Attributes,
     Events,
@@ -208,14 +216,6 @@ export default {
     SlotsAttributesOption,
     Exposes,
     ShowHtmlCode
-  },
-  props: {
-    framework: {
-      type: String,
-      default: () => {
-        return 'default'
-      }
-    }
   },
   provide() {
     return {
@@ -260,23 +260,13 @@ export default {
   watch: {
     events: {
       handler(value) {
-        console.log(`events = `, value);
-        /*
-        let { status, selectingTag, editing } = value
-        if (
-          this.loading == 'false' &&
-          this.isFetchDatas == false &&
-          status.includes('loading') == false &&
-          (status.includes('editing') || status.includes('selecting')) &&
-          (selectingTag.key == 'name' || editing.key == 'name')
-        ) {
+        let { selectingTag } = value
+        if (selectingTag.value.key == 'name') {
           this.fetchNames()
-        }
-        if (selectingTag.key != 'name' && editing.key != 'name') {
+        } else {
           this.otherNames = []
           this.isFetchDatas = false
         }
-          */
       },
       deep: true
     }
@@ -304,8 +294,8 @@ export default {
       return value
     },
     fetchNames() {
-      if (this.loading == 'true') return
-      this.loading = 'true'
+      if (this.attributes.dropdownLoading.value == true) return
+      this.attributes.dropdownLoading.value = true
 
       let length = this.originTableDatas.length
       this.originTableDatas.forEach((data, index) => {
@@ -324,7 +314,7 @@ export default {
       this.isFetchDatas = true
       setTimeout(
         () => {
-          this.loading = 'false'
+          this.attributes.dropdownLoading.value = false
         },
         300 * (length - 3)
       )

@@ -20,7 +20,7 @@ const appEvents = inject('events')
 
     <div class="row" v-for="(appEvent, key) in appEvents" :key="key">
       <div>
-        <div>{{ key }}{{ appEvent.default }}</div>
+        <div>{{ $toKebabCase(key) }}{{ appEvent.default }}</div>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Output`) }}: </span>
@@ -28,7 +28,7 @@ const appEvents = inject('events')
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Description`) }}: </span>
-        <span>{{ $t(`attributes.events.${key}`) }}</span>
+        <span>{{ $t(`attributes.events.${$toKebabCase(key)}`) }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Parameters`) }}: </span>

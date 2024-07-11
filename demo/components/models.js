@@ -183,8 +183,8 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
     focus: to_object("() => void", 0),
     blur: to_object("() => void", 0),
     clear: to_object("() => void", 0),
-    'input-value': to_object("(value: string) => void"),
-    'visible-change': to_object("(visible: boolean) => void"),
+    inputValue: to_object("(value: string) => void"),
+    visibleChange: to_object("(visible: boolean) => void"),
     status: to_object("(status: array) => void", [], [
       "disabled",
       "loading",
@@ -194,8 +194,8 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
       "finish",
       "delect-down"
     ]),
-    'remove-tag': to_object("(tag: object) => void", {}),
-    'selecting-tag': to_object("(tag: object) => void", {}),
+    removeTag: to_object("(tag: object) => void", {}),
+    selectingTag: to_object("(tag: object) => void", {}),
   }
 }
 
