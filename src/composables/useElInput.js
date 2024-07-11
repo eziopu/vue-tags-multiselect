@@ -69,6 +69,5 @@ export default function useElInput(props, context, dep) {
     elInputValue,
     elInputMaxlength,
     elInputPlaceholder,
-    elInputDisabled,
   };
 }

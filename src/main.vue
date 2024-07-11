@@ -120,7 +120,6 @@
             type="search"
             @focus="elInputFocus"
             @blur="elInputBlur"
-            :disabled="elInputDisabled"
             :maxlength="elInputMaxlength"
             :placeholder="elInputPlaceholder"
           />
