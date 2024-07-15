@@ -92,19 +92,19 @@
           <div class="attribute">
             loading:
             <span
-              v-html="$t(`${i18nAppPath}.placeholders.loading__detail`)"
+              v-html="$t(`${i18nAppPath}.placeholders.loading__notice`)"
             ></span>
           </div>
           <div class="attribute">
             selectDown:
             <span
-              v-html="$t(`${i18nAppPath}.placeholders.selectDown__detail`)"
+              v-html="$t(`${i18nAppPath}.placeholders.selectDown__notice`)"
             ></span>
           </div>
           <div class="attribute">
             finish:
             <span
-              v-html="$t(`${i18nAppPath}.placeholders.finish__detail`)"
+              v-html="$t(`${i18nAppPath}.placeholders.finish__notice`)"
             ></span>
           </div>
         </div>
