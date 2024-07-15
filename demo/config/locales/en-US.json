@@ -17,6 +17,7 @@
       "v-model": "Binding value",
       "disabled": "Whether input is disabled",
       "loading": "Whether input is loading",
+      "debugLog": "Whether to display console.log in the browser's developer tools",
       "dropdownLoading": "Whether dropdown is loading",
       "search": "Option value search by app input value",
       "create": "Create tag with no title, value is by input",
@@ -49,30 +50,30 @@
       },
       "placeholders__detail": "Individual scenario input placeholder",
       "placeholders": {
-        "initial": "Initial default text, only displayed when there is no tag.",
+        "initial": "Initial default text, only enabled when there is no tag.",
         "loading": "The text being loaded.",
-        "loading__detail": "Only displayed when the parameter <code class='tag'>loading</code> is true.",
+        "loading__notice": "Only enabled when the parameter <code class='tag'>loading</code> is true.",
         "selectDown": "Text displayed after all options are completed.",
-        "selectDown__detail": "Only displayed when the parameter <code class='tag'>create</code> is true.",
+        "selectDown__notice": "Only enabled when the parameter <code class='tag'>create</code> is true.",
         "finish": "Text displayed after all options are completed.",
-        "finish__detail": "Only displayed when the parameter <code class='tag'>create</code> is false.",
+        "finish__notice": "Only enabled when the parameter <code class='tag'>create</code> is false.",
         "tagValueRepeat": "Displayed when updating a tag detects a duplicate value.",
-        "tagValueRepeat__detail": "Only flashes twice and disappears after focusing on the tag element."
+        "tagValueRepeat__notice": "Only flashes twice and disappears after focusing on the tag element."
       }
     },
     "slots": {
-      "v-tag-dropdown": "Content of the multiselect, usually a <code>&lt;v-tag-dropdown&gt;</code> element",
-      "v-tag-option": "Content of the v-tag-dropdown menu, usually a <code>&lt;v-tag-option&gt;</code> element",
+      "v-tag-dropdown": "Content of the multiselect, usually a <code class='tag'>&lt;v-tag-dropdown&gt;</code> element",
+      "v-tag-option": "Content of the v-tag-dropdown menu, usually a <code class='tag'>&lt;v-tag-option&gt;</code> element",
       "loading": "Loading template",
-      "loading__notice": "only attribute <code>loading</code> is true will work",
-      "dropdowns-loading": "Dropdown loading template",
-      "dropdowns-loading__notice": "only the loading template for the dropdown section.",
+      "loading__notice": "only attribute <code class='tag'>loading</code> is true will work",
+      "dropdown-loading": "Dropdown loading template",
+      "dropdown-loading__notice": "only the loading template for the dropdown section.",
       "tag-conjunction": "Tags value connection symbol",
       "tag-conjunction__notice": "only attribute <code class='tag'>merge</code> is true will work",
       "option-undo": "Option undo template in dropdown",
-      "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>v-tag-option</code> display",
+      "option-undo__notice": "only selected <code class='tag'>title</code> <code class='tag'>&lt;v-tag-option&gt;</code> display",
       "option-OR-conjunction": "Option OR conjunction template in dropdown",
-      "option-OR-conjunction__notice": "only attribute<code class='tag'>conjunction</code>is 'null' display"
+      "option-OR-conjunction__notice": "only attribute <code class='tag'>conjunction</code> is 'null' display"
     },
     "events": {
       "focus": "Triggered when the package gains focus",
@@ -155,6 +156,7 @@
         "1": "Unless the parameter <code class='tag'>display-all</code> of the dropdown is set to true or there is no title option present in the dropdown, the other options will be displayed",
         "2": "There can be no title option inside the dropdown"
       },
+      "class": "@:attributes.dropdown.class",
       "no_title": "The dropdown without a title option will always be displayed regardless of whether the parameter <code class='tag'>display-all</code> is set to true or not.",
       "display-value": "Tag select finished value don't show html template",
       "disabled": "Whether to disable",
@@ -179,7 +181,7 @@
       "Description": "Description",
       "Type": "Type",
       "AcceptedValues": "Accepted Values",
-      "Default": "Defaul | default",
+      "Default": "Default | default",
       "FunctionName": "Function name",
       "Name": "Name",
       "Output": "Output",

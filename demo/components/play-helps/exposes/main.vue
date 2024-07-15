@@ -1,28 +1,51 @@
+<script>
+export default {
+  name: 'play-exposes'
+}
+</script>
+<script setup>
+import { inject } from 'vue'
+import HelpTitle from '../components/title.vue'
+import PushTag from './pushTag.vue'
+
+const displays = inject('displays')
+const framework = inject('framework')
+const appExposes = inject('exposes')
+</script>
+
 <template>
   <div id="exposes">
-    <HelpTitle 
-      label="Exposes"
-      target="exposes"
-    />
-    
+    <HelpTitle label="Exposes" target="exposes" />
+
     <transition name="slide">
-      <PushTag v-if="app.displays.exposes"></PushTag>
+      <div v-if="displays.exposes">
+        <div
+          class="simple attributes"
+          :class="{
+            ui: framework == 'semantic-ui',
+            default: framework == 'default'
+          }"
+        >
+          <div class="flex-between attribute-row" v-for="(appExpose, key) in appExposes" :key="key">
+            <h4> {{ key }}{{ appExpose.default.replace(' => void', '') }} </h4>
+            <div class="depiction">
+              {{ $t(`attributes.exposes.${key}`) }}
+            </div>
+          </div>
+        </div>
+        
+        <PushTag></PushTag>
+      </div>
     </transition>
   </div>
 </template>
 
-<script>
-import InjectApp from "../mixins/inject-app.js";
-import HelpTitle from "../components/title.vue";
-import PushTag from "./pushTag.vue";
-
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "attributes-main",
-  mixins: [InjectApp],
-  components: {
-    HelpTitle,
-    PushTag,
-  },
-});
-</script>
+<style scoped lang="scss">
+.attribute-row {
+  flex-direction: column;
+  justify-content: flex-start !important;
+}
+.depiction {
+  margin-left: 6px;
+}
+</style>

@@ -1,128 +1,88 @@
+<script>
+export default {
+  name: 'play-attributes-simple'
+}
+</script>
+<script setup>
+import { inject } from 'vue'
+import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
+
+const framework = inject('framework')
+const appAttributes = inject('attributes')
+</script>
+
 <template>
-  <div>
+  <div id="play-attributes-simple">
     <div
       class="simple attributes"
       :class="{
-        ui: app.framework == 'semantic-ui',
-        default: app.framework == 'default',
+        ui: framework == 'semantic-ui',
+        default: framework == 'default'
       }"
     >
-      <LabelAndControls value="disabled" />
-      <LabelAndControls value="search" />
-      <LabelAndControls value="loading" />
-      <LabelAndControls value="dropdownLoading" />
-      <LabelAndControls value="create" />
-      <LabelAndControls
-        value="deleteIcon"
-        :values="['always', 'edit', 'none']"
-      />
-
-      <LabelAndControls value="merge" :disabled="app.conjunction == 'AND'" />
-      <LabelAndControls value="conjunction" :values="['AND', 'OR', 'null']" />
-
-      <LabelAndControls value="transition" />
-      <LabelAndControls value="keyboard" />
-      <LabelAndControls value="debugLog" />
-      <LabelAndControls value="tagPosition" :values="['null', 'top', 'bottom']" />
-
-      <div class="flex-between text">
-        <div>placeholder</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholder"
-            :style="{
-              'min-width': app.framework != 'bootstrap' ? '100px' : '',
-              'width': app.framework != 'bootstrap' ? '100%' : ''
-            }"
-          />
-        </div>
+      <template v-for="(attribute, key) in appAttributes" :key="key">
+        <template v-if="key != 'placeholder' && key != 'placeholders'">
+          <LabelAndControls
+            :label="$toKebabCase(key)"
+            v-model="attribute.value"
+            :values="attribute.acceptedValues"
+            :disabled="!!GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)"
+          >
+            <template v-slot:tooltip v-if="GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)">
+              {{ GET_ATTRIBUTE_INVALID_REASON(key, appAttributes) }}
+            </template>
+          </LabelAndControls>
+        </template>
+      </template>
+      <div class="attribute play-attributes-simple__placeholder">
+        <LabelAndControls
+          :label="'placeholder'"
+          model="input"
+          v-model="appAttributes['placeholder'].value"
+          :style="{
+            'min-width': framework != 'bootstrap' ? '100px' : '',
+            width: framework != 'bootstrap' ? '100%' : ''
+          }"
+        />
       </div>
     </div>
 
     <h4 style="margin: 18px 0">Placeholders</h4>
 
     <div
-      class="simple placeholders attributes"
+      class="play-attributes-simple__placeholders simple placeholders attributes"
       :class="{
-        ui: app.framework == 'semantic-ui',
-        default: app.framework == 'default',
+        ui: framework == 'semantic-ui',
+        default: framework == 'default'
       }"
     >
-      <div class="flex-between text">
-        <div>initial</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.initial"
-          />
-        </div>
-      </div>
-      <div class="flex-between text">
-        <div>loading</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.loading"
-            :placeholder="`Wait a moment, please.`"
-          />
-        </div>
-      </div>
-      <div class="flex-between text">
-        <div>tagValueRepeat</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.tagValueRepeat"
-            :placeholder="`repeat !`"
-          />
-        </div>
-      </div>
-      <div class="flex-between text">
-        <div>selectDown</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.selectDown"
-            :placeholder="`Selected End.`"
-          />
-        </div>
-      </div>
-      <div class="flex-between text">
-        <div>finish</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.finish"
-            :disabled="app.create == 'true'"
-            :placeholder="`Finish.`"
-          />
-        </div>
-      </div>
+      <template v-for="(attribute, key) in appAttributes.placeholders" :key="key">
+        <LabelAndControls
+          :label="$toKebabCase(key)"
+          model="input"
+          v-model="attribute.value"
+          :values="attribute.acceptedValues"
+          :placeholder="attribute.default"
+          :disabled="!!GET_ATTRIBUTE_INVALID_REASON(`placeholders.${key}`, appAttributes)"
+        >
+          <template
+            v-slot:tooltip
+            v-if="GET_ATTRIBUTE_INVALID_REASON(`placeholders.${key}`, appAttributes)"
+          >
+            {{ GET_ATTRIBUTE_INVALID_REASON(`placeholders.${key}`, appAttributes) }}
+          </template>
+        </LabelAndControls>
+      </template>
     </div>
   </div>
 </template>
 
-<script>
-import InjectApp from "../mixins/inject-app.js";
-
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "attributes-simple",
-  mixins: [InjectApp],
-});
-</script>
-
 <style scoped lang="scss">
-.attributes:first-child {
-  @media (max-width: 768px) and (min-width: 476px) {
-    grid-template-columns: repeat(2, 1fr) !important;
+@media (min-width: 450px) and (max-width: 991px) {
+  .play-attributes-simple__placeholders {
+    .attribute:last-child {
+      justify-content: flex-start !important;
+    }
   }
 }
 </style>

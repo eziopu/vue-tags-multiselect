@@ -1,4 +1,3 @@
-
 .demo {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -24,7 +23,7 @@
 
   .attribute {
     margin-top: .3rem;
-    margin-bottom:.3rem;
+    margin-bottom: .3rem;
   }
 
   .attribute.disable {
@@ -73,7 +72,7 @@
   .detail {
     margin: 0 0;
   }
-  
+
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -81,6 +80,7 @@
     &.to3-3 {
       grid-template-columns: repeat(3, 1fr);
     }
+
     @media (max-width: 576px) {
       & {
         grid-template-columns: repeat(1, 1fr);
@@ -96,7 +96,7 @@
     display: flex;
     flex-direction: column
   }
-  
+
   .flex-between {
     display: flex;
     align-items: flex-start;
@@ -113,28 +113,34 @@
     }
 
     &.to5-5 {
-      & > div:first-child {
+      &>div:first-child {
         width: 48%;
       }
-      & > div:last-child {
+
+      &>div:last-child {
         width: 48%;
       }
     }
 
     &.to6-4 {
-      & > div:first-child {
+      &>div:first-child {
         width: 58%;
       }
-      & > div:last-child {
+
+      &>div:last-child {
         width: 38%;
       }
     }
-    &.to4-6, &.to5-5, &.to6-4 {
+
+    &.to4-6,
+    &.to5-5,
+    &.to6-4 {
       @media (max-width: 768px) {
         & {
           flex-direction: column;
         }
-        & > div {
+
+        &>div {
           width: 100% !important;
         }
       }
@@ -193,22 +199,23 @@
         display: flex;
         flex-wrap: wrap;
       }
-  
+
       &.titles h6 {
         margin: 0;
         background: var(--background-color-secondary);
         padding: 0.75rem;
       }
-  
+
       &:not(.titles):not(:last-child) {
         border-bottom: 1px solid var(--background-color-tertiary);
       }
-  
+
       &:not(.titles)>div {
         padding: 0.6rem;
         box-sizing: border-box;
       }
     }
+
     @media all and (max-width: 768px) {
       .row {
         &.titles {
@@ -268,15 +275,80 @@
       }
     }
 
+    #play-attributes-simple {
+      padding-left: 12px;
+
+      .simple.attributes {
+        padding-left: 0px;
+
+        .attribute:last-child {
+          grid-column: span 2;
+        }
+
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (max-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 500px) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        @media (max-width: 450px) {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      .play-attributes-simple__placeholders {
+        padding-left: 12px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+
+        .tool-attribute__label {
+          width: 132px;
+        }
+      }
+    }
+
+    .tool-attribute {
+      align-items: center;
+
+      .tool-attribute__input input {
+        max-width: 240px;
+      }
+
+      @media (min-width: 991px) {
+        .tool-attribute__label {
+          width: 148px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        justify-content: space-between;
+      }
+    }
+
+
+    #play-slots-simple {
+      @media (min-width: 410px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tool-attribute__label {
+        width: 160px;
+
+        @media (max-width: 991px) {
+          width: 100%;
+        }
+      }
+    }
+
     .simple.attributes {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
-      row-gap: 12px;
-
-      .flex-between {
-        padding: 0 6px;
-      }
+      gap: 12px;
+      padding-left: 12px;
 
       @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
@@ -412,6 +484,7 @@
     0% {
       transform: scaleY(0);
     }
+
     100% {
       transform: scaleY(1);
     }
@@ -421,8 +494,44 @@
     0% {
       transform: scaleY(1);
     }
+
     100% {
       transform: scaleY(0);
     }
   }
+}
+
+
+/* 
+  Tooltip
+  Source: https://www.w3schools.com/css/css_tooltip.asp
+  Use: 
+  <div class="tool-tooltip">
+    <span class="tool-tooltip__text">tooltip text</span>
+  </div>
+*/
+
+.tool-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tool-tooltip .tool-tooltip__text {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px;
+
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+  white-space: nowrap;
+}
+
+.tool-tooltip:hover .tool-tooltip__text {
+  visibility: visible;
 }

@@ -1,65 +1,63 @@
+<script>
+export default {
+  name: 'play-slots-simple'
+}
+</script>
+<script setup>
+import { inject, getCurrentInstance } from 'vue'
+import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
+
+const { $toKebabCase } = getCurrentInstance().appContext.config.globalProperties
+
+const framework = inject('framework')
+const appAttributes = inject('attributes')
+const appSlots = inject('slots')
+
+const labelToKebabCase = (input) => {
+  return input != 'optionORConjunction' ? $toKebabCase(input) : 'option-OR-conjunction'
+}
+</script>
+
 <template>
-  <div class="simple attributes"
+  <div
+    id="play-slots-simple"
+    class="simple attributes"
     :class="{
-      ui: app.framework == 'semantic-ui',
-      default: app.framework == 'default',
+      ui: framework == 'semantic-ui',
+      default: framework == 'default'
     }"
   >
-    <div class="flex-between text">
-      <div>loading</div>
-      <div class="ui input">
-        <input
-          type="text"
-          class="form-control"
-          v-model="app.loadingContent"
-        />
-      </div>
-    </div>
-    <div class="flex-between text">
-      <div>tag-conjunction</div>
-      <div class="ui input">
-        <input
-          type="text"
-          class="form-control"
-          v-model="app.tagConjunctionContent"
-          :disabled="app.merge == 'false'"
-          :placeholder="`&`"
-        />
-      </div>
-    </div>
-    <div class="flex-between text">
-      <div>option-undo</div>
-      <div class="ui input relative">
-        <input
-          type="text"
-          class="form-control"
-          v-model="app.optionUndoContent"
-        />
-        <div class="demo__fake-placeholder" v-if="app.optionUndoContent == ''">
-          <i class="demo__arrow-left"></i>Undo
+    <template v-for="(attribute, key) in appSlots" :key="key">
+      <template v-if="attribute.default == ''">
+        <div>
+          <h4>{{ key }}</h4>
+          <div class="depiction" v-html="$t(`attributes.slots.${labelToKebabCase(key)}`)"></div>
         </div>
-      </div>
-    </div>
-    <div class="flex-between text">
-      <div>option-OR-conjunction</div>
-      <div class="ui input">
-        <input
-          type="text"
-          class="form-control"
-          v-model="app.optionORConjunctionContent"
-          :placeholder="`OR`"
-        />
-      </div>
-    </div>
-    <div class="clear"></div>
+      </template>
+
+      <template v-else>
+        <LabelAndControls
+          v-model="attribute.value"
+          :label="labelToKebabCase(key)"
+          :class="labelToKebabCase(key)"
+          model="input"
+          :disabled="!!GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)"
+        >
+          <template v-slot:fake-placeholder>
+            <span>default&nbsp;:&nbsp;</span> <span v-html="attribute.default"></span>
+          </template>
+        </LabelAndControls>
+      </template>
+    </template>
   </div>
 </template>
 
-<script>
-import InjectApp from "../mixins/inject-app.js";
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "slots-simple",
-  mixins: [InjectApp],
-});
-</script>
+<style lang="scss">
+#play-slots-simple {
+  @media (min-width: 991px) {
+    .tool-attribute__label {
+      width: 180px !important;
+    }
+  }
+}
+</style>

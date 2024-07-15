@@ -2,7 +2,7 @@
   <div id="loadings" class="demo flex-between">
     <div class="demo-components">
       <Loading></Loading>
-      <DropdownsLoading></DropdownsLoading>
+      <DropdownLoading></DropdownLoading>
     </div>
 
     <div class="demo-app" :class="appStatus">
@@ -28,13 +28,13 @@
 
 <script>
 import Loading from "./loading.vue";
-import DropdownsLoading from "./dropdowns-loading.vue";
+import DropdownLoading from "./dropdown-loading.vue";
 
 export default {
   name: "app-loadings",
   components: {
     Loading,
-    DropdownsLoading,
+    DropdownLoading,
   },
   data() {
     return {

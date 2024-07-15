@@ -83,20 +83,22 @@ function get_type(input) {
   return type.charAt(0).toUpperCase() + type.slice(1);
 }
 
-function to_object(input, supplyInputs = undefined) {
+function to_object(input, inputValue, supplyInputs = []) {
   return {
     type: get_type(input),
     default: input,
+    value: inputValue,
     acceptedValues: supplyInputs,
   }
 }
 
-function to_detail_attributes(obj, supplyObj) {
+function to_detail_attributes(obj, supplyObj = {}) {
   const result = {};
   for (const key in obj) {
-    result[key] = (typeof obj[key] === 'object' && obj[key] !== null)
-      ? to_detail_attributes(obj[key])
-      : to_object(obj[key], obj[key]['inputs'], supplyObj[key])
+    const value = obj[key];
+    result[key] = (typeof value === 'object' && Array.isArray(value) != true && value !== null)
+      ? to_detail_attributes(value)
+      : to_object(value, value, supplyObj[key])
   }
   return result;
 }
@@ -104,16 +106,48 @@ function to_detail_attributes(obj, supplyObj) {
 //------------------------------------------------------------------------------
 // ATTRIBUTES
 //------------------------------------------------------------------------------
+const ATTRIBUTE_VALIDATIONS = {
+  merge: {
+    condition: (attrs) => attrs.conjunction.value === 'AND',
+    message: 'Attribute conjunction is "AND"'
+  },
+  tagConjunction: {
+    condition: (attrs) => attrs.merge.value === false,
+    message: 'Attribute merge is false'
+  },
+  'placeholders.loading': {
+    condition: (attrs) => attrs.loading.value === false,
+    message: 'Attribute loading is false'
+  },
+  'placeholders.selectDown': {
+    condition: (attrs) => attrs.create.value === false,
+    message: 'Attribute create is false'
+  },
+  'placeholders.finish': {
+    condition: (attrs) => attrs.create.value === true,
+    message: 'Attribute create is true'
+  }
+};
+
+export const GET_ATTRIBUTE_INVALID_REASON = (keyName, attributes = {}) => {
+  const validation = ATTRIBUTE_VALIDATIONS[keyName];
+  return validation && validation.condition(attributes) ? validation.message : undefined;
+};
 
 export const GET_PACKAGE_ATTRIBUTES_DETAIL = () => {
-  return to_detail_attributes(
+  let result = to_detail_attributes(
     PACKAGE_ATTRIBUTES,
     {
       deleteIcon: ['always', 'edit', 'none'],
-      tagPosition: ['top', 'bottom'],
-      conjunction: ['OR', 'AND'],
+      tagPosition: ['null', 'top', 'bottom'],
+      conjunction: ['null', 'OR', 'AND'],
     }
   )
+  Object.keys(result.placeholders).forEach(key => {
+    result.placeholders[key].value = '';
+  });
+
+  return result;
 }
 
 export const PACKAGE_ATTRIBUTES = {
@@ -127,16 +161,16 @@ export const PACKAGE_ATTRIBUTES = {
   merge: true,
   keyboard: true,
   debugLog: false,
-  conjunction: "",
-  tagPosition: "",
+  conjunction: "null",
+  tagPosition: "null",
   deleteIcon: "always",
   placeholder: "",
   placeholders: {
     initial: "",
-    loading: "",
-    selectDown: "",
-    finish: "",
-    tagValueRepeat: "",
+    loading: "Wait a moment, please.",
+    selectDown: "Selected End.",
+    finish: "Finish.",
+    tagValueRepeat: "repeat !",
   },
 }
 
@@ -146,10 +180,12 @@ export const PACKAGE_ATTRIBUTES = {
 
 export const GET_PACKAGE_EVENTS_DETAIL = () => {
   return {
-    focus: to_object("() => void"),
-    blur: to_object("() => void"),
-    clear: to_object("() => void"),
-    status: to_object("(status: array) => void", [
+    focus: to_object("() => void", 0),
+    blur: to_object("() => void", 0),
+    clear: to_object("() => void", 0),
+    inputValue: to_object("(value: string) => void"),
+    visibleChange: to_object("(visible: boolean) => void"),
+    status: to_object("(status: array) => void", [], [
       "disabled",
       "loading",
       "searching",
@@ -158,10 +194,8 @@ export const GET_PACKAGE_EVENTS_DETAIL = () => {
       "finish",
       "delect-down"
     ]),
-    'input-value': to_object("(value: string) => void"),
-    'visible-change': to_object("(visible: boolean) => void"),
-    'remove-tag': to_object("(tag: object) => void"),
-    'selecting-tag': to_object("(tag: object) => void"),
+    removeTag: to_object("(tag: object) => void", {}),
+    selectingTag: to_object("(tag: object) => void", {}),
   }
 }
 
@@ -177,20 +211,52 @@ export const PACKAGE_EVENTS = {
 }
 
 //------------------------------------------------------------------------------
+// EXPOSES
+//------------------------------------------------------------------------------
+
+export const GET_PACKAGE_EXPOSES_DETAIL = () => {
+  return {
+    focus: to_object("() => void"),
+    blur: to_object("() => void"),
+    clear: to_object("() => void"),
+    clearTags: to_object("() => void"),
+    initialize: to_object("() => void"),
+    pushTag: to_object("(tag: object) => void"),
+  }
+}
+
+//------------------------------------------------------------------------------
 // SLOTS
 //------------------------------------------------------------------------------
 
+export const GET_PACKAGE_SLOTS_DETAIL = () => {
+  let result = to_detail_attributes(PACKAGE_SLOTS);
+  Object.keys(result).forEach(key => {
+    result[key].value = '';
+  });
+  return result;
+}
+
+const demo__loading = '<div class="demo__loading"><i class="demo__loading--icon"></i></div>';
 export const PACKAGE_SLOTS = {
-  tagConjunction: "",
-  loading: "",
-  optionUndo: "",
-  optionORConjunction: "",
-  dropdownLoading: "",
+  'v-tag-dropdown': '',
+  'v-tag-option': '',
+  tagConjunction: '&',
+  loading: demo__loading,
+  dropdownLoading: demo__loading,
+  optionUndo: '<i class="demo__arrow-left"></i> Undo',
+  optionORConjunction: 'OR',
 }
 
 //------------------------------------------------------------------------------
 // V_DROPDOWN_PROPS
 //------------------------------------------------------------------------------
+
+export const GET_PACKAGE_V_DROPDOWN_PROPS_DETAIL = () => {
+  // eslint-disable-next-line no-unused-vars
+  const { isDisplayForDemo, ...rest } = PACKAGE_V_DROPDOWN_PROPS;
+  return to_detail_attributes(rest);
+}
 
 export const PACKAGE_V_DROPDOWN_PROPS = {
   isDisplayForDemo: true, // for show code
@@ -200,21 +266,29 @@ export const PACKAGE_V_DROPDOWN_PROPS = {
   displayAll: false,
   hidden: false,
   custom: false,
+  class: [],
 }
 
 //------------------------------------------------------------------------------
 // V_OPTION_PROPS
 //------------------------------------------------------------------------------
 
+export const GET_PACKAGE_V_OPTION_PROPS_DETAIL = () => {
+  // eslint-disable-next-line no-unused-vars
+  const { isDisplayForDemo, valueForDemo, ...rest } = PACKAGE_V_OPTION_PROPS;
+  return to_detail_attributes(rest);
+}
+
 export const PACKAGE_V_OPTION_PROPS = {
   isDisplayForDemo: true, // for show code
   valueForDemo: "",
-  title: false,
   value: "",
+  title: false,
   displayValue: false,
   disabled: false,
   divided: false,
   selected: false,
+  class: [],
 }
 
 export const DEMO_SETTING = {

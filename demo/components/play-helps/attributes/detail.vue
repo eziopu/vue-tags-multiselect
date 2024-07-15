@@ -1,23 +1,31 @@
+<script>
+export default {
+  name: 'play-attributes-detail'
+}
+</script>
+<script setup>
+import { inject, reactive } from 'vue'
+import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
+
+const displays = reactive({
+  conjunction: false,
+  deleteIcon: false
+})
+const appAttributes = inject('attributes')
+</script>
+
 <template>
   <div class="detail attributes container">
     <div class="row titles">
-      <div>
-        <h4>{{ $t(`ui.general.Attribute`) }}</h4>
-      </div>
-      <div>
-        <h4>{{ $t(`ui.general.Description`) }}</h4>
-      </div>
-      <div>
-        <h4>{{ $t(`ui.general.Type`) }}</h4>
-      </div>
-      <div>
-        <h4>{{ $t(`ui.general.AcceptedValues`) }}</h4>
-      </div>
-      <div>
-        <h4>{{ $t(`ui.general.Default`) }}</h4>
+      <div
+        v-for="value in ['Attribute', 'Description', 'Type', 'AcceptedValues', 'Default']"
+        :key="value"
+      >
+        <h4>{{ $t(`ui.general.${value}`) }}</h4>
       </div>
     </div>
 
+    <!-- v-model -->
     <div class="row">
       <div><div>model-value / v-model</div></div>
       <div>{{ $t(`attributes.app.v-model`) }}</div>
@@ -26,9 +34,7 @@
         <span>object</span>
       </div>
       <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.AcceptedValues`) }}: </span>
         <span>-</span>
       </div>
       <div class="d-none d-md-block">
@@ -37,457 +43,166 @@
       </div>
     </div>
 
-    <div class="row">
-      <LabelAndControls value="disabled" />
-      <div>{{ $t(`attributes.app.disabled`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>false</span>
-      </div>
-    </div>
-
-    <div class="row">
-      <LabelAndControls value="search" />
-      <div>{{ $t(`attributes.app.search`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>true</span>
-      </div>
-    </div>
-
-    <div class="row">
-      <LabelAndControls value="loading" />
-      <div>{{ $t(`attributes.app.loading`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>false</span>
-      </div>
-    </div>
-
-    <!-- dropdownLoading -->
-    <div class="row">
-      <LabelAndControls value="dropdownLoading" />
-      <div>{{ $t(`attributes.app.dropdownLoading`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>false</span>
-      </div>
-    </div>
-
-    <!-- create -->
-    <div class="row">
-      <LabelAndControls value="create" />
-      <div>{{ $t(`attributes.app.create`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>true</span>
-      </div>
-    </div>
-
-    <!-- deleteIcon -->
-    <div class="row">
-      <LabelAndControls value="deleteIcon" :values="['always', 'edit', 'none']" />
-      <div>
-        <span
-          @click="
-            app.displays.details.deleteIcon = !app.displays.details.deleteIcon
-          "
-          class="pointer"
-          :class="{ active: app.displays.details.deleteIcon }"
+    <!-- attributes -->
+    <template v-for="(attribute, key) in appAttributes" :key="key">
+      <div class="row" v-if="key != 'placeholder' && key != 'placeholders'">
+        <LabelAndControls
+          :label="$toKebabCase(key)"
+          v-model="attribute.value"
+          :values="attribute.acceptedValues"
+          :disabled="!!GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)"
         >
-          {{ $t(`attributes.app.deleteIcon`) }}
-          <span class="arrow"></span>
-          <br />
-          *{{ $t(`attributes.app.deleteIcon__notice`) }}
-        </span>
-        <span v-show="app.displays.details.deleteIcon" class="detail">
-          <br />
-          <hr style="margin: 2px" />
-          {{ $t(`attributes.app.deleteIcon__parameters.always`) }}
-          <br />
-          {{ $t(`attributes.app.deleteIcon__parameters.edit`) }}
-          <br />
-          {{ $t(`attributes.app.deleteIcon__parameters.3`) }}
-        </span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>always / edit / none</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>always</span>
-      </div>
-    </div>
+          <template v-slot:tooltip v-if="GET_ATTRIBUTE_INVALID_REASON(key, appAttributes)">
+            {{ GET_ATTRIBUTE_INVALID_REASON(key, appAttributes) }}
+          </template>
+        </LabelAndControls>
 
-    <!-- merge -->
+        <div v-if="attribute.acceptedValues.length == 0 || key == 'tagPosition'">
+          {{ $t(`attributes.app.${key}`) }}
+          <p v-if="$te(`attributes.app.${key}__notice`)">
+            *<span v-html="$t(`attributes.app.${key}__notice`)"> </span>
+          </p>
+        </div>
+        <div v-else>
+          <span
+            @click="displays[key] = !displays[key]"
+            class="pointer"
+            :class="{ active: displays[key] }"
+          >
+            {{ $t(`attributes.app.${key}`) }}
+            <span class="arrow"></span>
+          </span>
+          <div v-show="displays[key]" class="attribute-detail">
+            <hr style="margin: 2px" />
+            <p v-for="(value, valueKey) in attribute.acceptedValues" :key="valueKey">
+              {{ $t(`attributes.app.${key}__parameters.${value}`) }}
+            </p>
+          </div>
+        </div>
+        <div>
+          <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
+          <span>{{ attribute.type }}</span>
+        </div>
+        <div :class="{ 'd-none d-md-block': attribute.acceptedValues.length == 0 }">
+          <span class="i-block d-md-none">{{ $t(`ui.general.AcceptedValues`) }}: </span>
+          <span>{{ attribute.acceptedValues.join(' / ').replace('null', '-') }}</span>
+        </div>
+        <div>
+          <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
+          <span>{{ String(attribute.default).replace('null', '-') }}</span>
+        </div>
+      </div>
+    </template>
+
+    <!-- placeholder -->
     <div class="row">
-      <LabelAndControls value="merge" :disabled="app.conjunction == 'AND'" />
-      <div>{{ $t(`attributes.app.merge`) }}</div>
+      <LabelAndControls
+        label="placeholder"
+        model="input"
+        v-model="appAttributes.placeholder.value"
+      />
+      <div>
+        {{ $t(`attributes.app.placeholder`) }}
+        <p>* {{ $t(`attributes.app.placeholder__details.remark`) }}</p>
+      </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
+        <span>{{ appAttributes.placeholder.type }}</span>
       </div>
       <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.AcceptedValues`) }}: </span>
         <span>-</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>true</span>
+        <span>-</span>
       </div>
     </div>
 
-    <!-- conjunction -->
-    <div class="row">
-      <LabelAndControls value="conjunction" :values="['AND', 'OR', 'null']" />
-      <div>
-        <span
-          @click="
-            app.displays.details.conjunction = !app.displays.details.conjunction
-          "
-          class="pointer"
-          :class="{ active: app.displays.details.conjunction }"
+    <!-- placeholders -->
+    <div class="play-attributes-detail__placeholders">
+      <h4 class="placeholders-title">Placeholders</h4>
+      <div class="placeholders-depiction depiction">
+        {{ $t('attributes.app.placeholders__detail') }}
+      </div>
+
+      <div class="placeholders-attributes">
+        <div
+          class="row"
+          v-for="(subPlaceholder, subKey) in appAttributes.placeholders"
+          :key="subKey"
         >
-          {{ $t(`attributes.app.conjunction`) }}
-          <span class="arrow"></span>
-        </span>
-        <span v-show="app.displays.details.conjunction" class="detail">
-          <br />
-          <hr style="margin: 2px" />
-          {{ $t(`attributes.app.conjunction__parameters.null`) }}
-          <br />
-          {{ $t(`attributes.app.conjunction__parameters.OR`) }}
-          <br />
-          {{ $t(`attributes.app.conjunction__parameters.AND`) }}
-        </span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>AND / OR / -</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>-</span>
-      </div>
-    </div>
+          <LabelAndControls
+            :label="$toKebabCase(subKey)"
+            model="input"
+            v-model="subPlaceholder.value"
+            :values="subPlaceholder.acceptedValues"
+            :placeholder="subPlaceholder.default"
+            :disabled="!!GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes)"
+          >
+            <template
+              v-slot:tooltip
+              v-if="GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes)"
+            >
+              {{ GET_ATTRIBUTE_INVALID_REASON(`placeholders.${subKey}`, appAttributes) }}
+            </template>
+          </LabelAndControls>
+          
+          <div>
+            {{ $t(`attributes.app.placeholders.${subKey}`) }}
+            <p v-if="$te(`attributes.app.placeholders.${subKey}__notice`)">
+              *<span v-html="$t(`attributes.app.placeholders.${subKey}__notice`)"> </span>
+            </p>
+          </div>
 
-    <!-- transition -->
-    <div class="row">
-      <LabelAndControls value="transition" />
-      <div>{{ $t(`attributes.app.transition`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>true</span>
-      </div>
-    </div>
-
-    <!-- keyboard -->
-    <div class="row">
-      <LabelAndControls value="keyboard" />
-      <div>{{ $t(`attributes.app.keyboard`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>boolean</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>true</span>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <div>placeholder</div>
-        <div class="ui input">
-          <input type="text" class="form-control" v-model="app.placeholder" />
-        </div>
-      </div>
-      <div>{{ $t(`attributes.app.placeholder`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>-</span>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <h4>Placeholders</h4>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <div>initial</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.initial"
-          />
-        </div>
-      </div>
-      <div>{{ $t(`attributes.app.placeholders.initial`) }}</div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div class="d-none d-md-block">
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.AcceptedValues`) }}:
-        </span>
-        <span>-</span>
-      </div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
-        <span>-</span>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <div>loading</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.loading"
-            :placeholder="`Wait a moment, please.`"
-          />
-        </div>
-      </div>
-      <div v-html="$t(`attributes.app.placeholders.loading`)"></div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div class="flex-between">
-        <div class="d-none d-md-block">
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.AcceptedValues`) }}:
-          </span>
-          <span>-</span>
-        </div>
-        <div>
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.Default`) }}:
-          </span>
-          <span>Wait a moment, please.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <div>tagValueRepeat</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.tagValueRepeat"
-            :placeholder="`repeat !`"
-          />
-        </div>
-      </div>
-      <div
-        v-html="$t(`attributes.app.placeholders.tagValueRepeat`)"
-      ></div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div class="flex-between">
-        <div class="d-none d-md-block">
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.AcceptedValues`) }}:
-          </span>
-          <span>-</span>
-        </div>
-        <div>
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.Default`) }}:
-          </span>
-          <span>repeat !</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <div>selectDown</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.selectDown"
-            :placeholder="`Selected End.`"
-          />
-        </div>
-      </div>
-      <div
-        v-html="$t(`attributes.app.placeholders.selectDown`)"
-      ></div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div class="flex-between">
-        <div class="d-none d-md-block">
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.AcceptedValues`) }}:
-          </span>
-          <span>-</span>
-        </div>
-        <div>
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.Default`) }}:
-          </span>
-          <span>Selected End.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="flex-between text">
-        <div>finish</div>
-        <div class="ui input">
-          <input
-            type="text"
-            class="form-control"
-            v-model="app.placeholders.finish"
-            :disabled="app.create == 'true'"
-            :placeholder="`Finish.`"
-          />
-        </div>
-      </div>
-      <div v-html="$t(`attributes.app.placeholders.finish`)"></div>
-      <div>
-        <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
-        <span>string</span>
-      </div>
-      <div class="flex-between">
-        <div class="d-none d-md-block">
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.AcceptedValues`) }}:
-          </span>
-          <span>-</span>
-        </div>
-        <div>
-          <span class="i-block d-md-none"
-            >{{ $t(`ui.general.Default`) }}:
-          </span>
-          <span>Finish.</span>
+          <div>
+            <span class="i-block d-md-none">{{ $t(`ui.general.Type`) }}: </span>
+            <span>{{ subPlaceholder.type }}</span>
+          </div>
+          <div class="flex-between">
+            <div class="d-none d-md-block">
+              <span class="i-block d-md-none">{{ $t(`ui.general.AcceptedValues`) }}: </span>
+              <span> - </span>
+            </div>
+            <div>
+              <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
+              <span>{{ String(subPlaceholder.default).replace('null', '-') }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import InjectApp from "../mixins/inject-app.js";
-
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "attributes-detail",
-  mixins: [InjectApp],
-});
-</script>
 <style scoped lang="scss">
+.play-attributes-detail__placeholders {
+  margin-top: 20px;
+  .placeholders-title,
+  .placeholders-depiction {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+}
+
+.attribute-detail {
+  padding-top: 9px;
+  padding-left: 6px;
+  p {
+    margin-bottom: 6px;
+  }
+}
+
+.tool-attribute {
+  align-items: flex-start !important;
+}
+
 .row {
   .ui.input {
     min-width: 209px;
   }
 }
+
 @media all and (min-width: 576px) {
   .row {
     & > div:nth-child(1) {
@@ -515,6 +230,7 @@ export default defineComponent({
     }
   }
 }
+
 @media all and (max-width: 1200px) {
   .row {
     & > div:nth-child(1) {
@@ -534,6 +250,7 @@ export default defineComponent({
     min-width: 100% !important;
   }
 }
+
 @media all and (max-width: 992px) {
   .row {
     & > div:nth-child(1) {

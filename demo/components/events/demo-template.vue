@@ -1,12 +1,8 @@
 <script setup>
-import { defineProps, toRefs } from 'vue'
-
-const props = defineProps({
+defineProps({
   label: String,
   contents: Object
 })
-
-const { label, contents } = toRefs(props)
 </script>
 
 <template>
@@ -20,7 +16,7 @@ const { label, contents } = toRefs(props)
         {{ $t(`attributes.events.${label}`) }}
       </p>
 
-      <p v-if="contents.acceptedValues">
+      <p v-if="contents.acceptedValues && contents.acceptedValues.length != 0">
         values :
         {{ contents.acceptedValues }}
       </p>

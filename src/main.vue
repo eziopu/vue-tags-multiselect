@@ -75,7 +75,7 @@
               class="v-dropdowns__loading"
               :tabindex="-1"
             >
-              <slot name="dropdowns-loading">
+              <slot name="dropdown-loading">
                 <slot name="loading">
                   <PartialLoading></PartialLoading>
                 </slot>
@@ -120,7 +120,6 @@
             type="search"
             @focus="elInputFocus"
             @blur="elInputBlur"
-            :disabled="elInputDisabled"
             :maxlength="elInputMaxlength"
             :placeholder="elInputPlaceholder"
           />
