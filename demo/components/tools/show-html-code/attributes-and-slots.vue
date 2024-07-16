@@ -5,13 +5,13 @@
     v-for="(value, key) in Object.fromEntries(
       Object.entries(modelAttributes).filter(([key, __value]) => key !== 'placeholders')
     )"
-    :key="key"
     v-show="app[key] != value"
+    :key="key"
     ><Space /><span class="pln">:</span><span class="atn">{{ key }}</span
     ><span class="pun">=</span><span class="atv">"{{ app[key] }}"</span><br /></span
   ><!--
 
-  --><span v-show="isShowPlaceholders"
+  --><span v-show="isAnyPlaceholders"
     ><!--
     --><Space /><!--
     --><span class="pln">:</span><span class="atn">placeholders</span
@@ -19,7 +19,7 @@
     --><span
       v-for="(pValue, pKey) in modelAttributes.placeholders"
       :key="pKey"
-      v-show="app.placeholders[pKey] != pValue && app.placeholders[pKey] != ''"
+      v-show="app.placeholders[pKey] != pValue && verify(app.placeholders[pKey])"
       ><!--
       --><Space :n="2" /><!--
       --><span class="white">{{ pKey }}: </span
@@ -33,7 +33,8 @@
   ><!--
 -->&gt;<!--
   --><br /><SlotsTemplate
-    v-for="(__value, key) in modelSlot"
+    v-for="(value, key) in modelSlot"
+    v-show="isShowSlot(slots[key], key)"
     :value="slots[key]"
     :key="key"
     :keyName="key"
@@ -75,16 +76,24 @@ export default {
     isAnySlot() {
       return Object.keys(this.modelSlot).some((key) => {
         const value = this.slots[key]
-        return value != undefined && value != '' && value != this.modelSlot[key]
+        return this.isShowSlot(value, key)
       })
     },
-    isShowPlaceholders() {
-      const placeholders = this.modelAttributes.placeholders
-      const appPlaceholders = this.app.placeholders
-
-      return Object.keys(placeholders).some(
-        (key) => placeholders[key] !== appPlaceholders[key] && appPlaceholders[key] != ''
+    isAnyPlaceholders() {
+      return Object.keys(this.modelAttributes.placeholders).some((key) =>
+        this.isShowPlaceholder(this.app.placeholders[key], key)
       )
+    }
+  },
+  methods: {
+    verify(value) {
+      return value != '' && value != undefined
+    },
+    isShowSlot(value, key) {
+      return this.verify(value) && value != this.modelSlot[key]
+    },
+    isShowPlaceholder(value, key) {
+      return this.verify(value) && value != this.modelAttributes.placeholders[key]
     }
   }
 }

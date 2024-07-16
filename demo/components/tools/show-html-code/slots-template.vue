@@ -1,11 +1,11 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
   <!--
-  --><span v-show="verifyText(value)"
+  --><span
     ><!--
     --><Space /><span class="pln"></span><span class="tag">&lt;template </span
     ><span class="atn">slot</span><span class="pun">=</span
-    ><span class="atv">"{{ toKebabCase(keyName) }}"</span><span class="tag">&gt;</span><br /><!--
+    ><span class="atv">"{{ $toKebabCase(keyName) }}"</span><span class="tag">&gt;</span><br /><!--
       --><Space :n="2" /><span class="tag">&lt;span&gt;</span>{{ value
     }}<span class="tag">&lt;/span&gt;</span
     ><span class="pln"
@@ -42,21 +42,5 @@ export default {
       }
     }
   },
-  methods: {
-    toKebabCase(inputValue = '') {
-      const inputString = inputValue.replace(/Content/g, '')
-      if (inputString == 'optionORConjunction') {
-        return 'option-OR-conjunction'
-      }
-      const result = inputString.replace(/([A-Z])/g, '-$1').toLowerCase()
-      return result.replace(/^-/, '')
-    },
-    verify(value) {
-      return this.verifyText(value) && value != 'null'
-    },
-    verifyText(value) {
-      return value != '' && value != undefined
-    }
-  }
 }
 </script>
