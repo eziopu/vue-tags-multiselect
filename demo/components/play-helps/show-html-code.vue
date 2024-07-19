@@ -4,7 +4,7 @@
 --><Space />ref="VTagsMultiselect"<br><!--
 --><Space />v-model="result"<br><!--
 
-  --><AttributesAndSlots :app="app" />
+  --><AttributesAndSlots :app="app.attributes" />
   &lt;v-tag-dropdown value="country" display-all&gt;
     &lt;v-tag-option title&gt;
       &lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span>

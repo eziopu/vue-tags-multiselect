@@ -56,13 +56,13 @@ export default {
     app: {
       type: Object,
       default: () => {
-        return {}
+        return ATTRIBUTES
       }
     },
     slots: {
       type: Object,
       default: () => {
-        return {}
+        return SLOTS
       }
     }
   },

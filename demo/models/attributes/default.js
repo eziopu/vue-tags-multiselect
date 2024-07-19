@@ -18,8 +18,14 @@ export const ATTRIBUTES = {
     loading: 'Wait a moment, please.',
     selectDown: 'Selected End.',
     finish: 'Finish.',
-    tagValueRepeat: 'repeat !',
-  },
+    tagValueRepeat: 'repeat !'
+  }
+}
+
+export const ATTRIBUTE_ACCEPTED_VALUES = {
+  deleteIcon: ['always', 'edit', 'none'],
+  tagPosition: ['null', 'top', 'bottom'],
+  conjunction: ['null', 'OR', 'AND']
 }
 
 //------------------------------------------------------------------------------
@@ -34,7 +40,11 @@ export const EVENTS = {
   inputValue: '(String) => String',
   visibleChange: '(Boolean) => Boolean',
   removeTag: '(Object) => Object',
-  selectingTag: '(Object) => Object',
+  selectingTag: '(Object) => Object'
+}
+
+export const EVENTS_RETURN_VALUES = {
+  status: ['disabled', 'loading', 'searching', 'editing', 'selecting', 'finish', 'delect-down']
 }
 
 //------------------------------------------------------------------------------
@@ -47,14 +57,23 @@ export const EXPOSES = {
   clear: '() => void',
   clearTags: '() => void',
   initialize: '() => void',
-  pushTag: '(tag: object) => void',
+  pushTag: '(tag: object) => void'
+}
+
+export const EXPOSES__PUSHTAG_PARAMETER = {
+  key: 'null',
+  value: 'null',
+  valueElm: 'null',
+  titleElm: 'null',
+  classList: [],
+  custom: false
 }
 
 //------------------------------------------------------------------------------
 // SLOTS
 //------------------------------------------------------------------------------
 
-const demo__loading = '<div class="demo__loading"><i class="demo__loading--icon"></i></div>';
+const demo__loading = '<div class="demo__loading"><i class="demo__loading--icon"></i></div>'
 export const SLOTS = {
   'v-tag-dropdown': '',
   'v-tag-option': '',
@@ -62,7 +81,7 @@ export const SLOTS = {
   loading: demo__loading,
   dropdownLoading: demo__loading,
   optionUndo: '<i class="demo__arrow-left"></i> Undo',
-  optionORConjunction: 'OR',
+  optionORConjunction: 'OR'
 }
 
 //------------------------------------------------------------------------------
@@ -77,7 +96,7 @@ export const V_DROPDOWN_PROPS = {
   displayAll: false,
   hidden: false,
   custom: false,
-  class: [],
+  class: []
 }
 
 //------------------------------------------------------------------------------
@@ -93,5 +112,5 @@ export const V_OPTION_PROPS = {
   disabled: false,
   divided: false,
   selected: false,
-  class: [],
+  class: []
 }
