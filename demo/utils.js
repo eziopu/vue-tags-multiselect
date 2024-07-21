@@ -8,6 +8,10 @@ export function toBoolean (input) {
   return input == "false" ? false : true;
 }
 
+export function toUpperCaseFirstLetter(str = '') {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 export function toKebabCase(str = '') {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }

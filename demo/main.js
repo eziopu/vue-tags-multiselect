@@ -1,4 +1,4 @@
-import { objectKeyToArray, toBoolean, toKebabCase, toCamelCase } from "./utils.js";
+import { objectKeyToArray, toBoolean, toUpperCaseFirstLetter, toKebabCase, toCamelCase } from "./utils.js";
 import { createApp } from "vue";
 import App from "./App.vue";
 import i18n from "./config/i18n";
@@ -15,6 +15,7 @@ const app = createApp(App);
 
 app.config.globalProperties.$objectKeyToArray = objectKeyToArray;
 app.config.globalProperties.$toBoolean = toBoolean;
+app.config.globalProperties.$toUpperCaseFirstLetter = toUpperCaseFirstLetter;
 app.config.globalProperties.$toKebabCase = toKebabCase;
 app.config.globalProperties.$toCamelCase = toCamelCase;
 
