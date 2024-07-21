@@ -1,46 +1,50 @@
+<script>
+export default {
+  name: 'app-attributes'
+}
+</script>
+
+<script setup>
+import Keyboard from './keyboard.vue'
+
+import Basic from './basic.vue'
+import AddOption from './add-option.vue'
+import DemoTemplate from './demo-template.vue'
+
+import Loadings from './loadings.vue'
+// Attributes related to tags
+import Create from './create.vue'
+import TagConjunction from './tag-conjunction.vue'
+import DeleteIcon from './delete-icon.vue'
+import Placeholders from './placeholders.vue'
+</script>
+
 <template>
   <div id="app-attributes">
-    
     <Basic></Basic>
     <AddOption></AddOption>
     <Keyboard></Keyboard>
-    <Disabled></Disabled>
-    <Search></Search>
-    <Clearable></Clearable>
+    <DemoTemplate label="disabled" valueInversion></DemoTemplate>
+    <DemoTemplate label="search"></DemoTemplate>
+    <DemoTemplate label="clearable" valueInversion selected></DemoTemplate>
     <Create></Create>
-    <Conjunction></Conjunction>
-    <TagPosition></TagPosition>
-    <Merge></Merge>
+
+    <DemoTemplate label="conjunction" selected></DemoTemplate>
+
+    <DemoTemplate label="tagPosition" selected>
+      <template #accepted-values><span></span></template>
+    </DemoTemplate>
+
+    <DemoTemplate label="merge" selected selected2>
+      <template #accepted-values><span></span></template>
+    </DemoTemplate>
+
     <TagConjunction></TagConjunction>
     <DeleteIcon></DeleteIcon>
-    <AppTransition></AppTransition>
+
+    <DemoTemplate label="transition"></DemoTemplate>
+
     <Placeholders></Placeholders>
     <Loadings></Loadings>
   </div>
 </template>
-
-<script>
-export default {
-  name: "app-app-attributes",
-};
-</script>
-
-<script setup>
-import Keyboard from "./keyboard.vue";
-
-import Basic from "./basic.vue";
-import AddOption from "./add-option.vue";
-import Conjunction from "./conjunction.vue";
-import Disabled from "./disabled.vue";
-import Loadings from "./loadings.vue";
-// Attributes related to tags
-import Merge from "./merge.vue";
-import Create from "./create.vue";
-import Search from "./search.vue";
-import Clearable from "./clearable.vue";
-import TagConjunction from "./tag-conjunction.vue";
-import TagPosition from "./tag-position.vue";
-import AppTransition from "./transition.vue";
-import DeleteIcon from "./delete-icon.vue";
-import Placeholders from "./placeholders.vue";
-</script>

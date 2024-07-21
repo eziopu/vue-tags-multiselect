@@ -210,7 +210,7 @@ export default {
     displayRefreshBtn: {
       type: Boolean,
       default: () => {
-        return false
+        return true
       }
     }
   },
