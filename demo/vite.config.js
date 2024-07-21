@@ -1,10 +1,16 @@
 import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "node:url";
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   root: "demo",
+  resolve: {
+    alias: {
+      "@models": fileURLToPath(new URL("./models", import.meta.url)),
+    },
+  },
   server: {
     host: '0.0.0.0',
     watch: {
