@@ -176,7 +176,7 @@
       "filled": "有填寫",
       "not_filled": "沒有填寫",
       "example": "範例",
-      "defaultIs__key": "預設值為{key}",
+      "defaultIs__key": "預設值為 {key}",
       "Attribute": "屬性",
       "Description": "描述",
       "Type": "類型",
