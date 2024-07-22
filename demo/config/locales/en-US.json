@@ -85,10 +85,10 @@
         "delect-down": "All options are completed but <code class='tag'>create</code> 為 true"
       },
       "clear": "Triggered when the user clicks the clear button",
-      "input-value": "Obtains the current value of the input",
-      "visible-change": "Triggered when the dropdown box appears/disappears",
-      "remove-tag": "Triggered when a tag is removed",
-      "selecting-tag": "Obtains the current selected tag (including selected and editing)"
+      "inputValue": "Obtains the current value of the input",
+      "visibleChange": "Triggered when the dropdown box appears/disappears",
+      "removeTag": "Triggered when a tag is removed",
+      "selectingTag": "Obtains the current selected tag (including selected and editing)"
     },
     "exposes": {
       "focus": "Focuses on the input box of the package",
