@@ -5,17 +5,13 @@ export default {
 </script>
 
 <script setup>
-import Keyboard from './keyboard.vue'
+import KeyboardTemplate from './keyboard-template.vue'
 
 import Basic from './basic.vue'
 import AddOption from './add-option.vue'
-import DemoTemplate from './demo-template.vue'
+import DemoTemplate from './tool/demo-template.vue'
 
 import Loadings from './loadings.vue'
-// Attributes related to tags
-import Create from './create.vue'
-import TagConjunction from './tag-conjunction.vue'
-import DeleteIcon from './delete-icon.vue'
 import Placeholders from './placeholders.vue'
 </script>
 
@@ -23,11 +19,26 @@ import Placeholders from './placeholders.vue'
   <div id="app-attributes">
     <Basic></Basic>
     <AddOption></AddOption>
-    <Keyboard></Keyboard>
+
+    <DemoTemplate label="keyboard">
+      <template #depiction>
+        <p>{{ $t(`attributes.app.keyboard__detail`) }}</p>
+      </template>
+
+      <template #accepted-values>
+        <KeyboardTemplate />
+      </template>
+    </DemoTemplate>
+
     <DemoTemplate label="disabled" valueInversion></DemoTemplate>
     <DemoTemplate label="search"></DemoTemplate>
     <DemoTemplate label="clearable" valueInversion selected></DemoTemplate>
-    <Create></Create>
+
+    <DemoTemplate label="create" label2="search">
+      <template #depiction>
+        <p>* {{ $t(`attributes.app.create__notice`) }}</p>
+      </template>
+    </DemoTemplate>
 
     <DemoTemplate label="conjunction" selected></DemoTemplate>
 
@@ -39,8 +50,11 @@ import Placeholders from './placeholders.vue'
       <template #accepted-values><span></span></template>
     </DemoTemplate>
 
-    <TagConjunction></TagConjunction>
-    <DeleteIcon></DeleteIcon>
+    <DemoTemplate label="deleteIcon" label2="merge" selected selected2>
+      <template #depiction>
+        <p>* {{ $t(`attributes.app.deleteIcon__notice`) }}</p>
+      </template>
+    </DemoTemplate>
 
     <DemoTemplate label="transition"></DemoTemplate>
 

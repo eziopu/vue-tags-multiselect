@@ -10,6 +10,7 @@ import { reactive } from 'vue'
 
 const props = defineProps({
   label: String,
+  label2: String,
   selected: Boolean,
   selected2: Boolean,
   valueInversion: Boolean
@@ -22,6 +23,9 @@ const isEmpty = defaultValue != undefined ? false : true
 const attributes = reactive({
   [props.label]: props.valueInversion ? !defaultValue : defaultValue
 })
+if (props.label2 != undefined) {
+  attributes[props.label2] = ATTRIBUTES[props.label2]
+}
 
 const demoOptionSetting = {
   country: [{}, { selected: props.selected }, { selected: props.selected2 }]
@@ -52,32 +56,42 @@ const demoOptionSetting = {
       </slot>
     </div>
 
-    <slot name="attributes">
-      <div class="attributes">
+    <div
+      class="attributes with-demo-control"
+      :class="{ 'flex-between to5-5': props.label2 != undefined }"
+    >
+      <div class="attribute">
         <LabelAndControls
-          v-if="ACCEPTED_VALUES"
           :label="props.label"
-          :values="ACCEPTED_VALUES"
+          :values="ACCEPTED_VALUES || ['true', 'false']"
           v-model="attributes[props.label]"
-        />
-        <LabelAndControls v-else :label="props.label" v-model="attributes[props.label]" />
+        >
+        </LabelAndControls>
+
         <span
           class="attribute__default_value"
           v-html="$t(`ui.general.defaultIs__key`, { key: String(defaultValue) })"
         ></span>
       </div>
-    </slot>
+
+      <div class="attribute" v-if="props.label2 != undefined">
+        <LabelAndControls
+          :label="props.label2"
+          :values="ATTRIBUTE_ACCEPTED_VALUES[props.label2] || ['true', 'false']"
+          v-model="attributes[props.label2]"
+        >
+        </LabelAndControls>
+      </div>
+    </div>
+
     <slot name="general-demo">
-      <GeneralDemo
-        :app="attributes"
-        :option="demoOptionSetting"
-      ></GeneralDemo>
+      <GeneralDemo :app="attributes" :option="demoOptionSetting"></GeneralDemo>
     </slot>
   </div>
 </template>
 
 <style scoped lang="scss">
-.attributes {
+.attributes .attribute {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
