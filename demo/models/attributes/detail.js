@@ -2,7 +2,7 @@ import {
   ATTRIBUTES,
   ATTRIBUTE_ACCEPTED_VALUES,
   EVENTS,
-  EVENTS_ACCEPTED_VALUES,
+  EVENTS_RETURN_VALUES,
   EXPOSES,
   EXPOSES__PUSHTAG_PARAMETER,
   SLOTS,
@@ -102,7 +102,7 @@ export const GET_ATTRIBUTES_DETAIL = () => {
 // EVENTS
 //------------------------------------------------------------------------------
 export const GET_EVENTS_DETAIL = () => {
-  let result = to_detail_attributes(EVENTS, EVENTS_ACCEPTED_VALUES)
+  let result = to_detail_attributes(EVENTS, EVENTS_RETURN_VALUES)
 
   Object.keys(result).forEach((key) => {
     result[key].value = event_value_convert(result[key].default)
