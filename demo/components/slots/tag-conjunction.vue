@@ -1,3 +1,19 @@
+<script>
+export default {
+  name: 'tag-conjunction'
+}
+</script>
+
+<script setup>
+import { ref } from 'vue'
+import { SLOTS } from '@models/attributes/default.js'
+import ShowHtmlCode from '../tools/show-html-code/main.vue'
+
+const demoStatus = ref([])
+const tagConjunctionContent = ref('')
+const merge = ref(true)
+</script>
+
 <template>
   <div id="tag-conjunction" class="demo" :class="demoStatus">
     <ToolTitle>Tag conjunction</ToolTitle>
@@ -14,7 +30,7 @@
         model="input"
         label="tag-conjunction"
         v-model="tagConjunctionContent"
-        :placeholder="`default : &`"
+        :placeholder="`default : ${SLOTS.tagConjunction}`"
       />
       <LabelAndControls calss="merge" label="merge" v-model="merge" />
     </div>
@@ -57,24 +73,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import ShowHtmlCode from "../tools/show-html-code/main.vue"
-
-export default {
-  name: "tag-conjunction",
-  components: {
-    ShowHtmlCode,
-  },
-  data() {
-    return {
-      demoStatus: [],
-      merge: true,
-      tagConjunctionContent: "",
-    };
-  },
-};
-</script>
 
 <style scoped lang="scss">
 @import "./assets/stylesheets.scss";
