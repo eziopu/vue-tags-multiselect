@@ -1,10 +1,32 @@
+<script>
+export default {
+  name: 'play-code-html-main'
+}
+</script>
+<script setup>
+import { inject } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import Space from './../tools/show-html-code/space.vue'
+import AttributesAndSlots from './../tools/show-html-code/attributes-and-slots.vue'
+import { ATTRIBUTE_CONVERT_TO_SIMPLE, DETAIL_CONVERT_TO_SIMPLE } from '@models/attributes/tools.js'
+
+const appAttributes = inject('attributes')
+const appSlots = inject('slots')
+
+const { t } = useI18n()
+const renderData = (value) => {
+  return t(`ui.` + value)
+}
+</script>
+
 <template>
   <pre><code><!--
 -->&lt;vue-tags-multiselect<br><!--
 --><Space />ref="VTagsMultiselect"<br><!--
 --><Space />v-model="result"<br><!--
 
-  --><AttributesAndSlots :app="app.attributes" />
+  --><AttributesAndSlots :app="ATTRIBUTE_CONVERT_TO_SIMPLE(appAttributes)" :slots="DETAIL_CONVERT_TO_SIMPLE(appSlots)" />
   &lt;v-tag-dropdown value="country" display-all&gt;
     &lt;v-tag-option title&gt;
       &lt;i class="fa fa-flag"&gt;&lt;/i&gt; <span v-html="renderData('general.Country')"></span>
@@ -74,28 +96,3 @@
 &lt;/vue-tags-multiselect&gt;<!--
 --></code></pre>
 </template>
-
-<script>
-import Space from "./../tools/show-html-code/space.vue";
-import AttributesAndSlots from "./../tools/show-html-code/attributes-and-slots.vue";
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "code-html-main",
-  components: {
-    Space,
-    AttributesAndSlots,
-  },
-  inject: ["getDemo"],
-  computed: {
-    app() {
-      return this.getDemo();
-    },
-  },
-  methods: {
-    renderData(value) {
-      return this.$t("ui." + value);
-    },
-  },
-});
-</script>

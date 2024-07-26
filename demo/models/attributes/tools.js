@@ -34,8 +34,15 @@ export const GET_ATTRIBUTE_INVALID_REASON = (keyName, attributes = {}) => {
 // ATTRIBUTES Convert to simple
 //------------------------------------------------------------------------------
 
-export const ATTRIBUTE_CONVERT_TO_SIMPLE = (attributes = {}) => {
+export const DETAIL_CONVERT_TO_SIMPLE = (input = {}) => {
   return Object.fromEntries(
-    Object.entries(attributes).map(([key, value]) => [key, value.value])
-  );
+    Object.entries(input).map(([key, value]) => [key, value.value])
+  )
+}
+
+export const ATTRIBUTE_CONVERT_TO_SIMPLE = (attributes = {}) => {
+  const placeholders = DETAIL_CONVERT_TO_SIMPLE(attributes.placeholders)
+  const obj = DETAIL_CONVERT_TO_SIMPLE(attributes)
+  obj.placeholders = placeholders
+  return obj
 }

@@ -290,10 +290,6 @@ export default {
   },
   mounted() {},
   methods: {
-    placeholderText(value) {
-      if (value == '' || value == undefined) return undefined
-      return value
-    },
     fetchNames() {
       if (this.attributes.dropdownLoading.value == true) return
       this.attributes.dropdownLoading.value = true
