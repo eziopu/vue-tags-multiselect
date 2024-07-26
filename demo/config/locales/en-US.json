@@ -80,7 +80,7 @@
       "blur": "Triggered when the package loses focus",
       "status": "Obtains the current operation status",
       "status__parameter_extended_description": {
-        "selecting": "@:attributes.events.selecting-tag",
+        "selecting": "@:attributes.events.selectingTag",
         "finish": "All options are completed and <code class='tag'>create</code> 為 false",
         "delect-down": "All options are completed but <code class='tag'>create</code> 為 true"
       },

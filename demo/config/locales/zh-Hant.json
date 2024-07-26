@@ -80,7 +80,7 @@
       "blur": "當套件失去焦點時觸發",
       "status": "取得當前操作的狀態",
       "status__parameter_extended_description": {
-        "selecting": "@:attributes.events.selecting-tag",
+        "selecting": "@:attributes.events.selectingTag",
         "finish": "選項皆完成且 <code class='tag'>create</code> 為 false",
         "delect-down": "選項皆完成但 <code class='tag'>create</code> 為 true"
       },
