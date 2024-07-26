@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject } from 'vue'
-import { GET_ATTRIBUTE_INVALID_REASON } from '@models/attributes/detail.js'
+import { GET_ATTRIBUTE_INVALID_REASON } from '@models/attributes/tools.js'
 
 const framework = inject('framework')
 const appAttributes = inject('attributes')

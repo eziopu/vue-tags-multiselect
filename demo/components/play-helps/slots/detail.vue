@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject, getCurrentInstance } from 'vue'
-import { GET_ATTRIBUTE_INVALID_REASON } from '@models/attributes/detail.js'
+import { GET_ATTRIBUTE_INVALID_REASON } from '@models/attributes/tools.js'
 
 const { $toKebabCase } = getCurrentInstance().appContext.config.globalProperties
 
