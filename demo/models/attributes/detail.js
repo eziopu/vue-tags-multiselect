@@ -62,23 +62,23 @@ function to_detail_attributes(obj, supplyObj = {}) {
 
 const ATTRIBUTE_VALIDATIONS = {
   merge: {
-    condition: (attrs) => attrs.conjunction === 'AND',
+    condition: (attrs) => attrs.conjunction.value === 'AND',
     message: 'Attribute conjunction is "AND"'
   },
   tagConjunction: {
-    condition: (attrs) => attrs.merge === false,
+    condition: (attrs) => attrs.merge.value === false,
     message: 'Attribute merge is false'
   },
   'placeholders.loading': {
-    condition: (attrs) => attrs.loading === false,
+    condition: (attrs) => attrs.loading.value === false,
     message: 'Attribute loading is false'
   },
   'placeholders.selectDown': {
-    condition: (attrs) => attrs.create === false,
+    condition: (attrs) => attrs.create.value === false,
     message: 'Attribute create is false'
   },
   'placeholders.finish': {
-    condition: (attrs) => attrs.create === true,
+    condition: (attrs) => attrs.create.value === true,
     message: 'Attribute create is true'
   }
 }
