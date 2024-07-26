@@ -6,7 +6,7 @@ export default {
 
 <script setup>
 import { ref, reactive, inject, nextTick, onUnmounted } from "vue";
-import { PARAMETERS, get_attributes } from "../models.js";
+import { EXPOSES__PUSHTAG_PARAMETER_DETAIL, get_attributes } from "../models.js";
 
 const demoStatus = ref([]);
 const framework = inject("framework");
@@ -130,7 +130,7 @@ const i18nHasKey = `${i18nMain}.has-key`;
         </div>
         <div class="pushTag-demo1__attributes--controls attributes">
           <LabelAndControls
-            v-for="(PARAMETER, key) in PARAMETERS"
+            v-for="(PARAMETER, key) in EXPOSES__PUSHTAG_PARAMETER_DETAIL"
             :key="`attribute_${key}`"
             class="flex-between"
             :class="{'to4-6': PARAMETER.type == 'boolean' ? false : true}"

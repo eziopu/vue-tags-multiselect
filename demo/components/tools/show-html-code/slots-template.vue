@@ -1,4 +1,3 @@
-<!-- eslint-disable prettier/prettier -->
 <template>
   <!--
   --><span
@@ -41,6 +40,6 @@ export default {
         return ''
       }
     }
-  },
+  }
 }
 </script>

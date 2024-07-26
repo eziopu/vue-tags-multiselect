@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject, reactive } from 'vue'
-import { GET_ATTRIBUTE_INVALID_REASON } from '../../models.js'
+import { GET_ATTRIBUTE_INVALID_REASON } from '@models/attributes/detail.js'
 
 const displays = reactive({
   conjunction: false,

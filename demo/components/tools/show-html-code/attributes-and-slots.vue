@@ -44,7 +44,7 @@
 <script>
 import Space from './space.vue'
 import SlotsTemplate from './slots-template.vue'
-import { ATTRIBUTES, SLOTS } from '../../../models/attributes/default.js'
+import { ATTRIBUTES, SLOTS } from '@models/attributes/default.js'
 
 export default {
   name: 'show-html-code__attributes-and-slots',
