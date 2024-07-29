@@ -7,7 +7,7 @@ export default {
 <script setup>
 import { ref } from 'vue'
 import { SLOTS } from '@models/attributes/default.js'
-import ShowHtmlCode from '../tools/show-html-code/main.vue'
+import ShowHtmlCode from '@tools/show-html-code/main.vue'
 
 const demoStatus = ref([])
 const tagConjunctionContent = ref('')
@@ -40,14 +40,14 @@ const merge = ref(true)
         <ShowHtmlCode
           class="tag prettyprint lang-html customize"
           :app="{
-            merge: merge,
+            merge: merge
           }"
           :slots="{
-            tagConjunction: tagConjunctionContent || '...',
+            tagConjunction: tagConjunctionContent || '...'
           }"
           :dropdown="{
-            name: {isDisplayForDemo: false},
-            remark: {isDisplayForDemo: false}
+            name: { isDisplayForDemo: false },
+            remark: { isDisplayForDemo: false }
           }"
         />
       </div>
@@ -58,16 +58,16 @@ const merge = ref(true)
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
-          merge: merge,
+          merge: merge
         }"
         :slots="{
-          tagConjunction: tagConjunctionContent,
+          tagConjunction: tagConjunctionContent
         }"
         :dropdown="{
-          name: {isDisplayForDemo: false}
+          name: { isDisplayForDemo: false }
         }"
         :option="{
-          country: [{}, {selected: true}, {selected: true}],
+          country: [{}, { selected: true }, { selected: true }]
         }"
       />
     </div>
@@ -75,5 +75,5 @@ const merge = ref(true)
 </template>
 
 <style scoped lang="scss">
-@import "./assets/stylesheets.scss";
+@import './assets/stylesheets.scss';
 </style>

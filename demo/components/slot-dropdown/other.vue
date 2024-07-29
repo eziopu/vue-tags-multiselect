@@ -1,7 +1,28 @@
+<script>
+import ALineCode from './tools/a-line-code.vue'
+
+export default {
+  name: 'dropdown-other-attributes',
+  components: {
+    ALineCode
+  },
+  data() {
+    return {
+      attributes: {
+        displayAll: 'false',
+        disabled: 'false',
+        divided: 'false',
+        hidden: 'false'
+      }
+    }
+  }
+}
+</script>
+
 <template>
   <div id="dropdown-other-attributes" class="demo">
-    <hr>
-    
+    <hr />
+
     <div class="flex-between to6-4">
       <div class="attributes">
         <div class="attribute">
@@ -40,18 +61,17 @@
           </div>
         </div>
         <div class="attribute">
-          <div style="display: flex; align-items: center;">
+          <div style="display: flex; align-items: center">
             <h3>Divided</h3>
-            <small style="margin-left: .6rem;">*{{ $t(`ui.page.sentence.notice.change_the_second`) }}</small>
+            <small style="margin-left: 0.6rem"
+              >*{{ $t(`ui.page.sentence.notice.change_the_second`) }}</small
+            >
           </div>
           <div class="flex-between">
             <div class="depiction">
               {{ $t(`attributes.dropdown.divided`) }}
             </div>
-            <LabelAndControls
-              label=""
-              v-model="attributes.divided"
-            />
+            <LabelAndControls label="" v-model="attributes.divided" />
           </div>
         </div>
 
@@ -61,7 +81,12 @@
       <div class="demo-app">
         <h4>
           <p>
-            * {{ $t(`ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown`) }}
+            *
+            {{
+              $t(
+                `ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown`
+              )
+            }}
           </p>
           <p>
             {{ $t(`ui.page.sentence.Some_attributes_will_change_the_second_dropdown`) }}
@@ -75,11 +100,11 @@
             country: {
               displayAll: $toBoolean(attributes.displayAll),
               disabled: $toBoolean(attributes.disabled),
-              hidden: $toBoolean(attributes.hidden),
+              hidden: $toBoolean(attributes.hidden)
             },
             name: {
-              divided: $toBoolean(attributes.divided),
-            },
+              divided: $toBoolean(attributes.divided)
+            }
           }"
         />
       </div>
@@ -87,28 +112,8 @@
   </div>
 </template>
 
-<script>
-import ALineCode from "./tools/a-line-code.vue";
-
-export default {
-  name: "dropdown-other-attributes",
-  components: {
-    ALineCode,
-  },
-  data() {
-    return {
-      attributes: {
-        displayAll: "false",
-        disabled: "false",
-        divided: "false",
-        hidden: "false",
-      }
-    };
-  },
-};
-</script>
 <style scoped lang="scss">
-  .attributes {
-    margin-bottom: 1rem;
-  }
+.attributes {
+  margin-bottom: 1rem;
+}
 </style>

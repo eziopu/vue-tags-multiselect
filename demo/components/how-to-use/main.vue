@@ -4,7 +4,7 @@
   }
 </script>
 <script setup>
-  import ShowHtmlCode from "../tools/show-html-code/main.vue";
+  import ShowHtmlCode from "@tools/show-html-code/main.vue";
 </script>
 
 <template>

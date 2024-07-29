@@ -7,7 +7,7 @@ export default {
 <script setup>
 import { ref } from 'vue'
 import { SLOTS } from '@models/attributes/default.js'
-import ShowHtmlCode from '../tools/show-html-code/main.vue'
+import ShowHtmlCode from '@tools/show-html-code/main.vue'
 
 const demoStatus = ref([])
 const optionUndo = ref('')
@@ -24,7 +24,8 @@ const optionUndo = ref('')
     <div class="attributes flex-between to5-5">
       <LabelAndControls model="input" label="option-undo" v-model="optionUndo">
         <template v-slot:fake-placeholder v-if="optionUndo == ''">
-          default&ensp;:&ensp;<div v-html="SLOTS.optionUndo"></div>
+          default&ensp;:&ensp;
+          <div v-html="SLOTS.optionUndo"></div>
         </template>
       </LabelAndControls>
     </div>

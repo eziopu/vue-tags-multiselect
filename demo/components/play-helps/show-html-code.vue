@@ -7,8 +7,8 @@ export default {
 import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import Space from './../tools/show-html-code/space.vue'
-import AttributesAndSlots from './../tools/show-html-code/attributes-and-slots.vue'
+import Space from '@tools/show-html-code/space.vue'
+import AttributesAndSlots from '@tools/show-html-code/attributes-and-slots.vue'
 import { ATTRIBUTE_CONVERT_TO_SIMPLE, DETAIL_CONVERT_TO_SIMPLE } from '@models/attributes/tools.js'
 
 const appAttributes = inject('attributes')

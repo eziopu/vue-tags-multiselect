@@ -1,3 +1,13 @@
+<script>
+export default {
+  name: 'dropdown-value'
+}
+</script>
+
+<script setup>
+import ALineCode from './tools/a-line-code.vue'
+</script>
+
 <template>
   <div id="dropdown-value" class="demo">
     <ToolTitle>Value</ToolTitle>
@@ -9,23 +19,12 @@
         <br />
         <ALineCode :bolders="['value']" />
       </div>
-      
+
       <div>
-        result is object array 
+        result is object array
         <br />
         <pre><code>{ country: [...], ...}</code></pre>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-import ALineCode from "./tools/a-line-code.vue";
-
-export default {
-  name: "dropdown-value",
-  components: {
-    ALineCode,
-  },
-};
-</script>

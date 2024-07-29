@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import FocusDemoApp from "./tools/focus-demo-app.vue";
+import FocusDemoApp from "@tools/focus-demo-app.vue";
 
 export default {
   name: "custom-style",

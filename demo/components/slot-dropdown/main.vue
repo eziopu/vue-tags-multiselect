@@ -1,12 +1,12 @@
 <script>
 export default {
-  name: "slot-dropdown",
-};
+  name: 'slot-dropdown'
+}
 </script>
 <script setup>
-import Value from "./value.vue";
-import Custom from "./custom.vue";
-import Other from "./other.vue";
+import Value from './value.vue'
+import Custom from './custom.vue'
+import Other from './other.vue'
 </script>
 
 <template>

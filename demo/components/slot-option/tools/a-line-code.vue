@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Space from "../../tools/show-html-code/space.vue";
+import Space from "@tools/show-html-code/space.vue";
 
 export default {
   name: "option-tools-line-code",
