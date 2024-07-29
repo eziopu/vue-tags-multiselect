@@ -1,20 +1,19 @@
 <script>
 export default {
-  name: "option-value",
-};
+  name: 'option-value'
+}
 </script>
 
 <script setup>
-import { ref, inject } from "vue";
-import ALineCode from "./tools/a-line-code.vue";
-import GeneralDemo from "../tools/general-demo.vue";
+import { ref, inject } from 'vue'
+import ALineCode from './tools/a-line-code.vue'
 
-const i18n = "attributes.option";
+const i18n = 'attributes.option'
 
-const firstDemoStatus = ref([]);
-const secondDemoStatus = ref([]);
+const firstDemoStatus = ref([])
+const secondDemoStatus = ref([])
 
-const framework = inject("framework");
+const framework = inject('framework')
 </script>
 
 <template>
@@ -29,7 +28,7 @@ const framework = inject("framework");
         </p>
 
         <ul>
-          <li v-for="index in [0,1,2]" :key="index">
+          <li v-for="index in [0, 1, 2]" :key="index">
             <p v-html="$t(`${i18n}.value__notices.${index}`)"></p>
           </li>
         </ul>
@@ -40,7 +39,7 @@ const framework = inject("framework");
 
       <div>
         <div>
-          result is object array 
+          result is object array
           <br />
           <pre><code>{ country: ["mare", "eldia"], ...}</code></pre>
         </div>
@@ -56,9 +55,9 @@ const framework = inject("framework");
               :displayRefreshBtn="true"
               :displayShowCodeBtn="false"
               :dropdown="{
-                country: {isDisplayForDemo: true, displayAll: true},
-                name: {isDisplayForDemo: false},
-                remark: {isDisplayForDemo: false}
+                country: { isDisplayForDemo: true, displayAll: true },
+                name: { isDisplayForDemo: false },
+                remark: { isDisplayForDemo: false }
               }"
             />
           </div>
@@ -72,17 +71,16 @@ const framework = inject("framework");
               :displayRefreshBtn="true"
               :displayShowCodeBtn="false"
               :dropdown="{
-                country: {isDisplayForDemo: true, displayAll: true},
-                name: {isDisplayForDemo: false},
-                remark: {isDisplayForDemo: false}
+                country: { isDisplayForDemo: true, displayAll: true },
+                name: { isDisplayForDemo: false },
+                remark: { isDisplayForDemo: false }
               }"
               :option="{
-                country: [{}, {value: ''}, {value: ''}],
+                country: [{}, { value: '' }, { value: '' }]
               }"
             />
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -100,7 +98,7 @@ const framework = inject("framework");
   .general-demo__first.selecting {
     margin-bottom: 10rem;
   }
-  
+
   .general-demo__second.selecting {
     margin-bottom: 8rem;
   }
@@ -112,4 +110,3 @@ const framework = inject("framework");
   }
 }
 </style>
-
