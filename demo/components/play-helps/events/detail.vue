@@ -28,7 +28,7 @@ const appEvents = inject('events')
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Description`) }}: </span>
-        <span>{{ $t(`attributes.events.${$toKebabCase(key)}`) }}</span>
+        <span>{{ $t(`attributes.events.${key}`) }}</span>
       </div>
       <div>
         <span class="i-block d-md-none">{{ $t(`ui.general.Parameters`) }}: </span>

@@ -1,27 +1,44 @@
+<script>
+export default {
+  name: 'app-placeholders'
+}
+</script>
+
+<script setup>
+import { ref } from 'vue'
+import { ATTRIBUTES, ATTRIBUTE_ACCEPTED_VALUES } from '@models/attributes/default.js'
+const defaults = ATTRIBUTES.placeholders
+
+const i18nAppPath = 'attributes.app'
+const attributes = ref({
+  loading: false,
+  create: false,
+  conjunction: 'AND',
+  placeholder: '',
+  placeholders: {
+    initial: '',
+    loading: '',
+    selectDown: '',
+    finish: '',
+    tagValueRepeat: ''
+  }
+})
+</script>
+
 <template>
   <div id="placeholders" class="demo">
     <ToolTitle>Placeholders</ToolTitle>
 
     <div class="depiction">
-      {{ $t(`${i18nAppPath}.placeholder`) }}
+      <p>
+        {{ $t(`${i18nAppPath}.placeholder`) }}
+      </p>
 
       <ul>
-        <li>
+        <li v-for="item in ['placeholder', 'placeholders', 'remark']" :key="item">
           <p>
-            placeholder:
-            {{ $t(`${i18nAppPath}.placeholder__details.placeholder`) }}
-          </p>
-        </li>
-        <li>
-          <p>
-            placeholders:
-            {{ $t(`${i18nAppPath}.placeholder__details.placeholders`) }}
-          </p>
-        </li>
-        <li>
-          <p>
-            *
-            {{ $t(`${i18nAppPath}.placeholder__details.remark`) }}
+            <span v-if="item != 'remark'">{{ item }}:</span>
+            {{ $t(`${i18nAppPath}.placeholder__details.${item}`) }}
           </p>
         </li>
       </ul>
@@ -35,47 +52,46 @@
           label="placeholder"
           v-model="attributes.placeholder"
         />
-
         <div class="attribute">placeholders: {</div>
-          <div class="placeholders__attribute">
-            <LabelAndControls
-              class="flex-between to4-6"
-              model="input"
-              label="initial"
-              v-model="attributes.placeholders.initial"
-            />
-            <LabelAndControls
-              class="flex-between to4-6"
-              model="input"
-              label="loading"
-              v-model="attributes.placeholders.loading"
-              :disabled="attributes.loading == false"
-              :placeholder="`Wait a moment, please.`"
-            />
-            <LabelAndControls
-              class="flex-between to4-6"
-              model="input"
-              label="selectDown"
-              v-model="attributes.placeholders.selectDown"
-              :disabled="attributes.create == false"
-              :placeholder="`Selected End.`"
-            />
-            <LabelAndControls
-              class="flex-between to4-6"
-              model="input"
-              label="finish"
-              v-model="attributes.placeholders.finish"
-              :disabled="attributes.create == true"
-              :placeholder="`Finish.`"
-            />
-            <LabelAndControls
-              class="flex-between to4-6"
-              model="input"
-              label="tagValueRepeat"
-              v-model="attributes.placeholders.tagValueRepeat"
-              :placeholder="`repeat !`"
-            />
-          </div>
+        <div class="placeholders__attribute">
+          <LabelAndControls
+            class="flex-between to4-6"
+            model="input"
+            label="initial"
+            v-model="attributes.placeholders.initial"
+          />
+          <LabelAndControls
+            class="flex-between to4-6"
+            model="input"
+            label="loading"
+            v-model="attributes.placeholders.loading"
+            :disabled="attributes.loading == false"
+            :placeholder="defaults.loading"
+          />
+          <LabelAndControls
+            class="flex-between to4-6"
+            model="input"
+            label="selectDown"
+            v-model="attributes.placeholders.selectDown"
+            :disabled="attributes.create == false"
+            :placeholder="defaults.selectDown"
+          />
+          <LabelAndControls
+            class="flex-between to4-6"
+            model="input"
+            label="finish"
+            v-model="attributes.placeholders.finish"
+            :disabled="attributes.create == true"
+            :placeholder="defaults.finish"
+          />
+          <LabelAndControls
+            class="flex-between to4-6"
+            model="input"
+            label="tagValueRepeat"
+            v-model="attributes.placeholders.tagValueRepeat"
+            :placeholder="defaults.tagValueRepeat"
+          />
+        </div>
         <div class="attribute">}</div>
       </div>
 
@@ -83,66 +99,27 @@
         <LabelAndControls
           label="conjunction"
           v-model="attributes.conjunction"
-          :values="['AND', 'OR', 'null']"
+          :values="ATTRIBUTE_ACCEPTED_VALUES.conjunction"
         />
         <LabelAndControls label="loading" v-model="attributes.loading" />
         <LabelAndControls label="create" v-model="attributes.create" />
 
         <div class="depiction">
-          <div class="attribute">
-            loading:
-            <span
-              v-html="$t(`${i18nAppPath}.placeholders.loading__detail`)"
-            ></span>
-          </div>
-          <div class="attribute">
-            selectDown:
-            <span
-              v-html="$t(`${i18nAppPath}.placeholders.selectDown__detail`)"
-            ></span>
-          </div>
-          <div class="attribute">
-            finish:
-            <span
-              v-html="$t(`${i18nAppPath}.placeholders.finish__detail`)"
-            ></span>
-          </div>
+          <ul style="margin-left: -12px; margin-top: 20px">
+            <li v-for="attribute in ['loading', 'selectDown', 'finish']" :key="attribute">
+              <p>
+                {{ attribute }}:
+                <span v-html="$t(`${i18nAppPath}.placeholders.${attribute}__notice`)"></span>
+              </p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <GeneralDemo
-      :displayRefreshBtn="true"
-      :app="attributes"
-    >
-    </GeneralDemo>
+    <GeneralDemo :app="attributes"></GeneralDemo>
   </div>
 </template>
-
-<script>
-export default {
-  name: "app-placeholders",
-  data() {
-    return {
-      i18nAppPath: "attributes.app",
-      attributes: {
-        loading: false,
-        create: false,
-        conjunction: "AND",
-  
-        placeholder: "",
-        placeholders: {
-          initial: "",
-          loading: "",
-          selectDown: "",
-          finish: "",
-          tagValueRepeat: "",
-        },
-      }
-    };
-  },
-};
-</script>
 
 <style scoped lang="scss">
 .placeholders__attribute {

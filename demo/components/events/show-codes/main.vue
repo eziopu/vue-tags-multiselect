@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Space from '../../tools/show-html-code/space.vue'
+import Space from '@tools/show-html-code/space.vue'
 export default {
   name: 'events-show-code',
   components: {
@@ -47,7 +47,7 @@ export default {
         'input-value': ['string', 'inputValue', ' = '],
         'visible-change': ['boolean', 'visibleChange', ' = '],
         'remove-tag': ['tag', 'removeTag', ' = '],
-        'selecting-tag': ['tag', 'selectingTag', ' = '],
+        'selecting-tag': ['tag', 'selectingTag', ' = ']
       }
     }
   }
@@ -57,7 +57,7 @@ export default {
 <style scoped lang="scss">
 .rwd {
   display: none;
-  
+
   @media (max-width: 1200px) {
     &.visible-change {
       display: inline;
@@ -66,7 +66,7 @@ export default {
   @media (min-width: 769px) and (max-width: 992px) {
     display: inline;
   }
-  
+
   @media (max-width: 499px) {
     display: inline;
   }

@@ -1,68 +1,42 @@
 <script>
 export default {
-  name: "exposes-pushTag__parameter",
-};
+  name: 'exposes-pushTag__parameter'
+}
 </script>
 
 <script setup>
-import { PARAMETERS } from "./models.js";
+import { GET_EXPOSES__PUSHTAG_PARAMETER_DETAIL } from '@models/attributes/detail.js'
 </script>
 
 <template>
   <div id="method-pushTag__parameter--table" class="demo__table container">
     <div class="row titles">
-      <div>
-        <h5>{{ $t(`ui.general.Attribute`) }}</h5>
-      </div>
-      <div>
-        <h5>{{ $t(`ui.general.Description`) }}</h5>
-      </div>
-      <div>
-        <h5>{{ $t(`ui.general.Type`) }}</h5>
-      </div>
-      <div>
-        <h5>{{ $t(`ui.general.Default`) }}</h5>
-      </div>
-      <div>
-        <h5>{{ $t(`ui.general.Required`) }}</h5>
+      <div v-for="item in ['Attribute', 'Description', 'Type', 'Default', 'Required']" :key="item">
+        <h5>{{ $t(`ui.general.${item}`) }}</h5>
       </div>
     </div>
-
-    <div
-      class="row"
-      v-for="(value, key) in PARAMETERS"
-      :key="`parameters_${key}`"
-    >
+    
+    <div class="row" v-for="(value, key) in GET_EXPOSES__PUSHTAG_PARAMETER_DETAIL()" :key="`parameters_${key}`">
       <div>{{ key }}</div>
       <div>
-        <span class="i-block d-md-none"
-          >{{ $t(`ui.general.Description`) }}:
-        </span>
-        <span>{{
-          $t(`attributes.exposes.pushTag__details.parameter.${key}`)
-        }}</span>
+        <span class="i-block d-md-none">{{ $t(`ui.general.Description`) }}: </span>
+        <span>{{ $t(`attributes.exposes.pushTag__details.parameter.${key}`) }}</span>
       </div>
 
       <div>
-        <span class="i-block d-md-none">
-          {{ $t(`ui.general.Type`) }}:
-        </span>
+        <span class="i-block d-md-none"> {{ $t(`ui.general.Type`) }}: </span>
         {{ value.type }}
       </div>
       <div>
-        <span class="i-block d-md-none">
-          {{ $t(`ui.general.Default`) }}:
-        </span>
+        <span class="i-block d-md-none"> {{ $t(`ui.general.Default`) }}: </span>
         {{ value.default }}
       </div>
-      <div v-if="value.required == 'no'">
+      <div v-if="!value.isRequired">
         <div class="d-none d-md-block">no</div>
       </div>
       <div v-else>
-        <span class="i-block d-md-none">
-          {{ $t(`ui.general.Required`) }}:
-        </span>
-        {{ value.required }}
+        <span class="i-block d-md-none"> {{ $t(`ui.general.Required`) }}: </span>
+        *yes
       </div>
     </div>
   </div>

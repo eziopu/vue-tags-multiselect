@@ -1,17 +1,15 @@
-
 <script>
 export default {
-  name: "option-title",
-};
+  name: 'option-title'
+}
 </script>
 
 <script setup>
-import { ref } from "vue";
-import ALineCode from "./tools/a-line-code.vue";
-import GeneralDemo from "../tools/general-demo.vue";
+import { ref } from 'vue'
+import ALineCode from './tools/a-line-code.vue'
 
-const i18n = "attributes.option";
-const demoStatus = ref([]);
+const i18n = 'attributes.option'
+const demoStatus = ref([])
 </script>
 
 <template>
@@ -34,7 +32,7 @@ const demoStatus = ref([]);
           placeholder: 'click country option!'
         }"
         :dropdown="{
-          name: {isDisplayForDemo: false},
+          name: { isDisplayForDemo: false }
         }"
       />
     </div>
@@ -42,5 +40,5 @@ const demoStatus = ref([]);
 </template>
 
 <style scoped lang="scss">
-@import "./assets/stylesheets.scss";
+@import './assets/stylesheets.scss';
 </style>

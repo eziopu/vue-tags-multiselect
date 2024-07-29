@@ -1,3 +1,20 @@
+<script>
+export default {
+  name: 'dropdown-loading'
+}
+</script>
+
+<script setup>
+import { ref } from 'vue'
+import { SLOTS } from '@models/attributes/default.js'
+import ShowHtmlCode from '@tools/show-html-code/main.vue'
+
+const demoStatus = ref([])
+const dropdownLoadingContent = ref('')
+const loading = ref(false)
+const dropdownLoading = ref(true)
+</script>
+
 <template>
   <div id="dropdown-loading" class="demo" :class="demoStatus">
     <ToolTitle>Dropdown loading</ToolTitle>
@@ -10,15 +27,11 @@
     </div>
 
     <div class="attributes">
-      <LabelAndControls
-        model="input"
-        label="dropdown-loading"
-        v-model="dropdownLoadingContent"
-      >
+      <LabelAndControls model="input" label="dropdown-loading" v-model="dropdownLoadingContent">
         <template v-slot:fake-placeholder v-if="dropdownLoadingContent == ''">
           <div class="demo__loading">
             <span>default : </span>
-            <i class="demo__loading--icon"></i>
+            <div v-html="SLOTS.dropdownLoading"></div>
           </div>
         </template>
       </LabelAndControls>
@@ -35,14 +48,14 @@
           class="tag prettyprint lang-html customize"
           :app="{
             loading: loading,
-            dropdownLoading: dropdownLoading,
+            dropdownLoading: dropdownLoading
           }"
           :slots="{
             dropdownLoading: dropdownLoadingContent || '...'
           }"
           :dropdown="{
-            name: {isDisplayForDemo: false},
-            remark: {isDisplayForDemo: false}
+            name: { isDisplayForDemo: false },
+            remark: { isDisplayForDemo: false }
           }"
         />
       </div>
@@ -55,40 +68,21 @@
         :displayShowCodeBtn="false"
         :app="{
           loading: loading,
-          dropdownLoading: dropdownLoading,
+          dropdownLoading: dropdownLoading
         }"
         :slots="{
-          dropdownLoading: dropdownLoadingContent,
+          dropdownLoading: dropdownLoadingContent
         }"
         :dropdown="{
-          name: {isDisplayForDemo: false}
+          name: { isDisplayForDemo: false }
         }"
       />
     </div>
   </div>
 </template>
 
-<script>
-import ShowHtmlCode from "../tools/show-html-code/main.vue"
-
-export default {
-  name: "dropdown-loading",
-  components: {
-    ShowHtmlCode,
-  },
-  data() {
-    return {
-      demoStatus: [],
-      loading: false,
-      dropdownLoading: true,
-      dropdownLoadingContent: "",
-    };
-  },
-};
-</script>
-
 <style scoped lang="scss">
-@import "./assets/stylesheets.scss";
+@import './assets/stylesheets.scss';
 .attributes {
   width: 48%;
   @media (max-width: 768px) {

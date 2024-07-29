@@ -44,7 +44,7 @@
 
 <script>
 import ALineCode from "./a-line-code.vue";
-import ReloadByI18n from "../../tools/mixins/reload-by-i18n.js";
+import ReloadByI18n from "@tools/mixins/reload-by-i18n.js";
 
 export default {
   name: "dropdown-custom-diff-demo",

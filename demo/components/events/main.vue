@@ -7,7 +7,7 @@ export default {
 <script setup>
 import DemoTemplate from './demo-template.vue'
 import ShowCode from './show-codes/main.vue'
-import { GET_PACKAGE_EVENTS_DETAIL } from './../models.js'
+import { GET_EVENTS_DETAIL } from '@models/attributes/detail.js'
 import { ref, onMounted, reactive } from 'vue'
 
 const results = {
@@ -47,7 +47,7 @@ const attributes = reactive({
     <div class="demo-templates">
       <DemoTemplate
         class="demo-template"
-        v-for="(EVENT, key) in GET_PACKAGE_EVENTS_DETAIL()"
+        v-for="(EVENT, key) in GET_EVENTS_DETAIL()"
         :key="key"
         :label="key"
         :contents="EVENT"

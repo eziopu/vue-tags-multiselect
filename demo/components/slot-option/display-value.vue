@@ -1,12 +1,11 @@
 <script>
 export default {
-  name: "option-display-value",
-};
+  name: 'option-display-value'
+}
 </script>
 
 <script setup>
-import ALineCode from "./tools/a-line-code.vue";
-import GeneralDemo from "../tools/general-demo.vue";
+import ALineCode from './tools/a-line-code.vue'
 </script>
 
 <template>
@@ -24,23 +23,25 @@ import GeneralDemo from "../tools/general-demo.vue";
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
-            name: {isDisplayForDemo: false},
+            name: { isDisplayForDemo: false }
           }"
           :option="{
-            country: [{}, {selected: true, displayValue: true}],
+            country: [{}, { selected: true, displayValue: true }]
           }"
         />
       </div>
       <div>
-        <h4>false <small> *{{ $t("ui.general.Default", 0) }}</small></h4>
+        <h4>
+          false <small> *{{ $t('ui.general.Default', 0) }}</small>
+        </h4>
         <GeneralDemo
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
-            name: {isDisplayForDemo: false},
+            name: { isDisplayForDemo: false }
           }"
           :option="{
-            country: [{}, {selected: true}],
+            country: [{}, { selected: true }]
           }"
         />
       </div>

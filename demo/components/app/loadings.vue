@@ -1,3 +1,28 @@
+<script>
+export default {
+  name: 'app-loadings'
+}
+</script>
+
+<script setup>
+import { reactive, provide } from 'vue'
+import Loading from "./loading.vue";
+import DropdownLoading from "./dropdown-loading.vue";
+
+const attributes = reactive({
+  loading: true,
+  loadingContent: "",
+  loadingPlaceholder: "",
+  dropdownLoading: false,
+  dropdownLoadingContent: "",
+});
+
+const appStatus = reactive([]);
+
+provide('getLoadingAttributes', () => attributes);
+
+</script>
+
 <template>
   <div id="loadings" class="demo flex-between">
     <div class="demo-components">
@@ -11,8 +36,8 @@
         :displayRefreshBtn="true"
         :autoFocus="true"
         :app="{
-          loading: attributes.loading == 'true' ? true : false,
-          dropdownLoading: attributes.dropdownLoading == 'true' ? true : false,
+          loading: attributes.loading,
+          dropdownLoading: attributes.dropdownLoading,
           placeholders: {
             loading: attributes.loadingPlaceholder || undefined,
           },
@@ -25,36 +50,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import Loading from "./loading.vue";
-import DropdownLoading from "./dropdown-loading.vue";
-
-export default {
-  name: "app-loadings",
-  components: {
-    Loading,
-    DropdownLoading,
-  },
-  data() {
-    return {
-      attributes: {
-        loading: "true",
-        loadingContent: "",
-        loadingPlaceholder: "",
-        dropdownLoading: "false",
-        dropdownLoadingContent: "",
-      },
-      appStatus: [],
-    };
-  },
-  provide() {
-    return {
-      getLoadingAttributes: () => this.attributes,
-    };
-  },
-};
-</script>
 
 <style scoped lang="scss">
 #loadings.flex-between {

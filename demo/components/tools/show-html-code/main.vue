@@ -3,7 +3,7 @@
 -->&lt;v-tags-multiselect<br><!--
 --><Space />v-model="result"<br><!--
 
-  --><AttributesAndSlots :app="app" :slots="slots" /><!--
+  --><AttributesAndSlots :app="appAttributes" :slots="appSlots" /><!--
   --><slot name="country" v-if="appDropdown.country.isDisplayForDemo"><!--
   --><Space />&lt;v-tag-dropdown<DropdownProps :props="appDropdown.country" />&gt;
     &lt;v-tag-option<OptionProps :props="appOption.country[0]" />&gt;
@@ -58,33 +58,33 @@
 </template>
 
 <script>
-import Space from "./space.vue";
-import AttributesAndSlots from "./attributes-and-slots.vue";
-import DropdownProps from "./dropdown-props-template.vue";
-import OptionProps from "./option-props-template.vue";
-import PackageAttributes from "../mixins/package-attributes.js";
+import Space from './space.vue'
+import AttributesAndSlots from './attributes-and-slots.vue'
+import DropdownProps from './dropdown-props-template.vue'
+import OptionProps from './option-props-template.vue'
+import PackageAttributes from '../mixins/package-attributes.js'
 
 export default {
-  name: "show-html-code",
+  name: 'show-html-code',
   mixins: [PackageAttributes],
   components: {
     Space,
     AttributesAndSlots,
     DropdownProps,
-    OptionProps,
+    OptionProps
   },
   watch: {
-    "$i18n.locale": {
+    '$i18n.locale': {
       handler() {
-        this.$forceUpdate();
+        this.$forceUpdate()
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   methods: {
     renderData(value) {
-      return this.$t("ui." + value);
-    },
-  },
-};
+      return this.$t(`ui.${value}`)
+    }
+  }
+}
 </script>

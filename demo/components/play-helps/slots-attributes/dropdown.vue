@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { inject } from 'vue'
-import { GET_PACKAGE_V_DROPDOWN_PROPS_DETAIL } from '../../models.js'
+import { GET_V_DROPDOWN_PROPS_DETAIL } from '@models/attributes/detail.js'
 import HelpTitle from '../components/title.vue'
 import TableTemplate from './table-template.vue'
 
@@ -19,7 +19,7 @@ const displays = inject('displays')
     <transition name="slide">
       <TableTemplate
         v-if="displays.slotDropdown"
-        :attributes="GET_PACKAGE_V_DROPDOWN_PROPS_DETAIL()"
+        :attributes="GET_V_DROPDOWN_PROPS_DETAIL()"
         :i18n="`attributes.dropdown`"
       >
       </TableTemplate>

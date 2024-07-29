@@ -1,3 +1,18 @@
+<script>
+export default {
+  name: 'option-OR-conjunction'
+}
+</script>
+
+<script setup>
+import { ref } from 'vue'
+import { SLOTS } from '@models/attributes/default.js'
+import ShowHtmlCode from '@tools/show-html-code/main.vue'
+
+const demoStatus = ref([])
+const optionORConjunction = ref('')
+</script>
+
 <template>
   <div id="option-OR-conjunction" class="demo" :class="demoStatus">
     <ToolTitle>Option OR conjunction</ToolTitle>
@@ -11,7 +26,7 @@
         model="input"
         label="option-OR-conjunction"
         v-model="optionORConjunction"
-        :placeholder="`default : OR`"
+        :placeholder="`default : ${SLOTS.optionORConjunction}`"
       />
     </div>
 
@@ -23,9 +38,9 @@
             optionORConjunction: optionORConjunction || '...'
           }"
           :dropdown="{
-            country: {isDisplayForDemo: false},
-            name: {isDisplayForDemo: false},
-            remark: {isDisplayForDemo: false}
+            country: { isDisplayForDemo: false },
+            name: { isDisplayForDemo: false },
+            remark: { isDisplayForDemo: false }
           }"
         />
       </div>
@@ -37,36 +52,19 @@
         :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :slots="{
-          optionORConjunction: optionORConjunction,
+          optionORConjunction: optionORConjunction
         }"
         :dropdown="{
-          name: {isDisplayForDemo: false}
+          name: { isDisplayForDemo: false }
         }"
         :option="{
-          country: [{}, {selected: true}],
+          country: [{}, { selected: true }]
         }"
       />
     </div>
   </div>
 </template>
 
-<script>
-import ShowHtmlCode from "../tools/show-html-code/main.vue"
-
-export default {
-  name: "option-OR-conjunction",
-  components: {
-    ShowHtmlCode,
-  },
-  data() {
-    return {
-      demoStatus: [],
-      optionORConjunction: "",
-    };
-  },
-};
-</script>
-
 <style scoped lang="scss">
-@import "./assets/stylesheets.scss";
+@import './assets/stylesheets.scss';
 </style>

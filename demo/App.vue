@@ -1,99 +1,100 @@
 <script setup>
-import { ref, onMounted, nextTick, provide, readonly } from "vue";
+import { ref, onMounted, nextTick, provide, readonly } from 'vue'
+import { getCurrentInstance } from 'vue'
+
+const { $toUpperCaseFirstLetter } = getCurrentInstance().appContext.config.globalProperties
 
 // == google-code-prettify ==============
 const prettyCode = async () => {
-  await nextTick();
+  await nextTick()
   // eslint-disable-next-line no-undef
-  PR.prettyPrint();
+  PR.prettyPrint()
 }
 onMounted(() => {
-  prettyCode();
-});
+  prettyCode()
+})
 
 // == Components ==============
 // import Keyboard from "./components/keyboard.vue";
-import Attributes from "./components/app/main.vue";
-import Play from "./components/play-helps/main.vue";
+import Attributes from './components/app/main.vue'
+import Play from './components/play-helps/main.vue'
 // demo
-import HowToUse from "./components/how-to-use/main.vue";
-import Slots from "./components/slots/main.vue";
-import SlotDropdown from "./components/slot-dropdown/main.vue";
-import SlotOption from "./components/slot-option/main.vue";
-import Exposes from "./components/exposes/main.vue";
-import Events from "./components/events/main.vue";
+import HowToUse from './components/how-to-use/main.vue'
+import Slots from './components/slots/main.vue'
+import SlotDropdown from './components/slot-dropdown/main.vue'
+import SlotOption from './components/slot-option/main.vue'
+import Exposes from './components/exposes/main.vue'
+import Events from './components/events/main.vue'
 
-import Header from "./components/layout/header/main.vue";
-import Pagination from "./components/layout/pagination.vue";
-
+import Header from './components/layout/header/main.vue'
+import Pagination from './components/layout/pagination.vue'
 
 // == Page ==============
 const components = {
-  "How-to-use": HowToUse,
-  "Attributes": Attributes,
-  "Slots": Slots,
-  "Slot-dropdown": SlotDropdown,
-  "Slot-option": SlotOption,
-  "Exposes": Exposes,
-  "Events": Events,
-  "Play": Play
-};
-const pages = Object.keys(components);
-const currentPage = ref(pages[0]);
-provide("currentPage", currentPage);
-provide("pages", readonly(pages));
+  'How-to-use': HowToUse,
+  Attributes: Attributes,
+  Slots: Slots,
+  'Slot-dropdown': SlotDropdown,
+  'Slot-option': SlotOption,
+  Exposes: Exposes,
+  Events: Events,
+  Play: Play
+}
+const pages = Object.keys(components)
+const currentPage = ref(pages[0])
+provide('currentPage', currentPage)
+provide('pages', readonly(pages))
 
 const getComponentPage = (input) => {
-  const component = components[input];
-  return component ? component : components["HowToUse"];
+  const component = components[input]
+  return component ? component : components['HowToUse']
 }
 
 /* set current page */
-const urlPathname = new URL(location.href).pathname.replace(/\//g, '');
-if (urlPathname == "") {
-  currentPage.value = pages[0];
+const urlPathname = new URL(location.href).pathname.replace(/\//g, '')
+if (urlPathname == '') {
+  currentPage.value = pages[0]
 } else {
-  const componentKey = urlPathname.charAt(0).toUpperCase() + urlPathname.slice(1);
+  const componentKey = $toUpperCaseFirstLetter(urlPathname)
   if (components[componentKey] != undefined) {
-    currentPage.value = componentKey;
+    currentPage.value = componentKey
   }
 }
 
 const setCurrentPage = (input) => {
-  currentPage.value = input;
-  const urlPage = input == pages[0] ? '' : input.toLowerCase();
-  pushURLPathnameState(urlPage);
+  currentPage.value = input
+  const urlPage = input == pages[0] ? '' : input.toLowerCase()
+  pushURLPathnameState(urlPage)
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
-  });
-  prettyCode();
+  })
+  prettyCode()
 }
 
 const pushURLPathnameState = (newPath) => {
-  const currentUrl = new URL(window.location.href);
-  currentUrl.pathname = newPath;
-  
-  const newUrl = currentUrl.href;
-  window.history.pushState({ path: newUrl }, '', newUrl);
-}
-provide("setCurrentPage", setCurrentPage);
+  const currentUrl = new URL(window.location.href)
+  currentUrl.pathname = newPath
 
+  const newUrl = currentUrl.href
+  window.history.pushState({ path: newUrl }, '', newUrl)
+}
+provide('setCurrentPage', setCurrentPage)
 
 // == Framework ==============
-const frameworks = ["default", "bootstrap", "semantic-ui"];
-const framework = ref(frameworks[0]);
-provide("framework", framework);
-provide("frameworks", readonly(frameworks));
+const frameworks = ['default', 'bootstrap', 'semantic-ui']
+const framework = ref(frameworks[0])
+provide('framework', framework)
+provide('frameworks', readonly(frameworks))
 
 /* set framework */
-const urlQueryFramework = new URL(location.href).searchParams.get("framework");
+const urlQueryFramework = new URL(location.href).searchParams.get('framework')
 if (
   frameworks.find((framework) => {
-    return framework == urlQueryFramework;
+    return framework == urlQueryFramework
   })
 ) {
-  framework.value = urlQueryFramework;
+  framework.value = urlQueryFramework
 }
 </script>
 
@@ -122,7 +123,7 @@ if (
 
     <main class="page ui container" :class="framework">
       <div class="page-title">
-        <h2>{{ currentPage.replace(/-/g, " ") }}</h2>
+        <h2>{{ currentPage.replace(/-/g, ' ') }}</h2>
 
         <div class="demo page-framework-css" v-if="framework != 'default'">
           <div class="demo-control">
@@ -139,10 +140,7 @@ if (
       </div>
 
       <Transition name="out-in">
-        <component
-          :is="getComponentPage(currentPage)"
-          :framework="framework">
-        </component>
+        <component :is="getComponentPage(currentPage)" :framework="framework"> </component>
       </Transition>
 
       <Pagination />
@@ -151,33 +149,33 @@ if (
 </template>
 
 <style lang="scss" v-if="framework == 'bootstrap'">
-@import "./assets/stylesheets/UI-frameworks/bootstrap.scss";
+@import './assets/stylesheets/UI-frameworks/bootstrap.scss';
 </style>
 
 <style lang="scss" v-if="framework == 'semantic-ui'">
-@import "./assets/stylesheets/UI-frameworks/semantic-ui.scss";
-@import "./assets/stylesheets/UI-frameworks/bootstrap-display.css";
+@import './assets/stylesheets/UI-frameworks/semantic-ui.scss';
+@import './assets/stylesheets/UI-frameworks/bootstrap-display.css';
 </style>
 
 <style lang="scss">
-@import "./assets/stylesheets/color.css";
-@import "./assets/stylesheets/package-dark-theme.scss";
-@import "./assets/stylesheets/header.scss";
-@import "./assets/stylesheets/layout.scss";
-@import "./assets/stylesheets/demo-layout.scss";
-@import "./assets/stylesheets/pretty-code.scss";
+@import './assets/stylesheets/color.css';
+@import './assets/stylesheets/package-dark-theme.scss';
+@import './assets/stylesheets/header.scss';
+@import './assets/stylesheets/layout.scss';
+@import './assets/stylesheets/demo-layout.scss';
+@import './assets/stylesheets/pretty-code.scss';
 </style>
 
 <style scoped lang="scss">
 .page-title {
   display: flex;
   justify-content: space-between;
-  
+
   h2 {
     margin-top: 1.6rem;
   }
   .page-framework-css {
-    white-space:nowrap;
+    white-space: nowrap;
   }
 }
 </style>

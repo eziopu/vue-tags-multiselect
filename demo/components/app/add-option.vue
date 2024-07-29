@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'app-add-option'
+}
+</script>
+
 <template>
   <div id="add-option" class="demo">
     <ToolTitle>Add option</ToolTitle>
@@ -6,7 +12,7 @@
       <p v-html="$t(`ui.page.addOption`)"></p>
 
       <ul>
-        <li v-for="index in [1,2,3]" :key="index">
+        <li v-for="index in [1, 2, 3]" :key="index">
           <p v-html="$t(`ui.page.addOption__details.${index}`)"></p>
         </li>
       </ul>
@@ -15,9 +21,7 @@
         <br />
         <p>
           <a href="#dropdown-slots">
-            {{
-              $t(`ui.page.sentence.Go_to_detail_option_attributes_description`)
-            }}
+            {{ $t(`ui.page.sentence.Go_to_detail_option_attributes_description`) }}
           </a>
         </p>
       </div>
@@ -27,19 +31,8 @@
       ref="generalDemo"
       :displayOutput="true"
       :app="{
-        placeholder: 'Click me !',
+        placeholder: 'Click me !'
       }"
     ></GeneralDemo>
   </div>
 </template>
-
-<script>
-import GeneralDemo from "../tools/general-demo.vue";
-
-export default {
-  name: "app-add-option",
-  components: {
-    GeneralDemo,
-  },
-};
-</script>

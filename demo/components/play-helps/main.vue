@@ -193,15 +193,16 @@ import ShowHtmlCode from './show-html-code.vue'
 
 import DataTable from './data-table.vue'
 
-import {
-  DATAS,
-  GET_PACKAGE_ATTRIBUTES_DETAIL,
-  GET_PACKAGE_SLOTS_DETAIL,
-  GET_PACKAGE_EVENTS_DETAIL,
-  GET_PACKAGE_EXPOSES_DETAIL
-} from './../models.js'
+import { DATAS } from './datas.js'
 
-import ReloadByI18n from '../tools/mixins/reload-by-i18n.js'
+import {
+  GET_ATTRIBUTES_DETAIL,
+  GET_SLOTS_DETAIL,
+  GET_EVENTS_DETAIL,
+  GET_EXPOSES_DETAIL
+} from '@models/attributes/detail.js'
+
+import ReloadByI18n from '@tools/mixins/reload-by-i18n.js'
 
 export default {
   name: 'play-helps',
@@ -231,10 +232,10 @@ export default {
   },
   data() {
     return {
-      attributes: GET_PACKAGE_ATTRIBUTES_DETAIL(),
-      slots: GET_PACKAGE_SLOTS_DETAIL(),
-      events: GET_PACKAGE_EVENTS_DETAIL(),
-      exposes: GET_PACKAGE_EXPOSES_DETAIL(),
+      attributes: GET_ATTRIBUTES_DETAIL(),
+      slots: GET_SLOTS_DETAIL(),
+      events: GET_EVENTS_DETAIL(),
+      exposes: GET_EXPOSES_DETAIL(),
       operateMode: 'simple', // simple, detail
       show_code: false,
       originTableDatas: DATAS,
@@ -289,10 +290,6 @@ export default {
   },
   mounted() {},
   methods: {
-    placeholderText(value) {
-      if (value == '' || value == undefined) return undefined
-      return value
-    },
     fetchNames() {
       if (this.attributes.dropdownLoading.value == true) return
       this.attributes.dropdownLoading.value = true
