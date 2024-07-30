@@ -25,7 +25,7 @@
       "clearable": "是否啟用清空按鈕",
       "merge": "合併相同key值的option",
       "keyboard": "是否啟用keyboard操作",
-      "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作",
+      "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作, 左右可編輯tag",
       "transition": "是否啟用css動畫效果",
       "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
       "tagPosition__notice": "無論上下方並不影響 <code class='tag'>keyboard</code> 的操作",
@@ -128,7 +128,7 @@
           "value": "標籤的value值",
           "valueElm": "value的顯示元件",
           "titleElm": "title的顯示元件",
-          "classList": "自定義的class name", 
+          "classList": "自定義的class name",
           "custom": "完成tag後, 是否允許任意修改標籤的value值",
           "displayValue": "完成tag後, 是否改顯示標籤的value值"
         }

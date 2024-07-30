@@ -85,7 +85,7 @@ const appAttributes = inject('attributes')
         </div>
         <div :class="{ 'd-none d-md-block': attribute.acceptedValues.length == 0 }">
           <span class="i-block d-md-none">{{ $t(`ui.general.AcceptedValues`) }}: </span>
-          <span>{{ attribute.acceptedValues.join(' / ').replace('null', '-') }}</span>
+          <span>{{ attribute.acceptedValues.join(' / ').replace('null', '-') || '-' }}</span>
         </div>
         <div>
           <span class="i-block d-md-none">{{ $t(`ui.general.Default`) }}: </span>
