@@ -10,8 +10,8 @@ import ALineCode from './tools/a-line-code.vue'
 
 const i18n = 'attributes.option'
 
-const firstDemoStatus = ref([])
-const secondDemoStatus = ref([])
+const firstDemoStatus = ref(['selecting'])
+const secondDemoStatus = ref(['selecting'])
 
 const framework = inject('framework')
 </script>

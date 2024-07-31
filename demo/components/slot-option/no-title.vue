@@ -12,8 +12,8 @@ const i18n = "attributes.option";
 
 const elGeneralDemo = ref(null);
 const demoStatus = ref([]);
-const dropdownDisplayAll = ref('false');
-const isTitle = ref('false');
+const dropdownDisplayAll = ref(false);
+const isTitle = ref(false);
 
 watch(dropdownDisplayAll, async () => {
   await nextTick();
@@ -41,8 +41,8 @@ watch(isTitle, async () => {
         </div>
 
         <ALineCode
-          :isNotTitle="!$toBoolean(isTitle)"
-          :bolders="dropdownDisplayAll == 'true' ? ['displayAll'] : []"
+          :isNotTitle="!isTitle"
+          :bolders="dropdownDisplayAll == true ? ['displayAll'] : []"
         />
       </div>
 
@@ -57,12 +57,12 @@ watch(isTitle, async () => {
             :displayShowCodeBtn="false"
             :dropdown="{
               country: {
-                displayAll: $toBoolean(dropdownDisplayAll), 
+                displayAll: dropdownDisplayAll, 
               },
               name: {isDisplayForDemo: false},
             }"
             :option="{
-              country: [{title: $toBoolean(isTitle)}],
+              country: [{title: isTitle}],
             }"
           >
           </GeneralDemo>

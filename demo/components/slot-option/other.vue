@@ -1,27 +1,25 @@
-
 <script>
 export default {
-  name: "option-other-attributes",
-};
+  name: 'option-other-attributes'
+}
 </script>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive } from 'vue'
 
-import ALineCode from "./tools/a-line-code.vue";
+import ALineCode from './tools/a-line-code.vue'
 
-const demoStatus = ref([]);
+const demoStatus = ref([])
 const attributes = reactive({
-  disabled: "false",
-  divided: "false",
-  displayAll: "true",
+  disabled: false,
+  divided: false,
+  displayAll: true
 })
-
 </script>
 
 <template>
   <div id="option-other-attributes" class="demo" :class="demoStatus">
-    <hr>
+    <hr />
 
     <div class="flex-between to5-5">
       <div class="attributes">
@@ -44,13 +42,18 @@ const attributes = reactive({
           </div>
         </div>
 
-        <ALineCode :bolders="$objectKeyToArray(attributes, 'true')" />
+        <ALineCode :bolders="$objectKeyToArray(attributes, true)" />
       </div>
 
       <div class="demo-app">
         <h4>
           <p>
-            * {{ $t(`ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_second_option`) }}
+            *
+            {{
+              $t(
+                `ui.page.sentence.The_attributes_changes_in_this_demo_will_only_affect_the_second_option`
+              )
+            }}
           </p>
         </h4>
         <GeneralDemo
@@ -59,14 +62,15 @@ const attributes = reactive({
           :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
-            country: {displayAll: true},
-            name: {isDisplayForDemo: false},
+            country: { displayAll: true },
+            name: { isDisplayForDemo: false }
           }"
           :option="{
             country: [
-              {}, {
-                disabled: $toBoolean(attributes.disabled),
-                divided: $toBoolean(attributes.divided),
+              {},
+              {
+                disabled: attributes.disabled,
+                divided: attributes.divided
               }
             ]
           }"
