@@ -2,7 +2,7 @@ import {
   DEMO_SETTING as SETTING,
   merge_v_dropdowns,
   merge_v_options
-} from "../../../models/demo-setting.js";
+} from "@models/demo-setting.js";
 
 const DEMO_SETTING = JSON.parse(JSON.stringify(SETTING));
 

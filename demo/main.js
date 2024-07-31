@@ -8,7 +8,6 @@ import ToolTitle from "./components/tools/title.vue";
 
 import "./vendors/google-code-prettify/prettify";
 
-// import "./assets/main.css";
 import VueTagsMultiselect from "../src/index";
 
 const app = createApp(App);
