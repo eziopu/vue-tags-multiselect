@@ -49,7 +49,6 @@ const optionORConjunction = ref('')
         class="demo-app"
         v-model="demoStatus"
         :autoFocus="true"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :slots="{
           optionORConjunction: optionORConjunction

@@ -26,7 +26,6 @@ const demoStatus = ref([])
         v-model="demoStatus"
         :autoFocus="true"
         :displayOutput="true"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
           placeholder: 'click country option!'

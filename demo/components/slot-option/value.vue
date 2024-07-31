@@ -52,7 +52,6 @@ const framework = inject('framework')
               :key="`filled`"
               :autoFocus="true"
               :displayOutput="true"
-              :displayRefreshBtn="true"
               :displayShowCodeBtn="false"
               :dropdown="{
                 country: { isDisplayForDemo: true, displayAll: true },
@@ -68,7 +67,6 @@ const framework = inject('framework')
               :key="`not_filled`"
               :autoFocus="true"
               :displayOutput="true"
-              :displayRefreshBtn="true"
               :displayShowCodeBtn="false"
               :dropdown="{
                 country: { isDisplayForDemo: true, displayAll: true },

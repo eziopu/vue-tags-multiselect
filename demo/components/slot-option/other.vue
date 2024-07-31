@@ -59,7 +59,6 @@ const attributes = reactive({
         <GeneralDemo
           v-model="demoStatus"
           :autoFocus="true"
-          :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
             country: { displayAll: true },

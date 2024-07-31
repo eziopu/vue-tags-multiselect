@@ -95,7 +95,6 @@ const attributes = reactive({
         </h4>
         <GeneralDemo
           :autoFocus="true"
-          :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
             country: {

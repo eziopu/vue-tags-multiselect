@@ -20,7 +20,6 @@ import ALineCode from './tools/a-line-code.vue'
       <div>
         <h4>true</h4>
         <GeneralDemo
-          :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
             name: { isDisplayForDemo: false }
@@ -35,7 +34,6 @@ import ALineCode from './tools/a-line-code.vue'
           false <small> *{{ $t('ui.general.Default', 0) }}</small>
         </h4>
         <GeneralDemo
-          :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
             name: { isDisplayForDemo: false }

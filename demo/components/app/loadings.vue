@@ -33,7 +33,6 @@ provide('getLoadingAttributes', () => attributes);
     <div class="demo-app" :class="appStatus">
       <GeneralDemo
         v-model="appStatus"
-        :displayRefreshBtn="true"
         :autoFocus="true"
         :app="{
           loading: attributes.loading,

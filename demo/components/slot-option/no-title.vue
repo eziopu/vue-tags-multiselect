@@ -53,7 +53,6 @@ watch(isTitle, async () => {
             ref="elGeneralDemo"
             :autoFocus="true"
             :displayOutput="true"
-            :displayRefreshBtn="true"
             :displayShowCodeBtn="false"
             :dropdown="{
               country: {
