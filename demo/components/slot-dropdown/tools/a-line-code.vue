@@ -1,6 +1,6 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
-<pre class="tag prettyprint lang-html customize"><code><!--
+  <pre class="tag prettyprint lang-html customize"><code><!--
   -->&lt;v-tags-multiselect<br><!--
   --><Space />v-model="result"<br><!--
   -->&gt;<br><!--
@@ -28,32 +28,32 @@
 </template>
 
 <script>
-import Space from "@tools/show-html-code/space.vue";
+import Space from '@tools/show-html-code/space.vue'
 export default {
-  name: "dropdown-tools-line-code",
+  name: 'dropdown-tools-line-code',
   components: {
-    Space,
+    Space
   },
   props: {
     bolders: {
       type: Array,
       default: () => {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   computed: {
     isToMuch() {
-      return this.bolders.filter(item => item !== "divided").length >= 3;
-    },
+      return this.bolders.filter((item) => item !== 'divided').length >= 3
+    }
   },
   methods: {
     getClass(input) {
       return { bolder: this.isBolder(input) }
     },
     isBolder(input) {
-      return this.bolders.includes(input);
-    },
-  },
-};
+      return this.bolders.includes(input)
+    }
+  }
+}
 </script>

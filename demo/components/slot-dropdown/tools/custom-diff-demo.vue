@@ -2,14 +2,11 @@
   <div class="custom-diff-demo">
     <div class="depiction">
       <h6>{{ appCustomer }}</h6>
-      <span v-if="appCustomer == false"> *{{ $t("ui.general.Default", 0) }} </span>
+      <span v-if="appCustomer == false"> *{{ $t('ui.general.Default', 0) }} </span>
     </div>
 
     <div class="demo-component relative">
-      <v-tags-multiselect
-        v-if="reloadByI18n"
-        deleteIcon="none"
-      >
+      <v-tags-multiselect v-if="reloadByI18n" deleteIcon="none">
         <v-tag-dropdown value="country" :custom="appCustomer">
           <v-tag-option title>
             <i class="fa fa-flag"></i> {{ $t(`ui.general.Country`) }}
@@ -43,24 +40,24 @@
 </template>
 
 <script>
-import ALineCode from "./a-line-code.vue";
-import ReloadByI18n from "@tools/mixins/reload-by-i18n.js";
+import ALineCode from './a-line-code.vue'
+import ReloadByI18n from '@tools/mixins/reload-by-i18n.js'
 
 export default {
-  name: "dropdown-custom-diff-demo",
+  name: 'dropdown-custom-diff-demo',
   mixins: [ReloadByI18n],
   props: {
     appCustomer: {
       type: Boolean,
       default: () => {
-        return true;
-      },
-    },
+        return true
+      }
+    }
   },
   components: {
-    ALineCode,
-  },
-};
+    ALineCode
+  }
+}
 </script>
 
 <style scoped lang="scss">

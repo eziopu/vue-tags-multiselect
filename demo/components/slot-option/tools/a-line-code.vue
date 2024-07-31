@@ -1,6 +1,6 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
-<pre class="tag prettyprint lang-html customize"><code><!--
+  <pre class="tag prettyprint lang-html customize"><code><!--
   -->&lt;v-tags-multiselect v-model="result"&gt;<br><!--
     --><Space />&lt;v-tag-dropdown value="country"<span v-if="isBolder('displayAll')"> display-all</span>&gt;<br><!--
 
@@ -31,37 +31,37 @@
 </template>
 
 <script>
-import Space from "@tools/show-html-code/space.vue";
+import Space from '@tools/show-html-code/space.vue'
 
 export default {
-  name: "option-tools-line-code",
+  name: 'option-tools-line-code',
   components: {
-    Space,
+    Space
   },
   props: {
     isNotTitle: {
       type: Boolean,
       default: () => {
-        return false;
-      },
+        return false
+      }
     },
     bolders: {
       type: Array,
       default: () => {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   methods: {
     renderData(input) {
-      return this.$t("ui." + input);
+      return this.$t('ui.' + input)
     },
     getClass(input) {
       return { bolder: this.isBolder(input) }
     },
     isBolder(input) {
-      return this.bolders.includes(input);
-    },
-  },
-};
+      return this.bolders.includes(input)
+    }
+  }
+}
 </script>
