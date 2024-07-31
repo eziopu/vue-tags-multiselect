@@ -64,7 +64,6 @@ const dropdownLoading = ref(true)
         class="demo-app"
         v-model="demoStatus"
         :autoFocus="true"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
           loading: loading,

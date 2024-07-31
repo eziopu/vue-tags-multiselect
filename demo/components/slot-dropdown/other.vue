@@ -1,22 +1,19 @@
 <script>
+export default {
+  name: 'dropdown-other-attributes'
+}
+</script>
+
+<script setup>
+import { reactive } from 'vue'
 import ALineCode from './tools/a-line-code.vue'
 
-export default {
-  name: 'dropdown-other-attributes',
-  components: {
-    ALineCode
-  },
-  data() {
-    return {
-      attributes: {
-        displayAll: 'false',
-        disabled: 'false',
-        divided: 'false',
-        hidden: 'false'
-      }
-    }
-  }
-}
+const attributes = reactive({
+  displayAll: false,
+  disabled: false,
+  divided: false,
+  hidden: false
+})
 </script>
 
 <template>
@@ -43,7 +40,7 @@ export default {
             <LabelAndControls
               label=""
               v-model="attributes.displayAll"
-              :disabled="attributes.hidden == 'true'"
+              :disabled="attributes.hidden == true"
             />
           </div>
         </div>
@@ -55,7 +52,7 @@ export default {
             </div>
             <LabelAndControls
               label=""
-              :disabled="attributes.hidden == 'true'"
+              :disabled="attributes.hidden == true"
               v-model="attributes.disabled"
             />
           </div>
@@ -71,11 +68,15 @@ export default {
             <div class="depiction">
               {{ $t(`attributes.dropdown.divided`) }}
             </div>
-            <LabelAndControls label="" v-model="attributes.divided" />
+            <LabelAndControls
+              label=""
+              v-model="attributes.divided"
+              :disabled="attributes.hidden == true"
+            />
           </div>
         </div>
 
-        <ALineCode :bolders="$objectKeyToArray(attributes, 'true')" />
+        <ALineCode :bolders="$objectKeyToArray(attributes, true)" />
       </div>
 
       <div class="demo-app">
@@ -94,16 +95,15 @@ export default {
         </h4>
         <GeneralDemo
           :autoFocus="true"
-          :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
             country: {
-              displayAll: $toBoolean(attributes.displayAll),
-              disabled: $toBoolean(attributes.disabled),
-              hidden: $toBoolean(attributes.hidden)
+              displayAll: attributes.displayAll,
+              disabled: attributes.disabled,
+              hidden: attributes.hidden
             },
             name: {
-              divided: $toBoolean(attributes.divided)
+              divided: attributes.divided
             }
           }"
         />

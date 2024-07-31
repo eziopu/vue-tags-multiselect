@@ -29,7 +29,6 @@ const demoStatus = ref([])
       <GeneralDemo
         v-model="demoStatus"
         :displayOutput="true"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :dropdown="{
           name: { isDisplayForDemo: false }

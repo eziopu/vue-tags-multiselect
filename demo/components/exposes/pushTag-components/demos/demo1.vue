@@ -159,7 +159,6 @@ const i18nHasKey = `${i18nMain}.has-key`;
         v-model="demoStatus"
         :autoFocus="true"
         :displayOutput="true"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
           debugLog: true

@@ -55,7 +55,6 @@ const merge = ref(true)
       <GeneralDemo
         class="demo-app"
         v-model="demoStatus"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :app="{
           merge: merge

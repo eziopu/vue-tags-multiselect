@@ -82,7 +82,6 @@ const dropdownDisplayAll = ref(true);
         v-model="demoStatus"
         :autoFocus="true"
         :displayOutput="true"
-        :displayRefreshBtn="true"
         :displayShowCodeBtn="false"
         :dropdown="{
           name: {isDisplayForDemo: false},

@@ -93,7 +93,6 @@ const i18n = "attributes.exposes";
           ref="elGeneralDemo"
           v-model="demoStatus"
           :displayOutput="true"
-          :displayRefreshBtn="true"
           :displayShowCodeBtn="false"
           :dropdown="{
             country: {displayAll: true},
