@@ -13,6 +13,10 @@ header {
   background-color: var(--background-color-primary-transparent);
   transition: background-color var(--background-color-transition);
 
+  &:not(.active) {
+    backdrop-filter: blur(2px);
+  }
+
   a {
     text-decoration: none;
   }
@@ -34,6 +38,7 @@ header {
     height: 2.2rem;
     margin-right: .7rem;
     vertical-align: top;
+
     @media (max-width: 280px) {
       display: none;
     }
@@ -85,7 +90,7 @@ header {
   .navbar-dropdown {
     float: left;
     overflow: hidden;
-    
+
     &:hover {
       .navbar-dropdown--content {
         display: block;
@@ -175,7 +180,7 @@ header {
     height: 1px;
     // background: #fff;
     background: var(--text-color-primary);
-    transition-duration: calc(var(--burger--transition--time) * 1.5);;
+    transition-duration: calc(var(--burger--transition--time) * 1.5);
     transform-origin: 50% 50%;
 
     &:first-of-type {
@@ -197,18 +202,17 @@ header {
       top: 50%;
       margin-top: -0.5px;
       transition:
-        top var(--burger--transition--time)
-        margin var(--burger--transition--time),
+        top var(--burger--transition--time) margin var(--burger--transition--time),
         transform var(--burger--transition--time) ease var(--burger--transition--time);
       transform: rotate(-45deg);
     }
-  
+
     &:nth-of-type(2) {
       opacity: 0;
       transition-delay: calc(var(--burger--transition--time) * 0.8);
       transform: rotateY(90deg);
     }
-  
+
     &:nth-of-type(3) {
       bottom: 50%;
       margin-bottom: -0.5px;
@@ -235,6 +239,7 @@ header {
   z-index: 2;
 
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 
   transition: 0.5s cubic-bezier(0.17, 0.84, 0.44, 1);
   transition-property: background;
@@ -302,11 +307,12 @@ header.active .header-overlay {
         top: 10px;
         zoom: 1.4;
       }
+
       .navbar-github {
         left: 2.2rem;
       }
-      
-      .navbar-pages .navbar-dropdown--content{
+
+      .navbar-pages .navbar-dropdown--content {
         display: block;
       }
     }
