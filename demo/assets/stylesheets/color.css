@@ -30,3 +30,30 @@ html, body {
   color: var(--text-color-primary) !important;
   transition: background-color var(--background-color-transition);
 }
+
+/* =============================================================================
+ * = input
+** ========================================================================== */
+
+.dark-theme .form-control {
+  background-color: #333 !important;
+  border-color: #555 !important;
+  color: #fff !important;
+}
+
+.dark-theme .form-control:focus {
+  background-color: #444 !important;
+  border-color: #777 !important;
+  color: #fff !important;
+}
+
+.dark-theme .bootstrap .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}
+
+.dark-theme .form-control:disabled,
+.dark-theme .form-control[readonly] {
+  background-color: #555 !important;
+  border-color: #666 !important;
+  color: #888 !important;
+}
