@@ -16,15 +16,6 @@ export default {
           <p v-html="$t(`ui.page.addOption__details.${index}`)"></p>
         </li>
       </ul>
-
-      <div class="sub-depiction">
-        <br />
-        <p>
-          <a href="#dropdown-slots">
-            {{ $t(`ui.page.sentence.Go_to_detail_option_attributes_description`) }}
-          </a>
-        </p>
-      </div>
     </div>
 
     <GeneralDemo
