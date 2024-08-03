@@ -6,7 +6,7 @@ export default {
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 
 // 取得路由物件
 const router = useRouter()
@@ -15,9 +15,7 @@ const route = useRoute()
 const routes = router.getRoutes()
 
 // 計算當前路由的索引
-const currentIndex = computed(() => 
-  routes.findIndex(r => r.path === route.path)
-)
+const currentIndex = computed(() => routes.findIndex((r) => r.path === route.path))
 
 // 計算前一頁和下一頁
 const prevPage = computed(() => {

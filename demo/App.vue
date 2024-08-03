@@ -1,5 +1,8 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
 import Header from './components/layout/header/main.vue'
 import Pagination from './components/layout/pagination.vue'
 
@@ -12,8 +15,6 @@ const prettyCode = async () => {
 onMounted(() => {
   prettyCode()
 })
-
-
 
 // == Framework ==============
 const frameworks = ['default', 'bootstrap', 'semantic-ui']
@@ -57,7 +58,7 @@ if (
 
     <main class="page ui container" :class="framework">
       <div class="page-title">
-        <!-- <h2>{{ currentPage.replace(/-/g, ' ') }}</h2> -->
+        <h2>{{ route.name }}</h2>
 
         <div class="demo page-framework-css" v-if="framework != 'default'">
           <div class="demo-control">
