@@ -23,7 +23,9 @@ provide('framework', framework)
 provide('frameworks', readonly(frameworks))
 
 /* set framework */
-const urlQueryFramework = new URL(location.href).searchParams.get('framework')
+const url = new URL(window.location.href)
+const params = new URLSearchParams(url.hash.split('?')[1])
+const urlQueryFramework = params.get('framework')
 if (
   frameworks.find((framework) => {
     return framework == urlQueryFramework
