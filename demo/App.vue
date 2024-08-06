@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
-import { getCurrentInstance } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
-const { $toUpperCaseFirstLetter } = getCurrentInstance().appContext.config.globalProperties
+import Header from './components/layout/header/main.vue'
+import Pagination from './components/layout/pagination.vue'
 
 // == google-code-prettify ==============
 const prettyCode = async () => {
@@ -14,73 +16,6 @@ onMounted(() => {
   prettyCode()
 })
 
-// == Components ==============
-// import Keyboard from "./components/keyboard.vue";
-import Attributes from './components/app/main.vue'
-import Play from './components/play-helps/main.vue'
-// demo
-import HowToUse from './components/how-to-use/main.vue'
-import Slots from './components/slots/main.vue'
-import SlotDropdown from './components/slot-dropdown/main.vue'
-import SlotOption from './components/slot-option/main.vue'
-import Exposes from './components/exposes/main.vue'
-import Events from './components/events/main.vue'
-
-import Header from './components/layout/header/main.vue'
-import Pagination from './components/layout/pagination.vue'
-
-// == Page ==============
-const components = {
-  'How-to-use': HowToUse,
-  Attributes: Attributes,
-  Slots: Slots,
-  'Slot-dropdown': SlotDropdown,
-  'Slot-option': SlotOption,
-  Exposes: Exposes,
-  Events: Events,
-  Play: Play
-}
-const pages = Object.keys(components)
-const currentPage = ref(pages[0])
-provide('currentPage', currentPage)
-provide('pages', readonly(pages))
-
-const getComponentPage = (input) => {
-  const component = components[input]
-  return component ? component : components['HowToUse']
-}
-
-/* set current page */
-const urlPathname = new URL(location.href).pathname.replace(/\//g, '')
-if (urlPathname == '') {
-  currentPage.value = pages[0]
-} else {
-  const componentKey = $toUpperCaseFirstLetter(urlPathname)
-  if (components[componentKey] != undefined) {
-    currentPage.value = componentKey
-  }
-}
-
-const setCurrentPage = (input) => {
-  currentPage.value = input
-  const urlPage = input == pages[0] ? '' : input.toLowerCase()
-  pushURLPathnameState(urlPage)
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
-  prettyCode()
-}
-
-const pushURLPathnameState = (newPath) => {
-  const currentUrl = new URL(window.location.href)
-  currentUrl.pathname = newPath
-
-  const newUrl = currentUrl.href
-  window.history.pushState({ path: newUrl }, '', newUrl)
-}
-provide('setCurrentPage', setCurrentPage)
-
 // == Framework ==============
 const frameworks = ['default', 'bootstrap', 'semantic-ui']
 const framework = ref(frameworks[0])
@@ -88,7 +23,9 @@ provide('framework', framework)
 provide('frameworks', readonly(frameworks))
 
 /* set framework */
-const urlQueryFramework = new URL(location.href).searchParams.get('framework')
+const url = new URL(window.location.href)
+const params = new URLSearchParams(url.hash.split('?')[1])
+const urlQueryFramework = params.get('framework')
 if (
   frameworks.find((framework) => {
     return framework == urlQueryFramework
@@ -123,7 +60,7 @@ if (
 
     <main class="page ui container" :class="framework">
       <div class="page-title">
-        <h2>{{ currentPage.replace(/-/g, ' ') }}</h2>
+        <h2>{{ route.name }}</h2>
 
         <div class="demo page-framework-css" v-if="framework != 'default'">
           <div class="demo-control">
@@ -139,9 +76,11 @@ if (
         </div>
       </div>
 
-      <Transition name="out-in">
-        <component :is="getComponentPage(currentPage)" :framework="framework"> </component>
-      </Transition>
+      <router-view v-slot="{ Component }">
+        <Transition name="out-in">
+          <component :is="Component" :framework="framework"></component>
+        </Transition>
+      </router-view>
 
       <Pagination />
     </main>

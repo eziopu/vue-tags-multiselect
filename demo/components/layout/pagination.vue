@@ -1,46 +1,53 @@
 <script>
-  export default {
-    name: "main-pagination",
-  }
+export default {
+  name: 'main-pagination'
+}
 </script>
 
 <script setup>
-import { inject, computed } from "vue";
+import { useRoute, useRouter } from 'vue-router'
+import { computed } from 'vue'
 
-const setCurrentPage = inject("setCurrentPage");
-const currentPage = inject("currentPage");
-const pages = inject("pages") || [];
+// 取得路由物件
+const router = useRouter()
+const route = useRoute()
 
-const removeHyphen = (input = "") => {
-  return input.replace(/-/g, " ")
-}
+const routes = router.getRoutes()
 
-const pageInfo = computed(() => {
-  const currentIndex = pages.indexOf(currentPage.value);
-  const prev = currentIndex > 0 ? pages[currentIndex - 1] : undefined;
-  const next = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : undefined;
-  return { prev, next };
-});
+// 計算當前路由的索引
+const currentIndex = computed(() => routes.findIndex((r) => r.path === route.path))
 
+// 計算前一頁和下一頁
+const prevPage = computed(() => {
+  const index = currentIndex.value
+  return index > 0 ? routes[index - 1] : undefined
+})
+
+const nextPage = computed(() => {
+  const index = currentIndex.value
+  return index < routes.length - 1 ? routes[index + 1] : undefined
+})
 </script>
 
 <template>
   <nav class="page-nav">
     <span class="prev">
-      <a v-if="pageInfo.prev != undefined"  
-        @click="setCurrentPage(pageInfo.prev)"
-        :aria-label="pageInfo.prev"
+      <RouterLink
+        v-if="prevPage != undefined"
+        :aria-label="prevPage.name"
+        :to="{ path: prevPage.path, query: $route.query }"
       >
-        {{ removeHyphen(pageInfo.prev) }}
-      </a>
+        {{ prevPage.name }}
+      </RouterLink>
     </span>
     <span class="next">
-      <a v-if="pageInfo.next != undefined"  
-        @click="setCurrentPage(pageInfo.next)"
-        :aria-label="pageInfo.next"
+      <RouterLink
+        v-if="nextPage != undefined"
+        :aria-label="nextPage.name"
+        :to="{ path: nextPage.path, query: $route.query }"
       >
-        {{ removeHyphen(pageInfo.next) }}
-      </a>
+        {{ nextPage.name }}
+      </RouterLink>
     </span>
   </nav>
 </template>
@@ -61,12 +68,12 @@ const pageInfo = computed(() => {
   }
 
   .prev a:before {
-    content: "←";
+    content: '←';
     padding-right: 1rem;
   }
 
   .next a:after {
-    content: "→";
+    content: '→';
     padding-left: 1rem;
   }
 
@@ -76,11 +83,11 @@ const pageInfo = computed(() => {
     }
 
     .prev a:before {
-      padding-right: .3rem;
+      padding-right: 0.3rem;
     }
 
     .next a:after {
-      padding-left: .3rem;
+      padding-left: 0.3rem;
     }
   }
 }
