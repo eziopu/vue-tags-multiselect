@@ -1,15 +1,16 @@
-import { computed } from "vue";
+import { computed, inject } from "vue";
 
 export default function useSearch(props, _context, dep) {
   // ============== INJECT ================
 
-  const app = dep.app;
+  const appProps = inject("appProps");
+  const appElInputValue = inject("appElInputValue");
 
-  const dropdown = dep.dropdown;
+  const dropdownProps = inject("dropdownProps") || {};
 
   // ============== DATA ================
 
-  const value = props.title ? dropdown.props.value : props.value;
+  const value = props.title ? dropdownProps.value : props.value;
 
   const innerHTML = dep.innerHTML;
 
@@ -21,8 +22,8 @@ export default function useSearch(props, _context, dep) {
 
   const isCanSearch = computed(() => {
     return (
-      app.props.search == true &&
-      (app.elInputValue.value != "" || props.system == false)
+      appProps.search == true &&
+      (appElInputValue.value != "" || props.system == false)
     );
   });
 
@@ -31,7 +32,7 @@ export default function useSearch(props, _context, dep) {
       return false;
     }
 
-    const regex = new RegExp(app.elInputValue.value, "i");
+    const regex = new RegExp(appElInputValue.value, "i");
     const searchValue = String(value).search(regex);
     const searchInnerHTML =
       strippedInnerHTML.value == "null"

@@ -117,11 +117,11 @@ export default function useDropdown(props) {
 
   // == System hidden ==============
 
+  const appIsUndoOptionVisible = inject("appIsUndoOptionVisible");
+  const appIsORConjunctionOptionVisible = inject(
+    "appIsORConjunctionOptionVisible"
+  );
   const isHiddenBySystem = () => {
-    const appIsUndoOptionVisible = inject("appIsUndoOptionVisible");
-    const appIsORConjunctionOptionVisible = inject(
-      "appIsORConjunctionOptionVisible"
-    );
     return !(
       appIsUndoOptionVisible.value || appIsORConjunctionOptionVisible.value
     );
@@ -129,8 +129,6 @@ export default function useDropdown(props) {
 
   // == IsDown ==============
 
-  // const appTags = inject("appTags");
-  // const appProps = inject("appProps");
   const appConjunction = inject("appConjunction");
 
   // 移除 isTitle 為 true 的

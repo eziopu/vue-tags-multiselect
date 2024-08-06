@@ -23,7 +23,6 @@
 
 <script>
 import resolve from "./../../utils/resolve";
-import useInjects from "./composables/useInjects";
 import useSetTag from "./composables/useSetTag";
 import useSearch from "./composables/useSearch";
 import useOption from "./composables/useOption";
@@ -41,7 +40,6 @@ export default {
   },
   setup(props, context) {
     return resolve(props, context, [
-      useInjects,
       useSetTag,
       useSearch,
       useOption,
