@@ -1,19 +1,28 @@
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, inject } from "vue";
 
 import { getTagModel } from "../../../models";
 
 import clearHTML from "../../../utils/clearHTML";
 
-export default function useDropdown(props, context, dep) {
+export default function useDropdown(props, _context, dep) {
   // ============== REFS ==============
 
   const elOption = ref(null);
 
   // ============== INJECTs ================
 
-  const app = dep.app;
+  const appEditTagIndex = inject("appEditTagIndex");
+  const appUpdateTag = inject("appUpdateTag");
+  const appReFocus = inject("appReFocus");
+  const appNextReFocusDontInit = inject("appNextReFocusDontInit");
+  const appSetStashTag = inject("appSetStashTag");
+  const appSetTagToTags = inject("appSetTagToTags");
+  const appCallOptionSetTag = inject("appCallOptionSetTag");
+  const appCallOptionSetTagFinish = inject("appCallOptionSetTagFinish");
 
-  const dropdown = dep.dropdown;
+  const dropdownProps = inject("dropdownProps") || {};
+  const dropdownClassList = inject("dropdownClassList") || [];
+  const dropdownGetTitleInnerHTML = inject("dropdownGetTitleInnerHTML") || "";
 
   // ============== DATA ==============
 
@@ -30,16 +39,16 @@ export default function useDropdown(props, context, dep) {
 
   const prototypeStashTag = computed(() => {
     const result = Object.seal({ ...getTagModel() });
-    result.custom = dropdown.props.custom;
-    result.classList = dropdown.classList.value;
+    result.custom = dropdownProps.custom;
+    result.classList = dropdownClassList.value;
     result.displayValue = props.displayValue;
 
     if (props.title) {
-      result.key = dropdown.props.value;
+      result.key = dropdownProps.value;
       result.titleElm = innerHTML.value;
     } else {
-      result.key = dropdown.props.value;
-      result.titleElm = dropdown.getTitleInnerHTML.value;
+      result.key = dropdownProps.value;
+      result.titleElm = dropdownGetTitleInnerHTML.value;
       result.value = props.value;
       result.valueElm = innerHTML.value;
     }
@@ -61,37 +70,37 @@ export default function useDropdown(props, context, dep) {
     }
 
     // 編輯模式
-    if (app.editTagIndex.value != -1) {
-      app.updateTag(prototypeStashTag.value);
-      app.reFocus();
+    if (appEditTagIndex.value != -1) {
+      appUpdateTag(prototypeStashTag.value);
+      appReFocus();
       return;
     }
 
     if (prototypeStashTag.value.valueElm != null) {
-      app.setTagToTags(prototypeStashTag.value);
-      app.setStashTag();
+      appSetTagToTags(prototypeStashTag.value);
+      appSetStashTag();
     } else {
-      app.setStashTag(prototypeStashTag.value);
-      app.nextReFocusDontInit();
+      appSetStashTag(prototypeStashTag.value);
+      appNextReFocusDontInit();
     }
-    app.reFocus();
+    appReFocus();
   };
 
-  watch(app.callOptionSetTag, (value) => {
+  watch(appCallOptionSetTag, (value) => {
     if (
       props.title == false &&
-      value.key == dropdown.props.value &&
+      value.key == dropdownProps.value &&
       value.value == props.value
     ) {
       handleClick();
-      app.callOptionSetTagFinish();
+      appCallOptionSetTagFinish();
     } else if (
       props.title == true &&
-      value.key == dropdown.props.value &&
+      value.key == dropdownProps.value &&
       value.valueIsCustome == true
     ) {
       handleClick();
-      app.callOptionSetTagFinish();
+      appCallOptionSetTagFinish();
     }
   });
 

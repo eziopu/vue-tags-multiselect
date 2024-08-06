@@ -1,7 +1,7 @@
 import { ref, watch, inject, onMounted, onBeforeUnmount } from "vue";
 import clearHTML from "../../../utils/clearHTML";
 
-export default function useRegistration(props, context, dep) {
+export default function useRegistration(props, _context, dep) {
   // ============== DATA ================
 
   const isDuplicateOption = ref(false);
@@ -16,15 +16,16 @@ export default function useRegistration(props, context, dep) {
     return clearHTML(elOption.value.innerHTML);
   };
 
+  const dropdownProps = inject("dropdownProps") || {};
+  const dropdownOptionStatus = inject("dropdownOptionStatus") || {};
   onMounted(() => {
-    const dropdown = dep.dropdown;
-    if (dropdown.props.system == true) {
+    if (dropdownProps.system == true) {
       return;
     }
-    const value = props.title == true ? dropdown.props.value : props.value;
+    const value = props.title == true ? dropdownProps.value : props.value;
     const registrationName = value + "_" + getInnerHTML();
 
-    if (dropdown.optionStatus[registrationName] != undefined) {
+    if (dropdownOptionStatus[registrationName] != undefined) {
       isDuplicateOption.value = true;
       const log = inject("log");
       const log2 = inject("log2");
@@ -35,12 +36,12 @@ export default function useRegistration(props, context, dep) {
         } options! last option will be forced to be hidden.`,
         `error`
       );
-      log2(`dropdown key:${dropdown.props.value}`);
+      log2(`dropdown key:${dropdownProps.value}`);
       log2(`value:${value}`);
       return;
     }
 
-    dropdown.optionStatus[registrationName] = {
+    dropdownOptionStatus[registrationName] = {
       isTitle: props.title,
       isHidden: false,
       isSelected: false,
@@ -54,7 +55,7 @@ export default function useRegistration(props, context, dep) {
     watch(
       isHidden,
       (value) => {
-        dropdown.optionStatus[registrationName].isHidden = value;
+        dropdownOptionStatus[registrationName].isHidden = value;
       },
       { immediate: true }
     );
@@ -62,7 +63,7 @@ export default function useRegistration(props, context, dep) {
     watch(
       isSelected,
       (value) => {
-        dropdown.optionStatus[registrationName].isSelected = value;
+        dropdownOptionStatus[registrationName].isSelected = value;
       },
       { immediate: true }
     );
@@ -70,13 +71,13 @@ export default function useRegistration(props, context, dep) {
     watch(
       isSearchable,
       (value) => {
-        dropdown.optionStatus[registrationName].isBeSearched = value;
+        dropdownOptionStatus[registrationName].isBeSearched = value;
       },
       { immediate: true }
     );
 
     onBeforeUnmount(() => {
-      delete dropdown.optionStatus[registrationName];
+      delete dropdownOptionStatus[registrationName];
     });
   });
 

@@ -3,9 +3,16 @@ import { ref, watch, computed, inject, onMounted } from "vue";
 export default function useDropdown(props, _context, dep) {
   // ============== INJECTs ================
 
-  const app = dep.app;
+  const appProps = inject("appProps");
+  const appTags = inject("appTags");
+  const appEditTagIndex = inject("appEditTagIndex");
+  const appStashTag = inject("appStashTag");
+  const appConjunction = inject("appConjunction");
 
-  const dropdown = dep.dropdown;
+  const dropdownProps = inject("dropdownProps") || {};
+  const dropdownIsDown = inject("dropdownIsDown") || false;
+  const dropdownIsAnyOptionBeSearched = inject("dropdownIsAnyOptionBeSearched") || false;
+  const dropdownDisplayAll = inject("dropdownDisplayAll") || false;
 
   // ============== DATA ==============
 
@@ -18,17 +25,17 @@ export default function useDropdown(props, _context, dep) {
   const isSearchable = dep.isSearchable;
 
   const isDisabled = computed(() => {
-    if (dropdown.props.disabled == true) {
+    if (dropdownProps.disabled == true) {
       return true;
     }
-    return props.disabled || app.props.disabled;
+    return props.disabled || appProps.disabled;
   });
 
   const isSelected = computed(() => {
-    return app.tags.find((tag) => {
+    return appTags.find((tag) => {
       return (
         tag != undefined &&
-        tag.key == dropdown.props.value &&
+        tag.key == dropdownProps.value &&
         tag.value == props.value
       );
     })
@@ -37,15 +44,15 @@ export default function useDropdown(props, _context, dep) {
   });
 
   const isSelectedByKey = computed(() => {
-    return app.tags.find((tag) => {
-      return tag != undefined && tag.key == dropdown.props.value;
+    return appTags.find((tag) => {
+      return tag != undefined && tag.key == dropdownProps.value;
     })
       ? true
       : false;
   });
 
   const isHidden = computed(() => {
-    if (dropdown.props.system == true) {
+    if (dropdownProps.system == true) {
       return false;
     }
 
@@ -56,28 +63,28 @@ export default function useDropdown(props, _context, dep) {
     }
 
     // 編輯模式
-    if (app.editTagIndex.value != -1) {
+    if (appEditTagIndex.value != -1) {
       if (isTitle) {
         return true;
       }
-      return app.stashTag.key != dropdown.props.value ? true : false;
+      return appStashTag.key != dropdownProps.value ? true : false;
     }
 
     // selecting no key
-    if (app.conjunction.value == "AND" || app.conjunction.value == "") {
+    if (appConjunction.value == "AND" || appConjunction.value == "") {
       if (isSelectedByKey.value == true) {
         return true;
       }
     }
 
     // dropdown 已全部選擇過 且未啟用custom
-    if (dropdown.isDown.value == true) {
+    if (dropdownIsDown.value == true) {
       return true;
     }
 
     // 一般選擇情境
-    if (app.stashTag.key != undefined) {
-      if (app.stashTag.key != dropdown.props.value) {
+    if (appStashTag.key != undefined) {
+      if (appStashTag.key != dropdownProps.value) {
         return true;
       } else {
         return isTitle ? true : false;
@@ -86,7 +93,7 @@ export default function useDropdown(props, _context, dep) {
 
     if (isCanSearch.value == true) {
       if (isTitle == true) {
-        return dropdown.isAnyOptionBeSearched.value == true
+        return dropdownIsAnyOptionBeSearched.value == true
           ? false
           : !isSearchable.value;
       } else {
@@ -95,7 +102,7 @@ export default function useDropdown(props, _context, dep) {
     }
 
     if (isTitle == false) {
-      return !dropdown.displayAll.value;
+      return !dropdownDisplayAll.value;
     }
 
     return false;
@@ -109,7 +116,7 @@ export default function useDropdown(props, _context, dep) {
   const log2 = inject("log2");
   onMounted(() => {
     if (props.selected == true) {
-      log(`option(key:${dropdown.props.value}, value:${props.value})`);
+      log(`option(key:${dropdownProps.value}, value:${props.value})`);
       log2(`props.selected is true`);
       log2(`the tag will be automatically generated`);
       handleClick();
@@ -124,7 +131,7 @@ export default function useDropdown(props, _context, dep) {
     watch(
       appRequestOptionClick,
       (value) => {
-        if (value.key == dropdown.props.value && value.value == props.value) {
+        if (value.key == dropdownProps.value && value.value == props.value) {
           handleClick();
           appRequestOptionClickInit();
         }
