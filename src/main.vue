@@ -30,6 +30,7 @@
         </template>
       </VTag>
     </div>
+    
     <div class="v-tags-multiselect__main">
       <div
         class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
@@ -230,9 +231,9 @@ export default defineComponent({
     cursor: text;
     min-width: 0;
     min-height: 30px;
-    padding: 0 0.2em;
-    padding-right: 0.8em;
+    padding-left: 3px;
   }
+
   &.disabled,
   &.disabled input {
     cursor: not-allowed !important;
@@ -257,7 +258,6 @@ export default defineComponent({
       position: relative;
       width: 100%;
       flex: 1;
-      // overflow: hidden;
     }
 
     .v-tags-multiselect__main--fill {
@@ -267,11 +267,32 @@ export default defineComponent({
     }
   }
 
+  &.v-tag-top .overflow-tags{
+    padding-bottom: 3px;
+  }
+
+  &.v-tag-bottom .overflow-tags{
+    padding-top: 3px;
+  }
+
+  .v-tags-multiselect__main--stashTag,
+  .v-tags-multiselect__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) +
+  .v-tags-multiselect__main--stashTag {
+    padding-left: 3px;
+  }
+
   input {
     position: static;
     padding: 0;
-    margin: 0.2em;
-    margin-left: 0.14em !important;
+    margin: 3.2px;
+    margin-left: 4.8px !important;
     cursor: text;
     background: none transparent !important;
     border: none !important;

@@ -147,7 +147,6 @@ export default {
     vertical-align: -webkit-baseline-middle;
     background-color:#ebebeb;
     transition: background-color 0.3s ease;
-    margin: 0.2em 1.6px;
   }
 
   .v-tag__values {
