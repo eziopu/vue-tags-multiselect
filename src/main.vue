@@ -231,7 +231,7 @@ export default defineComponent({
     cursor: text;
     min-width: 0;
     min-height: 30px;
-    padding-left: 3px;
+    padding: 3px;
   }
 
   &.disabled,
@@ -291,7 +291,6 @@ export default defineComponent({
   input {
     position: static;
     padding: 0;
-    margin: 3.2px;
     margin-left: 4.8px !important;
     cursor: text;
     background: none transparent !important;
