@@ -231,7 +231,7 @@ export default defineComponent({
     cursor: text;
     min-width: 0;
     min-height: 30px;
-    padding: 3px;
+    // padding: 0 3px;
   }
 
   &.disabled,
@@ -274,19 +274,25 @@ export default defineComponent({
   &.v-tag-bottom .overflow-tags{
     padding-top: 3px;
   }
+  
+  // .v-tags-multiselect__tags:not(:empty) {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   align-items: center;
+  //   gap: 3px;
+  //   margin-right: 3px;
+  // }
 
-  .v-tags-multiselect__main--stashTag,
-  .v-tags-multiselect__tags {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 3px;
-  }
+  // .v-tags-multiselect__main--stashTag {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   align-items: center;
+  // }
 
-  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) +
-  .v-tags-multiselect__main--stashTag {
-    padding-left: 3px;
-  }
+  // .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) +
+  // .v-tags-multiselect__main--stashTag {
+  //   padding-left: 3px;
+  // }
 
   input {
     position: static;

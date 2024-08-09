@@ -144,7 +144,6 @@ export default {
 .v-tag {
   & {
     display: inline-flex;
-    vertical-align: -webkit-baseline-middle;
     background-color:#ebebeb;
     transition: background-color 0.3s ease;
   }
