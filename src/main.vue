@@ -31,7 +31,9 @@
       </VTag>
     </div>
     
-    <div class="v-tags-multiselect__main">
+    <div class="v-tags-multiselect__main" :class="{
+      emptyTag: isTagPositionVisible ? stashTag.key == null : tagsGroupByTitle.length == 0 && stashTag.key == null
+    }">
       <div
         class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
         ref="elTags"
@@ -51,15 +53,15 @@
         </VTag>
       </div>
 
-      <div
-        class="v-tags-multiselect__main--stashTag"
-        ref="elStashTag"
-        v-if="stashTag.key != null && isEditMode == false"
-      >
-        <VTag :tag="stashTag"> </VTag>
-      </div>
-
       <div class="v-tags-multiselect__main--controls" ref="elControls">
+        <div
+          class="v-tags-multiselect__main--stashTag"
+          ref="elStashTag"
+          v-if="stashTag.key != null && isEditMode == false"
+        >
+          <VTag :tag="stashTag"> </VTag>
+        </div>
+        
         <Transition :name="transition ? 'slide' : ''">
           <div
             class="v-tags-multiselect__main--dropdowns"
@@ -222,6 +224,19 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .v-tags-multiselect {
+  // spacing
+  .v-tags-multiselect__main {
+    padding-left: 3px;
+    padding-bottom: 3px;
+    &.emptyTag {
+      padding-top: 3px;
+    }
+  }
+  .v-tag {
+    margin-top: 3px;
+    margin-right: 3px;
+  }
+  
   .v-tags-multiselect__main {
     display: flex;
     flex-wrap: wrap;
@@ -230,8 +245,7 @@ export default defineComponent({
     text-align: left;
     cursor: text;
     min-width: 0;
-    min-height: 30px;
-    // padding: 0 3px;
+    min-height: 24px;
   }
 
   &.disabled,
@@ -253,7 +267,7 @@ export default defineComponent({
   .v-tags-multiselect__main--controls {
     & {
       display: flex;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       align-items: center;
       position: relative;
       width: 100%;
@@ -267,21 +281,17 @@ export default defineComponent({
     }
   }
 
-  &.v-tag-top .overflow-tags{
+  &.v-tag-top .overflow-tags {
     padding-bottom: 3px;
   }
 
-  &.v-tag-bottom .overflow-tags{
+  &.v-tag-bottom .overflow-tags {
     padding-top: 3px;
   }
-  
-  // .v-tags-multiselect__tags:not(:empty) {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   align-items: center;
-  //   gap: 3px;
-  //   margin-right: 3px;
-  // }
+
+  .v-tags-multiselect__tags:not(:empty) {
+    display: contents;
+  }
 
   // .v-tags-multiselect__main--stashTag {
   //   display: flex;
@@ -304,6 +314,8 @@ export default defineComponent({
     box-shadow: none !important;
     overflow: visible;
     width: 100%;
+    min-width: 120px;
+    min-height: 20px;
 
     &:focus {
       outline: none;
