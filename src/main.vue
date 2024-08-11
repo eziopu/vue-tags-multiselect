@@ -53,15 +53,15 @@
         </VTag>
       </div>
 
+      <div
+        class="v-tags-multiselect__main--stashTag"
+        ref="elStashTag"
+        v-if="stashTag.key != null && isEditMode == false"
+      >
+        <VTag :tag="stashTag"> </VTag>
+      </div>
+
       <div class="v-tags-multiselect__main--controls" ref="elControls">
-        <div
-          class="v-tags-multiselect__main--stashTag"
-          ref="elStashTag"
-          v-if="stashTag.key != null && isEditMode == false"
-        >
-          <VTag :tag="stashTag"> </VTag>
-        </div>
-        
         <Transition :name="transition ? 'slide' : ''">
           <div
             class="v-tags-multiselect__main--dropdowns"
@@ -224,7 +224,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .v-tags-multiselect {
-  // spacing
+  // tag spacing
   .v-tags-multiselect__main {
     padding-left: 3px;
     padding-bottom: 3px;
@@ -232,10 +232,21 @@ export default defineComponent({
       padding-top: 3px;
     }
   }
+  
   .v-tags-multiselect__tags:not(.overflow-tags) .v-tag,
   .v-tags-multiselect__main--stashTag .v-tag {
     margin-top: 3px;
     margin-right: 3px;
+  }
+
+  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
+    display: contents;
+  }
+  
+  .v-tags-multiselect__tags.overflow-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
   }
   
   .v-tags-multiselect__main {
@@ -288,15 +299,6 @@ export default defineComponent({
 
   &.v-tag-bottom .overflow-tags {
     padding-top: 3px;
-  }
-
-  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
-    display: contents;
-  }
-  .v-tags-multiselect__tags.overflow-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3px;
   }
 
   input {
