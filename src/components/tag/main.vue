@@ -143,7 +143,7 @@ export default {
 <style scoped lang="scss">
 .v-tag {
   & {
-    display: inline-flex;
+    display: flex;
     background-color:#ebebeb;
     transition: background-color 0.3s ease;
   }

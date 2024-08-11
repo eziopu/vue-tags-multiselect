@@ -232,7 +232,8 @@ export default defineComponent({
       padding-top: 3px;
     }
   }
-  .v-tag {
+  .v-tags-multiselect__tags:not(.overflow-tags) .v-tag,
+  .v-tags-multiselect__main--stashTag .v-tag {
     margin-top: 3px;
     margin-right: 3px;
   }
@@ -289,20 +290,14 @@ export default defineComponent({
     padding-top: 3px;
   }
 
-  .v-tags-multiselect__tags:not(:empty) {
+  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
     display: contents;
   }
-
-  // .v-tags-multiselect__main--stashTag {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   align-items: center;
-  // }
-
-  // .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) +
-  // .v-tags-multiselect__main--stashTag {
-  //   padding-left: 3px;
-  // }
+  .v-tags-multiselect__tags.overflow-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
 
   input {
     position: static;
