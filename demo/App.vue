@@ -1,10 +1,11 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
 import { useRoute } from 'vue-router'
-const route = useRoute()
-
 import Header from './components/layout/header/main.vue'
 import Pagination from './components/layout/pagination.vue'
+
+const route = useRoute()
+console.log('script setup')
 
 // == google-code-prettify ==============
 const prettyCode = async () => {
@@ -33,6 +34,15 @@ if (
 ) {
   framework.value = urlQueryFramework
 }
+
+onMounted(async () => {
+  if (framework.value === 'bootstrap') {
+    await import('./assets/stylesheets/UI-frameworks/bootstrap.scss')
+  } else if (framework.value === 'semantic-ui') {
+    await import('./assets/stylesheets/UI-frameworks/semantic-ui.scss')
+    await import('./assets/stylesheets/UI-frameworks/bootstrap-display.css')
+  }
+})
 </script>
 
 <template>
@@ -61,6 +71,7 @@ if (
     <main class="page ui container" :class="framework">
       <div class="page-title">
         <h2>{{ route.name }}</h2>
+        {{ framework }}
 
         <div class="demo page-framework-css" v-if="framework != 'default'">
           <div class="demo-control">
@@ -86,15 +97,6 @@ if (
     </main>
   </div>
 </template>
-
-<style lang="scss" v-if="framework == 'bootstrap'">
-@import './assets/stylesheets/UI-frameworks/bootstrap.scss';
-</style>
-
-<style lang="scss" v-if="framework == 'semantic-ui'">
-@import './assets/stylesheets/UI-frameworks/semantic-ui.scss';
-@import './assets/stylesheets/UI-frameworks/bootstrap-display.css';
-</style>
 
 <style lang="scss">
 @import './assets/stylesheets/color.css';
