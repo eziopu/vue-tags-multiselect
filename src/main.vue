@@ -222,21 +222,30 @@ export default defineComponent({
 })
 </script>
 
+<style>
+:root {
+  --v-tags-multiselect__tag-spacing: 3px;
+}
+</style>
+
 <style scoped lang="scss">
 .v-tags-multiselect {
   // tag spacing
   .v-tags-multiselect__main {
-    padding-left: 3px;
-    padding-bottom: 3px;
+    padding-left: var(--v-tags-multiselect__tag-spacing);
+    padding-bottom: var(--v-tags-multiselect__tag-spacing);
     &.emptyTag {
-      padding-top: 3px;
+      padding-top: var(--v-tags-multiselect__tag-spacing);
+    }
+    &:not(.emptyTag) .v-tags-multiselect__main--controls {
+      margin-top: var(--v-tags-multiselect__tag-spacing);
     }
   }
-  
+
   .v-tags-multiselect__tags:not(.overflow-tags) .v-tag,
   .v-tags-multiselect__main--stashTag .v-tag {
-    margin-top: 3px;
-    margin-right: 3px;
+    margin-top: var(--v-tags-multiselect__tag-spacing);
+    margin-right: var(--v-tags-multiselect__tag-spacing);
   }
 
   .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
@@ -246,7 +255,7 @@ export default defineComponent({
   .v-tags-multiselect__tags.overflow-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 3px;
+    gap: var(--v-tags-multiselect__tag-spacing);
   }
   
   .v-tags-multiselect__main {
@@ -279,7 +288,6 @@ export default defineComponent({
   .v-tags-multiselect__main--controls {
     & {
       display: flex;
-      // flex-wrap: wrap;
       align-items: center;
       position: relative;
       width: 100%;
