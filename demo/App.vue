@@ -1,21 +1,8 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import Header from './components/layout/header/main.vue'
 import Pagination from './components/layout/pagination.vue'
-
-const route = useRoute()
-console.log('script setup')
-
-// == google-code-prettify ==============
-const prettyCode = async () => {
-  await nextTick()
-  // eslint-disable-next-line no-undef
-  PR.prettyPrint()
-}
-onMounted(() => {
-  prettyCode()
-})
 
 // == Framework ==============
 const frameworks = ['default', 'bootstrap', 'semantic-ui']
@@ -35,13 +22,31 @@ if (
   framework.value = urlQueryFramework
 }
 
-onMounted(async () => {
+// == google-code-prettify ==============
+const prettyCode = async () => {
+  await nextTick()
+  setTimeout(() => {
+    // eslint-disable-next-line no-undef
+    PR.prettyPrint()
+  }, 500)
+}
+
+onMounted(() => {
+  // == package style for diff framework ==============
   if (framework.value === 'bootstrap') {
-    await import('./assets/stylesheets/UI-frameworks/bootstrap.scss')
+    import('./assets/stylesheets/UI-frameworks/bootstrap.scss')
   } else if (framework.value === 'semantic-ui') {
-    await import('./assets/stylesheets/UI-frameworks/semantic-ui.scss')
-    await import('./assets/stylesheets/UI-frameworks/bootstrap-display.css')
+    import('./assets/stylesheets/UI-frameworks/semantic-ui.scss')
+    import('./assets/stylesheets/UI-frameworks/bootstrap-display.css')
   }
+
+  prettyCode()
+})
+
+const route = useRoute()
+const router = useRouter()
+router.afterEach(() => {
+  prettyCode()
 })
 </script>
 
