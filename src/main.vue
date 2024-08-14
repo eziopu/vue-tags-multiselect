@@ -30,7 +30,10 @@
         </template>
       </VTag>
     </div>
-    <div class="v-tags-multiselect__main">
+    
+    <div class="v-tags-multiselect__main" :class="{
+      emptyTag: isTagPositionVisible ? stashTag.key == null : tagsGroupByTitle.length == 0 && stashTag.key == null
+    }">
       <div
         class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
         ref="elTags"
@@ -219,8 +222,42 @@ export default defineComponent({
 })
 </script>
 
+<style>
+:root {
+  --v-tags-multiselect__tag-spacing: 3px;
+}
+</style>
+
 <style scoped lang="scss">
 .v-tags-multiselect {
+  // tag spacing
+  .v-tags-multiselect__main {
+    padding-left: var(--v-tags-multiselect__tag-spacing);
+    padding-bottom: var(--v-tags-multiselect__tag-spacing);
+    &.emptyTag {
+      padding-top: var(--v-tags-multiselect__tag-spacing);
+    }
+    &:not(.emptyTag) .v-tags-multiselect__main--controls {
+      margin-top: var(--v-tags-multiselect__tag-spacing);
+    }
+  }
+
+  .v-tags-multiselect__tags:not(.overflow-tags) .v-tag,
+  .v-tags-multiselect__main--stashTag .v-tag {
+    margin-top: var(--v-tags-multiselect__tag-spacing);
+    margin-right: var(--v-tags-multiselect__tag-spacing);
+  }
+
+  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
+    display: contents;
+  }
+  
+  .v-tags-multiselect__tags.overflow-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--v-tags-multiselect__tag-spacing);
+  }
+  
   .v-tags-multiselect__main {
     display: flex;
     flex-wrap: wrap;
@@ -229,10 +266,9 @@ export default defineComponent({
     text-align: left;
     cursor: text;
     min-width: 0;
-    min-height: 30px;
-    padding: 0 0.2em;
-    padding-right: 0.8em;
+    min-height: 24px;
   }
+
   &.disabled,
   &.disabled input {
     cursor: not-allowed !important;
@@ -252,12 +288,10 @@ export default defineComponent({
   .v-tags-multiselect__main--controls {
     & {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       position: relative;
       width: 100%;
       flex: 1;
-      // overflow: hidden;
     }
 
     .v-tags-multiselect__main--fill {
@@ -267,17 +301,26 @@ export default defineComponent({
     }
   }
 
+  &.v-tag-top .overflow-tags {
+    padding-bottom: 3px;
+  }
+
+  &.v-tag-bottom .overflow-tags {
+    padding-top: 3px;
+  }
+
   input {
     position: static;
     padding: 0;
-    margin: 0.2em;
-    margin-left: 0.14em !important;
+    margin-left: 4.8px !important;
     cursor: text;
     background: none transparent !important;
     border: none !important;
     box-shadow: none !important;
     overflow: visible;
     width: 100%;
+    min-width: 120px;
+    min-height: 20px;
 
     &:focus {
       outline: none;

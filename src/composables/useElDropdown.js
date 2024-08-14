@@ -5,8 +5,6 @@ export default function useElDropdown(props, context, dep) {
 
   const appIsActive = dep.isActive;
 
-  const isTagPositionVisible = dep.isTagPositionVisible;
-
   const editTagIndex = dep.editTagIndex;
 
   const stashTag = dep.stashTag;
@@ -75,12 +73,12 @@ export default function useElDropdown(props, context, dep) {
 
   watch(editTagIndex, async (value) => {
     await nextTick();
-    
+
     const elControlsRect = elControls.value.getBoundingClientRect();
     let topOffset = elControlsRect.height || 0;
     let leftOffset = 0;
 
-    if (value != -1) {
+    if (value != -1 && isElDropdownVisible.value != false) {
       const editTag = elApp.value.querySelector(
         ".v-tags-multiselect__tags .v-tag.editing .v-tag__value.editing"
       );
@@ -94,11 +92,9 @@ export default function useElDropdown(props, context, dep) {
         leftOffset = elEditLeft - elControlsLeft || 0;
 
         // top
-        if (isTagPositionVisible.value == true) {
-          const elControlsTop = elControlsRect.top || 0;
-          const elEditBottom = elTagRect.bottom || 0;
-          topOffset = elEditBottom - elControlsTop || 0;
-        }
+        const elControlsTop = elControlsRect.top || 0;
+        const elEditBottom = elTagRect.bottom || 0;
+        topOffset = elEditBottom - elControlsTop || 0;
       }
     }
 

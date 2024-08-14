@@ -1,3 +1,8 @@
+
+:root {
+  --v-tags-multiselect__tag-spacing: 0.34rem !important;
+}
+
 .semantic-ui {
   .v-tags-multiselect {
     &.focus {
@@ -59,7 +64,6 @@
       font-weight: 700;
       border: 0 solid transparent;
       border-radius: .28571429rem;
-      margin: 0.1em 0.2em;
     }
     .v-tag i.fa {
       margin-right: 4px;

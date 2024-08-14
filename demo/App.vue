@@ -1,20 +1,8 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
-import { useRoute } from 'vue-router'
-const route = useRoute()
-
+import { useRoute, useRouter } from 'vue-router'
 import Header from './components/layout/header/main.vue'
 import Pagination from './components/layout/pagination.vue'
-
-// == google-code-prettify ==============
-const prettyCode = async () => {
-  await nextTick()
-  // eslint-disable-next-line no-undef
-  PR.prettyPrint()
-}
-onMounted(() => {
-  prettyCode()
-})
 
 // == Framework ==============
 const frameworks = ['default', 'bootstrap', 'semantic-ui']
@@ -33,6 +21,33 @@ if (
 ) {
   framework.value = urlQueryFramework
 }
+
+// == google-code-prettify ==============
+const prettyCode = async () => {
+  await nextTick()
+  setTimeout(() => {
+    // eslint-disable-next-line no-undef
+    PR.prettyPrint()
+  }, 500)
+}
+
+onMounted(() => {
+  // == package style for diff framework ==============
+  if (framework.value === 'bootstrap') {
+    import('./assets/stylesheets/UI-frameworks/bootstrap.scss')
+  } else if (framework.value === 'semantic-ui') {
+    import('./assets/stylesheets/UI-frameworks/semantic-ui.scss')
+    import('./assets/stylesheets/UI-frameworks/bootstrap-display.css')
+  }
+
+  prettyCode()
+})
+
+const route = useRoute()
+const router = useRouter()
+router.afterEach(() => {
+  prettyCode()
+})
 </script>
 
 <template>
@@ -61,6 +76,7 @@ if (
     <main class="page ui container" :class="framework">
       <div class="page-title">
         <h2>{{ route.name }}</h2>
+        {{ framework }}
 
         <div class="demo page-framework-css" v-if="framework != 'default'">
           <div class="demo-control">
@@ -86,15 +102,6 @@ if (
     </main>
   </div>
 </template>
-
-<style lang="scss" v-if="framework == 'bootstrap'">
-@import './assets/stylesheets/UI-frameworks/bootstrap.scss';
-</style>
-
-<style lang="scss" v-if="framework == 'semantic-ui'">
-@import './assets/stylesheets/UI-frameworks/semantic-ui.scss';
-@import './assets/stylesheets/UI-frameworks/bootstrap-display.css';
-</style>
 
 <style lang="scss">
 @import './assets/stylesheets/color.css';
