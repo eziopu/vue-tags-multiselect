@@ -373,6 +373,7 @@ export default defineComponent({
 
   .v-tags-clear {
     cursor: pointer;
+    padding-right: 3px;
     transform: scale(0.8);
   }
 
