@@ -52,6 +52,7 @@ export default function useKeyboard(props, _context, dep) {
 
   const horizontalClickEnable = ref(true);
   const isActiveElementContainApp = dep.isActiveElementContainApp;
+  const focusReInit = dep.focusReInit;
   watch(
     () => keydown.horizontalIndex,
     async (value) => {
@@ -65,6 +66,7 @@ export default function useKeyboard(props, _context, dep) {
         tagValues[tagValues.length - 1 - value].click();
       } else {
         if (isActiveElementContainApp() == true) {
+          focusReInit.value = true;
           focusApp();
         }
       }

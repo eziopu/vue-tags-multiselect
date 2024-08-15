@@ -270,7 +270,8 @@ export default defineComponent({
   }
 
   &.disabled,
-  &.disabled input {
+  &.disabled input,
+  &.disabled .v-tags-clear {
     cursor: not-allowed !important;
   }
 
@@ -371,7 +372,8 @@ export default defineComponent({
   }
 
   .v-tags-clear {
-    padding-left: 1em;
+    cursor: pointer;
+    padding-right: 3px;
     transform: scale(0.8);
   }
 

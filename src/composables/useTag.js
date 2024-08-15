@@ -122,8 +122,6 @@ export default function useTag(_props, context, dep) {
       return;
     }
 
-    // indexs.sort((a, b) => b - a);
-
     for (const index of indexs) {
       // Do not use splice.
       // deleting or updating tag by index may affect the calculation of the index.

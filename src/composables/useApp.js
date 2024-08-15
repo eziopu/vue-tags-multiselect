@@ -94,8 +94,6 @@ export default function useApp(props, context, dep) {
   };
 
   const elAppFocus = () => {
-    // dep.log("000 elAppFocus elAppFocus elAppFocus");
-
     if (!props.disabled) {
       elInput.value.focus();
       appEnable();
@@ -123,9 +121,6 @@ export default function useApp(props, context, dep) {
 
   const elInputBlur = () => {
     setTimeout(() => {
-      // const actElm = document.activeElement;
-      // dep.log("1 elInputBlur actElm=", actElm, isActiveElementContainApp());
-
       if (isActiveElementContainApp() == false) {
         dep.log(`InputBlur`, `available`);
         dep.log2(`actElm :`, document.activeElement);
