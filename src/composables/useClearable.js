@@ -27,6 +27,14 @@ export default function useClearable(props, context, dep) {
   }
 
   const clear = () => {
+    if (props.disabled) {
+      dep.log(
+        `clear`,
+        `method is not available while the props.disabled is 'true'`,
+        `warning`
+      );
+      return;
+    }
     clearTags();
     init();
 
