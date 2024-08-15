@@ -42,7 +42,6 @@ export default function useExposeSetTag(props, context, dep) {
   });
 
   const getIsMach = (inputKey = "", inputValue = "") => {
-    // dep.log("///////getIsMach/////////", inputKey, inputValue);
     let isMachKey = false;
     let isMachValue = false;
     if (inputKey != "") {
