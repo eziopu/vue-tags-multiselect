@@ -30,10 +30,15 @@
         </template>
       </VTag>
     </div>
-    
-    <div class="v-tags-multiselect__main" :class="{
-      emptyTag: isTagPositionVisible ? stashTag.key == null : tagsGroupByTitle.length == 0 && stashTag.key == null
-    }">
+
+    <div
+      class="v-tags-multiselect__main"
+      :class="{
+        emptyTag: isTagPositionVisible
+          ? stashTag.key == null
+          : tagsGroupByTitle.length == 0 && stashTag.key == null
+      }"
+    >
       <div
         class="v-tags-multiselect__main--tags v-tags-multiselect__tags"
         ref="elTags"
@@ -228,6 +233,19 @@ export default defineComponent({
 }
 </style>
 
+<style lang="scss">
+.v-tags-multiselect {
+  .v-tags-multiselect__main--dropdowns .v-hidden-in-dropdown {
+    display: none;
+  }
+  
+  .v-tags-multiselect__tags .v-hidden-in-tag,
+  .v-tags-multiselect__main--stashTag .v-hidden-in-tag {
+    display: none;
+  }
+}
+</style>
+
 <style scoped lang="scss">
 .v-tags-multiselect {
   // tag spacing
@@ -251,13 +269,13 @@ export default defineComponent({
   .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
     display: contents;
   }
-  
+
   .v-tags-multiselect__tags.overflow-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--v-tags-multiselect__tag-spacing);
   }
-  
+
   .v-tags-multiselect__main {
     display: flex;
     flex-wrap: wrap;
