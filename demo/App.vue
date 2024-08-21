@@ -76,7 +76,6 @@ router.afterEach(() => {
     <main class="page ui container" :class="framework">
       <div class="page-title">
         <h2>{{ route.name }}</h2>
-        {{ framework }}
 
         <div class="demo page-framework-css" v-if="framework != 'default'">
           <div class="demo-control">
