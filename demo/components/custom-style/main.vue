@@ -1,28 +1,16 @@
+<script>
+export default {
+  name: 'custom-style'
+}
+</script>
+<script setup>
+import Hidden from "./hidden.vue";
+</script>
+
 <template>
   <div id="custom-style" class="demo">
-    <div class="depiction">
-      <p v-html="$t(`ui.page.customStyle`)"></p>
+    <Hidden></Hidden>
 
-      <div class="sub-depiction">
-        <p v-html="$t(`ui.page.customStyle__details`)"></p>
-      </div>
-    </div>
-    <FocusDemoApp></FocusDemoApp>
+    <p></p>
   </div>
 </template>
-
-<script>
-import FocusDemoApp from "@tools/focus-demo-app.vue";
-
-export default {
-  name: "custom-style",
-  components: {
-    FocusDemoApp,
-  },
-};
-</script>
-<style scoped>
-#custom-style {
-  margin-bottom: 82px;
-}
-</style>
