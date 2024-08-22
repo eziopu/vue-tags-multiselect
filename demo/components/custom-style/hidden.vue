@@ -4,29 +4,21 @@ export default {
 }
 </script>
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import ALineCode from './tools/a-line-code.vue'
 
 // const i18n = 'attributes.option'
 const demoStatus = ref([])
-const elGeneralDemo = ref(null)
-const elGeneralDemo_v_model = computed(() => {
-  return elGeneralDemo.value ? elGeneralDemo.value.v_model : {}
-})
-
-onMounted(() => {
-  console.log(elGeneralDemo.value.v_model);
-})
-
 </script>
 
 <template>
   <div id="custom-style--hidden" class="demo" :class="demoStatus">
-    <ToolTitle>Hidden</ToolTitle>
+    <ToolTitle>Streamline hiding</ToolTitle>
 
     <div class="flex-between to5-5">
       <div class="depiction">
-        <p>提供在 <code class="tag">&lt;v-tag-option&gt;</code> 內隱藏的class name</p>
+        <p>提供一個簡易的方式在 <code class="tag">&lt;v-tag-option&gt;</code> 內隱藏的class name</p>
+        <p>由於會複製option的html內容，也可以自行加入自定義的樣式</p>
 
         <ul>
           <li>
@@ -40,10 +32,7 @@ onMounted(() => {
         <ALineCode />
       </div>
 
-      {{ elGeneralDemo_v_model }}
-
       <GeneralDemo
-        ref="elGeneralDemo"
         v-model="demoStatus"
         :autoFocus="true"
         :displayOutput="true"
@@ -56,8 +45,8 @@ onMounted(() => {
         }"
       >
         <template #country>
-          <v-tag-dropdown value="country" display-all>
-            <v-tag-option title>
+          <v-tag-dropdown value="country" display-all class="v-country">
+            <v-tag-option title class="v-country-title">
               <span class="v-hidden-in-dropdown">
                 <i class="fa fa-flag-o"></i>
               </span>
@@ -66,7 +55,7 @@ onMounted(() => {
                 {{ $t(`ui.general.Country`) }}
               </span>
             </v-tag-option>
-            <v-tag-option value="Māre">
+            <v-tag-option value="Māre" class="v-country-value">
               {{ $t(`ui.data.country.Māre`) }}
             </v-tag-option>
             <v-tag-option value="Eldia">
@@ -78,3 +67,7 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+@import './assets/stylesheets.scss';
+</style>
