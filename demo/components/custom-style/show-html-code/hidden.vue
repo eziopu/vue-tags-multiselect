@@ -33,34 +33,14 @@
 import Space from '@tools/show-html-code/space.vue'
 
 export default {
-  name: 'option-tools-line-code',
+  name: 'custom-style-tools-line-code',
   components: {
     Space
-  },
-  props: {
-    isNotTitle: {
-      type: Boolean,
-      default: () => {
-        return false
-      }
-    },
-    bolders: {
-      type: Array,
-      default: () => {
-        return []
-      }
-    }
   },
   methods: {
     renderData(input) {
       return this.$t('ui.' + input)
     },
-    getClass(input) {
-      return { bolder: this.isBolder(input) }
-    },
-    isBolder(input) {
-      return this.bolders.includes(input)
-    }
   }
 }
 </script>

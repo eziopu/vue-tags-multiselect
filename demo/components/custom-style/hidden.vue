@@ -5,7 +5,7 @@ export default {
 </script>
 <script setup>
 import { ref } from 'vue'
-import ALineCode from './tools/a-line-code.vue'
+import ShowCode from './show-html-code/hidden.vue'
 
 // const i18n = 'attributes.option'
 const demoStatus = ref([])
@@ -29,7 +29,7 @@ const demoStatus = ref([])
           </li>
         </ul>
 
-        <ALineCode />
+        <ShowCode />
       </div>
 
       <GeneralDemo
@@ -45,8 +45,8 @@ const demoStatus = ref([])
         }"
       >
         <template #country>
-          <v-tag-dropdown value="country" display-all class="v-country">
-            <v-tag-option title class="v-country-title">
+          <v-tag-dropdown value="country" display-all>
+            <v-tag-option title>
               <span class="v-hidden-in-dropdown">
                 <i class="fa fa-flag-o"></i>
               </span>
@@ -70,4 +70,4 @@ const demoStatus = ref([])
 
 <style scoped lang="scss">
 @import './assets/stylesheets.scss';
-</style>
+</style>./show-html-code/hidden.vue
