@@ -19,7 +19,7 @@ const demoStatus = ref([])
     <div class="flex-between to5-5">
       <div class="depiction">
         <p>在 <code class="tag">&lt;v-tag-dropdown&gt;</code> 定義的class name 會套用在 v-tag 上</p>
-        
+
         <ShowCodeStyle />
         <ShowCode />
       </div>
@@ -39,13 +39,8 @@ const demoStatus = ref([])
         <template #country>
           <v-tag-dropdown value="country" display-all class="v-red">
             <v-tag-option title>
-              <span class="v-hidden-in-dropdown">
-                <i class="fa fa-flag-o"></i>
-              </span>
-              <span class="v-hidden-in-tag">
-                <i class="fa fa-flag"></i>
-                {{ $t(`ui.general.Country`) }}
-              </span>
+              <i class="fa fa-flag"></i>
+              {{ $t(`ui.general.Country`) }}
             </v-tag-option>
             <v-tag-option value="Māre" class="v-country-value">
               {{ $t(`ui.data.country.Māre`) }}
@@ -69,11 +64,15 @@ const demoStatus = ref([])
   .v-dropdown.v-red {
     color: red;
   }
+  .v-dropdown.v-red .v-option.title {
+    font-weight: bold;
+  }
   .v-tag.v-red {
     color: white;
     background: red;
   }
   .v-tag.v-red .v-tag__title {
+    font-weight: bold;
     background: #ff6666;
   }
 }
