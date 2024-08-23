@@ -1,34 +1,26 @@
 <script>
 export default {
-  name: 'custom-style__hidden'
+  name: 'custom-style__v-tag-dropdown--class'
 }
 </script>
 <script setup>
 import { ref } from 'vue'
-import ShowCode from './show-html-code/hidden.vue'
+import ShowCode from './show-html-code/v-tag-dropdown__class.vue'
+import ShowCodeStyle from './show-html-code/v-tag-dropdown__class-style.vue'
 
 // const i18n = 'attributes.option'
 const demoStatus = ref([])
 </script>
 
 <template>
-  <div id="custom-style__hidden" class="demo" :class="demoStatus">
-    <ToolTitle>Streamline hiding</ToolTitle>
+  <div id="custom-style__v-tag-dropdown--class" class="demo" :class="demoStatus">
+    <ToolTitle>&lt;v-tag-dropdown&gt; class</ToolTitle>
 
     <div class="flex-between to5-5">
       <div class="depiction">
-        <p>提供一個簡易的方式在 <code class="tag">&lt;v-tag-option&gt;</code> 內隱藏的class name</p>
-        <p>由於會複製option的html內容，也可以自行加入自定義的樣式</p>
-
-        <ul>
-          <li>
-            <p>v-hidden-in-dropdown : 僅在dropdown內隱藏</p>
-          </li>
-          <li>
-            <p>v-hidden-in-tag : 僅在成為tag後隱藏</p>
-          </li>
-        </ul>
-
+        <p>在 <code class="tag">&lt;v-tag-dropdown&gt;</code> 定義的class name 會套用在 v-tag 上</p>
+        
+        <ShowCodeStyle />
         <ShowCode />
       </div>
 
@@ -45,7 +37,7 @@ const demoStatus = ref([])
         }"
       >
         <template #country>
-          <v-tag-dropdown value="country" display-all>
+          <v-tag-dropdown value="country" display-all class="v-red">
             <v-tag-option title>
               <span class="v-hidden-in-dropdown">
                 <i class="fa fa-flag-o"></i>
@@ -70,4 +62,19 @@ const demoStatus = ref([])
 
 <style scoped lang="scss">
 @import './assets/stylesheets.scss';
-</style>./show-html-code/hidden.vue
+</style>
+
+<style lang="scss">
+#custom-style__v-tag-dropdown--class {
+  .v-dropdown.v-red {
+    color: red;
+  }
+  .v-tag.v-red {
+    color: white;
+    background: red;
+  }
+  .v-tag.v-red .v-tag__title {
+    background: #ff6666;
+  }
+}
+</style>
