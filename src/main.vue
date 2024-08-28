@@ -16,7 +16,7 @@
       ['v-tag-' + tagPosition]: isTagPositionVisible
     }"
   >
-    <div class="v-tags-multiselect__tags overflow-tags" ref="elTags" v-if="isTagPositionVisible">
+    <div class="v-tags-multiselect__tags v-overflow-tags" ref="elTags" v-if="isTagPositionVisible">
       <VTag
         v-for="(tag, index) in merge == true
           ? tagsGroupByTitle
@@ -260,17 +260,17 @@ export default defineComponent({
     }
   }
 
-  .v-tags-multiselect__tags:not(.overflow-tags) .v-tag,
+  .v-tags-multiselect__tags:not(.v-overflow-tags) .v-tag,
   .v-tags-multiselect__main--stashTag .v-tag {
     margin-top: var(--v-tags-multiselect__tag-spacing);
     margin-right: var(--v-tags-multiselect__tag-spacing);
   }
 
-  .v-tags-multiselect__tags:not(.overflow-tags):not(:empty) {
+  .v-tags-multiselect__tags:not(.v-overflow-tags):not(:empty) {
     display: contents;
   }
 
-  .v-tags-multiselect__tags.overflow-tags {
+  .v-tags-multiselect__tags.v-overflow-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--v-tags-multiselect__tag-spacing);
@@ -320,11 +320,11 @@ export default defineComponent({
     }
   }
 
-  &.v-tag-top .overflow-tags {
+  &.v-tag-top .v-overflow-tags {
     padding-bottom: 3px;
   }
 
-  &.v-tag-bottom .overflow-tags {
+  &.v-tag-bottom .v-overflow-tags {
     padding-top: 3px;
   }
 
