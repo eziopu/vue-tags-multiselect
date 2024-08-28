@@ -3,13 +3,12 @@
     class="v-dropdown"
     ref="elDropdown"
     :class="{
-      'no-title': true,
+      'no-title': !hasVNodeTitle,
       'display-all': myDisplayAll,
       disabled: props.disabled,
       divided: props.divided,
       selecting: isSelecting,
       editing: isChildEditing,
-      noValue: props.value == undefined || props.value == '',
       hidden: isHidden,
     }"
   >
