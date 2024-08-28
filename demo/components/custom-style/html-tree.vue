@@ -4,14 +4,11 @@ export default {
 }
 </script>
 <script setup>
-import { ref } from 'vue'
-
 // const i18n = 'attributes.option'
-const demoStatus = ref([])
 </script>
 
 <template>
-  <div id="custom-style__html-tree" class="demo" :class="demoStatus">
+  <div id="custom-style__html-tree" class="demo">
     <ToolTitle>Html element classname tree view</ToolTitle>
 
     <div class="depiction">
