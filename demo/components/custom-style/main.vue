@@ -6,12 +6,15 @@ export default {
 <script setup>
 import Hidden from "./hidden.vue";
 import vTagDropdown__class from "./v-tag-dropdown__class.vue";
+import HtmlTree from "./html-tree.vue";
+
 </script>
 
 <template>
   <div id="custom-style" class="demo">
     <Hidden></Hidden>
     <vTagDropdown__class></vTagDropdown__class>
+    <HtmlTree></HtmlTree>
     <p></p>
   </div>
 </template>
