@@ -7,7 +7,7 @@ export default {
 import Hidden from "./hidden.vue";
 import vTagDropdown__class from "./v-tag-dropdown__class.vue";
 import HtmlTree from "./html-tree.vue";
-
+import VTagSpacing from "./v-tag-spacing.vue";
 </script>
 
 <template>
@@ -15,6 +15,6 @@ import HtmlTree from "./html-tree.vue";
     <Hidden></Hidden>
     <vTagDropdown__class></vTagDropdown__class>
     <HtmlTree></HtmlTree>
-    <p></p>
+    <VTagSpacing></VTagSpacing>
   </div>
 </template>

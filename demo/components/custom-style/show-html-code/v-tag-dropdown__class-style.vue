@@ -23,10 +23,5 @@
 <script>
 export default {
   name: 'custom-style-show-html-code-v-tag-dropdown__class-style',
-  methods: {
-    renderData(input) {
-      return this.$t('ui.' + input)
-    },
-  }
 }
 </script>
