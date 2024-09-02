@@ -106,7 +106,6 @@ export default function useDropdown(props) {
     const blacklist = new Set([
       "v-dropdown",
       "display-all",
-      "no-title",
       "disabled",
       "divided",
       "hidden",
@@ -249,9 +248,10 @@ export default function useDropdown(props) {
 
   return {
     elDropdown,
-
+    
     props,
     myDisplayAll,
+    hasVNodeTitle,
     isHidden,
     isSelecting,
     isChildEditing,

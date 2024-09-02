@@ -128,7 +128,7 @@
           "value": "Tag value",
           "valueElm": "Html element for the value",
           "titleElm": "Html element for the title",
-          "classList": "Custom class name", 
+          "classList": "Custom class name",
           "custom": "After completing the tag, is it possible to freely modify the value of the tag",
           "displayValue": "After completing the tag, is it possible to change the displayed value of the tag"
         }
@@ -165,7 +165,7 @@
       "selected__notice": "still can be deleted"
     }
   },
-  "ui":{
+  "ui": {
     "languages": {
       "en-US": "English",
       "zh-Hant": "繁體中文"
@@ -174,7 +174,7 @@
       "language": "Language",
       "required": "Required",
       "filled": "Filled",
-      "not_filled": "Not filled",      
+      "not_filled": "Not filled",
       "example": "Example",
       "defaultIs__key": "Default is {key}",
       "Attribute": "Attribute",
@@ -202,8 +202,6 @@
         "2": "<code class='tag'>&lt;v-tag-option&gt;</code> : is tag key value, it's inside the <code class='tag'>&lt;v-tag-dropdown&gt;</code>",
         "3": "If one <code class='tag'>&lt;v-tag-option&gt;</code> is title, will hide other option to next step show"
       },
-      "customStyle": "Slot <code class='tag'>v-tag-dropdown</code> element className not only use in dropdown, but also use by selected tag.",
-      "customStyle__details": "If you want to slot <code class='tag'>v-tag-option</code> className use by selected tag's value, can create your own elements in it",
       "sentence": {
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "The attributes changes in this demo will only affect the first dropdown",
         "Some_attributes_will_change_the_second_dropdown": "Some attributes will change the second dropdown",
@@ -213,6 +211,38 @@
         "notice": {
           "click_the_tag_to_edit_mode": "click the tag to edit mode",
           "change_the_second": "change the second"
+        }
+      },
+      "customStyle": {
+        "hidden": {
+          "title": "Simple Hidden Method",
+          "mains": {
+            "1": "Provides a simple way to hide class names within <code class='tag'>&lt;v-tag-option&gt;</code>",
+            "2": "Since the HTML content of the option is copied, custom styles can also be added"
+          },
+          "v-hidden-in-dropdown": "Hide only in dropdown",
+          "v-hidden-in-tag": "Hide only after becoming a tag"
+        },
+        "html-tree": {
+          "title": "Component Class Name Tree View",
+          "mains": {
+            "1": "If you want to modify the styles yourself, please follow the classList of the main structure below",
+            "2": "*To modify the spacing (CSS: gap) of v-tag, please refer to the next section",
+            "3": "*The content after double slashes ( // ) is automatically added according to the current operation scenario or parameter settings"
+          }
+        },
+        "v-tag-dropdown__class": {
+          "title": "&lt;v-tag-dropdown&gt; Class",
+          "mains": {
+            "1": "The class name defined in <code class='tag'>&lt;v-tag-dropdown&gt;</code> will be applied to v-tag"
+          }
+        },
+        "v-tag-spacing": {
+          "title": "&lt;v-tag&gt; Spacing",
+          "mains": {
+            "1": "Due to layout issues, v-tags within div.v-tags-multiselect__main are not spaced using CSS gap",
+            "2": "Please use CSS :root to override the default value (3px) in the example below"
+          }
         }
       }
     },

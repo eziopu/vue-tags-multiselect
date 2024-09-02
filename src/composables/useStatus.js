@@ -1,4 +1,4 @@
-import { computed, watch } from "vue";
+import { watch, computed, onMounted } from "vue";
 
 export default function useStatus(props, context, dep) {
   // ============== DATA ==============
@@ -31,12 +31,9 @@ export default function useStatus(props, context, dep) {
     if (appIsFinish.value == false && isAllDropdownIsDown.value == true) {
       result.push("delect-down");
     }
+
     return result;
   });
-
-  // ============== EMIT ==============
-
-  context.emit("status", status);
 
   // ============== LOG ==============
 
@@ -47,10 +44,16 @@ export default function useStatus(props, context, dep) {
     "delect-down": "the options have been selected",
   };
 
-  watch(status, (newValue, oldValue) => {
-    Object.keys(returnLogs).forEach((key) => {
-      if (newValue.indexOf(key) != -1 && oldValue.indexOf(key) == -1) {
-        dep.log(returnLogs[key]);
+  onMounted(() => {
+    watch(status, (newValue, oldValue) => {
+      Object.keys(returnLogs).forEach((key) => {
+        if (newValue.indexOf(key) != -1 && oldValue.indexOf(key) == -1) {
+          dep.log(returnLogs[key]);
+        }
+      });
+      
+      if (newValue != oldValue) {
+        context.emit("status", newValue);
       }
     });
   });
