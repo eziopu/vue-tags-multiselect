@@ -75,5 +75,12 @@ const demoStatus = ref([])
     font-weight: bold;
     background: #ff6666;
   }
+
+  .v-tags-multiselect__main--dropdowns.stash.v-red .undo {
+    color: red;
+  }
+  .v-tags-multiselect__main--dropdowns.stash.v-red .undo .demo__arrow-left {
+    border-color: red;
+  }
 }
 </style>

@@ -73,10 +73,14 @@
             v-show="isElDropdownVisible"
             ref="elDropdown"
             :style="elDropdownStyle"
-            :class="{
-              loading: loading || dropdownLoading,
-              transition: transition
-            }"
+            :class="[
+              stashTag.classList,
+              {
+                loading: loading || dropdownLoading,
+                transition: transition,
+                stash: stashTag.key != null && isEditMode == false
+              }
+            ]"
           >
             <div
               v-show="loading == true || dropdownLoading == true"
@@ -238,7 +242,7 @@ export default defineComponent({
   .v-tags-multiselect__main--dropdowns .v-hidden-in-dropdown {
     display: none;
   }
-  
+
   .v-tags-multiselect__tags .v-hidden-in-tag,
   .v-tags-multiselect__main--stashTag .v-hidden-in-tag {
     display: none;

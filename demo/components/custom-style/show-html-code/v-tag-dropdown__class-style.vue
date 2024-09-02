@@ -15,6 +15,13 @@
   <span class="atv">.v-tag.v-red .v-tag__title</span> <span class="purple">{</span>
     font-weight: bold;
     background: #ff6666;
+  <span class="purple">}</span>
+  
+  <span class="atv">.v-tags-multiselect__main--dropdowns.stash.v-red .undo</span> <span class="purple">{</span>
+    color: red;
+  <span class="purple">}</span>
+  <span class="atv">.v-tags-multiselect__main--dropdowns.stash.v-red .undo .demo__arrow-left</span> <span class="purple">{</span>
+    border-color: red;
   <span class="purple">}</span><br><!--
   -->&lt;/style&gt;<!--
 --></code></pre>

@@ -55,7 +55,7 @@ const i18n = 'ui.page.customStyle.html-tree'
                 <li><span class="caret"></span>div.v-tags-multiselect__main--controls</li>
                 <li>
                   <ul>
-                    <li>div.v-tags-multiselect__main--dropdowns</li>
+                    <li>div.v-tags-multiselect__main--dropdowns // .stash .(stashTag.classList)</li>
                     <li>slot.dropdown-loading</li>
                     <li>
                       <span class="caret"></span>div.v-dropdown // .display-all .disabled .divided
