@@ -202,8 +202,6 @@
         "2": "<code class='tag'>&lt;v-tag-option&gt;</code> : 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
         "3": "如果  <code class='tag'>&lt;v-tag-option&gt;</code> 設定為title, 其他的option則會隱藏, 直到點擊title為止"
       },
-      "customStyle": "slots  <code class='tag'>v-tag-dropdown</code> 的element className不僅會套用在dropdown內，選擇後的tag 也會套用",
-      "customStyle__details": "如果想要將 <code class='tag'>v-tag-option</code> 的className也套用在tag，在裡面寫element即可",
       "sentence": {
         "The_attributes_changes_in_this_demo_will_only_affect_the_first_dropdown": "此demo的參數變動只會改變第一個 dropdown",
         "Some_attributes_will_change_the_second_dropdown": "部分參數改變第二個 dropdown",
@@ -213,6 +211,38 @@
         "notice": {
           "click_the_tag_to_edit_mode": "點擊 tag value 的區域, 讓他變成編輯模式",
           "change_the_second": "改變第二個"
+        }
+      },
+      "customStyle": {
+        "hidden": {
+          "title": "簡易的隱藏方式",
+          "mains": {
+            "1": "提供一個簡易的方式在 <code class='tag'>&lt;v-tag-option&gt;</code> 內隱藏的class name",
+            "2": "由於會複製option的html內容，也可以自行加入自定義的樣式"
+          },
+          "v-hidden-in-dropdown": "僅在dropdown內隱藏",
+          "v-hidden-in-tag": "僅在成為tag後隱藏"
+        },
+        "html-tree": {
+          "title": "元件 class 名稱 tree view",
+          "mains": {
+            "1": "若要自行修改樣式請依照以下主要結構的classList",
+            "2": "*若要修改 v-tag 的間距(css: gap) 請至下一個說明",
+            "3": "*雙斜線( // )後面的為 當下操作情境或是參數設定而自動添加的"
+          }
+        },
+        "v-tag-dropdown__class": {
+          "title": "&lt;v-tag-dropdown&gt; class",
+          "mains": {
+            "1": "在 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 定義的class name 會套用在 v-tag 上"
+          }
+        },
+        "v-tag-spacing": {
+          "title": "&lt;v-tag&gt; 間距",
+          "mains": {
+            "1": "由於排版問題, 在 div.v-tags-multiselect__main 內的 v-tag 並非使用css gap方式排版",
+            "2": "請使用css :root 方式覆蓋以下範例的預設值(3px)"
+          }
         }
       }
     },
