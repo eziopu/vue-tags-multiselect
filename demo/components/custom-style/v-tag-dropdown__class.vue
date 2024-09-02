@@ -8,17 +8,17 @@ import { ref } from 'vue'
 import ShowCode from './show-html-code/v-tag-dropdown__class.vue'
 import ShowCodeStyle from './show-html-code/v-tag-dropdown__class-style.vue'
 
-// const i18n = 'attributes.option'
+const i18n = 'ui.page.customStyle.v-tag-dropdown__class'
 const demoStatus = ref([])
 </script>
 
 <template>
   <div id="custom-style__v-tag-dropdown--class" class="demo" :class="demoStatus">
-    <ToolTitle>&lt;v-tag-dropdown&gt; class</ToolTitle>
+    <ToolTitle><span v-html="$t(`${i18n}.title`)"></span></ToolTitle>
 
     <div class="flex-between to5-5">
       <div class="depiction">
-        <p>在 <code class="tag">&lt;v-tag-dropdown&gt;</code> 定義的class name 會套用在 v-tag 上</p>
+        <p v-html="$t(`${i18n}.mains.1`)"></p>
 
         <ShowCodeStyle />
         <ShowCode />

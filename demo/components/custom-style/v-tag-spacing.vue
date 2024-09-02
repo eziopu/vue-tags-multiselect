@@ -5,16 +5,16 @@ export default {
 </script>
 <script setup>
 import ShowCodeStyle from './show-html-code/v-tag-spacing.vue'
-// const i18n = 'attributes.option'
+const i18n = 'ui.page.customStyle.v-tag-spacing'
 </script>
 
 <template>
   <div id="custom-style__tag-spacing" class="demo">
-    <ToolTitle>&lt;v-tag&gt; spacing</ToolTitle>
+    <ToolTitle><span v-html="$t(`${i18n}.title`)"></span></ToolTitle>
 
     <div class="depiction">
-      <p>由於排版問題, 在 div.v-tags-multiselect__main 內的 v-tag 並非使用css gap方式排版</p>
-      <p>請使用css :root 方式覆蓋以下範例的預設值(3px)</p>
+      <p v-html="$t(`${i18n}.mains.1`)"></p>
+      <p v-html="$t(`${i18n}.mains.2`)"></p>
 
       <ShowCodeStyle></ShowCodeStyle>
     </div>

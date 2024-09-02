@@ -4,17 +4,17 @@ export default {
 }
 </script>
 <script setup>
-// const i18n = 'attributes.option'
+const i18n = 'ui.page.customStyle.html-tree'
 </script>
 
 <template>
   <div id="custom-style__html-tree" class="demo">
-    <ToolTitle>Html element classname tree view</ToolTitle>
+    <ToolTitle><span v-html="$t(`${i18n}.title`)"></span></ToolTitle>
 
     <div class="depiction">
-      <p>若要自行修改樣式請依照以下主要結構的classList</p>
-      <p>*若要修改 v-tag 的間距(css: gap) 請至下一個說明</p>
-      <p>*雙斜線( // )後面的為 當下操作情境或是參數設定而自動添加的</p>
+      <p v-html="$t(`${i18n}.mains.1`)"></p>
+      <p v-html="$t(`${i18n}.mains.2`)"></p>
+      <p v-html="$t(`${i18n}.mains.3`)"></p>
 
       <ul id="html-tree">
         <li>
@@ -97,8 +97,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-// @import './assets/stylesheets.scss';
-
 /* 
   Tree View
   Source: https://www.w3schools.com/howto/howto_js_treeview.asp

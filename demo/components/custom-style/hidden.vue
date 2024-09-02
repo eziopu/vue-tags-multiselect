@@ -7,18 +7,18 @@ export default {
 import { ref } from 'vue'
 import ShowCode from './show-html-code/hidden.vue'
 
-// const i18n = 'attributes.option'
+const i18n = 'ui.page.customStyle.hidden'
 const demoStatus = ref([])
 </script>
 
 <template>
   <div id="custom-style__hidden" class="demo" :class="demoStatus">
-    <ToolTitle>Streamline hiding</ToolTitle>
+    <ToolTitle><span v-html="$t(`${i18n}.title`)"></span></ToolTitle>
 
     <div class="flex-between to5-5">
       <div class="depiction">
-        <p>提供一個簡易的方式在 <code class="tag">&lt;v-tag-option&gt;</code> 內隱藏的class name</p>
-        <p>由於會複製option的html內容，也可以自行加入自定義的樣式</p>
+        <p v-html="$t(`${i18n}.mains.1`)"></p>
+        <p v-html="$t(`${i18n}.mains.2`)"></p>
 
         <ul>
           <li>
