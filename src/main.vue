@@ -109,6 +109,33 @@
               </VTagOption>
             </VTagDropdown>
 
+            <VTagDropdown
+              v-for="(dropdown, key) in processedOptions"
+              class="data_dropdown"
+              :key="`data_${key}`"
+              :disabled="dropdown.disabled"
+              :divided="dropdown.divided"
+              :displayAll="dropdown.displayAll"
+              :hidden="dropdown.hidden"
+              :custom="dropdown.custom"
+              :system="dropdown.system"
+              :value="dropdown.value"
+            >
+              <VTagOption
+                v-for="(option, value_key) in dropdown.values"
+                class="data_option"
+                :key="`data_${value_key}`"
+                :title="option.title"
+                :displayValue="option.displayValue"
+                :disabled="option.disabled"
+                :divided="option.divided"
+                :selected="option.selected"
+                :value="option.value"
+              >
+                <div v-html="option.element"></div>
+              </VTagOption>
+            </VTagDropdown>
+
             <slot></slot>
           </div>
         </Transition>
@@ -155,6 +182,7 @@ import VTagOption from './components/slots/v-option.vue'
 // resolve
 import resolve from './utils/resolve'
 import useLog from './composables/useLog'
+import useProcessOptions from './composables/useProcessOptions'
 import usePreprocessedData from './composables/usePreprocessedData'
 import useTag from './composables/useTag'
 import useElInput from './composables/useElInput'
@@ -210,12 +238,17 @@ export default defineComponent({
      * placeholder
      **/
     placeholders: { type: Object, default: () => {} },
-    placeholder: { type: String, default: '' }
+    placeholder: { type: String, default: '' },
+    /**
+     * data mode
+     **/
+    options: { type: Object, default: () => {} }
   },
   setup(props, context) {
     return resolve(props, context, [
       useLog,
       usePreprocessedData,
+      useProcessOptions,
       useTag,
       useElInput,
       useApp,
