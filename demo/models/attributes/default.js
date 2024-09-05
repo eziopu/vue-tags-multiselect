@@ -9,6 +9,7 @@ export const ATTRIBUTES = {
   merge: true,
   keyboard: true,
   debugLog: false,
+  options: {},
   conjunction: 'null',
   tagPosition: 'null',
   deleteIcon: 'always',

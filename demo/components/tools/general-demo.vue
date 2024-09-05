@@ -18,6 +18,7 @@
         @visible-change="(Boolean) => $emit(`visible-change`, Boolean)"
         @remove-tag="(Object) => $emit(`remove-tag`, Object)"
         @selecting-tag="(Object) => $emit(`selecting-tag`, Object)"
+        :options="appAttributes.options"
         :disabled="appAttributes.disabled"
         :loading="appAttributes.loading"
         :dropdownLoading="appAttributes.dropdownLoading"
