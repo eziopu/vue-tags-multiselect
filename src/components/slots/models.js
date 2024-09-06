@@ -1,22 +1,22 @@
 export function vDropdownProps() {
   return {
-    disabled: false,
-    divided: false,
-    displayAll: false,
-    hidden: false,
-    custom: false,
-    system: false,
-    value: "",
+    disabled: { type: Boolean, default: false },
+    divided: { type: Boolean, default: false },
+    displayAll: { type: Boolean, default: false },
+    hidden: { type: Boolean, default: false },
+    custom: { type: Boolean, default: false },
+    system: { type: Boolean, default: false },
+    value: { type: String, default: '' },
   };
 }
 
 export function vOptionProps() {
   return {
-    title: false,
-    displayValue: false,
-    disabled: false,
-    divided: false,
-    selected: false,
-    value: "",
+    title: { type: Boolean, default: false },
+    displayValue: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+    divided: { type: Boolean, default: false },
+    selected: { type: Boolean, default: false },
+    value: { type: String, default: '' },
   };
 }

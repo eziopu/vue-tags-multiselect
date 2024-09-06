@@ -5,8 +5,18 @@ export default function useProcessOptions(props, _context, dep) {
 
   const options = props.options || {}
 
-  const vDropdownTemplate = { ...vDropdownProps(), ...{ values: [] } }
-  const vOptionTemplate = { ...vOptionProps(), ...{ element: undefined } }
+  function extractDefaults(props) {
+    const defaults = {}
+
+    Object.keys(props).forEach((key) => {
+      defaults[key] = props[key].default
+    })
+
+    return defaults
+  }
+
+  const vDropdownTemplate = { ...extractDefaults(vDropdownProps()), ...{ values: [] } }
+  const vOptionTemplate = { ...extractDefaults(vOptionProps()), ...{ element: undefined } }
 
   const processedOptions = computed(() => {
     return convert(options)
@@ -25,7 +35,7 @@ export default function useProcessOptions(props, _context, dep) {
         ...vOptionTemplate,
         ...input,
         element: input.element ?? input.value
-      };
+      }
     }
     return {}
   }

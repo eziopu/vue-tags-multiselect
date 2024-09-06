@@ -118,7 +118,6 @@
               :displayAll="dropdown.displayAll"
               :hidden="dropdown.hidden"
               :custom="dropdown.custom"
-              :system="dropdown.system"
               :value="dropdown.value"
             >
               <VTagOption
