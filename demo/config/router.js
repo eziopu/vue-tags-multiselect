@@ -9,6 +9,7 @@ import Exposes from '../components/exposes/main.vue'
 import Events from '../components/events/main.vue'
 import Play from '../components/play-helps/main.vue'
 import CustomStyle from '../components/custom-style/main.vue'
+import DataMode from '../components/data-mode/main.vue'
 
 const routes = [
   { path: '/', name: 'Install', component: HowToUse },
@@ -19,6 +20,7 @@ const routes = [
   { path: '/exposes', name: 'Exposes', component: Exposes },
   { path: '/events', name: 'Events', component: Events },
   { path: '/play', name: 'Play', component: Play },
+  { path: '/data-mode', name: 'DataMode', component: DataMode },
   { path: '/custom-style', name: 'Custom Style', component: CustomStyle },
 ]
 

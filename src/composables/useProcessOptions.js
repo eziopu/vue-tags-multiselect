@@ -65,8 +65,8 @@ export default function useProcessOptions(props, _context, dep) {
     }
   }
 
-  console.log('props.options = ', props.options)
-  console.log('processedOptions = ', processedOptions.value)
+  // console.log('props.options = ', props.options)
+  // console.log('processedOptions = ', processedOptions.value)
 
   return {
     processedOptions
