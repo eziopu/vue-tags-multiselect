@@ -6,6 +6,7 @@ export default {
 <script setup>
 import DemoTemplate from './tool/demo-template.vue'
 import ShowCodeBasic from './show-html-code/basic.vue'
+import Parameter from './parameter.vue'
 
 const options = { country: ['Māre', 'Eldia'], remark: ['yes'] }
 const options2 = { country: [{ title: true, element: 'country' }, 'Māre', 'Eldia'], remark: ['yes'] }
@@ -27,7 +28,7 @@ const options4 = [
   <div id="data-mode" class="demo">
     <div class="depiction">
       <p>
-        此方式並不與 template 方式衝突，兩者可共用
+        此方式並不與 slot <code class="tag">&lt;v-tag-dropdown&gt;</code> 與 <code class="tag">&lt;v-tag-option&gt;</code> 方式衝突，兩者可共用
       </p>
       <p>
         可使用最基本的 object 輸入key values 即可 *demo1 
@@ -37,14 +38,17 @@ const options4 = [
       </p>
     </div>
 
-    <DemoTemplate label="demo1" :datas="options">
+    <DemoTemplate label="demo1: {strings: [strings, strings]}" :datas="options">
       <template #depiction>
         <ShowCodeBasic></ShowCodeBasic>
       </template>
     </DemoTemplate>
 
-    <DemoTemplate label="demo2" :datas="options2"></DemoTemplate>
-    <DemoTemplate label="demo3" :datas="options3"></DemoTemplate>
-    <DemoTemplate label="demo4" :datas="options4"></DemoTemplate>
+    <DemoTemplate label="demo2: {strings: [object, strings]}" :datas="options2"></DemoTemplate>
+    <DemoTemplate label="demo3: [object(values:[strings, strings]), object]" :datas="options3"></DemoTemplate>
+    <DemoTemplate label="demo4: [object(values:[object, object]), object]" :datas="options4"></DemoTemplate>
+
+    <Parameter />
+
   </div>
 </template>
