@@ -141,7 +141,8 @@
       "hidden": "是否隱藏",
       "custom": "是否允許任意修改標籤的value值",
       "disabled": "是否禁用該dropdown內的所有的option",
-      "divided": "是否頂部有分隔線"
+      "divided": "是否頂部有分隔線",
+      "values": "可選擇的options"
     },
     "option": {
       "value": "標籤的value值",
@@ -162,7 +163,8 @@
       "disabled": "是否禁用",
       "divided": "是否底部有分隔線",
       "selected": "是否為預設",
-      "selected__notice": "還是可以被刪除"
+      "selected__notice": "還是可以被刪除",
+      "element": "顯示的HTML元素 *若沒有則顯示value"
     }
   },
   "ui": {
