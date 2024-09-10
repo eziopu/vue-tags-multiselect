@@ -246,6 +246,23 @@
             "2": "請使用css :root 方式覆蓋以下範例的預設值(3px)"
           }
         }
+      },
+      "dataMode": {
+        "mains": {
+          "1": "此方式並不與 slot <code class='tag'>&lt;v-tag-dropdown&gt;</code> 與 slot <code class='tag'>&lt;v-tag-option&gt;</code> 方式衝突，兩者可共用",
+          "2": "可使用最基本的 object 輸入key values 即可 *demo1",
+          "3": "也可以使用 object array *demo3&4 詳細設定參數，values 也是如此"
+        },
+        "parameters": {
+          "first": {
+            "title": "第一層 object 參數",
+            "main": "與 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 相似，就是多了一個必填的`values`"
+          },
+          "second": {
+            "title": "第二層 object 參數",
+            "main": "與 <code class='tag'>&lt;v-tag-option&gt;</code> 相似，就是多了一個`element`"
+          }
+        }
       }
     },
     "data": {

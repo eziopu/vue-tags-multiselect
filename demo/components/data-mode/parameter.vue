@@ -10,16 +10,20 @@ import {
   GET_DATA_MODE_V_OPTION_PROPS_DETAIL
 } from '@models/attributes/detail.js'
 import TableTemplate from '../play-helps/slots-attributes/table-template.vue'
+
+const i18n = 'ui.page.dataMode.parameters'
 </script>
 
 <template>
   <div id="data-mode__parameter--table" class="demo__table">
     <ToolTitle>Object parameter</ToolTitle>
 
-    <ToolTitle element="h4">first-level object parameter</ToolTitle>
+    <ToolTitle element="h4">
+      <span v-html="$t(`${i18n}.first.title`)"></span>
+    </ToolTitle>
+
     <div class="depiction">
-      <p>第一層object 參數</p>
-      <p>與 <code class="tag">&lt;v-tag-dropdown&gt;</code> 相同，就是多了一個必填的`values`</p>
+      <p v-html="$t(`${i18n}.first.main`)"></p>
     </div>
 
     <TableTemplate
@@ -28,10 +32,11 @@ import TableTemplate from '../play-helps/slots-attributes/table-template.vue'
     >
     </TableTemplate>
     <br />
-    <ToolTitle element="h4">second-level value object parameter</ToolTitle>
+    <ToolTitle element="h4">
+      <span v-html="$t(`${i18n}.second.title`)"></span>
+    </ToolTitle>
     <div class="depiction">
-      <p>第二層object 參數</p>
-      <p>與 <code class="tag">&lt;v-tag-option&gt;</code> 相同，就是多了一個`element`</p>
+      <p v-html="$t(`${i18n}.second.main`)"></p>
     </div>
 
     <TableTemplate :attributes="GET_DATA_MODE_V_OPTION_PROPS_DETAIL()" :i18n="`attributes.option`">
