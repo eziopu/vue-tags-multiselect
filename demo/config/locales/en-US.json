@@ -141,7 +141,8 @@
       "hidden": "Don't show this dropdown",
       "custom": "This tag value can use intput value",
       "disabled": "Whether options are disabled in this dropdown",
-      "divided": "Whether a top divider is displayed"
+      "divided": "Whether a top divider is displayed",
+      "values": "Selectable options"
     },
     "option": {
       "value": "Tag value",
@@ -162,7 +163,8 @@
       "disabled": "Whether to disable",
       "divided": "Whether a divider is displayed",
       "selected": "Default selected tag",
-      "selected__notice": "still can be deleted"
+      "selected__notice": "still can be deleted",
+      "element": "Displayed HTML element *If not present, the value will be displayed"
     }
   },
   "ui": {
@@ -242,6 +244,23 @@
           "mains": {
             "1": "Due to layout issues, v-tags within div.v-tags-multiselect__main are not spaced using CSS gap",
             "2": "Please use CSS :root to override the default value (3px) in the example below"
+          }
+        }
+      },
+      "dataMode": {
+        "mains": {
+          "1": "This method does not conflict with the slot <code class='tag'>&lt;v-tag-dropdown&gt;</code> and slot <code class='tag'>&lt;v-tag-option&gt;</code> , both can be used together",
+          "2": "You can input basic object key values *demo1",
+          "3": "　or use an object array *demo3&4 for detailed parameter settings; the same applies to values"
+        },
+        "parameters": {
+          "first": {
+            "title": "First Layer Object Parameters",
+            "main": "Similar to <code class='tag'>&lt;v-tag-dropdown&gt;</code> , but with an additional required 'values'"
+          },
+          "second": {
+            "title": "Second Layer Object Parameters",
+            "main": "Similar to <code class='tag'>&lt;v-tag-option&gt;</code> , but with an additional 'element'"
           }
         }
       }

@@ -141,7 +141,8 @@
       "hidden": "是否隱藏",
       "custom": "是否允許任意修改標籤的value值",
       "disabled": "是否禁用該dropdown內的所有的option",
-      "divided": "是否頂部有分隔線"
+      "divided": "是否頂部有分隔線",
+      "values": "可選擇的options"
     },
     "option": {
       "value": "標籤的value值",
@@ -162,7 +163,8 @@
       "disabled": "是否禁用",
       "divided": "是否底部有分隔線",
       "selected": "是否為預設",
-      "selected__notice": "還是可以被刪除"
+      "selected__notice": "還是可以被刪除",
+      "element": "顯示的HTML元素 *若沒有則顯示value"
     }
   },
   "ui": {
@@ -242,6 +244,23 @@
           "mains": {
             "1": "由於排版問題, 在 div.v-tags-multiselect__main 內的 v-tag 並非使用css gap方式排版",
             "2": "請使用css :root 方式覆蓋以下範例的預設值(3px)"
+          }
+        }
+      },
+      "dataMode": {
+        "mains": {
+          "1": "此方式並不與 slot <code class='tag'>&lt;v-tag-dropdown&gt;</code> 與 slot <code class='tag'>&lt;v-tag-option&gt;</code> 方式衝突，兩者可共用",
+          "2": "可使用最基本的 object 輸入key values 即可 *demo1",
+          "3": "也可以使用 object array *demo3&4 詳細設定參數，values 也是如此"
+        },
+        "parameters": {
+          "first": {
+            "title": "第一層 object 參數",
+            "main": "與 <code class='tag'>&lt;v-tag-dropdown&gt;</code> 相似，就是多了一個必填的`values`"
+          },
+          "second": {
+            "title": "第二層 object 參數",
+            "main": "與 <code class='tag'>&lt;v-tag-option&gt;</code> 相似，就是多了一個`element`"
           }
         }
       }

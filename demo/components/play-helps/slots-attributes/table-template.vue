@@ -38,7 +38,7 @@ defineProps({
         <span v-if="attribute.default === ''"> - </span>
         <span v-else>{{ attribute.default }}</span>
       </div>
-      <div v-if="key == 'value'">
+      <div v-if="attribute.isRequired == true">
         <span class="i-block d-md-none">{{ $t(`ui.general.Required`) }}: </span>
         *yes
       </div>

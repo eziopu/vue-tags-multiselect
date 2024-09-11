@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { vDropdownProps } from "./models.js";
 import useDropdown from "./composables/useDropdown";
 
 import resolve from "./../../utils/resolve";
@@ -24,15 +25,7 @@ import resolve from "./../../utils/resolve";
 export default {
   name: "v-dropdown",
 
-  props: {
-    disabled: { type: Boolean, default: false },
-    divided: { type: Boolean, default: false },
-    displayAll: { type: Boolean, default: false },
-    hidden: { type: Boolean, default: false },
-    custom: { type: Boolean, default: false },
-    system: { type: Boolean, default: false },
-    value: { type: String, default: "" },
-  },
+  props: vDropdownProps(),
 
   setup(props, context) {
     return resolve(props, context, [useDropdown]);

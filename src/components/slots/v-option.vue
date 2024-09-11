@@ -22,22 +22,17 @@
 </template>
 
 <script>
-import resolve from "./../../utils/resolve";
+import { vOptionProps } from "./models.js";
 import useSetTag from "./composables/useSetTag";
 import useSearch from "./composables/useSearch";
 import useOption from "./composables/useOption";
 import useRegistration from "./composables/useRegistration";
 
+import resolve from "./../../utils/resolve";
+
 export default {
-  name: "v-tag-option",
-  props: {
-    title: { type: Boolean, default: false },
-    displayValue: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
-    divided: { type: Boolean, default: false },
-    selected: { type: Boolean, default: false },
-    value: { type: String, default: "" },
-  },
+  name: "v-option",
+  props: vOptionProps(),
   setup(props, context) {
     return resolve(props, context, [
       useSetTag,

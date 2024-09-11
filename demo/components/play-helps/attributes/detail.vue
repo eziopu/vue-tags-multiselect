@@ -45,7 +45,7 @@ const appAttributes = inject('attributes')
 
     <!-- attributes -->
     <template v-for="(attribute, key) in appAttributes" :key="key">
-      <div class="row" v-if="key != 'placeholder' && key != 'placeholders'">
+      <div class="row" v-if="key != 'placeholder' && key != 'placeholders' && key != 'options'">
         <LabelAndControls
           :label="$toKebabCase(key)"
           v-model="attribute.value"
