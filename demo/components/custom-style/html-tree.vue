@@ -59,10 +59,10 @@ const i18n = 'ui.page.customStyle.html-tree'
                     <li>slot.dropdown-loading</li>
                     <li>
                       <span class="caret"></span>div.v-dropdown // .display-all .disabled .divided
-                      .selecting .editing .no-title .hidden
+                      .selecting .editing .no-title .hidden .data-dropdown(data-mode)
                     </li>
                     <ul>
-                      <li>div.v-option // .title .disabled .divided .hover .no-value .hidden</li>
+                      <li>div.v-option // .title .disabled .divided .hover .no-value .hidden .data-option(data-mode)</li>
                     </ul>
                     <li>input</li>
                     <li>div.v-tags-clear</li>
