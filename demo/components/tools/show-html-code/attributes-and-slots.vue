@@ -2,9 +2,7 @@
 <template>
   <!--
   --><span
-    v-for="(value, key) in Object.fromEntries(
-      Object.entries(modelAttributes).filter(([key, __value]) => key !== 'placeholders')
-    )"
+    v-for="(value, key) in vForAttributes"
     v-show="app[key] != value"
     :key="key"
     ><Space /><span class="pln">:</span><span class="atn">{{ key }}</span
@@ -83,6 +81,11 @@ export default {
       return Object.keys(this.modelAttributes.placeholders).some((key) =>
         this.isShowPlaceholder(this.app.placeholders[key], key)
       )
+    },
+    vForAttributes() {
+      return Object.fromEntries(
+        Object.entries(this.modelAttributes).filter(([key, value]) => this.isShowAttribute(key, value))
+      )
     }
   },
   methods: {
@@ -94,6 +97,12 @@ export default {
     },
     isShowPlaceholder(value, key) {
       return this.verify(value) && value != this.modelAttributes.placeholders[key]
+    },
+    isShowAttribute(key, value) {
+      if (key === 'options') {
+        return Object.keys(value).length !== 0
+      }
+      return key !== 'placeholders'
     }
   }
 }
