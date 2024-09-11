@@ -1,10 +1,10 @@
 <script>
-  export default {
-    name: "how-to-use",
-  }
+export default {
+  name: 'how-to-use'
+}
 </script>
 <script setup>
-  import ShowHtmlCode from "@tools/show-html-code/main.vue";
+import ShowHtmlCode from '@tools/show-html-code/main.vue'
 </script>
 
 <template>
@@ -27,16 +27,12 @@
       </ul>
     </div>
 
-    <h3>
-      Install
-    </h3>
+    <h3>Install</h3>
     <pre><code>npm install @eziopu/vue-tags-multiselect</code></pre>
 
-    <h3>
-      Setup
-    </h3>
+    <h3>Setup</h3>
     <h4>
-      <li> {{ $t(`package.setup.global`) }}</li>
+      <li>{{ $t(`package.setup.global`) }}</li>
     </h4>
 
     <pre><code class="prettyprint lang-js"><!--
@@ -47,58 +43,76 @@
 
     or
     <h4>
-      <li>  {{ $t(`package.setup.component`) }} </li>
+      <li>{{ $t(`package.setup.component`) }}</li>
     </h4>
     <pre><code class="prettyprint lang-js"><!--
       -->import 'vue-tags-multiselect/dist/style.css';
       import { vTagsMultiselect, vTagDropdown, vTagOption } from 'vue-tags-multiselect'
     </code></pre>
-    
-    <h3>
-      Usage
-    </h3>
+
+    <h3>Usage</h3>
     <ShowHtmlCode
       class="prettyprint lang-html customize"
       :dropdown="{
-        name: {isDisplayForDemo: false},
-        remark: {isDisplayForDemo: false}
+        name: { isDisplayForDemo: false },
+        remark: { isDisplayForDemo: false }
+      }"
+    ></ShowHtmlCode>
+
+    or use data mode
+
+    <ShowHtmlCode
+      class="prettyprint lang-html customize"
+      :app="{
+        options: {
+          country: [
+            { title: true, element: `<i class='fa fa-flag'></i> ${$t('ui.general.Country')}` },
+            'Māre',
+            'Eldia'
+          ]
+        }
+      }"
+      :dropdown="{
+        country: { isDisplayForDemo: false },
+        name: { isDisplayForDemo: false },
+        remark: { isDisplayForDemo: false }
       }"
     ></ShowHtmlCode>
   </div>
 </template>
 
 <style scoped lang="scss">
-  code {
-    white-space: pre-line;
-  }
-  h3:not(:first-child) {
-    margin-top: 1.2rem;
-  }
+code {
+  white-space: pre-line;
+}
+h3:not(:first-child) {
+  margin-top: 1.2rem;
+}
 
-  .description {
-    h3 {
-      font-weight: bolder;
-    }
-    p {
-      margin-left: 1rem;
-      margin-bottom: .6rem;
-    }
+.description {
+  h3 {
+    font-weight: bolder;
   }
+  p {
+    margin-left: 1rem;
+    margin-bottom: 0.6rem;
+  }
+}
 </style>
 
 <style lang="scss">
-  #how-to-use {
-    .kwd {
-      color: #ff7b72;
-    }
-    .typ {
-      color: #ffa657;
-    }
-    .str {
-      color: #a5d6ff;
-    }
-    .pln {
-      color: #f0f6fc;
-    }
+#how-to-use {
+  .kwd {
+    color: #ff7b72;
   }
+  .typ {
+    color: #ffa657;
+  }
+  .str {
+    color: #a5d6ff;
+  }
+  .pln {
+    color: #f0f6fc;
+  }
+}
 </style>

@@ -98,9 +98,9 @@ export default {
     isShowPlaceholder(value, key) {
       return this.verify(value) && value != this.modelAttributes.placeholders[key]
     },
-    isShowAttribute(key, value) {
+    isShowAttribute(key) {
       if (key === 'options') {
-        return Object.keys(value).length !== 0
+        return Object.keys(this.app.options).length >= 0
       }
       return key !== 'placeholders'
     }
