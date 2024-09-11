@@ -111,7 +111,7 @@
 
             <VTagDropdown
               v-for="(dropdown, key) in processedOptions"
-              class="data_dropdown"
+              class="data-dropdown"
               :key="`data_${key}`"
               :disabled="dropdown.disabled"
               :divided="dropdown.divided"
@@ -119,10 +119,11 @@
               :hidden="dropdown.hidden"
               :custom="dropdown.custom"
               :value="dropdown.value"
+              :class="dropdown.class"
             >
               <VTagOption
                 v-for="(option, value_key) in dropdown.values"
-                class="data_option"
+                class="data-option"
                 :key="`data_${value_key}`"
                 :title="option.title"
                 :displayValue="option.displayValue"
@@ -130,6 +131,7 @@
                 :divided="option.divided"
                 :selected="option.selected"
                 :value="option.value"
+                :class="option.class"
               >
                 <div v-html="option.element"></div>
               </VTagOption>

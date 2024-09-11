@@ -21,7 +21,8 @@ const options4 = [
   {
     value: 'country',
     displayAll: true,
-    values: [{ title: true, element: '-country-' }, { divided: true, value: 'Māre' }, 'Eldia']
+    class: ['v-red'],
+    values: [{ title: true, element: '-country-'}, { divided: true, value: 'Māre', class: ['v-green'] }, 'Eldia']
   },
   { value: 'remark', values: ['yes'] }
 ]
@@ -51,7 +52,11 @@ const i18n = 'ui.page.dataMode'
     <DemoTemplate
       label="demo4: [object(values:[object, object]), object]"
       :datas="options4"
-    ></DemoTemplate>
+    >
+      <template #depiction>
+        <p>class `v-red` style like custom-style demo page</p>
+      </template>
+    </DemoTemplate>
 
     <Parameter />
   </div>

@@ -15,7 +15,7 @@ const demoStatus = ref([])
 </script>
 
 <template>
-  <div :id="`data-mode-${props.label}`" class="demo" :class="demoStatus">
+  <div :id="`data-mode-${props.label}`" class="demo data-mode" :class="demoStatus">
     <ToolTitle>{{ label }}</ToolTitle>
 
     <div class="flex-between to5-5">
@@ -48,4 +48,33 @@ const demoStatus = ref([])
 
 <style scoped lang="scss">
 @import '../assets/stylesheets.scss';
+</style>
+
+<style lang="scss">
+.data-mode.demo {
+  .v-dropdown.v-red {
+    color: red;
+  }
+  .v-dropdown.v-red .v-option.title {
+    font-weight: bold;
+  }
+  .v-tag.v-red {
+    color: white;
+    background: red;
+  }
+  .v-tag.v-red .v-tag__title {
+    font-weight: bold;
+    background: #ff6666;
+  }
+
+  .v-tags-multiselect__main--dropdowns.stash.v-red .undo {
+    color: red;
+  }
+  .v-tags-multiselect__main--dropdowns.stash.v-red .undo .demo__arrow-left {
+    border-color: red;
+  }
+  .v-green {
+    color: green;
+  }
+}
 </style>
