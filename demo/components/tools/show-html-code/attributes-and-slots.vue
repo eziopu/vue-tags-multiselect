@@ -1,10 +1,7 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
   <!--
-  --><span
-    v-for="(value, key) in vForAttributes"
-    v-show="app[key] != value"
-    :key="key"
+  --><span v-for="(value, key) in vForAttributes" v-show="app[key] != value" :key="key"
     ><Space /><span class="pln">:</span><span class="atn">{{ key }}</span
     ><span class="pun">=</span><span class="atv">"{{ app[key] }}"</span><br /></span
   ><!--
@@ -84,7 +81,9 @@ export default {
     },
     vForAttributes() {
       return Object.fromEntries(
-        Object.entries(this.modelAttributes).filter(([key, value]) => this.isShowAttribute(key, value))
+        Object.entries(this.modelAttributes).filter(([key, value]) =>
+          this.isShowAttribute(key, value)
+        )
       )
     }
   },
@@ -100,6 +99,9 @@ export default {
     },
     isShowAttribute(key) {
       if (key === 'options') {
+        if (this.app.options == undefined) {
+          return false
+        }
         return Object.keys(this.app.options).length >= 0
       }
       return key !== 'placeholders'

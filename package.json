@@ -1,6 +1,6 @@
 {
   "name": "vue-tags-multiselect",
-  "version": "1.0.0",
+  "version": "1.0.0-docs1",
   "description": "This is a complex multi-selector.",
   "files": [
     "dist"

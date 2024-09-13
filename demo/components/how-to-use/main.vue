@@ -36,8 +36,8 @@ import ShowHtmlCode from '@tools/show-html-code/main.vue'
     </h4>
 
     <pre><code class="prettyprint lang-js"><!--
-    -->import 'vue-tags-multiselect/dist/style.css';
-      import VueTagsMultiselect from 'vue-tags-multiselect';
+    -->import 'vue-tags-multiselect/dist/style.css'
+      import VueTagsMultiselect from 'vue-tags-multiselect'
       createApp(App).use(VueTagsMultiselect).mount("#app")
     </code></pre>
 
@@ -46,7 +46,7 @@ import ShowHtmlCode from '@tools/show-html-code/main.vue'
       <li>{{ $t(`package.setup.component`) }}</li>
     </h4>
     <pre><code class="prettyprint lang-js"><!--
-      -->import 'vue-tags-multiselect/dist/style.css';
+      -->import 'vue-tags-multiselect/dist/style.css'
       import { vTagsMultiselect, vTagDropdown, vTagOption } from 'vue-tags-multiselect'
     </code></pre>
 
