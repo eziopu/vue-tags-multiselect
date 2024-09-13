@@ -5,7 +5,7 @@ A complex multi-selector.
 ## Install
 
 ```sh
-npm install @eziopu/vue-tags-multiselect
+npm install vue-tags-multiselect
 ```
 
 ### Setup

@@ -28,7 +28,7 @@ import ShowHtmlCode from '@tools/show-html-code/main.vue'
     </div>
 
     <h3>Install</h3>
-    <pre><code>npm install @eziopu/vue-tags-multiselect</code></pre>
+    <pre><code>npm install vue-tags-multiselect</code></pre>
 
     <h3>Setup</h3>
     <h4>
