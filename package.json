@@ -1,6 +1,6 @@
 {
   "name": "vue-tags-multiselect",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "This is a complex multi-selector.",
   "files": [
     "dist"
@@ -25,7 +25,8 @@
     "build:check": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "deploy": "gh-pages -d docs"
   },
   "dependencies": {
     "vue": "^3.3.4"
@@ -36,6 +37,7 @@
     "@vue/eslint-config-prettier": "^8.0.0",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.0.3",
     "sass": "^1.69.5",
     "vite": "^4.4.11",
