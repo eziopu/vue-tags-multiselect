@@ -2,6 +2,12 @@
 
 A complex multi-selector.
 
+![11111](https://github.com/user-attachments/assets/4af25ae7-4bdd-480f-834a-06ef6e402a57)
+
+## Demo
+
+[https://eziopu.github.io/vue-tags-multiselect/](https://eziopu.github.io/vue-tags-multiselect/#/?framework=bootstrap)
+
 ## Install
 
 ```sh
