@@ -1,7 +1,16 @@
 {
   "name": "vue-tags-multiselect",
-  "version": "1.0.0-docs1",
+  "version": "1.0.0-docs2",
   "description": "This is a complex multi-selector.",
+  "author": "eziopu <atkdet@gmail.com>",
+  "keywords": [
+    "multiselect",
+    "dropdown",
+    "select",
+    "tag",
+    "vue",
+    "vue3"
+  ],
   "files": [
     "dist"
   ],
@@ -43,5 +52,13 @@
     "vite": "^4.4.11",
     "vue-i18n": "^9.8.0",
     "vue-router": "^4.4.2"
+  },
+  "bugs": {
+    "url": "https://github.com/eziopu/vue-tags-multiselect/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eziopu/vue-tags-multiselect.git"
   }
 }
