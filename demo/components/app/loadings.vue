@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { reactive, provide } from 'vue'
+import { ref, reactive, provide } from 'vue'
 import Loading from "./loading.vue";
 import DropdownLoading from "./dropdown-loading.vue";
 
@@ -17,7 +17,7 @@ const attributes = reactive({
   dropdownLoadingContent: "",
 });
 
-const appStatus = reactive([]);
+const appStatus = ref([])
 
 provide('getLoadingAttributes', () => attributes);
 
