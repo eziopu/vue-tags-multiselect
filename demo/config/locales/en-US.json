@@ -4,7 +4,7 @@
     "main": "This is a complex multi-selector.",
     "description": {
       "1": "This package consists of a two-layer structure, similar to a dropdown wrapping another dropdown.",
-      "2": "Will duplicate the HTML content of options as the display basis for tags.",
+      "2": "It copies the HTML content of the option as the display for the tag.",
       "3": "Finally, it will output an object containing keys and values."
     },
     "setup": {
