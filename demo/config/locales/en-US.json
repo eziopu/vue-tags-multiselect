@@ -3,9 +3,10 @@
   "package": {
     "main": "This is a complex multi-selector.",
     "description": {
-      "1": "This package consists of a two-layer structure, similar to a dropdown wrapping another dropdown.",
-      "2": "It copies the HTML content of the option as the display for the tag.",
-      "3": "Finally, it will output an object containing keys and values."
+      "1": "This package consists of a two-layer structure, similar to a dropdown wrapped around another dropdown",
+      "2": "The HTML content of the option is copied to serve as the display for the tag",
+      "3": "*or you can also generate options using data",
+      "4": "In the end, an object containing key and values will be output"
     },
     "setup": {
       "global": "In main.js you can mount it as a global Vue component",

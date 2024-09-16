@@ -2,6 +2,11 @@
 
 A complex multi-selector.
 
+-  This package consists of a two-layer structure, similar to a dropdown wrapping another dropdown.
+- It copies the HTML content of the option as the display for the tag.
+- *or you can also generate options using data
+- Finally, it will output an object containing keys and values.
+
 ![11111](https://github.com/user-attachments/assets/4af25ae7-4bdd-480f-834a-06ef6e402a57)
 
 ## Demo
