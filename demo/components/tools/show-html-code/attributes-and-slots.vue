@@ -99,10 +99,8 @@ export default {
     },
     isShowAttribute(key) {
       if (key === 'options') {
-        if (this.app.options == undefined) {
-          return false
-        }
-        return Object.keys(this.app.options).length >= 0
+        const target = this.app.options
+        return target == undefined ? false : Object.keys(target).length != 0
       }
       return key !== 'placeholders'
     }
