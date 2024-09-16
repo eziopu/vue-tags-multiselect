@@ -89,7 +89,6 @@ header {
 
   .navbar-dropdown {
     float: left;
-    overflow: hidden;
 
     &:hover {
       .navbar-dropdown--content {
@@ -128,6 +127,7 @@ header {
 
         &.active {
           background-color: var(--background-color-secondary);
+          filter: brightness(1.05);
           cursor: auto;
         }
       }
