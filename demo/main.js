@@ -7,6 +7,7 @@ import router from "./config/router.js";
 import GeneralDemo from "./components/tools/general-demo.vue";
 import LabelAndControls from "./components/tools/label-and-controls.vue";
 import ToolTitle from "./components/tools/title.vue";
+import "intro.js/introjs.css";
 
 import "./vendors/google-code-prettify/prettify";
 

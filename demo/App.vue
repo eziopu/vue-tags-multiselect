@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import introJs from 'intro.js'
 import Header from './components/layout/header/main.vue'
 import Pagination from './components/layout/pagination.vue'
 
@@ -41,6 +42,16 @@ onMounted(() => {
   }
 
   prettyCode()
+
+  if (localStorage.getItem('visited') === null) {
+    setTimeout(() => {
+      console.log('yyy')
+      console.log(localStorage.getItem('visited'))
+
+      // localStorage.setItem('visited', 'true')
+      introJs().start()
+    }, 500)
+  }
 })
 
 const route = useRoute()
