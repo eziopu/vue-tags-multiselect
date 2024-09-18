@@ -1,10 +1,24 @@
-# vue-tags-multiselect
+# Vue Tags Multiselect
 
-A complex multi-selector.
+> A complex multi-selector.
+
+<a href="https://github.com/eziopu/vue-tags-multiselect/blob/main/LICENSE">
+  <img alt="" src="https://img.shields.io/github/license/eziopu/vue-tags-multiselect?style=flat-square">
+</a>
+<a href="https://npmjs.com/package/vue-tags-multiselect">
+  <img alt="" src="https://img.shields.io/npm/v/vue-tags-multiselect.svg?style=flat-square">
+</a>
+<a href="https://npmjs.com/package/vue-tags-multiselect">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/vue-tags-multiselect">
+</a>
+<a href="https://npmjs.com/package/vue-tags-multiselect">
+  <img alt="" src="https://img.shields.io/npm/dt/vue-tags-multiselect.svg?style=flat-square">
+</a>
 
 -  This package consists of a two-layer structure, similar to a dropdown wrapping another dropdown.
 - It copies the HTML content of the option as the display for the tag.
-- *or you can also generate options using data
+
+    or you can also generate options using data
 - Finally, it will output an object containing keys and values.
 
 ![11111](https://github.com/user-attachments/assets/4af25ae7-4bdd-480f-834a-06ef6e402a57)
