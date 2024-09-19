@@ -73,7 +73,8 @@ header {
       font-size: 1.2rem;
     }
 
-    .fa-github {
+    .fa-github,
+    .fa-question-circle {
       zoom: 1.1;
     }
   }
@@ -302,7 +303,8 @@ header.active .header-overlay {
       }
 
       .navbar-toggleTheme,
-      .navbar-github {
+      .navbar-github,
+      .navbar-help {
         position: absolute;
         top: 10px;
         zoom: 1.4;
@@ -310,6 +312,10 @@ header.active .header-overlay {
 
       .navbar-github {
         left: 2.2rem;
+      }
+
+      .navbar-help {
+        left: 4.4rem;
       }
 
       .navbar-pages .navbar-dropdown--content {
