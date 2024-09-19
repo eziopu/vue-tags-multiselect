@@ -51,5 +51,6 @@ import { inject } from 'vue'
 
 const introStart = inject('introStart')
 const framework = inject('framework')
+
 const home_link = framework.value !== 'default' ? `#/?framework=${framework.value}` : '#/'
 </script>
