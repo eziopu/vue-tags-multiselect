@@ -23,7 +23,10 @@ if (
   framework.value = urlQueryFramework
 }
 
-// == google-code-prettify ==============
+/**
+ * google-code-prettify
+ * @return {void}
+ */
 const prettyCode = async () => {
   await nextTick()
   setTimeout(() => {
@@ -49,10 +52,32 @@ onMounted(() => {
       console.log(localStorage.getItem('visited'))
 
       // localStorage.setItem('visited', 'true')
-      introJs().start()
+      introStart()
     }, 500)
   }
 })
+
+const introCurrentStep = ref(0)
+/**
+ * introJs start
+ * @return {void}
+ */
+const introStart = () => {
+  const intro = introJs()
+
+  intro.onchange(() => {
+    introCurrentStep.value = intro.currentStep()
+  })
+
+  intro.oncomplete(() => {
+    introCurrentStep.value = 0
+  })
+
+  intro.start()
+}
+
+provide('introStart', introStart)
+provide('introCurrentStep', introCurrentStep)
 
 const route = useRoute()
 const router = useRouter()

@@ -1,16 +1,16 @@
 <template>
   <header class="navbar">
-    <a :href="home_link" class="navbar-site" data-intro="歡迎來到說明與範例頁">
+    <a :href="home_link" class="navbar-site" :data-intro="$t('ui.page.intro.wellcome')">
       <img class="logo" src="../../../assets/logo.svg" alt="Vue" />
       <h1 class="site-name">vue-tags-multiselect</h1>
     </a>
 
     <div class="navbar-items">
-      <Pages data-intro="這裡有更多參數與範例頁" />
+      <Pages :data-intro="$t('ui.page.intro.pages')" />
       <div class="navbar-line"></div>
-      <Frameworks data-intro="可切換不同的CSS框架" />
-      <Languages data-intro="目前有兩種語言(en/zh)" />
-      <colorTheme data-intro="還有夜間模式!" />
+      <Frameworks :data-intro="$t('ui.page.intro.frameworks')" />
+      <Languages :data-intro="$t('ui.page.intro.languages')" />
+      <colorTheme :data-intro="$t('ui.page.intro.colorTheme')" />
       <a
         class="navbar-item navbar-icon navbar-github"
         href="https://github.com/eziopu/vue-tags-multiselect"
@@ -23,7 +23,7 @@
       </a>
 
       <div class="navbar-item navbar-icon navbar-help">
-        <div class="navbar-item--help" @click="introJs().start()">
+        <div class="navbar-item--help" @click="introStart()">
           <i class="fa fa-question-circle"></i>
         </div>
       </div>
@@ -47,9 +47,9 @@ import Languages from './languages.vue'
 import colorTheme from './colorTheme.vue'
 import Burger from './burger.vue'
 
-import introJs from 'intro.js'
 import { inject } from 'vue'
 
+const introStart = inject('introStart')
 const framework = inject('framework')
 const home_link = framework.value !== 'default' ? `#/?framework=${framework.value}` : '#/'
 </script>
