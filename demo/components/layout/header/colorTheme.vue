@@ -1,47 +1,44 @@
 <script>
-  export default {
-    name: "header-colorTheme",
-  }
+export default {
+  name: 'header-colorTheme'
+}
 </script>
 
 <script setup>
 // demo form https://codesandbox.io/p/sandbox/immutable-monad-cotsz
-import { ref } from "vue";
+import { ref } from 'vue'
 
 const getTheme = () => {
-  return localStorage.getItem("user-theme");
+  return localStorage.getItem('user-theme')
 }
 
 const getMediaPreference = () => {
-  const hasDarkPreference = window.matchMedia(
-    "(prefers-theme-scheme: dark)"
-  ).matches;
+  const hasDarkPreference = window.matchMedia('(prefers-theme-scheme: dark)').matches
   if (hasDarkPreference) {
-    return "dark-theme";
+    return 'dark-theme'
   } else {
-    return "light-theme";
+    return 'light-theme'
   }
 }
 
 const toggleTheme = () => {
-  const activeTheme = localStorage.getItem("user-theme");
-  if (activeTheme === "light-theme") {
-    setTheme("dark-theme");
+  const activeTheme = localStorage.getItem('user-theme')
+  if (activeTheme === 'light-theme') {
+    setTheme('dark-theme')
   } else {
-    setTheme("light-theme");
+    setTheme('light-theme')
   }
 }
 
 const setTheme = (theme) => {
-  localStorage.setItem("user-theme", theme);
-  userTheme.value = theme;
-  document.documentElement.className = theme;
+  localStorage.setItem('user-theme', theme)
+  userTheme.value = theme
+  document.documentElement.className = theme
 }
 
-const userTheme = ref("light-theme");
-const initUserTheme = getTheme() || getMediaPreference();
-setTheme(initUserTheme);
-
+const userTheme = ref('light-theme')
+const initUserTheme = getTheme() || getMediaPreference()
+setTheme(initUserTheme)
 </script>
 
 <template>

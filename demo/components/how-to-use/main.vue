@@ -14,15 +14,10 @@ import ShowHtmlCode from '@tools/show-html-code/main.vue'
         {{ $t(`ui.general.Description`) }}
       </h3>
       <p>{{ $t(`package.main`) }}</p>
+
       <ul>
-        <li>
-          <p>{{ $t(`package.description.1`) }}</p>
-        </li>
-        <li>
-          <p>{{ $t(`package.description.2`) }}</p>
-        </li>
-        <li>
-          <p>{{ $t(`package.description.3`) }}</p>
+        <li v-for="index in [1, 2, 3, 4]" :key="index">
+          <p v-html="$t(`package.description.${index}`)"></p>
         </li>
       </ul>
     </div>

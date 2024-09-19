@@ -23,7 +23,7 @@ const demoStatus = ref([])
         <slot name="depiction"></slot>
 
         <pre
-          class="tag prettyprint lang-html customize"
+          class="prettyprint lang-js"
         ><code>cosnt datas = {{ datas }}</code></pre>
       </div>
 

@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { inject } from 'vue'
+import { ref, inject } from 'vue'
 
 const framework = inject('framework')
 const frameworks = inject('frameworks') || []
@@ -25,14 +25,32 @@ const changeframework = (inputFramework = '') => {
   if (questionMarkIndex !== -1) {
     hash = hash.substring(0, questionMarkIndex)
   }
-  
-  location.href = url.protocol + '//' + url.host + url.pathname + hash + search;
+
+  location.href = url.protocol + '//' + url.host + url.pathname + hash + search
   location.reload()
+}
+
+const isActive = ref(false)
+/**
+ * toggle active by mouse
+ * @return {void}
+ */
+const toggleActiveByMouse = (boolean = false) => {
+  if (window.innerWidth <= 890) {
+    return
+  }
+  isActive.value = boolean
 }
 </script>
 
 <template>
-  <div class="navbar-dropdown navbar-frameworks">
+  <div
+    class="navbar-dropdown navbar-frameworks"
+    :class="{ active: isActive }"
+    @mouseover="toggleActiveByMouse(true)"
+    @mouseleave="toggleActiveByMouse(false)"
+    @click="isActive = !isActive"
+  >
     <button class="navbar-dropdown--button">
       <span v-if="framework == 'default'"> UI framework </span>
       <span v-else v-html="framework + (framework == 'bootstrap' ? ' v4.6.0 ' : ' v2.4.1 ')">

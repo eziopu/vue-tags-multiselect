@@ -31,10 +31,27 @@ onMounted(() => {
   updateCurrentPage(route)
   window.addEventListener('resize', () => updateCurrentPage(route))
 })
+
+const isActive = ref(false)
+/**
+ * toggle active
+ * @return {void}
+ */
+const toggleActiveByMouse = (boolean = false) => {
+  if (window.innerWidth <= 890) {
+    return
+  }
+  isActive.value = boolean
+}
 </script>
 
 <template>
-  <div class="navbar-dropdown navbar-pages">
+  <div
+    class="navbar-dropdown navbar-pages"
+    :class="{ active: isActive }"
+    @mouseover="toggleActiveByMouse(true)"
+    @mouseleave="toggleActiveByMouse(false)"
+  >
     <button class="navbar-dropdown--button">
       {{ currentPage }}
       <i class="fa fa-caret-down"></i>
@@ -42,6 +59,7 @@ onMounted(() => {
     <div class="navbar-dropdown--content">
       <RouterLink
         class="navbar-dropdown--option"
+        data-action="close-navbar"
         v-for="page in pages"
         :key="page.name"
         :class="{ active: currentPage == page.name }"

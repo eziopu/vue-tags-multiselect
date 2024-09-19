@@ -5,7 +5,8 @@
     "description": {
       "1": "此套件由兩層結構組成，類似dropdown包著dropdown",
       "2": "會複製option的html內容作為tag的顯示依據",
-      "3": "最後會輸出一個包含key與values的object"
+      "3": "*也可以使用純資料方式生成選項", 
+      "4": "最後會輸出一個包含key與values的object"
     },
     "setup": {
       "global": "在 main.js 中，你可以將它掛載為全域的 Vue 元件",
@@ -197,6 +198,13 @@
       "Extended": "補充說明"
     },
     "page": {
+      "intro": {
+        "wellcome": "歡迎來到說明與範例頁",
+        "pages": "這裡有更多參數與範例頁",
+        "frameworks": "可切換不同的CSS框架",
+        "languages": "目前有兩種語言(en/zh)",
+        "colorTheme": "還有明亮與深色模式!"
+      },
       "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
       "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
       "addOption__details": {

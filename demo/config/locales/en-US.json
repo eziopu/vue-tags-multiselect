@@ -3,9 +3,10 @@
   "package": {
     "main": "This is a complex multi-selector.",
     "description": {
-      "1": "This package consists of a two-layer structure, similar to a dropdown wrapping another dropdown.",
-      "2": "Will duplicate the HTML content of options as the display basis for tags.",
-      "3": "Finally, it will output an object containing keys and values."
+      "1": "This package consists of a two-layer structure, similar to a dropdown wrapped around another dropdown",
+      "2": "The HTML content of the option is copied to serve as the display for the tag",
+      "3": "*or you can also generate options using data",
+      "4": "In the end, an object containing key and values will be output"
     },
     "setup": {
       "global": "In main.js you can mount it as a global Vue component",
@@ -197,6 +198,13 @@
       "Extended": "Extended description"
     },
     "page": {
+      "intro": {
+        "wellcome": "Welcome to the documentation and examples page",
+        "pages": "Here you will find more parameters and example pages",
+        "frameworks": "You can switch between different CSS frameworks",
+        "languages": "Currently, two languages are available (en/zh)",
+        "colorTheme": "There is also a light and dark mode!"
+      },
       "basic": "No slot components, no parameter, just a tag bar",
       "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
       "addOption__details": {

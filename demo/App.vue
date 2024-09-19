@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, nextTick, provide, readonly } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import introJs from 'intro.js'
 import Header from './components/layout/header/main.vue'
 import Pagination from './components/layout/pagination.vue'
 
@@ -22,7 +23,10 @@ if (
   framework.value = urlQueryFramework
 }
 
-// == google-code-prettify ==============
+/**
+ * google-code-prettify
+ * @return {void}
+ */
 const prettyCode = async () => {
   await nextTick()
   setTimeout(() => {
@@ -41,7 +45,40 @@ onMounted(() => {
   }
 
   prettyCode()
+
+  if (localStorage.getItem('visited') === null) {
+    localStorage.setItem('visited', 'true')
+    introStart()
+  }
 })
+
+/**
+ * introJs start
+ * @param {number} [timeout=500] - Time before introJs starts
+ * @return {void}
+ */
+const introStart = (timeout = 500) => {
+  const intro = introJs()
+
+  const header = document.querySelector('header')
+  const isOpenNavbarDrawered = header.classList.contains('active')
+  const burger = document.querySelector('#burger')
+  const isNavbarDrawered =
+    window.getComputedStyle(document.querySelector('header .header-burger')).display != 'none'
+
+  intro.onbeforechange(() => {
+    if (intro.currentStep() === 1 && isNavbarDrawered == true && isOpenNavbarDrawered == false) {
+      burger.click()
+      return new Promise((resolve) => setTimeout(resolve, 500))
+    }
+  })
+
+  setTimeout(() => {
+    intro.start()
+  }, timeout)
+}
+
+provide('introStart', introStart)
 
 const route = useRoute()
 const router = useRouter()
@@ -104,6 +141,7 @@ router.afterEach(() => {
 
 <style lang="scss">
 @import './assets/stylesheets/color.css';
+@import './assets/stylesheets/package-introJs-dark-theme.scss';
 @import './assets/stylesheets/package-dark-theme.scss';
 @import './assets/stylesheets/header.scss';
 @import './assets/stylesheets/layout.scss';
