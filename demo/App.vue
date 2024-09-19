@@ -47,17 +47,11 @@ onMounted(() => {
   prettyCode()
 
   if (localStorage.getItem('visited') === null) {
-    setTimeout(() => {
-      console.log('yyy')
-      console.log(localStorage.getItem('visited'))
-
-      // localStorage.setItem('visited', 'true')
-      introStart()
-    }, 500)
+    localStorage.setItem('visited', 'true')
+    introStart()
   }
 })
 
-const introCurrentStep = ref(0)
 /**
  * introJs start
  * @return {void}
@@ -65,19 +59,25 @@ const introCurrentStep = ref(0)
 const introStart = () => {
   const intro = introJs()
 
-  intro.onchange(() => {
-    introCurrentStep.value = intro.currentStep()
+  const header = document.querySelector('header')
+  const isOpenNavbarDrawered = header.classList.contains('active')
+  const burger = document.querySelector('#burger')
+  const isNavbarDrawered =
+    window.getComputedStyle(document.querySelector('header .header-burger')).display != 'none'
+
+  intro.onbeforechange(() => {
+    if (intro.currentStep() === 1 && isNavbarDrawered == true && isOpenNavbarDrawered == false) {
+      burger.click()
+      return new Promise((resolve) => setTimeout(resolve, 500))
+    }
   })
 
-  intro.oncomplete(() => {
-    introCurrentStep.value = 0
-  })
-
-  intro.start()
+  setTimeout(() => {
+    intro.start()
+  }, 500)
 }
 
 provide('introStart', introStart)
-provide('introCurrentStep', introCurrentStep)
 
 const route = useRoute()
 const router = useRouter()
