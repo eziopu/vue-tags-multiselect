@@ -59,6 +59,7 @@ const toggleActiveByMouse = (boolean = false) => {
     <div class="navbar-dropdown--content">
       <RouterLink
         class="navbar-dropdown--option"
+        data-action="close-navbar"
         v-for="page in pages"
         :key="page.name"
         :class="{ active: currentPage == page.name }"

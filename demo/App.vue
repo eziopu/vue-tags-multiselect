@@ -54,9 +54,10 @@ onMounted(() => {
 
 /**
  * introJs start
+ * @param {number} [timeout=500] - Time before introJs starts
  * @return {void}
  */
-const introStart = () => {
+const introStart = (timeout = 500) => {
   const intro = introJs()
 
   const header = document.querySelector('header')
@@ -74,7 +75,7 @@ const introStart = () => {
 
   setTimeout(() => {
     intro.start()
-  }, 500)
+  }, timeout)
 }
 
 provide('introStart', introStart)

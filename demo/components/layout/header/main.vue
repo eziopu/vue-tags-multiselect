@@ -23,7 +23,7 @@
       </a>
 
       <div class="navbar-item navbar-icon navbar-help">
-        <div class="navbar-item--help" @click="introStart()">
+        <div class="navbar-item--help" @click="introStart(0)">
           <i class="fa fa-question-circle"></i>
         </div>
       </div>
