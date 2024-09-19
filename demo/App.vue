@@ -140,6 +140,7 @@ router.afterEach(() => {
 
 <style lang="scss">
 @import './assets/stylesheets/color.css';
+@import './assets/stylesheets/package-introJs-dark-theme.scss';
 @import './assets/stylesheets/package-dark-theme.scss';
 @import './assets/stylesheets/header.scss';
 @import './assets/stylesheets/layout.scss';
