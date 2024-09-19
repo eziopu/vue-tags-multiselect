@@ -199,11 +199,11 @@
     },
     "page": {
       "intro": {
-        "wellcome": "歡迎來到說明與範例頁",
-        "pages": "這裡有更多參數與範例頁",
-        "frameworks": "可切換不同的CSS框架",
-        "languages": "目前有兩種語言(en/zh)",
-        "colorTheme": "還有明亮與深色模式!"
+        "wellcome": "Welcome to the documentation and examples page",
+        "pages": "Here you will find more parameters and example pages",
+        "frameworks": "You can switch between different CSS frameworks",
+        "languages": "Currently, two languages are available (en/zh)",
+        "colorTheme": "There is also a light and dark mode!"
       },
       "basic": "No slot components, no parameter, just a tag bar",
       "addOption": "Make it like a dropdowns, need to have slots <code class='tag'>&lt;v-tag-dropdown&gt;</code> and <code class='tag'>&lt;v-tag-option&gt;</code>",
