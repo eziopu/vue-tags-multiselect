@@ -44,7 +44,7 @@
         <template v-slot:option-undo v-if="appSlots.optionUndo != ''">
           <span v-html="appSlots.optionUndo"></span>
         </template>
-        <template v-slot:optionU-OR-conjunction v-if="appSlots.optionORConjunction != ''">
+        <template v-slot:option-OR-conjunction v-if="appSlots.optionORConjunction != ''">
           <span v-html="appSlots.optionORConjunction"></span>
         </template>
         <template v-slot:dropdown-loading v-if="appSlots.dropdownLoading != ''">
