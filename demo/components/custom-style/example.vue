@@ -8,25 +8,84 @@ import { ElColorPicker, ElDatePicker } from 'element-plus'
 import 'element-plus/es/components/color-picker/style/css'
 import 'element-plus/es/components/date-picker/style/css'
 
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 const i18n = 'ui.page.customStyle.hidden'
-const demoStatus = ref([])
+const result = ref({})
+const elDemo = ref(null)
+const elColorPickerRef = ref(null)
+const elDatePickerRef = ref(null)
 
-const icons = {
+const demoDropdownLoading = ref(false)
+const demoStatus = ref([])
+const demoSelectingTag = ref({})
+
+/* =============================================================================
+ * = Brands
+ * ========================================================================== */
+const isBrandsNext = ref(false)
+const brandList1 = {
   Tesla: 'https://www.svgrepo.com/show/446929/tesla.svg',
   Subaru: 'https://www.svgrepo.com/show/446930/subaru.svg',
   Volvo: 'https://www.svgrepo.com/show/446933/volvo.svg',
   Ferrari: 'https://www.svgrepo.com/show/446955/ferrari.svg',
-  Ford: 'https://www.svgrepo.com/show/446869/ford.svg',
+  Ford: 'https://www.svgrepo.com/show/446869/ford.svg'
+}
+const brandList2 = {
   Honda: 'https://www.svgrepo.com/show/446876/honda.svg',
   Jaguar: 'https://www.svgrepo.com/show/446882/jaguar-alt.svg',
   Mazda: 'https://www.svgrepo.com/show/446894/mazda.svg',
   Peugeot: 'https://www.svgrepo.com/show/446905/peugeot.svg',
   Nissan: 'https://www.svgrepo.com/show/446904/nissan.svg'
 }
+const brands = ref(brandList1)
 
+const toggleBrands = () => {
+  if (demoDropdownLoading.value) {
+    return
+  }
+  isBrandsNext.value = !isBrandsNext.value
+  demoDropdownLoading.value = true
+
+  brands.value = {}
+  const timeout = 500
+  const trigger = isBrandsNext.value ? brandList2 : brandList1
+  Object.entries(trigger).forEach(([brand, url], index) => {
+    setTimeout(() => {
+      console.log(brand, index)
+      brands.value[brand] = url
+    }, timeout * index)
+  })
+
+  setTimeout(
+    () => {
+      demoDropdownLoading.value = false
+    },
+    timeout * Object.entries(trigger).length
+  )
+}
+/* =============================================================================
+ * = Color Picker
+ * ========================================================================== */
 const colorPicker = ref()
+watch(colorPicker, (value) => {
+  elDemo.value.pushTag({
+    key: 'color',
+    valueElm: `<span class="color-box" style="background-color: ${value}"></span>`,
+    value: value
+  })
+})
+
+/* =============================================================================
+ * = Date Picker
+ * ========================================================================== */
 const datePicker = ref()
+
+watch(datePicker, (value) => {
+  elDemo.value.pushTag({
+    key: 'date',
+    value: `${value[0]} ~ ${value[1]}`
+  })
+})
 
 const shortcuts = [
   {
@@ -35,7 +94,7 @@ const shortcuts = [
       const end = new Date()
       const start = new Date(new Date().getFullYear(), 0)
       return [start, end]
-    },
+    }
   },
   {
     text: 'Last 6 months',
@@ -44,8 +103,8 @@ const shortcuts = [
       const start = new Date()
       start.setMonth(start.getMonth() - 6)
       return [start, end]
-    },
-  },
+    }
+  }
 ]
 </script>
 
@@ -84,11 +143,10 @@ const shortcuts = [
       </ul>
     </div>
 
-    <div class="demo-color-block">
+    <!-- <div class="demo-color-block">
       <span class="demonstration"> colorPicker </span>
       <el-color-picker v-model="colorPicker" />
       <span> : {{ colorPicker }}</span>
-
     </div>
 
     <div class="block">
@@ -103,33 +161,82 @@ const shortcuts = [
         :shortcuts="shortcuts"
       />
       <span> : {{ datePicker }}</span>
-    </div>
+    </div> -->
 
-    <v-tags-multiselect v-model="result">
-      <v-tag-dropdown value="country" display-all>
+    result = {{ result }}
+    <v-tags-multiselect
+      v-model="result"
+      ref="elDemo"
+      @status="(e) => (demoStatus = e)"
+      @selecting-tag="(Object) => (demoSelectingTag = Object)"
+      :conjunction="'AND'"
+      :dropdownLoading="demoDropdownLoading"
+    >
+      <v-tag-dropdown value="brand">
         <v-tag-option title>
-          <span class="v-hidden-in-dropdown"> <i class="fa fa-flag-o"></i> </span>
-          <span class="v-hidden-in-tag"> <i class="fa fa-flag"></i> 國家 </span>
-          car
+          <span class="v-hidden-in-tag">Brands</span>
+          <span class="v-hidden-in-dropdown">Brand</span>
         </v-tag-option>
 
-        <v-tag-option v-for="(value, key) in icons" :key="key" :value="key" class="car-brand">
+        <v-tag-option v-for="(value, key) in brands" :key="key" :value="key" class="car-brand">
           <svg class="car-brand__icon">
             <image :xlink:href="value" :src="value" />
           </svg>
-          {{ key }}
+          <span class="v-hidden-in-tag">{{ key }}</span>
         </v-tag-option>
-        <v-tag-option value="Eldia">艾爾迪亞</v-tag-option>
+
+        <v-tag-option class="car-next" divided>
+          <div @click="toggleBrands">
+            {{ isBrandsNext ? 'prev' : 'next' }}
+          </div>
+        </v-tag-option>
+      </v-tag-dropdown>
+
+      <v-tag-dropdown value="color">
+        <v-tag-option title> color </v-tag-option>
+
+        <v-tag-option class="car-color">
+          <el-color-picker v-model="colorPicker" ref="elColorPickerRef" />
+        </v-tag-option>
+      </v-tag-dropdown>
+
+      <v-tag-dropdown value="date">
+        <v-tag-option title> date </v-tag-option>
+        <v-tag-option>
+          <el-date-picker
+            v-model="datePicker"
+            ref="elDatePickerRef"
+            type="monthrange"
+            unlink-panels
+            range-separator="To"
+            format="YYYY/MM/DD"
+            value-format="YYYY-MM-DD"
+            :shortcuts="shortcuts"
+          />
+        </v-tag-option>
       </v-tag-dropdown>
     </v-tags-multiselect>
   </div>
 </template>
 
-<style scoped lang="scss">
-.car-brand__icon,
-.car-brand__icon image {
-  width: 25px;
-  height: 25px;
+<style lang="scss">
+#custom-style__example {
+  margin-bottom: 240px;
+
+  .car-brand__icon {
+    margin-right: 3px;
+  }
+  .car-brand__icon,
+  .car-brand__icon image {
+    width: 25px;
+    height: 25px;
+  }
+
+  .color-box {
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin: 6px;
+  }
 }
-@import './assets/stylesheets.scss';
 </style>
