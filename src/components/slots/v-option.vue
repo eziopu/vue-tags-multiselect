@@ -73,6 +73,7 @@ export default {
 
   &.hidden {
     height: 0 !important;
+    width: 0 !important;
     padding: 0 !important;
     visibility: hidden;
     opacity: 0;
