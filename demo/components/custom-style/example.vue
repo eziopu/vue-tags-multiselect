@@ -143,26 +143,6 @@ const shortcuts = [
       </ul>
     </div>
 
-    <!-- <div class="demo-color-block">
-      <span class="demonstration"> colorPicker </span>
-      <el-color-picker v-model="colorPicker" />
-      <span> : {{ colorPicker }}</span>
-    </div>
-
-    <div class="block">
-      <span class="demonstration"> datePicker </span>
-      <el-date-picker
-        v-model="datePicker"
-        type="monthrange"
-        unlink-panels
-        range-separator="To"
-        format="YYYY/MM/DD"
-        value-format="YYYY-MM-DD"
-        :shortcuts="shortcuts"
-      />
-      <span> : {{ datePicker }}</span>
-    </div> -->
-
     result = {{ result }}
     <v-tags-multiselect
       v-model="result"
@@ -185,24 +165,22 @@ const shortcuts = [
           <span class="v-hidden-in-tag">{{ key }}</span>
         </v-tag-option>
 
-        <v-tag-option class="car-next" divided>
-          <div @click="toggleBrands">
-            {{ isBrandsNext ? 'prev' : 'next' }}
-          </div>
+        <v-tag-option class="car-next" divided @click="toggleBrands">
+          {{ isBrandsNext ? 'prev' : 'next' }}
         </v-tag-option>
       </v-tag-dropdown>
 
       <v-tag-dropdown value="color">
         <v-tag-option title> color </v-tag-option>
 
-        <v-tag-option class="car-color">
+        <v-tag-option class="car-color" @click="elColorPickerRef.show()">
           <el-color-picker v-model="colorPicker" ref="elColorPickerRef" />
         </v-tag-option>
       </v-tag-dropdown>
 
       <v-tag-dropdown value="date">
         <v-tag-option title> date </v-tag-option>
-        <v-tag-option>
+        <v-tag-option @click="elDatePickerRef.focus()">
           <el-date-picker
             v-model="datePicker"
             ref="elDatePickerRef"
