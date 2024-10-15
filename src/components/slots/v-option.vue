@@ -33,6 +33,9 @@ import resolve from "./../../utils/resolve";
 export default {
   name: "v-option",
   props: vOptionProps(),
+  emits: [
+    'click',
+  ],
   setup(props, context) {
     return resolve(props, context, [
       useSetTag,
