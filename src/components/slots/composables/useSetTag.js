@@ -4,7 +4,7 @@ import { getTagModel } from "../../../models";
 
 import clearHTML from "../../../utils/clearHTML";
 
-export default function useDropdown(props, _context, dep) {
+export default function useDropdown(props, context, dep) {
   // ============== REFS ==============
 
   const elOption = ref(null);
@@ -55,17 +55,11 @@ export default function useDropdown(props, _context, dep) {
     return result;
   });
 
-  const handleClick = () => {
+  const handleClick = (event) => {
     if (isDisabled) return;
+    context.emit('click', event);
+
     if (!props.title && props.value == "") {
-      // const slotContent = context.slots.default();
-      // if (
-      //   slotContent &&
-      //   slotContent.length > 0 &&
-      //   typeof slotContent[0].props.onClick == "function"
-      // ) {
-      //   slotContent[0].props.onClick();
-      // }
       return;
     }
 
