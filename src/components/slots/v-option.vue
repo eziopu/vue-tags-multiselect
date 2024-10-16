@@ -33,6 +33,9 @@ import resolve from "./../../utils/resolve";
 export default {
   name: "v-option",
   props: vOptionProps(),
+  emits: [
+    'click',
+  ],
   setup(props, context) {
     return resolve(props, context, [
       useSetTag,
@@ -73,6 +76,7 @@ export default {
 
   &.hidden {
     height: 0 !important;
+    width: 0 !important;
     padding: 0 !important;
     visibility: hidden;
     opacity: 0;
