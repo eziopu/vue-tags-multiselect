@@ -1,20 +1,20 @@
 <!-- eslint-disable prettier/prettier -->
 <template><!--
-  --><span class="tag">pushTag</span><!--
-    --><span class="atv">(</span><!--
-      --><span class="purple">{</span><!--
+  --><span class="function">pushTag</span><!--
+    --><span class="function">(</span><!--
+      --><span class="bracket">&#123;</span><!--
         --><span v-show="simple"><!--
-          -->value: <span class="atv">"Eldia"</span><!--
+          --><span class="variable">value</span>: <span class="string">'Eldia'</span><!--
         --></span><!--
         --><span v-show="!simple"><!--
-          --><span class="rwd"><br/><Space /></span>key: <span class="atv">"country"</span>, <!--
-          --><span class="rwd"><br/><Space /></span>value: <span class="atv">"Eldia"</span>, <!--
-          --><span class="rwd"><br/><Space /></span>titleElm:<span class="atv">"&lt;p&gt;Country&lt;/p&gt;"</span>, <!--
-          --><span class="rwd"><br/><Space /></span>custom: <span class="atv">true</span><!--
+          --><span class="rwd"><br/><Space /></span><span class="variable">key</span>: <span class="string">'country'</span>, <!--
+          --><span class="rwd"><br/><Space /></span><span class="variable">value</span>: <span class="string">'Eldia'</span>, <!--
+          --><span class="rwd"><br/><Space /></span><span class="variable">titleElm</span>: <span class="string">'&lt;p&gt;Country&lt;/p&gt;'</span>, <!--
+          --><span class="rwd"><br/><Space /></span><span class="variable">custom</span>: <span class="parenthesis">true</span><!--
           --><span class="rwd"><br/></span><!--
         --></span><!--
-    --><span class="purple">}</span><!--
-  --><span class="atv">)</span><!--
+    --><span class="bracket">&#125;</span><!--
+  --><span class="function">)</span><!--
 --></template>
 
 <script>

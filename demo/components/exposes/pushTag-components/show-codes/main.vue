@@ -1,8 +1,8 @@
 <!-- eslint-disable prettier/prettier -->
 <template>
-<pre class="prettyprint lang-html customize"><code><!--
+<pre class="prettyprint lang-js customize"><code><!--
 --><FunctionUse simple />
-<span class="com">// or</span>
+<span class="comment_out">// or</span>
 <FunctionUse /><!--
 --></code></pre>
 </template>
