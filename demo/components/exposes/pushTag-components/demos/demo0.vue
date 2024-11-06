@@ -118,11 +118,38 @@ const shortcuts = [
       <p v-html="$t(`${i18n}.description`)"></p>
 
       <div class="sub-depiction">
-        *<span v-html="$t(`${i18n}.notice`)"></span>
+        <p>*<span v-html="$t(`${i18n}.notice`)"></span></p>
         <p v-html="$t(`${i18n}.comment`)"></p>
+
+        <ul>
+          <li>
+            <p>
+              icon:
+              <a href="https://www.svgrepo.com/collection/car-labels-flat-logos" target="_blank"
+                >svgrepo</a
+              >
+            </p>
+          </li>
+          <li>
+            <p>
+              ColorPicker:
+              <a href="https://element-plus.org/en-US/component/color-picker.html" target="_blank"
+                >element UI plus</a
+              >
+            </p>
+          </li>
+          <li>
+            <p>
+              DatePicker:
+              <a href="https://element-plus.org/en-US/component/date-picker.html" target="_blank"
+                >element UI plus</a
+              >
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
-    
+
     <div>
       result = {{ result }}
       <v-tags-multiselect
@@ -203,12 +230,18 @@ html.dark-theme #exposes-pushTag__pushTag-demo0 {
   .car-brand__name {
     margin-left: 6px;
   }
+  
+  .car-brand {
+    display: flex;
+    align-items: center;
+  }
+
   .car-brand__icon,
   .car-brand__icon image {
     width: 25px;
     height: 25px;
   }
-  
+
   .v-tag__value {
     .car-brand__icon,
     .car-brand__icon image {
@@ -216,7 +249,6 @@ html.dark-theme #exposes-pushTag__pushTag-demo0 {
       height: 20px;
     }
   }
-
 
   .color-box {
     display: block;

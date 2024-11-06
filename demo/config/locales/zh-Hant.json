@@ -115,7 +115,7 @@
         "demo0": {
           "description": "在 <code class='tag'>&lt;v-tag-option&gt;</code> 加入組件, 就必須使用此方式",
           "notice": "為了輸入外部的值, <code class='tag'>&lt;v-tag-option&gt;</code> 的 value 請不要填寫",
-          "comment": "範例中的 <code class='tag'>&lt;v-tag-dropdown&gt;</code> display-all 僅是方便操作而已, 關掉並不影響操作"
+          "comment": "該範例使用以下套件"
         },
         "demo1": {
           "title": "任意把玩",

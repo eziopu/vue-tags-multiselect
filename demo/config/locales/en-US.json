@@ -115,7 +115,7 @@
         "demo0": {
           "description": "When adding components in <code class='tag'>&lt;v-tag-option&gt;</code>, this method must be used",
           "notice": "To input external values, please do not fill in the value of <code class='tag'>&lt;v-tag-option&gt;</code>",
-          "comment": "The display-all in the <code class='tag'>&lt;v-tag-dropdown&gt;</code> in the example is just for convenience, turning it off does not affect the operation"
+          "comment": "This example uses the following packages"
         },
         "demo1": {
           "title": "Arbitrary operation",
