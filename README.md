@@ -21,7 +21,11 @@
     or you can also generate options using data
 - Finally, it will output an object containing keys and values.
 
-![11111](https://github.com/user-attachments/assets/4af25ae7-4bdd-480f-834a-06ef6e402a57)
+![11111](https://github.com/user-attachments/assets/ce8e99e4-e548-4806-83a1-9449a5821bb0)
+
+or use external component.
+![2222](https://github.com/user-attachments/assets/36fd1805-49d0-40fb-9bc7-1afc3755f0eb)
+
 
 ## Demo
 

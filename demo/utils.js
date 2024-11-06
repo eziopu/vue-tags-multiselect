@@ -13,6 +13,7 @@ export function toUpperCaseFirstLetter(str = '') {
 }
 
 export function toKebabCase(str = '') {
+  if (str === 'optionORConjunction') return 'option-OR-conjunction';
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 

@@ -60,9 +60,10 @@ const demoStatus = ref([])
 </style>
 
 <style lang="scss">
-#custom-style__v-tag-dropdown--class {
-  .v-dropdown.v-red {
-    color: red;
+
+#custom-style__v-tag-dropdown--class .v-tags-multiselect {
+  .v-dropdown.v-red .v-option {
+    color: red !important;
   }
   .v-dropdown.v-red .v-option.title {
     font-weight: bold;

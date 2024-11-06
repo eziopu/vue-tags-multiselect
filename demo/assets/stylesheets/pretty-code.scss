@@ -64,4 +64,34 @@
       font-weight: bolder;
     }
   }
+
+  .prettyprint.lang-js.customize {
+    .keyword {
+      color: #c678dd;
+    }
+
+    .function {
+      color: #61afef;
+    }
+
+    .string {
+      color: #a3be8c;
+    }
+
+    .variable {
+      color: #e06c62;
+    }
+
+    .bracket {
+      color: #c678dd;
+    }
+
+    .parenthesis {
+      color: #ebcb8b;
+    }
+
+    .comment_out {
+      color: #66747b;
+    }
+  }
 }
