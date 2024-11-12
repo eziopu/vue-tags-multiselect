@@ -4,7 +4,10 @@
       {{ label }}<span class="tool-attribute__label--colon">:</span>
     </div>
     <div class="tool-attribute__operate" :class="{ 'tool-tooltip': $slots.tooltip }">
-      <template v-if="model == 'select'">
+      <template v-if="model == 'select' && JSON.stringify(options) === JSON.stringify(['true', 'false'])">
+        <ToggleSwitch v-model="newValue" :disabled="disabled" />
+      </template>
+      <template v-if="model == 'select' && JSON.stringify(options) !== JSON.stringify(['true', 'false'])">
         <select
           v-model="newValue"
           class="tool-attribute__select"
