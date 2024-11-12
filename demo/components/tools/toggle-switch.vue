@@ -38,10 +38,16 @@ const checked = computed({
   user-select: none;
 }
 
+.switch.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 /* 
   Tooltip
   Source: https://www.w3schools.com/howto/howto_css_switch.asp
 */
+
 $switch-width: 42px;
 $switch-height: 20px;
 $slider-before-width: ($switch-height * 0.8);
