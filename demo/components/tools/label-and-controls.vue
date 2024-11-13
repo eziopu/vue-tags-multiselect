@@ -4,7 +4,14 @@
       {{ label }}<span class="tool-attribute__label--colon">:</span>
     </div>
     <div class="tool-attribute__operate" :class="{ 'tool-tooltip': $slots.tooltip }">
-      <template v-if="model == 'select'">
+      <template
+        v-if="model == 'select' && JSON.stringify(options) === JSON.stringify(['true', 'false'])"
+      >
+        <ToggleSwitch v-model="newValue" :disabled="disabled" />
+      </template>
+      <template
+        v-if="model == 'select' && JSON.stringify(options) !== JSON.stringify(['true', 'false'])"
+      >
         <select
           v-model="newValue"
           class="tool-attribute__select"
@@ -16,6 +23,22 @@
           </option>
         </select>
       </template>
+
+      <template v-if="model == 'radio'">
+        <div class="tool-attribute__radios flex">
+          <div class="tool-attribute__radio" v-for="item in options" :key="item">
+            <input
+              type="radio"
+              :id="`${label}_${item}`"
+              :value="item"
+              v-model="newValue"
+              class="pointer"
+            />
+            <label :for="`${label}_${item}`" class="pointer"> {{ item }} </label>
+          </div>
+        </div>
+      </template>
+
       <template v-if="model == 'input'">
         <div class="ui input tool-attribute__input">
           <div
@@ -37,7 +60,7 @@
           />
         </div>
       </template>
-  
+
       <span class="tool-tooltip__text">
         <slot name="tooltip"></slot>
       </span>
@@ -45,101 +68,67 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'label-and-controls',
-  inject: ['framework'],
-  props: {
-    disabled: {
-      type: Boolean,
-      default: () => {
-        return false
-      }
-    },
-    label: {
-      type: String,
-      default: () => {
-        return ''
-      }
-    },
-    modelValue: {
-      type: [String, Boolean],
-      default: () => {
-        return ''
-      }
-    },
-    model: {
-      type: String,
-      default: () => {
-        return 'select'
-      }
-    },
-    /**
-     * input
-     **/
-    text: {
-      type: String,
-      default: () => {
-        return 'text'
-      }
-    },
-    placeholder: {
-      type: String,
-      default: () => {
-        return ''
-      }
-    },
-    width: {
-      type: String,
-      default: () => {
-        return 'atuo'
-      }
-    },
-    /**
-     * select
-     **/
-    values: {
-      type: Array,
-      default: () => {
-        return []
-      }
-    }
-  },
-  data() {
-    return {
-      isActive: false
-    }
-  },
-  model: {
-    prop: 'value',
-    event: 'update:modelValue'
-  },
-  computed: {
-    newValue: {
-      get() {
-        return this.modelValue
-      },
-      set(value) {
-        this.$emit('update:modelValue', this.toBoolean(value))
-      }
-    },
-    options() {
-      return this.values.length > 0 ? this.values : ['true', 'false']
-    }
-  },
-  methods: {
-    toBoolean(value) {
-      if (value === 'true' || value === true) return true
-      if (value === 'false' || value === false) return false
-      return value
-    }
+<script setup>
+import { ref, inject, computed } from 'vue'
+import { defineProps, defineEmits } from 'vue'
+import ToggleSwitch from './toggle-switch.vue'
+
+const props = defineProps({
+  disabled: { type: Boolean, default: false },
+  label: { type: String, default: '' },
+  modelValue: { type: [String, Boolean], default: '' },
+  model: { type: String, default: 'select' },
+  text: { type: String, default: 'text' },
+  placeholder: { type: String, default: '' },
+  width: { type: String, default: 'auto' },
+  values: { type: Array, default: () => [] }
+})
+
+const emit = defineEmits(['update:modelValue'])
+const framework = inject('framework')
+const isActive = ref(false)
+
+const newValue = computed({
+  get: () => props.modelValue,
+  set: (value) => {
+    emit('update:modelValue', toBoolean(value))
   }
+})
+
+const options = computed(() => (props.values.length > 0 ? props.values : ['true', 'false']))
+
+/**
+ * Converts given value to boolean type.
+ * @param {String|Boolean} value - value to convert
+ * @returns {Boolean} - converted boolean value
+ */
+function toBoolean(value) {
+  if (value === 'true' || value === true) return true
+  if (value === 'false' || value === false) return false
+  return value
 }
 </script>
 
 <style scoped lang="scss">
 .tool-attribute {
   flex-flow: wrap;
+
+  &.select {
+    align-items: center;
+  }
+}
+
+.tool-attribute__radio {
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  input {
+    margin: 0 6px;
+  }
+  label {
+    margin: 0;
+  }
 }
 
 .tool-attribute__label--colon {
