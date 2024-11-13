@@ -97,9 +97,10 @@ const attributes = ref({
 
       <div class="app attributes">
         <LabelAndControls
-          label="conjunction"
+          label="conjunction "
           v-model="attributes.conjunction"
           :values="ATTRIBUTE_ACCEPTED_VALUES.conjunction"
+          model="radio"
         />
         <LabelAndControls label="loading" v-model="attributes.loading" />
         <LabelAndControls label="create" v-model="attributes.create" />

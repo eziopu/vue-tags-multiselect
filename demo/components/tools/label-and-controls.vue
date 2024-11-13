@@ -112,6 +112,10 @@ function toBoolean(value) {
 <style scoped lang="scss">
 .tool-attribute {
   flex-flow: wrap;
+
+  &.select {
+    align-items: center;
+  }
 }
 
 .tool-attribute__radio {

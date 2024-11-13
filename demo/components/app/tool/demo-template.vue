@@ -64,6 +64,7 @@ const demoOptionSetting = {
         <LabelAndControls
           :label="props.label"
           :values="ACCEPTED_VALUES || ['true', 'false']"
+          :model="ACCEPTED_VALUES == null ? 'select' : 'radio'"
           v-model="attributes[props.label]"
         >
         </LabelAndControls>
