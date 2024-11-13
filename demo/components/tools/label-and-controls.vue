@@ -70,7 +70,6 @@
 
 <script setup>
 import { ref, inject, computed } from 'vue'
-import { defineProps, defineEmits } from 'vue'
 import ToggleSwitch from './toggle-switch.vue'
 
 const props = defineProps({

@@ -9,7 +9,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
   modelValue: {
