@@ -5,10 +5,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'partial-close',
-}
+<script setup lang="ts">
+defineOptions({ name: 'partial-close' })
 </script>
 
 <style scoped lang="scss">

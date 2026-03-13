@@ -22,10 +22,10 @@ const demoStatus = ref([])
 
         <ul>
           <li>
-            <p>v-hidden-in-dropdown : 僅在dropdown內隱藏</p>
+            <p>v-hidden-in-dropdown : {{ $t(`${i18n}.v-hidden-in-dropdown`) }}</p>
           </li>
           <li>
-            <p>v-hidden-in-tag : 僅在成為tag後隱藏</p>
+            <p>v-hidden-in-tag : {{ $t(`${i18n}.v-hidden-in-tag`) }}</p>
           </li>
         </ul>
 
@@ -69,5 +69,5 @@ const demoStatus = ref([])
 </template>
 
 <style scoped lang="scss">
-@import './assets/stylesheets.scss';
+@use './assets/stylesheets.scss';
 </style>

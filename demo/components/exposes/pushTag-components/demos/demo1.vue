@@ -176,7 +176,7 @@ const i18nHasKey = `${i18nMain}.has-key`;
 </template>
 
 <style scoped lang="scss">
-@import "../../assets/stylesheets.scss";
+@use "../../assets/stylesheets.scss";
 
 @media (max-width: 576px) {
   .v-tags-multiselect {

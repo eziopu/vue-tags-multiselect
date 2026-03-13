@@ -4,10 +4,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "partial-loading",
-};
+<script setup lang="ts">
+defineOptions({ name: 'partial-loading' })
 </script>
 
 <style scoped lang="scss">

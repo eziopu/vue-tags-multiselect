@@ -91,3 +91,19 @@ or
   ...
 </v-tags-multiselect>
 ```
+
+### TypeScript Support
+
+```ts
+import type {
+  TagModel,              // Single tag data structure
+  TagsGroupByKeyModel,   // Grouped tag structure (when merge is enabled)
+  PlaceholdersModel,     // Placeholder configuration
+  OptionsInput,          // Input format for the options prop
+  ProcessedDropdown,     // Processed dropdown structure
+  ProcessedOption,       // Processed option structure
+  DropdownStatusMap,     // Dropdown status map
+  OptionStatusMap,       // Option status map
+  VTagsMultiselectEmits, // Component event definitions
+} from 'vue-tags-multiselect'
+```

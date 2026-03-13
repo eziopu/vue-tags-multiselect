@@ -264,14 +264,14 @@ export default {
   methods: {
     focusinApp() {
       this.$nextTick(() => {
-        let app = this.$refs.VTagsMultiselect
+        const app = this.$refs.VTagsMultiselect
         app.focus()
         // document.removeEventListener("focusin", app.focusChanged);
       })
     },
     reload() {
       this.$nextTick(() => {
-        let app = this.$refs.VTagsMultiselect
+        const app = this.$refs.VTagsMultiselect
         app.initialize()
 
         if (this.autoFocus == true) {

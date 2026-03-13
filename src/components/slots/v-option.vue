@@ -21,30 +21,23 @@
   </div>
 </template>
 
-<script>
-import { vOptionProps } from "./models.js";
-import useSetTag from "./composables/useSetTag";
-import useSearch from "./composables/useSearch";
-import useOption from "./composables/useOption";
-import useRegistration from "./composables/useRegistration";
+<script setup lang="ts">
+import { vOptionProps } from './models'
+import useSetTag from './composables/useSetTag'
+import useSearch from './composables/useSearch'
+import useOption from './composables/useOption'
+import useRegistration from './composables/useRegistration'
 
-import resolve from "./../../utils/resolve";
+defineOptions({ name: 'v-option' })
 
-export default {
-  name: "v-option",
-  props: vOptionProps(),
-  emits: [
-    'click',
-  ],
-  setup(props, context) {
-    return resolve(props, context, [
-      useSetTag,
-      useSearch,
-      useOption,
-      useRegistration,
-    ]);
-  },
-};
+const props = defineProps(vOptionProps())
+const emit = defineEmits<{ click: [event?: Event] }>()
+const propsRaw = props as Record<string, unknown>
+
+const { elOption, innerHTML, handleClick } = useSetTag(propsRaw, emit, {} as any)
+const { isCanSearch, isSearchable } = useSearch(propsRaw, { innerHTML })
+const { isDisabled, isSelected, isHover, isHidden } = useOption(propsRaw, { isCanSearch, isSearchable, handleClick })
+const { isDuplicateOption } = useRegistration(propsRaw, { elOption, isHidden, isSelected, isSearchable })
 </script>
 
 <style scoped lang="scss">

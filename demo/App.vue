@@ -30,7 +30,7 @@ if (
 const prettyCode = async () => {
   await nextTick()
   setTimeout(() => {
-    // eslint-disable-next-line no-undef
+     
     PR.prettyPrint()
   }, 500)
 }
@@ -41,6 +41,9 @@ onMounted(() => {
     import('./assets/stylesheets/UI-frameworks/bootstrap.scss')
   } else if (framework.value === 'semantic-ui') {
     import('./assets/stylesheets/UI-frameworks/semantic-ui.scss')
+  }
+
+  if (framework.value !== 'bootstrap') {
     import('./assets/stylesheets/UI-frameworks/bootstrap-display.css')
   }
 
@@ -140,13 +143,13 @@ router.afterEach(() => {
 </template>
 
 <style lang="scss">
-@import './assets/stylesheets/color.css';
-@import './assets/stylesheets/package-introJs-dark-theme.scss';
-@import './assets/stylesheets/package-dark-theme.scss';
-@import './assets/stylesheets/header.scss';
-@import './assets/stylesheets/layout.scss';
-@import './assets/stylesheets/demo-layout.scss';
-@import './assets/stylesheets/pretty-code.scss';
+@use './assets/stylesheets/color.css';
+@use './assets/stylesheets/package-introJs-dark-theme.scss';
+@use './assets/stylesheets/package-dark-theme.scss';
+@use './assets/stylesheets/header.scss';
+@use './assets/stylesheets/layout.scss';
+@use './assets/stylesheets/demo-layout.scss';
+@use './assets/stylesheets/pretty-code.scss';
 </style>
 
 <style scoped lang="scss">

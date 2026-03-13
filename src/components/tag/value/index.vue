@@ -40,43 +40,34 @@
     />
   </div>
 </template>
-<script>
-import resolve from "../../../utils/resolve";
-import useDelete from "./composables/useDelete";
-import useInput from "./composables/useInput";
-import useValue from "./composables/useValue";
-import useKeyboard from "./composables/useKeyboard";
+<script setup lang="ts">
+import type { PropType } from 'vue'
+import type { TagValueComponentProp } from '../../../types'
+import useDelete from './composables/useDelete'
+import useInput from './composables/useInput'
+import useValue from './composables/useValue'
+import useKeyboard from './composables/useKeyboard'
 
-export default {
-  name: "v-tag-value",
-  props: {
-    tag: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
+defineOptions({ name: 'v-tag-value' })
+
+const props = defineProps({
+  tag: {
+    type: Object as PropType<TagValueComponentProp>,
+    default: () => ({}),
   },
-  setup(props, context) {
-    const diplayElm = () => {
-      const tag = props.tag;
-      if (tag.displayValue == true || tag.valueElm == undefined) {
-        return tag.value;
-      }
+})
 
-      if (tag.valueElm != undefined) {
-        return tag.valueElm;
-      }
+const propsRaw = props as Record<string, unknown>
 
-      return tag.value;
-    };
+const { deleteTag } = useDelete(propsRaw)
+const { elInput, inputValue, inputWidth, isInputValueRepeat, nextWillDelete, valueRepeatFlashing, elInputFocus, elInputBlur, blur } = useInput(propsRaw, { deleteTag })
+const { appProps, appPlaceholders, isEditVisible, elTagValueContent, editByinput, editMyself, keydownHorizontalLock, handleClick } = useValue(propsRaw, { elInput, inputValue })
+const { handleKeyup } = useKeyboard(propsRaw, { elInput, inputValue, nextWillDelete, keydownHorizontalLock, editByinput, deleteTag, valueRepeatFlashing })
 
-    return {
-      diplayElm,
-      ...resolve(props, context, [useDelete, useInput, useValue, useKeyboard]),
-    };
-  },
-};
+const diplayElm = () => {
+  const tag = props.tag
+  return (tag.displayValue || !tag.valueElm) ? tag.value : tag.valueElm
+}
 </script>
 
 <style scoped lang="scss">

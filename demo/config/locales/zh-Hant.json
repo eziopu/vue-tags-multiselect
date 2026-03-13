@@ -5,7 +5,7 @@
     "description": {
       "1": "此套件由兩層結構組成，類似dropdown包著dropdown",
       "2": "會複製option的html內容作為tag的顯示依據",
-      "3": "*也可以使用純資料方式生成選項", 
+      "3": "*也可以使用純資料方式生成選項",
       "4": "最後會輸出一個包含key與values的object"
     },
     "setup": {
@@ -24,13 +24,13 @@
       "create": "是否可使用輸入框建立 tag",
       "create__notice": "當 create 與 search 皆為 false 時, 輸入框將無法輸入文字",
       "clearable": "是否啟用清空按鈕",
-      "merge": "合併相同key值的option",
+      "merge": "合併相同 key 值的 tag",
       "keyboard": "是否啟用keyboard操作",
       "keyboard__detail": "套件獲得焦點(focus)後, 可使用以下按鍵操作, 左右可編輯tag",
       "transition": "是否啟用css動畫效果",
       "tagPosition": "tags 擺放位置, 預設值放於input左側, 可改放置上方或是下方",
       "tagPosition__notice": "無論上下方並不影響 <code class='tag'>keyboard</code> 的操作",
-      "conjunction": "選擇的模式",
+      "conjunction": "選項顯示模式",
       "conjunction__parameters": {
         "null": "- : 當有完成的tag, 'OR'模式的按鈕會至頂顯示(預設值)",
         "OR": "OR: 總是顯示還可以選擇的option",
@@ -43,20 +43,20 @@
         "edit": "edit: 只在編輯模式顯示",
         "none": "none: 總是不顯示 *只能使用鍵盤的刪除鍵"
       },
-      "placeholder": "預設文字, 請選以下一種來使用",
+      "placeholder": "提示文字, 請選以下一種來使用",
       "placeholder__details": {
         "placeholder": "類型為string，如同'輸入框'的placeholder",
         "placeholders": "類型為object，放置各種不同情境的placeholder",
-        "remark": "placeholder的權重會大於placeholders"
+        "remark": "placeholder的優先權會大於placeholders"
       },
       "placeholders__detail": "個別情境的文字",
       "placeholders": {
         "initial": "初始預設文字, 僅在無tag時啟用",
-        "loading": "讀取中文字",
+        "loading": "讀取中的文字",
         "loading__notice": "僅在參數 <code class='tag'>loading</code> 為 true 時啟用",
-        "selectDown": "選項皆完成後的文字",
+        "selectDown": "選項皆已選完，但仍可建立標籤時的文字",
         "selectDown__notice": "僅在參數 <code class='tag'>create</code> 為 true 時啟用",
-        "finish": "選項皆完成後的文字",
+        "finish": "所有選項皆已完成時的文字",
         "finish__notice": "僅在參數 <code class='tag'>create</code> 為 false 時啟用",
         "tagValueRepeat": "更新tag 檢測到value重複時啟用",
         "tagValueRepeat__notice": "聚焦tag元件後僅會閃爍兩次後消失"
@@ -87,7 +87,7 @@
       },
       "clear": "使用者點擊清空按鈕時觸發",
       "inputValue": "取得當前 input 的值",
-      "visibleChange": "下拉方塊出現/隱藏時觸發",
+      "visibleChange": "下拉選單出現/隱藏時觸發",
       "removeTag": "移除tag時觸發",
       "selectingTag": "取得當前選擇的tag(包括選擇中, 編輯中)"
     },
@@ -129,7 +129,7 @@
           "value": "標籤的value值",
           "valueElm": "value的顯示元件",
           "titleElm": "title的顯示元件",
-          "classList": "自定義的class name",
+          "classList": "自訂的class name",
           "custom": "完成tag後, 是否允許任意修改標籤的value值",
           "displayValue": "完成tag後, 是否改顯示標籤的value值"
         }
@@ -206,7 +206,7 @@
         "colorTheme": "還有明亮與深色模式!"
       },
       "basic": "最佛系用法, 不用插槽(slot), 不給參數, 就只是單純的標籤條",
-      "addOption": "讓他像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
+      "addOption": "讓它像個下拉式選單, 加入  <code class='tag'>&lt;v-tag-dropdown&gt;</code> (slots) 與  <code class='tag'>&lt;v-tag-option&gt;</code> (slots)",
       "addOption__details": {
         "1": "<code class='tag'>&lt;v-tag-dropdown&gt;</code> : 標籤的key值",
         "2": "<code class='tag'>&lt;v-tag-option&gt;</code> : 標籤的value值, 必須在  <code class='tag'>&lt;v-tag-dropdown&gt;</code> 內",
@@ -219,7 +219,7 @@
         "The_attributes_changes_in_this_demo_will_only_affect_the_second_option": "此demo的參數變動只會改變第二個 option",
         "Some_attributes_will_change_the_second_option": "部分參數改變第二個 option",
         "notice": {
-          "click_the_tag_to_edit_mode": "點擊 tag value 的區域, 讓他變成編輯模式",
+          "click_the_tag_to_edit_mode": "點擊 tag value 的區域, 讓它變成編輯模式",
           "change_the_second": "改變第二個"
         }
       },

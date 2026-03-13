@@ -37,6 +37,9 @@ html.dark-theme {
       background-color: var(--background-color-primary);
       color: #fff
     }
+    .v-option.divided {
+      border-color: var(--text-color-primary) !important;
+    }
 
     .v-tag {
       background-color: var(--background-color-primary);

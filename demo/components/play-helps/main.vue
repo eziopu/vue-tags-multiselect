@@ -261,7 +261,7 @@ export default {
   watch: {
     events: {
       handler(value) {
-        let { selectingTag } = value
+        const { selectingTag } = value
         if (selectingTag.value.key == 'name') {
           this.fetchNames()
         } else {
@@ -276,14 +276,14 @@ export default {
     tableDatas() {
       try {
         if (Object.keys(this.result).length == 0) throw 'no result'
-        let result = []
+        const result = []
         this.originTableDatas.forEach((originData) => {
           if (this.comparator(originData) == true) {
             result.push(originData)
           }
         })
         return result || []
-      } catch (error) {
+      } catch {
         return this.originTableDatas
       }
     }
@@ -294,7 +294,7 @@ export default {
       if (this.attributes.dropdownLoading.value == true) return
       this.attributes.dropdownLoading.value = true
 
-      let length = this.originTableDatas.length
+      const length = this.originTableDatas.length
       this.originTableDatas.forEach((data, index) => {
         if (3 >= index) return
         setTimeout(
@@ -317,7 +317,7 @@ export default {
       )
     },
     inputHeight() {
-      let { height1, height2 } = this
+      const { height1, height2 } = this
       if (height1 == height2 || (height2 != undefined && height1 == undefined)) {
         this.$refs.inputHeight1.focus()
         return
@@ -343,19 +343,19 @@ export default {
       // data = { country: "Māre", height: 15, ... }
       // result = { "country": [ "Māre" ] }
       try {
-        let booleans = [] // length == Object.keys(data).length
+        const booleans = [] // length == Object.keys(data).length
         Object.keys(data).forEach((keyName) => {
           let value = data[keyName] // Māre, 15
           if (keyName == 'remark') {
             value = value == '' ? 'no' : 'yes'
           }
           let result = false
-          let resultValues = this.result[keyName] // ["Māre", "Eldia"] or ["0~60"] or ["yes"]
+          const resultValues = this.result[keyName] // ["Māre", "Eldia"] or ["0~60"] or ["yes"]
           if (resultValues == undefined) {
             booleans.push(true)
           } else {
             if (keyName == 'height') {
-              let heightAttay = resultValues[0]
+              const heightAttay = resultValues[0]
                 .replace(/\s/g, '')
                 .split('~')
                 .sort((a, b) => {

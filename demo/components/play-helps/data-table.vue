@@ -67,7 +67,7 @@ export default defineComponent({
     notFindDatas: {
       type: Array,
       default: () => {
-        let i = [...Array(11)].map(() => `&emsp;`)
+        const i = [...Array(11)].map(() => `&emsp;`)
         i[5] = `<h5 class="text-center">Not find any</h5>`
         return i
       }
@@ -77,9 +77,9 @@ export default defineComponent({
     getRemarkI18n(test) {
       if (!test) return '-'
       try {
-        let i18n = this.$t(`ui.data.remark.${test}`)
+        const i18n = this.$t(`ui.data.remark.${test}`)
         if (i18n) return i18n
-      } catch (error) {
+      } catch {
         return '-'
       }
     }

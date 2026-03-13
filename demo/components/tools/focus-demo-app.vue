@@ -61,10 +61,7 @@ export default {
       },
     },
   },
-  model: {
-    prop: "value",
-    event: "update:modelValue",
-  },
+  emits: ['update:modelValue'],
   data() {
     return {
       status: [],
@@ -121,22 +118,22 @@ export default {
   methods: {
     autoFocusinApp() {
       this.$nextTick(() => {
-        let app = this.$refs.VTagsMultiselect;
+        const app = this.$refs.VTagsMultiselect;
         app.isFocus = true;
         document.removeEventListener("focusin", app.focusChanged);
       });
     },
     updateDropdown(value) {
-      this.$set(this.settings, "dropdown", {
+      this.settings.dropdown = {
         ...this.settings.dropdown,
         ...value,
-      });
+      };
     },
     updateOption(value) {
-      this.$set(this.settings, "option", {
+      this.settings.option = {
         ...this.settings.option,
         ...value,
-      });
+      };
     },
   },
 };

@@ -119,8 +119,9 @@ export const GET_SLOTS_DETAIL = () => {
 //------------------------------------------------------------------------------
 
 export const GET_V_DROPDOWN_PROPS_DETAIL = () => {
-  // eslint-disable-next-line no-unused-vars
-  const { isDisplayForDemo, ...rest } = V_DROPDOWN_PROPS // remove isDisplayForDemo
+   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isDisplayForDemo, ...rest } = V_DROPDOWN_PROPS
   return clear_value_add_is_required(to_detail_attributes(rest))
 }
 
@@ -129,8 +130,9 @@ export const GET_V_DROPDOWN_PROPS_DETAIL = () => {
 //------------------------------------------------------------------------------
 
 export const GET_V_OPTION_PROPS_DETAIL = () => {
-  // eslint-disable-next-line no-unused-vars
-  const { isDisplayForDemo, valueForDemo, ...rest } = V_OPTION_PROPS // remove isDisplayForDemo, valueForDemo
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isDisplayForDemo, valueForDemo, ...rest } = V_OPTION_PROPS
   return clear_value_add_is_required(to_detail_attributes(rest))
 }
 
@@ -139,8 +141,9 @@ export const GET_V_OPTION_PROPS_DETAIL = () => {
 //------------------------------------------------------------------------------
 
 export const GET_DATA_MODE_V_DROPDOWN_PROPS_DETAIL = () => {
-  // eslint-disable-next-line no-unused-vars
-  const { isDisplayForDemo, ...rest } = V_DROPDOWN_PROPS // remove isDisplayForDemo
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isDisplayForDemo, ...rest } = V_DROPDOWN_PROPS
   rest.values = []
   const result = clear_value_add_is_required(to_detail_attributes(rest))
   result.values.isRequired = true
@@ -148,8 +151,9 @@ export const GET_DATA_MODE_V_DROPDOWN_PROPS_DETAIL = () => {
 }
 
 export const GET_DATA_MODE_V_OPTION_PROPS_DETAIL = () => {
-  // eslint-disable-next-line no-unused-vars
-  const { isDisplayForDemo, valueForDemo, ...rest } = V_OPTION_PROPS // remove isDisplayForDemo, valueForDemo
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isDisplayForDemo, valueForDemo, ...rest } = V_OPTION_PROPS
   rest.element = 'VNode'
   return clear_value_add_is_required(to_detail_attributes(rest))
 }

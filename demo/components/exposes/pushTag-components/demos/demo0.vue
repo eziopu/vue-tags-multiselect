@@ -213,7 +213,7 @@ const shortcuts = [
 </template>
 
 <style scoped lang="scss">
-@import '../../assets/stylesheets.scss';
+@use '../../assets/stylesheets.scss';
 </style>
 
 <style lang="scss">

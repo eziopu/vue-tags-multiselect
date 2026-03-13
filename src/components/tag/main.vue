@@ -16,7 +16,7 @@
         'no-value': !tag.values && !tag.value,
       }"
     />
-    <ValueRender v-if="tag.valueElm || tag.value" :tag="tag" />
+    <ValueRender v-if="tag.valueElm || tag.value" :tag="toTagValueProp(tag)" />
 
     <div class="v-tag__values" v-if="tag.values">
       <template
@@ -43,101 +43,90 @@
   </div>
 </template>
 
-<script>
-import ValueRender from "./value/index.vue";
-import PartialClose from "../partial/close.vue";
+<script setup lang="ts">
+import type { PropType } from 'vue'
+import ValueRender from './value/index.vue'
+import PartialClose from '../partial/close.vue'
 
-import { computed, inject } from "vue";
+import { computed, inject } from 'vue'
+import type { TagComponentProp, TagValueComponentProp } from '../../types'
+import {
+  appPropsKey,
+  appIsLockKey,
+  appEditTagIndexKey,
+  appDeleteTagsKey,
+} from '../../injectionKeys'
 
-export default {
-  name: "v-tag",
-  components: {
-    ValueRender,
-    PartialClose,
+defineOptions({ name: 'v-tag' })
+
+const props = defineProps({
+  tag: {
+    type: Object as PropType<TagComponentProp>,
+    default: () => ({}),
   },
-  props: {
-    tag: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-  },
-  setup(props) {
-    // ============== INJECT ================
+})
 
-    const appProps = inject("appProps");
-    const appIsLock = inject("appIsLock");
-    const appEditTagIndex = inject("appEditTagIndex");
-    const appDeleteTags = inject("appDeleteTags");
+// ============== INJECT ================
 
-    // ============== COMPUTED ==============
+const appProps = inject(appPropsKey)!
+const appIsLock = inject(appIsLockKey)!
+const appEditTagIndex = inject(appEditTagIndexKey)!
+const appDeleteTags = inject(appDeleteTagsKey)!
 
-    const childrenEditing = computed(() => {
-      if (appEditTagIndex.value == -1) return false;
+// ============== COMPUTED ==============
 
-      let result = false;
-      let indexs = props.tag.values
-        ? props.tag.values.map((tag) => tag.index)
-        : [props.tag.index];
+const childrenEditing = computed(() => {
+  if (appEditTagIndex.value == -1) return false
 
-      if (
-        indexs.findIndex((index) => {
-          return index == appEditTagIndex.value;
-        }) != -1
-      ) {
-        result = true;
-      }
+  const tag = props.tag
+  const indexs = tag.values
+    ? tag.values.map((t) => t.index)
+    : [tag.index ?? -1]
 
-      return result;
-    });
+  return indexs.includes(appEditTagIndex.value)
+})
 
-    const deleteWhere = computed(() => {
-      const where = appProps.deleteIcon;
-      if (where == "edit" || where == "none") return where;
-      return "always";
-    });
+const deleteWhere = computed(() => {
+  const where = appProps.deleteIcon
+  if (where == 'edit' || where == 'none') return where
+  return 'always'
+})
 
-    const isDeleteVisible = computed(() => {
-      const { tag } = props;
-      const hasData = tag.value || tag.values;
-      if (!hasData) return false;
-      if (deleteWhere.value == "none") return false;
-      if (deleteWhere.value == "edit") {
-        return childrenEditing.value == true ? true : false;
-      }
-      if (deleteWhere.value == "always") return true;
-      return false;
-    });
+const isDeleteVisible = computed(() => {
+  const { tag } = props
+  const hasData = tag.value || tag.values
+  if (!hasData) return false
+  if (deleteWhere.value == 'none') return false
+  if (deleteWhere.value == 'edit') {
+    return childrenEditing.value
+  }
+  if (deleteWhere.value == 'always') return true
+  return false
+})
 
-    // ============== METHODS ==============
+// ============== METHODS ==============
 
-    const deletes = (event) => {
-      event.preventDefault();
-      if (appIsLock.value == true) {
-        console.log(
-          "[v-tags-multiselect]: tag delete method is not available while the app is locked"
-        );
-        return;
-      }
+const deletes = (event: Event) => {
+  event.preventDefault()
+  if (appIsLock.value == true) {
+    console.log(
+      '[v-tags-multiselect]: tag delete method is not available while the app is locked'
+    )
+    return
+  }
 
-      let indexs = [props.tag.index];
-      if (props.tag.values) {
-        indexs = props.tag.values.map((value) => value.index);
-      }
-      appDeleteTags(indexs);
-      return;
-    };
+  const tag = props.tag
+  let indexs = [tag.index ?? -1]
+  if (tag.values) {
+    indexs = tag.values.map((value) => value.index)
+  }
+  appDeleteTags(indexs)
+  return
+}
 
-    return {
-      appIsLock,
-      isDeleteVisible,
-      childrenEditing,
-
-      deletes,
-    };
-  },
-};
+// TagComponentProp.index 為 optional，但 ValueRender 需要 TagValueComponentProp（index required）
+// v-if="tag.valueElm || tag.value" 條件下 tag 必為有 index 的完整 tag
+const toTagValueProp = (t: TagComponentProp) => t as unknown as TagValueComponentProp
 </script>
 
 <style scoped lang="scss">

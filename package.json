@@ -1,6 +1,6 @@
 {
   "name": "vue-tags-multiselect",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "This is a complex multi-selector.",
   "author": "eziopu <atkdet@gmail.com>",
   "keywords": [
@@ -17,8 +17,10 @@
   "type": "module",
   "main": "./dist/vue-tags-multiselect.umd.cjs",
   "module": "./dist/vue-tags-multiselect.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/vue-tags-multiselect.js",
       "require": "./dist/vue-tags-multiselect.umd.cjs"
     },
@@ -34,26 +36,31 @@
     "build:check": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "eslint --fix",
     "deploy": "gh-pages -d docs"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.5.30"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.3.3",
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vue/eslint-config-prettier": "^8.0.0",
-    "element-plus": "^2.8.3",
-    "eslint": "^8.49.0",
-    "eslint-plugin-vue": "^9.17.0",
-    "gh-pages": "^6.1.1",
-    "intro.js": "^7.2.0",
-    "prettier": "^3.0.3",
-    "sass": "^1.69.5",
-    "vite": "^4.4.11",
-    "vue-i18n": "^9.8.0",
-    "vue-router": "^4.4.2"
+    "@vitejs/plugin-vue": "^6.0.5",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/tsconfig": "^0.9.0",
+    "element-plus": "^2.13.5",
+    "eslint": "^10.0.3",
+    "eslint-plugin-vue": "^10.8.0",
+    "gh-pages": "^6.3.0",
+    "intro.js": "^8.3.2",
+    "prettier": "^3.8.1",
+    "sass": "^1.98.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0",
+    "vite": "^8.0.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vue-i18n": "^11.3.0",
+    "vue-router": "^5.0.3",
+    "vue-tsc": "^3.2.5"
   },
   "bugs": {
     "url": "https://github.com/eziopu/vue-tags-multiselect/issues"

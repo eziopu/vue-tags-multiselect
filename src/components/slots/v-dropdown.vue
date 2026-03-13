@@ -16,21 +16,22 @@
   </div>
 </template>
 
-<script>
-import { vDropdownProps } from "./models.js";
-import useDropdown from "./composables/useDropdown";
+<script setup lang="ts">
+import { vDropdownProps } from './models'
+import useDropdown from './composables/useDropdown'
 
-import resolve from "./../../utils/resolve";
+defineOptions({ name: 'v-dropdown' })
 
-export default {
-  name: "v-dropdown",
+const props = defineProps(vDropdownProps())
 
-  props: vDropdownProps(),
-
-  setup(props, context) {
-    return resolve(props, context, [useDropdown]);
-  },
-};
+const {
+  elDropdown,
+  myDisplayAll,
+  hasVNodeTitle,
+  isHidden,
+  isSelecting,
+  isChildEditing,
+} = useDropdown(props as Record<string, unknown>)
 </script>
 
 <style scoped lang="scss">

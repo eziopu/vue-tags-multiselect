@@ -81,7 +81,7 @@ const dropdownLoading = ref(true)
 </template>
 
 <style scoped lang="scss">
-@import './assets/stylesheets.scss';
+@use './assets/stylesheets.scss';
 .attributes {
   width: 48%;
   @media (max-width: 768px) {

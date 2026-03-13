@@ -6,7 +6,6 @@
     ref="elApp"
     @focus="elAppFocus"
     @keydown="handleKeydown"
-    @keyup="handleKeyup"
     @click="isEnable = true"
     :key="elAppKeyForRerender"
     :class="{
@@ -172,7 +171,7 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 // components
 import VTag from './components/tag/main.vue'
 import PartialLoading from './components/partial/loading.vue'
@@ -180,8 +179,9 @@ import PartialClose from './components/partial/close.vue'
 import VTagDropdown from './components/slots/v-dropdown.vue'
 import VTagOption from './components/slots/v-option.vue'
 
-// resolve
-import resolve from './utils/resolve'
+// composables
+import type { PropType } from 'vue'
+import type { PlaceholdersModel, OptionsInput } from './types'
 import useLog from './composables/useLog'
 import useProcessOptions from './composables/useProcessOptions'
 import usePreprocessedData from './composables/usePreprocessedData'
@@ -196,73 +196,69 @@ import useExposeSetTag from './composables/useExposeSetTag'
 import useExpose from './composables/useExpose'
 import useClearable from './composables/useClearable'
 
-import { defineComponent } from 'vue'
+defineOptions({ name: 'v-tags-multiselect' })
 
-export default defineComponent({
-  name: 'v-tags-multiselect',
-  emits: [
-    'update:modelValue',
-    // app
-    'focus',
-    'blur',
-    'clear',
-    'status',
-    'input-value',
-    // dropdown
-    'visible-change',
-    // tag
-    'remove-tag',
-    'selecting-tag'
-  ],
-  components: {
-    VTag,
-    PartialLoading,
-    PartialClose,
-    VTagDropdown,
-    VTagOption
-  },
-  props: {
-    disabled: { type: Boolean, default: false },
-    loading: { type: Boolean, default: false },
-    dropdownLoading: { type: Boolean, default: false },
-    search: { type: Boolean, default: true },
-    transition: { type: Boolean, default: true },
-    create: { type: Boolean, default: true },
-    clearable: { type: Boolean, default: true },
-    merge: { type: Boolean, default: true },
-    keyboard: { type: Boolean, default: true },
-    conjunction: { type: String, default: '' }, // 'OR', 'AND'
-    deleteIcon: { type: String, default: 'always' }, // 'always', 'edit', 'none'
-    tagPosition: { type: String, default: '' }, // 'top', 'bottom'
-    debugLog: { type: Boolean, default: false },
-    /**
-     * placeholder
-     **/
-    placeholders: { type: Object, default: () => {} },
-    placeholder: { type: String, default: '' },
-    /**
-     * data mode
-     **/
-    options: { type: Object, default: () => {} }
-  },
-  setup(props, context) {
-    return resolve(props, context, [
-      useLog,
-      usePreprocessedData,
-      useProcessOptions,
-      useTag,
-      useElInput,
-      useApp,
-      useSystemOption,
-      useElDropdown,
-      useStatus,
-      useKeyboard,
-      useClearable,
-      useExposeSetTag,
-      useExpose
-    ])
-  }
+const props = defineProps({
+  disabled: { type: Boolean as PropType<boolean>, default: false },
+  loading: { type: Boolean as PropType<boolean>, default: false },
+  dropdownLoading: { type: Boolean as PropType<boolean>, default: false },
+  search: { type: Boolean as PropType<boolean>, default: true },
+  transition: { type: Boolean as PropType<boolean>, default: true },
+  create: { type: Boolean as PropType<boolean>, default: true },
+  clearable: { type: Boolean as PropType<boolean>, default: true },
+  merge: { type: Boolean as PropType<boolean>, default: true },
+  keyboard: { type: Boolean as PropType<boolean>, default: true },
+  conjunction: { type: String as PropType<string>, default: '' },
+  deleteIcon: { type: String as PropType<string>, default: 'always' },
+  tagPosition: { type: String as PropType<string>, default: '' },
+  debugLog: { type: Boolean as PropType<boolean>, default: false },
+  placeholders: { type: Object as PropType<Partial<PlaceholdersModel>>, default: () => ({}) },
+  placeholder: { type: String as PropType<string>, default: '' },
+  options: { type: [Object, Array] as PropType<OptionsInput>, default: () => ({}) },
 })
+
+const emit = defineEmits<{
+  'update:modelValue': [value: any]
+  focus: []
+  blur: []
+  clear: []
+  status: [value: string[]]
+  'input-value': [value: any]
+  'visible-change': [value: any]
+  'remove-tag': [value: any]
+  'selecting-tag': [value: any]
+}>()
+
+const propsRaw = props as Record<string, unknown>
+
+// ============== Composable chain ==============
+
+const { log, log2, log3 } = useLog(propsRaw)
+
+const { dropdownStatus, isAllDropdownIsDown, isAllDropdownIsHidden, isPassTagInputBlur, appIsLock, appIsFinish } = usePreprocessedData(propsRaw)
+
+const { processedOptions } = useProcessOptions(propsRaw, { log })
+
+const { tags, stashTag, isEditMode, editTagIndex, tagsGroupByKey, tagsGroupByTitle, updateTag, deleteTags, setStashTag, setTagToTags, isDuplicateTag } = useTag(emit, { log, log2 })
+
+const { elInput, elInputValue, elInputMaxlength, elInputPlaceholder } = useElInput(propsRaw, emit, { tags, stashTag, appIsLock, appIsFinish, isAllDropdownIsDown })
+
+const { elApp, elControls, elTags, isActive, isEnable, focusReInit, conjunction: appConjunction, keydown, isTagPositionVisible, init, elInputFocus, elInputBlur, focusApp, elAppFocus, isActiveElementContainApp } = useApp(propsRaw, emit, { elInput, editTagIndex, elInputValue, log, log2, setStashTag })
+
+const { isUndoOptionVisible, isORConjunctionOptionVisible, elOptionUndo, elOptionORConjunction } = useSystemOption({ tagsGroupByTitle, stashTag, focusReInit, elInputValue, conjunction: appConjunction, dropdownStatus, isEditMode, tagsGroupByKey, isAllDropdownIsDown, setStashTag, elAppFocus, log })
+
+const { elDropdown, elDropdownStyle, isElDropdownVisible } = useElDropdown(propsRaw, emit, { isActive, editTagIndex, stashTag, dropdownStatus, isAllDropdownIsDown, isAllDropdownIsHidden, isUndoOptionVisible, isORConjunctionOptionVisible, elApp, elControls })
+
+useStatus(propsRaw, emit, { elInputValue, isEditMode, isElDropdownVisible, appIsFinish, isAllDropdownIsDown, log })
+
+const { handleKeydown } = useKeyboard(propsRaw, { focusApp, tags, tagsGroupByTitle, conjunction: appConjunction, keydown, elInputValue, isEditMode, stashTag, setTagToTags, elDropdown, elTags, appIsLock, setStashTag, deleteTags, log, init, isPassTagInputBlur, isActiveElementContainApp, focusReInit, editTagIndex, isUndoOptionVisible, isORConjunctionOptionVisible, elOptionUndo, elOptionORConjunction })
+
+const { isClearableVisible, clear } = useClearable(propsRaw, emit, { tags, tagsGroupByTitle, elInputValue, isEditMode, init, log })
+
+const { pushTag } = useExposeSetTag(propsRaw, { appIsLock, dropdownStatus, isEditMode, stashTag, focusApp, updateTag, isDuplicateTag, setStashTag, setTagToTags, tagsGroupByKey, log, log3 })
+
+const { elAppKeyForRerender, exposed } = useExpose({ init, isActive, elInputValue, tags, pushTag })
+defineExpose(exposed)
 </script>
 
 <style>
